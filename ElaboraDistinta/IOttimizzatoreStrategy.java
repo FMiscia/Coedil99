@@ -1,8 +1,9 @@
 package ElaboraDistinta;
 
+import java.util.List;
+
 public interface IOttimizzatoreStrategy {
 
-	ElaboraDistintaHandler getCdistinta();
 
 	/**
 	 * 

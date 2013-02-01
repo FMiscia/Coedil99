@@ -1,5 +1,7 @@
 package ElaboraDistinta;
 
+import java.util.Date;
+
 public class Ordine {
 
 	Cliente cliente;
