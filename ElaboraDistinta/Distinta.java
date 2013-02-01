@@ -1,18 +1,34 @@
 package ElaboraDistinta;
 
 public class Distinta {
-	public RigheLavoro _lavori;
-	public DocumentoOttimizzazione _ddo;
 
-	public void modificaRigaLavoro(RigaLavoro aRg) {
+	RigheLavoro lavori;
+	DocumentoOttimizzazione ddo;
+
+	/**
+	 * 
+	 * @param rg
+	 * @return 
+	 */
+	public void modificaRigaLavoro(RigaLavoro rg) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void eliminaRigaLavoro(RigaLavoro aRg) {
+	/**
+	 * 
+	 * @param rg
+	 * @return 
+	 */
+	public void eliminaRigaLavoro(RigaLavoro rg) {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * 
+	 * @return 
+	 */
 	public void createDDO() {
 		throw new UnsupportedOperationException();
 	}
+
 }

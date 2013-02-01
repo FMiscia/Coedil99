@@ -1,36 +1,35 @@
 package ElaboraDistinta;
 
-import java.util.ArrayList;
-import ElaboraDistinta.Commessa;
-
 public class Ordine {
-	private String _ordineGestionale;
-	private Date _dataInizio;
-	private Date _dataFine;
-	public Cliente _cliente;
-	public ArrayList<Commessa> _commessa = new ArrayList<Commessa>();
 
-	public void setOrdineGestionale(String aOrdineGestionale) {
-		this._ordineGestionale = aOrdineGestionale;
-	}
+	Cliente cliente;
+	Commessa[] commessa;
+	private String ordineGestionale;
+	private Date dataInizio;
+	private Date dataFine;
 
 	public String getOrdineGestionale() {
-		return this._ordineGestionale;
+		return this.ordineGestionale;
 	}
 
-	public void setDataInizio(Date aDataInizio) {
-		this._dataInizio = aDataInizio;
+	public void setOrdineGestionale(String ordineGestionale) {
+		this.ordineGestionale = ordineGestionale;
 	}
 
 	public Date getDataInizio() {
-		return this._dataInizio;
+		return this.dataInizio;
 	}
 
-	public void setDataFine(Date aDataFine) {
-		this._dataFine = aDataFine;
+	public void setDataInizio(Date dataInizio) {
+		this.dataInizio = dataInizio;
 	}
 
 	public Date getDataFine() {
-		return this._dataFine;
+		return this.dataFine;
 	}
+
+	public void setDataFine(Date dataFine) {
+		this.dataFine = dataFine;
+	}
+
 }

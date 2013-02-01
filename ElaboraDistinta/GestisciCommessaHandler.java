@@ -1,17 +1,26 @@
 package ElaboraDistinta;
 
-import java.util.ArrayList;
-import ElaboraDistinta.Commessa;
-
 public class GestisciCommessaHandler {
-	public ElaboraDistintaHandler _cdistinta;
-	public ArrayList<Commessa> _commessa = new ArrayList<Commessa>();
 
-	public void addDistinta(Distinta aDistinta) {
+	ElaboraDistintaHandler cdistinta;
+	Commessa[] commessa;
+
+	/**
+	 * 
+	 * @param distinta
+	 * @return 
+	 */
+	public void addDistinta(Distinta distinta) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void eliminaDistinta(Commessa aCommessa) {
+	/**
+	 * 
+	 * @param commessa
+	 * @return 
+	 */
+	public void eliminaDistinta(Commessa commessa) {
 		throw new UnsupportedOperationException();
 	}
+
 }

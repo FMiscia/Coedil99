@@ -1,15 +1,17 @@
 package ElaboraDistinta;
 
 public class Item {
-	private String _descrizione;
-	public History _history;
-	public Geometria _geometria;
 
-	public void setDescrizione(String aDescrizione) {
-		this._descrizione = aDescrizione;
-	}
+	History history;
+	Geometria geometria;
+	private String descrizione;
 
 	public String getDescrizione() {
-		return this._descrizione;
+		return this.descrizione;
 	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+
 }

@@ -1,27 +1,45 @@
 package ElaboraDistinta;
 
-import java.util.ArrayList;
-import ElaboraDistinta.Distinta;
-
 public class ElaboraDistintaHandler {
-	public GestisciMagazzinoHandler _cmagazzino;
-	public IOttimizzatoreStrategy _sottimizzatore;
-	public ArrayList<Distinta> _distinta = new ArrayList<Distinta>();
-	public GestisciCommessaHandler _ccommessa;
 
-	public void modificaDistinta(Distinta aDistinta) {
+	GestisciMagazzinoHandler cmagazzino;
+	IOttimizzatoreStrategy sottimizzatore;
+	Distinta[] distinta;
+	GestisciCommessaHandler ccommessa;
+
+	/**
+	 * 
+	 * @param distinta
+	 * @return 
+	 */
+	public void modificaDistinta(Distinta distinta) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void creaNuovaDistinta(Commessa aCommessa) {
+	/**
+	 * 
+	 * @param commessa
+	 * @return 
+	 */
+	public void creaNuovaDistinta(Commessa commessa) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void eliminaDistinta(Distinta aDistinta) {
+	/**
+	 * 
+	 * @param distinta
+	 * @return 
+	 */
+	public void eliminaDistinta(Distinta distinta) {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * 
+	 * @return 
+	 */
 	public void elaboraDDO() {
 		throw new UnsupportedOperationException();
 	}
+
 }

@@ -2,5 +2,14 @@ package ElaboraDistinta;
 
 public interface ICommessaListener {
 
-	public void onPropertyEvent(Commessa aCommessa, String aValue);
+	Commessa getCommessa();
+
+	/**
+	 * 
+	 * @param commessa
+	 * @param value
+	 * @return 
+	 */
+	abstract void onPropertyEvent(Commessa commessa, string value);
+
 }

@@ -1,41 +1,43 @@
 package ElaboraDistinta;
 
 public class RigaLavoro {
-	private boolean _capitello;
-	private String _profiloCapitello;
-	private String _note;
-	private int _numero;
-	public Geometria _geometria;
 
-	public void setCapitello(boolean aCapitello) {
-		this._capitello = aCapitello;
-	}
+	Geometria geometria;
+	private boolean capitello;
+	private String profiloCapitello;
+	private String note;
+	private int numero;
 
 	public boolean isCapitello() {
-		return this._capitello;
+		return this.capitello;
 	}
 
-	public void setProfiloCapitello(String aProfiloCapitello) {
-		this._profiloCapitello = aProfiloCapitello;
+	public void setCapitello(boolean capitello) {
+		this.capitello = capitello;
 	}
 
 	public String getProfiloCapitello() {
-		return this._profiloCapitello;
+		return this.profiloCapitello;
 	}
 
-	public void setNote(String aNote) {
-		this._note = aNote;
+	public void setProfiloCapitello(String profiloCapitello) {
+		this.profiloCapitello = profiloCapitello;
 	}
 
 	public String getNote() {
-		return this._note;
+		return this.note;
 	}
 
-	public void setNumero(int aNumero) {
-		this._numero = aNumero;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public int getNumero() {
-		return this._numero;
+		return this.numero;
 	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
 }

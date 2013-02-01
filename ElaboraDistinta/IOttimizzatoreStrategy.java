@@ -2,5 +2,13 @@ package ElaboraDistinta;
 
 public interface IOttimizzatoreStrategy {
 
-	public DocumentoOttimizzazione elaboraOttimizzazione(List<RigaLavoro> aRighelavoro);
+	ElaboraDistintaHandler getCdistinta();
+
+	/**
+	 * 
+	 * @param righelavoro
+	 * @return 
+	 */
+	abstract DocumentoOttimizzazione elaboraOttimizzazione(List<RigaLavoro> righelavoro);
+
 }

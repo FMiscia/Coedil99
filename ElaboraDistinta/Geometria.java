@@ -1,31 +1,33 @@
 package ElaboraDistinta;
 
 public class Geometria {
-	private float _base;
-	private float _altezza;
-	private float _lunghezza;
 
-	public void setBase(float aBase) {
-		this._base = aBase;
-	}
+	private float base;
+	private float altezza;
+	private float lunghezza;
 
 	public float getBase() {
-		return this._base;
+		return this.base;
 	}
 
-	public void setAltezza(float aAltezza) {
-		this._altezza = aAltezza;
+	public void setBase(float base) {
+		this.base = base;
 	}
 
 	public float getAltezza() {
-		return this._altezza;
+		return this.altezza;
 	}
 
-	public void setLunghezza(float aLunghezza) {
-		this._lunghezza = aLunghezza;
+	public void setAltezza(float altezza) {
+		this.altezza = altezza;
 	}
 
 	public float getLunghezza() {
-		return this._lunghezza;
+		return this.lunghezza;
 	}
+
+	public void setLunghezza(float lunghezza) {
+		this.lunghezza = lunghezza;
+	}
+
 }
