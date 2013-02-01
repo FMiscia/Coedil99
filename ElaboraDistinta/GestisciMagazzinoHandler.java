@@ -1,5 +1,7 @@
 package ElaboraDistinta;
 
+import java.util.List;
+
 public class GestisciMagazzinoHandler implements ICommessaListener {
 
 	ElaboraDistintaHandler cdistinta;
@@ -21,6 +23,12 @@ public class GestisciMagazzinoHandler implements ICommessaListener {
 	 */
 	public void update(DocumentoOttimizzazione ddo) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void onPropertyEvent(Commessa commessa, String value) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
