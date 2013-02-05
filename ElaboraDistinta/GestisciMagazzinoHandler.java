@@ -5,7 +5,7 @@ import java.util.List;
 public class GestisciMagazzinoHandler implements ICommessaListener {
 
 	ElaboraDistintaHandler cdistinta;
-	Magazzino[] magazzino;
+	List<Magazzino> magazzino;
 
 	/**
 	 * 

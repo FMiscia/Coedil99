@@ -1,13 +1,14 @@
 package ElaboraDistinta;
 
 import java.util.Date;
+import java.util.List;
 
 public class Commessa {
 
 	Ordine ordine;
 	ListaRintracciabilita ldr;
 	GestisciCommessaHandler ccommessa;
-	ICommessaListener[] lcommessa;
+	List<ICommessaListener> lcommessa;
 	Distinta distinta;
 	private String elementoStrutturale;
 	private Date scadenza;

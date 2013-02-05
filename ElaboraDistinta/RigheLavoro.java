@@ -1,8 +1,10 @@
 package ElaboraDistinta;
 
+import java.util.List;
+
 public class RigheLavoro {
 
-	RigaLavoro[] riga;
+	List<RigaLavoro> riga;
 
 	/**
 	 * 

@@ -1,8 +1,10 @@
 package ElaboraDistinta;
 
+import java.util.List;
+
 public class Magazzino {
 
 	Catalogo catalogo;
-	Item[] item;
+	List<Item> item;
 
 }

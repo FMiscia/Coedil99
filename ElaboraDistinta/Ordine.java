@@ -1,11 +1,12 @@
 package ElaboraDistinta;
 
 import java.util.Date;
+import java.util.List;
 
 public class Ordine {
 
 	Cliente cliente;
-	Commessa[] commessa;
+	List<Commessa> commessa;
 	private String ordineGestionale;
 	private Date dataInizio;
 	private Date dataFine;

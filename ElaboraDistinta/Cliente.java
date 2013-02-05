@@ -1,7 +1,9 @@
 package ElaboraDistinta;
 
+import java.util.List;
+
 public class Cliente {
 
-	Ordine[] ordine;
+	List<Ordine> ordine;
 
 }
