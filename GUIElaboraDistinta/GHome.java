@@ -5,17 +5,19 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+
 public class GHome {
 
 	private JFrame frame;
-	private final Button button = new Button("Crea Distinta");
+	private final Button button = new Button("Programma Lavori");
+	private JPanel panel;
+	private JPanel pl;
 
 	/**
 	 * Launch the application.
@@ -48,20 +50,31 @@ public class GHome {
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 549, 326);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.SOUTH);
+		panel = new JPanel();
+		panel.setBackground(Color.BLACK);
+		panel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+		frame.getContentPane().add(panel);
+		panel.add(button);
+		//frame.getContentPane().add(panel_1);
+		this.pl = new programmaLavori();
 		button.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				frame.getContentPane().setBackground(Color.RED);
+				frame.getContentPane().remove(panel);
+				frame.getContentPane().add( pl );
+				pl.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+				frame.validate();
+				frame.repaint();
+
 			}
 		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		panel.add(button);
+
+
 	}
 
 }
