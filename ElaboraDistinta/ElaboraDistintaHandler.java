@@ -1,10 +1,12 @@
 package ElaboraDistinta;
 
+import java.util.List;
+
 public class ElaboraDistintaHandler {
 
 	GestisciMagazzinoHandler cmagazzino;
 	IOttimizzatoreStrategy sottimizzatore;
-	Distinta[] distinta;
+	List<Distinta> distinta;
 	GestisciCommessaHandler ccommessa;
 
 	/**

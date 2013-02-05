@@ -1,9 +1,11 @@
 package ElaboraDistinta;
 
+import java.util.List;
+
 public class GestisciCommessaHandler {
 
 	ElaboraDistintaHandler cdistinta;
-	Commessa[] commessa;
+	List<Commessa> commessa;
 
 	/**
 	 * 

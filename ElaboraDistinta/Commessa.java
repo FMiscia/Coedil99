@@ -1,22 +1,35 @@
 package ElaboraDistinta;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.List;
 
 public class Commessa {
 
 	Ordine ordine;
 	ListaRintracciabilita ldr;
 	GestisciCommessaHandler ccommessa;
-	ICommessaListener[] lcommessa;
+	List<ICommessaListener> lcommessa;
 	Distinta distinta;
 	private String elementoStrutturale;
-	private Date scadenza;
-	private Date emissione;
+	private Calendar scadenza;
+	private Calendar emissione;
 	private String orario;
 	private String descrizione;
-	private String responsabile;
+	private String responsabile; // dipendente
 	private int ritardo;
 
+	public Commessa(Ordine o, Distinta d, String es, Calendar s, Calendar e, String orario , String desc, String resp, int rit ){
+		this.ordine = o;
+		this.distinta = d;
+		this.elementoStrutturale = es;
+		this.scadenza = s;
+		this.emissione = e;
+		this.orario = orario;
+		this.descrizione = desc;
+		this.responsabile = resp;
+		this.ritardo = rit;
+	} 
+	
 	public String getElementoStrutturale() {
 		return this.elementoStrutturale;
 	}
@@ -25,19 +38,19 @@ public class Commessa {
 		this.elementoStrutturale = elementoStrutturale;
 	}
 
-	public Date getScadenza() {
+	public Calendar getScadenza() {
 		return this.scadenza;
 	}
 
-	public void setScadenza(Date scadenza) {
+	public void setScadenza(Calendar scadenza) {
 		this.scadenza = scadenza;
 	}
 
-	public Date getEmissione() {
+	public Calendar getEmissione() {
 		return this.emissione;
 	}
 
-	public void setEmissione(Date emissione) {
+	public void setEmissione(Calendar emissione) {
 		this.emissione = emissione;
 	}
 

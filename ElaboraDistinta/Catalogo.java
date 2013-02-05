@@ -1,7 +1,9 @@
 package ElaboraDistinta;
 
+import java.util.List;
+
 public class Catalogo {
 
-	Item[] item;
+	List<Item> item;
 
 }
