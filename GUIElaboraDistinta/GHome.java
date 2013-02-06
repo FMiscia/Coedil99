@@ -8,8 +8,11 @@ import javax.swing.JPanel;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 
 
 public class GHome {
@@ -47,16 +50,17 @@ public class GHome {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setResizable(false);
 		frame.setBounds(100, 100, 549, 326);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
+		panel.setBounds(0, 0, 1, 1);
 		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		button.setBounds(215, 5, 119, 23);
 		panel.add(button);
+		frame.getContentPane().add(panel);
 		//frame.getContentPane().add(panel_1);
 		this.pl = new programmaLavori();
 		button.addMouseListener(new MouseAdapter() {
@@ -74,7 +78,35 @@ public class GHome {
 			}
 		});
 
+		frame.addComponentListener(new ComponentListener(){
 
+			@Override
+			public void componentHidden(ComponentEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void componentResized(ComponentEvent arg0) {
+				panel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+				pl.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+				button.setLocation(panel.getWidth()/2-button.getWidth()/2, panel.getHeight()/2-button.getHeight()/2);
+				frame.validate();
+				frame.repaint();		
+			}
+
+			@Override
+			public void componentShown(ComponentEvent arg0) {
+
+			}
+			
+		});
 	}
 
 }
