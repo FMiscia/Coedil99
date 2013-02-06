@@ -2,16 +2,19 @@ package GUIElaboraDistinta;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Button;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Label;
+import java.util.Calendar;
+
+import ElaboraDistinta.StartUp;
 
 
 
@@ -20,7 +23,14 @@ public class GHome {
 	private JFrame frame;
 	private final Button button = new Button("Programma Lavori");
 	private JPanel panel;
-	private JPanel pl;
+	private GProgLavori pl;
+	private Button start_up;
+	final Label ordineG = new Label("");
+	final Label dataI = new Label("");
+	final Label dataF = new Label("");
+	final Label lblOrdineGestionale = new Label();
+	final Label lblDataInizioCommessa = new Label();
+	final Label lblDataFineCommessa = new Label();
 
 	/**
 	 * Launch the application.
@@ -50,34 +60,40 @@ public class GHome {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 549, 326);
+		Toolkit tk = Toolkit.getDefaultToolkit(); 
+		int xSize = ((int) tk.getScreenSize().getWidth()); 
+		int ySize = ((int) tk.getScreenSize().getHeight()); 
+		frame.setSize(xSize,ySize); 
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(0, 0, 1, 1);
-		panel.setBackground(Color.BLACK);
-		panel.setLayout(null);
-		button.setBounds(215, 5, 119, 23);
-		panel.add(button);
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(0, 0, 543, 298);
 		frame.getContentPane().add(panel);
-		//frame.getContentPane().add(panel_1);
-		this.pl = new programmaLavori();
-		button.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				frame.getContentPane().remove(panel);
-				frame.getContentPane().add( pl );
-				pl.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-				frame.validate();
-				frame.repaint();
-
-			}
-		});
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-
+		panel.setLayout(null);
+		button.setBounds(153, 135, 139, 22);
+		panel.add(button);
+		
+		start_up = new Button("Start Up");
+		start_up.setBounds(311, 135, 53, 22);
+		panel.add(start_up);
+		
+		pl = new GProgLavori();
+		
+		ordineG.setBounds(10, 57, 62, 22);
+		dataI.setBounds(10, 106, 62, 22);
+		dataF.setBounds(10, 149, 62, 22);
+		lblOrdineGestionale.setText("Ordine Gestionale");
+		lblOrdineGestionale.setBounds(10, 37, 120, 14);
+		lblDataInizioCommessa.setText("Data inizio Commessa");
+		lblDataInizioCommessa.setBounds(10, 86, 130, 14);
+		lblDataFineCommessa.setText("Data fine Commessa");
+		lblDataFineCommessa.setBounds(10, 130, 130, 14);
+		
 		frame.addComponentListener(new ComponentListener(){
 
 			@Override
@@ -95,8 +111,8 @@ public class GHome {
 			@Override
 			public void componentResized(ComponentEvent arg0) {
 				panel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-				pl.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 				button.setLocation(panel.getWidth()/2-button.getWidth()/2, panel.getHeight()/2-button.getHeight()/2);
+				start_up.setLocation(panel.getWidth()/2-start_up.getWidth()/2+button.getWidth(), panel.getHeight()/2-start_up.getHeight()/2);
 				frame.validate();
 				frame.repaint();		
 			}
@@ -107,6 +123,37 @@ public class GHome {
 			}
 			
 		});
-	}
+			
 
+		start_up.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
+				StartUp s = new StartUp();
+				ordineG.setText(s.o.getOrdineGestionale());
+				dataI.setText(s.o.getDataInizio().get(Calendar.DATE)+"/"+s.o.getDataInizio().get(Calendar.MONTH)+"/"+s.o.getDataInizio().get(Calendar.YEAR));
+				dataF.setText(s.o.getDataFine().get(Calendar.DATE)+"/"+s.o.getDataFine().get(Calendar.MONTH)+"/"+s.o.getDataFine().get(Calendar.YEAR));
+				panel.add(lblOrdineGestionale);
+				panel.add(ordineG);
+				panel.add(lblDataInizioCommessa);
+				panel.add(dataI);
+				panel.add(lblDataFineCommessa);
+				panel.add(dataF);
+				
+			}
+		});
+		
+		button.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				frame.remove(panel);
+				pl.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+				frame.add(pl);
+				frame.validate();
+				frame.repaint();
+			}
+		});
+		
+		
+		
+
+
+	}
 }
