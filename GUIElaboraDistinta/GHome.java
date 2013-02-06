@@ -1,3 +1,4 @@
+
 package GUIElaboraDistinta;
 
 import java.awt.Color;
@@ -31,6 +32,7 @@ public class GHome {
 	final Label lblOrdineGestionale = new Label();
 	final Label lblDataInizioCommessa = new Label();
 	final Label lblDataFineCommessa = new Label();
+
 
 	/**
 	 * Launch the application.
@@ -66,7 +68,6 @@ public class GHome {
 		int xSize = ((int) tk.getScreenSize().getWidth()); 
 		int ySize = ((int) tk.getScreenSize().getHeight()); 
 		frame.setSize(xSize,ySize); 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -124,7 +125,6 @@ public class GHome {
 			
 		});
 			
-
 		start_up.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				StartUp s = new StartUp();
@@ -147,7 +147,7 @@ public class GHome {
 				pl.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 				frame.add(pl);
 				frame.validate();
-				frame.repaint();
+				frame.repaint();		
 			}
 		});
 		

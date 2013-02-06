@@ -6,6 +6,12 @@ public class Geometria {
 	private float altezza;
 	private float lunghezza;
 
+	public Geometria(float b, float a, float l){
+		this.base = b;
+		this.altezza = a;
+		this.lunghezza = l;
+	}
+	
 	public float getBase() {
 		return this.base;
 	}

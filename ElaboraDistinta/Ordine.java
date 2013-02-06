@@ -49,5 +49,9 @@ public class Ordine {
 
 		this.dataFine = dataFine;
 	}
+	
+	public Cliente getCliente(){
+		return this.cliente;
+	}
 
 }
