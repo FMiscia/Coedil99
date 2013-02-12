@@ -2,7 +2,9 @@
 package GUIElaboraDistinta;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Frame;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -66,8 +68,27 @@ public class GHome {
 		frame.setBounds(100, 100, 549, 326);
 		Toolkit tk = Toolkit.getDefaultToolkit(); 
 		int xSize = ((int) tk.getScreenSize().getWidth()); 
-		int ySize = ((int) tk.getScreenSize().getHeight()); 
+		int ySize = ((int) tk.getScreenSize().getHeight());
 		frame.setSize(xSize,ySize); 
+		//Centraggio della finestra
+		Dimension screenSize = tk.getScreenSize();
+		Dimension frameSize = frame.getSize ();
+		frame.setLocation ((screenSize.width - frameSize.width) / 2,(screenSize.height - frameSize.height) / 2);		
+		/**Button Chiudi = new Button("X");
+		Chiudi.setBounds((xSize-30), 0, 29, 22);
+		frame.getContentPane().add(Chiudi);
+		Chiudi.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
+				frame.dispose();}}
+		);
+		Button Minimizza = new Button("_");
+		Minimizza.setBounds((xSize-60), 0, 29, 22);
+		frame.getContentPane().add(Minimizza);
+		Minimizza.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
+				frame.setState(Frame.ICONIFIED);}}
+		);**/
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -83,6 +104,7 @@ public class GHome {
 		start_up.setBounds(311, 135, 53, 22);
 		panel.add(start_up);
 		
+				
 		pl = new GProgLavori();
 		
 		ordineG.setBounds(10, 57, 62, 22);
@@ -145,7 +167,7 @@ public class GHome {
 			public void mouseClicked(MouseEvent arg0) {
 				frame.remove(panel);
 				pl.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-				frame.add(pl);
+				frame.getContentPane().add(pl);
 				frame.validate();
 				frame.repaint();		
 			}
