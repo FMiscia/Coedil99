@@ -17,9 +17,10 @@ public class StartUp {
 		Commessa c = new Commessa( o , dist , "tetto" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
 				"descrizione..." , "Christian" , 0);
 		o.addCommessa(c);
-		Item item1 = new Item(23,48,400,"Listelli Abete");
-		Item item2 = new Item(3,35,300,"Pannelli Legno");
-		Item item3 = new Item(3,50,100,"Pannelli Legno");
+		
+		this.dist.addRigaLavoro(new RigaLavoro(1,new Geometria(23,48,400),false,null,"niente da dichiarare",1));
+		this.dist.addRigaLavoro(new RigaLavoro(2,new Geometria(3,35,300),true,"Dorico","niente da dichiarare",1));
+		
 	}
 	
 }

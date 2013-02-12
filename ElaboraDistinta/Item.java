@@ -7,8 +7,8 @@ public class Item {
 	private String descrizione;
 
 	
-	public Item(float b, float a, float l, String d){
-		this.geometria = new Geometria(b,a,l);
+	public Item(Geometria g, String d){
+		this.geometria = g;
 		this.descrizione = d;
 	}
 	

@@ -1,13 +1,25 @@
 package ElaboraDistinta;
 
-import java.util.List;
-
 public class StandardOttimizzatoreStrategy implements IOttimizzatoreStrategy {
 
+	private ElaboraDistintaHandler cdistinta;
+	
+	
+	public StandardOttimizzatoreStrategy(){
+		this.setElaboraDistintaHandler();
+	}
+	
 	@Override
 	public DocumentoOttimizzazione elaboraOttimizzazione(
-			List<RigaLavoro> righelavoro) {
-		// TODO Auto-generated method stub
+			Distinta distinta) {
+		
 		return null;
+	}
+
+	@Override
+	/*Con il Singleton prendiamo il controllore esistente*/
+	public void setElaboraDistintaHandler() {
+		this.cdistinta = ElaboraDistintaHandler.getInstance();
+		
 	}
 }

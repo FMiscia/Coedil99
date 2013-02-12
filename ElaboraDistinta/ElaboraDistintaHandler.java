@@ -8,6 +8,11 @@ public class ElaboraDistintaHandler {
 	IOttimizzatoreStrategy sottimizzatore;
 	List<Distinta> distinta;
 	GestisciCommessaHandler ccommessa;
+	private static ElaboraDistintaHandler instance = null;
+	
+	private ElaboraDistintaHandler(){
+		
+	}
 
 	/**
 	 * 
@@ -43,5 +48,17 @@ public class ElaboraDistintaHandler {
 	public void elaboraDDO() {
 		throw new UnsupportedOperationException();
 	}
+	
+	/*
+	 * Singleton
+	 */
+	public static ElaboraDistintaHandler getInstance(){
+		if (ElaboraDistintaHandler.instance == null)
+			ElaboraDistintaHandler.instance = new ElaboraDistintaHandler();
+		
+		return instance;
+	}
+	
+	
 
 }

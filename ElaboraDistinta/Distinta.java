@@ -2,16 +2,26 @@ package ElaboraDistinta;
 
 public class Distinta {
 
-	RigheLavoro lavori;
-	DocumentoOttimizzazione ddo;
+	RigheLavoro lavori = new RigheLavoro();
+	DocumentoOttimizzazione ddo = new DocumentoOttimizzazione();
 
+	
+	/**
+	 * 
+	 * @param rg
+	 * @return 
+	 */
+	public void addRigaLavoro(RigaLavoro rg){
+		this.lavori.add(rg);
+	}
+	
 	/**
 	 * 
 	 * @param rg
 	 * @return 
 	 */
 	public void modificaRigaLavoro(RigaLavoro rg) {
-		throw new UnsupportedOperationException();
+		this.lavori.update(rg);
 	}
 
 	/**
@@ -20,7 +30,7 @@ public class Distinta {
 	 * @return 
 	 */
 	public void eliminaRigaLavoro(RigaLavoro rg) {
-		throw new UnsupportedOperationException();
+		this.lavori.delete(rg);
 	}
 
 	/**

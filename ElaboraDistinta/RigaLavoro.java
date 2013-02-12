@@ -2,11 +2,22 @@ package ElaboraDistinta;
 
 public class RigaLavoro {
 
+	private int id;
 	Geometria geometria;
 	private boolean capitello;
 	private String profiloCapitello;
 	private String note;
 	private int numero;
+
+	public RigaLavoro(int id, Geometria g, boolean c, String pc, String note, int n) {
+		this.id = id;
+		this.geometria = g;
+		this.capitello = c;
+		this.profiloCapitello = pc;
+		this.note = note;
+		this.numero = n;
+
+	}
 
 	public boolean isCapitello() {
 		return this.capitello;
@@ -39,5 +50,13 @@ public class RigaLavoro {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	/*
+	 * public void setId(int id) { this.id = id; }
+	 */
 
 }
