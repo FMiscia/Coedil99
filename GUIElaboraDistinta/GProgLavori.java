@@ -2,6 +2,7 @@ package GUIElaboraDistinta;
 
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Vector;
 
@@ -29,26 +30,31 @@ public class GProgLavori extends JPanel {
     JComponent panel2;
     JComponent panel3;
     JComponent panel4;
+    JComponent panel5;
     
     public GProgLavori() {
         super(new GridLayout(1, 1));
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        panel1 = makeList();
-        tabbedPane.addTab("Tab 1", null, panel1, "Does nothing");
+        panel1 = makeTextPanel(1);
+        tabbedPane.addTab("Dati Cliente", null, panel1, "Dati Cliente");
         tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
-        panel2 = makeTextPanel("Panel #2");
-        tabbedPane.addTab("Tab 2", null, panel2, "Does twice as much nothing");
+        panel2 = makeTextPanel(2);
+        tabbedPane.addTab("Dati Aziendali", null, panel2, "Dati Aziendali");
         tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
 
-        panel3 = makeTextPanel("Panel #3");
-        tabbedPane.addTab("Tab 3", null, panel3, "Still does nothing");
+        panel3 = makeTextPanel(3);
+        tabbedPane.addTab("Sviluppo Consegna", null, panel3, "Sviluppo Consegna");
         tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
 
-        panel4 = makeTextPanel("Panel #4 ");
-        tabbedPane.addTab("Tab 4", null, panel4, "Does nothing at all");
+        panel4 = makeTextPanel(4);
+        tabbedPane.addTab("Produzione", null, panel4, "Produzione");
+        tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
+        
+        panel5 = makeTextPanel(5);
+        tabbedPane.addTab("Consegna", null, panel5, "Consegna");
         tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
 
         add(tabbedPane);
@@ -56,45 +62,62 @@ public class GProgLavori extends JPanel {
 
       }
     
-      protected JComponent makeTextPanel(String text) {
-            JPanel panel = new JPanel(false);
-            OrdiniPLTableModel model = new OrdiniPLTableModel();
-            Calendar inizio = Calendar.getInstance();
-    		Calendar fine = Calendar.getInstance();
-    		fine.add(Calendar.DAY_OF_MONTH, 1);
-    		Ordine o = new Ordine( null, "pippo", inizio , fine );
-            model.addOrdine(o);
-            panel.setLayout(null);
-            JTable table = new JTable(model);
-            table.setColumnSelectionAllowed(true);
-            table.setBounds(109, 31, 225, 43);
-            table.setFillsViewportHeight(true);
+      protected JComponent makeTextPanel(int a) {
 
-
-            JScrollPane scrollPane = new JScrollPane(table);
-            scrollPane.setSize(445, 272);
-            scrollPane.setLocation(0, 0);
-            panel.add(scrollPane);
-            return panel;
+    	  String[] column1 = {"Codice Interno",
+                  "Nome",
+                  "Cantiere",
+                  "Commessa Cliente"};
+    	  String[] column2 = {"2First Name",
+                  "Last Name",
+                  "Sport",
+                  "# of Years",
+                  "Vegetarian"};
+    	  String[] column3 = {"3First Name",
+                  "Last Name",
+                  "Sport",
+                  "# of Years",
+                  "Vegetarian"};
+    	  String[] column4 = {"4First Name",
+                  "Last Name",
+                  "Sport",
+                  "# of Years",
+                  "Vegetarian"};
+    	  String[] column5 = {"5First Name",
+                  "Last Name",
+                  "Sport",
+                  "# of Years",
+                  "Vegetarian"};
+          JPanel panel1 = new Table(column1,1);
+          JPanel panel2 = new Table(column2,2);
+          JPanel panel3 = new Table(column3,3);
+          JPanel panel4 = new Table(column4,4);
+          JPanel panel5 = new Table(column5,5);
+          JPanel panel;
+          
+          switch (a) {
+          case 1:  
+              panel = panel1;
+                    break;
+          case 2:  
+              panel = panel2;
+              break;
+          case 3:  
+              panel = panel3;
+              break;
+          case 4:  
+              panel = panel4;
+              break;
+          case 5:
+              panel = panel5;
+              break;
+          default:         	  		
+              panel = panel1;
+              break;
+      }
+    		  
+          return panel;
           }
-      
-      protected JComponent makeList() {
-            JPanel panel = new JPanel(false);
-            
-            Vector v = new Vector();
-            for ( int i=0 ; i<200; i++ ){
-                v.add(""+i);
-            }
-            JList list = new JList( v ); //data has type Object[]
 
-            list.setLayoutOrientation(JList.VERTICAL);
-            list.setVisibleRowCount(-1);
-
-            JScrollPane listScroller = new JScrollPane(list);
-            panel.setLayout(new GridLayout(1, 1));
-            panel.add(listScroller);
-            return panel;
-          }
-    
 
 }

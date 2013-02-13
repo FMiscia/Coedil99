@@ -105,7 +105,7 @@ public class GHome {
 		panel.add(start_up);
 		
 				
-		pl = new GProgLavori();
+		 pl = new GProgLavori();
 		
 		ordineG.setBounds(10, 57, 62, 22);
 		dataI.setBounds(10, 106, 62, 22);
