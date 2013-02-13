@@ -7,6 +7,7 @@ public class Item {
 	private String descrizione;
 
 	
+
 	public Item(Geometria g, String d){
 		this.geometria = g;
 		this.descrizione = d;

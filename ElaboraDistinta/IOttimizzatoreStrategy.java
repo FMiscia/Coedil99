@@ -9,6 +9,4 @@ public interface IOttimizzatoreStrategy {
 	 */
 	abstract DocumentoOttimizzazione elaboraOttimizzazione(Distinta distinta);
 
-	abstract void setElaboraDistintaHandler(); 
-
 }

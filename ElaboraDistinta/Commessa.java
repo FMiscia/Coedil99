@@ -11,6 +11,7 @@ public class Commessa {
 	GestisciCommessaHandler ccommessa;
 	List<ICommessaListener> lcommessa;
 	Distinta distinta;
+	private int id;
 	private String elementoStrutturale;
 	private Calendar scadenza;
 	private Calendar emissione;
@@ -29,6 +30,8 @@ public class Commessa {
 		this.descrizione = desc;
 		this.responsabile = resp;
 		this.ritardo = rit;
+		/*startup*/
+		this.id = 1;
 	} 
 	
 
@@ -95,7 +98,7 @@ public class Commessa {
 	 * @return 
 	 */
 	public void associaDistinta(Distinta distinta) {
-		throw new UnsupportedOperationException();
+		this.distinta = distinta;
 	}
 
 	/**
@@ -103,7 +106,13 @@ public class Commessa {
 	 * @return 
 	 */
 	public void eliminaDistinta() {
-		throw new UnsupportedOperationException();
+		this.distinta = null;
 	}
+
+
+	public int getId() {
+		return id;
+	}
+
 
 }

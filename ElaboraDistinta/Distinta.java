@@ -2,9 +2,14 @@ package ElaboraDistinta;
 
 public class Distinta {
 
+	private int id;
 	RigheLavoro lavori = new RigheLavoro();
 	DocumentoOttimizzazione ddo = new DocumentoOttimizzazione();
 
+	public Distinta(){
+		/*startup*/
+		this.id = 1;
+	}
 	
 	/**
 	 * 
@@ -40,5 +45,10 @@ public class Distinta {
 	public void createDDO() {
 		throw new UnsupportedOperationException();
 	}
+
+	public int getId() {
+		return id;
+	}
+
 
 }

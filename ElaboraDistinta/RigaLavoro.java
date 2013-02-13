@@ -19,6 +19,7 @@ public class RigaLavoro {
 
 	}
 
+
 	public boolean isCapitello() {
 		return this.capitello;
 	}

@@ -6,20 +6,16 @@ public class StandardOttimizzatoreStrategy implements IOttimizzatoreStrategy {
 	
 	
 	public StandardOttimizzatoreStrategy(){
-		this.setElaboraDistintaHandler();
+		this.cdistinta = ElaboraDistintaHandler.getInstance();
 	}
 	
 	@Override
 	public DocumentoOttimizzazione elaboraOttimizzazione(
 			Distinta distinta) {
 		
+		/*ottimizzazione*/
+		
 		return null;
 	}
 
-	@Override
-	/*Con il Singleton prendiamo il controllore esistente*/
-	public void setElaboraDistintaHandler() {
-		this.cdistinta = ElaboraDistintaHandler.getInstance();
-		
-	}
 }

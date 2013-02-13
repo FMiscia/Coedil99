@@ -1,17 +1,22 @@
 package ElaboraDistinta;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class ElaboraDistintaHandler {
 
 	GestisciMagazzinoHandler cmagazzino;
 	IOttimizzatoreStrategy sottimizzatore;
-	List<Distinta> distinta;
+	List<Distinta> distinte;
+	ListIterator<Distinta> it;
 	GestisciCommessaHandler ccommessa;
 	private static ElaboraDistintaHandler instance = null;
 	
 	private ElaboraDistintaHandler(){
-		
+		this.distinte = new ArrayList<Distinta>();
+		this.it = this.distinte.listIterator();
+		this.ccommessa = GestisciCommessaHandler.getInstance();
 	}
 
 	/**
@@ -20,7 +25,11 @@ public class ElaboraDistintaHandler {
 	 * @return 
 	 */
 	public void modificaDistinta(Distinta distinta) {
-		throw new UnsupportedOperationException();
+		while(it.hasNext()){
+			if(it.next().getId() == distinta.getId())
+				distinte.set(it.previousIndex(), distinta);
+				
+		}
 	}
 
 	/**
@@ -28,25 +37,38 @@ public class ElaboraDistintaHandler {
 	 * @param commessa
 	 * @return 
 	 */
-	public void creaNuovaDistinta(Commessa commessa) {
-		throw new UnsupportedOperationException();
+	public void add(Distinta distinta, int idCommessa) {
+		this.distinte.add(distinta);
+		this.ccommessa.associaDistinta(distinta, idCommessa);
+		
 	}
 
 	/**
 	 * 
 	 * @param distinta
-	 * @return 
+	 * @return Boolean
 	 */
-	public void eliminaDistinta(Distinta distinta) {
-		throw new UnsupportedOperationException();
+	public Boolean removeFromList(Distinta distinta) {
+		return this.distinte.remove(distinta);
+	}
+	
+	/**
+	 * 
+	 * @param distinta
+	 * @param idCommessa
+	 */
+	public void removeFromCommessa(Distinta distinta, int idCommessa){
+		this.ccommessa.eliminaDistinta(idCommessa);
+		this.distinte.remove(distinta);
 	}
 
 	/**
 	 * 
 	 * @return 
 	 */
-	public void elaboraDDO() {
-		throw new UnsupportedOperationException();
+	public void elaboraDDO(int idCommessa) {
+		this.sottimizzatore = new StandardOttimizzatoreStrategy();
+		this.sottimizzatore.elaboraOttimizzazione(this.ccommessa.getCommessaById(idCommessa).distinta);
 	}
 	
 	/*

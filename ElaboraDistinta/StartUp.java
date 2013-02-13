@@ -4,8 +4,14 @@ import java.util.Calendar;
 
 public class StartUp {
 
+	public GestisciCommessaHandler gch;
+	public ElaboraDistintaHandler edh;
+	
 	Distinta dist = new Distinta();
 	public Ordine o;
+	public Commessa c;
+	public Catalogo cat;
+	public Magazzino m;
 	
 	public StartUp(){
 		Calendar inizio = Calendar.getInstance();
@@ -14,7 +20,7 @@ public class StartUp {
 		
 		o = new Ordine( null, "pippo", inizio , fine );
 		
-		Commessa c = new Commessa( o , dist , "tetto" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
+		c = new Commessa( o , dist , "tetto" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
 				"descrizione..." , "Christian" , 0);
 		o.addCommessa(c);
 		
