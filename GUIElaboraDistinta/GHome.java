@@ -110,7 +110,7 @@ public class GHome {
 		ordineG.setBounds(10, 57, 62, 22);
 		dataI.setBounds(10, 106, 62, 22);
 		dataF.setBounds(10, 149, 62, 22);
-		lblOrdineGestionale.setText("Ordine Gestionale");
+		lblOrdineGestionale.setText("Commento prima riga lavoro");
 		lblOrdineGestionale.setBounds(10, 37, 120, 14);
 		lblDataInizioCommessa.setText("Data inizio Commessa");
 		lblDataInizioCommessa.setBounds(10, 86, 130, 14);
@@ -150,8 +150,7 @@ public class GHome {
 		start_up.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				StartUp s = new StartUp();
-				//System.out.print(s.gch.getCommessaById(1).toString());
-				//ordineG.setText(s.gch.getCommessaById(1).toString());
+				ordineG.setText(s.gch.getCommessaById(1).getDistinta().getRigheLavoro().get(0).getNote());
 				dataI.setText(s.o.getDataInizio().get(Calendar.DATE)+"/"+s.o.getDataInizio().get(Calendar.MONTH)+"/"+s.o.getDataInizio().get(Calendar.YEAR));
 				dataF.setText(s.o.getDataFine().get(Calendar.DATE)+"/"+s.o.getDataFine().get(Calendar.MONTH)+"/"+s.o.getDataFine().get(Calendar.YEAR));
 				panel.add(lblOrdineGestionale);

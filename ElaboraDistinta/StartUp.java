@@ -21,7 +21,7 @@ public class StartUp {
 		
 		o = new Ordine( null, "pippo", inizio , fine );
 		
-		c = new Commessa( o , dist, "tetto" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
+		c = new Commessa( o , null, "tetto" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
 				"descrizione..." , "Christian" , 0);
 		o.addCommessa(c);
 		

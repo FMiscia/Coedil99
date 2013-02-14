@@ -35,7 +35,8 @@ public class ElaboraDistintaHandler {
 	 */
 	public void add(Distinta distinta, int idCommessa) {
 		this.distinte.add(distinta);
-		GestisciCommessaHandler.getInstance().associaDistinta(distinta, idCommessa);
+		GestisciCommessaHandler c = GestisciCommessaHandler.getInstance();
+		c.getCommessaById(idCommessa).setDistinta(distinta);
 	}
 
 	/**

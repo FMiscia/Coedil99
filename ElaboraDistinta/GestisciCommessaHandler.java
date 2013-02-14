@@ -19,31 +19,13 @@ public class GestisciCommessaHandler {
 
 	/**
 	 * 
-	 * @param distinta
-	 * @return
-	 */
-	public void associaDistinta(Distinta distinta, int idCommessa) {
-		ListIterator<Commessa> it = this.commesse.listIterator();
-		while (it.hasNext()) {
-			if (it.next().getId() == idCommessa)
-				it.previous().distinta = distinta;
-		}
-	}
-
-	/**
-	 * 
 	 * @param idCommessa
 	 * @return
 	 */
 	public void eliminaDistinta(int idCommessa) {
-		ListIterator<Commessa> it = this.commesse.listIterator();
-		while (it.hasNext()) {
-			if (it.next().getId() == idCommessa)
-				ElaboraDistintaHandler.getInstance().removeFromList(
-						it.previous().distinta);
-			it.previous().distinta = null;
-		}
-
+		Commessa temp = this.getCommessaById(idCommessa);
+		temp.eliminaDistinta();
+		ElaboraDistintaHandler.getInstance().removeFromList(temp.distinta);
 	}
 
 	/**

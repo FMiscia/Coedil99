@@ -117,6 +117,10 @@ public class Commessa {
 	public Distinta getDistinta(){
 		return this.distinta;
 	}
+	
+	public void setDistinta(Distinta d){
+		this.distinta = d;
+	}
 
 
 }
