@@ -150,7 +150,8 @@ public class GHome {
 		start_up.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				StartUp s = new StartUp();
-				ordineG.setText(s.o.getOrdineGestionale());
+				//System.out.print(s.gch.getCommessaById(1).toString());
+				//ordineG.setText(s.gch.getCommessaById(1).toString());
 				dataI.setText(s.o.getDataInizio().get(Calendar.DATE)+"/"+s.o.getDataInizio().get(Calendar.MONTH)+"/"+s.o.getDataInizio().get(Calendar.YEAR));
 				dataF.setText(s.o.getDataFine().get(Calendar.DATE)+"/"+s.o.getDataFine().get(Calendar.MONTH)+"/"+s.o.getDataFine().get(Calendar.YEAR));
 				panel.add(lblOrdineGestionale);

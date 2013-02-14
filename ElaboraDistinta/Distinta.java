@@ -1,5 +1,7 @@
 package ElaboraDistinta;
 
+import java.util.ArrayList;
+
 public class Distinta {
 
 	private int id;
@@ -48,6 +50,11 @@ public class Distinta {
 
 	public int getId() {
 		return id;
+	}
+	
+
+	public ArrayList<RigaLavoro> getRigheLavoro(){
+		return this.lavori.getRigheLavoro();
 	}
 
 

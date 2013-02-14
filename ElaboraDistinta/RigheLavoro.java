@@ -6,12 +6,12 @@ import java.util.ListIterator;
 
 public class RigheLavoro {
 
-	List<RigaLavoro> riga;
+	ArrayList<RigaLavoro> righe;
 	ListIterator<RigaLavoro> righeIterator;
 
 	public RigheLavoro() {
-		this.riga = new ArrayList<RigaLavoro>();
-		this.righeIterator = riga.listIterator();
+		this.righe = new ArrayList<RigaLavoro>();
+		this.righeIterator = righe.listIterator();
 	}
 
 	/**
@@ -22,7 +22,7 @@ public class RigheLavoro {
 	public void update(RigaLavoro rg) {
 		while (this.righeIterator.hasNext()) {
 			if (this.righeIterator.next().getId() == rg.getId()) {
-				this.riga.set(this.righeIterator.previousIndex(), rg);
+				this.righeIterator.set(rg);
 			}
 		}
 	}
@@ -45,7 +45,11 @@ public class RigheLavoro {
 	 * @return
 	 */
 	public void add(RigaLavoro rg) {
-		this.riga.add(rg);
+		this.righeIterator.add(rg);
+	}
+	
+	public ArrayList<RigaLavoro> getRigheLavoro(){
+		return this.righe;
 	}
 
 }

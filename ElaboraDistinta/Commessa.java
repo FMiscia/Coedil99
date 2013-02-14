@@ -10,7 +10,7 @@ public class Commessa {
 	ListaRintracciabilita ldr;
 	GestisciCommessaHandler ccommessa;
 	List<ICommessaListener> lcommessa;
-	Distinta distinta;
+	protected Distinta distinta;
 	private int id;
 	private String elementoStrutturale;
 	private Calendar scadenza;
@@ -112,6 +112,10 @@ public class Commessa {
 
 	public int getId() {
 		return id;
+	}
+	
+	public Distinta getDistinta(){
+		return this.distinta;
 	}
 
 

@@ -8,20 +8,19 @@ public class GestisciMagazzinoHandler implements ICommessaListener {
 
 	ElaboraDistintaHandler cdistinta;
 	List<Magazzino> magazzino;
-	ListIterator<Magazzino> iteratorMagazzino;
 	private static GestisciMagazzinoHandler instance = null;
 	
 	
 
 	private GestisciMagazzinoHandler(){
 		this.magazzino = new ArrayList<Magazzino>();
-		this.iteratorMagazzino = this.magazzino.listIterator();
 	}
 	
 	public Magazzino getMagazzinoByName(String name){
-		while(this.iteratorMagazzino.hasNext())
-			if(this.iteratorMagazzino.next().getName() == name)
-				return this.iteratorMagazzino.previous();
+		ListIterator<Magazzino> iteratorMagazzino = this.magazzino.listIterator();
+		while(iteratorMagazzino.hasNext())
+			if(iteratorMagazzino.next().getName() == name)
+				return iteratorMagazzino.previous();
 		return null;
 	}
 	
