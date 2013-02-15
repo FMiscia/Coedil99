@@ -27,7 +27,9 @@ public class GHome {
 	private final Button button = new Button("Programma Lavori");
 	private JPanel panel;
 	private GProgLavori pl;
+	private GDistinta d;
 	private Button start_up;
+	private Button distinta;
 	final Label ordineG = new Label("");
 	final Label dataI = new Label("");
 	final Label dataF = new Label("");
@@ -104,8 +106,12 @@ public class GHome {
 		start_up.setBounds(311, 135, 53, 22);
 		panel.add(start_up);
 		
-				
-		 pl = new GProgLavori();
+		distinta = new Button("Distinta");
+		distinta.setBounds(400, 135, 53, 22);
+		panel.add(distinta);
+		
+		
+		pl = new GProgLavori();
 		
 		ordineG.setBounds(10, 57, 62, 22);
 		dataI.setBounds(10, 106, 62, 22);
@@ -172,6 +178,19 @@ public class GHome {
 				frame.repaint();		
 			}
 		});
+		
+		distinta.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				StartUp s = new StartUp();
+				d = new GDistinta();
+				frame.remove(panel);
+				d.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+				frame.getContentPane().add(d);
+				frame.validate();
+				frame.repaint();}
+		});
+				
+
 		
 		
 		

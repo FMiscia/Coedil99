@@ -9,7 +9,8 @@ public class StartUp {
 	
 	Distinta dist = new Distinta();
 	public Ordine o;
-	public Commessa c;
+	public Commessa c1;
+	public Commessa c2;
 	public Catalogo cat;
 	public Magazzino m;
 	
@@ -21,9 +22,13 @@ public class StartUp {
 		
 		o = new Ordine( null, "pippo", inizio , fine );
 		
-		c = new Commessa( o , null, "tetto" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
+		c1 = new Commessa( o , null, "tetto" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
 				"descrizione..." , "Christian" , 0);
-		o.addCommessa(c);
+		c2 = new Commessa( o , null, "ponte" , Calendar.getInstance() , Calendar.getInstance() , "pomeriggio" , 
+				"descrizione..." , "Pippo" , 0);
+		o.addCommessa(c1);
+		o.addCommessa(c2);
+		
 		
 		this.dist.addRigaLavoro(new RigaLavoro(1,new Geometria(23,48,400),false,null,"niente da dichiarare",1));
 		this.dist.addRigaLavoro(new RigaLavoro(2,new Geometria(3,35,300),true,"Dorico","niente da dichiarare",1));
@@ -33,9 +38,10 @@ public class StartUp {
 		
 		
 		
-		gch.add(c);
-		edh.add(dist,c.getId());
-
+		gch.add(c1);
+		gch.add(c2);
+		edh.add(dist,c1.getId());
+		edh.add(dist,c2.getId());
 		
 	}
 	
