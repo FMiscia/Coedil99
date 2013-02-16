@@ -102,9 +102,10 @@ public class GestisciCommessaHandler {
 	 */
 	public Boolean hasDistinta(String ci){
 		ListIterator<Commessa> it = this.commesse.listIterator();
+		Commessa temp;
 		while(it.hasNext()){
-			if(it.next().getCodiceInterno().equals(ci) && it.previous().getDistinta() != null)
-				it.next();
+			temp = it.next();
+			if(temp.getCodiceInterno().equals(ci) && temp.getDistinta() != null)
 				return true;
 		}
 		return false;
