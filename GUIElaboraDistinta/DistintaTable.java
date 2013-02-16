@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import ElaboraDistinta.Commessa;
 import ElaboraDistinta.Distinta;
+import ElaboraDistinta.Geometria;
 import ElaboraDistinta.GestisciCommessaHandler;
 import ElaboraDistinta.RigaLavoro;
 import ElaboraDistinta.StartUp;
@@ -56,6 +57,24 @@ public class DistintaTable {
 	
 	public Vector<Vector<String>> getRighe(){
 		return this.righe;
+	}
+	
+	public void addRigaLavoro(){
+		GestisciCommessaHandler gch = GestisciCommessaHandler.getInstance();
+		Distinta d = gch.getCommessaById(1).getDistinta();
+		d.addRigaLavoro(new RigaLavoro(3,new Geometria(3,35,300),true,"Dorico","Bianco",1));
+		this.aggiornaTabella();
+	}
+	
+	public void aggiornaTabella(){
+		GestisciCommessaHandler gch = GestisciCommessaHandler.getInstance();
+		Distinta d = gch.getCommessaById(1).getDistinta();
+		this.righe = new Vector<Vector<String>>();
+		RigaLavoro r = null;
+		for(Integer i=0; i<d.getRigheLavoro().size(); ++i){
+			r = d.getRigheLavoro().get(i);
+			righe.add(addRow(r));
+		}
 	}
 	
 
