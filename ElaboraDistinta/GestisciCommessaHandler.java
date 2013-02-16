@@ -6,29 +6,33 @@ import java.util.ListIterator;
 public class GestisciCommessaHandler {
 
 	private int id;
-	ArrayList<Commessa> commesse;
+	private ArrayList<Commessa> commesse;
 	private static GestisciCommessaHandler instance;
 
+	
 	private GestisciCommessaHandler() {
 		this.commesse = new ArrayList<Commessa>();
 	}
+	
 
+	
+	/**
+	 * 
+	 * @param commessa
+	 * @return
+	 */
 	public void add(Commessa commessa) {
 		this.commesse.add(commessa);
 	}
+	
 
-	public int getNumOfCommesse(){
-		return this.commesse.size();
-	}
 	/**
 	 * 
 	 * @param idCommessa
 	 * @return
 	 */
 	public void eliminaDistinta(int idCommessa) {
-		Commessa temp = this.getCommessaById(idCommessa);
-		temp.eliminaDistinta();
-		ElaboraDistintaHandler.getInstance().removeFromList(temp.distinta);
+		this.getCommessaById(idCommessa).eliminaDistinta();
 	}
 
 	/**
@@ -47,10 +51,54 @@ public class GestisciCommessaHandler {
 
 	}
 
+	/**
+	 * 
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
+	
+	
+	/**
+	 * 
+	 * @param d
+	 * @param idCommessa
+	 */
+	public void associaDistinta(Distinta d, int idCommessa){
+		this.getCommessaById(idCommessa).associaDistinta(d);
+	}
+	
+	/**
+	 * 
+	 * @return commesse
+	 */
+	public ArrayList<Commessa> getCommesse(){
+		return this.commesse;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getNumOfCommesse(){
+		return this.commesse.size();
+	}
 
+	/**
+	 * 
+	 * @param a
+	 * @return
+	 */
+	public Commessa getCommessaByIndex(int a) {
+		// TODO Auto-generated method stub
+		return this.commesse.get(a);
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public static GestisciCommessaHandler getInstance() {
 		if (GestisciCommessaHandler.instance == null) {
 			GestisciCommessaHandler.instance = new GestisciCommessaHandler();
@@ -58,10 +106,6 @@ public class GestisciCommessaHandler {
 
 		return GestisciCommessaHandler.instance;
 	}
-
-	public Commessa getCommessaByIndex(int a) {
-		// TODO Auto-generated method stub
-		return this.commesse.get(a);
-	}
+	
 
 }

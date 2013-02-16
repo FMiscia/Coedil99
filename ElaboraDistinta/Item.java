@@ -2,8 +2,8 @@ package ElaboraDistinta;
 
 public class Item {
 
-	History history;
-	Geometria geometria;
+	private History history;
+	private Geometria geometria;
 	private String descrizione;
 
 	
@@ -23,6 +23,10 @@ public class Item {
 	
 	public Geometria getGeometria(){
 		return this.geometria;
+	}
+	
+	public void setGeometria(Geometria g){
+		this.geometria = g;
 	}
 
 
