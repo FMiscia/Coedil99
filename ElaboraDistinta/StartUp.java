@@ -17,7 +17,7 @@ public class StartUp {
 	public Magazzino m;
 	IOttimizzatoreStrategy optimizer;
 	
-	public StartUp(){
+	private StartUp(){
 		Calendar inizio = Calendar.getInstance();
 		Calendar fine = Calendar.getInstance();
 		fine.add(Calendar.DAY_OF_MONTH, 1);
