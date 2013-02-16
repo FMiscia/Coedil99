@@ -46,7 +46,7 @@ public class GDistinta extends JPanel {
     			remove(scrollPane);
     			DistintaTable d = new DistintaTable();
     			d.addRigaLavoro();
-    			System.out.println(d.getRighe());
+    			//System.out.println(d.getRighe());
     	        setLayout(null);
     	        table = new JTable(d.getRighe(),d.getColonne());
     	        scrollPane = new JScrollPane(table);
