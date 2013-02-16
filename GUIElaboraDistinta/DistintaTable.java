@@ -1,12 +1,10 @@
 package GUIElaboraDistinta;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import ElaboraDistinta.Commessa;
 import ElaboraDistinta.Distinta;
-import ElaboraDistinta.ElaboraDistintaHandler;
 import ElaboraDistinta.GestisciCommessaHandler;
 import ElaboraDistinta.RigaLavoro;
 import ElaboraDistinta.StartUp;
@@ -23,19 +21,23 @@ public class DistintaTable {
 		this.colonne = addColonne(cols);
 		this.righe = new Vector<Vector<String>>();
 		RigaLavoro r = null;
-		for(Integer i=0; i<d.getRigheLavoro().size(); ++i)
+		for(Integer i=0; i<d.getRigheLavoro().size(); ++i){
 			r = d.getRigheLavoro().get(i);
-			righe.add(addRow(r));			
+			righe.add(addRow(r));
+		}
 	}
 	
+	
+
 	public Vector<String> addRow(RigaLavoro r){
 		Vector<String> riga = new Vector<String>();
-		riga.add("a");
-		riga.add("b");
-		riga.add("c");
-		riga.add("d");
-		riga.add("e");
-		riga.add("f");
+		riga.add("1");
+		riga.add("10");
+		riga.add("20");
+		riga.add("30");
+		riga.add("1");
+		riga.add(r.getProfiloCapitello());
+		riga.add(r.getNote());
 		return riga;
 	}
 	
