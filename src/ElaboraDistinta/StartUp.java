@@ -18,16 +18,13 @@ public class StartUp {
 	IOttimizzatoreStrategy optimizer;
 	
 	private StartUp(){
-		Calendar inizio = Calendar.getInstance();
-		Calendar fine = Calendar.getInstance();
-		fine.add(Calendar.DAY_OF_MONTH, 1);
 		
-		o = new Ordine( null, "pippo", inizio , fine );
+		o = new Ordine( null, "pippo",2013 );
 		
 		c1 = new Commessa( o , null, "tetto" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
-				"descrizione..." , "Christian" , 0);
+				"descrizione..." , "Christian");
 		c2 = new Commessa( o , null, "parete" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
-				"descrizione..." , "Luca" , 0);
+				"descrizione..." , "Luca");
 		
 		this.dist.addRigaLavoro(new RigaLavoro(1,new Geometria(23,50,100),false,null,"niente da dichiarare",1));
 		this.dist.addRigaLavoro(new RigaLavoro(2,new Geometria(23,50,400),true,"Dorico","niente da dichiarare",1));
@@ -38,6 +35,8 @@ public class StartUp {
 		
 		gch.add(c1);
 		gch.add(c2);
+		o.addCommessa(c1);
+		o.addCommessa(c2);
 		gch.associaDistinta(dist, c1.getId());
 		gch.associaDistinta(dist, c2.getId());
 		gch.getCommessaById(1).getDistinta().creaDDO();
@@ -46,6 +45,8 @@ public class StartUp {
 		while(it.hasNext()){
 			System.out.println(it.next().getDescrizione());
 		}
+		System.out.println(c1.getCodiceInterno());
+		System.out.println(c2.getCodiceInterno());
 
 		
 	}

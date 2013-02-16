@@ -10,19 +10,25 @@ public class Ordine {
 	List<Commessa> commesse;
 	private String ordineGestionale;
 	private Calendar dataInizio;
+	private Calendar dataScadenza;
 	private Calendar dataFine;
 	private Integer anno;
-	private Integer id;
+	private Integer numeroOrdine;
+	private String OC;
 	private static int counter = 0;
 
-	public Ordine(Cliente c, String og, Calendar inizio, Calendar fine){
+	
+	private Boolean isDateNull(){
+		return (this.dataInizio == null); 
+	}
+	
+	public Ordine(Cliente c, String og, Integer anno){
 		Ordine.counter = Ordine.counter+ 1;
-		this.id = Ordine.counter;
-		this.anno = new Integer(2013);
+		this.setNumeroOrdine(Ordine.counter);
+		this.anno = new Integer(anno);
 		this.cliente = c;
 		this.ordineGestionale = og;
-		this.dataInizio = inizio;
-		this.dataFine = fine;
+		this.numeroOrdine = Ordine.counter;
 		this.commesse = new ArrayList<Commessa>();
 	}
 	
@@ -30,14 +36,26 @@ public class Ordine {
 		return this.anno;
 	}
 	
-	public Integer getId(){
-		return this.id;
-	}
 	
 	public void addCommessa( Commessa c ){
 		this.commesse.add(c);
+		if(this.isDateNull()){
+			this.dataInizio = c.getEmissioneCommessa();
+			this.setDataScadenza(c.getScadenzaCommessa());
+		}else
+			this.checkDate(c);
 	}
 	
+
+	private void checkDate(Commessa c) {
+		if(c.getEmissioneCommessa().compareTo(this.getDataInizio())<0){
+			this.setDataInizio(c.getEmissioneCommessa());
+		}
+		if(c.getScadenzaCommessa().compareTo(this.getDataScadenza())>0){
+			this.setDataScadenza(c.getFineCommessa());
+		}
+		
+	}
 
 	public String getOrdineGestionale() {
 		return this.ordineGestionale;
@@ -67,5 +85,30 @@ public class Ordine {
 	public Cliente getCliente(){
 		return this.cliente;
 	}
+
+	public Integer getNumeroOrdine() {
+		return numeroOrdine;
+	}
+
+	public void setNumeroOrdine(Integer numeroOrdine) {
+		this.numeroOrdine = numeroOrdine;
+	}
+
+	public String getOC() {
+		return OC;
+	}
+
+	public void setOC(String oC) {
+		OC = oC;
+	}
+
+	public Calendar getDataScadenza() {
+		return dataScadenza;
+	}
+
+	public void setDataScadenza(Calendar dataScadenza) {
+		this.dataScadenza = dataScadenza;
+	}
+	
 
 }

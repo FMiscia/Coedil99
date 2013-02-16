@@ -12,32 +12,40 @@ public class Commessa {
 	List<ICommessaListener> lcommessa;
 	protected Distinta distinta;
 	private int id;
+	private String codiceInterno;
 	private String elementoStrutturale;
-	private Calendar scadenza;
-	private Calendar emissione;
-	private String orario;
+	private Calendar scadenzaCommessa; //sviluppo della commessa
+	private Calendar emissioneCommessa; //sviluppo della commessa
+	private Calendar fineCommessa; //sviluppo della commessa
+	private Calendar inizioProduzione; 
+	private Calendar scadenzaProduzione;
+	private Calendar fineProduzione;
+	private Integer ritardoProduzione; //giorni
+	private Calendar primaConsegna;
+	private Integer ritardoConsegna; //giorni
+	private String orario; //consegna: del tipo Mattina o Pomeriggio
 	private String descrizione;
 	private String responsabile; // dipendente
-	private int ritardo;
 	private static int counter = 0;
 
-	public Commessa(Ordine o, Distinta d, String es, Calendar s, Calendar e, String orario , String desc, String resp, int rit ){
-		Commessa.counter = Commessa.counter+ 1;;
+	public Commessa(Ordine o, Distinta d, String es, Calendar s, Calendar e, String orario , String desc, String resp ){
+		Commessa.counter = Commessa.counter+1;
 		this.ordine = o;
 		this.distinta = d;
 		this.elementoStrutturale = es;
-		this.scadenza = s;
-		this.emissione = e;
+		this.scadenzaCommessa = s;
+		this.emissioneCommessa = e;
 		this.orario = orario;
 		this.descrizione = desc;
 		this.responsabile = resp;
-		this.ritardo = rit;
 		/*startup*/
 		this.id = Commessa.counter;
+		this.codiceInterno = Integer.toString(e.get(Calendar.YEAR))+"-"+o.getNumeroOrdine()+"-"+Integer.toString(this.id);
+
 	} 
 	
 	public Integer getOrdineId() {
-		return this.ordine.getId();
+		return this.ordine.getNumeroOrdine();
 	}
 	
 	public Ordine getOrdine() {
@@ -53,20 +61,11 @@ public class Commessa {
 	}
 
 	public Calendar getScadenza() {
-		return this.scadenza;
+		return this.scadenzaCommessa;
 	}
 
 	public void setScadenza(Calendar scadenza) {
-		this.scadenza = scadenza;
-	}
-
-	public Calendar getEmissione() {
-		return this.emissione;
-	}
-
-	public void setEmissione(Calendar emissione) {
-
-		this.emissione = emissione;
+		this.scadenzaCommessa = scadenza;
 	}
 
 	public String getOrario() {
@@ -91,14 +90,6 @@ public class Commessa {
 
 	public void setResponsabile(String responsabile) {
 		this.responsabile = responsabile;
-	}
-
-	public int getRitardo() {
-		return this.ritardo;
-	}
-
-	public void setRitardo(int ritardo) {
-		this.ritardo = ritardo;
 	}
 
 	/**
@@ -129,6 +120,86 @@ public class Commessa {
 	
 	public void setDistinta(Distinta d){
 		this.distinta = d;
+	}
+
+	public Calendar getScadenzaCommessa() {
+		return scadenzaCommessa;
+	}
+
+	public void setScadenzaCommessa(Calendar scadenzaCommessa) {
+		this.scadenzaCommessa = scadenzaCommessa;
+	}
+
+	public Calendar getEmissioneCommessa() {
+		return emissioneCommessa;
+	}
+
+	public void setEmissioneCommessa(Calendar emissioneCommessa) {
+		this.emissioneCommessa = emissioneCommessa;
+	}
+
+	public Calendar getFineCommessa() {
+		return fineCommessa;
+	}
+
+	public void setFineCommessa(Calendar fineCommessa) {
+		this.fineCommessa = fineCommessa;
+	}
+
+	public Calendar getInizioProduzione() {
+		return inizioProduzione;
+	}
+
+	public void setInizioProduzione(Calendar inizioProduzione) {
+		this.inizioProduzione = inizioProduzione;
+	}
+
+	public Calendar getScadenzaProduzione() {
+		return scadenzaProduzione;
+	}
+
+	public void setScadenzaProduzione(Calendar scadenzaProduzione) {
+		this.scadenzaProduzione = scadenzaProduzione;
+	}
+
+	public Calendar getFineProduzione() {
+		return fineProduzione;
+	}
+
+	public void setFineProduzione(Calendar fineProduzione) {
+		this.fineProduzione = fineProduzione;
+	}
+
+	public Calendar getPrimaConsegna() {
+		return primaConsegna;
+	}
+
+	public void setPrimaConsegna(Calendar primaConsegna) {
+		this.primaConsegna = primaConsegna;
+	}
+
+	public Integer getRitardoConsegna() {
+		return ritardoConsegna;
+	}
+
+	public void setRitardoConsegna(Integer ritardoConsegna) {
+		this.ritardoConsegna = ritardoConsegna;
+	}
+
+	public Integer getRitardoProduzione() {
+		return ritardoProduzione;
+	}
+
+	public void setRitardoProduzione(Integer ritardoProduzione) {
+		this.ritardoProduzione = ritardoProduzione;
+	}
+
+	public String getCodiceInterno() {
+		return codiceInterno;
+	}
+
+	public void setCodiceInterno(String codiceInterno) {
+		this.codiceInterno = codiceInterno;
 	}
 
 

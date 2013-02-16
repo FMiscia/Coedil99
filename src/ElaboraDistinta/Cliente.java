@@ -1,13 +1,13 @@
 package ElaboraDistinta;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Cliente {
 	
 	private String name;
 	private Cantiere cantiere;
 	ArrayList<Ordine> ordine;
+	private Integer numeroCommessaCliente;
 	
 	public Cliente(String n, Cantiere c){
 		this.setName(n);
@@ -28,5 +28,14 @@ public class Cliente {
 
 	public void setCantiere(Cantiere cantiere) {
 		this.cantiere = cantiere;
+	}
+	
+
+	public Integer getNumeroCommessaCliente() {
+		return numeroCommessaCliente;
+	}
+
+	public void setNumeroCommessaCliente(Integer numeroCommessaCliente) {
+		this.numeroCommessaCliente = numeroCommessaCliente;
 	}
 }
