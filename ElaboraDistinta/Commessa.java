@@ -19,8 +19,10 @@ public class Commessa {
 	private String descrizione;
 	private String responsabile; // dipendente
 	private int ritardo;
+	private static int counter = 0;
 
 	public Commessa(Ordine o, Distinta d, String es, Calendar s, Calendar e, String orario , String desc, String resp, int rit ){
+		Commessa.counter = Commessa.counter+ 1;;
 		this.ordine = o;
 		this.distinta = d;
 		this.elementoStrutturale = es;
@@ -31,7 +33,7 @@ public class Commessa {
 		this.responsabile = resp;
 		this.ritardo = rit;
 		/*startup*/
-		this.id = 1;
+		this.id = Commessa.counter;
 	} 
 	
 

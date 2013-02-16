@@ -17,6 +17,9 @@ public class GestisciCommessaHandler {
 		this.commesse.add(commessa);
 	}
 
+	public int getNumOfCommesse(){
+		return this.commesse.size();
+	}
 	/**
 	 * 
 	 * @param idCommessa
@@ -54,6 +57,11 @@ public class GestisciCommessaHandler {
 		}
 
 		return GestisciCommessaHandler.instance;
+	}
+
+	public Commessa getCommessaByIndex(int a) {
+		// TODO Auto-generated method stub
+		return this.commesse.get(a);
 	}
 
 }

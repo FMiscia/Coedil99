@@ -2,6 +2,8 @@ package ElaboraDistinta;
 
 import java.util.Calendar;
 
+import javax.swing.JOptionPane;
+
 public class StartUp {
 
 	public GestisciCommessaHandler gch;
@@ -42,7 +44,7 @@ public class StartUp {
 		gch.add(c2);
 		edh.add(dist,c1.getId());
 		edh.add(dist,c2.getId());
-		
+
 	}
 	
 }
