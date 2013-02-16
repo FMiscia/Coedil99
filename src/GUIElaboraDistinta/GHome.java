@@ -1,5 +1,5 @@
-
 package GUIElaboraDistinta;
+
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,6 +18,8 @@ import java.awt.Label;
 import java.util.Calendar;
 
 import ElaboraDistinta.StartUp;
+import GUIElaboraDistinta.GDistinta;
+import GUIElaboraDistinta.GProgLavori;
 
 
 
