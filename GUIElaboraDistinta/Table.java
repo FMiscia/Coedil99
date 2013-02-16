@@ -79,39 +79,35 @@ public class Table extends JPanel {
 		Object[][] data2; 
 		data2 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data2[i] = new Object[4];
+			data2[i] = new Object[12];
 			Object[] row = {"01", "Smith", "a", new Integer(555),"q0","w","e",s.o.getDataInizio().getTime().toGMTString(),s.o.getDataFine().getTime().toGMTString(),"a","b","c"};
 			data2[i] = row;
 		}
 
-//		Object[][] data2; 
-//		data2 = new Object [s.gch.getNumOfCommesse()][];
-//		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-//			data2[i] = new Object[4];
-//			Object[] row = {"01", "Smith", "a", new Integer(5),"q0","w","e",s.o.getDataInizio().getTime().toGMTString(),s.o.getDataFine().getTime().toGMTString(),"s","s","s"};
-//			data2[i] = row;
-//		}
+		Object[][] data3; 
+		data3 = new Object [s.gch.getNumOfCommesse()][];
+		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
+			data3[i] = new Object[6];
+			Object[] row = {"a","b","c","d","e","f"};
+			data3[i] = row;
+		}
 		
-		Object[][] data3 = {
-				 {"01","q0","w","e","r","t"},
-				 {"02","q1","w","e","r","t"}
-				 };
-		Object[][] data4 =  {
-				 {"01", "Smith", "a", new Integer(5),"q0","w","e","r","t"},
-				 {"02", "Smith", "a", new Integer(5),"q1","w","e","r","t"},
-				 {"03", "Smith", "a", new Integer(5),"q2","w","e","r","t"},
-				 {"04", "Smith", "a", new Integer(5),"q3","w","e","r","t"},
-				 {"05", "Smith", "a", new Integer(5),"q4","w","e","r","t"}
-				 };
-		Object[][] data5 = {
-				 {"01", "Smith", "a", new Integer(5),"q0","w","e","r","t"},
-				 {"02", "Smith", "a", new Integer(5),"q1","w","e","r","t"},
-				 {"03", "Smith", "a", new Integer(5),"q2","w","e","r","t"},
-				 {"04", "Smith", "a", new Integer(5),"q3","w","e","r","t"},
-				 {"05", "Smith", "a", new Integer(5),"q4","w","e","r","t"}
-				 };
-
-
+		Object[][] data4; 
+		data4 = new Object [s.gch.getNumOfCommesse()][];
+		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
+			data4[i] = new Object[5];
+			Object[] row = {"a","b","c","d","e"};
+			data4[i] = row;
+		}
+		
+		Object[][] data5; 
+		data5 = new Object [s.gch.getNumOfCommesse()][];
+		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
+			data5[i] = new Object[3];
+			Object[] row = {"a","b","c","d","e"};
+			data5[i] = row;
+		}
+		
 		switch (a) {
 		case 1:
 			data = data1;
@@ -132,16 +128,6 @@ public class Table extends JPanel {
 			break;
 		}
 
-//		Object[][] d = new Object[1][] ;
-//		d[0] = new Object[4];
-//		for (int i = 0; i < 1; i++) {
-//			for (int t = 0; t < 4; t++)
-//
-//			d[0][0] = data.get(0)[0];
-//			d[0][1] = data.get(0)[1];
-//			d[0][2] = data.get(0)[2];
-//			d[0][3] = data.get(0)[3];
-//		}
 
 		final JTable table = new JTable(data, columnNames);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
@@ -157,14 +143,6 @@ public class Table extends JPanel {
 			}
 		}
 
-		// get the selection model
-		ListSelectionModel tableSelectionModel = table.getSelectionModel();
-
-		// set a selection interval (in this case the first row)
-		tableSelectionModel.setSelectionInterval(0, 0);
-
-		// update the selection model
-		table.setSelectionModel(tableSelectionModel);
 
 		if (DEBUG) {
 			table.addMouseListener(new MouseAdapter() {
@@ -181,39 +159,7 @@ public class Table extends JPanel {
 		add(scrollPane);
 	}
 
-//	private ArrayList<Object[]> getDati5() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	private ArrayList<Object[]> getDati4() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	private ArrayList<Object[]> getDati3() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	private ArrayList<Object[]> getDati2() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
-//	public ArrayList<Object[]> getDati1() {
-//
-//		ArrayList<Object[]> data1 = new ArrayList<Object[]>();
-//		for (int i = 0; i < 1; i++) {
-//			Object[] row = { "codint", "cliente", "cantiere",
-//					s.gch.getCommessaById(1).getId() };
-//			data1.add(row);
-//			JOptionPane.showMessageDialog(null, row[3].toString());
-//		}
-//
-//		return data1;
-//
-//	}
 
 	private void printDebugData(JTable table) {
 		int numRows = table.getRowCount();
