@@ -103,7 +103,7 @@ public class GHome {
 		panel.add(button);
 		
 		start_up = new Button("Start Up");
-		start_up.setBounds(311, 135, 53, 22);
+		start_up.setBounds(311, 135, 100, 22);
 		panel.add(start_up);
 		
 		distinta = new Button("Distinta");
@@ -113,15 +113,15 @@ public class GHome {
 		
 		pl = new GProgLavori();
 		
-		ordineG.setBounds(10, 57, 62, 22);
-		dataI.setBounds(10, 106, 62, 22);
-		dataF.setBounds(10, 149, 62, 22);
+		ordineG.setBounds(10, 57, 300, 22);
+		dataI.setBounds(10, 106, 300, 22);
+		dataF.setBounds(10, 149, 300, 22);
 		lblOrdineGestionale.setText("Commento prima riga lavoro");
-		lblOrdineGestionale.setBounds(10, 37, 120, 14);
+		lblOrdineGestionale.setBounds(10, 37, 300, 14);
 		lblDataInizioCommessa.setText("Data inizio Commessa");
-		lblDataInizioCommessa.setBounds(10, 86, 130, 14);
+		lblDataInizioCommessa.setBounds(10, 86, 300, 14);
 		lblDataFineCommessa.setText("Data fine Commessa");
-		lblDataFineCommessa.setBounds(10, 130, 130, 14);
+		lblDataFineCommessa.setBounds(10, 130, 300, 14);
 		
 		frame.addComponentListener(new ComponentListener(){
 
