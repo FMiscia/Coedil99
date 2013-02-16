@@ -160,7 +160,7 @@ public class GHome {
 				StartUp s = StartUp.getInstance();
 				ordineG.setText(s.gch.getCommessaById(1).getDistinta().getRigheLavoro().get(0).getNote());
 				dataI.setText(s.o.getDataInizio().get(Calendar.DATE)+"/"+s.o.getDataInizio().get(Calendar.MONTH)+"/"+s.o.getDataInizio().get(Calendar.YEAR));
-				dataF.setText(s.o.getDataFine().get(Calendar.DATE)+"/"+s.o.getDataFine().get(Calendar.MONTH)+"/"+s.o.getDataFine().get(Calendar.YEAR));
+				dataF.setText(s.o.getDataFine().get(Calendar.DATE)+"/"+s.o.getDataScadenza().get(Calendar.MONTH)+"/"+s.o.getDataFine().get(Calendar.YEAR));
 				panel.add(lblOrdineGestionale);
 				panel.add(ordineG);
 				panel.add(lblDataInizioCommessa);

@@ -110,7 +110,7 @@ public class ProgrammaLavoriTableModel extends AbstractTableModel{
 		a.add("1");
 		a.add(c.getElementoStrutturale());
 		a.add(c.getScadenza().toString());
-		a.add(c.getEmissione().toString());
+		a.add(c.getEmissioneCommessa().toString());
 		a.add(c.getOrario());
 		a.add(c.getDescrizione());
 		a.add(c.getResponsabile());

@@ -1,11 +1,17 @@
 package GUIElaboraDistinta;
 
+import java.awt.AWTEvent;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Vector;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,119 +20,163 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JList;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
 
 import ElaboraDistinta.Ordine;
+import ElaboraDistinta.StartUp;
 
 import java.awt.FlowLayout;
 
 public class GProgLavori extends JPanel {
 
-
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	JComponent panel1;
-    JComponent panel2;
-    JComponent panel3;
-    JComponent panel4;
-    JComponent panel5;
-    
-    public GProgLavori() {
-        super(new GridLayout(1, 1));
+	private static JComponent panel1;
+	private static JComponent panel2;
+	private static JComponent panel3;
+	private static JComponent panel4;
+	private static JComponent panel5;
+	private static Integer selectedRow = 0;
+	private static JTabbedPane tabbedPane;
+	private static JButton b;
+	private static JList listbox;
 
-        JTabbedPane tabbedPane = new JTabbedPane();
+	public GProgLavori() {
+		super(new BorderLayout());
+		final StartUp s = StartUp.getInstance();
+		tabbedPane = new JTabbedPane();
 
-        panel1 = makeTextPanel(1);
-        tabbedPane.addTab("Dati Cliente", null, panel1, "Dati Cliente");
-        tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+		panel1 = makeTextPanel(1);
+		(((Table) GProgLavori.panel1).getTable())
+				.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						JTable t =  (JTable) evt.getSource();
+						if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
+							JOptionPane.showMessageDialog(null, t.getSelectedRow());
+							
+						}
+					}
+				});
+		tabbedPane.addTab("Dati Cliente", null, panel1, "Dati Cliente");
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
-        panel2 = makeTextPanel(2);
-        tabbedPane.addTab("Dati Aziendali", null, panel2, "Dati Aziendali");
-        tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
+		panel2 = makeTextPanel(2);
+		tabbedPane.addTab("Dati Aziendali", null, panel2, "Dati Aziendali");
+		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
 
-        panel3 = makeTextPanel(3);
-        tabbedPane.addTab("Sviluppo Consegna", null, panel3, "Sviluppo Consegna");
-        tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
+		panel3 = makeTextPanel(3);
+		tabbedPane.addTab("Sviluppo Consegna", null, panel3,
+				"Sviluppo Consegna");
+		tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
 
-        panel4 = makeTextPanel(4);
-        tabbedPane.addTab("Produzione", null, panel4, "Produzione");
-        tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
-        
-        panel5 = makeTextPanel(5);
-        tabbedPane.addTab("Consegna", null, panel5, "Consegna");
-        tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
+		panel4 = makeTextPanel(4);
+		tabbedPane.addTab("Produzione", null, panel4, "Produzione");
+		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
 
-        add(tabbedPane);
-//add(panel1);
+		panel5 = makeTextPanel(5);
+		tabbedPane.addTab("Consegna", null, panel5, "Consegna");
+		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
 
-      }
-    
-      protected JComponent makeTextPanel(int a) {
+		String[] listData;
+		listData = new String[s.gch.getNumOfCommesse()];
 
-    	  String[] column1 = {"Codice Interno",
-                  "Cliente",
-                  "Cantiere",
-                  "Commessa Cliente"};
-    	  String[] column2 = {"Codice Interno",
-    			  "O/C",
-                  "Anno",
-                  "Ordine/Contratto",
-                  "Commessa Coedil",
-                  "Cod Interno",
-                  "Ordine Gestionale",
-                  "Data Inizio",
-                  "Data Fine",
-                  "Orario",
-                  "Descrizione",
-                  "Partizione",
-    	  
-                  };
-    	  String[] column3 = {"Codice Interno",
-                  "Responsabile",
-                  "Data Inizio",
-                  "Scadenza sviluppo",
-                  "Data fine",
-                  "Ritardo"};
-    	  String[] column4 = {"Codice Interno",
-                  "Data Inizio",
-                  "Data fine",
-                  "Scadenza sviluppo"
-                  };
-    	  String[] column5 = {"Codice Interno",
-                  "Data prima consegna",
-                  "Ritardo consegna"};
-          JPanel panel1 = new Table(column1,1);
-          JPanel panel2 = new Table(column2,2);
-          JPanel panel3 = new Table(column3,3);
-          JPanel panel4 = new Table(column4,4);
-          JPanel panel5 = new Table(column5,5);
-          JPanel panel;
+		for (int i = 0; i < s.gch.getNumOfCommesse(); i++) {
+			String row = s.gch.getCommessaByIndex(i).getCodiceInterno();
+			listData[i] = row;
+		}
 
-          switch (a) {
-          case 1:  
-              panel = panel1;
-                    break;
-          case 2:  
-              panel = panel2;
-              break;
-          case 3:  
-              panel = panel3;
-              break;
-          case 4:  
-              panel = panel4;
-              break;
-          case 5:
-              panel = panel5;
-              break;
-          default:         	  		
-              panel = panel1;
-              break;
-      }
-    		  
-          return panel;
-          }
+		// Create a new listbox control
+		listbox = new JList(listData);
+		JLabel text = new JLabel();
+		text.setText("Codice interno");
+		text.setHorizontalAlignment(SwingConstants.CENTER);
+		text.setPreferredSize(new Dimension(200, 40));
+		listbox.setPreferredSize(new Dimension(200, this.getHeight()));
+		b = new JButton("Crea Distinta");
+		JPanel cpEst = new JPanel(new BorderLayout());
+		cpEst.add(listbox, BorderLayout.CENTER);
+		cpEst.add(text, BorderLayout.NORTH);
+		cpEst.add(b, BorderLayout.SOUTH);
 
+		listbox.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				JList list = (JList) evt.getSource();
+				if (evt.getClickCount() == 1) {
+					int index = list.locationToIndex(evt.getPoint());
+					GProgLavori.selectedRow = index;
+					(((Table) GProgLavori.panel1).getTable())
+							.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel2).getTable())
+							.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel3).getTable())
+							.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel4).getTable())
+							.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel5).getTable())
+							.setRowSelectionInterval(index, index);
+					// JOptionPane.showMessageDialog(null,s.gch.hasDistinta(
+					// GProgLavori.listbox.getSelectedValue().toString() ));
+					if (s.gch.hasDistinta(GProgLavori.listbox
+							.getSelectedValue().toString())) {
+						GProgLavori.b.setText("Visualizza Distinta");
+					} else {
+						GProgLavori.b.setText("Crea Distinta");
+					}
+				}
+			}
+		});
+
+		this.add(tabbedPane, BorderLayout.CENTER);
+		this.add(cpEst, BorderLayout.WEST);
+
+	}
+
+	protected JComponent makeTextPanel(int a) {
+
+		String[] column1 = { "Codice Interno", "Cliente", "Cantiere",
+				"Commessa Cliente" };
+		String[] column2 = { "Codice Interno", "O/C", "Anno",
+				"Ordine/Contratto", "Commessa Coedil", "Cod Interno",
+				"Ordine Gestionale", "Data Inizio", "Data Fine", "Orario",
+				"Descrizione", "Partizione",
+
+		};
+		String[] column3 = { "Codice Interno", "Responsabile", "Data Inizio",
+				"Scadenza sviluppo", "Data fine", "Ritardo" };
+		String[] column4 = { "Codice Interno", "Data Inizio", "Data fine",
+				"Scadenza sviluppo" };
+		String[] column5 = { "Codice Interno", "Data prima consegna",
+				"Ritardo consegna" };
+		JPanel panel1 = new Table(column1, 1);
+		JPanel panel2 = new Table(column2, 2);
+		JPanel panel3 = new Table(column3, 3);
+		JPanel panel4 = new Table(column4, 4);
+		JPanel panel5 = new Table(column5, 5);
+		JPanel panel;
+
+		switch (a) {
+		case 1:
+			panel = panel1;
+			break;
+		case 2:
+			panel = panel2;
+			break;
+		case 3:
+			panel = panel3;
+			break;
+		case 4:
+			panel = panel4;
+			break;
+		case 5:
+			panel = panel5;
+			break;
+		default:
+			panel = panel1;
+			break;
+		}
+
+		return panel;
+	}
 
 }

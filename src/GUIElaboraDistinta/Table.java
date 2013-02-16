@@ -1,22 +1,17 @@
 package GUIElaboraDistinta;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.table.TableColumn;
 
-import ElaboraDistinta.GestisciCommessaHandler;
 import ElaboraDistinta.StartUp;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Vector;
+
 
 public class Table extends JPanel {
 	/**
@@ -25,6 +20,7 @@ public class Table extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private boolean DEBUG = false;
 	Object[][] data;
+	JTable table;
 
 	public Table(String[] columnNames, int a) {
 		super(new GridLayout(1, 0));
@@ -36,9 +32,7 @@ public class Table extends JPanel {
 		
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
 			data1[i] = new Object[4];
-			Object[] row = {s.gch.getCommessaByIndex(i).getOrdine().getAnno()+"_"+
-					s.gch.getCommessaByIndex(i).getOrdine().getId()+"_"+
-					s.gch.getCommessaByIndex(i).getId(), null, null, s.gch.getCommessaByIndex(i).getId()};
+			Object[] row = {s.gch.getCommessaByIndex(i).getCodiceInterno(), null, null, s.gch.getCommessaByIndex(i).getId()};
 			data1[i] = row;
 		}
 
@@ -48,10 +42,8 @@ public class Table extends JPanel {
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
 			data2[i] = new Object[12];
 			Object[] row = {
-					s.gch.getCommessaByIndex(i).getOrdine().getAnno()+"_"+
-					s.gch.getCommessaByIndex(i).getOrdine().getId()+"_"+
-					s.gch.getCommessaByIndex(i).getId(), 
-					null, null,null, s.gch.getCommessaByIndex(i).getId(),null,null,s.o.getDataInizio().getTime().toGMTString(),s.o.getDataFine().getTime().toGMTString(),null,null,null};
+					s.gch.getCommessaByIndex(i).getCodiceInterno(), 
+					null, null,null, s.gch.getCommessaByIndex(i).getId(),null,null,s.o.getDataInizio().getTime().toGMTString(),"null",null,null,null};
 			data2[i] = row;
 		}
 
@@ -59,9 +51,7 @@ public class Table extends JPanel {
 		data3 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
 			data3[i] = new Object[6];
-			Object[] row = {s.gch.getCommessaByIndex(i).getOrdine().getAnno()+"_"+
-					s.gch.getCommessaByIndex(i).getOrdine().getId()+"_"+
-					s.gch.getCommessaByIndex(i).getId(),null,null,null,null,null};
+			Object[] row = {s.gch.getCommessaByIndex(i).getCodiceInterno(),null,null,null,null,null};
 			data3[i] = row;
 		}
 		
@@ -69,9 +59,7 @@ public class Table extends JPanel {
 		data4 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
 			data4[i] = new Object[4];
-			Object[] row = {s.gch.getCommessaByIndex(i).getOrdine().getAnno()+"_"+
-					s.gch.getCommessaByIndex(i).getOrdine().getId()+"_"+
-					s.gch.getCommessaByIndex(i).getId(),null,null,null};
+			Object[] row = {s.gch.getCommessaByIndex(i).getCodiceInterno(),null,null,null};
 			data4[i] = row;
 		}
 		
@@ -79,9 +67,7 @@ public class Table extends JPanel {
 		data5 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
 			data5[i] = new Object[3];
-			Object[] row = {s.gch.getCommessaByIndex(i).getOrdine().getAnno()+"_"+
-					s.gch.getCommessaByIndex(i).getOrdine().getId()+"_"+
-					s.gch.getCommessaByIndex(i).getId(),null,null};
+			Object[] row = {s.gch.getCommessaByIndex(i).getCodiceInterno(),null,null};
 			data5[i] = row;
 		}
 		
@@ -106,7 +92,7 @@ public class Table extends JPanel {
 		}
 
 
-		final JTable table = new JTable(data, columnNames);
+		table = new JTable(data, columnNames);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		table.setFillsViewportHeight(true);
 		TableColumn column = null;
@@ -134,9 +120,12 @@ public class Table extends JPanel {
 
 		// Add the scroll pane to this panel.
 		add(scrollPane);
+		
 	}
 
-
+public JTable getTable(){
+	return this.table;
+}
 
 	private void printDebugData(JTable table) {
 		int numRows = table.getRowCount();
