@@ -7,7 +7,7 @@ import java.util.Iterator;
 public class Magazzino {
 
 	Catalogo catalogo;
-	HashMap<Item,Integer> items;
+	private HashMap<Item,Integer> items;
 	private String name;
 	
 	public String getName() {
@@ -20,6 +20,7 @@ public class Magazzino {
 
 	public Magazzino(){
 		/*esegue lo startup*/
+		this.items = new HashMap<Item,Integer>();
 		this.catalogo = new Catalogo();
 		ArrayList<Item> cItem = new ArrayList<Item>(this.catalogo.items);
 		Iterator<Item> i = cItem.iterator();
@@ -31,6 +32,14 @@ public class Magazzino {
 	public void addItem(Item item){
 		Integer oldValue = items.get(item);
 		items.put(item, ++oldValue);
+	}
+	
+	public HashMap<Item,Integer> getItems(){
+		return this.items;
+	}
+	
+	public Catalogo getCatalogo(){
+		return this.catalogo;
 	}
 
 

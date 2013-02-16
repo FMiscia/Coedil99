@@ -6,7 +6,7 @@ public class Distinta {
 
 	private int id;
 	RigheLavoro lavori = new RigheLavoro();
-	DocumentoOttimizzazione ddo = new DocumentoOttimizzazione();
+	DocumentoOttimizzazione ddo;
 
 	public Distinta(){
 		/*startup*/
@@ -44,8 +44,8 @@ public class Distinta {
 	 * 
 	 * @return 
 	 */
-	public void createDDO() {
-		throw new UnsupportedOperationException();
+	public void creaDDO() {
+		this.ddo = new StandardOttimizzatoreStrategy().elaboraOttimizzazione(this);
 	}
 
 	public int getId() {

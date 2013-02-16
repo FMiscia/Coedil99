@@ -6,7 +6,6 @@ import java.util.ListIterator;
 
 public class GestisciMagazzinoHandler implements ICommessaListener {
 
-	ElaboraDistintaHandler cdistinta;
 	List<Magazzino> magazzino;
 	private static GestisciMagazzinoHandler instance = null;
 	

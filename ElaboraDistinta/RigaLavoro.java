@@ -3,7 +3,7 @@ package ElaboraDistinta;
 public class RigaLavoro {
 
 	private int id;
-	Geometria geometria;
+	private Geometria geometria;
 	private boolean capitello;
 	private String profiloCapitello;
 	private String note;
@@ -54,6 +54,14 @@ public class RigaLavoro {
 
 	public int getId() {
 		return id;
+	}
+	
+	public Geometria getGeometria(){
+		return this.geometria;
+	}
+	
+	public void setGeometria(Geometria g){
+		this.geometria = g;
 	}
 
 	/*
