@@ -36,7 +36,14 @@ public class Commessa {
 		this.id = Commessa.counter;
 	} 
 	
-
+	public Integer getOrdineId() {
+		return this.ordine.getId();
+	}
+	
+	public Ordine getOrdine() {
+		return this.ordine;
+	}
+	
 	public String getElementoStrutturale() {
 		return this.elementoStrutturale;
 	}

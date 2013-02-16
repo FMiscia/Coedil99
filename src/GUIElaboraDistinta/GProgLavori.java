@@ -91,9 +91,9 @@ public class GProgLavori extends JPanel {
                   "Ritardo"};
     	  String[] column4 = {"Codice Interno",
                   "Data Inizio",
-                  "Scadenza sviluppo",
                   "Data fine",
-                  "Ritardo"};
+                  "Scadenza sviluppo"
+                  };
     	  String[] column5 = {"Codice Interno",
                   "Data prima consegna",
                   "Ritardo consegna"};

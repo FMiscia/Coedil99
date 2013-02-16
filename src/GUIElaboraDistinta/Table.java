@@ -1,40 +1,5 @@
 package GUIElaboraDistinta;
 
-/*
- * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *
- *   - Redistributions in binary form must reproduce the above copyright
- *     notice, this list of conditions and the following disclaimer in the
- *     documentation and/or other materials provided with the distribution.
- *
- *   - Neither the name of Oracle or the names of its
- *     contributors may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-/*
- * SimpleTableDemo.java requires no other files.
- */
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -71,7 +36,9 @@ public class Table extends JPanel {
 		
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
 			data1[i] = new Object[4];
-			Object[] row = {"si", "Si", "si", ( s.gch.getCommessaByIndex(i)).getId()};
+			Object[] row = {s.gch.getCommessaByIndex(i).getOrdine().getAnno()+"_"+
+					s.gch.getCommessaByIndex(i).getOrdine().getId()+"_"+
+					s.gch.getCommessaByIndex(i).getId(), null, null, s.gch.getCommessaByIndex(i).getId()};
 			data1[i] = row;
 		}
 
@@ -80,7 +47,11 @@ public class Table extends JPanel {
 		data2 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
 			data2[i] = new Object[12];
-			Object[] row = {"01", "Smith", "a", new Integer(555),"q0","w","e",s.o.getDataInizio().getTime().toGMTString(),s.o.getDataFine().getTime().toGMTString(),"a","b","c"};
+			Object[] row = {
+					s.gch.getCommessaByIndex(i).getOrdine().getAnno()+"_"+
+					s.gch.getCommessaByIndex(i).getOrdine().getId()+"_"+
+					s.gch.getCommessaByIndex(i).getId(), 
+					null, null,null, s.gch.getCommessaByIndex(i).getId(),null,null,s.o.getDataInizio().getTime().toGMTString(),s.o.getDataFine().getTime().toGMTString(),null,null,null};
 			data2[i] = row;
 		}
 
@@ -88,15 +59,19 @@ public class Table extends JPanel {
 		data3 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
 			data3[i] = new Object[6];
-			Object[] row = {"a","b","c","d","e","f"};
+			Object[] row = {s.gch.getCommessaByIndex(i).getOrdine().getAnno()+"_"+
+					s.gch.getCommessaByIndex(i).getOrdine().getId()+"_"+
+					s.gch.getCommessaByIndex(i).getId(),null,null,null,null,null};
 			data3[i] = row;
 		}
 		
 		Object[][] data4; 
 		data4 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data4[i] = new Object[5];
-			Object[] row = {"a","b","c","d","e"};
+			data4[i] = new Object[4];
+			Object[] row = {s.gch.getCommessaByIndex(i).getOrdine().getAnno()+"_"+
+					s.gch.getCommessaByIndex(i).getOrdine().getId()+"_"+
+					s.gch.getCommessaByIndex(i).getId(),null,null,null};
 			data4[i] = row;
 		}
 		
@@ -104,7 +79,9 @@ public class Table extends JPanel {
 		data5 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
 			data5[i] = new Object[3];
-			Object[] row = {"a","b","c","d","e"};
+			Object[] row = {s.gch.getCommessaByIndex(i).getOrdine().getAnno()+"_"+
+					s.gch.getCommessaByIndex(i).getOrdine().getId()+"_"+
+					s.gch.getCommessaByIndex(i).getId(),null,null};
 			data5[i] = row;
 		}
 		
