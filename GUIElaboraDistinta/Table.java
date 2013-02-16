@@ -75,25 +75,18 @@ public class Table extends JPanel {
 			Object[] row = {"si", "Si", "si", ( s.gch.getCommessaByIndex(i)).getId()};
 			data1[i] = row;
 		}
-//		
-//		Object[][] data1 ={
-//				 {"01", "Smith", "a", s.gch.getCommessaById(1).getId(),"r"},
-//				 {"02", "Smith", "a", "e","r"},
-//				 {"03", "Smith", "a", "e","r"},
-//				 {"04", "Smith", "a", "e","r"},
-//				 {"05", "Smith", "a", "e","r"}
-//				 };
-//		
-		Object[][] data2 = {
-				 {"01", "Smith", "a", new		 Integer(5),"q0","w","e",s.o.getDataInizio().getTime().toGMTString(),s.o.getDataFine().getTime().toGMTString(),"s","s","s"},
-				 {"02", "Smith", "a", new
-				 Integer(5),"q1","w","e","r","t","s","s","s"},
-				 {"03", "Smith", "a", new
-				 Integer(5),"q2","w","e","r","t","s","s","s"},
-				 {"04", "Smith", "a", new
-				 Integer(5),"q3","w","e","r","t","s","s","s"},
-				 {"05", "Smith", "a", new Integer(5),"q4","w","e","r","t","s","s","s"}
-				 };
+
+		
+		Object[][] data2; 
+		data2 = new Object [s.gch.getNumOfCommesse()][];
+		JOptionPane.showMessageDialog(null, s.gch.getNumOfCommesse() );
+		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
+			data2[i] = new Object[4];
+			Object[] row = {"01", "Smith", "a", new Integer(5),"q0","w","e",s.o.getDataInizio().getTime().toGMTString(),s.o.getDataFine().getTime().toGMTString(),"s","s","s"};
+			data2[i] = row;
+		}
+
+				 
 		Object[][] data3 = {
 				 {"01", "Smith", "a", new Integer(5),"q0","w","e","r","t"},
 				 {"02", "Smith", "a", new Integer(5),"q1","w","e","r","t"},
