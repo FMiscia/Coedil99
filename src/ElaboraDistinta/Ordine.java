@@ -41,7 +41,7 @@ public class Ordine {
 		this.commesse.add(c);
 		if(this.isDateNull()){
 			this.dataInizio = c.getEmissioneCommessa();
-			this.setDataScadenza(c.getScadenzaCommessa());
+			this.dataScadenza = c.getScadenzaCommessa();
 		}else
 			this.checkDate(c);
 	}
@@ -49,10 +49,10 @@ public class Ordine {
 
 	private void checkDate(Commessa c) {
 		if(c.getEmissioneCommessa().compareTo(this.getDataInizio())<0){
-			this.setDataInizio(c.getEmissioneCommessa());
+			this.dataInizio = c.getEmissioneCommessa();
 		}
 		if(c.getScadenzaCommessa().compareTo(this.getDataScadenza())>0){
-			this.setDataScadenza(c.getFineCommessa());
+			this.dataScadenza = c.getFineCommessa();
 		}
 		
 	}

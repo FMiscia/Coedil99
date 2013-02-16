@@ -97,6 +97,21 @@ public class GestisciCommessaHandler {
 	
 	/**
 	 * 
+	 * @param codiceinterno
+	 * @return
+	 */
+	public Boolean hasDistinta(String ci){
+		ListIterator<Commessa> it = this.commesse.listIterator();
+		while(it.hasNext()){
+			if(it.next().getCodiceInterno().equals(ci) && it.previous().getDistinta() != null)
+				it.next();
+				return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 
 	 * @return
 	 */
 	public static GestisciCommessaHandler getInstance() {
