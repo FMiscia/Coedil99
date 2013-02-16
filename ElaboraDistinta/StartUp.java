@@ -5,6 +5,8 @@ import java.util.Iterator;
 
 public class StartUp {
 
+	private static StartUp instance = null;
+	
 	public GestisciCommessaHandler gch;
 	
 	Distinta dist = new Distinta();
@@ -46,6 +48,13 @@ public class StartUp {
 		}
 
 		
+	}
+	
+	public static StartUp getInstance(){
+		if (StartUp.instance == null){
+			StartUp.instance = new StartUp();
+		}
+		return StartUp.instance;
 	}
 	
 }
