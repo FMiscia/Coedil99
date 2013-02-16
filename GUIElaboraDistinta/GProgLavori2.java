@@ -36,7 +36,7 @@ public class GProgLavori2 extends JPanel {
     
     public GProgLavori2() {
         super(new GridLayout(1, 1));
-        StartUp s = new StartUp();
+        StartUp s = StartUp.getInstance();
         JTabbedPane tabbedPane = new JTabbedPane();
 
         panel1 = makeTextPanel();

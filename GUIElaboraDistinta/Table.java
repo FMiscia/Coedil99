@@ -60,12 +60,11 @@ public class Table extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private boolean DEBUG = false;
 	Object[][] data;
-	private StartUp s;
 
 	public Table(String[] columnNames, int a) {
 		super(new GridLayout(1, 0));
 
-		s = new StartUp();
+		StartUp s = StartUp.getInstance();
 		
 		Object[][] data1;
 		data1 = new Object [s.gch.getNumOfCommesse()][];
@@ -79,20 +78,23 @@ public class Table extends JPanel {
 		
 		Object[][] data2; 
 		data2 = new Object [s.gch.getNumOfCommesse()][];
-		JOptionPane.showMessageDialog(null, s.gch.getNumOfCommesse() );
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
 			data2[i] = new Object[4];
-			Object[] row = {"01", "Smith", "a", new Integer(5),"q0","w","e",s.o.getDataInizio().getTime().toGMTString(),s.o.getDataFine().getTime().toGMTString(),"s","s","s"};
+			Object[] row = {"01", "Smith", "a", new Integer(555),"q0","w","e",s.o.getDataInizio().getTime().toGMTString(),s.o.getDataFine().getTime().toGMTString(),"a","b","c"};
 			data2[i] = row;
 		}
 
-				 
+//		Object[][] data2; 
+//		data2 = new Object [s.gch.getNumOfCommesse()][];
+//		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
+//			data2[i] = new Object[4];
+//			Object[] row = {"01", "Smith", "a", new Integer(5),"q0","w","e",s.o.getDataInizio().getTime().toGMTString(),s.o.getDataFine().getTime().toGMTString(),"s","s","s"};
+//			data2[i] = row;
+//		}
+		
 		Object[][] data3 = {
-				 {"01", "Smith", "a", new Integer(5),"q0","w","e","r","t"},
-				 {"02", "Smith", "a", new Integer(5),"q1","w","e","r","t"},
-				 {"03", "Smith", "a", new Integer(5),"q2","w","e","r","t"},
-				 {"04", "Smith", "a", new Integer(5),"q3","w","e","r","t"},
-				 {"05", "Smith", "a", new Integer(5),"q4","w","e","r","t"}
+				 {"01","q0","w","e","r","t"},
+				 {"02","q1","w","e","r","t"}
 				 };
 		Object[][] data4 =  {
 				 {"01", "Smith", "a", new Integer(5),"q0","w","e","r","t"},
