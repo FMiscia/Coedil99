@@ -40,7 +40,7 @@ public class GProgLavori extends JPanel {
 	private static Integer selectedRow = 0;
 	private static JTabbedPane tabbedPane;
 	private static JButton b;
-	private static JList listbox;
+	private static JComponent listbox;
 
 	public GProgLavori() {
 		super(new BorderLayout());
@@ -53,8 +53,25 @@ public class GProgLavori extends JPanel {
 					public void mouseClicked(MouseEvent evt) {
 						JTable t =  (JTable) evt.getSource();
 						if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
-							JOptionPane.showMessageDialog(null, t.getSelectedRow());
-							
+							int index = t.getSelectedRow();
+							GProgLavori.selectedRow = index;
+							(((Table) GProgLavori.listbox).getTable())
+									.setRowSelectionInterval(index, index);
+							(((Table) GProgLavori.panel2).getTable())
+							.setRowSelectionInterval(index, index);
+							(((Table) GProgLavori.panel3).getTable())
+							.setRowSelectionInterval(index, index);
+							(((Table) GProgLavori.panel4).getTable())
+							.setRowSelectionInterval(index, index);
+							(((Table) GProgLavori.panel5).getTable())
+							.setRowSelectionInterval(index, index);
+
+						}
+						Table t1 =  (Table) GProgLavori.listbox;
+						if (s.gch.hasDistinta( (String) t1.getTable().getValueAt(t.getSelectedRow(), 0) ) ) {
+							GProgLavori.b.setText("Visualizza Distinta");
+						} else {
+							GProgLavori.b.setText("Crea Distinta");
 						}
 					}
 				});
@@ -62,19 +79,127 @@ public class GProgLavori extends JPanel {
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
 		panel2 = makeTextPanel(2);
+		(((Table) GProgLavori.panel2).getTable())
+		.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				JTable t =  (JTable) evt.getSource();
+				if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
+					int index = t.getSelectedRow();
+					GProgLavori.selectedRow = index;
+					(((Table) GProgLavori.listbox).getTable())
+							.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel1).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel3).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel4).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel5).getTable())
+					.setRowSelectionInterval(index, index);
+
+				}
+				Table t1 =  (Table) GProgLavori.listbox;
+				if (s.gch.hasDistinta( (String) t1.getTable().getValueAt(t.getSelectedRow(), 0) ) ) {
+					GProgLavori.b.setText("Visualizza Distinta");
+				} else {
+					GProgLavori.b.setText("Crea Distinta");
+				}
+			}
+		});
 		tabbedPane.addTab("Dati Aziendali", null, panel2, "Dati Aziendali");
 		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
 
 		panel3 = makeTextPanel(3);
+		(((Table) GProgLavori.panel3).getTable())
+		.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				JTable t =  (JTable) evt.getSource();
+				if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
+					int index = t.getSelectedRow();
+					GProgLavori.selectedRow = index;
+					(((Table) GProgLavori.listbox).getTable())
+							.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel2).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel1).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel4).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel5).getTable())
+					.setRowSelectionInterval(index, index);
+
+				}
+				Table t1 =  (Table) GProgLavori.listbox;
+				if (s.gch.hasDistinta( (String) t1.getTable().getValueAt(t.getSelectedRow(), 0) ) ) {
+					GProgLavori.b.setText("Visualizza Distinta");
+				} else {
+					GProgLavori.b.setText("Crea Distinta");
+				}
+			}
+		});
 		tabbedPane.addTab("Sviluppo Consegna", null, panel3,
 				"Sviluppo Consegna");
 		tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
 
 		panel4 = makeTextPanel(4);
+		(((Table) GProgLavori.panel4).getTable())
+		.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				JTable t =  (JTable) evt.getSource();
+				if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
+					int index = t.getSelectedRow();
+					GProgLavori.selectedRow = index;
+					(((Table) GProgLavori.listbox).getTable())
+							.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel2).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel3).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel1).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel5).getTable())
+					.setRowSelectionInterval(index, index);
+
+				}
+				Table t1 =  (Table) GProgLavori.listbox;
+				if (s.gch.hasDistinta( (String) t1.getTable().getValueAt(t.getSelectedRow(), 0) ) ) {
+					GProgLavori.b.setText("Visualizza Distinta");
+				} else {
+					GProgLavori.b.setText("Crea Distinta");
+				}
+			}
+		});
 		tabbedPane.addTab("Produzione", null, panel4, "Produzione");
 		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
 
 		panel5 = makeTextPanel(5);
+		(((Table) GProgLavori.panel5).getTable())
+		.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				JTable t =  (JTable) evt.getSource();
+				if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
+					int index = t.getSelectedRow();
+					GProgLavori.selectedRow = index;
+					(((Table) GProgLavori.listbox).getTable())
+							.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel2).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel3).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel4).getTable())
+					.setRowSelectionInterval(index, index);
+					(((Table) GProgLavori.panel1).getTable())
+					.setRowSelectionInterval(index, index);
+
+				}
+				Table t1 =  (Table) GProgLavori.listbox;
+				if (s.gch.hasDistinta( (String) t1.getTable().getValueAt(t.getSelectedRow(), 0) ) ) {
+					GProgLavori.b.setText("Visualizza Distinta");
+				} else {
+					GProgLavori.b.setText("Crea Distinta");
+				}
+			}
+		});
 		tabbedPane.addTab("Consegna", null, panel5, "Consegna");
 		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
 
@@ -87,23 +212,13 @@ public class GProgLavori extends JPanel {
 		}
 
 		// Create a new listbox control
-		listbox = new JList(listData);
-		JLabel text = new JLabel();
-		text.setText("Codice interno");
-		text.setHorizontalAlignment(SwingConstants.CENTER);
-		text.setPreferredSize(new Dimension(200, 40));
-		listbox.setPreferredSize(new Dimension(200, this.getHeight()));
-		b = new JButton("Crea Distinta");
-		JPanel cpEst = new JPanel(new BorderLayout());
-		cpEst.add(listbox, BorderLayout.CENTER);
-		cpEst.add(text, BorderLayout.NORTH);
-		cpEst.add(b, BorderLayout.SOUTH);
-
-		listbox.addMouseListener(new MouseAdapter() {
+		listbox = makeTextPanel(0);
+		(((Table) GProgLavori.listbox).getTable())
+		.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				JList list = (JList) evt.getSource();
-				if (evt.getClickCount() == 1) {
-					int index = list.locationToIndex(evt.getPoint());
+				JTable t =  (JTable) evt.getSource();
+				if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
+					int index = t.getSelectedRow();
 					GProgLavori.selectedRow = index;
 					(((Table) GProgLavori.panel1).getTable())
 							.setRowSelectionInterval(index, index);
@@ -115,10 +230,9 @@ public class GProgLavori extends JPanel {
 							.setRowSelectionInterval(index, index);
 					(((Table) GProgLavori.panel5).getTable())
 							.setRowSelectionInterval(index, index);
-					// JOptionPane.showMessageDialog(null,s.gch.hasDistinta(
-					// GProgLavori.listbox.getSelectedValue().toString() ));
-					if (s.gch.hasDistinta(GProgLavori.listbox
-							.getSelectedValue().toString())) {
+//					 JOptionPane.showMessageDialog(null,s.gch.hasDistinta(
+//							 (String) t.getValueAt(t.getSelectedRow(), 0)  ));
+					if (s.gch.hasDistinta((String) t.getValueAt(t.getSelectedRow(), 0) )) {
 						GProgLavori.b.setText("Visualizza Distinta");
 					} else {
 						GProgLavori.b.setText("Crea Distinta");
@@ -126,6 +240,17 @@ public class GProgLavori extends JPanel {
 				}
 			}
 		});
+		JLabel text = new JLabel();
+		text.setText("");
+		text.setHorizontalAlignment(SwingConstants.CENTER);
+		text.setPreferredSize(new Dimension(200, 25));
+		listbox.setPreferredSize(new Dimension(200, this.getHeight()));
+		b = new JButton("Crea Distinta");
+		JPanel cpEst = new JPanel(new BorderLayout());
+		cpEst.add(listbox, BorderLayout.CENTER);
+		cpEst.add(text, BorderLayout.NORTH);
+		cpEst.add(b, BorderLayout.SOUTH);
+
 
 		this.add(tabbedPane, BorderLayout.CENTER);
 		this.add(cpEst, BorderLayout.WEST);
@@ -148,6 +273,8 @@ public class GProgLavori extends JPanel {
 				"Scadenza sviluppo" };
 		String[] column5 = { "Codice Interno", "Data prima consegna",
 				"Ritardo consegna" };
+		String[] column0 = { "Codice Interno","" };
+		JPanel panel0 = new Table(column0, 0);
 		JPanel panel1 = new Table(column1, 1);
 		JPanel panel2 = new Table(column2, 2);
 		JPanel panel3 = new Table(column3, 3);
@@ -156,6 +283,9 @@ public class GProgLavori extends JPanel {
 		JPanel panel;
 
 		switch (a) {
+		case 0:
+			panel = panel0;
+			break;
 		case 1:
 			panel = panel1;
 			break;

@@ -26,6 +26,15 @@ public class Table extends JPanel {
 		super(new GridLayout(1, 0));
 
 		StartUp s = StartUp.getInstance();
+
+		Object[][] data0;
+		data0 = new Object [s.gch.getNumOfCommesse()][];
+		
+		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
+			data0[i] = new Object[2];
+			Object[] row = {s.gch.getCommessaByIndex(i).getCodiceInterno(), null};
+			data0[i] = row;
+		}
 		
 		Object[][] data1;
 		data1 = new Object [s.gch.getNumOfCommesse()][];
@@ -72,6 +81,9 @@ public class Table extends JPanel {
 		}
 		
 		switch (a) {
+		case 0:
+			data = (Object[][]) data0;
+			break;
 		case 1:
 			data = data1;
 			break;
@@ -95,16 +107,25 @@ public class Table extends JPanel {
 		table = new JTable(data, columnNames);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		table.setFillsViewportHeight(true);
-		TableColumn column = null;
-		for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
-			column = table.getColumnModel().getColumn(i);
-			if (i == 0) {
-				column.setMaxWidth(100); // third column is bigger
-				column.setMinWidth(100);
-			} else {
-				column.setWidth(50);
-			}
-		}
+if (a == 0){
+    TableColumn column = table.getColumnModel().getColumn(1);
+    column.setMinWidth(0);
+    column.setMaxWidth(0);
+    column.setWidth(0);
+    column.setPreferredWidth(0);
+    doLayout();
+}
+		
+//		TableColumn column = null;
+//		for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+//			column = table.getColumnModel().getColumn(i);
+//			if (i == 0) {
+//				column.setMaxWidth(100); 
+//				column.setMinWidth(100);
+//			} else {
+//				column.setWidth(50);
+//			}
+//		}
 
 
 		if (DEBUG) {

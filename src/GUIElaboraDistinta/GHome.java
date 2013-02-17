@@ -5,7 +5,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Frame;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.Window;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -71,13 +75,20 @@ public class GHome {
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 549, 326);
 		Toolkit tk = Toolkit.getDefaultToolkit(); 
+		
+//		Dimension scrnSize = Toolkit.getDefaultToolkit().getScreenSize();
+//		Rectangle winSize = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+//		int taskBarHeight = scrnSize.height - winSize.height;
+		
 		int xSize = ((int) tk.getScreenSize().getWidth()); 
-		int ySize = ((int) tk.getScreenSize().getHeight());
+		int ySize = ((int) tk.getScreenSize().getHeight()-55);
 		frame.setSize(xSize,ySize); 
 		//Centraggio della finestra
 		Dimension screenSize = tk.getScreenSize();
 		Dimension frameSize = frame.getSize ();
-		frame.setLocation ((screenSize.width - frameSize.width) / 2,(screenSize.height - frameSize.height) / 2);		
+		frame.setLocation ((screenSize.width - frameSize.width) / 2,(screenSize.height - frameSize.height) / 2);	
+
+		
 		/**Button Chiudi = new Button("X");
 		Chiudi.setBounds((xSize-30), 0, 29, 22);
 		frame.getContentPane().add(Chiudi);
