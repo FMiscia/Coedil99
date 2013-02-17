@@ -17,6 +17,7 @@ import javax.swing.BoxLayout;
 
 public class GDistinta extends JPanel {
 	
+
 	private Button addRigaLavoro;
 	private JScrollPane scrollPane;
 	private JTable table;

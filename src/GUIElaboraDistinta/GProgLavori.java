@@ -1,33 +1,19 @@
 package GUIElaboraDistinta;
 
-import java.awt.AWTEvent;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Vector;
-
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JList;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-
-import ElaboraDistinta.Ordine;
 import ElaboraDistinta.StartUp;
-
-import java.awt.FlowLayout;
 
 public class GProgLavori extends JPanel {
 
@@ -37,7 +23,6 @@ public class GProgLavori extends JPanel {
 	private static JComponent panel3;
 	private static JComponent panel4;
 	private static JComponent panel5;
-	private static Integer selectedRow = 0;
 	private static JTabbedPane tabbedPane;
 	private static JButton b;
 	private static JComponent listbox;
@@ -54,7 +39,6 @@ public class GProgLavori extends JPanel {
 						JTable t =  (JTable) evt.getSource();
 						if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
 							int index = t.getSelectedRow();
-							GProgLavori.selectedRow = index;
 							(((Table) GProgLavori.listbox).getTable())
 									.setRowSelectionInterval(index, index);
 							(((Table) GProgLavori.panel2).getTable())
@@ -85,7 +69,6 @@ public class GProgLavori extends JPanel {
 				JTable t =  (JTable) evt.getSource();
 				if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
 					int index = t.getSelectedRow();
-					GProgLavori.selectedRow = index;
 					(((Table) GProgLavori.listbox).getTable())
 							.setRowSelectionInterval(index, index);
 					(((Table) GProgLavori.panel1).getTable())
@@ -116,7 +99,6 @@ public class GProgLavori extends JPanel {
 				JTable t =  (JTable) evt.getSource();
 				if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
 					int index = t.getSelectedRow();
-					GProgLavori.selectedRow = index;
 					(((Table) GProgLavori.listbox).getTable())
 							.setRowSelectionInterval(index, index);
 					(((Table) GProgLavori.panel2).getTable())
@@ -148,7 +130,6 @@ public class GProgLavori extends JPanel {
 				JTable t =  (JTable) evt.getSource();
 				if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
 					int index = t.getSelectedRow();
-					GProgLavori.selectedRow = index;
 					(((Table) GProgLavori.listbox).getTable())
 							.setRowSelectionInterval(index, index);
 					(((Table) GProgLavori.panel2).getTable())
@@ -179,7 +160,6 @@ public class GProgLavori extends JPanel {
 				JTable t =  (JTable) evt.getSource();
 				if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
 					int index = t.getSelectedRow();
-					GProgLavori.selectedRow = index;
 					(((Table) GProgLavori.listbox).getTable())
 							.setRowSelectionInterval(index, index);
 					(((Table) GProgLavori.panel2).getTable())
@@ -219,7 +199,6 @@ public class GProgLavori extends JPanel {
 				JTable t =  (JTable) evt.getSource();
 				if (evt.getClickCount() == 1 && t.getSelectedRow() >= 0) {
 					int index = t.getSelectedRow();
-					GProgLavori.selectedRow = index;
 					(((Table) GProgLavori.panel1).getTable())
 							.setRowSelectionInterval(index, index);
 					(((Table) GProgLavori.panel2).getTable())
@@ -230,8 +209,6 @@ public class GProgLavori extends JPanel {
 							.setRowSelectionInterval(index, index);
 					(((Table) GProgLavori.panel5).getTable())
 							.setRowSelectionInterval(index, index);
-//					 JOptionPane.showMessageDialog(null,s.gch.hasDistinta(
-//							 (String) t.getValueAt(t.getSelectedRow(), 0)  ));
 					if (s.gch.hasDistinta((String) t.getValueAt(t.getSelectedRow(), 0) )) {
 						GProgLavori.b.setText("Visualizza Distinta");
 					} else {
@@ -246,10 +223,19 @@ public class GProgLavori extends JPanel {
 		text.setPreferredSize(new Dimension(200, 25));
 		listbox.setPreferredSize(new Dimension(200, this.getHeight()));
 		b = new JButton("Crea Distinta");
+		b.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				GDistinta d = new GDistinta();
+				GHome.monta(d);
+				//getParent().removeAll();
+				 //JOptionPane.showMessageDialog(null,"aaa");
+				}
+		});
 		JPanel cpEst = new JPanel(new BorderLayout());
 		cpEst.add(listbox, BorderLayout.CENTER);
 		cpEst.add(text, BorderLayout.NORTH);
 		cpEst.add(b, BorderLayout.SOUTH);
+		
 
 
 		this.add(tabbedPane, BorderLayout.CENTER);
@@ -259,19 +245,19 @@ public class GProgLavori extends JPanel {
 
 	protected JComponent makeTextPanel(int a) {
 
-		String[] column1 = { "Codice Interno", "Cliente", "Cantiere",
+		String[] column1 = { "Cliente", "Cantiere",
 				"Commessa Cliente" };
-		String[] column2 = { "Codice Interno", "O/C", "Anno",
+		String[] column2 = { "O/C", "Anno",
 				"Ordine/Contratto", "Commessa Coedil", "Cod Interno",
 				"Ordine Gestionale", "Data Inizio", "Data Fine", "Orario",
 				"Descrizione", "Partizione",
 
 		};
-		String[] column3 = { "Codice Interno", "Responsabile", "Data Inizio",
+		String[] column3 = { "Responsabile", "Data Inizio",
 				"Scadenza sviluppo", "Data fine", "Ritardo" };
-		String[] column4 = { "Codice Interno", "Data Inizio", "Data fine",
+		String[] column4 = { "Data Inizio", "Data fine",
 				"Scadenza sviluppo" };
-		String[] column5 = { "Codice Interno", "Data prima consegna",
+		String[] column5 = { "Data prima consegna",
 				"Ritardo consegna" };
 		String[] column0 = { "Codice Interno","" };
 		JPanel panel0 = new Table(column0, 0);

@@ -37,8 +37,10 @@ public class StartUp {
 		gch.add(c2);
 		o.addCommessa(c1);
 		o.addCommessa(c2);
+		for ( int i = 0 ; i<100 ; i++ )
+			{gch.add(c1);}		
 		gch.associaDistinta(dist, c1.getId());
-		gch.associaDistinta(dist, c2.getId());
+		//gch.associaDistinta(dist, c2.getId());
 		gch.getCommessaById(1).getDistinta().creaDDO();
 
 		Iterator <Item> it = gch.getCommessaById(1).getDistinta().ddo.items.iterator();

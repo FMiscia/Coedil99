@@ -40,8 +40,8 @@ public class Table extends JPanel {
 		data1 = new Object [s.gch.getNumOfCommesse()][];
 		
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data1[i] = new Object[4];
-			Object[] row = {s.gch.getCommessaByIndex(i).getCodiceInterno(), null, null, s.gch.getCommessaByIndex(i).getId()};
+			data1[i] = new Object[3];
+			Object[] row = {null, null, s.gch.getCommessaByIndex(i).getId()};
 			data1[i] = row;
 		}
 
@@ -49,34 +49,32 @@ public class Table extends JPanel {
 		Object[][] data2; 
 		data2 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data2[i] = new Object[12];
-			Object[] row = {
-					s.gch.getCommessaByIndex(i).getCodiceInterno(), 
-					null, null,null, s.gch.getCommessaByIndex(i).getId(),null,null,s.o.getDataInizio().getTime().toGMTString(),"null",null,null,null};
+			data2[i] = new Object[11];
+			Object[] row = {null, null,null, s.gch.getCommessaByIndex(i).getId(),null,null,s.o.getDataInizio().getTime().toString(),"null",null,null,null};
 			data2[i] = row;
 		}
 
 		Object[][] data3; 
 		data3 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data3[i] = new Object[6];
-			Object[] row = {s.gch.getCommessaByIndex(i).getCodiceInterno(),null,null,null,null,null};
+			data3[i] = new Object[5];
+			Object[] row = {null,null,null,null,null};
 			data3[i] = row;
 		}
 		
 		Object[][] data4; 
 		data4 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data4[i] = new Object[4];
-			Object[] row = {s.gch.getCommessaByIndex(i).getCodiceInterno(),null,null,null};
+			data4[i] = new Object[3];
+			Object[] row = {null,null,null};
 			data4[i] = row;
 		}
 		
 		Object[][] data5; 
 		data5 = new Object [s.gch.getNumOfCommesse()][];
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data5[i] = new Object[3];
-			Object[] row = {s.gch.getCommessaByIndex(i).getCodiceInterno(),null,null};
+			data5[i] = new Object[2];
+			Object[] row = {null,null};
 			data5[i] = row;
 		}
 		

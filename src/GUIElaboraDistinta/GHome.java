@@ -1,7 +1,9 @@
 package GUIElaboraDistinta;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Frame;
@@ -29,13 +31,10 @@ import GUIElaboraDistinta.GProgLavori;
 
 public class GHome {
 
-	private JFrame frame;
+	private static JFrame frame;
 	private final Button button = new Button("Programma Lavori");
-	private JPanel panel;
-	private GProgLavori pl;
-	private GDistinta d;
-	private Button start_up;
-	private Button distinta;
+	private static JPanel panel;
+	private static GProgLavori pl;
 	final Label ordineG = new Label("");
 	final Label dataI = new Label("");
 	final Label dataF = new Label("");
@@ -105,23 +104,17 @@ public class GHome {
 		);**/
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(new BorderLayout());
 		
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(0, 0, 543, 298);
+		panel.setName("primo");
 		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		panel.setLayout(new BorderLayout());
 		button.setBounds(153, 135, 139, 22);
-		panel.add(button);
+		panel.add(button, BorderLayout.NORTH  );
 		
-		start_up = new Button("Start Up");
-		start_up.setBounds(311, 135, 100, 22);
-		panel.add(start_up);
-		
-		distinta = new Button("Distinta");
-		distinta.setBounds(400, 135, 53, 22);
-		panel.add(distinta);
 		
 		
 		pl = new GProgLavori();
@@ -154,7 +147,7 @@ public class GHome {
 			public void componentResized(ComponentEvent arg0) {
 				panel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 				button.setLocation(panel.getWidth()/2-button.getWidth()/2, panel.getHeight()/2-button.getHeight()/2);
-				start_up.setLocation(panel.getWidth()/2-start_up.getWidth()/2+button.getWidth(), panel.getHeight()/2-start_up.getHeight()/2);
+				
 				frame.validate();
 				frame.repaint();		
 			}
@@ -166,21 +159,6 @@ public class GHome {
 			
 		});
 			
-		start_up.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent arg0){
-				StartUp s = StartUp.getInstance();
-				ordineG.setText(s.gch.getCommessaById(1).getDistinta().getRigheLavoro().get(0).getNote());
-				dataI.setText(s.o.getDataInizio().get(Calendar.DATE)+"/"+s.o.getDataInizio().get(Calendar.MONTH)+"/"+s.o.getDataInizio().get(Calendar.YEAR));
-				dataF.setText(s.o.getDataFine().get(Calendar.DATE)+"/"+s.o.getDataScadenza().get(Calendar.MONTH)+"/"+s.o.getDataFine().get(Calendar.YEAR));
-				panel.add(lblOrdineGestionale);
-				panel.add(ordineG);
-				panel.add(lblDataInizioCommessa);
-				panel.add(dataI);
-				panel.add(lblDataFineCommessa);
-				panel.add(dataF);
-				
-			}
-		});
 		
 		button.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
@@ -192,22 +170,15 @@ public class GHome {
 			}
 		});
 		
-		distinta.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				StartUp s = StartUp.getInstance();
-				d = new GDistinta();
-				frame.remove(panel);
-				d.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-				frame.getContentPane().add(d);
-				frame.validate();
-				frame.repaint();}
-		});
-				
-
-		
-		
-		
 
 
+
+	}
+	public static void monta( Component c ){
+		frame.remove(pl);
+		c.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+		frame.getContentPane().add(c);
+		frame.validate();
+		frame.repaint();
 	}
 }
