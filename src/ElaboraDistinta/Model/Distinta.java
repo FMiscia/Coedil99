@@ -2,8 +2,8 @@ package ElaboraDistinta.Model;
 
 import java.util.ArrayList;
 
-import ElaboraDistinta.OttimizzatoreHandler;
 import ElaboraDistinta.StandardOttimizzatoreStrategy;
+import ElaboraDistinta.Controller.OttimizzatoreHandler;
 
 public class Distinta {
 

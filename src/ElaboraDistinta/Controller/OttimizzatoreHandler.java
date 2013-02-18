@@ -1,5 +1,6 @@
-package ElaboraDistinta;
+package ElaboraDistinta.Controller;
 
+import ElaboraDistinta.AOttimizzatoreStrategy;
 import ElaboraDistinta.Model.Distinta;
 import ElaboraDistinta.Model.DocumentoOttimizzazione;
 

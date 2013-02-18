@@ -3,8 +3,8 @@ package GUIElaboraDistinta;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import ElaboraDistinta.GestisciCommessaHandler;
 import ElaboraDistinta.StartUp;
+import ElaboraDistinta.Controller.GestisciCommessaHandler;
 import ElaboraDistinta.Model.Commessa;
 import ElaboraDistinta.Model.Distinta;
 import ElaboraDistinta.Model.Geometria;

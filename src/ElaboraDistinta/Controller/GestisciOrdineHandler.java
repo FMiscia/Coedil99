@@ -1,4 +1,4 @@
-package ElaboraDistinta;
+package ElaboraDistinta.Controller;
 
 import java.util.ArrayList;
 
