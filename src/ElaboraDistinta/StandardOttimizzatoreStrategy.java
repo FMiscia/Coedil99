@@ -3,7 +3,7 @@ package ElaboraDistinta;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class StandardOttimizzatoreStrategy implements IOttimizzatoreStrategy {
+public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 
 	public StandardOttimizzatoreStrategy() {
 	}

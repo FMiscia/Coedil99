@@ -22,7 +22,7 @@ public class Magazzino {
 		/*esegue lo startup*/
 		this.items = new HashMap<Item,Integer>();
 		this.catalogo = new Catalogo();
-		ArrayList<Item> cItem = new ArrayList<Item>(this.catalogo.items);
+		ArrayList<Item> cItem = new ArrayList<Item>(this.catalogo.items.keySet());
 		Iterator<Item> i = cItem.iterator();
 		while(i.hasNext()){
 			items.put(i.next(), 1);

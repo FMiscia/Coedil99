@@ -45,7 +45,7 @@ public class Distinta {
 	 * @return 
 	 */
 	public void creaDDO() {
-		this.ddo = new StandardOttimizzatoreStrategy().elaboraOttimizzazione(this);
+		this.ddo = new OttimizzatoreHandler(new StandardOttimizzatoreStrategy()).eseguiOttimizzazione(this);
 	}
 
 	public int getId() {
