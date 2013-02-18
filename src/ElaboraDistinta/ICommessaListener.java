@@ -1,5 +1,7 @@
 package ElaboraDistinta;
 
+import ElaboraDistinta.Model.Commessa;
+
 public interface ICommessaListener {
 
 	/**

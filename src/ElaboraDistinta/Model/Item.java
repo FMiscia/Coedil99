@@ -1,4 +1,5 @@
-package ElaboraDistinta;
+package ElaboraDistinta.Model;
+
 
 public class Item {
 

@@ -1,5 +1,8 @@
 package ElaboraDistinta;
 
+import ElaboraDistinta.Model.Distinta;
+import ElaboraDistinta.Model.DocumentoOttimizzazione;
+
 public abstract class AOttimizzatoreStrategy {
 
 	

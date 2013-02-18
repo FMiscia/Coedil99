@@ -3,6 +3,9 @@ package ElaboraDistinta;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+import ElaboraDistinta.Model.Commessa;
+import ElaboraDistinta.Model.Distinta;
+
 public class GestisciCommessaHandler {
 
 	private int id;

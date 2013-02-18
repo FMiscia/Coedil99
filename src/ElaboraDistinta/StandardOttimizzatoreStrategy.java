@@ -3,6 +3,13 @@ package ElaboraDistinta;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import ElaboraDistinta.Model.Distinta;
+import ElaboraDistinta.Model.DocumentoOttimizzazione;
+import ElaboraDistinta.Model.Geometria;
+import ElaboraDistinta.Model.Item;
+import ElaboraDistinta.Model.Magazzino;
+import ElaboraDistinta.Model.RigaLavoro;
+
 public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 
 	public StandardOttimizzatoreStrategy() {

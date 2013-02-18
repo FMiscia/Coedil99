@@ -14,8 +14,8 @@ import javax.swing.JPanel;
 
 import javax.swing.JTabbedPane;
 
-import ElaboraDistinta.Commessa;
 import ElaboraDistinta.StartUp;
+import ElaboraDistinta.Model.Commessa;
 
 
 

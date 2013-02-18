@@ -1,7 +1,8 @@
-package ElaboraDistinta;
+package ElaboraDistinta.Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 public class Catalogo {
 

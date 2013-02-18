@@ -1,6 +1,7 @@
-package ElaboraDistinta;
+package ElaboraDistinta.Model;
 
 import java.util.ArrayList;
+
 
 public class Cliente {
 	

@@ -3,6 +3,15 @@ package ElaboraDistinta;
 import java.util.Calendar;
 import java.util.Iterator;
 
+import ElaboraDistinta.Model.Catalogo;
+import ElaboraDistinta.Model.Commessa;
+import ElaboraDistinta.Model.Distinta;
+import ElaboraDistinta.Model.Geometria;
+import ElaboraDistinta.Model.Item;
+import ElaboraDistinta.Model.Magazzino;
+import ElaboraDistinta.Model.Ordine;
+import ElaboraDistinta.Model.RigaLavoro;
+
 public class StartUp {
 
 	private static StartUp instance = null;
@@ -15,7 +24,7 @@ public class StartUp {
 	public Commessa c2;
 	public Catalogo cat;
 	public Magazzino m;
-	IOttimizzatoreStrategy optimizer;
+	AOttimizzatoreStrategy optimizer;
 	
 	private StartUp(){
 		
@@ -43,7 +52,7 @@ public class StartUp {
 		//gch.associaDistinta(dist, c2.getId());
 		gch.getCommessaById(1).getDistinta().creaDDO();
 
-		Iterator <Item> it = gch.getCommessaById(1).getDistinta().ddo.items.iterator();
+		Iterator <Item> it = gch.getCommessaById(1).getDistinta().getDdo().getItems().iterator();
 		while(it.hasNext()){
 			System.out.println(it.next().getDescrizione());
 		}

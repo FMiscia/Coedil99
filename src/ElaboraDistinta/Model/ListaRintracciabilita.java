@@ -1,4 +1,6 @@
-package ElaboraDistinta;
+package ElaboraDistinta.Model;
+
+import ElaboraDistinta.ICommessaListener;
 
 public class ListaRintracciabilita implements ICommessaListener {
 

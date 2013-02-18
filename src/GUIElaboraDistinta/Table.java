@@ -5,8 +5,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
-import ElaboraDistinta.RigaLavoro;
 import ElaboraDistinta.StartUp;
+import ElaboraDistinta.Model.RigaLavoro;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;

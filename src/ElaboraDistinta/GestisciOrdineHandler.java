@@ -2,6 +2,8 @@ package ElaboraDistinta;
 
 import java.util.ArrayList;
 
+import ElaboraDistinta.Model.Ordine;
+
 public class GestisciOrdineHandler {
 
 	ArrayList<Ordine> ordini = null;

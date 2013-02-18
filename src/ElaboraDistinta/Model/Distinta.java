@@ -1,12 +1,15 @@
-package ElaboraDistinta;
+package ElaboraDistinta.Model;
 
 import java.util.ArrayList;
+
+import ElaboraDistinta.OttimizzatoreHandler;
+import ElaboraDistinta.StandardOttimizzatoreStrategy;
 
 public class Distinta {
 
 	private int id;
-	RigheLavoro lavori = new RigheLavoro();
-	DocumentoOttimizzazione ddo;
+	private RigheLavoro lavori = new RigheLavoro();
+	private DocumentoOttimizzazione ddo;
 
 	public Distinta(){
 		/*startup*/
@@ -56,6 +59,15 @@ public class Distinta {
 	public ArrayList<RigaLavoro> getRigheLavoro(){
 		return this.lavori.getRigheLavoro();
 	}
+
+	public DocumentoOttimizzazione getDdo() {
+		return ddo;
+	}
+
+	public void setDdo(DocumentoOttimizzazione ddo) {
+		this.ddo = ddo;
+	}
+	
 
 
 }

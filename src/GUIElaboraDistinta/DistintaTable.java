@@ -3,12 +3,12 @@ package GUIElaboraDistinta;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import ElaboraDistinta.Commessa;
-import ElaboraDistinta.Distinta;
-import ElaboraDistinta.Geometria;
 import ElaboraDistinta.GestisciCommessaHandler;
-import ElaboraDistinta.RigaLavoro;
 import ElaboraDistinta.StartUp;
+import ElaboraDistinta.Model.Commessa;
+import ElaboraDistinta.Model.Distinta;
+import ElaboraDistinta.Model.Geometria;
+import ElaboraDistinta.Model.RigaLavoro;
 
 public class DistintaTable {
 	

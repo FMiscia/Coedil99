@@ -6,7 +6,8 @@ import java.util.Vector;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
-import ElaboraDistinta.Commessa;
+
+import ElaboraDistinta.Model.Commessa;
 
 
 @SuppressWarnings("serial")

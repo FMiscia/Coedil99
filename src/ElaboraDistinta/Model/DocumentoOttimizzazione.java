@@ -1,13 +1,18 @@
-package ElaboraDistinta;
+package ElaboraDistinta.Model;
 
 import java.util.ArrayList;
 
+
 public class DocumentoOttimizzazione {
 	
-	ArrayList<Item> items = new ArrayList<Item>();
+	private ArrayList<Item> items = new ArrayList<Item>();
 	
 	public DocumentoOttimizzazione(ArrayList<Item> l){
 		items = new ArrayList<Item>(l);
+	}
+	
+	public ArrayList<Item> getItems(){
+		return this.items;
 	}
 	
 	

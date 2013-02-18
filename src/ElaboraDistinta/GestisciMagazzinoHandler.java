@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+import ElaboraDistinta.Model.Commessa;
+import ElaboraDistinta.Model.DocumentoOttimizzazione;
+import ElaboraDistinta.Model.Item;
+import ElaboraDistinta.Model.Magazzino;
+
 public class GestisciMagazzinoHandler implements ICommessaListener {
 
 	List<Magazzino> magazzino;
