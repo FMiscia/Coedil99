@@ -1,14 +1,15 @@
 package ElaboraDistinta;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Catalogo {
 
-	ArrayList<Item> items;
+	HashMap<Item,Float> items;
 	
 	public Catalogo(){
 		
-		this.items = new ArrayList<Item>();
+		this.items = new HashMap<Item,Float>();
 		
 		/*Startup*/
 		Item item1 = new Item(new Geometria(23,50,400),"Listelli Abete");
@@ -16,14 +17,14 @@ public class Catalogo {
 		Item item3 = new Item(new Geometria(23,50,200),"Pannelli Stupidi");
 		Item item4 = new Item(new Geometria(23,50,100),"Pannelli Biricchini");
 		
-		this.addItem(item1);
-		this.addItem(item2);
-		this.addItem(item3);
-		this.addItem(item4);
+		this.addItem(item1,new Float(4.0));
+		this.addItem(item2,new Float(3.0));
+		this.addItem(item3,new Float(2.0));
+		this.addItem(item4,new Float(1.0));
 	}
 	
-	public void addItem(Item item){
-		items.add(item);
+	public void addItem(Item item, Float price){
+		items.put(item, price);
 	}
 
 }
