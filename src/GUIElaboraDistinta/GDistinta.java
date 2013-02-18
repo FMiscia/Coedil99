@@ -28,16 +28,16 @@ public class GDistinta extends JPanel {
 	public GDistinta() {
 		
 		DistintaTable d = new DistintaTable();
-        setLayout(null);
+        setLayout(new BorderLayout(0,0));
         table = new JTable(d.getRighe(),d.getColonne());
         scrollPane = new JScrollPane(table);
-        Toolkit tk = Toolkit.getDefaultToolkit(); 
-        scrollPane.setBounds(0, 0, (int) tk.getScreenSize().getWidth(), 600);
+        // Toolkit tk = Toolkit.getDefaultToolkit(); 
+        // scrollPane.setBounds(0, 0, (int) tk.getScreenSize().getWidth(), 600);
         addRigaLavoro = new Button("Aggiungi Riga Lavoro");
-        addRigaLavoro.setLocation(20, (int) tk.getScreenSize().getHeight() - 80);
-        addRigaLavoro.setSize(120, 30);
-        add(addRigaLavoro);
-        add(scrollPane);
+        // addRigaLavoro.setLocation(20, (int) tk.getScreenSize().getHeight() - 80);
+        // addRigaLavoro.setSize(120, 30);
+        add(addRigaLavoro,BorderLayout.SOUTH);
+        add(scrollPane, BorderLayout.NORTH);
 
         
         

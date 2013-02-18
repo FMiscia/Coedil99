@@ -2,14 +2,20 @@ package GUIElaboraDistinta;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.ScrollPane;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -240,26 +246,78 @@ public class GProgLavori extends JPanel {
 
 		this.add(tabbedPane, BorderLayout.CENTER);
 		this.add(cpEst, BorderLayout.WEST);
+		Table tCentrale = null;
+		for ( int i = 0 ; i < GProgLavori.tabbedPane.getComponentCount(); i++ )
+		{
+			tCentrale = (Table) GProgLavori.tabbedPane.getComponent(i);
+			agganciaScroll( tCentrale.getScroll() );
+		}	
+
+		
 
 	}
 
+	public void agganciaScroll( final JScrollPane cen0 ){
+		Table tSinistra =  (Table) GProgLavori.listbox;
+		final JScrollPane sin = tSinistra.getScroll();
+		cen0.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener(){ 
+			@Override
+			public void adjustmentValueChanged(AdjustmentEvent arg0) {
+				// TODO Auto-generated method stub
+				sin.getVerticalScrollBar().setValue(cen0.getVerticalScrollBar().getValue());
+			}});
+		sin.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener(){ 
+			@Override
+			public void adjustmentValueChanged(AdjustmentEvent arg0) {
+				// TODO Auto-generated method stub
+				cen0.getVerticalScrollBar().setValue(sin.getVerticalScrollBar().getValue());
+			}});
+	}
+	
+	
 	protected JComponent makeTextPanel(int a) {
 
-		String[] column1 = { "Cliente", "Cantiere",
-				"Commessa Cliente" };
-		String[] column2 = { "O/C", "Anno",
+		 Vector<Vector<String>> commesse;
+		 Vector<String> intestazioni;
+		     
+		
+		Vector<String> column1 = new Vector<String>(); 
+		String[] cl1 = { "Cliente", "Cantiere", "Commessa Cliente" };
+	    for(int i=0; i<cl1.length; ++i)
+	    	column1.add(cl1[i]);
+		
+		Vector<String> column2  = new Vector<String>(); 
+		String[] cl2 = { "O/C", "Anno",
 				"Ordine/Contratto", "Commessa Coedil", "Cod Interno",
 				"Ordine Gestionale", "Data Inizio", "Data Fine", "Orario",
-				"Descrizione", "Partizione",
-
-		};
-		String[] column3 = { "Responsabile", "Data Inizio",
+				"Descrizione", "Partizione" };
+	    for(int i=0; i<cl2.length; ++i)
+	    	column2.add(cl2[i]);
+		
+	    Vector<String> column3 = new Vector<String>();
+		String[] cl3 = { "Responsabile", "Data Inizio",
 				"Scadenza sviluppo", "Data fine", "Ritardo" };
-		String[] column4 = { "Data Inizio", "Data fine",
+	    for(int i=0; i<cl3.length; ++i)
+	    	column3.add(cl3[i]);
+		
+	    Vector<String> column4 = new Vector<String>();
+		String[] cl4 = { "Data Inizio", "Data fine",
 				"Scadenza sviluppo" };
-		String[] column5 = { "Data prima consegna",
-				"Ritardo consegna" };
-		String[] column0 = { "Codice Interno","" };
+	    for(int i=0; i<cl4.length; ++i)
+	    	column4.add(cl4[i]);
+
+	    
+	    Vector<String> column5 = new Vector<String>();
+		String[] cl5 = { "Data prima consegna",	"Ritardo consegna" };
+	    for(int i=0; i<cl5.length; ++i)
+	    	column5.add(cl5[i]);
+
+	    
+	    Vector<String> column0 =  new Vector<String>(); 
+		String[] cl0 = {  "Codice Interno",""};
+	    for(int i=0; i<cl0.length; ++i)
+	    	column0.add(cl0[i]);
+		
 		JPanel panel0 = new Table(column0, 0);
 		JPanel panel1 = new Table(column1, 1);
 		JPanel panel2 = new Table(column2, 2);

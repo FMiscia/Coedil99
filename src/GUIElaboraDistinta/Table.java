@@ -5,12 +5,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
+import ElaboraDistinta.RigaLavoro;
 import ElaboraDistinta.StartUp;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
 
 public class Table extends JPanel {
@@ -19,68 +21,88 @@ public class Table extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private boolean DEBUG = false;
-	Object[][] data;
+	Vector<Vector<String>> data;
 	JTable table;
+	JScrollPane scrollPane;
 
-	public Table(String[] columnNames, int a) {
+	public Table(Vector<String> columnNames, int a) {
 		super(new GridLayout(1, 0));
 
 		StartUp s = StartUp.getInstance();
 
-		Object[][] data0;
-		data0 = new Object [s.gch.getNumOfCommesse()][];
+		Vector<Vector<String>> data0;
+		data0 = new Vector<Vector<String>>();
 		
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data0[i] = new Object[2];
-			Object[] row = {s.gch.getCommessaByIndex(i).getCodiceInterno(), null};
-			data0[i] = row;
+			Vector<String> row = new Vector<String>();
+			row.add(s.gch.getCommessaByIndex(i).getCodiceInterno());
+			row.add("");
+			data0.add(row);
 		}
 		
-		Object[][] data1;
-		data1 = new Object [s.gch.getNumOfCommesse()][];
-		
+		Vector<Vector<String>> data1;
+		data1 = new Vector<Vector<String>>();
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data1[i] = new Object[3];
-			Object[] row = {null, null, s.gch.getCommessaByIndex(i).getId()};
-			data1[i] = row;
-		}
-
-		
-		Object[][] data2; 
-		data2 = new Object [s.gch.getNumOfCommesse()][];
-		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data2[i] = new Object[11];
-			Object[] row = {null, null,null, s.gch.getCommessaByIndex(i).getId(),null,null,s.o.getDataInizio().getTime().toString(),"null",null,null,null};
-			data2[i] = row;
+			Vector<String> row = new Vector<String>();
+			row.add("");
+			row.add("");
+			row.add(  ""+s.gch.getCommessaByIndex(i).getId());
+			data1.add(row);
 		}
 
-		Object[][] data3; 
-		data3 = new Object [s.gch.getNumOfCommesse()][];
+		
+		Vector<Vector<String>> data2; 
+		data2 = new Vector<Vector<String>>();
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data3[i] = new Object[5];
-			Object[] row = {null,null,null,null,null};
-			data3[i] = row;
+			Vector<String> row = new Vector<String>();
+			row.add("");
+			row.add("");
+			row.add("");
+			row.add(  ""+s.gch.getCommessaByIndex(i).getId());
+			row.add("");
+			row.add("");
+			row.add(s.o.getDataInizio().getTime().toString());
+			row.add("");
+			row.add("");
+			row.add("");
+			row.add("");
+			data2.add(row);
+		}
+
+		Vector<Vector<String>> data3; 
+		data3 = new Vector<Vector<String>>();
+		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
+			Vector<String> row = new Vector<String>();
+			row.add("");
+			row.add("");
+			row.add("");
+			row.add("");
+			row.add("");
+			data3.add(row);
 		}
 		
-		Object[][] data4; 
-		data4 = new Object [s.gch.getNumOfCommesse()][];
+		Vector<Vector<String>> data4; 
+		data4 = new Vector<Vector<String>>();
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data4[i] = new Object[3];
-			Object[] row = {null,null,null};
-			data4[i] = row;
+			Vector<String> row = new Vector<String>();
+			row.add("");
+			row.add("");
+			row.add("");
+			data4.add(row);
 		}
 		
-		Object[][] data5; 
-		data5 = new Object [s.gch.getNumOfCommesse()][];
+		Vector<Vector<String>> data5; 
+		data5 = new Vector<Vector<String>>();
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
-			data5[i] = new Object[2];
-			Object[] row = {null,null};
-			data5[i] = row;
+			Vector<String> row = new Vector<String>();
+			row.add("");
+			row.add("");
+			data5.add(row);
 		}
 		
 		switch (a) {
 		case 0:
-			data = (Object[][]) data0;
+			data = data0;
 			break;
 		case 1:
 			data = data1;
@@ -114,18 +136,6 @@ if (a == 0){
     doLayout();
 }
 		
-//		TableColumn column = null;
-//		for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
-//			column = table.getColumnModel().getColumn(i);
-//			if (i == 0) {
-//				column.setMaxWidth(100); 
-//				column.setMinWidth(100);
-//			} else {
-//				column.setWidth(50);
-//			}
-//		}
-
-
 		if (DEBUG) {
 			table.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
@@ -135,7 +145,7 @@ if (a == 0){
 		}
 
 		// Create the scroll pane and add the table to it.
-		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane = new JScrollPane(table);
 
 		// Add the scroll pane to this panel.
 		add(scrollPane);
@@ -145,6 +155,11 @@ if (a == 0){
 public JTable getTable(){
 	return this.table;
 }
+
+public JScrollPane getScroll(){
+	return this.scrollPane;
+}
+
 
 	private void printDebugData(JTable table) {
 		int numRows = table.getRowCount();
