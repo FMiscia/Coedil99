@@ -8,8 +8,6 @@ import javax.swing.table.TableColumn;
 import ElaboraDistinta.StartUp;
 import ElaboraDistinta.Controller.GestisciCommessaHandler;
 import ElaboraDistinta.Model.Distinta;
-import ElaboraDistinta.Model.RigaLavoro;
-
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;

@@ -3,16 +3,9 @@ package GUIElaboraDistinta;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Frame;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.awt.Window;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Button;
@@ -21,17 +14,13 @@ import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Label;
-import java.util.Calendar;
-
-import ElaboraDistinta.StartUp;
-import GUIElaboraDistinta.GDistinta;
 import GUIElaboraDistinta.GProgLavori;
 
 
 
 public class GHome {
 
-	private static JFrame frame;
+	private JFrame frame;
 	private final Button button = new Button("Programma Lavori");
 	private static JPanel panel;
 	private static GProgLavori pl;
