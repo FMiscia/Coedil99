@@ -38,7 +38,6 @@ public class StartUp {
 		
 		this.dist.addRigaLavoro(new RigaLavoro(1,new Geometria(23,50,100),false,null,"niente da dichiarare",1));
 		this.dist.addRigaLavoro(new RigaLavoro(2,new Geometria(23,50,400),true,"Dorico","niente da dichiarare",1));
-		this.dist.addRigaLavoro(new RigaLavoro(2,new Geometria(23,50,100),true,"Dorico","niente da dichiarare",1));
 		
 		gch = GestisciCommessaHandler.getInstance();
 		
@@ -46,9 +45,7 @@ public class StartUp {
 		gch.add(c1);
 		gch.add(c2);
 		o.addCommessa(c1);
-		o.addCommessa(c2);
-		for ( int i = 0 ; i<100 ; i++ )
-			{gch.add(c1);}		
+		o.addCommessa(c2);	
 		gch.associaDistinta(dist, c1.getId());
 		//gch.associaDistinta(dist, c2.getId());
 		gch.getCommessaById(1).getDistinta().creaDDO();

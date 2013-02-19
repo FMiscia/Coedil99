@@ -1,8 +1,8 @@
 package GUIElaboraDistinta;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Dimension;
-import java.awt.ScrollPane;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.KeyEvent;
@@ -12,13 +12,14 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+
 import ElaboraDistinta.StartUp;
 
 public class GProgLavori extends JPanel {
@@ -38,7 +39,11 @@ public class GProgLavori extends JPanel {
 		final StartUp s = StartUp.getInstance();
 		tabbedPane = new JTabbedPane();
 
-		panel1 = makeTextPanel(1);
+		Vector<String> column1 = new Vector<String>(); 
+		String[] cl1 = { "Cliente", "Cantiere", "Commessa Cliente" };
+	    for(int i=0; i<cl1.length; ++i)
+	    	column1.add(cl1[i]);
+		panel1 = makeTextPanel(cl1,1);
 		(((Table) GProgLavori.panel1).getTable())
 				.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -68,7 +73,12 @@ public class GProgLavori extends JPanel {
 		tabbedPane.addTab("Dati Cliente", null, panel1, "Dati Cliente");
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
-		panel2 = makeTextPanel(2);
+
+		String[] cl2 = { "O/C", "Anno",
+				"Ordine/Contratto", "Commessa Coedil", "Cod Interno",
+				"Ordine Gestionale", "Data Inizio", "Data Fine", "Orario",
+				"Descrizione", "Partizione" };
+		panel2 = makeTextPanel(cl2,2);
 		(((Table) GProgLavori.panel2).getTable())
 		.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
@@ -98,7 +108,9 @@ public class GProgLavori extends JPanel {
 		tabbedPane.addTab("Dati Aziendali", null, panel2, "Dati Aziendali");
 		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
 
-		panel3 = makeTextPanel(3);
+		String[] cl3 = { "Responsabile", "Data Inizio",
+				"Scadenza sviluppo", "Data fine", "Ritardo" };
+		panel3 = makeTextPanel(cl3,3);
 		(((Table) GProgLavori.panel3).getTable())
 		.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
@@ -129,7 +141,9 @@ public class GProgLavori extends JPanel {
 				"Sviluppo Consegna");
 		tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
 
-		panel4 = makeTextPanel(4);
+		String[] cl4 = { "Data Inizio", "Data fine",
+		"Scadenza sviluppo" };
+		panel4 = makeTextPanel(cl4,4);
 		(((Table) GProgLavori.panel4).getTable())
 		.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
@@ -159,7 +173,8 @@ public class GProgLavori extends JPanel {
 		tabbedPane.addTab("Produzione", null, panel4, "Produzione");
 		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
 
-		panel5 = makeTextPanel(5);
+		String[] cl5 = { "Data prima consegna",	"Ritardo consegna" };
+		panel5 = makeTextPanel(cl5,5);
 		(((Table) GProgLavori.panel5).getTable())
 		.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
@@ -198,7 +213,8 @@ public class GProgLavori extends JPanel {
 		}
 
 		// Create a new listbox control
-		listbox = makeTextPanel(0);
+		String[] cl0 = {  "Codice Interno",""};
+		listbox = makeTextPanel(cl0,0);
 		(((Table) GProgLavori.listbox).getTable())
 		.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
@@ -231,9 +247,27 @@ public class GProgLavori extends JPanel {
 		b = new JButton("Crea Distinta");
 		b.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				GDistinta d = new GDistinta();
-				GHome.monta(d);
-				//getParent().removeAll();
+				final JFrame frameDist = new JFrame("Distinta");
+				frameDist.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frameDist.getContentPane().setLayout(new BorderLayout());
+				frameDist.setResizable(false);
+				frameDist.setBounds(100, 100, 549, 326);
+				String[] cl6 = {  "a","b","c","d","e","f","g"};
+				final JComponent t = makeTextPanel(cl6,6);
+				frameDist.add(t,BorderLayout.CENTER);
+				JPanel doc = new JPanel();
+				Button save = new Button("Save");
+				Button nLine = new Button("New line");
+				nLine.addMouseListener(new MouseAdapter(){
+		    		public void mouseClicked(MouseEvent arg0){
+						frameDist.add( ((Table) t).addRow((Table) t) ,BorderLayout.CENTER);
+		    		}
+		    		});
+				doc.add(nLine);
+				doc.add(save);
+				frameDist.add(doc,BorderLayout.SOUTH);
+				frameDist.setVisible(true);
+				
 				 //JOptionPane.showMessageDialog(null,"aaa");
 				}
 		});
@@ -275,55 +309,20 @@ public class GProgLavori extends JPanel {
 	}
 	
 	
-	protected JComponent makeTextPanel(int a) {
+	protected JComponent makeTextPanel( String[] cl , int a) {
 
-		 Vector<Vector<String>> commesse;
-		 Vector<String> intestazioni;
-		     
-		
-		Vector<String> column1 = new Vector<String>(); 
-		String[] cl1 = { "Cliente", "Cantiere", "Commessa Cliente" };
-	    for(int i=0; i<cl1.length; ++i)
-	    	column1.add(cl1[i]);
-		
-		Vector<String> column2  = new Vector<String>(); 
-		String[] cl2 = { "O/C", "Anno",
-				"Ordine/Contratto", "Commessa Coedil", "Cod Interno",
-				"Ordine Gestionale", "Data Inizio", "Data Fine", "Orario",
-				"Descrizione", "Partizione" };
-	    for(int i=0; i<cl2.length; ++i)
-	    	column2.add(cl2[i]);
-		
-	    Vector<String> column3 = new Vector<String>();
-		String[] cl3 = { "Responsabile", "Data Inizio",
-				"Scadenza sviluppo", "Data fine", "Ritardo" };
-	    for(int i=0; i<cl3.length; ++i)
-	    	column3.add(cl3[i]);
-		
-	    Vector<String> column4 = new Vector<String>();
-		String[] cl4 = { "Data Inizio", "Data fine",
-				"Scadenza sviluppo" };
-	    for(int i=0; i<cl4.length; ++i)
-	    	column4.add(cl4[i]);
+		Vector<String> column  = new Vector<String>(); 
+	    for(int i=0; i<cl.length; ++i)
+	    	column.add(cl[i]);
 
-	    
-	    Vector<String> column5 = new Vector<String>();
-		String[] cl5 = { "Data prima consegna",	"Ritardo consegna" };
-	    for(int i=0; i<cl5.length; ++i)
-	    	column5.add(cl5[i]);
-
-	    
-	    Vector<String> column0 =  new Vector<String>(); 
-		String[] cl0 = {  "Codice Interno",""};
-	    for(int i=0; i<cl0.length; ++i)
-	    	column0.add(cl0[i]);
 		
-		JPanel panel0 = new Table(column0, 0);
-		JPanel panel1 = new Table(column1, 1);
-		JPanel panel2 = new Table(column2, 2);
-		JPanel panel3 = new Table(column3, 3);
-		JPanel panel4 = new Table(column4, 4);
-		JPanel panel5 = new Table(column5, 5);
+		JPanel panel0 = new Table(column, 0);
+		JPanel panel1 = new Table(column, 1);
+		JPanel panel2 = new Table(column, 2);
+		JPanel panel3 = new Table(column, 3);
+		JPanel panel4 = new Table(column, 4);
+		JPanel panel5 = new Table(column, 5);
+		JPanel panel6 = new Table(column, 6);
 		JPanel panel;
 
 		switch (a) {
@@ -344,6 +343,9 @@ public class GProgLavori extends JPanel {
 			break;
 		case 5:
 			panel = panel5;
+			break;
+		case 6:
+			panel = panel6;
 			break;
 		default:
 			panel = panel1;

@@ -6,6 +6,8 @@ import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
 import ElaboraDistinta.StartUp;
+import ElaboraDistinta.Controller.GestisciCommessaHandler;
+import ElaboraDistinta.Model.Distinta;
 import ElaboraDistinta.Model.RigaLavoro;
 
 import java.awt.Dimension;
@@ -24,15 +26,35 @@ public class Table extends JPanel {
 	Vector<Vector<String>> data;
 	JTable table;
 	JScrollPane scrollPane;
+	Vector<Vector<String>> data6;
 
 	public Table(Vector<String> columnNames, int a) {
 		super(new GridLayout(1, 0));
 
 		StartUp s = StartUp.getInstance();
 
+		
+
+		
+		GestisciCommessaHandler gch = GestisciCommessaHandler.getInstance();
+		Distinta d = gch.getCommessaById(1).getDistinta();
+		
+
+		data6 = new Vector<Vector<String>>();
+		for(int i=0; i<d.getRigheLavoro().size(); ++i){
+			Vector<String> row = new Vector<String>();
+			row.add("1");
+			row.add("2");
+			row.add("3");
+			row.add("4");
+			row.add("5");
+			row.add("6");
+			row.add("7");
+			data6.add(row);
+		}
+		
 		Vector<Vector<String>> data0;
 		data0 = new Vector<Vector<String>>();
-		
 		for (int i=0; i<s.gch.getNumOfCommesse(); i++){
 			Vector<String> row = new Vector<String>();
 			row.add(s.gch.getCommessaByIndex(i).getCodiceInterno());
@@ -119,6 +141,9 @@ public class Table extends JPanel {
 		case 5:
 			data = data5;
 			break;
+		case 6:
+			data = data6;
+			break;
 		default:
 			break;
 		}
@@ -158,6 +183,19 @@ public JTable getTable(){
 
 public JScrollPane getScroll(){
 	return this.scrollPane;
+}
+
+public Table addRow(Table t){
+	Vector<String> row = new Vector<String>();
+	row.add("1");
+	row.add("2");
+	row.add("3");
+	row.add("4");
+	row.add("5");
+	row.add("6");
+	row.add("7");
+	t.data6.add(row);
+	return t;
 }
 
 
