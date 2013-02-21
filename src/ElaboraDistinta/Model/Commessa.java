@@ -9,11 +9,10 @@ import ElaboraDistinta.Controller.GestisciCommessaHandler;
 
 public class Commessa {
 
-	Ordine ordine;
-	ListaRintracciabilita ldr;
-	GestisciCommessaHandler ccommessa;
 	List<ICommessaListener> lcommessa;
-	protected Distinta distinta;
+	private Ordine ordine;
+	private ListaRintracciabilita ldr;
+	private Distinta distinta;
 	private int id;
 	private String codiceInterno;
 	private String elementoStrutturale;

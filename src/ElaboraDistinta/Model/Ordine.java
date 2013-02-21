@@ -7,8 +7,9 @@ import java.util.List;
 
 public class Ordine {
 
-	Cliente cliente;
-	List<Commessa> commesse;
+	private Cliente cliente;
+	private List<Commessa> commesse;
+	
 	private String ordineGestionale;
 	private Calendar dataInizio;
 	private Calendar dataScadenza;
@@ -111,5 +112,13 @@ public class Ordine {
 		this.dataScadenza = dataScadenza;
 	}
 	
+	public List<Commessa> getCommesse() {
+		return commesse;
+	}
+
+	public void setCommesse(List<Commessa> commesse) {
+		this.commesse = commesse;
+	}
+
 
 }

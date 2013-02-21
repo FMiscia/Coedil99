@@ -6,7 +6,7 @@ public class Item {
 	private History history;
 	private Geometria geometria;
 	private String descrizione;
-
+	private Float prezzo;
 	
 
 	public Item(Geometria g, String d){
@@ -28,6 +28,22 @@ public class Item {
 	
 	public void setGeometria(Geometria g){
 		this.geometria = g;
+	}
+
+	public Float getPrezzo() {
+		return prezzo;
+	}
+
+	public void setPrezzo(Float prezzo) {
+		this.prezzo = prezzo;
+	}
+
+	public History getHistory() {
+		return history;
+	}
+
+	public void setHistory(History history) {
+		this.history = history;
 	}
 
 
