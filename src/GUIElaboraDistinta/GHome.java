@@ -3,16 +3,9 @@ package GUIElaboraDistinta;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Frame;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.awt.Window;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Button;
@@ -21,17 +14,13 @@ import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Label;
-import java.util.Calendar;
-
-import ElaboraDistinta.StartUp;
-import GUIElaboraDistinta.GDistinta;
 import GUIElaboraDistinta.GProgLavori;
 
 
 
 public class GHome {
 
-	private static JFrame frame;
+	private JFrame frame;
 	private final Button button = new Button("Programma Lavori");
 	private static JPanel panel;
 	private static GProgLavori pl;
@@ -70,7 +59,7 @@ public class GHome {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Coedil99");
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 549, 326);
 		Toolkit tk = Toolkit.getDefaultToolkit(); 
@@ -88,20 +77,6 @@ public class GHome {
 		frame.setLocation ((screenSize.width - frameSize.width) / 2,(screenSize.height - frameSize.height) / 2);	
 
 		
-		/**Button Chiudi = new Button("X");
-		Chiudi.setBounds((xSize-30), 0, 29, 22);
-		frame.getContentPane().add(Chiudi);
-		Chiudi.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent arg0){
-				frame.dispose();}}
-		);
-		Button Minimizza = new Button("_");
-		Minimizza.setBounds((xSize-60), 0, 29, 22);
-		frame.getContentPane().add(Minimizza);
-		Minimizza.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent arg0){
-				frame.setState(Frame.ICONIFIED);}}
-		);**/
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout());
@@ -174,11 +149,11 @@ public class GHome {
 
 
 	}
-	public static void monta( Component c ){
-		frame.remove(pl);
-		c.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-		frame.getContentPane().add(c);
-		frame.validate();
-		frame.repaint();
-	}
+//	public static void monta( Component c ){
+//		frame.remove(pl);
+//		c.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+//		frame.getContentPane().add(c);
+//		frame.validate();
+//		frame.repaint();
+//	}
 }

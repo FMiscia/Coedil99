@@ -1,61 +1,58 @@
 package GUIElaboraDistinta;
 
-import java.awt.Dimension;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import java.awt.BorderLayout;
 import java.awt.Button;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
+import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
-import javax.swing.BoxLayout;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+public class GDistinta extends JFrame {
 
 
-public class GDistinta extends JPanel {
-	
-
-	private Button addRigaLavoro;
-	private JScrollPane scrollPane;
-	private JTable table;
 
 	/**
-	 * Create the panel.
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Create the frame.
 	 */
 	public GDistinta() {
-		
-		setLayout(new BorderLayout(0, 0));
-		DistintaTable d = new DistintaTable();
-		table = new JTable(d.getRighe(),d.getColonne());
-        scrollPane = new JScrollPane(table);
-        addRigaLavoro = new Button("Aggiungi Riga Lavoro");
-        add(addRigaLavoro,BorderLayout.SOUTH);
-        add(scrollPane,BorderLayout.NORTH);
-        
-        
-        addRigaLavoro.addMouseListener(new MouseAdapter(){
+		super( "Distinta" );
+		setResizable(false);
+		setBounds(100, 100, 600, 350);
+		((JComponent) this.getContentPane()).setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.getContentPane().setLayout(new BorderLayout(0, 0));
+		String[] cl6 = {  "a","b","c","d","e","f","g"};
+		final GPanelDistinta t = new GPanelDistinta( makeVector(cl6) );
+		this.add(t,BorderLayout.CENTER);
+		JPanel doc = new JPanel();
+		Button save = new Button("Save");
+		Button nLine = new Button("New line");
+		nLine.addMouseListener(new MouseAdapter(){
     		public void mouseClicked(MouseEvent arg0){
-    			remove(scrollPane);
-    			DistintaTable d = new DistintaTable();
-    			d.addRigaLavoro();
-    			//System.out.println(d.getRighe());
-    	        setLayout(null);
-    	        table = new JTable(d.getRighe(),d.getColonne());
-    	        scrollPane = new JScrollPane(table);
-    	        Toolkit tk = Toolkit.getDefaultToolkit(); 
-    	        scrollPane.setBounds(0, 0, (int) tk.getScreenSize().getWidth(), 600);
-    			add(scrollPane);
-    			scrollPane.validate();
-    			scrollPane.repaint();
-    	        
-    			
+				t.addRow( t);
+				repaint();
     		}
-    	});
+    		});
+		doc.add(nLine);
+		doc.add(save);
+		add(doc,BorderLayout.SOUTH);
+		setVisible(true);
+	}
+	protected Vector<String> makeVector( String[] cl) {
+
+		Vector<String> column  = new Vector<String>(); 
+	    for(int i=0; i<cl.length; ++i)
+	    	column.add(cl[i]);
+	    
+	    return column;
 
 	}
-	
-	
 }
