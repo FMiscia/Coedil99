@@ -169,7 +169,6 @@ if (a == 0){
 
 		// Create the scroll pane and add the table to it.
 		scrollPane = new JScrollPane(table);
-
 		// Add the scroll pane to this panel.
 		add(scrollPane);
 		

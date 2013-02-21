@@ -41,8 +41,10 @@ public class StartUp {
 		
 		gch = GestisciCommessaHandler.getInstance();
 		
+		for ( int i = 0 ; i<50 ; i++ ){
+			gch.add(c1);			
+		}
 		
-		gch.add(c1);
 		gch.add(c2);
 		o.addCommessa(c1);
 		o.addCommessa(c2);	
