@@ -43,9 +43,8 @@ public class GPanel2 extends JPanel {
 			Vector<String> row = new Vector<String>();
 			row.add("");
 			row.add("");
-			row.add("");
-			row.add(  ""+s.gch.getCommessaByIndex(i).getId());
-			row.add("");
+			row.add("" + s.gch.getCommessaByIndex(i).getOrdineId() );
+			row.add( "" +s.gch.getCommessaByIndex(i).getId());
 			row.add("");
 			row.add(s.o.getDataInizio().getTime().toString());
 			row.add("");

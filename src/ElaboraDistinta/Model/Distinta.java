@@ -7,13 +7,16 @@ import ElaboraDistinta.Controller.OttimizzatoreHandler;
 
 public class Distinta {
 
+	private static int count;
 	private int id;
 	private RigheLavoro lavori = new RigheLavoro();
-	private DocumentoOttimizzazione ddo;
+	private DocumentoOttimizzazione ddo = null;
+	
 
 	public Distinta(){
 		/*startup*/
-		this.id = 1;
+		this.count++;
+		this.id = count;
 	}
 	
 	/**
@@ -61,11 +64,17 @@ public class Distinta {
 	}
 
 	public DocumentoOttimizzazione getDdo() {
+		
 		return ddo;
 	}
 
 	public void setDdo(DocumentoOttimizzazione ddo) {
 		this.ddo = ddo;
+	}
+
+	public boolean hasDdo() {
+		// TODO Auto-generated method stub
+		return (this.ddo != null);
 	}
 	
 

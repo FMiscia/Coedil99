@@ -6,6 +6,9 @@ import javax.swing.JTable;
 import ElaboraDistinta.StartUp;
 import ElaboraDistinta.Controller.GestisciCommessaHandler;
 import ElaboraDistinta.Model.Distinta;
+import ElaboraDistinta.Model.Geometria;
+import ElaboraDistinta.Model.RigaLavoro;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -24,31 +27,29 @@ public class GPanelDistinta extends JPanel {
 	JScrollPane scrollPane;
 
 
-	public GPanelDistinta(Vector<String> columnNames) {
+	public GPanelDistinta(Vector<String> columnNames , int index ) {
 		super(new GridLayout(1, 0));
 
 		final StartUp s = StartUp.getInstance();
-
-		
 		GestisciCommessaHandler gch = GestisciCommessaHandler.getInstance();
-		Distinta d = gch.getCommessaById(1).getDistinta();
-		
+		data = new Vector<Vector<String>>();		
+		if ( gch.hasDistinta( gch.getCommessaByIndex( index ).getCodiceInterno() )   ){
+		Distinta d = gch.getCommessaByIndex( index ).getDistinta();
 
-		data = new Vector<Vector<String>>();
-		for (int i=0; i<s.gch.getCommessaById(1).getDistinta().getRigheLavoro().size(); i++){
+		for (int i=0; i<s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().size(); i++){
 			Vector<String> row = new Vector<String>();
-			row.add("");
-			row.add("");
-			row.add("");
-			row.add("");			
-			row.add("");
-			row.add("");			
-			row.add("");
-
+	
+			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getGeometria().getBase());
+			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getGeometria().getAltezza());
+			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getGeometria().getLunghezza() );
+			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getNumero());			
+			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).hasCapitello() );
+			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getProfiloCapitello());			
+			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getNote());
 			data.add(row);
 		}
+		}
 		
-
 		table = new JTable(data, columnNames);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		table.setFillsViewportHeight(true);
@@ -92,6 +93,16 @@ public GPanelDistinta addRow(GPanelDistinta t){
 	return t;
 }
 
+public RigaLavoro getRow(int numRiga ){
+	
+	Geometria g = new Geometria(    getTable().getModel().getValueAt( numRiga , 0 ) , 	
+									getTable().getModel().getValueAt( numRiga , 1 ) , 
+									getTable().getModel().getValueAt( numRiga , 2 ) ) ;
+	
+	RigaLavoro row = new RigaLavoro(1 , g ,	false,"","",1);
+
+	return row;
+}
 
 	private void printDebugData(JTable table) {
 		int numRows = table.getRowCount();

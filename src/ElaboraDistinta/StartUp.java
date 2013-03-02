@@ -19,46 +19,54 @@ public class StartUp {
 	
 	public GestisciCommessaHandler gch;
 	
-	Distinta dist = new Distinta();
+	Distinta dist1 = new Distinta();
+	Distinta dist2 = new Distinta();
+
 	public Ordine o;
+	public Ordine o2;
 	public Commessa c1;
 	public Commessa c2;
+	public Commessa c3;
 	public Catalogo cat;
-	public Magazzino m;
 	AOttimizzatoreStrategy optimizer;
 	
 	private StartUp(){
 		
 		o = new Ordine( null, "pippo",2013 );
+		o2 = new Ordine( null, "pluto",2013 );
 		
 		c1 = new Commessa( o , null, "tetto" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
 				"descrizione..." , "Christian");
 		c2 = new Commessa( o , null, "parete" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
 				"descrizione..." , "Luca");
+		c3 = new Commessa( o2 , null, "cesso" , Calendar.getInstance() , Calendar.getInstance() , "mattina" , 
+				"descrizione ffeeerrr" , "tizio");
 		
-		this.dist.addRigaLavoro(new RigaLavoro(1,new Geometria(23,50,100),false,null,"niente da dichiarare",1));
-		this.dist.addRigaLavoro(new RigaLavoro(2,new Geometria(23,50,400),true,"Dorico","niente da dichiarare",1));
+		this.dist1.addRigaLavoro(new RigaLavoro(1,new Geometria(23,50,100),false,null,"niente da dichiarare",1));
+		this.dist1.addRigaLavoro(new RigaLavoro(2,new Geometria(23,50,400),true,"Dorico","niente da dichiarare",1));
+		this.dist2.addRigaLavoro(new RigaLavoro(1,new Geometria(1,2,100),false,null,"sss",1));
+		this.dist2.addRigaLavoro(new RigaLavoro(2,new Geometria(1,2,100),true,"Dorico","ddd",1));
+		
 		
 		gch = GestisciCommessaHandler.getInstance();
-		
-		for ( int i = 0 ; i<50 ; i++ ){
-			gch.add(c1);			
-		}
-		
+
+		gch.add(c1);			
 		gch.add(c2);
+		gch.add(c3);
 		o.addCommessa(c1);
 		o.addCommessa(c2);	
-		gch.associaDistinta(dist, c1.getId());
-		//gch.associaDistinta(dist, c2.getId());
-		gch.getCommessaById(1).getDistinta().creaDDO();
+		o2.addCommessa(c2);	
+		gch.associaDistinta(dist1, c1.getId());
+		gch.associaDistinta(dist2, c2.getId());
+		
+		
 
-		Iterator <Item> it = gch.getCommessaById(1).getDistinta().getDdo().getItems().iterator();
-		while(it.hasNext()){
-			System.out.println(it.next().getDescrizione());
-		}
 		System.out.println(c1.getCodiceInterno());
+		System.out.println(c1.getOrdineId());
 		System.out.println(c2.getCodiceInterno());
-
+		System.out.println(c2.getOrdineId());
+		System.out.println(c3.getCodiceInterno());
+		System.out.println(c3.getOrdineId());
 		
 	}
 	

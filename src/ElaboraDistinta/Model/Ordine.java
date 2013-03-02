@@ -25,7 +25,7 @@ public class Ordine {
 	}
 	
 	public Ordine(Cliente c, String og, Integer anno){
-		Ordine.counter = Ordine.counter+ 1;
+		Ordine.counter++;
 		this.setNumeroOrdine(Ordine.counter);
 		this.anno = new Integer(anno);
 		this.cliente = c;

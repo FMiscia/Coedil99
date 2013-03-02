@@ -16,11 +16,10 @@ public class RigaLavoro {
 		this.profiloCapitello = pc;
 		this.note = note;
 		this.numero = n;
-
 	}
 
 
-	public boolean isCapitello() {
+	public boolean hasCapitello() {
 		return this.capitello;
 	}
 

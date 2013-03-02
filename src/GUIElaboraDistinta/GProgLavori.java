@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -54,7 +55,7 @@ public class GProgLavori extends JPanel {
 
 
 		String[] cl2 = { "O/C", "Anno",
-				"Ordine/Contratto", "Commessa Coedil", "Cod Interno",
+				"Ordine/Contratto", "Commessa Coedil",
 				"Ordine Gestionale", "Data Inizio", "Data Fine", "Orario",
 				"Descrizione", "Partizione" };
 		panel2 = new GPanel2( makeVector(cl2) );
@@ -98,9 +99,13 @@ public class GProgLavori extends JPanel {
 		listbox.setPreferredSize(new Dimension(200, this.getHeight()));
 		setB(new JButton("Crea Distinta"));
 		getB().addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				final JFrame frameDist = new GDistinta();
-				 //JOptionPane.showMessageDialog(null,"aaa");
+			public void mouseClicked(MouseEvent evt) {
+				
+				
+				
+				int index = listbox.getTable().getSelectedRow();
+				final GDistinta frameDist = new GDistinta( index );
+				// JOptionPane.showMessageDialog(null, index );
 				}
 		});
 		JPanel cpEst = new JPanel(new BorderLayout());

@@ -12,6 +12,13 @@ public class Geometria {
 		this.lunghezza = l;
 	}
 	
+	public Geometria(Object valueAt, Object valueAt2, Object valueAt3) {
+		// TODO Auto-generated constructor stub
+		this.base = Float.parseFloat((String) valueAt);
+		this.altezza = Float.parseFloat((String) valueAt2);
+		this.lunghezza = Float.parseFloat((String) valueAt3);
+	}
+
 	public float getBase() {
 		return this.base;
 	}
