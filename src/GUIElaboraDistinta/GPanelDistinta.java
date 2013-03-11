@@ -3,6 +3,7 @@ package GUIElaboraDistinta;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
 import ElaboraDistinta.StartUp;
 import ElaboraDistinta.Controller.GestisciCommessaHandler;
 import ElaboraDistinta.Model.Distinta;
@@ -43,7 +44,7 @@ public class GPanelDistinta extends JPanel {
 			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getGeometria().getAltezza());
 			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getGeometria().getLunghezza() );
 			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getNumero());			
-			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).hasCapitello() );
+			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getCapitello() );
 			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getProfiloCapitello());			
 			row.add( "" + s.gch.getCommessaByIndex( index ).getDistinta().getRigheLavoro().get(i).getNote());
 			data.add(row);

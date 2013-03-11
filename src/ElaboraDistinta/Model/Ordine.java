@@ -19,11 +19,6 @@ public class Ordine {
 	private String OC;
 	private static int counter = 0;
 
-	
-	private Boolean isDateNull(){
-		return (this.dataInizio == null); 
-	}
-	
 	public Ordine(Cliente c, String og, Integer anno){
 		Ordine.counter++;
 		this.setNumeroOrdine(Ordine.counter);
@@ -36,27 +31,6 @@ public class Ordine {
 	
 	public Integer getAnno(){
 		return this.anno;
-	}
-	
-	
-	public void addCommessa( Commessa c ){
-		this.commesse.add(c);
-		if(this.isDateNull()){
-			this.dataInizio = c.getEmissioneCommessa();
-			this.dataScadenza = c.getScadenzaCommessa();
-		}else
-			this.checkDate(c);
-	}
-	
-
-	private void checkDate(Commessa c) {
-		if(c.getEmissioneCommessa().compareTo(this.getDataInizio())<0){
-			this.dataInizio = c.getEmissioneCommessa();
-		}
-		if(c.getScadenzaCommessa().compareTo(this.getDataScadenza())>0){
-			this.dataScadenza = c.getFineCommessa();
-		}
-		
 	}
 
 	public String getOrdineGestionale() {

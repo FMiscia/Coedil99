@@ -6,6 +6,8 @@ import java.util.ListIterator;
 import ElaboraDistinta.Model.Commessa;
 import ElaboraDistinta.Model.Distinta;
 
+
+
 public class GestisciCommessaHandler {
 
 	private int id;
@@ -35,7 +37,7 @@ public class GestisciCommessaHandler {
 	 * @return
 	 */
 	public void eliminaDistinta(int idCommessa) {
-		this.getCommessaById(idCommessa).eliminaDistinta();
+		this.getCommessaById(idCommessa).setDistinta(null);
 	}
 
 	/**
@@ -69,7 +71,7 @@ public class GestisciCommessaHandler {
 	 * @param idCommessa
 	 */
 	public void associaDistinta(Distinta d, int idCommessa){
-		this.getCommessaById(idCommessa).associaDistinta(d);
+		this.getCommessaById(idCommessa).setDistinta(d);
 	}
 	
 	/**

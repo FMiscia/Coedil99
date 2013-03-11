@@ -44,10 +44,19 @@ public class GDocOtt {
 					GDistinta frameDist = new GDistinta( index );
 	    		}
 	    		} );
+			back = new Button("Indietro");
+			back.addMouseListener( new MouseAdapter(){
+	    		public void mouseClicked(MouseEvent arg0){
+	    			f.dispose();
+					GDistinta frameDist = new GDistinta( index );
+	    		}
+	    		} );
+			
+			
 			
 			JTextArea textArea = new JTextArea(5, 20);
 			textArea.setEditable(false);
-			textArea.setText(gch.getCommessaByIndex(index).getDistinta().getDdo().toString());
+			textArea.setText(gch.getCommessaByIndex(index).getDistinta().getOddo().toString());
 			f.add(textArea,BorderLayout.CENTER);
 			final JPanel doc = new JPanel();
 			doc.add(back);

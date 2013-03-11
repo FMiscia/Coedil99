@@ -1,5 +1,7 @@
 package ElaboraDistinta.Model;
 
+import ElaboraDistinta.Operation.OItem;
+
 
 public class Item {
 
@@ -45,19 +47,9 @@ public class Item {
 	public void setHistory(History history) {
 		this.history = history;
 	}
-
-	@Override
-	public String toString() {
-		String i = "";
-		i = i + "Descrizione: " + this.getDescrizione() + " Prezzo: "
-				+ this.getPrezzo() + " Altezza: "
-				+ this.getGeometria().getAltezza() + " Base: "
-				+ this.getGeometria().getBase() + " Lunghezza: "
-				+ this.getGeometria().getLunghezza();
-		return i;
+	
+	public OItem getOItem(){
+		return new OItem(this);
 	}
-
-
-
 
 }

@@ -19,7 +19,7 @@ public class RigaLavoro {
 	}
 
 
-	public boolean hasCapitello() {
+	public boolean getCapitello() {
 		return this.capitello;
 	}
 
@@ -62,6 +62,7 @@ public class RigaLavoro {
 	public void setGeometria(Geometria g){
 		this.geometria = g;
 	}
+	
 
 	/*
 	 * public void setId(int id) { this.id = id; }

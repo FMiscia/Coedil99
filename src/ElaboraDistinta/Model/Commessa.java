@@ -6,6 +6,7 @@ import java.util.List;
 
 import ElaboraDistinta.ICommessaListener;
 import ElaboraDistinta.Controller.GestisciCommessaHandler;
+import ElaboraDistinta.Operation.ODistinta;
 
 public class Commessa {
 
@@ -93,24 +94,6 @@ public class Commessa {
 	public void setResponsabile(String responsabile) {
 		this.responsabile = responsabile;
 	}
-
-	/**
-	 * 
-	 * @param distinta
-	 * @return 
-	 */
-	public void associaDistinta(Distinta distinta) {
-		this.distinta = distinta;
-	}
-
-	/**
-	 * 
-	 * @return 
-	 */
-	public void eliminaDistinta() {
-		this.distinta = null;
-	}
-
 
 	public int getId() {
 		return id;
@@ -203,6 +186,11 @@ public class Commessa {
 	public void setCodiceInterno(String codiceInterno) {
 		this.codiceInterno = codiceInterno;
 	}
+
+	public ODistinta getOdistinta() {
+		return new ODistinta(this.distinta);
+	}
+
 
 
 }

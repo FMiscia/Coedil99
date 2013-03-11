@@ -10,14 +10,6 @@ public class Magazzino {
 	Catalogo catalogo;
 	private HashMap<Item,Integer> items;
 	private String name;
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public Magazzino(){
 		/*esegue lo startup*/
@@ -30,22 +22,20 @@ public class Magazzino {
 		}
 	}
 	
-	public void addItem(Item item){
-		Integer oldValue = items.get(item);
-		items.put(item, ++oldValue);
-	}
-	
-	public void removeItem(Item item){
-		if(this.items.containsKey(item) && this.items.get(item) > 0)
-			this.items.put(item, this.items.get(item)-1);
-	}
-	
 	public HashMap<Item,Integer> getItems(){
 		return this.items;
 	}
 	
 	public Catalogo getCatalogo(){
 		return this.catalogo;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 

@@ -5,9 +5,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
+
 import ElaboraDistinta.StartUp;
 import ElaboraDistinta.Controller.GestisciCommessaHandler;
 import ElaboraDistinta.Model.Distinta;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.AdjustmentEvent;
@@ -46,7 +48,7 @@ public class GPanel2 extends JPanel {
 			row.add("" + s.gch.getCommessaByIndex(i).getOrdineId() );
 			row.add( "" +s.gch.getCommessaByIndex(i).getId());
 			row.add("");
-			row.add(s.o.getDataInizio().getTime().toString());
+			row.add(s.o.getOrdine().getDataInizio().getTime().toString());
 			row.add("");
 			row.add("");
 			row.add("");

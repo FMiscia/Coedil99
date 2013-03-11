@@ -9,6 +9,9 @@ import ElaboraDistinta.Model.Geometria;
 import ElaboraDistinta.Model.Item;
 import ElaboraDistinta.Model.Magazzino;
 import ElaboraDistinta.Model.RigaLavoro;
+import ElaboraDistinta.Operation.OMagazzino;
+
+
 
 public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 
@@ -21,8 +24,8 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 		ArrayList<Geometria> distitems = new ArrayList<Geometria>();
 		ArrayList<Item> itemMag = new ArrayList<Item>();
 		ArrayList<Item> sfridi = new ArrayList<Item>();
-		Magazzino m = new Magazzino();
-		ArrayList<Item> itm = new ArrayList<Item>(m.getItems().keySet());
+		OMagazzino m = new OMagazzino(new Magazzino());
+		ArrayList<Item> itm = new ArrayList<Item>(m.getMagazzino().getItems().keySet());
 		
 		
 		float offset;
