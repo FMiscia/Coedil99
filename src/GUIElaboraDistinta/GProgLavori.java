@@ -100,9 +100,7 @@ public class GProgLavori extends JPanel {
 		setB(new JButton("Crea Distinta"));
 		getB().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				
-				
-				
+
 				int index = listbox.getTable().getSelectedRow();
 				final GDistinta frameDist = new GDistinta( index );
 				// JOptionPane.showMessageDialog(null, index );

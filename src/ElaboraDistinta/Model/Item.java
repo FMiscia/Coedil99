@@ -46,5 +46,18 @@ public class Item {
 		this.history = history;
 	}
 
+	@Override
+	public String toString() {
+		String i = "";
+		i = i + "Descrizione: " + this.getDescrizione() + " Prezzo: "
+				+ this.getPrezzo() + " Altezza: "
+				+ this.getGeometria().getAltezza() + " Base: "
+				+ this.getGeometria().getBase() + " Lunghezza: "
+				+ this.getGeometria().getLunghezza();
+		return i;
+	}
+
+
+
 
 }

@@ -34,10 +34,11 @@ public class GDistinta {
 	 * Create the frame.
 	 */
 	public GDistinta( final int index ) {
-		f = new JFrame( "Distinta" );
 		
 		final StartUp s = StartUp.getInstance();
 		final GestisciCommessaHandler gch = GestisciCommessaHandler.getInstance();
+		
+		f = new JFrame( "Distinta " + gch.getCommessaByIndex(index).getCodiceInterno() );
 		
 		f.setResizable(false);
 		f.setBounds(100, 100, 600, 350);
@@ -71,21 +72,7 @@ public class GDistinta {
 		this.visDdo = new Button("Visualizza DDO");
 		this.visDdo.addMouseListener(new MouseAdapter(){
     		public void mouseClicked(MouseEvent arg0){
-    			String s = "";
-    			java.util.Iterator<Item> it = gch.getCommessaByIndex(index).getDistinta().getDdo().getItems().iterator();
-    			while(it.hasNext()){
-    				s = s + it.next().getDescrizione();
-    			}
-    			//JOptionPane.showMessageDialog(null, s );
-    			
-    			JTextArea textArea = new JTextArea(5, 20);
-    			JScrollPane scrollPane = new JScrollPane(textArea); 
-    			textArea.setEditable(false);
-    			textArea.setText(s);
-    			f.remove(t);
-    			f.add( textArea ,BorderLayout.CENTER);
-    			f.validate();
-    			f.repaint();
+				final GDocOtt frameDocOtt = new GDocOtt( index );
     		}
     		});
 		if ( gch.getCommessaByIndex(index).getDistinta() == null || 
