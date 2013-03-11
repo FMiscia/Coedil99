@@ -91,7 +91,6 @@ public class GProgLavori extends JPanel {
 			listData[i] = row;
 		}
 
-
 		JLabel text = new JLabel();
 		text.setText("");
 		text.setHorizontalAlignment(SwingConstants.CENTER);

@@ -72,6 +72,7 @@ public class GDistinta {
 		this.visDdo = new Button("Visualizza DDO");
 		this.visDdo.addMouseListener(new MouseAdapter(){
     		public void mouseClicked(MouseEvent arg0){
+    			f.setVisible(false);
 				final GDocOtt frameDocOtt = new GDocOtt( index );
     		}
     		});
@@ -87,17 +88,21 @@ public class GDistinta {
     		public void mouseClicked(MouseEvent arg0){
     			gch.getCommessaByIndex(index).getDistinta().creaDDO();
     			visDdo.setVisible(true);
+    			ottimizza.setEnabled(false);
     			doc.validate();
     			doc.repaint();
     		}
     		});
 		
+		if ( gch.getCommessaByIndex(index).getDistinta().hasDdo() )
+			ottimizza.setEnabled(false);
+		
 		doc.add(save);
 		doc.add(nLine);
 		doc.add(ottimizza);
 		doc.add(visDdo);
-
-
+		
+		
 		f.add(doc,BorderLayout.SOUTH);
 		f.setVisible(true);
 	}
