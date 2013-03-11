@@ -90,6 +90,7 @@ public class GDistinta {
     			visDdo.setVisible(true);
     			ottimizza.setEnabled(false);
     			nLine.setEnabled(false);
+    			save.setEnabled(false);
     			doc.validate();
     			doc.repaint();
     		}
@@ -99,6 +100,7 @@ public class GDistinta {
 			{
 			ottimizza.setEnabled(false);
 			nLine.setEnabled(false);
+			save.setEnabled(false);
 			}
 		
 		doc.add(save);
