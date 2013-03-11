@@ -45,8 +45,6 @@ public class GDocOtt {
 	    		}
 	    		} );
 			
-			
-			
 			JTextArea textArea = new JTextArea(5, 20);
 			textArea.setEditable(false);
 			textArea.setText(gch.getCommessaByIndex(index).getDistinta().getDdo().toString());

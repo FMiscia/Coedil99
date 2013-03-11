@@ -89,13 +89,17 @@ public class GDistinta {
     			gch.getCommessaByIndex(index).getDistinta().creaDDO();
     			visDdo.setVisible(true);
     			ottimizza.setEnabled(false);
+    			nLine.setEnabled(false);
     			doc.validate();
     			doc.repaint();
     		}
     		});
 		
 		if ( gch.getCommessaByIndex(index).getDistinta().hasDdo() )
+			{
 			ottimizza.setEnabled(false);
+			nLine.setEnabled(false);
+			}
 		
 		doc.add(save);
 		doc.add(nLine);
