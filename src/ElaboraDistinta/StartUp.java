@@ -59,15 +59,6 @@ public class StartUp {
 		gch.associaDistinta(dist1, c1.getId());
 		gch.associaDistinta(dist2, c2.getId());
 		
-		
-
-		System.out.println(c1.getCodiceInterno());
-		System.out.println(c1.getOrdineId());
-		System.out.println(c2.getCodiceInterno());
-		System.out.println(c2.getOrdineId());
-		System.out.println(c3.getCodiceInterno());
-		System.out.println(c3.getOrdineId());
-		
 	}
 	
 	public static StartUp getInstance(){

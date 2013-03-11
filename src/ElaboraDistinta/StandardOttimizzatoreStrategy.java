@@ -39,8 +39,8 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 						&& ((itm.get(i).getGeometria().getLunghezza()
 								- distitems.get(j).getLunghezza()) <= 100)) {
 					itemMag.add(itm.get(i));
+					m.removeItem(itm.get(i));
 					distitems.remove(j);
-					// pseudo meno uno sul magazzino
 				}
 
 			}
@@ -53,25 +53,16 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 						&& ((offset = itm.get(i).getGeometria().getLunghezza()
 								- distitems.get(j).getLunghezza()) <= 200)) {
 					itemMag.add(itm.get(i));
+					m.removeItem(itm.get(i));
 					distitems.remove(j);
-					sfridi.add(new Item(new Geometria(itm.get(i).getGeometria()
+					m.addItem(new Item(new Geometria(itm.get(i).getGeometria()
 							.getAltezza(), itm.get(i).getGeometria().getBase(),
 							offset), itm.get(i).getDescrizione()));
-							// pseudo meno uno sul magazzino
-				} /*else if ((equal(itm.get(i).getGeometria().getBase(),
-						distitems.get(j).getBase(), itm.get(i).getGeometria()
-								.getAltezza(), distitems.get(j).getAltezza()))) {
-					offset = itm.get(i).getGeometria().getLunghezza()
-							- distitems.get(j).getLunghezza();
-					itemMag.add(itm.get(i));
-					sfridi.add(new Item(new Geometria(itm.get(i).getGeometria()
-							.getAltezza(), itm.get(i).getGeometria().getBase(),
-							offset), itm.get(i).getDescrizione()));
-					distitems.remove(j);
-				}*/
+				}
 			}
 
 		}
+		
 	
 
 		return new DocumentoOttimizzazione(itemMag);

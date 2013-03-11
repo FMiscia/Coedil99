@@ -26,13 +26,18 @@ public class Magazzino {
 		ArrayList<Item> cItem = new ArrayList<Item>(this.catalogo.getItems());
 		Iterator<Item> i = cItem.iterator();
 		while(i.hasNext()){
-			items.put(i.next(), 1);
+			this.items.put(i.next(), 1);
 		}
 	}
 	
 	public void addItem(Item item){
 		Integer oldValue = items.get(item);
 		items.put(item, ++oldValue);
+	}
+	
+	public void removeItem(Item item){
+		if(this.items.containsKey(item) && this.items.get(item) > 0)
+			this.items.put(item, this.items.get(item)-1);
 	}
 	
 	public HashMap<Item,Integer> getItems(){
