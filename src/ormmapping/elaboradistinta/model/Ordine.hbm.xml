@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="elaboradistinta.model.Ordine" table="Ordine" lazy="false">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="ordineGestionale" column="OrdineGestionale" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="dataInizio" column="DataInizio" type="date" not-null="false" lazy="false"/>
+		<property name="dataScadenza" column="DataScadenza" type="date" not-null="false" lazy="false"/>
+		<property name="dataFine" column="DataFine" type="date" not-null="false" lazy="false"/>
+		<property name="anno" column="Anno" type="integer" length="11" not-null="false" lazy="false"/>
+		<property name="numeroOrdine" column="NumeroOrdine" type="integer" length="11" not-null="false" lazy="false"/>
+		<property name="OC" column="OC" type="string" length="255" not-null="false" lazy="false"/>
+		<list name="ORM_Commesse" lazy="true" cascade="save-update,lock" inverse="false">
+			<key column="OrdineID" not-null="false"/>
+			<index column="OrdineIndex" type="integer"/>
+			<one-to-many class="elaboradistinta.model.Commessa"/>
+		</list>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="elaboradistinta.model.Geometria" table="Geometria" lazy="false">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="base" column="Base" type="float" not-null="true" lazy="false"/>
+		<property name="altezza" column="Altezza" type="float" not-null="true" lazy="false"/>
+		<property name="lunghezza" column="Lunghezza" type="float" not-null="true" lazy="false"/>
+	</class>
+</hibernate-mapping>

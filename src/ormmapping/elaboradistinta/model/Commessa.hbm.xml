@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="elaboradistinta.model.Commessa" table="Commessa" lazy="false">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<many-to-one name="distinta" column="DistintaID" class="elaboradistinta.model.Distinta" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="ldr" column="ListaRintracciabilitaID" class="elaboradistinta.model.ListaRintracciabilita" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="codiceInterno" column="CodiceInterno" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="elementoStrutturale" column="ElementoStrutturale" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="scadenzaCommessa" column="ScadenzaCommessa" type="date" not-null="false" lazy="false"/>
+		<property name="emissioneCommessa" column="EmissioneCommessa" type="date" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				sviluppo della commessa
+			</meta>
+		</property>
+		<property name="fineCommessa" column="FineCommessa" type="date" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				sviluppo della commessa
+			</meta>
+		</property>
+		<property name="inizioProduzione" column="InizioProduzione" type="date" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				sviluppo della commessa
+			</meta>
+		</property>
+		<property name="scadenzaProduzione" column="ScadenzaProduzione" type="date" not-null="false" lazy="false"/>
+		<property name="fineProduzione" column="FineProduzione" type="date" not-null="false" lazy="false"/>
+		<property name="ritardoProduzione" column="RitardoProduzione" type="integer" length="11" not-null="false" lazy="false"/>
+		<property name="primaConsegna" column="PrimaConsegna" type="date" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				giorni
+			</meta>
+		</property>
+		<property name="ritardoConsegna" column="RitardoConsegna" type="integer" length="11" not-null="false" lazy="false"/>
+		<property name="orario" column="Orario" type="string" length="255" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				giorni
+			</meta>
+		</property>
+		<property name="descrizione" column="Descrizione" type="string" length="255" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				consegna: del tipo Mattina o Pomeriggio
+			</meta>
+		</property>
+		<property name="responsabile" column="Responsabile" type="string" length="255" not-null="false" lazy="false"/>
+	</class>
+</hibernate-mapping>
