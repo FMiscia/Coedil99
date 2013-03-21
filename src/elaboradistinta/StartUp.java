@@ -56,7 +56,9 @@ public class StartUp {
 	//public Catalogo cat;
 	AOttimizzatoreStrategy optimizer;
 	
-	private StartUp() throws PersistentException {
+	private StartUp() {
+		
+		
 		/*
 		PersistentTransaction t = elaboradistinta.model.CoedilPersistentManager.instance().getSession().beginTransaction();
 		try{
