@@ -53,7 +53,6 @@ public class StartUp {
 	public OCommessa c1;
 	public OCommessa c2;
 	public OCommessa c3;
-	//public Catalogo cat;
 	AOttimizzatoreStrategy optimizer;
 	
 	private StartUp() {
