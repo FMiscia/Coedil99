@@ -1,2 +1,4 @@
 bin/
-
+*.jar
+.classpath
+Coedil.cfg.xml
