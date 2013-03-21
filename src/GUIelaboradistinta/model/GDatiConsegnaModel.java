@@ -1,4 +1,4 @@
-package provaTabelle;
+package GUIelaboradistinta.model;
 
 import java.sql.Date;
 import java.text.DateFormat;
@@ -22,21 +22,18 @@ import elaboradistinta.model.Cliente;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Ordine;
 
-public class GDatiSviluppoConsegnaModel extends AbstractTableModel {
+public class GDatiConsegnaModel extends AbstractTableModel {
 
 	private String[] colonne;
 	private ArrayList<Commessa> commesse = new ArrayList<Commessa>();
 	private ArrayList<Ordine> ordini = new ArrayList<Ordine>();
 	private ArrayList<Cliente> clienti = new ArrayList<Cliente>();
 
-	private static final int Responsabile = 0;
-	private static final int DataI = 1;
-	private static final int Scadenza = 2;
-	private static final int DataF = 3;
-	private static final int Ritardo = 4;
+	private static final int Consegna = 0;
+	private static final int Ritardo = 1;
 
-	public GDatiSviluppoConsegnaModel() {
-		this.colonne = new String[] { "Responsabile", "Emissione Commessa","Scadenza Commessa", "Data fine", "Ritardo" };
+	public GDatiConsegnaModel() {
+		this.colonne = new String[] {"Data prima consegna",	"Ritardo consegna" };
 		GestisciClienteHandler gch = GestisciClienteHandler.getInstance();
 		//GestisciOrdineHandler goh = GestisciOrdineHandler.getInstance();
 		//GestisciCommessaHandler gcoh = GestisciCommessaHandler.getInstance();
@@ -85,29 +82,11 @@ public class GDatiSviluppoConsegnaModel extends AbstractTableModel {
 		String valore = null;
 		Commessa c = this.commesse.get(riga);
 		switch (colonna) {
-		case Responsabile:
-			if (c.getResponsabile() == null)
+		case Consegna:
+			if (c.getPrimaConsegna() == null)
 				valore = "";
 			else
-				valore = c.getResponsabile();
-			break;
-		case DataI:
-			if (c.getEmissioneCommessa() == null)
-				valore = "";
-			else
-				valore = c.getEmissioneCommessa().toString();
-			break;
-		case Scadenza:
-			if (c.getScadenzaCommessa() == null)
-				valore = "";
-			else
-				valore = c.getScadenzaCommessa().toString();
-			break;
-		case DataF:
-			if (c.getFineCommessa() == null)
-				valore = "";
-			else
-				valore = c.getFineCommessa().toString();
+				valore = c.getPrimaConsegna().toString();
 			break;
 		case Ritardo:
 			if (c.getRitardoConsegna() == null)
@@ -123,25 +102,15 @@ public class GDatiSviluppoConsegnaModel extends AbstractTableModel {
 		return this.colonne[c];
 	}
 
-	public void cambiaValore(int cid, int c, Object value) throws PersistentException {
-		PersistentTransaction t = elaboradistinta.model.CoedilPersistentManager.instance().getSession().beginTransaction();
+	public void cambiaValore(int cid, int c, Object value)
+			throws PersistentException {
+		PersistentTransaction t = elaboradistinta.model.CoedilPersistentManager
+				.instance().getSession().beginTransaction();
 		Commessa commessa = elaboradistinta.model.CommessaFactory
 				.getCommessaByORMID(cid);
 		switch (c) {
-		case Responsabile:
-			commessa.setResponsabile(value.toString());
-			commessa.save();
-			break;
-		case DataI:
-			commessa.setEmissioneCommessa(this.convertiData(value.toString()));
-			commessa.save();
-			break;
-		case Scadenza:
-			commessa.setScadenzaCommessa(this.convertiData(value.toString()));
-			commessa.save();
-			break;
-		case DataF:
-			commessa.setFineCommessa(this.convertiData(value.toString()));
+		case Consegna:
+			commessa.setPrimaConsegna(this.convertiData(value.toString()));
 			commessa.save();
 			break;
 		case Ritardo:
@@ -163,7 +132,7 @@ public class GDatiSviluppoConsegnaModel extends AbstractTableModel {
 		Commessa c = this.commesse.get(rowIndex);
 		try {
 			if(value != null )
-				if(!value.equals("")) 
+				if(!value.equals(""))
 					this.cambiaValore(c.getID(), columnIndex, value.toString());
 		} catch (PersistentException e) {
 			e.printStackTrace();

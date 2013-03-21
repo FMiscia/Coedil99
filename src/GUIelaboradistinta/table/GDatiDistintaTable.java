@@ -1,9 +1,12 @@
-package provaTabelle;
+package GUIelaboradistinta.table;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
+
+import GUIelaboradistinta.model.GDatiDistintaModel;
+
 
 import elaboradistinta.model.Distinta;
 

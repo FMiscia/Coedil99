@@ -16,8 +16,6 @@ import javax.swing.JTextArea;
 import javax.swing.JViewport;
 import javax.swing.border.EmptyBorder;
 
-import provaTabelle.GDatiDistintaModel;
-import provaTabelle.GDatiDistintaTable;
 
 import elaboradistinta.StartUp;
 import elaboradistinta.controller.GestisciCommessaHandler;
@@ -32,9 +30,13 @@ import elaboradistinta.operation.ODistinta;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 
+
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.PersistentTransaction;
+
+import GUIelaboradistinta.model.GDatiDistintaModel;
+import GUIelaboradistinta.table.GDatiDistintaTable;
 
 public class GDistinta {
 

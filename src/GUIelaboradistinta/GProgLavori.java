@@ -23,14 +23,15 @@ import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.SwingConstants;
 
+import GUIelaboradistinta.table.GDatiAziendaliTable;
+import GUIelaboradistinta.table.GDatiClienteTable;
+import GUIelaboradistinta.table.GDatiCodiceInternoTable;
+import GUIelaboradistinta.table.GDatiConsegnaTable;
+import GUIelaboradistinta.table.GDatiDistintaTable;
+import GUIelaboradistinta.table.GDatiProduzioneTable;
+import GUIelaboradistinta.table.GDatiSviluppoConsegnaTable;
 
-import provaTabelle.GDatiAziendaliTable;
-import provaTabelle.GDatiClienteTable;
-import provaTabelle.GDatiCodiceInternoTable;
-import provaTabelle.GDatiConsegnaTable;
-import provaTabelle.GDatiDistintaTable;
-import provaTabelle.GDatiProduzioneTable;
-import provaTabelle.GDatiSviluppoConsegnaTable;
+
 
 import elaboradistinta.StartUp;
 import elaboradistinta.controller.GestisciClienteHandler;

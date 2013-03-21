@@ -1,4 +1,4 @@
-package provaTabelle;
+package GUIelaboradistinta.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

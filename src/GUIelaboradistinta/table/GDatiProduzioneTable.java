@@ -1,9 +1,12 @@
-package provaTabelle;
+package GUIelaboradistinta.table;
 
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
+
 import org.jdesktop.swingx.table.DatePickerCellEditor;
+
+import GUIelaboradistinta.model.GDatiProduzioneModel;
 
 import com.toedter.calendar.JDateChooserCellEditor;
 

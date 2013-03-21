@@ -1,4 +1,4 @@
-package provaTabelle;
+package GUIelaboradistinta.model;
 
 import java.sql.Date;
 import java.text.ParseException;
