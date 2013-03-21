@@ -9,6 +9,7 @@ import java.awt.event.AdjustmentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -23,25 +24,24 @@ import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.SwingConstants;
 
-import GUIelaboradistinta.table.GDatiAziendaliTable;
-import GUIelaboradistinta.table.GDatiClienteTable;
-import GUIelaboradistinta.table.GDatiCodiceInternoTable;
-import GUIelaboradistinta.table.GDatiConsegnaTable;
-import GUIelaboradistinta.table.GDatiDistintaTable;
-import GUIelaboradistinta.table.GDatiProduzioneTable;
-import GUIelaboradistinta.table.GDatiSviluppoConsegnaTable;
 
-
-
+import GUIelaboradistinta.table.*;
 import elaboradistinta.StartUp;
 import elaboradistinta.controller.GestisciClienteHandler;
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.controller.GestisciOrdineHandler;
 import elaboradistinta.model.Commessa;
+import elaboradistinta.model.CommessaFactory;
 import elaboradistinta.model.Distinta;
 import elaboradistinta.model.DistintaFactory;
+import elaboradistinta.model.DocumentoOttimizzazione;
+import elaboradistinta.model.Geometria;
+import elaboradistinta.model.RigaLavoro;
 import elaboradistinta.model.RigheLavoro;
 import elaboradistinta.model.RigheLavoroFactory;
+import elaboradistinta.operation.ODistinta;
+import elaboradistinta.operation.ODocumentoOttimizzazione;
+import elaboradistinta.operation.ORigheLavoro;
 
 public class GProgLavori extends JPanel {
 
@@ -66,87 +66,50 @@ public class GProgLavori extends JPanel {
 		tabbedPane.addTab("Dati Sviluppo Consegna",new JScrollPane(new GDatiSviluppoConsegnaTable()));
 		tabbedPane.addTab("Dati Produzione Consegna",new JScrollPane(new GDatiProduzioneTable()));
 		tabbedPane.addTab("Dati Consegna",new JScrollPane(new GDatiConsegnaTable()));
-		// Create a new listbox control
-		//String[] cl0 = {  "Codice Interno",""};
+		
 		final GDatiCodiceInternoTable codiciInterni = new GDatiCodiceInternoTable();
 		listbox = new JScrollPane(codiciInterni);
-		/*
-		Vector<String> column1 = new Vector<String>(); 
-		String[] cl1 = { "Cliente", "Cantiere", "Commessa Cliente" };
-	    for(int i=0; i<cl1.length; ++i)
-	    	column1.add(cl1[i]);
-		panel1 = new GPanel1( makeVector(cl1) );
-		tabbedPane.addTab("Dati Cliente", null, panel1, "Dati Cliente");
-		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
-
-
-		String[] cl2 = { "O/C", "Anno",
-				"Ordine/Contratto", "Commessa Coedil",
-				"Ordine Gestionale", "Data Inizio", "Data Fine", "Orario",
-				"Descrizione", "Partizione" };
-		panel2 = new GPanel2( makeVector(cl2) );
-		tabbedPane.addTab("Dati Aziendali", null, panel2, "Dati Aziendali");
-		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
-
-		String[] cl3 = { "Responsabile", "Data Inizio",
-				"Scadenza sviluppo", "Data fine", "Ritardo" };
-		panel3 = new GPanel3( makeVector(cl3) );
-
-		tabbedPane.addTab("Sviluppo Consegna", null, panel3,
-				"Sviluppo Consegna");
-		tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
-
-		String[] cl4 = { "Data Inizio", "Data fine",
-		"Scadenza sviluppo" };
-		panel4 = new GPanel4( makeVector(cl4) );
-
-		tabbedPane.addTab("Produzione", null, panel4, "Produzione");
-		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
-
-		String[] cl5 = { "Data prima consegna",	"Ritardo consegna" };
-		panel5 = new GPanel5( makeVector(cl5) );
-
-		tabbedPane.addTab("Consegna", null, panel5, "Consegna");
-		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
-
-		String[] listData;
-		listData = new String[s.gch.getNumOfCommesse()];
-
-		for (int i = 0; i < s.gch.getNumOfCommesse(); i++) {
-			String row = s.gch.getCommessaByIndex(i).getCodiceInterno();
-			listData[i] = row;
-		}
-*/
 		JLabel text = new JLabel();
 		text.setText("");
 		text.setHorizontalAlignment(SwingConstants.CENTER);
 		text.setPreferredSize(new Dimension(200, 25));
-		listbox.setPreferredSize(new Dimension(200, this.getHeight()));
+		listbox.setPreferredSize(new Dimension(300, this.getHeight()));
 		setB(new JButton("Crea Distinta"));
+		final JButton deldist = new JButton("Elimina Distinta");
+		final JPanel bottoni = new JPanel(new BorderLayout(0, 0));
+		bottoni.add(getB(), BorderLayout.WEST);
+		bottoni.add(deldist, BorderLayout.EAST);
+		bottoni.getComponent(1).setVisible(false);
+		
+		
+		
 		final JPanel cpEst = new JPanel(new BorderLayout());
 		cpEst.add(listbox, BorderLayout.CENTER);
 		cpEst.add(text, BorderLayout.NORTH);
-		cpEst.add(getB(), BorderLayout.SOUTH);
+		
+		
+		
 		this.add(tabbedPane, BorderLayout.CENTER);
 		this.add(cpEst, BorderLayout.WEST);
-		
+		//Click sulla singola riga dei codici interni
 		codiciInterni.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				String codice = codiciInterni.getValueAt(codiciInterni.rowAtPoint(e.getPoint()), 0).toString();
-				cpEst.remove(getB());
+				cpEst.add(bottoni, BorderLayout.SOUTH);
 				if(checkDistinta(codice)){
 					getB().setText("Visualizza Distinta");	
+					deldist.setVisible(true);
 				}
 				else{
 					getB().setText("Crea Distinta");
+					deldist.setVisible(false);
 				}
-				cpEst.add(getB(),BorderLayout.SOUTH);
 				validate();
 				repaint();
 			}
 		});
 		
-
+		//Click sul pulsante crea/visualizza
 		getB().addMouseListener(new MouseAdapter() {			
 			public void mouseClicked(MouseEvent evt) {
 				int index = codiciInterni.getSelectedRow();
@@ -156,6 +119,8 @@ public class GProgLavori extends JPanel {
 					final GDistinta frameDist = new GDistinta(c.getDistinta(),c.getCodiceInterno());
 				}
 				else{
+					getB().setText("Visualizza Distinta");
+					deldist.setVisible(true);
 					RigheLavoro r = RigheLavoroFactory.createRigheLavoro();
 					r.save();
 					Distinta d = DistintaFactory.createDistinta();
@@ -164,10 +129,12 @@ public class GProgLavori extends JPanel {
 					gch.associaDistinta(d, c.getID());
 					final GDistinta frameDist = new GDistinta(d,c.getCodiceInterno());
 				}
-				
+				validate();
+				repaint();
 			}
 		});
 		
+		//Click sulla riga codici interni per allineare le righe della tabbedpane
 		codiciInterni.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
 				int index = codiciInterni.getSelectedRow();
@@ -190,6 +157,20 @@ public class GProgLavori extends JPanel {
 			});
 		}
 
+		//Click sul pulsante cancella distinta
+		deldist.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				String codice = codiciInterni.getValueAt(codiciInterni.getSelectedRow(),0).toString();
+				GestisciCommessaHandler gch = GestisciCommessaHandler.getInstance();
+				Commessa c = gch.getCommessaByCodiceInterno(codice);
+				if(cancellaDistinta(c)){
+					getB().setText("Crea Distinta");
+					deldist.setVisible(false);
+				}	
+				validate();
+				repaint();
+			}
+		});
 
 	}
 
@@ -204,6 +185,36 @@ public class GProgLavori extends JPanel {
 	}
 
 
+	private boolean cancellaDistinta(Commessa c){
+		int n = JOptionPane.showConfirmDialog(null,"Sicuro di voler cancellare la distinta?"
+				,"Domanda",JOptionPane.YES_NO_OPTION);
+		if(n == 0){
+			Distinta d = DistintaFactory.getDistintaByORMID(c.getDistinta().getID());
+			c.setDistinta(null);
+			c.save();
+			if(d.getDdo() != null){
+				DocumentoOttimizzazione ddo = d.getDdo();
+				d.setDdo(null);
+				d.save();
+				ddo.delete();
+			}
+			RigheLavoro r = d.getLavori();
+			d.delete();
+			ArrayList<RigaLavoro> rr = new ArrayList<RigaLavoro>(r.righe.getCollection());
+			r.delete();
+			if(rr.size() != 0){
+				for(int i=0; i<rr.size(); ++i){
+					Geometria g = rr.get(i).getGeometria();
+					rr.get(i).delete();
+					g.delete();
+				}
+			}
+			JOptionPane.showMessageDialog(null, "Distinta Cancellata!");
+			return true;
+		}
+		else
+			return false;
+	}
 	/*
 	
 	
@@ -245,7 +256,6 @@ public class GProgLavori extends JPanel {
 		return b;
 	}
 	private void setB(JButton jButton) {
-		// TODO Auto-generated method stub
 		this.b = jButton;
 	}
 	public static JComponent getListbox() {

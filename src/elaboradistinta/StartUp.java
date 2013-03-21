@@ -53,12 +53,11 @@ public class StartUp {
 	public OCommessa c1;
 	public OCommessa c2;
 	public OCommessa c3;
+	//public Catalogo cat;
 	AOttimizzatoreStrategy optimizer;
 	
-	private StartUp() {
-		
-		
-		/*
+	private StartUp() throws PersistentException {
+	/*
 		PersistentTransaction t = elaboradistinta.model.CoedilPersistentManager.instance().getSession().beginTransaction();
 		try{
 		
@@ -110,10 +109,15 @@ public class StartUp {
 	catch (Exception e) {
 		t.rollback();
 	}
-		//Distinta d = DistintaFactory.getDistintaByORMID(1);
-		//d.setDdo(null);
-		//d.save();
 		*/
+		//d.save();
+
+		
+
+		
+		
+
+
 		
 	}
 	
