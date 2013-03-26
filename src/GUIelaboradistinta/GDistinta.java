@@ -21,6 +21,7 @@ import elaboradistinta.StartUp;
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.CoedilPersistentManager;
 import elaboradistinta.model.Distinta;
+import elaboradistinta.model.DocumentoOttimizzazione;
 import elaboradistinta.model.Geometria;
 import elaboradistinta.model.GeometriaFactory;
 import elaboradistinta.model.Item;
@@ -43,14 +44,16 @@ public class GDistinta {
 	/**
 	 * 
 	 */
-	Button save;
-	Button cancel;
-	Button nLine;
-	Button ottimizza;
-	Button visDdo;
-	JFrame f;
+	private Button save;
+	private Button cancel;
+	private Button nLine;
+	private Button ottimizza;
+	private Button visDdo;
+	private Button delDdo;
+	private JFrame f;
 	private static final long serialVersionUID = 1L;
-
+	private	JPanel t = new JPanel();
+	private	JPanel doc = new JPanel();
 
 	/**
 	 * Create the frame.
@@ -67,10 +70,10 @@ public class GDistinta {
 		f.getContentPane().setLayout(new BorderLayout(0, 0));
 //		String[] cl6 = { "Base", "Altezza", "Lunghezza", "Numero", "Capitello","TipoCap", "Note" };
 		//final GPanelDistinta t = new GPanelDistinta(makeVector(cl6), gch.getCommessaByCodiceInterno(index.toString()).getID());
-		final JPanel t = new JPanel();
+		
 		t.add(new JScrollPane(new GDatiDistintaTable(d)));
 		f.getContentPane().add(t);
-		final JPanel doc = new JPanel();
+		
 		
 		/**
 		 * Pulsante per salvare le modifica
@@ -78,40 +81,33 @@ public class GDistinta {
 		save = new Button("Save");
 		save.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				try {
-					PersistentTransaction t = CoedilPersistentManager.instance().getSession().beginTransaction();
-					t.commit();
-					JOptionPane.showMessageDialog(null,"Dati salvati correttamente");
-				} catch (PersistentException e) {
-					e.printStackTrace();
-				}
+				salvaModifiche(d);
 			}
 		});
 		
 		/**
 		 * Pulsante per annullare le modifiche
 		 */
-		cancel = new Button("Annulla");
+		cancel = new Button("Reset");
 		cancel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
+				GDatiDistintaModel m = getModel();
 				try {
 					int n = JOptionPane.showConfirmDialog(null,"Sicuro di voler annullare le modifiche?"
 							,"Domanda",JOptionPane.YES_NO_OPTION);
 					if(n == 0){
-						PersistentTransaction s = CoedilPersistentManager.instance().getSession().beginTransaction();
-						s.rollback();
-						JViewport viewport = ((JScrollPane) t.getComponent(0)).getViewport(); 
-						GDatiDistintaTable v = (GDatiDistintaTable) viewport.getView();
-						GDatiDistintaModel m = (GDatiDistintaModel) v.getModel();
-						PersistentSession sess = CoedilPersistentManager.instance().getSession(); 
-						for(int i=0; i<m.getModifiche().size(); ++i){
-							if(m.getModifiche().get(i) != null)
-								sess.refresh(m.getModifiche().get(i));
+						if(m.getModifiche().get(0).size() == 0 && m.getModifiche().get(1).size() == 0)
+							JOptionPane.showMessageDialog(null, "Nessuna modifica apportata");
+						else{
+							PersistentSession sess = CoedilPersistentManager.instance().getSession(); 
+							for(int i=0; i<m.getModifiche().get(0).size(); ++i){
+								if(m.getModifiche().get(0).get(i) != null)
+									sess.refresh(m.getModifiche().get(0).get(i));
+							}
+							m.refresh();
+							m.fireTableStructureChanged();
 						}
-						t.remove(0);
-						t.add(new JScrollPane(new GDatiDistintaTable(d)));
-						f.validate();
-						f.repaint();}
+					}
 				} catch (PersistentException e) {
 					e.printStackTrace();
 				}
@@ -120,18 +116,8 @@ public class GDistinta {
 		nLine = new Button("New line");
 		nLine.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				Geometria g = GeometriaFactory.createGeometria();
-				g.save();
-				RigaLavoro r = RigaLavoroFactory.createRigaLavoro();
-				r.setGeometria(g);
-				r.save();
-				d.getLavori().righe.add(r);
-				d.getLavori().save();
-				d.save();
-				t.remove(0);
-				t.add(new JScrollPane(new GDatiDistintaTable(d)));
-				f.validate();
-				f.repaint();
+				GDatiDistintaModel m = getModel();
+				new newLine(m,d);			
 			}
 		});
 		this.visDdo = new Button("Visualizza DDO");
@@ -144,13 +130,48 @@ public class GDistinta {
 		
 
 		this.ottimizza = new Button("Ottimizza");
+		this.delDdo = new Button("Cancella DDO");
+		this.delDdo.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				int n = JOptionPane.showConfirmDialog(null,"Sicuro di voler cancellare il DDO?"
+						,"Attenzione",JOptionPane.YES_NO_OPTION);
+				if(n == 0){
+					DocumentoOttimizzazione ddo = d.getDdo();
+					d.setDdo(null);
+					d.save();
+					ddo.delete();
+					nLine.setEnabled(true);
+					save.setEnabled(true);
+					cancel.setEnabled(true);
+					ottimizza.setEnabled(true);
+					delDdo.setVisible(false);
+					visDdo.setVisible(false);
+					JViewport viewport = ((JScrollPane) t.getComponent(0)).getViewport(); 
+					GDatiDistintaTable v = (GDatiDistintaTable) viewport.getView();
+					v.abilitaModifica();
+					f.validate();
+					f.repaint();
+				}
+			}
+		});
+		
 		
 		if(d.getDdo() != null){
 			ottimizza.setEnabled(false);
 			visDdo.setVisible(true);
+			nLine.setEnabled(false);
+			save.setEnabled(false);
+			cancel.setEnabled(false);
+			delDdo.setVisible(true);
+			JViewport viewport = ((JScrollPane) t.getComponent(0)).getViewport(); 
+			GDatiDistintaTable v = (GDatiDistintaTable) viewport.getView();
+			v.disabilitaModifica();
+			f.validate();
+			f.repaint();
 		}
 		else{
 			ottimizza.setEnabled(true);
+			delDdo.setVisible(false);
 			visDdo.setVisible(false);
 		}
 		//if (gch.getCommessaByCodiceInterno(index.toString()).getDistinta() == null)
@@ -160,9 +181,15 @@ public class GDistinta {
 				//gch.getCommessaByCodiceInterno(index.toString()).getOdistinta().creaDDO();
 				ODistinta o = new ODistinta(d);
 				o.creaDDO();
-				visDdo.setVisible(true);
 				ottimizza.setEnabled(false);
+				visDdo.setVisible(true);
 				nLine.setEnabled(false);
+				save.setEnabled(false);
+				cancel.setEnabled(false);
+				delDdo.setVisible(true);
+				JViewport viewport = ((JScrollPane) t.getComponent(0)).getViewport(); 
+				GDatiDistintaTable v = (GDatiDistintaTable) viewport.getView();
+				v.disabilitaModifica();
 				doc.validate();
 				doc.repaint();
 			}
@@ -173,8 +200,39 @@ public class GDistinta {
 		doc.add(nLine);
 		doc.add(ottimizza);
 		doc.add(visDdo);
+		doc.add(delDdo);
 
 		f.getContentPane().add(doc, BorderLayout.SOUTH);
 		f.setVisible(true);
+	}
+	
+	public GDatiDistintaModel getModel(){
+		JViewport viewport = ((JScrollPane) t.getComponent(0)).getViewport(); 
+		GDatiDistintaTable v = (GDatiDistintaTable) viewport.getView();
+		GDatiDistintaModel m = (GDatiDistintaModel) v.getModel();
+		return m;
+	}
+	
+	public void salvaModifiche(Distinta d){
+		GDatiDistintaModel m = getModel();
+			try {
+				PersistentTransaction t = CoedilPersistentManager.instance().getSession().beginTransaction();
+				for(int i=0; i<m.getModifiche().get(1).size(); ++i){
+					RigaLavoro r =  (RigaLavoro) m.getModifiche().get(1).get(i);
+					d.getLavori().righe.remove(r);
+					Geometria g = r.getGeometria();
+					r.delete();
+					g.delete();
+				}
+				m.setModifiche(new ArrayList<ArrayList<Object>>());
+				t.commit();
+				JOptionPane.showMessageDialog(null,"Modifiche salvate correttamente");
+			} catch (PersistentException e) {
+				e.printStackTrace();
+			}
+	}
+	
+	public void salvaInserimento(RigaLavoro r){
+		
 	}
 }
