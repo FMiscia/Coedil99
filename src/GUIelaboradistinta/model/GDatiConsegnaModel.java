@@ -35,8 +35,6 @@ public class GDatiConsegnaModel extends AbstractTableModel {
 	public GDatiConsegnaModel() {
 		this.colonne = new String[] {"Data prima consegna",	"Ritardo consegna" };
 		GestisciClienteHandler gch = GestisciClienteHandler.getInstance();
-		//GestisciOrdineHandler goh = GestisciOrdineHandler.getInstance();
-		//GestisciCommessaHandler gcoh = GestisciCommessaHandler.getInstance();
 
 		ArrayList<Cliente> c = new ArrayList<Cliente>(gch.getClienti());
 		for(int k=0; k<c.size(); ++k){

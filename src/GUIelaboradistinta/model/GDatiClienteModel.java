@@ -1,21 +1,15 @@
 package GUIelaboradistinta.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import javax.swing.table.AbstractTableModel;
 
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
 import elaboradistinta.controller.GestisciClienteHandler;
-import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.controller.GestisciOrdineHandler;
 import elaboradistinta.model.Cliente;
-import elaboradistinta.model.ClienteFactory;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Ordine;
-import elaboradistinta.model.OrdineFactory;
 
 public class GDatiClienteModel extends AbstractTableModel {
 
@@ -38,8 +32,6 @@ public class GDatiClienteModel extends AbstractTableModel {
 	public GDatiClienteModel(){
 		
 		GestisciClienteHandler gch = GestisciClienteHandler.getInstance();
-		//GestisciOrdineHandler goh = GestisciOrdineHandler.getInstance();
-		//GestisciCommessaHandler gcoh = GestisciCommessaHandler.getInstance();
 
 		ArrayList<Cliente> c = new ArrayList<Cliente>(gch.getClienti());
 		for(int k=0; k<c.size(); ++k){

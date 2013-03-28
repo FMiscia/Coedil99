@@ -1,14 +1,11 @@
 package GUIelaboradistinta.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import javax.swing.table.AbstractTableModel;
 
 import elaboradistinta.controller.GestisciClienteHandler;
 import elaboradistinta.model.Cliente;
 import elaboradistinta.model.Commessa;
-import elaboradistinta.model.CommessaFactory;
 import elaboradistinta.model.Ordine;
 
 public class GDatiCodiceInternoModel extends AbstractTableModel {
@@ -21,8 +18,6 @@ public class GDatiCodiceInternoModel extends AbstractTableModel {
 	public GDatiCodiceInternoModel(){
 		this.colonna = new String[]{"Codice Interno"};
 		GestisciClienteHandler gch = GestisciClienteHandler.getInstance();
-		//GestisciOrdineHandler goh = GestisciOrdineHandler.getInstance();
-		//GestisciCommessaHandler gcoh = GestisciCommessaHandler.getInstance();
 
 		ArrayList<Cliente> c = new ArrayList<Cliente>(gch.getClienti());
 		for(int k=0; k<c.size(); ++k){

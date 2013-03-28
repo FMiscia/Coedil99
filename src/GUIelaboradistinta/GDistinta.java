@@ -5,33 +5,23 @@ import java.awt.Button;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Vector;
+
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JViewport;
 import javax.swing.border.EmptyBorder;
 
 
-import elaboradistinta.StartUp;
-import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.CoedilPersistentManager;
 import elaboradistinta.model.Distinta;
 import elaboradistinta.model.DocumentoOttimizzazione;
 import elaboradistinta.model.Geometria;
-import elaboradistinta.model.GeometriaFactory;
-import elaboradistinta.model.Item;
 import elaboradistinta.model.RigaLavoro;
-import elaboradistinta.model.RigaLavoroFactory;
 import elaboradistinta.operation.ODistinta;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-
-
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.PersistentTransaction;
@@ -51,7 +41,6 @@ public class GDistinta {
 	private Button visDdo;
 	private Button delDdo;
 	private JFrame f;
-	private static final long serialVersionUID = 1L;
 	private	JPanel t = new JPanel();
 	private	JPanel doc = new JPanel();
 
@@ -60,17 +49,11 @@ public class GDistinta {
 	 */
 	public GDistinta(final Distinta d,final String codice) {
 
-		//JOptionPane.showMessageDialog(null, index.toString() );
-		//final StartUp s = StartUp.getInstance();
-		//final GestisciCommessaHandler gch = GestisciCommessaHandler.getInstance();
 		f = new JFrame("Distinta "+ codice);
 		f.setResizable(false);
 		f.setBounds(100, 100, 600, 350);
 		((JComponent) f.getContentPane()).setBorder(new EmptyBorder(5, 5, 5, 5));
 		f.getContentPane().setLayout(new BorderLayout(0, 0));
-//		String[] cl6 = { "Base", "Altezza", "Lunghezza", "Numero", "Capitello","TipoCap", "Note" };
-		//final GPanelDistinta t = new GPanelDistinta(makeVector(cl6), gch.getCommessaByCodiceInterno(index.toString()).getID());
-		
 		t.add(new JScrollPane(new GDatiDistintaTable(d)));
 		f.getContentPane().add(t);
 		
@@ -117,14 +100,14 @@ public class GDistinta {
 		nLine.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				GDatiDistintaModel m = getModel();
-				new newLine(m,d);			
+				new newLine(m,d);
 			}
 		});
 		this.visDdo = new Button("Visualizza DDO");
 		this.visDdo.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				f.setVisible(false);
-				final GDocOtt frameDocOtt = new GDocOtt(d,codice);
+				new GDocOtt(d,codice);
 			}
 		});
 		
@@ -174,11 +157,9 @@ public class GDistinta {
 			delDdo.setVisible(false);
 			visDdo.setVisible(false);
 		}
-		//if (gch.getCommessaByCodiceInterno(index.toString()).getDistinta() == null)
-			//this.ottimizza.setVisible(false);
+		
 		this.ottimizza.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				//gch.getCommessaByCodiceInterno(index.toString()).getOdistinta().creaDDO();
 				ODistinta o = new ODistinta(d);
 				o.creaDDO();
 				ottimizza.setEnabled(false);

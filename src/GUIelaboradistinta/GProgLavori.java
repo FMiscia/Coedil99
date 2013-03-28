@@ -1,20 +1,12 @@
 package GUIelaboradistinta;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Vector;
-
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,11 +19,8 @@ import javax.swing.SwingConstants;
 
 import GUIelaboradistinta.table.*;
 import elaboradistinta.StartUp;
-import elaboradistinta.controller.GestisciClienteHandler;
 import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.controller.GestisciOrdineHandler;
 import elaboradistinta.model.Commessa;
-import elaboradistinta.model.CommessaFactory;
 import elaboradistinta.model.Distinta;
 import elaboradistinta.model.DistintaFactory;
 import elaboradistinta.model.DocumentoOttimizzazione;
@@ -39,9 +28,6 @@ import elaboradistinta.model.Geometria;
 import elaboradistinta.model.RigaLavoro;
 import elaboradistinta.model.RigheLavoro;
 import elaboradistinta.model.RigheLavoroFactory;
-import elaboradistinta.operation.ODistinta;
-import elaboradistinta.operation.ODocumentoOttimizzazione;
-import elaboradistinta.operation.ORigheLavoro;
 
 public class GProgLavori extends JPanel {
 
@@ -53,11 +39,9 @@ public class GProgLavori extends JPanel {
 
 	public GProgLavori() {
 		super(new BorderLayout());
-		final StartUp s = StartUp.getInstance();
+		//final StartUp s = 
+		StartUp.getInstance();
 		
-		//GestisciClienteHandler gch = GestisciClienteHandler.getInstance();
-		//GestisciOrdineHandler goh = GestisciOrdineHandler.getInstance();
-		//GestisciCommessaHandler gcoh = GestisciCommessaHandler.getInstance();
 		
 		
 		tabbedPane = new JTabbedPane();
@@ -77,9 +61,11 @@ public class GProgLavori extends JPanel {
 		setB(new JButton("Crea Distinta"));
 		final JButton deldist = new JButton("Elimina Distinta");
 		final JPanel bottoni = new JPanel(new BorderLayout(0, 0));
+		bottoni.setPreferredSize(new Dimension(this.getWidth(),30));
 		bottoni.add(getB(), BorderLayout.WEST);
 		bottoni.add(deldist, BorderLayout.EAST);
-		bottoni.getComponent(1).setVisible(false);
+		getB().setVisible(false);
+		deldist.setVisible(false);
 		
 		
 		
@@ -91,17 +77,24 @@ public class GProgLavori extends JPanel {
 		
 		this.add(tabbedPane, BorderLayout.CENTER);
 		this.add(cpEst, BorderLayout.WEST);
+		this.add(bottoni, BorderLayout.SOUTH);
+		//bottoni.setVisible(true);
+		
+		
 		//Click sulla singola riga dei codici interni
 		codiciInterni.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				String codice = codiciInterni.getValueAt(codiciInterni.rowAtPoint(e.getPoint()), 0).toString();
-				cpEst.add(bottoni, BorderLayout.SOUTH);
+				//add(bottoni, BorderLayout.SOUTH);
+				bottoni.setVisible(true);
 				if(checkDistinta(codice)){
 					getB().setText("Visualizza Distinta");	
+					getB().setVisible(true);
 					deldist.setVisible(true);
 				}
 				else{
 					getB().setText("Crea Distinta");
+					getB().setVisible(true);
 					deldist.setVisible(false);
 				}
 				validate();
@@ -116,10 +109,11 @@ public class GProgLavori extends JPanel {
 				GestisciCommessaHandler gch = GestisciCommessaHandler.getInstance();
 				Commessa c = gch.getCommessaByCodiceInterno(codiciInterni.getValueAt(index, 0).toString());
 				if((c != null) && (c.getDistinta() != null) ){
-					final GDistinta frameDist = new GDistinta(c.getDistinta(),c.getCodiceInterno());
+					new GDistinta(c.getDistinta(),c.getCodiceInterno());
 				}
 				else{
 					getB().setText("Visualizza Distinta");
+					getB().setVisible(true);
 					deldist.setVisible(true);
 					RigheLavoro r = RigheLavoroFactory.createRigheLavoro();
 					r.save();
@@ -129,7 +123,7 @@ public class GProgLavori extends JPanel {
 					c.setDistinta(d);
 					c.save();
 					gch.associaDistinta(d, c.getID());
-					final GDistinta frameDist = new GDistinta(d,c.getCodiceInterno());
+					new GDistinta(d,c.getCodiceInterno());
 				}
 				validate();
 				repaint();
@@ -167,6 +161,7 @@ public class GProgLavori extends JPanel {
 				Commessa c = gch.getCommessaByCodiceInterno(codice);
 				if(cancellaDistinta(c)){
 					getB().setText("Crea Distinta");
+					getB().setVisible(true);
 					deldist.setVisible(false);
 				}	
 				validate();
@@ -183,7 +178,6 @@ public class GProgLavori extends JPanel {
 			return gch.getCommessaByCodiceInterno(codice).getDistinta() != null;
 		else
 			return false;
-		//
 	}
 
 
@@ -217,43 +211,7 @@ public class GProgLavori extends JPanel {
 		else
 			return false;
 	}
-	/*
 	
-	
-	protected Vector<String> makeVector( String[] cl) {
-
-		Vector<String> column  = new Vector<String>(); 
-	    for(int i=0; i<cl.length; ++i)
-	    	column.add(cl[i]);
-	    
-	    return column;
-
-	}
-	
-	
-	public static JComponent getPanel1() {
-		return panel1;
-	}
-	
-	public static JComponent getPanel2() {
-		return panel2;
-	}
-
-
-	public static JComponent getPanel3() {
-		return panel3;
-	}
-
-
-	public static JComponent getPanel4() {
-		return panel4;
-	}
-
-
-	public static JComponent getPanel5() {
-		return panel5;
-	}
-*/
 	public static JButton getB() {
 		return b;
 	}

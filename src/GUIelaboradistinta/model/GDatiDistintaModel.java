@@ -68,7 +68,8 @@ public class GDatiDistintaModel extends AbstractTableModel implements ActionList
 		cancel.addActionListener(this);
 		cancel.setName(String.valueOf(r.getID()));
 		this.dati.add(row);
-		fireTableStructureChanged();
+		//fireTableStructureChanged();
+		this.fireTableRowsInserted(0, this.getRowCount());
 	}
 	
 	@Override
@@ -78,8 +79,8 @@ public class GDatiDistintaModel extends AbstractTableModel implements ActionList
 
 	@Override
 	public boolean isCellEditable(int riga, int colonna) {
-		//if(this.dati.get(riga).getCapitello() == false && colonna == 5)
-		//	return false;
+		if( ((RigaLavoro) this.dati.get(riga).get(0)).getCapitello() == false && colonna == 5)
+			return false;
 		//if(colonna == 7)
 		//	return false;
 		return true;
