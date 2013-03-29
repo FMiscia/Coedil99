@@ -34,7 +34,7 @@ public class newLine {
 	private JTextField altezza;
 	private JTextField lunghezza;
 	private JTextField numero;
-	private JComboBox<String> capitello;
+	private JComboBox capitello;
 	private JTextField tipo;
 	private JEditorPane note;
 	/**
@@ -61,7 +61,7 @@ public class newLine {
 		numero = new JTextField();
 		numero.setColumns(3);
 		JLabel num = new JLabel("Numero");
-		capitello = new JComboBox<String>();
+		capitello = new JComboBox();
 		capitello.addItem("Si");
 		capitello.addItem("No");
 		JLabel t = new JLabel("Tipo Capitello");

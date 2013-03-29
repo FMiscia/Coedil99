@@ -20,7 +20,7 @@ public class GDatiDistintaTable extends JTable {
 		GDatiDistintaModel dati = new GDatiDistintaModel(d);
 		this.setModel(dati);
 		TableColumn capitello = this.getColumnModel().getColumn(4);
-		JComboBox<String> comboBox = new JComboBox<String>();
+		JComboBox comboBox = new JComboBox();
 		comboBox.addItem("Si");
 		comboBox.addItem("No");
 		capitello.setCellEditor(new DefaultCellEditor(comboBox));
