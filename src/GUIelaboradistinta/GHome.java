@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Button;
@@ -14,7 +16,7 @@ import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Label;
-
+import com.thehowtotutorial.splashscreen.JSplash;
 import GUIelaboradistinta.GProgLavori;
 
 
@@ -37,16 +39,30 @@ public class GHome {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GHome window = new GHome();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+		try {
+			final JSplash splash = new JSplash( GHome.class.getResource("image/coedil.png") , true, true, false, "V0.1");
+			splash.splashOn();
+			splash.setProgress(20, "Coedil99: Loading...");
+			Thread.sleep(1000);
+			splash.setProgress(40, "Coedil99: Loading...");
+			Thread.sleep(1000);
+			splash.setProgress(60, "Coedil99: Loading...");
+			Thread.sleep(1000);
+			splash.setProgress(80, "Coedil99: Loading...");
+			Thread.sleep(1000);
+			splash.setProgress(100, "Coedil99: Starting");
+			Thread.sleep(1000);
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+						GHome window = new GHome();
+						window.frame.setVisible(true);
+						splash.splashOff();
 				}
-			}
-		});
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -62,6 +78,7 @@ public class GHome {
 	private void initialize() {
 		frame = new JFrame("Coedil99");
 		frame.setResizable(false);
+		frame.setIconImage(new ImageIcon(GHome.class.getResource("image/coedilIco.png")).getImage());
 		frame.setBounds(100, 100, 549, 326);
 		Toolkit tk = Toolkit.getDefaultToolkit(); 
 		
