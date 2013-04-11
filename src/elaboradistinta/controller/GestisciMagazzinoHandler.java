@@ -5,13 +5,12 @@ import java.util.List;
 import java.util.ListIterator;
 
 
-import elaboradistinta.ICommessaListener;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.DocumentoOttimizzazione;
 import elaboradistinta.model.Item;
 import elaboradistinta.model.Magazzino;
 
-public class GestisciMagazzinoHandler implements ICommessaListener {
+public class GestisciMagazzinoHandler {
 
 	List<Magazzino> magazzino;
 	private static GestisciMagazzinoHandler instance = null;
@@ -48,12 +47,6 @@ public class GestisciMagazzinoHandler implements ICommessaListener {
 	 */
 	public void update(DocumentoOttimizzazione ddo) {
 		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void onPropertyEvent(Commessa commessa, String value) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	/*
