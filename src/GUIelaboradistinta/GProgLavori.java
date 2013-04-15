@@ -28,6 +28,7 @@ import elaboradistinta.model.Geometria;
 import elaboradistinta.model.RigaLavoro;
 import elaboradistinta.model.RigheLavoro;
 import elaboradistinta.model.RigheLavoroFactory;
+import java.awt.FlowLayout;
 
 public class GProgLavori extends JPanel {
 
@@ -60,10 +61,13 @@ public class GProgLavori extends JPanel {
 		listbox.setPreferredSize(new Dimension(200, this.getHeight()));
 		setB(new JButton("Crea Distinta"));
 		final JButton deldist = new JButton("Elimina Distinta");
-		final JPanel bottoni = new JPanel(new BorderLayout(0, 0));
+		deldist.setBounds(150, 0, 130, 30);
+		getB().setBounds(0, 0, 150, 30);
+		final JPanel bottoni = new JPanel();
 		bottoni.setPreferredSize(new Dimension(this.getWidth(),30));
-		bottoni.add(getB(), BorderLayout.WEST);
-		bottoni.add(deldist, BorderLayout.EAST);
+		bottoni.setLayout(null);
+		bottoni.add(getB());
+		bottoni.add(deldist);
 		getB().setVisible(false);
 		deldist.setVisible(false);
 		

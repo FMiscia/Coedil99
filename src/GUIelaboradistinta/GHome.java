@@ -98,7 +98,7 @@ public class GHome {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout());
-		
+		/*
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(0, 0, 543, 298);
@@ -107,10 +107,14 @@ public class GHome {
 		panel.setLayout(new BorderLayout());
 		button.setBounds(153, 135, 139, 22);
 		panel.add(button, BorderLayout.NORTH  );
-		
+		*/
 		
 		
 		pl = new GProgLavori();
+		pl.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+		frame.getContentPane().add(pl);
+		frame.validate();
+		frame.repaint();
 		
 		ordineG.setBounds(10, 57, 300, 22);
 		dataI.setBounds(10, 106, 300, 22);
@@ -121,7 +125,7 @@ public class GHome {
 		lblDataInizioCommessa.setBounds(10, 86, 300, 14);
 		lblDataFineCommessa.setText("Data fine Commessa");
 		lblDataFineCommessa.setBounds(10, 130, 300, 14);
-		
+		/*
 		frame.addComponentListener(new ComponentListener(){
 
 			@Override
@@ -151,7 +155,7 @@ public class GHome {
 			}
 			
 		});
-			
+		*/	
 		
 		button.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
