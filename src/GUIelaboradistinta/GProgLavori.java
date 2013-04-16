@@ -58,7 +58,7 @@ public class GProgLavori extends JPanel {
 		text.setText("");
 		text.setHorizontalAlignment(SwingConstants.CENTER);
 		text.setPreferredSize(new Dimension(200, 25));
-		listbox.setPreferredSize(new Dimension(200, this.getHeight()));
+		listbox.setPreferredSize(new Dimension(280, this.getHeight()));
 		setB(new JButton("Crea Distinta"));
 		final JButton deldist = new JButton("Elimina Distinta");
 		deldist.setBounds(150, 0, 130, 30);
