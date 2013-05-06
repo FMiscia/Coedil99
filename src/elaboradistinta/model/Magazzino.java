@@ -36,7 +36,7 @@ public class Magazzino {
 		}
 	}
 	
-	public HashMap<Item,Integer> getItems(){
+	public java.util.HashMap<Item, Integer> getItems(){
 		return this.items;
 	}
 	

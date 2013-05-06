@@ -171,6 +171,15 @@ public class GHome {
 
 
 	}
+
+	/**
+	 * 
+	 * @param c
+	 * @return 
+	 */
+	public static void monta(java.awt.Component c) {
+		throw new UnsupportedOperationException();
+	}
 //	public static void monta( Component c ){
 //		frame.remove(pl);
 //		c.setBounds(0, 0, frame.getWidth(), frame.getHeight());

@@ -366,8 +366,7 @@ public class Distinta {
 	}
 	
 	public ODocumentoOttimizzazione getOddo() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return new ODocumentoOttimizzazione(this.ddo);
 	}
 	
 	public String toString() {

@@ -34,7 +34,7 @@ public class newLine {
 	private JTextField altezza;
 	private JTextField lunghezza;
 	private JTextField numero;
-	private JComboBox capitello;
+	private javax.swing.JComboBox<String> capitello;
 	private JTextField tipo;
 	private JEditorPane note;
 	/**

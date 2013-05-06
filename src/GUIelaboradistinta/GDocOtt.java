@@ -20,6 +20,7 @@ public class GDocOtt {
 	 */
 	Button back ;
 	JFrame f;
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Create the frame.
 	 */
@@ -50,6 +51,15 @@ public class GDocOtt {
 		doc.add(back);
 		f.add(doc,BorderLayout.SOUTH);
 		f.setVisible(true);
+	}
+
+	/**
+	 * Create the frame.
+	 * @param index
+	 * @return 
+	 */
+	public GDocOtt(final int index) {
+		throw new UnsupportedOperationException();
 	}
 	
 }

@@ -35,8 +35,13 @@ public class GProgLavori extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static JTabbedPane tabbedPane;
-	private static JButton b;
 	private static JScrollPane listbox;
+	private static javax.swing.JComponent panel1;
+	private static javax.swing.JComponent panel2;
+	private static javax.swing.JComponent panel3;
+	private static javax.swing.JComponent panel4;
+	private static javax.swing.JComponent panel5;
+	private static javax.swing.JButton b;
 
 	public GProgLavori() {
 		super(new BorderLayout());
@@ -46,7 +51,8 @@ public class GProgLavori extends JPanel {
 		
 		
 		tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("Dati Cliente Consegna",new JScrollPane(new GDatiClienteTable()));
+		JScrollPane scrollPane = new JScrollPane(new GDatiClienteTable());
+		tabbedPane.addTab("Dati Cliente Consegna",scrollPane);
 		tabbedPane.addTab("Dati Aziendali",new JScrollPane(new GDatiAziendaliTable()));
 		tabbedPane.addTab("Dati Sviluppo Consegna",new JScrollPane(new GDatiSviluppoConsegnaTable()));
 		tabbedPane.addTab("Dati Produzione Consegna",new JScrollPane(new GDatiProduzioneTable()));
@@ -59,16 +65,16 @@ public class GProgLavori extends JPanel {
 		text.setHorizontalAlignment(SwingConstants.CENTER);
 		text.setPreferredSize(new Dimension(200, 25));
 		listbox.setPreferredSize(new Dimension(280, this.getHeight()));
-		setB(new JButton("Crea Distinta"));
+		final JButton creadist = new JButton("Crea Distinta");
 		final JButton deldist = new JButton("Elimina Distinta");
-		deldist.setBounds(150, 0, 130, 30);
-		getB().setBounds(0, 0, 150, 30);
+		deldist.setBounds(132, 0, 144, 30);
+		creadist.setBounds(0, 0, 127, 30);
 		final JPanel bottoni = new JPanel();
 		bottoni.setPreferredSize(new Dimension(this.getWidth(),30));
 		bottoni.setLayout(null);
-		bottoni.add(getB());
+		bottoni.add(creadist);
 		bottoni.add(deldist);
-		getB().setVisible(false);
+		creadist.setVisible(false);
 		deldist.setVisible(false);
 		
 		
@@ -92,13 +98,13 @@ public class GProgLavori extends JPanel {
 				//add(bottoni, BorderLayout.SOUTH);
 				bottoni.setVisible(true);
 				if(checkDistinta(codice)){
-					getB().setText("Visualizza Distinta");	
-					getB().setVisible(true);
+					creadist.setText("Visualizza Distinta");	
+					creadist.setVisible(true);
 					deldist.setVisible(true);
 				}
 				else{
-					getB().setText("Crea Distinta");
-					getB().setVisible(true);
+					creadist.setText("Crea Distinta");
+					creadist.setVisible(true);
 					deldist.setVisible(false);
 				}
 				validate();
@@ -107,7 +113,7 @@ public class GProgLavori extends JPanel {
 		});
 		
 		//Click sul pulsante crea/visualizza
-		getB().addMouseListener(new MouseAdapter() {			
+		creadist.addMouseListener(new MouseAdapter() {			
 			public void mouseClicked(MouseEvent evt) {
 				int index = codiciInterni.getSelectedRow();
 				GestisciCommessaHandler gch = GestisciCommessaHandler.getInstance();
@@ -116,8 +122,8 @@ public class GProgLavori extends JPanel {
 					new GDistinta(c.getDistinta(),c.getCodiceInterno());
 				}
 				else{
-					getB().setText("Visualizza Distinta");
-					getB().setVisible(true);
+					creadist.setText("Visualizza Distinta");
+					creadist.setVisible(true);
 					deldist.setVisible(true);
 					RigheLavoro r = RigheLavoroFactory.createRigheLavoro();
 					r.save();
@@ -164,8 +170,8 @@ public class GProgLavori extends JPanel {
 				GestisciCommessaHandler gch = GestisciCommessaHandler.getInstance();
 				Commessa c = gch.getCommessaByCodiceInterno(codice);
 				if(cancellaDistinta(c)){
-					getB().setText("Crea Distinta");
-					getB().setVisible(true);
+					creadist.setText("Crea Distinta");
+					creadist.setVisible(true);
 					deldist.setVisible(false);
 				}	
 				validate();
@@ -216,14 +222,88 @@ public class GProgLavori extends JPanel {
 			return false;
 	}
 	
-	public static JButton getB() {
-		return b;
-	}
-	private void setB(JButton jButton) {
-		this.b = jButton;
-	}
 	public static JComponent getListbox() {
 		return listbox;
+	}
+
+	public javax.swing.JButton getB() {
+		return this.b;
+	}
+
+	/**
+	 * 
+	 * @param cen0
+	 * @return 
+	 */
+	public void agganciaScroll(final javax.swing.JScrollPane cen0) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param a
+	 * @return 
+	 */
+	protected javax.swing.JComponent makeTextPanel(int a) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param cl
+	 * @return 
+	 */
+	protected java.util.Vector<String> makeVector(String[] cl) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @return 
+	 */
+	public static javax.swing.JComponent getPanel1() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @return 
+	 */
+	public static javax.swing.JComponent getPanel2() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @return 
+	 */
+	public static javax.swing.JComponent getPanel3() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @return 
+	 */
+	public static javax.swing.JComponent getPanel4() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @return 
+	 */
+	public static javax.swing.JComponent getPanel5() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param jButton
+	 * @return 
+	 */
+	private void setB(javax.swing.JButton jButton) {
+		throw new UnsupportedOperationException();
 	}
 
 

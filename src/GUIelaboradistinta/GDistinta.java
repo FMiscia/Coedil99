@@ -43,6 +43,10 @@ public class GDistinta {
 	private JFrame f;
 	private	JPanel t = new JPanel();
 	private	JPanel doc = new JPanel();
+	private java.awt.Button addRigaLavoro;
+	private javax.swing.JScrollPane scrollPane;
+	private javax.swing.JTable table;
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Create the frame.
@@ -215,5 +219,31 @@ public class GDistinta {
 	
 	public void salvaInserimento(RigaLavoro r){
 		
+	}
+
+	/**
+	 * Create the panel.
+	 * @return 
+	 */
+	public GDistinta() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Create the frame.
+	 * @param index
+	 * @return 
+	 */
+	public GDistinta(final int index) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param cl
+	 * @return 
+	 */
+	protected java.util.Vector<String> makeVector(String[] cl) {
+		throw new UnsupportedOperationException();
 	}
 }
