@@ -1,14 +1,19 @@
 package GUIelaborazione2;
 
 import java.awt.Color;
+import java.awt.Cursor;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import javax.swing.UIManager;
 
+import elaboradistinta.model.Cliente;
+import elaboradistinta.model.Commessa;
+import elaboradistinta.model.Ordine;
+import java.awt.Rectangle;
+
+@SuppressWarnings("serial")
 public class RiquadroCodiceInterno extends JPanel {
 	
 	private JLabel scadenza;
@@ -16,40 +21,43 @@ public class RiquadroCodiceInterno extends JPanel {
 	private JLabel cliente;
 	
 	public RiquadroCodiceInterno(){
-		this.setSize(200,60);
-		this.setBackground(Color.WHITE);
+		setBounds(new Rectangle(0, 0, 0, 0));
+		this.setSize(200,59);
+		this.setBackground(new Color(30, 144, 255));
 		this.setBorder(new LineBorder(Color.BLACK));
+		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(null);
 		
-		scadenza = new JLabel("13/12/2013");
+		scadenza = new JLabel();
 		scadenza.setHorizontalAlignment(SwingConstants.CENTER);
 		scadenza.setHorizontalTextPosition(SwingConstants.LEADING);
-		scadenza.setBounds(125, 30, 75, 30);
+		scadenza.setBounds(100, 30, 100, 30);
 		scadenza.setBorder(new LineBorder(Color.BLACK));
 		
-		codiceInterno = new JLabel("12-34-5678");
+		codiceInterno = new JLabel();
 		codiceInterno.setHorizontalAlignment(SwingConstants.CENTER);
-		codiceInterno.setBounds(125, 0, 75, 30);
+		codiceInterno.setBounds(0, 30, 100, 30);
 		codiceInterno.setBorder(new LineBorder(Color.BLACK));
 		
-		
-		cliente = new JLabel("Asdrubale");
-		cliente.setBorder(new LineBorder(new Color(0, 0, 0)));
+		cliente = new JLabel();
 		cliente.setHorizontalAlignment(SwingConstants.CENTER);
-		cliente.setBounds(0, 0, 125, 60);
-		JButton b = new JButton();
-		b.setBackground(new Color(30, 144, 255));
-		b.setFocusPainted(false);
-		b.setBorderPainted(false);
-		b.setBounds(0, 0, 125, 60);
-		b.setText(cliente.getText());
-		b.setHorizontalTextPosition(SwingConstants.LEFT);
+		cliente.setHorizontalTextPosition(SwingConstants.CENTER);
+		cliente.setBorder(new LineBorder(new Color(0, 0, 0)));
+		cliente.setBounds(0, 0, 200, 30);
 		
-		//add(cliente);
+		add(cliente);
 		add(scadenza);
 		add(codiceInterno);
-		add(b);
 				
+	}
+	
+	public void load(Cliente c, Ordine o, Commessa cc){
+		cliente.setText(c.getName());
+		if(o.getDataScadenza() == null)
+			scadenza.setText("--/--/----");
+		else
+			scadenza.setText(o.getDataScadenza().toString());
+		codiceInterno.setText(cc.getCodiceInterno());
 	}
 
 }
