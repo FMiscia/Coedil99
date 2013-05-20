@@ -1,30 +1,16 @@
 package GUIelaborazione2;
 
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JButton;
-import javax.swing.UIManager;
-import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
 import java.awt.Component;
-import java.awt.Insets;
 import java.awt.ComponentOrientation;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
-import java.awt.Dimension;
-import javax.swing.JLayeredPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
-import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
+import java.awt.Insets;
 
-import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JToolBar;
+import javax.swing.UIManager;
 
 @SuppressWarnings("serial")
 public class RiquadroPlico extends JPanel {
@@ -53,6 +39,9 @@ public class RiquadroPlico extends JPanel {
 
 		JButton btnNewButton_3 = new JButton("New button");
 		toolBar.add(btnNewButton_3);
+		
+		JPanel plico = new JPanel();
+		add(plico, BorderLayout.CENTER);
 
 
 	}
