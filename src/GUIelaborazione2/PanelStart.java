@@ -1,6 +1,7 @@
 package GUIelaborazione2;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -19,10 +20,11 @@ public class PanelStart extends JPanel{
     }
 private void initUI(){
    
-    this.setLayout( new BorderLayout() );
+    this.setLayout( new FlowLayout() );
 
-        JButton plButton = new JButton("Programma Lavori(contenitore)");
+        JButton plButton = new JButton("Programma Lavori");
         plButton.setToolTipText("Programma Lavori");
+        plButton.setSize(200, 200);
         
         
 
@@ -35,7 +37,7 @@ private void initUI(){
 
 
         
-        this.add(plButton, BorderLayout.NORTH);
+        this.add(plButton);
         
     }
 } 
