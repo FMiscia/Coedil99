@@ -1,11 +1,14 @@
 package GUIelaborazione2;
 
-import javax.swing.JPanel;
-
 public class PlicoDistinta extends Plico{
 
+	
+	private RigaDistinta rd = new RigaDistinta();
+	
 	public PlicoDistinta(){
-		
+
+		this.add(rd);
+
 	}
 
 	@Override
