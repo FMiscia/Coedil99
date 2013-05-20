@@ -15,10 +15,16 @@ import java.awt.Dimension;
 import javax.swing.JLayeredPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class RiquadroPlico extends JPanel {
@@ -58,11 +64,23 @@ public class RiquadroPlico extends JPanel {
 		JPanel plico = new JPanel();
 		plico.setBounds(0, 0, 105, 258);
 		scrollPane.setViewportView(plico);
-		plico.setLayout(null);
 		
-		JPanel DatiClienteConsegna = new JPanel();
-		DatiClienteConsegna.setBounds(0, 30, 448, 60);
+		final JPanel DatiClienteConsegna = new JPanel();
+		DatiClienteConsegna.setPreferredSize(new Dimension(350, 80));
+		DatiClienteConsegna.setBorder(new TitledBorder("Dati Cliente e Consegna"));
+		DatiClienteConsegna.addMouseListener(new MouseAdapter() {
+			  public void mouseClicked(MouseEvent arg0){
+				  if(DatiClienteConsegna.getHeight() == 80 )
+					  DatiClienteConsegna.setSize(DatiClienteConsegna.getWidth(),20);
+				  else
+					  DatiClienteConsegna.setSize(DatiClienteConsegna.getWidth(),80);
+			  }
+		});
+		FlowLayout fl_plico = new FlowLayout(FlowLayout.LEFT, 10, 10);
+		plico.setLayout(fl_plico);
+		DatiClienteConsegna.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		plico.add(DatiClienteConsegna);
+		
 		GridBagLayout gbl_DatiClienteConsegna = new GridBagLayout();
 		gbl_DatiClienteConsegna.columnWidths = new int[]{0, 0};
 		gbl_DatiClienteConsegna.rowHeights = new int[]{0, 0, 0, 0};
@@ -91,7 +109,7 @@ public class RiquadroPlico extends JPanel {
 		DatiClienteConsegna.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		JPanel DatiAziendali = new JPanel();
-		DatiAziendali.setBounds(0, 120, 448, 195);
+		DatiAziendali.setPreferredSize(new Dimension(50, 100));
 		plico.add(DatiAziendali);
 		GridBagLayout gbl_DatiAziendali = new GridBagLayout();
 		gbl_DatiAziendali.columnWidths = new int[]{0, 0};
@@ -169,10 +187,7 @@ public class RiquadroPlico extends JPanel {
 		gbc_lblNewLabel_11.gridy = 9;
 		DatiAziendali.add(lblNewLabel_11, gbc_lblNewLabel_11);
 		
-		JLabel lblDatiClienteE = new JLabel("Dati Cliente e Consegna");
-		lblDatiClienteE.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDatiClienteE.setBounds(98, 12, 242, 15);
-		plico.add(lblDatiClienteE);
+		
 
 	}
 }
