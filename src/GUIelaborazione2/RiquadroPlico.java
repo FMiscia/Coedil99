@@ -40,7 +40,7 @@ public class RiquadroPlico extends JPanel {
 		JButton btnNewButton_3 = new JButton("New button");
 		toolBar.add(btnNewButton_3);
 		
-		JPanel plico = new JPanel();
+		PlicoCommessa plico = new PlicoCommessa();
 		add(plico, BorderLayout.CENTER);
 
 
