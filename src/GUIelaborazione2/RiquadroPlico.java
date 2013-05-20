@@ -30,10 +30,6 @@ public class RiquadroPlico extends JPanel {
 
 		setBackground(UIManager.getColor("Panel.background"));
 		setLayout(new BorderLayout());
-		
-				this.plico = new JPanel();
-				plico.setBackground(new Color(222, 184, 135));
-				add(plico, BorderLayout.CENTER);
 
 		JToolBar toolBar = new JToolBar();
 		add(toolBar, BorderLayout.NORTH);
@@ -55,6 +51,10 @@ public class RiquadroPlico extends JPanel {
 
 		JButton btnNewButton_3 = new JButton("New button");
 		toolBar.add(btnNewButton_3);
+
+		this.plico = new JPanel();
+		plico.setBackground(new Color(222, 184, 135));
+		add(plico, BorderLayout.CENTER);
 
 		JPanel clipPanel = new JPanel();
 		clipPanel.setBorder(new LineBorder(new Color(160, 82, 45), 2));
@@ -78,21 +78,42 @@ public class RiquadroPlico extends JPanel {
 			}
 		});
 
-		JButton addButton = new JButton("+");
-		addButton.addActionListener(new ActionListener() {
+		JButton distintaButton = new JButton("Distinta");
+		distintaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PlicoDistinta plico_distinta = new PlicoDistinta();
-				plico_distinta.load();
-				plico.removeAll();
-				plico.add(plico_distinta);
+				//plico_distinta.load();
+				remove(plico);
+				add(plico_distinta);
+				validate();
+				repaint();
 			}
 		});
-		addButton.setToolTipText("Aggiungi ");
-		addButton.setBounds(20, 35, 110, 25);
-		clipPanel.add(addButton);
-		addButton.setPreferredSize(new Dimension(110, 25));
-		addButton.setMinimumSize(new Dimension(110, 25));
-		addButton.setMaximumSize(new Dimension(110, 25));
+		distintaButton.setToolTipText("Distinta");
+		distintaButton.setBounds(20, 35, 110, 25);
+		clipPanel.add(distintaButton);
+		distintaButton.setPreferredSize(new Dimension(110, 25));
+		distintaButton.setMinimumSize(new Dimension(110, 25));
+		distintaButton.setMaximumSize(new Dimension(110, 25));
+
+		JButton btnDdo = new JButton("DDO");
+		btnDdo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PlicoDDO plico_ddo = new PlicoDDO();
+				plico_ddo.load();
+				plico.removeAll();
+				plico.add(plico_ddo);
+			}
+		});
+		btnDdo.setToolTipText("Documento di Ottimizzazione");
+		btnDdo.setBounds(20, 65, 110, 25);
+		clipPanel.add(btnDdo);
+		btnDdo.setPreferredSize(new Dimension(110, 25));
+
+		JButton btnNewButton_6 = new JButton("LDR");
+		btnNewButton_6.setToolTipText("Lista di Rintracciabilità");
+		btnNewButton_6.setBounds(20, 95, 110, 25);
+		clipPanel.add(btnNewButton_6);
 
 	}
 }

@@ -14,4 +14,10 @@ public class PlicoDDO extends Plico{
 		
 	}
 
+	@Override
+	public void load(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
