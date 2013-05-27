@@ -2,6 +2,7 @@ package GUIelaborazione2;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,7 +23,7 @@ public class RiquadroCodiceInterno extends JPanel {
 	
 	public RiquadroCodiceInterno(){
 		setBounds(new Rectangle(0, 0, 0, 0));
-		this.setSize(200,59);
+		this.setPreferredSize(new Dimension(200,59));
 		this.setBackground(new Color(30, 144, 255));
 		this.setBorder(new LineBorder(Color.BLACK));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

@@ -42,7 +42,7 @@ public class PlicoCommessa extends Plico{
 		rdpc = new RiquadroDatiProduzioneConsegna("Dati Consegna Produzione");
 		rsc = new RiquadroSviluppoConsegna("Dati Sviluppo Consegna");
 		posizionaRiquadri();
-		setPreferredSize(new Dimension(600,calcolaAltezza()));
+		setPreferredSize(new Dimension(800,calcolaAltezza()));
 		add(rda);
 		add(rdcc);
 		add(rdc);

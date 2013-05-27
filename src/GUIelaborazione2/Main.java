@@ -65,7 +65,7 @@ public class Main {
 //		frame.getContentPane().add(codici,BorderLayout.WEST);
 //		frame.getContentPane().add(plico,BorderLayout.CENTER);
 		
-		frame.getContentPane().add(new Contenitore(),BorderLayout.CENTER);
+		frame.getContentPane().add(Contenitore.getInstance(),BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

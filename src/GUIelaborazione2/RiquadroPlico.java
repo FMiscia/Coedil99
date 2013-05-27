@@ -23,6 +23,8 @@ import javax.swing.border.LineBorder;
 public class RiquadroPlico extends JPanel {
 
 	private JPanel plico;
+	private JPanel paper_container;
+	private JPanel paper_panel;
 
 	public RiquadroPlico() {
 
@@ -50,31 +52,31 @@ public class RiquadroPlico extends JPanel {
 		JButton btnNewButton_3 = new JButton("New button");
 		toolBar.add(btnNewButton_3);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(4, 5, 1000, 1000);
-		panel.setBackground(new Color(240, 230, 140));
-		panel.setPreferredSize(new Dimension(1000, 1000));
-		panel.setLayout(null);
+		this.paper_container = new JPanel();
+		paper_container.setBounds(4, 5, 1000, 1000);
+		paper_container.setBackground(new Color(240, 230, 140));
+		paper_container.setPreferredSize(new Dimension(1000, 1000));
+		paper_container.setLayout(null);
 		
 		this.plico = new JPanel();
-		plico.setPreferredSize(new Dimension(800, 1000));
-		plico.setBackground(Color.WHITE);
-		plico.setLayout(new WrapLayout());
-		plico.add(panel);
+		this.plico.setPreferredSize(new Dimension(800, 1000));
+		this.plico.setBackground(Color.WHITE);
+		this.plico.setLayout(new WrapLayout());
+		this.plico.add(this.paper_container);
 
 		JScrollPane scrollPaneWrapper = new JScrollPane();
 		add(scrollPaneWrapper, BorderLayout.CENTER);
 		scrollPaneWrapper.setPreferredSize(new Dimension(800,600));
 		scrollPaneWrapper.setViewportView(this.plico);
 
-		final JPanel paper_panel = new JPanel();
-		paper_panel.setPreferredSize(new Dimension(1000, 1000));
-		paper_panel.setBounds(0, 0, 745, 1000);
-		panel.add(paper_panel);
+		this.paper_panel = new JPanel();
+		this.paper_panel.setPreferredSize(new Dimension(1000, 1000));
+		this.paper_panel.setBounds(0, 0, 745, 1000);
+		this.paper_container.add(this.paper_panel);
 
 		JPanel clipPanel = new JPanel();
 		clipPanel.setBounds(777, 12, 110, 137);
-		panel.add(clipPanel);
+		this.paper_container.add(clipPanel);
 		clipPanel.setBorder(new LineBorder(new Color(160, 82, 45), 2));
 		clipPanel.setBackground(new Color(222, 184, 135));
 		clipPanel.setPreferredSize(new Dimension(110, 100));
@@ -90,9 +92,9 @@ public class RiquadroPlico extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				PlicoCommessa plico_commessa = new PlicoCommessa();
 				// plico_commessa.load();
-				paper_panel.add(plico_commessa);
-				plico.validate();
-				plico.repaint();
+				RiquadroPlico.this.getPaperPanel().add(plico_commessa);
+				RiquadroPlico.this.getPlico().validate();
+				RiquadroPlico.this.getPlico().repaint();
 
 			}
 		});
@@ -103,7 +105,7 @@ public class RiquadroPlico extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				PlicoDistinta plico_distinta = new PlicoDistinta();
 				// plico_distinta.load();
-				remove(plico);
+				remove(RiquadroPlico.this.plico);
 				add(plico_distinta);
 				validate();
 				repaint();
@@ -134,5 +136,29 @@ public class RiquadroPlico extends JPanel {
 		btnNewButton_6.setToolTipText("Lista di Rintracciabilit�");
 		clipPanel.add(btnNewButton_6);
 
+	}
+
+	public JPanel getPlico() {
+		return plico;
+	}
+
+	public void setPlico(JPanel plico) {
+		this.plico = plico;
+	}
+
+	public JPanel getPaperContainer() {
+		return paper_container;
+	}
+
+	public void setPaperContainer(JPanel panel) {
+		this.paper_container = panel;
+	}
+
+	public JPanel getPaperPanel() {
+		return paper_panel;
+	}
+
+	public void setPaperPanel(JPanel paper_panel) {
+		this.paper_panel = paper_panel;
 	}
 }

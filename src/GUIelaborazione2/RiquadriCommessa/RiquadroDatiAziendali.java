@@ -164,8 +164,8 @@ public class RiquadroDatiAziendali extends Riquadro {
 				repaint();
 			}
 		});
-		toggle.setSize(70, 20);
-		toggle.setLocation(530, 0);
+		toggle.setSize(131, 20);
+		toggle.setLocation(469, 0);
 		add(toggle);
 	}
 

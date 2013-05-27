@@ -30,7 +30,7 @@ private void initUI(){
 
         plButton.addMouseListener( new MouseAdapter(){
         public void mouseClicked(MouseEvent arg0){
-        Contenitore p = new Contenitore();
+        Contenitore p = Contenitore.getInstance();
                     CoedilFrame.getInstance().montaPanel( p);
         }
         } );

@@ -13,6 +13,8 @@ import javax.swing.JScrollPane;
 import elaboradistinta.controller.GestisciClienteHandler;
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.Cliente;
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
 
 @SuppressWarnings("serial")
 public class RiquadroCodici extends JScrollPane {
@@ -23,6 +25,7 @@ public class RiquadroCodici extends JScrollPane {
 	public RiquadroCodici(){
 		panel = new JPanel(null);
 		this.setViewportView(panel);
+		panel.setLayout(new WrapLayout());
 		this.load(GestisciClienteHandler.getInstance().getClienti());
 	}
 	
@@ -34,7 +37,6 @@ public class RiquadroCodici extends JScrollPane {
 				for(int i=0; i<cliente.get(k).ordini.get(j).commesse.size(); ++i){
 					final RiquadroCodiceInterno r = new RiquadroCodiceInterno();
 					r.load(cliente.get(k), cliente.get(k).ordini.get(j), cliente.get(k).ordini.get(j).commesse.get(i));
-					r.setLocation(1,i*(r.getHeight()+5));
 					r.addMouseListener(new MouseListener() {
 						
 						@Override
@@ -63,7 +65,12 @@ public class RiquadroCodici extends JScrollPane {
 						
 						@Override
 						public void mouseClicked(MouseEvent e) {
-							// TODO Auto-generated method stub
+							PlicoCommessa plico_commessa = new PlicoCommessa();
+							// plico_commessa.load();
+							Contenitore.getInstance().getRiquadroplico().getPaperPanel().removeAll();
+							Contenitore.getInstance().getRiquadroplico().getPaperPanel().add(plico_commessa);
+							Contenitore.getInstance().getRiquadroplico().getPlico().validate();
+							Contenitore.getInstance().getRiquadroplico().getPlico().repaint();
 							
 						}
 					});
