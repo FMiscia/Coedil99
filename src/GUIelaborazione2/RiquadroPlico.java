@@ -57,7 +57,7 @@ public class RiquadroPlico extends JPanel {
 		panel.setLayout(null);
 		
 		this.plico = new JPanel();
-		plico.setPreferredSize(new Dimension(1200, 1000));
+		plico.setPreferredSize(new Dimension(800, 1000));
 		plico.setBackground(Color.WHITE);
 		plico.setLayout(new WrapLayout());
 		plico.add(panel);
