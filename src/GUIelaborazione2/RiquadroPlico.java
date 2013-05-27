@@ -18,13 +18,6 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
-import javax.swing.JScrollBar;
-
-import com.alee.laf.WebLookAndFeel;
-import com.alee.laf.scroll.WebScrollBar;
-import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
-import com.sun.java.swing.plaf.windows.WindowsFileChooserUI;
-import com.sun.java.swing.plaf.windows.WindowsScrollBarUI;
 
 @SuppressWarnings("serial")
 public class RiquadroPlico extends JPanel {
