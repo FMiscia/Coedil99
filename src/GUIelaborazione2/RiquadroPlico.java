@@ -88,6 +88,7 @@ public class RiquadroPlico extends JPanel {
 				plico.setViewportView(plico_commessa);
 				plico.validate();
 				plico.repaint();
+
 			}
 		});
 
