@@ -1,30 +1,35 @@
 package GUIelaborazione2;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
-import javax.swing.UIManager;
-import java.awt.Dimension;
-import java.awt.Color;
-import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
+import javax.swing.JScrollBar;
+
+import com.alee.laf.WebLookAndFeel;
+import com.alee.laf.scroll.WebScrollBar;
+import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsFileChooserUI;
+import com.sun.java.swing.plaf.windows.WindowsScrollBarUI;
 
 @SuppressWarnings("serial")
 public class RiquadroPlico extends JPanel {
 
-	private JPanel plico;
+	private JScrollPane plico;
 
 	public RiquadroPlico() {
 
@@ -52,29 +57,37 @@ public class RiquadroPlico extends JPanel {
 		JButton btnNewButton_3 = new JButton("New button");
 		toolBar.add(btnNewButton_3);
 
-		this.plico = new JPanel();
-		plico.setBackground(new Color(222, 184, 135));
-		add(plico, BorderLayout.CENTER);
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(240, 230, 140));
+		add(panel, BorderLayout.CENTER);
+
+		this.plico = new JScrollPane();
+		plico.setPreferredSize(new Dimension(700, 600));
+		add(plico);
+		plico.setBackground(Color.WHITE);
+		
+		
 
 		JPanel clipPanel = new JPanel();
+		add(clipPanel, BorderLayout.EAST);
 		clipPanel.setBorder(new LineBorder(new Color(160, 82, 45), 2));
 		clipPanel.setBackground(new Color(222, 184, 135));
-		clipPanel.setPreferredSize(new Dimension(150, 100));
-		add(clipPanel, BorderLayout.EAST);
+		clipPanel.setPreferredSize(new Dimension(110, 100));
 		clipPanel.setLayout(null);
 
 		JButton commessaButton = new JButton("Commessa");
 		commessaButton.setToolTipText("Commessa");
-		commessaButton.setBounds(20, 5, 110, 25);
+		commessaButton.setBounds(0, 5, 110, 25);
 		commessaButton.setHorizontalTextPosition(SwingConstants.LEFT);
 		commessaButton.setPreferredSize(new Dimension(90, 25));
 		clipPanel.add(commessaButton);
 		commessaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PlicoCommessa plico_commessa = new PlicoCommessa();
-				plico_commessa.load();
-				plico.removeAll();
-				plico.add(plico_commessa);
+				//plico_commessa.load();
+				plico.setViewportView(plico_commessa);
+				plico.validate();
+				plico.repaint();
 			}
 		});
 
@@ -82,7 +95,7 @@ public class RiquadroPlico extends JPanel {
 		distintaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PlicoDistinta plico_distinta = new PlicoDistinta();
-				//plico_distinta.load();
+				// plico_distinta.load();
 				remove(plico);
 				add(plico_distinta);
 				validate();
@@ -90,7 +103,7 @@ public class RiquadroPlico extends JPanel {
 			}
 		});
 		distintaButton.setToolTipText("Distinta");
-		distintaButton.setBounds(20, 35, 110, 25);
+		distintaButton.setBounds(0, 35, 110, 25);
 		clipPanel.add(distintaButton);
 		distintaButton.setPreferredSize(new Dimension(110, 25));
 		distintaButton.setMinimumSize(new Dimension(110, 25));
@@ -106,13 +119,13 @@ public class RiquadroPlico extends JPanel {
 			}
 		});
 		btnDdo.setToolTipText("Documento di Ottimizzazione");
-		btnDdo.setBounds(20, 65, 110, 25);
+		btnDdo.setBounds(0, 65, 110, 25);
 		clipPanel.add(btnDdo);
 		btnDdo.setPreferredSize(new Dimension(110, 25));
 
 		JButton btnNewButton_6 = new JButton("LDR");
 		btnNewButton_6.setToolTipText("Lista di Rintracciabilità");
-		btnNewButton_6.setBounds(20, 95, 110, 25);
+		btnNewButton_6.setBounds(0, 95, 110, 25);
 		clipPanel.add(btnNewButton_6);
 
 	}
