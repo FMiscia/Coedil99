@@ -22,7 +22,7 @@ import javax.swing.border.LineBorder;
 @SuppressWarnings("serial")
 public class RiquadroPlico extends JPanel {
 
-	private JScrollPane plico;
+	private JPanel plico;
 
 	public RiquadroPlico() {
 
@@ -49,36 +49,48 @@ public class RiquadroPlico extends JPanel {
 
 		JButton btnNewButton_3 = new JButton("New button");
 		toolBar.add(btnNewButton_3);
-
+		
 		JPanel panel = new JPanel();
+		panel.setBounds(4, 5, 1000, 1000);
 		panel.setBackground(new Color(240, 230, 140));
-		add(panel, BorderLayout.CENTER);
-
-		this.plico = new JScrollPane();
-		plico.setPreferredSize(new Dimension(700, 600));
-		add(plico);
+		panel.setPreferredSize(new Dimension(1000, 1000));
+		panel.setLayout(null);
+		
+		this.plico = new JPanel();
+		plico.setPreferredSize(new Dimension(1200, 1000));
 		plico.setBackground(Color.WHITE);
-		
-		
+		plico.setLayout(new WrapLayout());
+		plico.add(panel);
+
+		JScrollPane scrollPaneWrapper = new JScrollPane();
+		add(scrollPaneWrapper, BorderLayout.CENTER);
+		scrollPaneWrapper.setPreferredSize(new Dimension(800,600));
+		scrollPaneWrapper.setViewportView(this.plico);
+
+		final JPanel paper_panel = new JPanel();
+		paper_panel.setPreferredSize(new Dimension(1000, 1000));
+		paper_panel.setBounds(0, 0, 745, 1000);
+		panel.add(paper_panel);
 
 		JPanel clipPanel = new JPanel();
-		add(clipPanel, BorderLayout.EAST);
+		clipPanel.setBounds(777, 12, 110, 137);
+		panel.add(clipPanel);
 		clipPanel.setBorder(new LineBorder(new Color(160, 82, 45), 2));
 		clipPanel.setBackground(new Color(222, 184, 135));
 		clipPanel.setPreferredSize(new Dimension(110, 100));
 		clipPanel.setLayout(null);
 
 		JButton commessaButton = new JButton("Commessa");
+		commessaButton.setBounds(0, 7, 110, 25);
 		commessaButton.setToolTipText("Commessa");
-		commessaButton.setBounds(0, 5, 110, 25);
 		commessaButton.setHorizontalTextPosition(SwingConstants.LEFT);
 		commessaButton.setPreferredSize(new Dimension(90, 25));
 		clipPanel.add(commessaButton);
 		commessaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PlicoCommessa plico_commessa = new PlicoCommessa();
-				//plico_commessa.load();
-				plico.setViewportView(plico_commessa);
+				// plico_commessa.load();
+				paper_panel.add(plico_commessa);
 				plico.validate();
 				plico.repaint();
 
@@ -86,6 +98,7 @@ public class RiquadroPlico extends JPanel {
 		});
 
 		JButton distintaButton = new JButton("Distinta");
+		distintaButton.setBounds(0, 37, 110, 25);
 		distintaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PlicoDistinta plico_distinta = new PlicoDistinta();
@@ -97,13 +110,13 @@ public class RiquadroPlico extends JPanel {
 			}
 		});
 		distintaButton.setToolTipText("Distinta");
-		distintaButton.setBounds(0, 35, 110, 25);
 		clipPanel.add(distintaButton);
 		distintaButton.setPreferredSize(new Dimension(110, 25));
 		distintaButton.setMinimumSize(new Dimension(110, 25));
 		distintaButton.setMaximumSize(new Dimension(110, 25));
 
 		JButton btnDdo = new JButton("DDO");
+		btnDdo.setBounds(0, 67, 110, 25);
 		btnDdo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PlicoDDO plico_ddo = new PlicoDDO();
@@ -113,13 +126,12 @@ public class RiquadroPlico extends JPanel {
 			}
 		});
 		btnDdo.setToolTipText("Documento di Ottimizzazione");
-		btnDdo.setBounds(0, 65, 110, 25);
 		clipPanel.add(btnDdo);
 		btnDdo.setPreferredSize(new Dimension(110, 25));
 
 		JButton btnNewButton_6 = new JButton("LDR");
-		btnNewButton_6.setToolTipText("Lista di Rintracciabilità");
-		btnNewButton_6.setBounds(0, 95, 110, 25);
+		btnNewButton_6.setBounds(0, 97, 110, 25);
+		btnNewButton_6.setToolTipText("Lista di Rintracciabilitï¿½");
 		clipPanel.add(btnNewButton_6);
 
 	}
