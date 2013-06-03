@@ -55,7 +55,7 @@ public class RiquadroPlico extends JPanel {
 		this.paper_container = new JPanel();
 		paper_container.setBounds(4, 5, 1000, 1000);
 		paper_container.setBackground(new Color(240, 230, 140));
-		paper_container.setPreferredSize(new Dimension(1000, 1000));
+		paper_container.setPreferredSize(new Dimension(860, 1000));
 		paper_container.setLayout(null);
 		
 		this.plico = new JPanel();
@@ -75,7 +75,7 @@ public class RiquadroPlico extends JPanel {
 		this.paper_container.add(this.paper_panel);
 
 		JPanel clipPanel = new JPanel();
-		clipPanel.setBounds(777, 12, 110, 137);
+		clipPanel.setBounds(747, 0, 110, 137);
 		this.paper_container.add(clipPanel);
 		clipPanel.setBorder(new LineBorder(new Color(160, 82, 45), 2));
 		clipPanel.setBackground(new Color(222, 184, 135));
