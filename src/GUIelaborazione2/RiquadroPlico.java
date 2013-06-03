@@ -61,7 +61,8 @@ public class RiquadroPlico extends JPanel {
 		this.plico = new JPanel();
 		this.plico.setPreferredSize(new Dimension(800, 1000));
 		this.plico.setBackground(Color.WHITE);
-		this.plico.setLayout(new WrapLayout());
+		WrapLayout wl_plico = new WrapLayout();
+		this.plico.setLayout(wl_plico);
 		this.plico.add(this.paper_container);
 
 		JScrollPane scrollPaneWrapper = new JScrollPane();
@@ -93,8 +94,12 @@ public class RiquadroPlico extends JPanel {
 				PlicoCommessa plico_commessa = new PlicoCommessa();
 				// plico_commessa.load();
 				RiquadroPlico.this.getPaperPanel().add(plico_commessa);
-				RiquadroPlico.this.getPlico().validate();
-				RiquadroPlico.this.getPlico().repaint();
+				
+				//RiquadroPlico.this.getPaperPanel().setSize(RiquadroPlico.this.getPaperPanel().getWidth(), plico_commessa.getHeight());
+				//RiquadroPlico.this.plico.setSize(RiquadroPlico.this.plico.getWidth(), RiquadroPlico.this.getPaperPanel().getHeight());
+				//RiquadroPlico.this.getPlico().validate();
+				//RiquadroPlico.this.getPlico().repaint();
+				aggiornaAltezze();
 
 			}
 		});
@@ -160,5 +165,14 @@ public class RiquadroPlico extends JPanel {
 
 	public void setPaperPanel(JPanel paper_panel) {
 		this.paper_panel = paper_panel;
+	}
+	
+	private void aggiornaAltezze(){
+		RiquadroPlico.this.getPaperPanel().setSize(RiquadroPlico.this.getPaperPanel().getWidth(), RiquadroPlico.this.getPaperPanel().getComponent(0).getHeight());
+		RiquadroPlico.this.getPaperContainer().setSize(RiquadroPlico.this.getPaperContainer().getWidth(), RiquadroPlico.this.getPaperPanel().getHeight());
+		RiquadroPlico.this.getPlico().setPreferredSize(new Dimension(RiquadroPlico.this.getPlico().getWidth(), RiquadroPlico.this.getPaperContainer().getHeight()+10));
+		RiquadroPlico.this.getPlico().setSize(RiquadroPlico.this.getPlico().getWidth(), RiquadroPlico.this.getPaperContainer().getHeight()+10);
+		validate();
+		repaint();
 	}
 }

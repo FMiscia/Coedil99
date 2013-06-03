@@ -27,6 +27,7 @@ public class RiquadroSviluppoConsegna extends Riquadro {
 	
 	public RiquadroSviluppoConsegna(String title) {
 		super(title);
+		setPreferredSize(new Dimension(600, 180));
 		this.setSize(new Dimension(600, 180));
 		form = new JPanel();
 		form.setBounds(0,30,600,140);
