@@ -59,9 +59,10 @@ public class RiquadroPlico extends JPanel {
 		paper_container.setLayout(null);
 		
 		this.plico = new JPanel();
-		this.plico.setPreferredSize(new Dimension(800, 1000));
+		this.plico.setPreferredSize(new Dimension(800, 1020));
 		this.plico.setBackground(Color.WHITE);
 		WrapLayout wl_plico = new WrapLayout();
+		wl_plico.setVgap(10);
 		this.plico.setLayout(wl_plico);
 		this.plico.add(this.paper_container);
 
@@ -94,11 +95,6 @@ public class RiquadroPlico extends JPanel {
 				PlicoCommessa plico_commessa = new PlicoCommessa();
 				// plico_commessa.load();
 				RiquadroPlico.this.getPaperPanel().add(plico_commessa);
-				
-				//RiquadroPlico.this.getPaperPanel().setSize(RiquadroPlico.this.getPaperPanel().getWidth(), plico_commessa.getHeight());
-				//RiquadroPlico.this.plico.setSize(RiquadroPlico.this.plico.getWidth(), RiquadroPlico.this.getPaperPanel().getHeight());
-				//RiquadroPlico.this.getPlico().validate();
-				//RiquadroPlico.this.getPlico().repaint();
 				aggiornaAltezze();
 
 			}
@@ -167,11 +163,17 @@ public class RiquadroPlico extends JPanel {
 		this.paper_panel = paper_panel;
 	}
 	
-	private void aggiornaAltezze(){
+	public void aggiornaAltezze(){
+		
 		RiquadroPlico.this.getPaperPanel().setSize(RiquadroPlico.this.getPaperPanel().getWidth(), RiquadroPlico.this.getPaperPanel().getComponent(0).getHeight());
+		RiquadroPlico.this.getPaperPanel().setPreferredSize(new Dimension(RiquadroPlico.this.getPaperPanel().getWidth(), RiquadroPlico.this.getPaperPanel().getComponent(0).getHeight()));
+		
 		RiquadroPlico.this.getPaperContainer().setSize(RiquadroPlico.this.getPaperContainer().getWidth(), RiquadroPlico.this.getPaperPanel().getHeight());
-		RiquadroPlico.this.getPlico().setPreferredSize(new Dimension(RiquadroPlico.this.getPlico().getWidth(), RiquadroPlico.this.getPaperContainer().getHeight()+10));
-		RiquadroPlico.this.getPlico().setSize(RiquadroPlico.this.getPlico().getWidth(), RiquadroPlico.this.getPaperContainer().getHeight()+10);
+		RiquadroPlico.this.getPaperContainer().setPreferredSize(new Dimension(RiquadroPlico.this.getPaperContainer().getWidth(), RiquadroPlico.this.getPaperPanel().getHeight()));
+		
+		
+		RiquadroPlico.this.getPlico().setPreferredSize(new Dimension(RiquadroPlico.this.getPlico().getWidth(), RiquadroPlico.this.getPaperContainer().getHeight()+20));
+		RiquadroPlico.this.getPlico().setSize(RiquadroPlico.this.getPlico().getWidth(), RiquadroPlico.this.getPaperContainer().getHeight()+20);
 		validate();
 		repaint();
 	}

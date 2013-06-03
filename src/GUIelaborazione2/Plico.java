@@ -1,8 +1,8 @@
 package GUIelaborazione2;
 
-import javax.swing.JScrollPane;
+import javax.swing.JPanel;
 
-public abstract class Plico extends JScrollPane {
+public abstract class Plico extends JPanel {
 	
 	public Plico(){
 		super();

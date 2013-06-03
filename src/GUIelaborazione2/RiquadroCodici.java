@@ -69,7 +69,7 @@ public class RiquadroCodici extends JScrollPane {
 							// plico_commessa.load();
 							Contenitore.getInstance().getRiquadroplico().getPaperPanel().removeAll();
 							Contenitore.getInstance().getRiquadroplico().getPaperPanel().add(plico_commessa);
-							Contenitore.getInstance().getRiquadroplico().getPaperPanel().setSize(Contenitore.getInstance().getRiquadroplico().getPaperPanel().getWidth(), plico_commessa.getHeight()+5);
+							Contenitore.getInstance().getRiquadroplico().aggiornaAltezze();
 							Contenitore.getInstance().getRiquadroplico().getPlico().validate();
 							Contenitore.getInstance().getRiquadroplico().getPlico().repaint();
 							
