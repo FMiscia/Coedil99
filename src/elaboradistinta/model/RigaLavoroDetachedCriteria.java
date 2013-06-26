@@ -43,8 +43,8 @@ public class RigaLavoroDetachedCriteria extends AbstractORMDetachedCriteria {
 		numero = new IntegerExpression("numero", this.getDetachedCriteria());
 	}
 	
-	public elaboradistinta.model.GeometriaDetachedCriteria createGeometriaCriteria() {
-		return new elaboradistinta.model.GeometriaDetachedCriteria(createCriteria("geometria"));
+	public GeometriaDetachedCriteria createGeometriaCriteria() {
+		return new GeometriaDetachedCriteria(createCriteria("geometria"));
 	}
 	
 	public RigaLavoro uniqueRigaLavoro(PersistentSession session) {

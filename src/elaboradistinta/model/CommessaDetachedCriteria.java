@@ -73,12 +73,12 @@ public class CommessaDetachedCriteria extends AbstractORMDetachedCriteria {
 		responsabile = new StringExpression("responsabile", this.getDetachedCriteria());
 	}
 	
-	public elaboradistinta.model.DistintaDetachedCriteria createDistintaCriteria() {
-		return new elaboradistinta.model.DistintaDetachedCriteria(createCriteria("distinta"));
+	public DistintaDetachedCriteria createDistintaCriteria() {
+		return new DistintaDetachedCriteria(createCriteria("distinta"));
 	}
 	
-	public elaboradistinta.model.ListaRintracciabilitaDetachedCriteria createLdrCriteria() {
-		return new elaboradistinta.model.ListaRintracciabilitaDetachedCriteria(createCriteria("ldr"));
+	public ListaRintracciabilitaDetachedCriteria createLdrCriteria() {
+		return new ListaRintracciabilitaDetachedCriteria(createCriteria("ldr"));
 	}
 	
 	public Commessa uniqueCommessa(PersistentSession session) {

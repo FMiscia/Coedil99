@@ -65,7 +65,7 @@ public class RiquadroCodici extends JScrollPane {
 						
 						@Override
 						public void mouseClicked(MouseEvent e) {
-							PlicoCommessa plico_commessa = new PlicoCommessa();
+							PlicoCommessa plico_commessa = PlicoCommessa.getInstance();
 							// plico_commessa.load();
 							Contenitore.getInstance().getRiquadroplico().getPaperPanel().removeAll();
 							Contenitore.getInstance().getRiquadroplico().getPaperPanel().add(plico_commessa);

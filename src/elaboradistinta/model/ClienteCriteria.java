@@ -42,8 +42,8 @@ public class ClienteCriteria extends AbstractORMCriteria {
 		return new CantiereCriteria(createCriteria("cantiere"));
 	}
 	
-	public elaboradistinta.model.OrdineCriteria createOrdiniCriteria() {
-		return new elaboradistinta.model.OrdineCriteria(createCriteria("ORM_Ordini"));
+	public OrdineCriteria createOrdiniCriteria() {
+		return new OrdineCriteria(createCriteria("ORM_Ordini"));
 	}
 	
 	public Cliente uniqueCliente() {

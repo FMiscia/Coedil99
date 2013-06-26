@@ -48,8 +48,12 @@ public class OrdineCriteria extends AbstractORMCriteria {
 		this(elaboradistinta.model.CoedilPersistentManager.instance().getSession());
 	}
 	
-	public elaboradistinta.model.CommessaCriteria createCommesseCriteria() {
-		return new elaboradistinta.model.CommessaCriteria(createCriteria("ORM_Commesse"));
+	public ClienteCriteria createClienteCriteria() {
+		return new ClienteCriteria(createCriteria("cliente"));
+	}
+	
+	public CommessaCriteria createCommesseCriteria() {
+		return new CommessaCriteria(createCriteria("ORM_Commesse"));
 	}
 	
 	public Ordine uniqueOrdine() {

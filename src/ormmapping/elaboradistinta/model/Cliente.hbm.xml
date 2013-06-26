@@ -15,7 +15,7 @@ License Type: Purchased
 		<property name="name" column="Name" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="numeroCommessaCliente" column="NumeroCommessaCliente" type="integer" length="11" not-null="false" lazy="false"/>
 		<list name="ORM_Ordini" lazy="true" cascade="save-update,lock" inverse="false">
-			<key column="ClienteID" not-null="false"/>
+			<key column="ClienteID" not-null="true"/>
 			<index column="ClienteIndex" type="integer"/>
 			<one-to-many class="elaboradistinta.model.Ordine"/>
 		</list>

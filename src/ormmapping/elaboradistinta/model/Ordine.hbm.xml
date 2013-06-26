@@ -10,6 +10,8 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
+		<many-to-one name="cliente" cascade="lock" column="ClienteID" class="elaboradistinta.model.Cliente" not-null="true" update="false" insert="false" lazy="no-proxy" access="field">
+		</many-to-one>
 		<property name="ordineGestionale" column="OrdineGestionale" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="dataInizio" column="DataInizio" type="date" not-null="false" lazy="false"/>
 		<property name="dataScadenza" column="DataScadenza" type="date" not-null="false" lazy="false"/>

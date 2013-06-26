@@ -37,12 +37,12 @@ public class ClienteDetachedCriteria extends AbstractORMDetachedCriteria {
 		numeroCommessaCliente = new IntegerExpression("numeroCommessaCliente", this.getDetachedCriteria());
 	}
 	
-	public elaboradistinta.model.CantiereDetachedCriteria createCantiereCriteria() {
-		return new elaboradistinta.model.CantiereDetachedCriteria(createCriteria("cantiere"));
+	public CantiereDetachedCriteria createCantiereCriteria() {
+		return new CantiereDetachedCriteria(createCriteria("cantiere"));
 	}
 	
-	public elaboradistinta.model.OrdineDetachedCriteria createOrdiniCriteria() {
-		return new elaboradistinta.model.OrdineDetachedCriteria(createCriteria("ORM_Ordini"));
+	public OrdineDetachedCriteria createOrdiniCriteria() {
+		return new OrdineDetachedCriteria(createCriteria("ORM_Ordini"));
 	}
 	
 	public Cliente uniqueCliente(PersistentSession session) {

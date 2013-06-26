@@ -13,262 +13,8 @@
  */
 package elaboradistinta.model;
 
-import org.orm.*;
-import org.hibernate.Query;
-import java.util.List;
-
 public class Cliente {
 	public Cliente() {
-	}
-	
-	public static Cliente loadClienteByORMID(int ID) {
-		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
-			return loadClienteByORMID(session, ID);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente getClienteByORMID(int ID) {
-		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
-			return getClienteByORMID(session, ID);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente loadClienteByORMID(int ID, org.hibernate.LockMode lockMode) {
-		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
-			return loadClienteByORMID(session, ID, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente getClienteByORMID(int ID, org.hibernate.LockMode lockMode) {
-		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
-			return getClienteByORMID(session, ID, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente loadClienteByORMID(PersistentSession session, int ID) {
-		try {
-			return (Cliente) session.load(elaboradistinta.model.Cliente.class, new Integer(ID));
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente getClienteByORMID(PersistentSession session, int ID) {
-		try {
-			return (Cliente) session.get(elaboradistinta.model.Cliente.class, new Integer(ID));
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente loadClienteByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
-		try {
-			return (Cliente) session.load(elaboradistinta.model.Cliente.class, new Integer(ID), lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente getClienteByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
-		try {
-			return (Cliente) session.get(elaboradistinta.model.Cliente.class, new Integer(ID), lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente[] listClienteByQuery(String condition, String orderBy) {
-		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
-			return listClienteByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente[] listClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
-			return listClienteByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente[] listClienteByQuery(PersistentSession session, String condition, String orderBy) {
-		StringBuffer sb = new StringBuffer("From elaboradistinta.model.Cliente as Cliente");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			List list = query.list();
-			return (Cliente[]) list.toArray(new Cliente[list.size()]);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente[] listClienteByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		StringBuffer sb = new StringBuffer("From elaboradistinta.model.Cliente as Cliente");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			query.setLockMode("this", lockMode);
-			List list = query.list();
-			return (Cliente[]) list.toArray(new Cliente[list.size()]);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente loadClienteByQuery(String condition, String orderBy) {
-		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
-			return loadClienteByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente loadClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
-			return loadClienteByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente loadClienteByQuery(PersistentSession session, String condition, String orderBy) {
-		Cliente[] clientes = listClienteByQuery(session, condition, orderBy);
-		if (clientes != null && clientes.length > 0)
-			return clientes[0];
-		else
-			return null;
-	}
-	
-	public static Cliente loadClienteByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		Cliente[] clientes = listClienteByQuery(session, condition, orderBy, lockMode);
-		if (clientes != null && clientes.length > 0)
-			return clientes[0];
-		else
-			return null;
-	}
-	
-	public static java.util.Iterator iterateClienteByQuery(String condition, String orderBy) {
-		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
-			return iterateClienteByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static java.util.Iterator iterateClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
-			return iterateClienteByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static java.util.Iterator iterateClienteByQuery(PersistentSession session, String condition, String orderBy) {
-		StringBuffer sb = new StringBuffer("From elaboradistinta.model.Cliente as Cliente");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			return query.iterate();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static java.util.Iterator iterateClienteByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		StringBuffer sb = new StringBuffer("From elaboradistinta.model.Cliente as Cliente");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			query.setLockMode("this", lockMode);
-			return query.iterate();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Cliente loadClienteByCriteria(ClienteCriteria clienteCriteria) {
-		Cliente[] clientes = listClienteByCriteria(clienteCriteria);
-		if(clientes == null || clientes.length == 0) {
-			return null;
-		}
-		return clientes[0];
-	}
-	
-	public static Cliente[] listClienteByCriteria(ClienteCriteria clienteCriteria) {
-		return clienteCriteria.listCliente();
-	}
-	
-	public static Cliente createCliente() {
-		return new elaboradistinta.model.Cliente();
 	}
 	
 	public boolean save() {
@@ -310,6 +56,39 @@ public class Cliente {
 			return true;
 		}
 		catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean deleteAndDissociate() {
+		try {
+			elaboradistinta.model.Ordine[] lOrdinis = ordini.toArray();
+			for(int i = 0; i < lOrdinis.length; i++) {
+				lOrdinis[i].setCliente(null);
+			}
+			return delete();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean deleteAndDissociate(org.orm.PersistentSession session) {
+		try {
+			elaboradistinta.model.Ordine[] lOrdinis = ordini.toArray();
+			for(int i = 0; i < lOrdinis.length; i++) {
+				lOrdinis[i].setCliente(null);
+			}
+			try {
+				session.delete(this);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		catch(Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -388,7 +167,7 @@ public class Cliente {
 		return ORM_ordini;
 	}
 	
-	public final elaboradistinta.model.OrdineListCollection ordini = new elaboradistinta.model.OrdineListCollection(this, _ormAdapter, elaboradistinta.model.ORMConstants.KEY_CLIENTE_ORDINI, elaboradistinta.model.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final elaboradistinta.model.OrdineListCollection ordini = new elaboradistinta.model.OrdineListCollection(this, _ormAdapter, elaboradistinta.model.ORMConstants.KEY_CLIENTE_ORDINI, elaboradistinta.model.ORMConstants.KEY_ORDINE_CLIENTE, elaboradistinta.model.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public Cliente(String n, elaboradistinta.model.Cantiere c) {
 		//TODO: Implement Method

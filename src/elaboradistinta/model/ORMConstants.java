@@ -32,6 +32,8 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_ITEM_HISTORY = -281700472;
 	
+	final int KEY_ORDINE_CLIENTE = 862296890;
+	
 	final int KEY_ORDINE_COMMESSE = -549420212;
 	
 	final int KEY_RIGALAVORO_GEOMETRIA = -1262296516;

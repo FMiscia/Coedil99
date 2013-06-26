@@ -38,7 +38,7 @@ public class OrdineListCollection extends org.orm.util.ORMList {
 	 */
 	public void add(Ordine value) {
 		if (value != null) {
-			super.add(value, null);
+			super.add(value, value._ormAdapter);
 		}
 	}
 	
@@ -47,7 +47,7 @@ public class OrdineListCollection extends org.orm.util.ORMList {
 	 * @param value the persistent object
 	 */
 	public void remove(Ordine value) {
-		super.remove(value, null);
+		super.remove(value, value._ormAdapter);
 	}
 	
 	/**
@@ -121,7 +121,7 @@ public class OrdineListCollection extends org.orm.util.ORMList {
 	public Ordine remove(int index) {
 		Ordine value = get(index);
 		if (value != null) {
-			return (Ordine) super.removeImpl(index, null);
+			return (Ordine) super.removeImpl(index, value._ormAdapter);
 		}
 		return null;
 	}
@@ -133,7 +133,7 @@ public class OrdineListCollection extends org.orm.util.ORMList {
 	 */
 	public void add(int index, Ordine value) {
 		if (value != null) {
-			super.add(index, value, null);
+			super.add(index, value, value._ormAdapter);
 		}
 	}
 	

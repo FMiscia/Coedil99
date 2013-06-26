@@ -31,8 +31,8 @@ public class RigheLavoroDetachedCriteria extends AbstractORMDetachedCriteria {
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 	}
 	
-	public elaboradistinta.model.RigaLavoroDetachedCriteria createRigheCriteria() {
-		return new elaboradistinta.model.RigaLavoroDetachedCriteria(createCriteria("ORM_Righe"));
+	public RigaLavoroDetachedCriteria createRigheCriteria() {
+		return new RigaLavoroDetachedCriteria(createCriteria("ORM_Righe"));
 	}
 	
 	public RigheLavoro uniqueRigheLavoro(PersistentSession session) {

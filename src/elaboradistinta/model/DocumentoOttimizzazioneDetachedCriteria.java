@@ -31,8 +31,8 @@ public class DocumentoOttimizzazioneDetachedCriteria extends AbstractORMDetached
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 	}
 	
-	public elaboradistinta.model.ItemDetachedCriteria createItemsCriteria() {
-		return new elaboradistinta.model.ItemDetachedCriteria(createCriteria("ORM_Items"));
+	public ItemDetachedCriteria createItemsCriteria() {
+		return new ItemDetachedCriteria(createCriteria("ORM_Items"));
 	}
 	
 	public DocumentoOttimizzazione uniqueDocumentoOttimizzazione(PersistentSession session) {

@@ -1,4 +1,4 @@
-package GUIelaborazione2.RiquadriCommessa;
+package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
 
@@ -40,6 +40,7 @@ public class RiquadroDatiAziendali extends Riquadro {
 	private JTextField txtPartizione;
 	private boolean aperto;
 	private JButton toggle;
+	
 	
 	public RiquadroDatiAziendali(String title) {
 		super(title);

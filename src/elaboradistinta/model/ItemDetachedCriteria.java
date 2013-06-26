@@ -37,12 +37,12 @@ public class ItemDetachedCriteria extends AbstractORMDetachedCriteria {
 		prezzo = new FloatExpression("prezzo", this.getDetachedCriteria());
 	}
 	
-	public elaboradistinta.model.GeometriaDetachedCriteria createGeometriaCriteria() {
-		return new elaboradistinta.model.GeometriaDetachedCriteria(createCriteria("geometria"));
+	public GeometriaDetachedCriteria createGeometriaCriteria() {
+		return new GeometriaDetachedCriteria(createCriteria("geometria"));
 	}
 	
-	public elaboradistinta.model.HistoryDetachedCriteria createHistoryCriteria() {
-		return new elaboradistinta.model.HistoryDetachedCriteria(createCriteria("history"));
+	public HistoryDetachedCriteria createHistoryCriteria() {
+		return new HistoryDetachedCriteria(createCriteria("history"));
 	}
 	
 	public Item uniqueItem(PersistentSession session) {

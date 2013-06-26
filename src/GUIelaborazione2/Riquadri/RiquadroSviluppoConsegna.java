@@ -1,4 +1,4 @@
-package GUIelaborazione2.RiquadriCommessa;
+package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
 

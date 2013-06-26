@@ -1,20 +1,14 @@
 package GUIelaborazione2;
 import java.awt.Dimension;
-
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SpringLayout;
-
-import GUIelaborazione2.RiquadriCommessa.RiquadroDatiAziendali;
-import GUIelaborazione2.RiquadriCommessa.RiquadroDatiClienteConsegna;
-import GUIelaborazione2.RiquadriCommessa.RiquadroDatiConsegna;
-import GUIelaborazione2.RiquadriCommessa.RiquadroDatiProduzioneConsegna;
-import GUIelaborazione2.RiquadriCommessa.RiquadroSviluppoConsegna;
-import java.awt.FlowLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+
+import GUIelaborazione2.Riquadri.RiquadroDatiAziendali;
+import GUIelaborazione2.Riquadri.RiquadroDatiClienteConsegna;
+import GUIelaborazione2.Riquadri.RiquadroDatiConsegna;
+import GUIelaborazione2.Riquadri.RiquadroDatiProduzioneConsegna;
+import GUIelaborazione2.Riquadri.RiquadroSviluppoConsegna;
+import elaboradistinta.model.Commessa;
 
 
 @SuppressWarnings("serial")
@@ -25,8 +19,11 @@ public class PlicoCommessa extends Plico{
 	private RiquadroDatiConsegna rdc;
 	private RiquadroDatiProduzioneConsegna rdpc;
 	private RiquadroSviluppoConsegna rsc;
-
-	public PlicoCommessa(){
+	private static PlicoCommessa instance = null;
+	
+	
+	
+	private PlicoCommessa(){
 		setBorder(null);
 		setLayout(null);
 		
@@ -50,22 +47,6 @@ public class PlicoCommessa extends Plico{
 		add(rdc);
 		add(rdpc);
 		add(rsc);
-		/*
-		datiSviluppoConsegna = new JPanel();
-		datiSviluppoConsegna.setPreferredSize(new Dimension(300,300));
-		datiSviluppoConsegna.setBorder(new TitledBorder("Dati Sviluppo Consegna"));
-		this.add(datiSviluppoConsegna);
-		
-		datiProduzioneConsegna = new JPanel();
-		datiProduzioneConsegna.setPreferredSize(new Dimension(300,300));
-		datiProduzioneConsegna.setBorder(new TitledBorder("Dati Produzione Consegna"));
-		add(datiProduzioneConsegna);
-		
-		datiConsenga = new JPanel();
-		datiConsenga.setPreferredSize(new Dimension(300,300));
-		datiConsenga.setBorder(new TitledBorder("Dati Consegna"));
-		add(datiConsenga);
-		*/
 	}
 
 	@Override
@@ -93,5 +74,11 @@ public class PlicoCommessa extends Plico{
 		validate();
 		repaint();
 		
+	}
+	
+	public static PlicoCommessa getInstance(){
+		if(PlicoCommessa.instance == null)
+			PlicoCommessa.instance = new PlicoCommessa();
+		return PlicoCommessa.instance;
 	}
 }

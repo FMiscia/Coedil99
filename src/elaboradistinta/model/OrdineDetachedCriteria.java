@@ -52,8 +52,12 @@ public class OrdineDetachedCriteria extends AbstractORMDetachedCriteria {
 		OC = new StringExpression("OC", this.getDetachedCriteria());
 	}
 	
-	public elaboradistinta.model.CommessaDetachedCriteria createCommesseCriteria() {
-		return new elaboradistinta.model.CommessaDetachedCriteria(createCriteria("ORM_Commesse"));
+	public ClienteDetachedCriteria createClienteCriteria() {
+		return new ClienteDetachedCriteria(createCriteria("cliente"));
+	}
+	
+	public CommessaDetachedCriteria createCommesseCriteria() {
+		return new CommessaDetachedCriteria(createCriteria("ORM_Commesse"));
 	}
 	
 	public Ordine uniqueOrdine(PersistentSession session) {

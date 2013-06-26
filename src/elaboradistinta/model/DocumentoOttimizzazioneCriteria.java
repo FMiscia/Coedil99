@@ -34,8 +34,8 @@ public class DocumentoOttimizzazioneCriteria extends AbstractORMCriteria {
 		this(elaboradistinta.model.CoedilPersistentManager.instance().getSession());
 	}
 	
-	public elaboradistinta.model.ItemCriteria createItemsCriteria() {
-		return new elaboradistinta.model.ItemCriteria(createCriteria("ORM_Items"));
+	public ItemCriteria createItemsCriteria() {
+		return new ItemCriteria(createCriteria("ORM_Items"));
 	}
 	
 	public DocumentoOttimizzazione uniqueDocumentoOttimizzazione() {

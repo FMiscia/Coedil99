@@ -34,8 +34,8 @@ public class RigheLavoroCriteria extends AbstractORMCriteria {
 		this(elaboradistinta.model.CoedilPersistentManager.instance().getSession());
 	}
 	
-	public elaboradistinta.model.RigaLavoroCriteria createRigheCriteria() {
-		return new elaboradistinta.model.RigaLavoroCriteria(createCriteria("ORM_Righe"));
+	public RigaLavoroCriteria createRigheCriteria() {
+		return new RigaLavoroCriteria(createCriteria("ORM_Righe"));
 	}
 	
 	public RigheLavoro uniqueRigheLavoro() {

@@ -31,12 +31,12 @@ public class DistintaDetachedCriteria extends AbstractORMDetachedCriteria {
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 	}
 	
-	public elaboradistinta.model.DocumentoOttimizzazioneDetachedCriteria createDdoCriteria() {
-		return new elaboradistinta.model.DocumentoOttimizzazioneDetachedCriteria(createCriteria("ddo"));
+	public DocumentoOttimizzazioneDetachedCriteria createDdoCriteria() {
+		return new DocumentoOttimizzazioneDetachedCriteria(createCriteria("ddo"));
 	}
 	
-	public elaboradistinta.model.RigheLavoroDetachedCriteria createLavoriCriteria() {
-		return new elaboradistinta.model.RigheLavoroDetachedCriteria(createCriteria("lavori"));
+	public RigheLavoroDetachedCriteria createLavoriCriteria() {
+		return new RigheLavoroDetachedCriteria(createCriteria("lavori"));
 	}
 	
 	public Distinta uniqueDistinta(PersistentSession session) {
