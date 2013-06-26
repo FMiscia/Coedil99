@@ -1,7 +1,10 @@
 package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -31,6 +34,8 @@ public class RiquadroDatiDistinta extends Riquadro {
 	private JTextField tftipocapitello;
 	private JLabel lbnote;
 	private JTextField tfnote;
+	private JButton toggle;
+	private boolean aperto = true; 
 
 	public RiquadroDatiDistinta(String title) {
 		super(title);
@@ -93,15 +98,35 @@ public class RiquadroDatiDistinta extends Riquadro {
 		form.add(this.lbtipocapitello, "2, 12");	
 		this.tftipocapitello = new JTextField();
 		form.add(this.tftipocapitello, "6, 12, fill, default");
-		if(this.cbcapitello.getItemAt(0).equals("No"))
-			this.tftipocapitello.enableInputMethods(false);
-		
+//		if(this.cbcapitello.getItemAt(0).equals("No"))
+//			this.tftipocapitello.enableInputMethods(false);
+	
 		this.lbnote = new JLabel("Note");
 		form.add(this.lbnote,"2, 14");
 		this.tfnote = new JTextField();
 		form.add(this.tfnote, "6, 14, fill, default");
 		
-		
+		this.toggle = new JButton("Chiudi");
+		this.toggle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(RiquadroDatiDistinta.this.aperto){
+					RiquadroDatiDistinta.this.toggle.setText("Apri");
+					RiquadroDatiDistinta.this.aperto = false;
+					form.getParent().setSize(new Dimension(600,30));
+				}
+				else{
+					RiquadroDatiDistinta.this.toggle.setText("Chiudi");
+					RiquadroDatiDistinta.this.aperto = true;
+					form.getParent().setSize(new Dimension(600,310));
+				}
+				RiquadroDatiDistinta.this.validate();
+				RiquadroDatiDistinta.this.repaint();
+			}
+		});
+		this.toggle.setSize(131, 20);
+		this.toggle.setLocation(469, 0);
+		add(this.toggle);
 
 	}
 
