@@ -2,16 +2,35 @@ package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
+import javax.swing.JComboBox;
 
 public class RiquadroDatiDistinta extends Riquadro {
 	
 	private JPanel form;
+	private JLabel lbbase;
+	private JTextField tfbase;
+	private JLabel lbaltezza;
+	private JTextField tfaltezza;
+	private JLabel lblunghezza;
+	private JTextField tflunghezza;
+	private JLabel lbnumero;
+	private JTextField tfnumero;
+	private JLabel lbcapitello;
+	private JComboBox<Object> cbcapitello;
+	private JLabel lbtipocapitello;
+	private JTextField tftipocapitello;
+	private JLabel lbnote;
+	private JTextField tfnote;
 
 	public RiquadroDatiDistinta(String title) {
 		super(title);
@@ -41,13 +60,48 @@ public class RiquadroDatiDistinta extends Riquadro {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC}));
+				FormFactory.DEFAULT_ROWSPEC,}));
 		
-		lblOC = new JLabel("O/C");
-		form.add(lblOC, "2, 2");
+		this.lbbase = new JLabel("Base");
+		form.add(this.lbbase, "2, 2");		
+		this.tfbase = new JTextField();
+		form.add(this.tfbase, "6, 2, fill, default");
 		
-		txtOC = new JTextField();
-		form.add(txtOC, "6, 2, fill, default");
+		this.lbaltezza = new JLabel("Altezza");
+		form.add(this.lbaltezza, "2, 4");		
+		this.tfaltezza = new JTextField();
+		form.add(this.tfaltezza, "6, 4, fill, default");
+		
+		this.lblunghezza = new JLabel("Lunghezza");
+		form.add(this.lblunghezza, "2, 6");		
+		this.tflunghezza = new JTextField();
+		form.add(this.tflunghezza, "6, 6, fill, default");
+		
+		this.lbnumero = new JLabel("Numero");
+		form.add(this.lbnumero, "2, 8");	
+		this.tfnumero = new JTextField();
+		form.add(this.tfnumero, "6, 8, fill, default");
+		
+		this.lbcapitello = new JLabel("Capitello");
+		form.add(this.lbcapitello, "2, 10");	
+		this.cbcapitello = new JComboBox<Object>();
+		form.add(this.cbcapitello, "6, 10, fill, default");
+		this.cbcapitello.addItem(new String("Si"));
+		this.cbcapitello.addItem(new String("No"));
+
+		this.lbtipocapitello = new JLabel("Tipo Capitello");
+		form.add(this.lbtipocapitello, "2, 12");	
+		this.tftipocapitello = new JTextField();
+		form.add(this.tftipocapitello, "6, 12, fill, default");
+		if(this.cbcapitello.getItemAt(0).equals("No"))
+			this.tftipocapitello.enableInputMethods(false);
+		
+		this.lbnote = new JLabel("Note");
+		form.add(this.lbnote,"2, 14");
+		this.tfnote = new JTextField();
+		form.add(this.tfnote, "6, 14, fill, default");
+		
+		
 
 	}
 
