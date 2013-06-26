@@ -37,8 +37,7 @@ public class PlicoDistinta extends Plico{
 		
 	}
 
-	
-	
+
 	public static PlicoDistinta getInstance(){
 		if(PlicoDistinta.instance == null)
 			PlicoDistinta.instance = new PlicoDistinta();

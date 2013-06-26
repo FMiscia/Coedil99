@@ -17,6 +17,8 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
+import elaboradistinta.model.Commessa;
+
 public class Contenitore extends JPanel {
 
 	/**
@@ -26,6 +28,7 @@ public class Contenitore extends JPanel {
 	private RiquadroCodici riquadrocodici;
 	private RiquadroPlico riquadroplico;
 	private JMenuBar menuBar;
+	private Commessa commessaSelezionata = null;
 	
 	private Contenitore() {
 		setMinimumSize(new Dimension(500, 600));
@@ -103,5 +106,13 @@ public class Contenitore extends JPanel {
 
 	public void setMenuBar(JMenuBar menuBar) {
 		this.menuBar = menuBar;
+	}
+	
+	public Commessa getCommessaSelezionata() {
+		return commessaSelezionata;
+	}
+
+	public void setCommessaSelezionata(Commessa commessaSelezionata) {
+		this.commessaSelezionata = commessaSelezionata;
 	}
 }
