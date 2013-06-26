@@ -33,27 +33,6 @@ public class RiquadroPlico extends JPanel {
 
 		setBackground(UIManager.getColor("Panel.background"));
 		setLayout(new BorderLayout());
-
-		JToolBar toolBar = new JToolBar();
-		add(toolBar, BorderLayout.NORTH);
-		toolBar.setLayout(new FlowLayout());
-		toolBar.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		toolBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		toolBar.setMargin(new Insets(0, 10, 0, 10));
-		toolBar.setAlignmentY(Component.CENTER_ALIGNMENT);
-		toolBar.setFloatable(false);
-
-		JButton creaDistButton = new JButton("Crea Distinta");
-		toolBar.add(creaDistButton);
-
-		JButton deleteCommButton = new JButton("Elimina Commessa");
-		toolBar.add(deleteCommButton);
-
-		JButton btnNewButton_2 = new JButton("New button");
-		toolBar.add(btnNewButton_2);
-
-		JButton btnNewButton_3 = new JButton("New button");
-		toolBar.add(btnNewButton_3);
 		
 		this.paper_container = new JPanel();
 		paper_container.setBounds(4, 5, 1000, 1000);
