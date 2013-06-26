@@ -23,7 +23,6 @@ public class PlicoDDO extends Plico{
 		setPreferredSize(new Dimension(745,1000));
 		setSize(745,950);
 		add(rdcc);
-		
 	}
 
 	@Override
@@ -32,16 +31,18 @@ public class PlicoDDO extends Plico{
 		
 	}
 
-	@Override
-	public void load(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	
 	public static PlicoDDO getInstance(){
 		if(PlicoDDO.instance == null)
 			PlicoDDO.instance = new PlicoDDO();
 		return PlicoDDO.instance;
+	}
+
+	@Override
+	public void load(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 }
