@@ -29,6 +29,10 @@ public class GestisciOrdineHandler {
 		return this.ordini;
 	}
 	
+	public Ordine getOrdineById(int id){
+		return OrdineFactory.getOrdineByORMID(id);
+	}
+	
 	public static GestisciOrdineHandler getInstance() {
 		if (GestisciOrdineHandler.instance == null) {
 			GestisciOrdineHandler.instance = new GestisciOrdineHandler();

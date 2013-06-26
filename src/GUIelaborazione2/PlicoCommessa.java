@@ -8,7 +8,12 @@ import GUIelaborazione2.Riquadri.RiquadroDatiClienteConsegna;
 import GUIelaborazione2.Riquadri.RiquadroDatiConsegna;
 import GUIelaborazione2.Riquadri.RiquadroDatiProduzioneConsegna;
 import GUIelaborazione2.Riquadri.RiquadroSviluppoConsegna;
+import elaboradistinta.controller.GestisciClienteHandler;
+import elaboradistinta.controller.GestisciCommessaHandler;
+import elaboradistinta.controller.GestisciOrdineHandler;
+import elaboradistinta.model.Cliente;
 import elaboradistinta.model.Commessa;
+import elaboradistinta.model.Ordine;
 
 
 @SuppressWarnings("serial")
@@ -51,14 +56,16 @@ public class PlicoCommessa extends Plico{
 
 	@Override
 	public void load() {
-		// TODO Auto-generated method stub
+
 		
 	}
 
 	@Override
-	public void load(Object o) {
-		// TODO Auto-generated method stub
-		
+	public void load(int id) {
+		Commessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
+		Ordine o = GestisciOrdineHandler.getInstance().getOrdineById(c.getOrdineId());
+		Cliente cl = GestisciClienteHandler.getInstance().getClienteById(o.getCliente().getID());
+		rdcc.load(cl);
 	}
 	
 	private int calcolaAltezza(){
