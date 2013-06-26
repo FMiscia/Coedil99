@@ -9,5 +9,5 @@ public abstract class Plico extends JPanel {
 	}
 	
 	abstract public void load();
-	abstract public void load(Object o);
+	abstract public void load(int id);
 }

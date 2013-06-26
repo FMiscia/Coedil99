@@ -23,6 +23,10 @@ public class GestisciClienteHandler {
 		return this.clienti;
 	}
 	
+	public Cliente getClienteById(int id){
+		return ClienteFactory.getClienteByORMID(id);
+	}
+	
 	public static GestisciClienteHandler getInstance() {
 		if (GestisciClienteHandler.instance == null) {
 			GestisciClienteHandler.instance = new GestisciClienteHandler();

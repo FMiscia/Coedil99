@@ -5,10 +5,13 @@ import java.awt.Dimension;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
+
 import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
+
+import elaboradistinta.model.Cliente;
 
 @SuppressWarnings("serial")
 public class RiquadroDatiClienteConsegna extends Riquadro {
@@ -66,7 +69,12 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 
 	@Override
 	public void load(Object o) {
-		// TODO Auto-generated method stub
+		Cliente c = (Cliente) o;
+		txtCantiere.setText(c.getCantiere().getNome());
+		txtCliente.setText(c.getName());
+		txtCommessa.setText(c.getNumeroCommessaCliente().toString());
+		validate();
+		repaint();
 
 	}
 
