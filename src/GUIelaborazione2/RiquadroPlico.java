@@ -10,6 +10,8 @@ import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -25,6 +27,7 @@ public class RiquadroPlico extends JPanel {
 	private JPanel plico;
 	private JPanel paper_container;
 	private JPanel paper_panel;
+	private JPanel clipPanel;
 
 	public RiquadroPlico() {
 
@@ -70,13 +73,24 @@ public class RiquadroPlico extends JPanel {
 		add(scrollPaneWrapper, BorderLayout.CENTER);
 		scrollPaneWrapper.setPreferredSize(new Dimension(800,600));
 		scrollPaneWrapper.setViewportView(this.plico);
+		scrollPaneWrapper.getVerticalScrollBar().setUnitIncrement(20);
+		scrollPaneWrapper.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+			
+			@Override
+			public void adjustmentValueChanged(AdjustmentEvent e) {
+				if(e.getValue() < 10)
+					clipPanel.setLocation(clipPanel.getX(), e.getValue());
+				else	
+					clipPanel.setLocation(clipPanel.getX(), e.getValue()-10);
+			}
+		});
 
 		this.paper_panel = new JPanel();
 		this.paper_panel.setPreferredSize(new Dimension(1000, 1000));
 		this.paper_panel.setBounds(0, 0, 745, 1000);
 		this.paper_container.add(this.paper_panel);
 
-		JPanel clipPanel = new JPanel();
+		clipPanel = new JPanel();
 		clipPanel.setBounds(747, 0, 110, 137);
 		this.paper_container.add(clipPanel);
 		clipPanel.setBorder(new LineBorder(new Color(160, 82, 45), 2));
@@ -92,11 +106,7 @@ public class RiquadroPlico extends JPanel {
 		clipPanel.add(commessaButton);
 		commessaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PlicoCommessa plico_commessa = PlicoCommessa.getInstance();
-				// plico_commessa.load();
-				RiquadroPlico.this.getPaperPanel().add(plico_commessa);
-				aggiornaAltezze();
-
+				changePlico(PlicoCommessa.getInstance());
 			}
 		});
 
@@ -104,12 +114,7 @@ public class RiquadroPlico extends JPanel {
 		distintaButton.setBounds(0, 37, 110, 25);
 		distintaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PlicoDistinta plico_distinta = new PlicoDistinta();
-				// plico_distinta.load();
-				remove(RiquadroPlico.this.plico);
-				add(plico_distinta);
-				validate();
-				repaint();
+				changePlico(PlicoDistinta.getInstance());
 			}
 		});
 		distintaButton.setToolTipText("Distinta");
@@ -122,12 +127,7 @@ public class RiquadroPlico extends JPanel {
 		btnDdo.setBounds(0, 67, 110, 25);
 		btnDdo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PlicoDDO plico_ddo = new PlicoDDO();
-				//plico_ddo.load();
-				RiquadroPlico.this.getPaperPanel().removeAll();
-				RiquadroPlico.this.getPaperPanel().add(plico_ddo);
-				RiquadroPlico.this.getPaperPanel().validate();
-				RiquadroPlico.this.getPaperPanel().repaint();
+				changePlico(PlicoDDO.getInstance());
 			}
 		});
 		btnDdo.setToolTipText("Documento di Ottimizzazione");
@@ -178,5 +178,15 @@ public class RiquadroPlico extends JPanel {
 		RiquadroPlico.this.getPlico().setSize(RiquadroPlico.this.getPlico().getWidth(), RiquadroPlico.this.getPaperContainer().getHeight()+20);
 		validate();
 		repaint();
+	}
+	
+	private void changePlico(Plico plico){
+		RiquadroPlico.this.getPaperPanel().removeAll();
+		// plico_commessa.load();
+		RiquadroPlico.this.getPaperPanel().add(plico);
+		aggiornaAltezze();
+		RiquadroPlico.this.getPaperPanel().validate();
+		RiquadroPlico.this.getPaperPanel().repaint();
+		
 	}
 }
