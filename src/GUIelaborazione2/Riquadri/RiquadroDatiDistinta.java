@@ -43,11 +43,7 @@ public class RiquadroDatiDistinta extends Riquadro {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC}));
 		
-		lblOC = new JLabel("O/C");
-		form.add(lblOC, "2, 2");
-		
-		txtOC = new JTextField();
-		form.add(txtOC, "6, 2, fill, default");
+
 
 	}
 

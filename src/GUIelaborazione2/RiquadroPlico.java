@@ -123,9 +123,11 @@ public class RiquadroPlico extends JPanel {
 		btnDdo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PlicoDDO plico_ddo = new PlicoDDO();
-				plico_ddo.load();
-				plico.removeAll();
-				plico.add(plico_ddo);
+				//plico_ddo.load();
+				RiquadroPlico.this.getPaperPanel().removeAll();
+				RiquadroPlico.this.getPaperPanel().add(plico_ddo);
+				RiquadroPlico.this.getPaperPanel().validate();
+				RiquadroPlico.this.getPaperPanel().repaint();
 			}
 		});
 		btnDdo.setToolTipText("Documento di Ottimizzazione");
@@ -134,7 +136,7 @@ public class RiquadroPlico extends JPanel {
 
 		JButton btnNewButton_6 = new JButton("LDR");
 		btnNewButton_6.setBounds(0, 97, 110, 25);
-		btnNewButton_6.setToolTipText("Lista di Rintracciabilit�");
+		btnNewButton_6.setToolTipText("Lista di Rintracciabilita");
 		clipPanel.add(btnNewButton_6);
 
 	}
