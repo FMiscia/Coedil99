@@ -92,7 +92,7 @@ public class RiquadroPlico extends JPanel {
 		clipPanel.add(commessaButton);
 		commessaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PlicoCommessa plico_commessa = new PlicoCommessa();
+				PlicoCommessa plico_commessa = PlicoCommessa.getInstance();
 				// plico_commessa.load();
 				RiquadroPlico.this.getPaperPanel().add(plico_commessa);
 				aggiornaAltezze();
