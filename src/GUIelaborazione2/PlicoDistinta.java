@@ -37,16 +37,18 @@ public class PlicoDistinta extends Plico{
 		
 	}
 
-	@Override
-	public void load(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	public static PlicoDistinta getInstance(){
 		if(PlicoDistinta.instance == null)
 			PlicoDistinta.instance = new PlicoDistinta();
 		return PlicoDistinta.instance;
+	}
+
+	@Override
+	public void load(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
