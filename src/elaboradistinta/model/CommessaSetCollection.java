@@ -38,7 +38,7 @@ public class CommessaSetCollection extends org.orm.util.ORMSet {
 	 */
 	public void add(Commessa value) {
 		if (value != null) {
-			super.add(value, null);
+			super.add(value, value._ormAdapter);
 		}
 	}
 	
@@ -47,7 +47,7 @@ public class CommessaSetCollection extends org.orm.util.ORMSet {
 	 * @param value the persistent object
 	 */
 	public void remove(Commessa value) {
-		super.remove(value, null);
+		super.remove(value, value._ormAdapter);
 	}
 	
 	/**
@@ -119,7 +119,7 @@ public class CommessaSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return elaboradistinta.model.CoedilPersistentManager.instance();
+		return elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance();
 	}
 	
 }

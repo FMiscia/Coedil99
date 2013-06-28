@@ -31,7 +31,7 @@ public class HistoryCriteria extends AbstractORMCriteria {
 	}
 	
 	public HistoryCriteria() throws PersistentException {
-		this(elaboradistinta.model.CoedilPersistentManager.instance().getSession());
+		this(elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession());
 	}
 	
 	public History uniqueHistory() {

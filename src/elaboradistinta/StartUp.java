@@ -13,6 +13,7 @@ import org.orm.PersistentTransaction;
 import elaboradistinta.controller.GestisciClienteHandler;
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.controller.GestisciOrdineHandler;
+import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 //import elaboradistinta.model.Catalogo;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.CommessaFactory;
@@ -125,7 +126,7 @@ public class StartUp {
 		if (StartUp.instance == null){
 			try {
 				StartUp.instance = new StartUp();
-				elaboradistinta.model.CoedilPersistentManager.instance().disposePersistentManager();
+				Coedil99ingdelsoftwarePersistentManager.instance().disposePersistentManager();
 			}
 			catch (PersistentException e) {
 				e.printStackTrace();

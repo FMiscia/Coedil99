@@ -20,7 +20,7 @@ import java.util.List;
 public class CommessaFactory {
 	public static Commessa loadCommessaByORMID(int ID) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCommessaByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class CommessaFactory {
 	
 	public static Commessa getCommessaByORMID(int ID) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getCommessaByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class CommessaFactory {
 	
 	public static Commessa loadCommessaByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCommessaByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class CommessaFactory {
 	
 	public static Commessa getCommessaByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getCommessaByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -104,7 +104,7 @@ public class CommessaFactory {
 	
 	public static Commessa[] listCommessaByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listCommessaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class CommessaFactory {
 	
 	public static Commessa[] listCommessaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listCommessaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class CommessaFactory {
 	
 	public static Commessa loadCommessaByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCommessaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -172,7 +172,7 @@ public class CommessaFactory {
 	
 	public static Commessa loadCommessaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCommessaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -199,7 +199,7 @@ public class CommessaFactory {
 	
 	public static java.util.Iterator iterateCommessaByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateCommessaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -210,7 +210,7 @@ public class CommessaFactory {
 	
 	public static java.util.Iterator iterateCommessaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateCommessaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {

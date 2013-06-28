@@ -20,7 +20,7 @@ import java.util.List;
 public class HistoryFactory {
 	public static History loadHistoryByORMID(int ID) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadHistoryByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class HistoryFactory {
 	
 	public static History getHistoryByORMID(int ID) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getHistoryByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class HistoryFactory {
 	
 	public static History loadHistoryByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadHistoryByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class HistoryFactory {
 	
 	public static History getHistoryByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getHistoryByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -104,7 +104,7 @@ public class HistoryFactory {
 	
 	public static History[] listHistoryByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listHistoryByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class HistoryFactory {
 	
 	public static History[] listHistoryByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listHistoryByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class HistoryFactory {
 	
 	public static History loadHistoryByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadHistoryByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -172,7 +172,7 @@ public class HistoryFactory {
 	
 	public static History loadHistoryByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadHistoryByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -199,7 +199,7 @@ public class HistoryFactory {
 	
 	public static java.util.Iterator iterateHistoryByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateHistoryByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -210,7 +210,7 @@ public class HistoryFactory {
 	
 	public static java.util.Iterator iterateHistoryByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateHistoryByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {

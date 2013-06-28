@@ -45,7 +45,7 @@ public class OrdineCriteria extends AbstractORMCriteria {
 	}
 	
 	public OrdineCriteria() throws PersistentException {
-		this(elaboradistinta.model.CoedilPersistentManager.instance().getSession());
+		this(elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession());
 	}
 	
 	public ClienteCriteria createClienteCriteria() {

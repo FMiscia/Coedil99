@@ -99,7 +99,7 @@ public class RigaLavoroSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return elaboradistinta.model.CoedilPersistentManager.instance();
+		return elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance();
 	}
 	
 }

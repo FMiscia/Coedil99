@@ -31,7 +31,7 @@ public class DistintaCriteria extends AbstractORMCriteria {
 	}
 	
 	public DistintaCriteria() throws PersistentException {
-		this(elaboradistinta.model.CoedilPersistentManager.instance().getSession());
+		this(elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession());
 	}
 	
 	public DocumentoOttimizzazioneCriteria createDdoCriteria() {

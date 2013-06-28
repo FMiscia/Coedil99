@@ -14,6 +14,7 @@ import org.orm.PersistentTransaction;
 
 import elaboradistinta.controller.GestisciClienteHandler;
 import elaboradistinta.model.Cliente;
+import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 import elaboradistinta.model.Ordine;
 import elaboradistinta.model.Commessa;
 
@@ -94,7 +95,7 @@ public class GDatiAziendaliModel extends AbstractTableModel {
 	
 	public void cambiaValore(int cid, int oid, int c, Object value)
 			throws PersistentException {
-		PersistentTransaction t = elaboradistinta.model.CoedilPersistentManager
+		PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager
 				.instance().getSession().beginTransaction();
 		Commessa commessa = elaboradistinta.model.CommessaFactory
 				.getCommessaByORMID(cid);

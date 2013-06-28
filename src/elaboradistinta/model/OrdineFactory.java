@@ -20,7 +20,7 @@ import java.util.List;
 public class OrdineFactory {
 	public static Ordine loadOrdineByORMID(int ID) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadOrdineByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class OrdineFactory {
 	
 	public static Ordine getOrdineByORMID(int ID) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getOrdineByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class OrdineFactory {
 	
 	public static Ordine loadOrdineByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadOrdineByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class OrdineFactory {
 	
 	public static Ordine getOrdineByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getOrdineByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -104,7 +104,7 @@ public class OrdineFactory {
 	
 	public static Ordine[] listOrdineByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listOrdineByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class OrdineFactory {
 	
 	public static Ordine[] listOrdineByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listOrdineByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class OrdineFactory {
 	
 	public static Ordine loadOrdineByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadOrdineByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -172,7 +172,7 @@ public class OrdineFactory {
 	
 	public static Ordine loadOrdineByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadOrdineByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -199,7 +199,7 @@ public class OrdineFactory {
 	
 	public static java.util.Iterator iterateOrdineByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateOrdineByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -210,7 +210,7 @@ public class OrdineFactory {
 	
 	public static java.util.Iterator iterateOrdineByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateOrdineByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {

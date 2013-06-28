@@ -20,7 +20,7 @@ import java.util.List;
 public class RigheLavoroFactory {
 	public static RigheLavoro loadRigheLavoroByORMID(int ID) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadRigheLavoroByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class RigheLavoroFactory {
 	
 	public static RigheLavoro getRigheLavoroByORMID(int ID) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getRigheLavoroByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class RigheLavoroFactory {
 	
 	public static RigheLavoro loadRigheLavoroByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadRigheLavoroByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class RigheLavoroFactory {
 	
 	public static RigheLavoro getRigheLavoroByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getRigheLavoroByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -104,7 +104,7 @@ public class RigheLavoroFactory {
 	
 	public static RigheLavoro[] listRigheLavoroByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listRigheLavoroByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class RigheLavoroFactory {
 	
 	public static RigheLavoro[] listRigheLavoroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listRigheLavoroByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class RigheLavoroFactory {
 	
 	public static RigheLavoro loadRigheLavoroByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadRigheLavoroByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -172,7 +172,7 @@ public class RigheLavoroFactory {
 	
 	public static RigheLavoro loadRigheLavoroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadRigheLavoroByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -199,7 +199,7 @@ public class RigheLavoroFactory {
 	
 	public static java.util.Iterator iterateRigheLavoroByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateRigheLavoroByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -210,7 +210,7 @@ public class RigheLavoroFactory {
 	
 	public static java.util.Iterator iterateRigheLavoroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateRigheLavoroByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {

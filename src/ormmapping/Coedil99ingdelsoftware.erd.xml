@@ -125,7 +125,7 @@
       <ReferencedColumn>Ordine.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
-      <Nullable>true</Nullable>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>

@@ -38,7 +38,7 @@ public class CommessaListCollection extends org.orm.util.ORMList {
 	 */
 	public void add(Commessa value) {
 		if (value != null) {
-			super.add(value, null);
+			super.add(value, value._ormAdapter);
 		}
 	}
 	
@@ -47,7 +47,7 @@ public class CommessaListCollection extends org.orm.util.ORMList {
 	 * @param value the persistent object
 	 */
 	public void remove(Commessa value) {
-		super.remove(value, null);
+		super.remove(value, value._ormAdapter);
 	}
 	
 	/**
@@ -135,7 +135,7 @@ public class CommessaListCollection extends org.orm.util.ORMList {
 	public Commessa remove(int index) {
 		Commessa value = get(index);
 		if (value != null) {
-			return (Commessa) super.removeImpl(index, null);
+			return (Commessa) super.removeImpl(index, value._ormAdapter);
 		}
 		return null;
 	}
@@ -147,7 +147,7 @@ public class CommessaListCollection extends org.orm.util.ORMList {
 	 */
 	public void add(int index, Commessa value) {
 		if (value != null) {
-			super.add(index, value, null);
+			super.add(index, value, value._ormAdapter);
 		}
 	}
 	
@@ -170,7 +170,7 @@ public class CommessaListCollection extends org.orm.util.ORMList {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return elaboradistinta.model.CoedilPersistentManager.instance();
+		return elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance();
 	}
 	
 }

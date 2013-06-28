@@ -20,7 +20,7 @@ import java.util.List;
 public class DocumentoOttimizzazioneFactory {
 	public static DocumentoOttimizzazione loadDocumentoOttimizzazioneByORMID(int ID) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadDocumentoOttimizzazioneByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class DocumentoOttimizzazioneFactory {
 	
 	public static DocumentoOttimizzazione getDocumentoOttimizzazioneByORMID(int ID) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getDocumentoOttimizzazioneByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class DocumentoOttimizzazioneFactory {
 	
 	public static DocumentoOttimizzazione loadDocumentoOttimizzazioneByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadDocumentoOttimizzazioneByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class DocumentoOttimizzazioneFactory {
 	
 	public static DocumentoOttimizzazione getDocumentoOttimizzazioneByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getDocumentoOttimizzazioneByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -104,7 +104,7 @@ public class DocumentoOttimizzazioneFactory {
 	
 	public static DocumentoOttimizzazione[] listDocumentoOttimizzazioneByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listDocumentoOttimizzazioneByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class DocumentoOttimizzazioneFactory {
 	
 	public static DocumentoOttimizzazione[] listDocumentoOttimizzazioneByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listDocumentoOttimizzazioneByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class DocumentoOttimizzazioneFactory {
 	
 	public static DocumentoOttimizzazione loadDocumentoOttimizzazioneByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadDocumentoOttimizzazioneByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -172,7 +172,7 @@ public class DocumentoOttimizzazioneFactory {
 	
 	public static DocumentoOttimizzazione loadDocumentoOttimizzazioneByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadDocumentoOttimizzazioneByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -199,7 +199,7 @@ public class DocumentoOttimizzazioneFactory {
 	
 	public static java.util.Iterator iterateDocumentoOttimizzazioneByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateDocumentoOttimizzazioneByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -210,7 +210,7 @@ public class DocumentoOttimizzazioneFactory {
 	
 	public static java.util.Iterator iterateDocumentoOttimizzazioneByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = elaboradistinta.model.CoedilPersistentManager.instance().getSession();
+			PersistentSession session = elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateDocumentoOttimizzazioneByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {

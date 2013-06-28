@@ -81,6 +81,10 @@ public class CommessaDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new ListaRintracciabilitaDetachedCriteria(createCriteria("ldr"));
 	}
 	
+	public OrdineDetachedCriteria createOrdineCriteria() {
+		return new OrdineDetachedCriteria(createCriteria("ordine"));
+	}
+	
 	public Commessa uniqueCommessa(PersistentSession session) {
 		return (Commessa) super.createExecutableCriteria(session).uniqueResult();
 	}

@@ -19,7 +19,7 @@ public class Ordine {
 	
 	public boolean save() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().saveObject(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().saveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -30,7 +30,7 @@ public class Ordine {
 	
 	public boolean delete() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().deleteObject(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().deleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -41,7 +41,7 @@ public class Ordine {
 	
 	public boolean refresh() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().getSession().refresh(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -52,7 +52,7 @@ public class Ordine {
 	
 	public boolean evict() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().getSession().evict(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().evict(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -67,6 +67,10 @@ public class Ordine {
 				getCliente().ordini.remove(this);
 			}
 			
+			elaboradistinta.model.Commessa[] lCommesses = commesse.toArray();
+			for(int i = 0; i < lCommesses.length; i++) {
+				lCommesses[i].setOrdine(null);
+			}
 			return delete();
 		}
 		catch(Exception e) {
@@ -81,6 +85,10 @@ public class Ordine {
 				getCliente().ordini.remove(this);
 			}
 			
+			elaboradistinta.model.Commessa[] lCommesses = commesse.toArray();
+			for(int i = 0; i < lCommesses.length; i++) {
+				lCommesses[i].setOrdine(null);
+			}
 			try {
 				session.delete(this);
 				return true;
@@ -223,7 +231,7 @@ public class Ordine {
 		return ORM_commesse;
 	}
 	
-	public final elaboradistinta.model.CommessaListCollection commesse = new elaboradistinta.model.CommessaListCollection(this, _ormAdapter, elaboradistinta.model.ORMConstants.KEY_ORDINE_COMMESSE, elaboradistinta.model.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final elaboradistinta.model.CommessaListCollection commesse = new elaboradistinta.model.CommessaListCollection(this, _ormAdapter, elaboradistinta.model.ORMConstants.KEY_ORDINE_COMMESSE, elaboradistinta.model.ORMConstants.KEY_COMMESSA_ORDINE, elaboradistinta.model.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public void setCliente(elaboradistinta.model.Cliente value) {
 		if (cliente != null) {

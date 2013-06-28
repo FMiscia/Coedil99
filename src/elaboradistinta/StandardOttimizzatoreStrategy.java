@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
-import elaboradistinta.model.CoedilPersistentManager;
+import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 import elaboradistinta.model.Distinta;
 import elaboradistinta.model.DocumentoOttimizzazione;
 import elaboradistinta.model.DocumentoOttimizzazioneFactory;
@@ -120,7 +120,7 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 		DocumentoOttimizzazione o = DocumentoOttimizzazioneFactory.createDocumentoOttimizzazione();
 		JOptionPane.showMessageDialog(null,"Distinta Ottimizzata!");
 		try {
-			PersistentTransaction t = CoedilPersistentManager.instance().getSession().beginTransaction();
+			PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
 			for(int i=0; i<ddoitem.size(); ++i){
 				o.items.add(ddoitem.get(i));
 			}

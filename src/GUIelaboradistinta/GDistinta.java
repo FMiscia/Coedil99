@@ -16,7 +16,7 @@ import javax.swing.JViewport;
 import javax.swing.border.EmptyBorder;
 
 
-import elaboradistinta.model.CoedilPersistentManager;
+import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 import elaboradistinta.model.Distinta;
 import elaboradistinta.model.DocumentoOttimizzazione;
 import elaboradistinta.model.Geometria;
@@ -86,7 +86,7 @@ public class GDistinta {
 						if(m.getModifiche().get(0).size() == 0 && m.getModifiche().get(1).size() == 0)
 							JOptionPane.showMessageDialog(null, "Nessuna modifica apportata");
 						else{
-							PersistentSession sess = CoedilPersistentManager.instance().getSession(); 
+							PersistentSession sess = Coedil99ingdelsoftwarePersistentManager.instance().getSession(); 
 							for(int i=0; i<m.getModifiche().get(0).size(); ++i){
 								if(m.getModifiche().get(0).get(i) != null)
 									sess.refresh(m.getModifiche().get(0).get(i));
@@ -201,7 +201,7 @@ public class GDistinta {
 	public void salvaModifiche(Distinta d){
 		GDatiDistintaModel m = getModel();
 			try {
-				PersistentTransaction t = CoedilPersistentManager.instance().getSession().beginTransaction();
+				PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
 				for(int i=0; i<m.getModifiche().get(1).size(); ++i){
 					RigaLavoro r =  (RigaLavoro) m.getModifiche().get(1).get(i);
 					d.getLavori().righe.remove(r);

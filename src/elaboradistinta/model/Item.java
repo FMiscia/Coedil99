@@ -21,7 +21,7 @@ public class Item {
 	
 	public boolean save() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().saveObject(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().saveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -32,7 +32,7 @@ public class Item {
 	
 	public boolean delete() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().deleteObject(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().deleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -43,7 +43,7 @@ public class Item {
 	
 	public boolean refresh() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().getSession().refresh(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -54,7 +54,7 @@ public class Item {
 	
 	public boolean evict() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().getSession().evict(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().evict(this);
 			return true;
 		}
 		catch (Exception e) {

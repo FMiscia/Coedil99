@@ -11,7 +11,7 @@ public class GestisciClienteHandler {
 	private ArrayList<Cliente> clienti = null;
 	private static GestisciClienteHandler instance;
 	
-	public GestisciClienteHandler() {
+	private GestisciClienteHandler() {
 		this.clienti = new ArrayList<Cliente>(Arrays.asList(ClienteFactory.listClienteByQuery(null, "ID")));
 	}
 

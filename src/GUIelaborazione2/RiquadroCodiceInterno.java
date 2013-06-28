@@ -12,7 +12,10 @@ import javax.swing.border.LineBorder;
 import elaboradistinta.model.Cliente;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Ordine;
+import GUIelaborazione2.RiquadroCodici;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 @SuppressWarnings("serial")
 public class RiquadroCodiceInterno extends JPanel {
@@ -20,8 +23,10 @@ public class RiquadroCodiceInterno extends JPanel {
 	private JLabel scadenza;
 	private JLabel codiceInterno;
 	private JLabel cliente;
-	
-	public RiquadroCodiceInterno(){
+	private RiquadroCodici riquadro = null;
+
+	public RiquadroCodiceInterno(RiquadroCodici rc){
+		this.riquadro = rc;
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(200,59));
 		this.setBackground(new Color(30, 144, 255));
@@ -59,6 +64,53 @@ public class RiquadroCodiceInterno extends JPanel {
 		else
 			scadenza.setText(o.getDataScadenza().toString());
 		codiceInterno.setText(cc.getCodiceInterno());
+		final int id = cc.getID();
+		this.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				PlicoCommessa plico_commessa = PlicoCommessa.getInstance();		
+				RiquadroCodiceInterno.this.riquadro.deselectAll();
+				plico_commessa.load(id);
+				Contenitore.getInstance().getRiquadroplico().getPaperPanel().removeAll();
+				Contenitore.getInstance().getRiquadroplico().getPaperPanel().add(plico_commessa);
+				Contenitore.getInstance().getRiquadroplico().aggiornaAltezze();
+				Contenitore.getInstance().getRiquadroplico().getPlico().validate();
+				Contenitore.getInstance().getRiquadroplico().getPlico().repaint();
+				RiquadroCodiceInterno.this.setBackground(new Color(30,44,255));
+				RiquadroCodiceInterno.this.validate();
+				RiquadroCodiceInterno.this.repaint();
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 	}
+	
 
 }

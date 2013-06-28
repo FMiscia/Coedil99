@@ -17,7 +17,7 @@ public class GestisciOrdineHandler {
 	/**
 	 * Costruttore
 	 */
-	public GestisciOrdineHandler() {
+	private GestisciOrdineHandler() {
 		this.ordini = new ArrayList<Ordine>(Arrays.asList(OrdineFactory.listOrdineByQuery(null, "ID")));
 	}
 

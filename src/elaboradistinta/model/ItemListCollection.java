@@ -146,7 +146,7 @@ public class ItemListCollection extends org.orm.util.ORMList {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return elaboradistinta.model.CoedilPersistentManager.instance();
+		return elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance();
 	}
 	
 }

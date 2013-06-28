@@ -20,7 +20,7 @@ License Type: Purchased
 		<property name="numeroOrdine" column="NumeroOrdine" type="integer" length="11" not-null="false" lazy="false"/>
 		<property name="OC" column="OC" type="string" length="255" not-null="false" lazy="false"/>
 		<list name="ORM_Commesse" lazy="true" cascade="save-update,lock" inverse="false">
-			<key column="OrdineID" not-null="false"/>
+			<key column="OrdineID" not-null="true"/>
 			<index column="OrdineIndex" type="integer"/>
 			<one-to-many class="elaboradistinta.model.Commessa"/>
 		</list>

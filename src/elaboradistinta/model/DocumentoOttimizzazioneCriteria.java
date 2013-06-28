@@ -31,7 +31,7 @@ public class DocumentoOttimizzazioneCriteria extends AbstractORMCriteria {
 	}
 	
 	public DocumentoOttimizzazioneCriteria() throws PersistentException {
-		this(elaboradistinta.model.CoedilPersistentManager.instance().getSession());
+		this(elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession());
 	}
 	
 	public ItemCriteria createItemsCriteria() {

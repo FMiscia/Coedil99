@@ -14,6 +14,8 @@ License Type: Purchased
 		</many-to-one>
 		<many-to-one name="ldr" column="ListaRintracciabilitaID" class="elaboradistinta.model.ListaRintracciabilita" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
+		<many-to-one name="ordine" cascade="lock" column="OrdineID" class="elaboradistinta.model.Ordine" not-null="true" update="false" insert="false" lazy="no-proxy" access="field">
+		</many-to-one>
 		<property name="codiceInterno" column="CodiceInterno" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="elementoStrutturale" column="ElementoStrutturale" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="scadenzaCommessa" column="ScadenzaCommessa" type="date" not-null="false" lazy="false"/>

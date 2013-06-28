@@ -37,7 +37,7 @@ public class GeometriaCriteria extends AbstractORMCriteria {
 	}
 	
 	public GeometriaCriteria() throws PersistentException {
-		this(elaboradistinta.model.CoedilPersistentManager.instance().getSession());
+		this(elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession());
 	}
 	
 	public Geometria uniqueGeometria() {

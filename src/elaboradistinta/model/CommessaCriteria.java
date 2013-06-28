@@ -59,7 +59,7 @@ public class CommessaCriteria extends AbstractORMCriteria {
 	}
 	
 	public CommessaCriteria() throws PersistentException {
-		this(elaboradistinta.model.CoedilPersistentManager.instance().getSession());
+		this(elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession());
 	}
 	
 	public DistintaCriteria createDistintaCriteria() {
@@ -68,6 +68,10 @@ public class CommessaCriteria extends AbstractORMCriteria {
 	
 	public ListaRintracciabilitaCriteria createLdrCriteria() {
 		return new ListaRintracciabilitaCriteria(createCriteria("ldr"));
+	}
+	
+	public OrdineCriteria createOrdineCriteria() {
+		return new OrdineCriteria(createCriteria("ordine"));
 	}
 	
 	public Commessa uniqueCommessa() {

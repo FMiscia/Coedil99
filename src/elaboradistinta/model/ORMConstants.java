@@ -22,6 +22,8 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_COMMESSA_LDR = 1075089891;
 	
+	final int KEY_COMMESSA_ORDINE = 530320598;
+	
 	final int KEY_DISTINTA_DDO = 716962888;
 	
 	final int KEY_DISTINTA_LAVORI = 395614892;

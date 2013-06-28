@@ -21,7 +21,7 @@ public class Commessa {
 	
 	public boolean save() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().saveObject(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().saveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -32,7 +32,7 @@ public class Commessa {
 	
 	public boolean delete() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().deleteObject(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().deleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -43,7 +43,7 @@ public class Commessa {
 	
 	public boolean refresh() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().getSession().refresh(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -54,7 +54,7 @@ public class Commessa {
 	
 	public boolean evict() {
 		try {
-			elaboradistinta.model.CoedilPersistentManager.instance().getSession().evict(this);
+			elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().evict(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -63,8 +63,45 @@ public class Commessa {
 		}
 	}
 	
+	public boolean deleteAndDissociate() {
+		try {
+			if(getOrdine() != null) {
+				getOrdine().commesse.remove(this);
+			}
+			
+			return delete();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean deleteAndDissociate(org.orm.PersistentSession session) {
+		try {
+			if(getOrdine() != null) {
+				getOrdine().commesse.remove(this);
+			}
+			
+			try {
+				session.delete(this);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	private void this_setOwner(Object owner, int key) {
-		if (key == elaboradistinta.model.ORMConstants.KEY_COMMESSA_LDR) {
+		if (key == elaboradistinta.model.ORMConstants.KEY_COMMESSA_ORDINE) {
+			this.ordine = (elaboradistinta.model.Ordine) owner;
+		}
+		
+		else if (key == elaboradistinta.model.ORMConstants.KEY_COMMESSA_LDR) {
 			this.ldr = (elaboradistinta.model.ListaRintracciabilita) owner;
 		}
 		
@@ -85,6 +122,8 @@ public class Commessa {
 	private elaboradistinta.model.Distinta distinta;
 	
 	private elaboradistinta.model.ListaRintracciabilita ldr;
+	
+	private elaboradistinta.model.Ordine ordine;
 	
 	private String codiceInterno;
 	
@@ -282,6 +321,30 @@ public class Commessa {
 		return getID();
 	}
 	
+	public void setOrdine(elaboradistinta.model.Ordine value) {
+		if (ordine != null) {
+			ordine.commesse.remove(this);
+		}
+		if (value != null) {
+			value.commesse.add(this);
+		}
+	}
+	
+	public elaboradistinta.model.Ordine getOrdine() {
+		return ordine;
+	}
+	
+	/**
+	 * This method is for internal use only.
+	 */
+	private void setORM_Ordine(elaboradistinta.model.Ordine value) {
+		this.ordine = value;
+	}
+	
+	private elaboradistinta.model.Ordine getORM_Ordine() {
+		return ordine;
+	}
+	
 	public void setLdr(elaboradistinta.model.ListaRintracciabilita value) {
 		this.ldr = value;
 	}
@@ -303,14 +366,10 @@ public class Commessa {
 	 */
 	private static int counter = 0;
 	
-	public Commessa(elaboradistinta.model.Ordine o, elaboradistinta.model.Distinta d, String es, java.util.Calendar s, java.util.Calendar e, String orario, String desc, String resp) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
 	
 	public Integer getOrdineId() {
 		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return this.ordine.getID();
 	}
 	
 	public java.util.Calendar getScadenza() {

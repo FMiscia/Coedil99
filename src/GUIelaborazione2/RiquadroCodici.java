@@ -2,6 +2,7 @@ package GUIelaborazione2;
 
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -27,6 +28,7 @@ public class RiquadroCodici extends JScrollPane {
 		this.setViewportView(panel);
 		panel.setLayout(new WrapLayout());
 		this.load(GestisciClienteHandler.getInstance().getClienti());
+		
 	}
 	
 	public void load(ArrayList<Cliente> cliente){
@@ -35,46 +37,8 @@ public class RiquadroCodici extends JScrollPane {
 		for(int k=0; k<cliente.size(); ++k){
 			for(int j=0; j<cliente.get(k).ordini.size(); ++j){
 				for(int i=0; i<cliente.get(k).ordini.get(j).commesse.size(); ++i){
-					final RiquadroCodiceInterno r = new RiquadroCodiceInterno();
+					final RiquadroCodiceInterno r = new RiquadroCodiceInterno(this);
 					r.load(cliente.get(k), cliente.get(k).ordini.get(j), cliente.get(k).ordini.get(j).commesse.get(i));
-					r.addMouseListener(new MouseListener() {
-						
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-						
-						@Override
-						public void mousePressed(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-						
-						@Override
-						public void mouseExited(MouseEvent e) {
-							r.setBackground(new Color(30, 144, 255));
-							
-						}
-						
-						@Override
-						public void mouseEntered(MouseEvent e) {
-							r.setBackground(new Color(30, 44, 255));
-							
-						}
-						
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							PlicoCommessa plico_commessa = PlicoCommessa.getInstance();
-							// plico_commessa.load();
-							Contenitore.getInstance().getRiquadroplico().getPaperPanel().removeAll();
-							Contenitore.getInstance().getRiquadroplico().getPaperPanel().add(plico_commessa);
-							Contenitore.getInstance().getRiquadroplico().aggiornaAltezze();
-							Contenitore.getInstance().getRiquadroplico().getPlico().validate();
-							Contenitore.getInstance().getRiquadroplico().getPlico().repaint();
-							
-						}
-					});
 					panel.add(r);
 				}
 			}
@@ -83,5 +47,17 @@ public class RiquadroCodici extends JScrollPane {
 		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
 		
 	}
+
+	public void deselectAll() {
+		// TODO Auto-generated method stub
+		for(Component c:panel.getComponents()){
+			c.setBackground(new Color(30,144,255));
+			c.validate();
+			c.repaint();
+		}
+			
+		
+	}
+	
 
 }

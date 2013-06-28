@@ -12,6 +12,7 @@ import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
 import elaboradistinta.controller.GestisciCommessaHandler;
+import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Distinta;
 import elaboradistinta.model.Geometria;
@@ -104,7 +105,7 @@ public class GDatiDistintaModel extends AbstractTableModel implements ActionList
 	}
 	
 	public void cambiaValore(int riga, int colonna, Object value) throws PersistentException {
-		PersistentTransaction t = elaboradistinta.model.CoedilPersistentManager.instance().getSession().beginTransaction();
+		PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
 		RigaLavoro r = (RigaLavoro) this.dati.get(riga).get(0);
 		Geometria g = GeometriaFactory.getGeometriaByORMID(r.getGeometria().getID());
 		switch(colonna){
