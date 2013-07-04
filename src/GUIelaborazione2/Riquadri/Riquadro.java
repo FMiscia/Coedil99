@@ -13,7 +13,8 @@ import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public abstract class Riquadro extends JPanel {
-
+	
+	
 	public Riquadro(String title) {
 		super();
 		setLayout(null);

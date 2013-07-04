@@ -1,6 +1,9 @@
 package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,8 +14,9 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
+import elaboradistinta.model.Commessa;
+import elaboradistinta.model.Ordine;
 
 @SuppressWarnings("serial")
 public class RiquadroDatiAziendali extends Riquadro {
@@ -36,20 +40,19 @@ public class RiquadroDatiAziendali extends Riquadro {
 	private JTextField txtOrario;
 	private JLabel lblDescrizione;
 	private JTextField txtDescrizione;
-	private JLabel lblPartizione;
-	private JTextField txtPartizione;
 	private boolean aperto;
 	private JButton toggle;
 	
 	
+	
 	public RiquadroDatiAziendali(String title) {
 		super(title);
-		aperto = true;
-		this.setSize(new Dimension(600,310));
-		form = new JPanel();
-		form.setBounds(0,30,600,270);
+		this.aperto = true;
+		this.setSize(new Dimension(600, 290));
+		this.form = new JPanel();
+		this.form.setBounds(0,30,600,250);
 		this.add(form);
-		form.setLayout(new FormLayout(new ColumnSpec[] {
+		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("max(230px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -74,78 +77,78 @@ public class RiquadroDatiAziendali extends Riquadro {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC}));
+				FormFactory.DEFAULT_ROWSPEC,}));
 		
-		lblOC = new JLabel("O/C");
-		form.add(lblOC, "2, 2");
+		this.lblOC = new JLabel("O/C");
+		this.form.add(this.lblOC, "2, 2");
 		
-		txtOC = new JTextField();
-		form.add(txtOC, "6, 2, fill, default");
+		this.txtOC = new JTextField();
+		this.Container.add(this.txtOC);
+		this.form.add(this.txtOC, "6, 2, fill, default");
 
 		
-		lblAnno = new JLabel("Anno");
-		form.add(lblAnno, "2, 4");
+		this.lblAnno = new JLabel("Anno");
+		this.form.add(this.lblAnno, "2, 4");
 		
-		txtAnno = new JTextField();
-		form.add(txtAnno, "6, 4, fill, default");
+		this.txtAnno = new JTextField();
+		this.Container.add(this.txtAnno);
+		this.form.add(this.txtAnno, "6, 4, fill, default");
 
 		
-		lblOrdineContratto = new JLabel("Ordine/Contratto");
-		form.add(lblOrdineContratto, "2, 6");
+		this.lblOrdineContratto = new JLabel("Ordine/Contratto");
+		this.form.add(this.lblOrdineContratto, "2, 6");
 		
-		txtOrdineContratto = new JTextField();
-		form.add(txtOrdineContratto, "6, 6, fill, default");
+		this.txtOrdineContratto = new JTextField();
+		this.Container.add(this.txtOrdineContratto);
+		this.form.add(this.txtOrdineContratto, "6, 6, fill, default");
+		
+		
+		this.lblCommessaCoedil = new JLabel("Commessa Coedil");
+		this.form.add(this.lblCommessaCoedil, "2, 8");
+		
+		this.txtCommessaCoedil = new JTextField();
+		this.Container.add(this.txtCommessaCoedil);
+		this.form.add(this.txtCommessaCoedil, "6, 8, fill, default");
 
 		
-		lblCommessaCoedil = new JLabel("Commessa Coedil");
-		form.add(lblCommessaCoedil, "2, 8");
+		this.lblOrdineGestionale = new JLabel("Ordine Gestionale");
+		this.form.add(this.lblOrdineGestionale, "2, 10");
 		
-		txtCommessaCoedil = new JTextField();
-		form.add(txtCommessaCoedil, "6, 8, fill, default");
+		this.txtOrdineGestionale = new JTextField();
+		this.Container.add(this.txtOrdineGestionale);
+		this.form.add(this.txtOrdineGestionale, "6, 10, fill, default");
 
 		
-		lblOrdineGestionale = new JLabel("Ordine Gestionale");
-		form.add(lblOrdineGestionale, "2, 10");
+		this.lblDataInizio = new JLabel("Data Inizio");
+		this.form.add(this.lblDataInizio, "2, 12");
 		
-		txtOrdineGestionale = new JTextField();
-		form.add(txtOrdineGestionale, "6, 10, fill, default");
+		this.txtDataInizio = new JTextField();
+		this.Container.add(this.txtDataInizio);
+		this.form.add(this.txtDataInizio, "6, 12, fill, default");
 
 		
-		lblDataInizio = new JLabel("Data Inizio");
-		form.add(lblDataInizio, "2, 12");
+		this.lblDataFine = new JLabel("Data Fine");
+		this.form.add(this.lblDataFine, "2, 14");
 		
-		txtDataInizio = new JTextField();
-		form.add(txtDataInizio, "6, 12, fill, default");
+		this.txtDataFine = new JTextField();
+		this.Container.add(this.txtDataFine);
+		this.form.add(this.txtDataFine, "6, 14, fill, default");
 
 		
-		lblDataFine = new JLabel("Data Fine");
-		form.add(lblDataFine, "2, 14");
+		this.lblOrario = new JLabel("Orario");
+		this.form.add(this.lblOrario, "2, 16");
 		
-		txtDataFine = new JTextField();
-		form.add(txtDataFine, "6, 14, fill, default");
-
-		
-		lblOrario = new JLabel("Orario");
-		form.add(lblOrario, "2, 16");
-		
-		txtOrario = new JTextField();
-		form.add(txtOrario, "6, 16, fill, default");
+		this.txtOrario = new JTextField();
+		this.Container.add(this.txtOrario);
+		this.form.add(this.txtOrario, "6, 16, fill, default");
 		
 		
-		lblDescrizione = new JLabel("Descrizione");
-		form.add(lblDescrizione, "2, 18");
+		this.lblDescrizione = new JLabel("Descrizione");
+		this.form.add(this.lblDescrizione, "2, 18");
 		
-		txtDescrizione = new JTextField();
-		form.add(txtDescrizione, "6, 18, fill, default");
-		
-		
-		lblPartizione = new JLabel("Partizione");
-		form.add(lblPartizione, "2, 20");
-		
-		txtPartizione = new JTextField();
-		form.add(txtPartizione, "6, 20, fill, default");
+		this.txtDescrizione = new JTextField();
+		this.Container.add(this.txtDescrizione);
+		this.form.add(this.txtDescrizione, "6, 18, fill, default");
 	
 		toggle = new JButton("Chiudi");
 		toggle.addMouseListener(new MouseAdapter() {
@@ -159,7 +162,7 @@ public class RiquadroDatiAziendali extends Riquadro {
 				else{
 					toggle.setText("Chiudi");
 					aperto = true;
-					form.getParent().setSize(new Dimension(600,310));
+					form.getParent().setSize(new Dimension(600,290));
 				}
 				validate();
 				repaint();
@@ -172,8 +175,34 @@ public class RiquadroDatiAziendali extends Riquadro {
 
 	@Override
 	public void load(Object o) {
-		// TODO Auto-generated method stub
+		Commessa c = (Commessa) o;
+		if(c != null)
+			txtCommessaCoedil.setText(Integer.toString(c.getID()));
+		Ordine ord = c.getOrdine();
+		if(ord != null)
+			txtOrdineContratto.setText(Integer.toString(ord.getID()));
+		if(ord.getOC() != null)
+			txtOC.setText(ord.getOC());
+		if(ord.getAnno() != null)
+			txtAnno.setText(ord.getAnno().toString());
+		if(ord.getOrdineGestionale() != null)
+			txtOrdineGestionale.setText(ord.getOrdineGestionale());
+		if(ord.getDataInizio() != null)
+			txtDataInizio.setText(ord.getDataInizio().toString());
+		if(ord.getDataFine() != null)
+			txtDataInizio.setText(ord.getDataFine().toString());
+		if(c.getOrario() != null)
+			txtOrario.setText(c.getOrario());
+		if(c.getDescrizione() != null)
+			txtDescrizione.setText(c.getDescrizione());
+		
+	}
 
+	@Override
+	public void makeEditable(boolean editable) {
+		// TODO Auto-generated method stub
+		super.makeEditable(editable);
+		
 	}
 
 }
