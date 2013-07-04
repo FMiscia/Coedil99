@@ -70,9 +70,12 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 	@Override
 	public void load(Object o) {
 		Cliente c = (Cliente) o;
-		txtCantiere.setText(c.getCantiere().getNome());
-		txtCliente.setText(c.getName());
-		txtCommessa.setText(c.getNumeroCommessaCliente().toString());
+		if(c.getCantiere().getNome() != null)
+			txtCantiere.setText(c.getCantiere().getNome());
+		if(c.getName() != null)
+			txtCliente.setText(c.getName());
+		if(c.getNumeroCommessaCliente() != null)
+			txtCommessa.setText(c.getNumeroCommessaCliente().toString());
 		validate();
 		repaint();
 

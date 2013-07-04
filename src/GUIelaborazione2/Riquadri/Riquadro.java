@@ -14,8 +14,11 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public abstract class Riquadro extends JPanel {
 
+	protected ArrayList<JTextField> Container;
+	
 	public Riquadro(String title) {
 		super();
+		this.Container = new ArrayList<JTextField>();
 		setLayout(null);
 		setPreferredSize(new Dimension(600, 200));
 		JSeparator separator = new JSeparator();
@@ -32,7 +35,7 @@ public abstract class Riquadro extends JPanel {
 	}
 
 	public void makeEditable(boolean editable) {
-		for (JTextField i : this.getContainer()) {
+		for (JTextField i : this.Container) {
 			if(!editable)
 				i.setBackground(Color.getColor("textInactiveText"));
 			i.setEditable(editable);
@@ -40,8 +43,7 @@ public abstract class Riquadro extends JPanel {
 		this.validate();
 		this.repaint();
 	}
-
-	public abstract ArrayList<JTextField> getContainer();
+	
 
 	public abstract void load(Object o);
 
