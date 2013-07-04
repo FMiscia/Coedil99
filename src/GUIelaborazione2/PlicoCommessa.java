@@ -65,6 +65,7 @@ public class PlicoCommessa extends Plico{
 		Commessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
 		Ordine o = GestisciOrdineHandler.getInstance().getOrdineById(c.getOrdineId());
 		Cliente cl = GestisciClienteHandler.getInstance().getClienteById(o.getCliente().getID());
+		rda.load(c);
 		rdcc.load(cl);
 	}
 	

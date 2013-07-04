@@ -155,11 +155,4 @@ public class RiquadroDatiDistinta extends Riquadro {
 		
 	}
 
-	@Override
-	public ArrayList<JTextField> getContainer() {
-		// TODO Auto-generated method stub
-		return this.Container;
-	}
-
-
 }
