@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
+import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.Commessa;
 
 public class Contenitore extends JPanel {
@@ -36,7 +37,8 @@ public class Contenitore extends JPanel {
 		this.riquadrocodici = new RiquadroCodici();
 		this.riquadrocodici.setMinimumSize(new Dimension(0, 0));
 		this.riquadrocodici.setPreferredSize(new Dimension(200, 0));
-		
+		this.commessaSelezionata = GestisciCommessaHandler.
+				getInstance().getCommessaById(this.riquadrocodici.getPrimaCommessa());
 		this.riquadroplico = new RiquadroPlico();
 		setLayout(new BorderLayout(0, 0));
 		
@@ -74,6 +76,7 @@ public class Contenitore extends JPanel {
 		lblNewLabel.setPreferredSize(new Dimension(70, 40));
 		this.riquadrocodici.setColumnHeaderView(lblNewLabel);
 		add(this.riquadroplico);
+		this.riquadroplico.caricaPrimaCommessa(this.commessaSelezionata);
 
 	}
 	
@@ -112,7 +115,10 @@ public class Contenitore extends JPanel {
 		return commessaSelezionata;
 	}
 
-	public void setCommessaSelezionata(Commessa commessaSelezionata) {
-		this.commessaSelezionata = commessaSelezionata;
+
+	public void setCommessaSelezionata(Commessa selectedComm) {
+		// TODO Auto-generated method stub
+		this.commessaSelezionata = selectedComm;
 	}
+	
 }

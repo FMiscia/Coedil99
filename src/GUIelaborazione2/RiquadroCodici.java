@@ -1,9 +1,13 @@
 package GUIelaborazione2;
 
 
+import java.awt.AWTEvent;
+import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -21,7 +25,6 @@ import javax.swing.BoxLayout;
 public class RiquadroCodici extends JScrollPane {
 	
 	private JPanel panel;
-
 	
 	public RiquadroCodici(){
 		panel = new JPanel(null);
@@ -56,6 +59,13 @@ public class RiquadroCodici extends JScrollPane {
 			c.repaint();
 		}
 			
+		
+	}
+	
+	public int getPrimaCommessa(){
+		((RiquadroCodiceInterno) this.panel.getComponent(0)).setBackground(new Color(30,44,255));
+		
+		return ((RiquadroCodiceInterno) this.panel.getComponent(0)).getCommessaId();	
 		
 	}
 	

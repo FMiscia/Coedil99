@@ -1,5 +1,8 @@
 package GUIelaborazione2;
 import java.awt.Dimension;
+
+import elaboradistinta.controller.GestisciCommessaHandler;
+import elaboradistinta.model.Commessa;
 import GUIelaborazione2.Riquadri.RiquadroOttimizzazione;
 
 
@@ -7,22 +10,22 @@ import GUIelaborazione2.Riquadri.RiquadroOttimizzazione;
 @SuppressWarnings("serial")
 public class PlicoDDO extends Plico{
 
-	private RiquadroOttimizzazione rdcc;
+	private RiquadroOttimizzazione ro;
 	private static PlicoDDO instance = null;
 	
 	
 	
-	public PlicoDDO(){
+	private PlicoDDO(){
 		setBorder(null);
 		setLayout(null);
 		
 
-		rdcc = new RiquadroOttimizzazione("Ottimizzazione");
+		ro = new RiquadroOttimizzazione("Ottimizzazione");
 
-		rdcc.setBounds(40, 20,rdcc.getWidth(),rdcc.getHeight());
+		ro.setBounds(40, 20,ro.getWidth(),ro.getHeight());
 		setPreferredSize(new Dimension(745,1000));
 		setSize(745,950);
-		add(rdcc);
+		add(ro);
 	}
 
 	@Override
@@ -40,9 +43,9 @@ public class PlicoDDO extends Plico{
 		return PlicoDDO.instance;
 	}
 
-	@Override
 	public void load(int id) {
 		// TODO Auto-generated method stub
-		
+		Commessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
+		ro.load(c.getDistinta().getDdo());
 	}
 }

@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.Cliente;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Ordine;
@@ -24,6 +25,7 @@ public class RiquadroCodiceInterno extends JPanel {
 	private JLabel codiceInterno;
 	private JLabel cliente;
 	private RiquadroCodici riquadro = null;
+	private int commessaId;
 
 	public RiquadroCodiceInterno(RiquadroCodici rc){
 		this.riquadro = rc;
@@ -57,14 +59,15 @@ public class RiquadroCodiceInterno extends JPanel {
 				
 	}
 	
-	public void load(Cliente c, Ordine o, Commessa cc){
+	public void load(Cliente c, Ordine o, final Commessa cc){
 		cliente.setText(c.getName());
 		if(o.getDataScadenza() == null)
 			scadenza.setText("--/--/----");
 		else
 			scadenza.setText(o.getDataScadenza().toString());
 		codiceInterno.setText(cc.getCodiceInterno());
-		final int id = cc.getID();
+		this.commessaId = cc.getID();
+		
 		this.addMouseListener(new MouseListener(){
 
 			@Override
@@ -72,12 +75,14 @@ public class RiquadroCodiceInterno extends JPanel {
 				// TODO Auto-generated method stub
 				PlicoCommessa plico_commessa = PlicoCommessa.getInstance();		
 				RiquadroCodiceInterno.this.riquadro.deselectAll();
-				plico_commessa.load(id);
-				Contenitore.getInstance().getRiquadroplico().getPaperPanel().removeAll();
-				Contenitore.getInstance().getRiquadroplico().getPaperPanel().add(plico_commessa);
-				Contenitore.getInstance().getRiquadroplico().aggiornaAltezze();
-				Contenitore.getInstance().getRiquadroplico().getPlico().validate();
-				Contenitore.getInstance().getRiquadroplico().getPlico().repaint();
+				plico_commessa.load(RiquadroCodiceInterno.this.commessaId);
+				Contenitore contenitore = Contenitore.getInstance();
+				contenitore.setCommessaSelezionata(cc);
+				contenitore.getRiquadroplico().getPaperPanel().removeAll();
+				contenitore.getRiquadroplico().getPaperPanel().add(plico_commessa);
+				contenitore.getRiquadroplico().aggiornaAltezze();
+				contenitore.getRiquadroplico().getPlico().validate();
+				contenitore.getRiquadroplico().getPlico().repaint();
 				RiquadroCodiceInterno.this.setBackground(new Color(30,44,255));
 				RiquadroCodiceInterno.this.validate();
 				RiquadroCodiceInterno.this.repaint();
@@ -110,6 +115,10 @@ public class RiquadroCodiceInterno extends JPanel {
 			
 		});
 		
+	}
+
+	public int getCommessaId() {
+		return commessaId;
 	}
 	
 

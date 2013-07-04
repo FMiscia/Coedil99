@@ -21,6 +21,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
+import elaboradistinta.model.Commessa;
+
 @SuppressWarnings("serial")
 public class RiquadroPlico extends JPanel {
 
@@ -39,7 +41,7 @@ public class RiquadroPlico extends JPanel {
 		paper_container.setBackground(new Color(240, 230, 140));
 		paper_container.setPreferredSize(new Dimension(860, 1000));
 		paper_container.setLayout(null);
-		
+
 		this.plico = new JPanel();
 		this.plico.setPreferredSize(new Dimension(800, 1020));
 		this.plico.setBackground(Color.WHITE);
@@ -47,22 +49,25 @@ public class RiquadroPlico extends JPanel {
 		wl_plico.setVgap(10);
 		this.plico.setLayout(wl_plico);
 		this.plico.add(this.paper_container);
-
+		
 		JScrollPane scrollPaneWrapper = new JScrollPane();
 		add(scrollPaneWrapper, BorderLayout.CENTER);
-		scrollPaneWrapper.setPreferredSize(new Dimension(800,600));
+		scrollPaneWrapper.setPreferredSize(new Dimension(800, 600));
 		scrollPaneWrapper.setViewportView(this.plico);
 		scrollPaneWrapper.getVerticalScrollBar().setUnitIncrement(20);
-		scrollPaneWrapper.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-			
-			@Override
-			public void adjustmentValueChanged(AdjustmentEvent e) {
-				if(e.getValue() < 10)
-					clipPanel.setLocation(clipPanel.getX(), e.getValue());
-				else	
-					clipPanel.setLocation(clipPanel.getX(), e.getValue()-10);
-			}
-		});
+		scrollPaneWrapper.getVerticalScrollBar().addAdjustmentListener(
+				new AdjustmentListener() {
+
+					@Override
+					public void adjustmentValueChanged(AdjustmentEvent e) {
+						if (e.getValue() < 10)
+							clipPanel.setLocation(clipPanel.getX(),
+									e.getValue());
+						else
+							clipPanel.setLocation(clipPanel.getX(),
+									e.getValue() - 10);
+					}
+				});
 
 		this.paper_panel = new JPanel();
 		this.paper_panel.setPreferredSize(new Dimension(1000, 1000));
@@ -118,6 +123,9 @@ public class RiquadroPlico extends JPanel {
 		btnNewButton_6.setToolTipText("Lista di Rintracciabilita");
 		clipPanel.add(btnNewButton_6);
 
+
+
+
 	}
 
 	public JPanel getPlico() {
@@ -143,29 +151,60 @@ public class RiquadroPlico extends JPanel {
 	public void setPaperPanel(JPanel paper_panel) {
 		this.paper_panel = paper_panel;
 	}
-	
-	public void aggiornaAltezze(){
-		
-		RiquadroPlico.this.getPaperPanel().setSize(RiquadroPlico.this.getPaperPanel().getWidth(), RiquadroPlico.this.getPaperPanel().getComponent(0).getHeight());
-		RiquadroPlico.this.getPaperPanel().setPreferredSize(new Dimension(RiquadroPlico.this.getPaperPanel().getWidth(), RiquadroPlico.this.getPaperPanel().getComponent(0).getHeight()));
-		
-		RiquadroPlico.this.getPaperContainer().setSize(RiquadroPlico.this.getPaperContainer().getWidth(), RiquadroPlico.this.getPaperPanel().getHeight());
-		RiquadroPlico.this.getPaperContainer().setPreferredSize(new Dimension(RiquadroPlico.this.getPaperContainer().getWidth(), RiquadroPlico.this.getPaperPanel().getHeight()));
-		
-		
-		RiquadroPlico.this.getPlico().setPreferredSize(new Dimension(RiquadroPlico.this.getPlico().getWidth(), RiquadroPlico.this.getPaperContainer().getHeight()+20));
-		RiquadroPlico.this.getPlico().setSize(RiquadroPlico.this.getPlico().getWidth(), RiquadroPlico.this.getPaperContainer().getHeight()+20);
+
+	public void aggiornaAltezze() {
+
+		RiquadroPlico.this.getPaperPanel().setSize(
+				RiquadroPlico.this.getPaperPanel().getWidth(),
+				RiquadroPlico.this.getPaperPanel().getComponent(0).getHeight());
+		RiquadroPlico.this.getPaperPanel().setPreferredSize(
+				new Dimension(RiquadroPlico.this.getPaperPanel().getWidth(),
+						RiquadroPlico.this.getPaperPanel().getComponent(0)
+								.getHeight()));
+
+		RiquadroPlico.this.getPaperContainer().setSize(
+				RiquadroPlico.this.getPaperContainer().getWidth(),
+				RiquadroPlico.this.getPaperPanel().getHeight());
+		RiquadroPlico.this.getPaperContainer().setPreferredSize(
+				new Dimension(
+						RiquadroPlico.this.getPaperContainer().getWidth(),
+						RiquadroPlico.this.getPaperPanel().getHeight()));
+
+		RiquadroPlico.this.getPlico().setPreferredSize(
+						new Dimension(RiquadroPlico.this.getPlico().getWidth(),
+								RiquadroPlico.this.getPaperContainer()
+										.getHeight() + 20));
+		RiquadroPlico.this.getPlico().setSize(
+				RiquadroPlico.this.getPlico().getWidth(),
+				RiquadroPlico.this.getPaperContainer().getHeight() + 20);
 		validate();
 		repaint();
 	}
-	
-	private void changePlico(Plico plico){
+
+	private void changePlico(Plico plico) {
+
 		RiquadroPlico.this.getPaperPanel().removeAll();
-		// plico_commessa.load();
+		Contenitore cont = Contenitore.getInstance();
+		plico.load(cont.getCommessaSelezionata().getID());
+		// plico.load( );
+
 		RiquadroPlico.this.getPaperPanel().add(plico);
 		aggiornaAltezze();
 		RiquadroPlico.this.getPaperPanel().validate();
 		RiquadroPlico.this.getPaperPanel().repaint();
-		
+
 	}
+	
+	public void caricaPrimaCommessa(Commessa c){
+		PlicoCommessa plico = PlicoCommessa.getInstance();
+		plico.load(c.getID());
+		// plico.load( );
+
+		RiquadroPlico.this.getPaperPanel().add(plico);
+		//aggiornaAltezze();
+		RiquadroPlico.this.getPaperPanel().validate();
+		RiquadroPlico.this.getPaperPanel().repaint();
+	}
+
+	
 }

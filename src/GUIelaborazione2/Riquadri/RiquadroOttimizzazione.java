@@ -1,6 +1,8 @@
 package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -9,6 +11,8 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
+
+import elaboradistinta.operation.ODocumentoOttimizzazione;
 
 @SuppressWarnings("serial")
 public class RiquadroOttimizzazione extends Riquadro {
@@ -110,7 +114,10 @@ public class RiquadroOttimizzazione extends Riquadro {
 	@Override
 	public void load(Object o) {
 		// TODO Auto-generated method stub
-
+		this.lblQuantita.setText("aaaaaaaaa");
+		this.validate();
+		this.repaint();
 	}
+
 
 }

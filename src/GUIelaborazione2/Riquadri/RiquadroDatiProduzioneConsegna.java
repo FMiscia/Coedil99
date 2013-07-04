@@ -1,6 +1,7 @@
 package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import com.jgoodies.forms.layout.FormLayout;
@@ -9,6 +10,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class RiquadroDatiProduzioneConsegna extends Riquadro {
@@ -60,4 +62,5 @@ public class RiquadroDatiProduzioneConsegna extends Riquadro {
 		// TODO Auto-generated method stub
 
 	}
+
 }
