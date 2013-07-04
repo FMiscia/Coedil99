@@ -67,6 +67,7 @@ public class PlicoCommessa extends Plico{
 		Cliente cl = GestisciClienteHandler.getInstance().getClienteById(o.getCliente().getID());
 		rda.load(c);
 		rdcc.load(cl);
+		rdc.load(c);
 	}
 	
 	private int calcolaAltezza(){

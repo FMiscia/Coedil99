@@ -177,24 +177,24 @@ public class RiquadroDatiAziendali extends Riquadro {
 	public void load(Object o) {
 		Commessa c = (Commessa) o;
 		if(c != null)
-			txtCommessaCoedil.setText(Integer.toString(c.getID()));
+			this.txtCommessaCoedil.setText(Integer.toString(c.getID()));
 		Ordine ord = c.getOrdine();
 		if(ord != null)
-			txtOrdineContratto.setText(Integer.toString(ord.getID()));
+			this.txtOrdineContratto.setText(Integer.toString(ord.getID()));
 		if(ord.getOC() != null)
-			txtOC.setText(ord.getOC());
+			this.txtOC.setText(ord.getOC());
 		if(ord.getAnno() != null)
-			txtAnno.setText(ord.getAnno().toString());
+			this.txtAnno.setText(ord.getAnno().toString());
 		if(ord.getOrdineGestionale() != null)
-			txtOrdineGestionale.setText(ord.getOrdineGestionale());
+			this.txtOrdineGestionale.setText(ord.getOrdineGestionale());
 		if(ord.getDataInizio() != null)
-			txtDataInizio.setText(ord.getDataInizio().toString());
+			this.txtDataInizio.setText(ord.getDataInizio().toString());
 		if(ord.getDataFine() != null)
-			txtDataInizio.setText(ord.getDataFine().toString());
+			this.txtDataFine.setText(ord.getDataFine().toString());
 		if(c.getOrario() != null)
-			txtOrario.setText(c.getOrario());
+			this.txtOrario.setText(c.getOrario());
 		if(c.getDescrizione() != null)
-			txtDescrizione.setText(c.getDescrizione());
+			this.txtDescrizione.setText(c.getDescrizione());
 		
 	}
 

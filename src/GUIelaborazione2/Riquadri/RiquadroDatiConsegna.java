@@ -2,26 +2,33 @@ package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
 
-import javax.swing.JPanel;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.factories.FormFactory;
-import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
+
+import elaboradistinta.model.Commessa;
 
 @SuppressWarnings("serial")
 public class RiquadroDatiConsegna extends Riquadro {
 
 	private JPanel form;
+	private JLabel lblDataPrimaConsegna;
+	private JFormattedTextField txtDataPrimaConsegna;
+	private JLabel lblRitardoConsegna;
+	private JFormattedTextField txtRirardoConsegna;
 	
 	public RiquadroDatiConsegna(String title) {
 		super(title);
 		this.setSize(new Dimension(600, 100));
-		form = new JPanel();
-		form.setBounds(0,30,600,60);
+		this.form = new JPanel();
+		this.form.setBounds(0,30,600,60);
 		this.add(form);
-		form.setLayout(new FormLayout(new ColumnSpec[] {
+		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("max(230px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -34,22 +41,28 @@ public class RiquadroDatiConsegna extends Riquadro {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
-		JLabel lblDataPrimaConsegna = new JLabel("Data Prima Consegna");
-		form.add(lblDataPrimaConsegna, "2, 2");
+		this.lblDataPrimaConsegna = new JLabel("Data Prima Consegna");
+		this.form.add(this.lblDataPrimaConsegna, "2, 2");
 		
-		JFormattedTextField txtDataPrimaConsegna = new JFormattedTextField();
-		form.add(txtDataPrimaConsegna, "6, 2, fill, default");
+		this.txtDataPrimaConsegna = new JFormattedTextField();
+		this.Container.add(this.txtDataPrimaConsegna);
+		this.form.add(this.txtDataPrimaConsegna, "6, 2, fill, default");
 		
-		JLabel lblRitardoConsegna = new JLabel("Ritardo Consegna");
-		form.add(lblRitardoConsegna, "2, 4");
+		this.lblRitardoConsegna = new JLabel("Ritardo Consegna");
+		this.form.add(this.lblRitardoConsegna, "2, 4");
 		
-		JFormattedTextField txtRirardoConsegna = new JFormattedTextField();
-		form.add(txtRirardoConsegna, "6, 4, fill, default");
+		this.txtRirardoConsegna = new JFormattedTextField();
+		this.Container.add(this.txtRirardoConsegna);
+		this.form.add(this.txtRirardoConsegna, "6, 4, fill, default");
 	}
 
 	@Override
 	public void load(Object o) {
-		// TODO Auto-generated method stub
+		Commessa c = (Commessa) o;
+		if(c.getPrimaConsegna() != null)
+			this.txtDataPrimaConsegna.setText(c.getPrimaConsegna().toString());
+		if(c.getRitardoConsegna() != null)
+			this.txtRirardoConsegna.setText(c.getRitardoConsegna().toString());
 
 	}
 
