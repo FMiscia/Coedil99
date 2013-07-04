@@ -198,11 +198,4 @@ public class RiquadroDatiAziendali extends Riquadro {
 		
 	}
 
-	@Override
-	public void makeEditable(boolean editable) {
-		// TODO Auto-generated method stub
-		super.makeEditable(editable);
-		
-	}
-
 }

@@ -39,7 +39,6 @@ public class RiquadroDatiDistinta extends Riquadro {
 	private JTextField tfnote;
 	private JButton toggle;
 	private boolean aperto = true;
-	private ArrayList<JTextField> Container;
 
 	public RiquadroDatiDistinta(String title) {
 		super(title);

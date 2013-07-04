@@ -2,9 +2,9 @@ package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
 
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -18,11 +18,11 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 
 	private JPanel form;
 	private JLabel lblCantiere;
-	private JFormattedTextField txtCantiere;
+	private JTextField txtCantiere;
 	private JLabel lblCliente;
-	private JFormattedTextField txtCliente;
+	private JTextField txtCliente;
 	private JLabel lblCommessa;
-	private JFormattedTextField txtCommessa;
+	private JTextField txtCommessa;
 
 	public RiquadroDatiClienteConsegna(String title) {
 		super(title);
@@ -49,19 +49,22 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 		lblCantiere = new JLabel("Cantiere");
 		this.form.add(lblCantiere, "2, 2");
 		
-		txtCantiere = new JFormattedTextField();
+		txtCantiere = new JTextField();
+		this.Container.add(txtCantiere);
 		this.form.add(txtCantiere, "6, 2, fill, default");
 		
 		lblCliente = new JLabel("Cliente");
 		this.form.add(lblCliente, "2, 4, left, center");
 		
-		txtCliente = new JFormattedTextField();
+		txtCliente = new JTextField();
+		this.Container.add(txtCliente);
 		this.form.add(txtCliente, "6, 4, fill, default");
 		
 		lblCommessa = new JLabel("Commessa");
 		this.form.add(lblCommessa, "2, 6, left, center");
 		
-		txtCommessa = new JFormattedTextField();
+		txtCommessa = new JTextField();
+		this.Container.add(txtCommessa);
 		this.form.add(txtCommessa, "6, 6, fill, default");
 
 		
@@ -80,5 +83,6 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 		repaint();
 
 	}
+	
 
 }
