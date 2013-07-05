@@ -87,6 +87,7 @@ public class RiquadroDatiSviluppoConsegna extends Riquadro {
 		this.txtRitardo = new JTextField();
 		this.Container.add(this.txtRitardo);
 		this.form.add(this.txtRitardo, "6, 10, fill, default");
+		this.makeEditable(false);
 	}
 
 	@Override

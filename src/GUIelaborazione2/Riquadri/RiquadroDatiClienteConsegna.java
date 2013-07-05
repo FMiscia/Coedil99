@@ -66,7 +66,7 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 		txtCommessa = new JTextField();
 		this.Container.add(this.txtCommessa);
 		this.form.add(this.txtCommessa, "6, 6, fill, default");
-
+		this.makeEditable(false);
 		
 	}
 

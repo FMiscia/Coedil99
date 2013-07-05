@@ -66,6 +66,7 @@ public class RiquadroDatiProduzioneConsegna extends Riquadro {
 		this.txtScadenzaSviluppo = new JTextField();
 		this.Container.add(this.txtScadenzaSviluppo);
 		this.form.add(this.txtScadenzaSviluppo, "6, 6, fill, default");
+		this.makeEditable(false);
 	}
 
 	@Override

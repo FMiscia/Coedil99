@@ -55,6 +55,7 @@ public class RiquadroDatiConsegna extends Riquadro {
 		this.txtRirardoConsegna = new JFormattedTextField();
 		this.Container.add(this.txtRirardoConsegna);
 		this.form.add(this.txtRirardoConsegna, "6, 4, fill, default");
+		this.makeEditable(false);
 	}
 
 	@Override
