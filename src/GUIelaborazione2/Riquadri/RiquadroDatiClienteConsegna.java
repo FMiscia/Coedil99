@@ -82,14 +82,4 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 			txtCommessa.setText(c.getNumeroCommessaCliente().toString());
 	}
 	
-	@Override
-	protected void resetRiquadro() {
-		if(this.Container.size() != 0){
-			for(JTextField txt: Container)
-				txt.setText("");
-		}
-		
-	}
-	
-
 }

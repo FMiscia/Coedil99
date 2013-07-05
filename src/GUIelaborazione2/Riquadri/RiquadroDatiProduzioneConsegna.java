@@ -79,15 +79,4 @@ public class RiquadroDatiProduzioneConsegna extends Riquadro {
 		if(ord.getDataScadenza() != null)
 			this.txtScadenzaSviluppo.setText(ord.getDataScadenza().toString());
 	}
-
-	@Override
-	protected void resetRiquadro() {
-		if(this.Container.size() != 0){
-			for(JTextField txt: Container)
-				txt.setText("");
-		}
-		
-	}
-	
-
 }

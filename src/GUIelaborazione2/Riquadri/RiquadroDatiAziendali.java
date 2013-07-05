@@ -198,13 +198,4 @@ public class RiquadroDatiAziendali extends Riquadro {
 			this.txtDescrizione.setText(c.getDescrizione());
 	}
 	
-	@Override
-	protected void resetRiquadro() {
-		if(this.Container.size() != 0){
-			for(JTextField txt: Container)
-				txt.setText("");
-		}
-		
-	}
-
 }

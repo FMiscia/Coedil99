@@ -47,6 +47,11 @@ public abstract class Riquadro extends JPanel {
 
 	public abstract void load(Object o);
 	
-	protected abstract void resetRiquadro();
+	protected void resetRiquadro(){
+		if(this.Container.size() != 0){
+			for(JTextField txt: Container)
+				txt.setText("");
+		}
+	}
 
 }

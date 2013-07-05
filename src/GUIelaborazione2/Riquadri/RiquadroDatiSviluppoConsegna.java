@@ -104,13 +104,4 @@ public class RiquadroDatiSviluppoConsegna extends Riquadro {
 		if(c.getRitardoProduzione() != null)
 			this.txtRitardo.setText(c.getRitardoProduzione().toString());
 	}
-
-	@Override
-	protected void resetRiquadro() {
-		if(this.Container.size() != 0){
-			for(JTextField txt: Container)
-				txt.setText("");
-		}
-		
-	}
 }
