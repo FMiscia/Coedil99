@@ -25,4 +25,15 @@ public class OItem {
 		return i;
 	}
 	
+	public float getAltezza(){
+		return this.item.getGeometria().getAltezza();
+	}
+
+	public float getBase(){
+		return this.item.getGeometria().getBase();
+	}
+	
+	public float getLunghezza(){
+		return this.item.getGeometria().getLunghezza();
+	}
 }

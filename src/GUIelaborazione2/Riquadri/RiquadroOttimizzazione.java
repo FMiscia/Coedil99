@@ -12,7 +12,11 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import elaboradistinta.controller.GestisciCommessaHandler;
+import elaboradistinta.model.DocumentoOttimizzazione;
+import elaboradistinta.model.Item;
 import elaboradistinta.operation.ODocumentoOttimizzazione;
+import elaboradistinta.operation.OItem;
 
 @SuppressWarnings("serial")
 public class RiquadroOttimizzazione extends Riquadro {
@@ -114,7 +118,14 @@ public class RiquadroOttimizzazione extends Riquadro {
 	@Override
 	public void load(Object o) {
 		// TODO Auto-generated method stub
-		this.lblQuantita.setText("aaaaaaaaa");
+		Item i = (Item) o;
+		OItem oi = i.getOItem();
+		this.txtLarg.setText(oi.getBase()+"");
+		this.txtAltezza.setText(oi.getAltezza()+"");
+		this.txtCommessaLung.setText(oi.getLunghezza()+"");
+		this.txtQual.setText("prova");
+		this.txtOrdineQuantita.setText("prova");
+		this.txtVolume.setText("prova");
 		this.validate();
 		this.repaint();
 	}

@@ -145,7 +145,8 @@ public class Item {
 	
 	public OItem getOItem() {
 		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		OItem oi = new OItem(this);
+		return oi;
 	}
 	
 	public String toString() {
