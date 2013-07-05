@@ -135,8 +135,7 @@ public class newLine {
 				r.setNumero(Integer.valueOf(numero.getText()));
 				r.setNote(note.getText());
 				r.save();
-				d.getLavori().righe.add(r);
-				d.getLavori().save();
+				d.getLavori().add(r);
 				d.save();
 				m.addNewRow(r);
 				f.dispose();

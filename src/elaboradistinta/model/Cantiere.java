@@ -84,10 +84,7 @@ public class Cantiere {
 	}
 	
 	public String getNome() {
-		if(this.nome==null)
-			return "nessun nome";
-	
-		return this.nome; 
+		return nome;
 	}
 	
 	public void setIndirizzo(String value) {

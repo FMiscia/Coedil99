@@ -35,8 +35,8 @@ public class DistintaDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new DocumentoOttimizzazioneDetachedCriteria(createCriteria("ddo"));
 	}
 	
-	public RigheLavoroDetachedCriteria createLavoriCriteria() {
-		return new RigheLavoroDetachedCriteria(createCriteria("lavori"));
+	public RigaLavoroDetachedCriteria createLavoriCriteria() {
+		return new RigaLavoroDetachedCriteria(createCriteria("ORM_Lavori"));
 	}
 	
 	public Distinta uniqueDistinta(PersistentSession session) {

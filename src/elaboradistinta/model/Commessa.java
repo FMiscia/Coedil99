@@ -366,7 +366,6 @@ public class Commessa {
 	 */
 	private static int counter = 0;
 	
-	
 	public Integer getOrdineId() {
 		//TODO: Implement Method
 		return this.ordine.getID();

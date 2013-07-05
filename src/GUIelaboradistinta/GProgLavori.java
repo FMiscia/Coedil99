@@ -26,8 +26,6 @@ import elaboradistinta.model.DistintaFactory;
 import elaboradistinta.model.DocumentoOttimizzazione;
 import elaboradistinta.model.Geometria;
 import elaboradistinta.model.RigaLavoro;
-import elaboradistinta.model.RigheLavoro;
-import elaboradistinta.model.RigheLavoroFactory;
 import java.awt.FlowLayout;
 
 public class GProgLavori extends JPanel {
@@ -125,10 +123,7 @@ public class GProgLavori extends JPanel {
 					creadist.setText("Visualizza Distinta");
 					creadist.setVisible(true);
 					deldist.setVisible(true);
-					RigheLavoro r = RigheLavoroFactory.createRigheLavoro();
-					r.save();
 					Distinta d = DistintaFactory.createDistinta();
-					d.setLavori(r);
 					d.save();
 					c.setDistinta(d);
 					c.save();
@@ -204,10 +199,8 @@ public class GProgLavori extends JPanel {
 				d.save();
 				ddo.delete();
 			}
-			RigheLavoro r = d.getLavori();
 			d.delete();
-			ArrayList<RigaLavoro> rr = new ArrayList<RigaLavoro>(r.righe.getCollection());
-			r.delete();
+			ArrayList<RigaLavoro> rr = new ArrayList<RigaLavoro>(d.getLavori().getCollection());
 			if(rr.size() != 0){
 				for(int i=0; i<rr.size(); ++i){
 					Geometria g = rr.get(i).getGeometria();

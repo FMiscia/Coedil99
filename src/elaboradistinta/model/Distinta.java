@@ -14,7 +14,6 @@
 package elaboradistinta.model;
 
 import elaboradistinta.operation.ODocumentoOttimizzazione;
-import elaboradistinta.operation.ORigheLavoro;
 
 public class Distinta {
 	public Distinta() {
@@ -64,11 +63,26 @@ public class Distinta {
 		}
 	}
 	
+	private java.util.List this_getList (int key) {
+		if (key == elaboradistinta.model.ORMConstants.KEY_DISTINTA_LAVORI) {
+			return ORM_lavori;
+		}
+		
+		return null;
+	}
+	
+	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
+		public java.util.List getList(int key) {
+			return this_getList(key);
+		}
+		
+	};
+	
 	private int ID;
 	
 	private elaboradistinta.model.DocumentoOttimizzazione ddo;
 	
-	private elaboradistinta.model.RigheLavoro lavori;
+	private java.util.List ORM_lavori = new java.util.ArrayList();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -82,14 +96,6 @@ public class Distinta {
 		return getID();
 	}
 	
-	public void setLavori(elaboradistinta.model.RigheLavoro value) {
-		this.lavori = value;
-	}
-	
-	public elaboradistinta.model.RigheLavoro getLavori() {
-		return lavori;
-	}
-	
 	public void setDdo(elaboradistinta.model.DocumentoOttimizzazione value) {
 		this.ddo = value;
 	}
@@ -98,14 +104,19 @@ public class Distinta {
 		return ddo;
 	}
 	
+	private void setORM_Lavori(java.util.List value) {
+		this.ORM_lavori = value;
+	}
+	
+	private java.util.List getORM_Lavori() {
+		return ORM_lavori;
+	}
+	
+	private elaboradistinta.model.RigaLavoroListCollection lavori = new elaboradistinta.model.RigaLavoroListCollection(this, _ormAdapter, elaboradistinta.model.ORMConstants.KEY_DISTINTA_LAVORI, elaboradistinta.model.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
 	private static int count;
 	
 	public void creaDDO() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public ORigheLavoro getORigheLavoro() {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
@@ -117,6 +128,14 @@ public class Distinta {
 	
 	public String toString() {
 		return String.valueOf(getID());
+	}
+
+	public elaboradistinta.model.RigaLavoroListCollection getLavori() {
+		return lavori;
+	}
+
+	public void setLavori(elaboradistinta.model.RigaLavoroListCollection lavori) {
+		this.lavori = lavori;
 	}
 	
 }

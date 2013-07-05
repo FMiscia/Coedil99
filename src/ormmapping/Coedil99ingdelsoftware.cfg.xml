@@ -28,6 +28,5 @@ License Type: Purchased
 		<mapping resource="ormmapping/elaboradistinta/model/ListaRintracciabilita.hbm.xml" />
 		<mapping resource="ormmapping/elaboradistinta/model/Ordine.hbm.xml" />
 		<mapping resource="ormmapping/elaboradistinta/model/RigaLavoro.hbm.xml" />
-		<mapping resource="ormmapping/elaboradistinta/model/RigheLavoro.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

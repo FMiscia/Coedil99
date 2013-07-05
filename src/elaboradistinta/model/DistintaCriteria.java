@@ -38,8 +38,8 @@ public class DistintaCriteria extends AbstractORMCriteria {
 		return new DocumentoOttimizzazioneCriteria(createCriteria("ddo"));
 	}
 	
-	public RigheLavoroCriteria createLavoriCriteria() {
-		return new RigheLavoroCriteria(createCriteria("lavori"));
+	public RigaLavoroCriteria createLavoriCriteria() {
+		return new RigaLavoroCriteria(createCriteria("ORM_Lavori"));
 	}
 	
 	public Distinta uniqueDistinta() {

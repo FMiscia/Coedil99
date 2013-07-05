@@ -12,7 +12,10 @@ License Type: Purchased
 		</id>
 		<many-to-one name="ddo" column="DocumentoOttimizzazioneID" class="elaboradistinta.model.DocumentoOttimizzazione" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="lavori" column="RigheLavoroID" class="elaboradistinta.model.RigheLavoro" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
-		</many-to-one>
+		<list name="ORM_Lavori" lazy="true" cascade="save-update,lock" inverse="false">
+			<key column="DistintaID" not-null="false"/>
+			<index column="DistintaIndex" type="integer"/>
+			<one-to-many class="elaboradistinta.model.RigaLavoro"/>
+		</list>
 	</class>
 </hibernate-mapping>

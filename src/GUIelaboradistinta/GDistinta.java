@@ -204,7 +204,7 @@ public class GDistinta {
 				PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
 				for(int i=0; i<m.getModifiche().get(1).size(); ++i){
 					RigaLavoro r =  (RigaLavoro) m.getModifiche().get(1).get(i);
-					d.getLavori().righe.remove(r);
+					d.getLavori().remove(r);
 					Geometria g = r.getGeometria();
 					r.delete();
 					g.delete();

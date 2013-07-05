@@ -119,5 +119,11 @@ public class RiquadroOttimizzazione extends Riquadro {
 		this.repaint();
 	}
 
+	@Override
+	protected void resetRiquadro() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

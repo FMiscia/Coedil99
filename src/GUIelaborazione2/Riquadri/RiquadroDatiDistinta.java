@@ -15,6 +15,10 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
+
+import elaboradistinta.model.Distinta;
+import elaboradistinta.model.RigaLavoro;
+
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import javax.swing.JComboBox;
@@ -142,7 +146,10 @@ public class RiquadroDatiDistinta extends Riquadro {
 
 	@Override
 	public void load(Object o) {
-		// TODO Auto-generated method stub
+		Distinta d = (Distinta) o;
+		/*for (RigheLavoro r: d.getLavori()){
+			
+		}*/
 		
 	}
 
@@ -151,6 +158,12 @@ public class RiquadroDatiDistinta extends Riquadro {
 		// TODO Auto-generated method stub
 		this.cbcapitello.setEditable(editable);
 		super.makeEditable(editable);
+		
+	}
+
+	@Override
+	protected void resetRiquadro() {
+		// TODO Auto-generated method stub
 		
 	}
 

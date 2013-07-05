@@ -1,5 +1,7 @@
 package elaboradistinta.operation;
 
+import java.util.ListIterator;
+
 import elaboradistinta.StandardOttimizzatoreStrategy;
 import elaboradistinta.controller.OttimizzatoreHandler;
 import elaboradistinta.model.Distinta;
@@ -19,7 +21,7 @@ public class ODistinta {
 	 * @return 
 	 */
 	public void addRigaLavoro(RigaLavoro rg){
-		this.distinta.getLavori().righe.add(rg);
+		this.distinta.getLavori().add(rg);
 	}
 	
 	/**
@@ -28,7 +30,12 @@ public class ODistinta {
 	 * @return 
 	 */
 	public void modificaRigaLavoro(RigaLavoro rg) {
-		this.distinta.getORigheLavoro().update(rg);
+		ListIterator<RigaLavoro> righeIterator = (ListIterator<RigaLavoro>) this.distinta.getLavori().getIterator();;
+		while (righeIterator.hasNext()) {
+			if (righeIterator.next().getID() == rg.getID()) {
+				this.distinta.getLavori().set(righeIterator.previousIndex(), rg);
+			}
+		}
 	}
 
 	/**
@@ -37,7 +44,7 @@ public class ODistinta {
 	 * @return 
 	 */
 	public void eliminaRigaLavoro(RigaLavoro rg) {
-		this.distinta.getORigheLavoro().delete(rg);
+		this.distinta.getLavori().remove(rg);
 	}
 	
 	/**
