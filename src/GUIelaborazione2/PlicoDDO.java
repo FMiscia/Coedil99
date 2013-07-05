@@ -50,7 +50,7 @@ public class PlicoDDO extends Plico{
 		// TODO Auto-generated method stub
 		Commessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
 		DocumentoOttimizzazione docott = GestisciCommessaHandler.getInstance().getCommessaById(id).getDistinta().getDdo();
-		//this.panel.removeAll();
+		this.panel.removeAll();
 		this.panel.setPreferredSize(new Dimension ( 800, docott.items.size()*600 ));
 		this.setPreferredSize(new Dimension ( 800, this.panel.getHeight()));
 		this.setSize(new Dimension ( 800, this.panel.getHeight()));

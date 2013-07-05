@@ -1,8 +1,6 @@
 package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
-import java.util.ArrayList;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -12,10 +10,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.model.DocumentoOttimizzazione;
 import elaboradistinta.model.Item;
-import elaboradistinta.operation.ODocumentoOttimizzazione;
 import elaboradistinta.operation.OItem;
 
 @SuppressWarnings("serial")
