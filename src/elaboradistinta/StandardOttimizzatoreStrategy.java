@@ -47,7 +47,7 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 
 		
 		float offset;
-		Iterator<RigaLavoro> it = distinta.getLavori().righe.getIterator();
+		Iterator<RigaLavoro> it = distinta.getLavori().getIterator();
 		while (it.hasNext()) {
 			distitems.add(it.next().getGeometria());
 		}

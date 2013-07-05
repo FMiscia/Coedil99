@@ -33,8 +33,6 @@ import elaboradistinta.model.Magazzino;
 import elaboradistinta.model.Ordine;
 import elaboradistinta.model.RigaLavoro;
 import elaboradistinta.model.RigaLavoroFactory;
-import elaboradistinta.model.RigheLavoro;
-import elaboradistinta.model.RigheLavoroFactory;
 import elaboradistinta.operation.OCommessa;
 import elaboradistinta.operation.ODistinta;
 import elaboradistinta.operation.OMagazzino;

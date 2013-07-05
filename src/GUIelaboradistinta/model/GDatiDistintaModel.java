@@ -39,7 +39,7 @@ public class GDatiDistintaModel extends AbstractTableModel implements ActionList
 	public GDatiDistintaModel(Distinta d){
 		this.distinta = d;
 		//GestisciCommessaHandler gch = GestisciCommessaHandler.getInstance();
-		this.righe = new ArrayList<RigaLavoro>(distinta.getLavori().righe.getCollection());
+		this.righe = new ArrayList<RigaLavoro>(distinta.getLavori().getCollection());
 		for(int i=0; i<this.righe.size(); ++i){
 			ArrayList<Object> row = new ArrayList<Object>();
 			JButton cancel = new JButton("X");
@@ -247,7 +247,7 @@ public class GDatiDistintaModel extends AbstractTableModel implements ActionList
 	public void refresh(){
 		this.dati = new ArrayList<ArrayList<Object>>();
 		
-		this.righe = new ArrayList<RigaLavoro>(distinta.getLavori().righe.getCollection());
+		this.righe = new ArrayList<RigaLavoro>(distinta.getLavori().getCollection());
 		for(int i=0; i<this.righe.size(); ++i){
 			ArrayList<Object> row = new ArrayList<Object>();
 			JButton cancel = new JButton("X");

@@ -40,14 +40,13 @@ public class RiquadroDatiAziendali extends Riquadro {
 	private JTextField txtOrario;
 	private JLabel lblDescrizione;
 	private JTextField txtDescrizione;
-	private boolean aperto;
-	private JButton toggle;
+	
+	
 	
 	
 	
 	public RiquadroDatiAziendali(String title) {
 		super(title);
-		this.aperto = true;
 		this.setSize(new Dimension(600, 290));
 		this.form = new JPanel();
 		this.form.setBounds(0,30,600,250);
@@ -149,32 +148,12 @@ public class RiquadroDatiAziendali extends Riquadro {
 		this.txtDescrizione = new JTextField();
 		this.Container.add(this.txtDescrizione);
 		this.form.add(this.txtDescrizione, "6, 18, fill, default");
-	
-		toggle = new JButton("Chiudi");
-		toggle.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(aperto){
-					toggle.setText("Apri");
-					aperto = false;
-					form.getParent().setSize(new Dimension(600,30));
-				}
-				else{
-					toggle.setText("Chiudi");
-					aperto = true;
-					form.getParent().setSize(new Dimension(600,290));
-				}
-				validate();
-				repaint();
-			}
-		});
-		toggle.setSize(131, 20);
-		toggle.setLocation(469, 0);
-		add(toggle);
+		this.makeEditable(false);
 	}
 
 	@Override
 	public void load(Object o) {
+		this.resetRiquadro();
 		Commessa c = (Commessa) o;
 		if(c != null)
 			this.txtCommessaCoedil.setText(Integer.toString(c.getID()));
@@ -195,7 +174,6 @@ public class RiquadroDatiAziendali extends Riquadro {
 			this.txtOrario.setText(c.getOrario());
 		if(c.getDescrizione() != null)
 			this.txtDescrizione.setText(c.getDescrizione());
-		
 	}
-
+	
 }

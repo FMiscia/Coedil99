@@ -114,7 +114,7 @@
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
+      <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
       <UserTypes/>
@@ -321,33 +321,8 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="RigheLavoroID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>RigheLavoro.ID</ReferencedColumn>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
   </Entity>
   <Entity name="DocumentoOttimizzazione">
-    <Column name="ID">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-  </Entity>
-  <Entity name="RigheLavoro">
     <Column name="ID">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -372,10 +347,10 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="RigheLavoroID">
+    <Column name="DistintaID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>RigheLavoro.ID</ReferencedColumn>
+      <ReferencedColumn>Distinta.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>true</Nullable>
@@ -440,7 +415,7 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="RigheLavoroIndex">
+    <Column name="DistintaIndex">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
@@ -722,6 +697,7 @@
   <ForeignKey name="FKCommessa136300">
     <ReferenceTable>Commessa</ReferenceTable>
     <ReferencedTable>Ordine</ReferencedTable>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>OrdineID</Column>
     </Columns>
@@ -732,18 +708,9 @@
   <ForeignKey name="FKCommessa883334">
     <ReferenceTable>Commessa</ReferenceTable>
     <ReferencedTable>ListaRintracciabilita</ReferencedTable>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>ListaRintracciabilitaID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="FKDistinta855476">
-    <ReferenceTable>Distinta</ReferenceTable>
-    <ReferencedTable>RigheLavoro</ReferencedTable>
-    <Columns>
-      <Column>RigheLavoroID</Column>
     </Columns>
     <RefColumns>
       <Column>ID</Column>
@@ -792,6 +759,7 @@
   <ForeignKey name="FKCliente284748">
     <ReferenceTable>Cliente</ReferenceTable>
     <ReferencedTable>Cantiere</ReferencedTable>
+    <OnDelete>Set null</OnDelete>
     <Columns>
       <Column>CantiereID</Column>
     </Columns>
@@ -809,19 +777,10 @@
       <Column>ID</Column>
     </RefColumns>
   </ForeignKey>
-  <ForeignKey name="FKRigaLavoro490279">
-    <ReferenceTable>RigaLavoro</ReferenceTable>
-    <ReferencedTable>RigheLavoro</ReferencedTable>
-    <Columns>
-      <Column>RigheLavoroID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
   <ForeignKey name="FKOrdine227493">
     <ReferenceTable>Ordine</ReferenceTable>
     <ReferencedTable>Cliente</ReferencedTable>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>ClienteID</Column>
     </Columns>
@@ -831,6 +790,16 @@
   </ForeignKey>
   <ForeignKey name="FKCommessa541337">
     <ReferenceTable>Commessa</ReferenceTable>
+    <ReferencedTable>Distinta</ReferencedTable>
+    <Columns>
+      <Column>DistintaID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKRigaLavoro685071">
+    <ReferenceTable>RigaLavoro</ReferenceTable>
     <ReferencedTable>Distinta</ReferencedTable>
     <Columns>
       <Column>DistintaID</Column>

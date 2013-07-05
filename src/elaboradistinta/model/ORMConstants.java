@@ -40,6 +40,4 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_RIGALAVORO_GEOMETRIA = -1262296516;
 	
-	final int KEY_RIGHELAVORO_RIGHE = -806797050;
-	
 }
