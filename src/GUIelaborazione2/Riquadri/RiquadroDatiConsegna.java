@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -58,12 +59,22 @@ public class RiquadroDatiConsegna extends Riquadro {
 
 	@Override
 	public void load(Object o) {
+		this.resetRiquadro();
 		Commessa c = (Commessa) o;
 		if(c.getPrimaConsegna() != null)
 			this.txtDataPrimaConsegna.setText(c.getPrimaConsegna().toString());
 		if(c.getRitardoConsegna() != null)
 			this.txtRirardoConsegna.setText(c.getRitardoConsegna().toString());
 
+	}
+	
+	@Override
+	protected void resetRiquadro() {
+		if(this.Container.size() != 0){
+			for(JTextField txt: Container)
+				txt.setText("");
+		}
+		
 	}
 
 }

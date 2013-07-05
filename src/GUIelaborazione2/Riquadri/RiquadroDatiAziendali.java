@@ -175,6 +175,7 @@ public class RiquadroDatiAziendali extends Riquadro {
 
 	@Override
 	public void load(Object o) {
+		this.resetRiquadro();
 		Commessa c = (Commessa) o;
 		if(c != null)
 			this.txtCommessaCoedil.setText(Integer.toString(c.getID()));
@@ -195,6 +196,14 @@ public class RiquadroDatiAziendali extends Riquadro {
 			this.txtOrario.setText(c.getOrario());
 		if(c.getDescrizione() != null)
 			this.txtDescrizione.setText(c.getDescrizione());
+	}
+	
+	@Override
+	protected void resetRiquadro() {
+		if(this.Container.size() != 0){
+			for(JTextField txt: Container)
+				txt.setText("");
+		}
 		
 	}
 

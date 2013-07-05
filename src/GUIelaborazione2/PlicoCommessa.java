@@ -7,7 +7,7 @@ import GUIelaborazione2.Riquadri.RiquadroDatiAziendali;
 import GUIelaborazione2.Riquadri.RiquadroDatiClienteConsegna;
 import GUIelaborazione2.Riquadri.RiquadroDatiConsegna;
 import GUIelaborazione2.Riquadri.RiquadroDatiProduzioneConsegna;
-import GUIelaborazione2.Riquadri.RiquadroSviluppoConsegna;
+import GUIelaborazione2.Riquadri.RiquadroDatiSviluppoConsegna;
 import elaboradistinta.controller.GestisciClienteHandler;
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.controller.GestisciOrdineHandler;
@@ -23,7 +23,7 @@ public class PlicoCommessa extends Plico{
 	private RiquadroDatiAziendali rda;
 	private RiquadroDatiConsegna rdc;
 	private RiquadroDatiProduzioneConsegna rdpc;
-	private RiquadroSviluppoConsegna rsc;
+	private RiquadroDatiSviluppoConsegna rsc;
 	private static PlicoCommessa instance = null;
 	
 	
@@ -43,7 +43,7 @@ public class PlicoCommessa extends Plico{
 		rdcc = new RiquadroDatiClienteConsegna("Dati Consegna Cliente");
 		rdc = new RiquadroDatiConsegna("Dati Consenga");
 		rdpc = new RiquadroDatiProduzioneConsegna("Dati Consegna Produzione");
-		rsc = new RiquadroSviluppoConsegna("Dati Sviluppo Consegna");
+		rsc = new RiquadroDatiSviluppoConsegna("Dati Sviluppo Consegna");
 		posizionaRiquadri();
 		setPreferredSize(new Dimension(745,calcolaAltezza()));
 		setSize(745,950);
@@ -68,6 +68,8 @@ public class PlicoCommessa extends Plico{
 		rda.load(c);
 		rdcc.load(cl);
 		rdc.load(c);
+		rdpc.load(o);
+		rsc.load(c);
 	}
 	
 	private int calcolaAltezza(){

@@ -28,9 +28,9 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 		super(title);
 		this.setSize(new Dimension(600,130));
 		this.form = new JPanel();
-		form.setBounds(0,30,600,90);
+		this.form.setBounds(0,30,600,90);
 		this.add(form);
-		form.setLayout(new FormLayout(new ColumnSpec[] {
+		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("max(230px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -46,32 +46,33 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		
-		lblCantiere = new JLabel("Cantiere");
-		this.form.add(lblCantiere, "2, 2");
+		this.lblCantiere = new JLabel("Cantiere");
+		this.form.add(this.lblCantiere, "2, 2");
 		
-		txtCantiere = new JTextField();
-		this.Container.add(txtCantiere);
-		this.form.add(txtCantiere, "6, 2, fill, default");
+		this.txtCantiere = new JTextField();
+		this.Container.add(this.txtCantiere);
+		this.form.add(this.txtCantiere, "6, 2, fill, default");
 		
-		lblCliente = new JLabel("Cliente");
-		this.form.add(lblCliente, "2, 4, left, center");
+		this.lblCliente = new JLabel("Cliente");
+		this.form.add(this.lblCliente, "2, 4, left, center");
 		
-		txtCliente = new JTextField();
-		this.Container.add(txtCliente);
-		this.form.add(txtCliente, "6, 4, fill, default");
+		this.txtCliente = new JTextField();
+		this.Container.add(this.txtCliente);
+		this.form.add(this.txtCliente, "6, 4, fill, default");
 		
-		lblCommessa = new JLabel("Commessa");
+		this.lblCommessa = new JLabel("Commessa");
 		this.form.add(lblCommessa, "2, 6, left, center");
 		
 		txtCommessa = new JTextField();
-		this.Container.add(txtCommessa);
-		this.form.add(txtCommessa, "6, 6, fill, default");
+		this.Container.add(this.txtCommessa);
+		this.form.add(this.txtCommessa, "6, 6, fill, default");
 
 		
 	}
 
 	@Override
 	public void load(Object o) {
+		this.resetRiquadro();
 		Cliente c = (Cliente) o;
 		if(c.getCantiere().getNome() != null)
 			txtCantiere.setText(c.getCantiere().getNome());
@@ -79,9 +80,15 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 			txtCliente.setText(c.getName());
 		if(c.getNumeroCommessaCliente() != null)
 			txtCommessa.setText(c.getNumeroCommessaCliente().toString());
-		validate();
-		repaint();
-
+	}
+	
+	@Override
+	protected void resetRiquadro() {
+		if(this.Container.size() != 0){
+			for(JTextField txt: Container)
+				txt.setText("");
+		}
+		
 	}
 	
 

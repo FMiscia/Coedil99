@@ -46,5 +46,7 @@ public abstract class Riquadro extends JPanel {
 	
 
 	public abstract void load(Object o);
+	
+	protected abstract void resetRiquadro();
 
 }
