@@ -22,6 +22,7 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
 import elaboradistinta.model.Commessa;
+import elaboradistinta.operation.ODistinta;
 
 @SuppressWarnings("serial")
 public class RiquadroPlico extends JPanel {
@@ -30,6 +31,9 @@ public class RiquadroPlico extends JPanel {
 	private JPanel paper_container;
 	private JPanel paper_panel;
 	private JPanel clipPanel;
+	private JButton commessaButton = new JButton();
+	private JButton distintaButton = new JButton();
+	private JButton btnNewButton_6 = new JButton();
 
 	public RiquadroPlico() {
 
@@ -82,7 +86,7 @@ public class RiquadroPlico extends JPanel {
 		clipPanel.setPreferredSize(new Dimension(110, 100));
 		clipPanel.setLayout(null);
 
-		JButton commessaButton = new JButton("Commessa");
+		commessaButton.setText("Commessa");
 		commessaButton.setBounds(0, 7, 110, 25);
 		commessaButton.setToolTipText("Commessa");
 		commessaButton.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -94,7 +98,7 @@ public class RiquadroPlico extends JPanel {
 			}
 		});
 
-		JButton distintaButton = new JButton("Distinta");
+		distintaButton.setText("Distinta");
 		distintaButton.setBounds(0, 37, 110, 25);
 		distintaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -107,18 +111,7 @@ public class RiquadroPlico extends JPanel {
 		distintaButton.setMinimumSize(new Dimension(110, 25));
 		distintaButton.setMaximumSize(new Dimension(110, 25));
 
-		JButton btnDdo = new JButton("DDO");
-		btnDdo.setBounds(0, 67, 110, 25);
-		btnDdo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				changePlico(PlicoDDO.getInstance());
-			}
-		});
-		btnDdo.setToolTipText("Documento di Ottimizzazione");
-		clipPanel.add(btnDdo);
-		btnDdo.setPreferredSize(new Dimension(110, 25));
-
-		JButton btnNewButton_6 = new JButton("LDR");
+		btnNewButton_6.setText("LDR");
 		btnNewButton_6.setBounds(0, 97, 110, 25);
 		btnNewButton_6.setToolTipText("Lista di Rintracciabilita");
 		clipPanel.add(btnNewButton_6);
@@ -204,6 +197,46 @@ public class RiquadroPlico extends JPanel {
 		//aggiornaAltezze();
 		RiquadroPlico.this.getPaperPanel().validate();
 		RiquadroPlico.this.getPaperPanel().repaint();
+	}
+
+	public void aggiornaClipPanel(final ODistinta oDistinta) {
+		// TODO Auto-generated method stub
+		JButton btnHasDdo = new JButton("Visualizza DDO");
+		JButton btnHasnotDdo = new JButton("Elabora DDO");
+		btnHasDdo.setBounds(0, 67, 110, 25);
+		btnHasnotDdo.setBounds(0, 67, 110, 25);
+		btnHasDdo.setToolTipText("Visualizza Documento di Ottimizzazione");
+		btnHasnotDdo.setToolTipText("Elabora Documento di Ottimizzazione");
+		btnHasnotDdo.setPreferredSize(new Dimension(110, 25));
+		btnHasDdo.setPreferredSize(new Dimension(110, 25));
+		if(oDistinta.hasDdo()){
+			System.out.println("has ddo");
+			clipPanel.removeAll();
+			clipPanel.add(btnHasDdo);
+
+			btnHasDdo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					changePlico(PlicoDDO.getInstance());
+				}
+			});
+		}else{
+			System.out.println("non has ddo");
+			clipPanel.removeAll();
+			clipPanel.add(btnHasnotDdo);
+			
+			btnHasnotDdo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					//
+					//oDistinta.creaDDO();
+					//changePlico(PlicoDDO.getInstance());
+				}
+			});
+		}
+		clipPanel.add(commessaButton);
+		clipPanel.add(distintaButton);
+		clipPanel.add(btnNewButton_6);
+		clipPanel.validate();
+		clipPanel.repaint();
 	}
 
 	

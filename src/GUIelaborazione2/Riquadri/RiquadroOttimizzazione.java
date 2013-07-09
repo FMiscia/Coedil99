@@ -120,12 +120,12 @@ public class RiquadroOttimizzazione extends Riquadro {
 		// TODO Auto-generated method stub
 		Item i = (Item) o;
 		OItem oi = i.getOItem();
-		this.txtLarg.setText(oi.getBase()+"");
-		this.txtAltezza.setText(oi.getAltezza()+"");
-		this.txtCommessaLung.setText(oi.getLunghezza()+"");
+		this.txtLarg.setText(oi.getBase()+" cm");
+		this.txtAltezza.setText(oi.getAltezza()+" cm");
+		this.txtCommessaLung.setText(oi.getLunghezza()/100 +" m");
 		this.txtQual.setText("prova");
 		this.txtOrdineQuantita.setText("prova");
-		this.txtVolume.setText("prova");
+		this.txtVolume.setText(oi.getBase()*oi.getAltezza()*oi.getLunghezza()/1000000+" m^3");
 		this.validate();
 		this.repaint();
 	}

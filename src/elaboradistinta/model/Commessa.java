@@ -13,10 +13,11 @@
  */
 package elaboradistinta.model;
 
-import elaboradistinta.operation.ODistinta;
+import elaboradistinta.operation.OCommessa;
 
 public class Commessa {
 	public Commessa() {
+		this.oCommessa = new OCommessa(this);
 	}
 	
 	public boolean save() {
@@ -152,6 +153,12 @@ public class Commessa {
 	private String descrizione;
 	
 	private String responsabile;
+	
+	private OCommessa oCommessa;
+	
+	public OCommessa getOCommessa(){
+		return this.oCommessa;
+	}
 	
 	public void setCodiceInterno(String value) {
 		this.codiceInterno = value;
@@ -371,20 +378,6 @@ public class Commessa {
 		return this.ordine.getID();
 	}
 	
-	public java.util.Calendar getScadenza() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public void setScadenza(java.util.Calendar scadenza) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public ODistinta getOdistinta() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
 	
 	public String toString() {
 		return String.valueOf(getID());
