@@ -76,11 +76,14 @@ public class RiquadroCodiceInterno extends JPanel {
 				PlicoCommessa plico_commessa = PlicoCommessa.getInstance();		
 				RiquadroCodiceInterno.this.riquadro.deselectAll();
 				plico_commessa.load(RiquadroCodiceInterno.this.commessaId);
+				final int idCommessa = RiquadroCodiceInterno.this.commessaId;
 				Contenitore contenitore = Contenitore.getInstance();
 				contenitore.setCommessaSelezionata(cc);
 				contenitore.getRiquadroplico().getPaperPanel().removeAll();
 				contenitore.getRiquadroplico().getPaperPanel().add(plico_commessa);
 				contenitore.getRiquadroplico().aggiornaAltezze();
+				contenitore.getRiquadroplico().
+				aggiornaClipPanel(GestisciCommessaHandler.getInstance().getCommessaById(idCommessa).getDistinta().getODistinta());
 				contenitore.getRiquadroplico().getPlico().validate();
 				contenitore.getRiquadroplico().getPlico().repaint();
 				RiquadroCodiceInterno.this.setBackground(new Color(30,44,255));

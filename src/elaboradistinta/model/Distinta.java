@@ -13,10 +13,14 @@
  */
 package elaboradistinta.model;
 
+import elaboradistinta.operation.ODistinta;
 import elaboradistinta.operation.ODocumentoOttimizzazione;
 
 public class Distinta {
+	private ODistinta oDistinta;
+	
 	public Distinta() {
+		this.oDistinta = new ODistinta(this);
 	}
 	
 	public boolean save() {
@@ -94,6 +98,10 @@ public class Distinta {
 	
 	public int getORMID() {
 		return getID();
+	}
+	
+	public ODistinta getODistinta(){
+		return this.oDistinta;
 	}
 	
 	public void setDdo(elaboradistinta.model.DocumentoOttimizzazione value) {

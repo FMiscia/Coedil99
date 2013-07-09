@@ -56,7 +56,6 @@ public class PlicoDDO extends Plico{
 		this.setSize(new Dimension ( 800, this.panel.getHeight()));
 		for (int i = 0; i < docott.items.size(); i++){
 			ro = new RiquadroOttimizzazione("Ottimizzazione");
-			System.out.println(c.getDistinta().getDdo().items.toArray()[i].toString());
 			ro.load( c.getDistinta().getDdo().items.toArray()[i] );
 			this.panel.add(ro);
 		}

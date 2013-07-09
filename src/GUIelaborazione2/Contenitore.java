@@ -40,6 +40,7 @@ public class Contenitore extends JPanel {
 		this.commessaSelezionata = GestisciCommessaHandler.
 				getInstance().getCommessaById(this.riquadrocodici.getPrimaCommessa());
 		this.riquadroplico = new RiquadroPlico();
+		this.riquadroplico.aggiornaClipPanel(this.commessaSelezionata.getDistinta().getODistinta());
 		setLayout(new BorderLayout(0, 0));
 		
 		this.menuBar = new JMenuBar();
