@@ -1,6 +1,8 @@
 package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 
 import javax.swing.JLabel;
@@ -16,7 +18,6 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-import com.toedter.calendar.JCalendar;
 
 import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 import elaboradistinta.model.Commessa;
@@ -28,14 +29,14 @@ public class RiquadroDatiSviluppoConsegna extends Riquadro {
 	private JLabel lblResponsabile;
 	private JTextField txtResponsabile;
 	private JLabel lblEmissioneCommessa;
-	private DateP txtEmissioneCommessa;
-	//private JTextField txtEmissioneCommessa;
+	private JXDatePicker txtEmissioneCommessa;
 	private JLabel lblScadenzaCommessa;
 	private JTextField txtScadenzaCommessa;
 	private JLabel lblDataFine;
 	private JTextField txtDataFine;
 	private JLabel lblRitardo;
 	private JTextField txtRitardo;
+	
 	
 	public RiquadroDatiSviluppoConsegna(String title) {
 		super(title);
@@ -72,12 +73,8 @@ public class RiquadroDatiSviluppoConsegna extends Riquadro {
 		this.lblEmissioneCommessa = new JLabel("Emissione Commessa");
 		this.form.add(this.lblEmissioneCommessa, "2, 4");
 		
-		JXDatePicker datePicker = new JXDatePicker(Date.this.getTime());
-		datePicker.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				label.setText(datePicker.getDate().toString());
-			}
-		});
+		txtEmissioneCommessa = new JXDatePicker();
+		
 		//this.Container.add(this.txtEmissioneCommessa);
 		this.form.add(this.txtEmissioneCommessa, "6, 4, fill, default");
 		
