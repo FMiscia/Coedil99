@@ -36,7 +36,7 @@ public class RiquadroOttimizzazione extends Riquadro {
 		super(title);
 		this.setSize(new Dimension(600,310));
 		form = new JPanel();
-		form.setBounds(0,30,600,270);
+		form.setBounds(0,35,600,270);
 		this.add(form);
 		form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -72,20 +72,21 @@ public class RiquadroOttimizzazione extends Riquadro {
 		
 		txtQual = new JTextField();
 		form.add(txtQual, "6, 2, fill, default");
-
+		this.Container.add(txtQual);
 		
 		lblLarg = new JLabel("Larghezza");
 		form.add(lblLarg, "2, 4");
 		
 		txtLarg = new JTextField();
 		form.add(txtLarg, "6, 4, fill, default");
-
+		this.Container.add(txtLarg);
 		
 		lblAltezza = new JLabel("Altezza");
 		form.add(lblAltezza, "2, 6");
 		
 		txtAltezza = new JTextField();
 		form.add(txtAltezza, "6, 6, fill, default");
+		this.Container.add(txtAltezza);
 
 		
 		lblCommessaLung = new JLabel("Lunghezza");
@@ -93,6 +94,7 @@ public class RiquadroOttimizzazione extends Riquadro {
 		
 		txtCommessaLung = new JTextField();
 		form.add(txtCommessaLung, "6, 8, fill, default");
+		this.Container.add(txtCommessaLung);
 
 		
 		lblQuantita = new JLabel("Quantità");
@@ -100,6 +102,7 @@ public class RiquadroOttimizzazione extends Riquadro {
 		
 		txtOrdineQuantita = new JTextField();
 		form.add(txtOrdineQuantita, "6, 10, fill, default");
+		this.Container.add(txtOrdineQuantita);
 
 		
 		lblVolume = new JLabel("Volume");
@@ -107,6 +110,8 @@ public class RiquadroOttimizzazione extends Riquadro {
 		
 		txtVolume = new JTextField();
 		form.add(txtVolume, "6, 12, fill, default");
+		this.Container.add(txtVolume);
+		this.makeEditable(false);
 
 	}
 
