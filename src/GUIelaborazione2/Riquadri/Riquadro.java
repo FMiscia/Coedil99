@@ -20,10 +20,12 @@ public abstract class Riquadro extends JPanel {
 	protected ArrayList<JTextField> Container;
 	protected JButton modifica;
 	protected boolean aperto;
+	protected Object oggetto;
 	
 	public Riquadro(String title) {
 		super();
 		this.aperto = true;
+		this.oggetto = null;
 		this.Container = new ArrayList<JTextField>();
 		setLayout(null);
 		setPreferredSize(new Dimension(600, 200));
@@ -50,6 +52,7 @@ public abstract class Riquadro extends JPanel {
 					//form.getParent().setSize(new Dimension(600,30));
 				}
 				else{
+					Riquadro.this.salva();
 					Riquadro.this.modifica.setText("modifica");
 					aperto = true;
 					Riquadro.this.makeEditable(false);
@@ -84,5 +87,7 @@ public abstract class Riquadro extends JPanel {
 				txt.setText("");
 		}
 	}
+	
+	protected abstract void salva();
 
 }

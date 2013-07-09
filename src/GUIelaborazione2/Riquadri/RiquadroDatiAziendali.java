@@ -3,18 +3,24 @@ package GUIelaborazione2.Riquadri;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Ordine;
 
@@ -40,6 +46,7 @@ public class RiquadroDatiAziendali extends Riquadro {
 	private JTextField txtOrario;
 	private JLabel lblDescrizione;
 	private JTextField txtDescrizione;
+
 	
 	
 	
@@ -153,8 +160,9 @@ public class RiquadroDatiAziendali extends Riquadro {
 
 	@Override
 	public void load(Object o) {
+		this.oggetto = o;
 		this.resetRiquadro();
-		Commessa c = (Commessa) o;
+		Commessa c = (Commessa) this.oggetto;
 		if(c != null)
 			this.txtCommessaCoedil.setText(Integer.toString(c.getID()));
 		Ordine ord = c.getOrdine();
@@ -174,6 +182,34 @@ public class RiquadroDatiAziendali extends Riquadro {
 			this.txtOrario.setText(c.getOrario());
 		if(c.getDescrizione() != null)
 			this.txtDescrizione.setText(c.getDescrizione());
+	}
+
+	/**
+	 * Metodo che modifica i campi deglli oggetti interessati e li salva sul db
+	 */
+	@Override
+	protected void salva() {
+		try {
+			PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
+			if(this.oggetto != null){
+				Commessa c = (Commessa) this.oggetto;
+				Ordine ord = c.getOrdine();
+				ord.setOC(this.txtOC.getText());
+				ord.setAnno(Integer.valueOf(this.txtAnno.getText()));
+				ord.setOrdineGestionale(this.txtOrdineGestionale.getText());
+				ord.setDataInizio(Date.valueOf(this.txtDataInizio.getText()));
+				ord.setDataFine(Date.valueOf(this.txtDataFine.getText()));
+				ord.save();
+				c.setOrario(this.txtOrario.getText());
+				c.setDescrizione(this.txtDescrizione.getText());
+				c.save();
+				t.commit();
+				JOptionPane.showMessageDialog(null, "Salvataggio avvenuto correttamente","Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+				this.load(this.oggetto);
+			}
+		} catch (PersistentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(),"Messaggio di Sistema", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 }

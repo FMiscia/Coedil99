@@ -1,16 +1,22 @@
 package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
+import java.sql.Date;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Ordine;
 
@@ -71,6 +77,7 @@ public class RiquadroDatiProduzioneConsegna extends Riquadro {
 
 	@Override
 	public void load(Object o) {
+		this.oggetto = o;
 		this.resetRiquadro();
 		Ordine ord = (Ordine) o;
 		if(ord.getDataInizio() != null)
@@ -79,5 +86,24 @@ public class RiquadroDatiProduzioneConsegna extends Riquadro {
 			this.txtDataFine.setText(ord.getDataFine().toString());
 		if(ord.getDataScadenza() != null)
 			this.txtScadenzaSviluppo.setText(ord.getDataScadenza().toString());
+	}
+
+	@Override
+	protected void salva() {
+		try {
+			PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
+			if(this.oggetto != null){
+				Ordine ord = (Ordine) this.oggetto;
+				ord.setDataInizio(Date.valueOf(this.txtDataInizio.getText()));
+				ord.setDataFine(Date.valueOf(this.txtDataFine.getText()));
+				ord.setDataScadenza(Date.valueOf(this.txtScadenzaSviluppo.getText()));
+				ord.save();
+				t.commit();
+				JOptionPane.showMessageDialog(null, "Salvataggio avvenuto correttamente","Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+				this.load(this.oggetto);
+			}
+		} catch (PersistentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(),"Messaggio di Sistema", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }

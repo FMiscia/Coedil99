@@ -3,8 +3,12 @@ package GUIelaborazione2.Riquadri;
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -12,6 +16,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import elaboradistinta.model.Cliente;
+import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 
 @SuppressWarnings("serial")
 public class RiquadroDatiClienteConsegna extends Riquadro {
@@ -72,14 +77,34 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 
 	@Override
 	public void load(Object o) {
+		this.oggetto = o;
 		this.resetRiquadro();
 		Cliente c = (Cliente) o;
 		if(c.getCantiere().getNome() != null)
-			txtCantiere.setText(c.getCantiere().getNome());
+			this.txtCantiere.setText(c.getCantiere().getNome());
 		if(c.getName() != null)
-			txtCliente.setText(c.getName());
+			this.txtCliente.setText(c.getName());
 		if(c.getNumeroCommessaCliente() != null)
-			txtCommessa.setText(c.getNumeroCommessaCliente().toString());
+			this.txtCommessa.setText(c.getNumeroCommessaCliente().toString());
 	}
+
+	@Override
+	protected void salva() {
+		try {
+			PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
+			if(this.oggetto != null){
+				Cliente c = (Cliente) this.oggetto;
+				c.getCantiere().setNome(this.txtCantiere.getText());
+				c.setName(this.txtCliente.getText());
+				c.save();
+				t.commit();
+				JOptionPane.showMessageDialog(null, "Salvataggio avvenuto correttamente","Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+				this.load(this.oggetto);
+			}
+		} catch (PersistentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(),"Messaggio di Sistema", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
 	
 }
