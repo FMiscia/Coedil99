@@ -1,25 +1,16 @@
 package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Date;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import org.jdesktop.swingx.JXDatePicker;
-import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 import elaboradistinta.model.Commessa;
 
 @SuppressWarnings("serial")
@@ -29,14 +20,13 @@ public class RiquadroDatiSviluppoConsegna extends Riquadro {
 	private JLabel lblResponsabile;
 	private JTextField txtResponsabile;
 	private JLabel lblEmissioneCommessa;
-	private JXDatePicker txtEmissioneCommessa;
+	private JTextField txtEmissioneCommessa;
 	private JLabel lblScadenzaCommessa;
 	private JTextField txtScadenzaCommessa;
 	private JLabel lblDataFine;
 	private JTextField txtDataFine;
 	private JLabel lblRitardo;
 	private JTextField txtRitardo;
-	
 	
 	public RiquadroDatiSviluppoConsegna(String title) {
 		super(title);
@@ -73,9 +63,8 @@ public class RiquadroDatiSviluppoConsegna extends Riquadro {
 		this.lblEmissioneCommessa = new JLabel("Emissione Commessa");
 		this.form.add(this.lblEmissioneCommessa, "2, 4");
 		
-		txtEmissioneCommessa = new JXDatePicker();
-		
-		//this.Container.add(this.txtEmissioneCommessa);
+		this.txtEmissioneCommessa = new JTextField();
+		this.Container.add(this.txtEmissioneCommessa);
 		this.form.add(this.txtEmissioneCommessa, "6, 4, fill, default");
 		
 		this.lblScadenzaCommessa = new JLabel("Scadenza Commessa");
@@ -103,13 +92,12 @@ public class RiquadroDatiSviluppoConsegna extends Riquadro {
 
 	@Override
 	public void load(Object o) {
-		this.oggetto = o;
 		this.resetRiquadro();
 		Commessa c = (Commessa)o;
 		if(c.getResponsabile() != null)
 			this.txtResponsabile.setText(c.getResponsabile());
 		if(c.getEmissioneCommessa() != null)
-			this.txtEmissioneCommessa.setDate(Date.valueOf(c.getEmissioneCommessa().toString()));
+			this.txtEmissioneCommessa.setText(c.getEmissioneCommessa().toString());
 		if(c.getScadenzaCommessa() != null)
 			this.txtScadenzaCommessa.setText(c.getScadenzaCommessa().toString());
 		if(c.getFineCommessa() != null)
@@ -120,22 +108,7 @@ public class RiquadroDatiSviluppoConsegna extends Riquadro {
 
 	@Override
 	protected void salva() {
-		try {
-			PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
-			if(this.oggetto != null){
-				Commessa c = (Commessa) this.oggetto;
-				c.setResponsabile(this.txtResponsabile.getText());
-				c.setEmissioneCommessa(this.txtEmissioneCommessa.getDate());
-				c.setScadenzaCommessa(Date.valueOf(this.txtScadenzaCommessa.getText()));
-				c.setFineCommessa(Date.valueOf(this.txtDataFine.getText()));
-				c.setRitardoProduzione(Integer.valueOf(this.txtRitardo.getText()));
-				c.save();
-				t.commit();
-				JOptionPane.showMessageDialog(null, "Salvataggio avvenuto correttamente","Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
-				this.load(this.oggetto);
-			}
-		} catch (PersistentException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(),"Messaggio di Sistema", JOptionPane.ERROR_MESSAGE);
-		}
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -136,5 +136,11 @@ public class RiquadroOttimizzazione extends Riquadro {
 		
 	}
 
+	@Override
+	protected void salva() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

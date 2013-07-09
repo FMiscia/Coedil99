@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -18,13 +20,19 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
+import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Distinta;
+import elaboradistinta.model.Geometria;
 import elaboradistinta.model.RigaLavoro;
 
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import javax.swing.JComboBox;
 import javax.transaction.SystemException;
+
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
 
 public class RiquadroDatiDistinta extends Riquadro {
 
@@ -154,6 +162,7 @@ public class RiquadroDatiDistinta extends Riquadro {
 			this.tftipocapitello.setText(d.getProfiloCapitello());
 			this.tfnote.setText(d.getNote());
 			this.makeEditable(false);
+			this.oggetto = d;
 		}
 	}
 
@@ -173,8 +182,27 @@ public class RiquadroDatiDistinta extends Riquadro {
 
 	@Override
 	protected void salva() {
-		// TODO Auto-generated method stub
-		
+		try {
+			PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
+			if(this.oggetto != null){
+				RigaLavoro r = (RigaLavoro) this.oggetto;
+				Geometria g = new Geometria();
+				g.setAltezza(Float.parseFloat(this.tfaltezza.getText()));
+				g.setBase(Float.parseFloat(this.tfbase.getText()));
+				g.setLunghezza(Float.parseFloat(this.tflunghezza.getText()));
+				r.setGeometria(g);
+				r.setCapitello(this.cbcapitello.getSelectedIndex()==0?true:false);
+				r.setProfiloCapitello(this.tftipocapitello.getText());
+				r.setNumero(Integer.parseInt(this.tfnumero.getText()));
+				r.setNote(this.tfnote.getText());
+				r.save();
+				t.commit();
+				JOptionPane.showMessageDialog(null, "Salvataggio avvenuto correttamente","Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+				this.load(this.oggetto);
+			}
+		} catch (PersistentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(),"Messaggio di Sistema", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }
