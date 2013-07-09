@@ -1,18 +1,24 @@
 package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
+import java.sql.Date;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 import elaboradistinta.model.Commessa;
+import elaboradistinta.model.Ordine;
 
 @SuppressWarnings("serial")
 public class RiquadroDatiConsegna extends Riquadro {
@@ -60,6 +66,7 @@ public class RiquadroDatiConsegna extends Riquadro {
 
 	@Override
 	public void load(Object o) {
+		this.oggetto = o;
 		this.resetRiquadro();
 		Commessa c = (Commessa) o;
 		if(c.getPrimaConsegna() != null)
@@ -67,5 +74,23 @@ public class RiquadroDatiConsegna extends Riquadro {
 		if(c.getRitardoConsegna() != null)
 			this.txtRirardoConsegna.setText(c.getRitardoConsegna().toString());
 
+	}
+
+	@Override
+	protected void salva() {
+		try {
+			PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
+			if(this.oggetto != null){
+				Commessa c = (Commessa) this.oggetto;
+				c.setPrimaConsegna(Date.valueOf(this.txtDataPrimaConsegna.getText()));
+				c.setRitardoConsegna(Integer.valueOf(this.txtRirardoConsegna.getText()));
+				c.save();
+				t.commit();
+				JOptionPane.showMessageDialog(null, "Salvataggio avvenuto correttamente","Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+				this.load(this.oggetto);
+			}
+		} catch (PersistentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(),"Messaggio di Sistema", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
