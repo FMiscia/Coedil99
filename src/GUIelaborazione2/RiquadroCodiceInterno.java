@@ -20,109 +20,115 @@ import java.awt.event.MouseListener;
 
 @SuppressWarnings("serial")
 public class RiquadroCodiceInterno extends JPanel {
-	
+
 	private JLabel scadenza;
 	private JLabel codiceInterno;
 	private JLabel cliente;
 	private RiquadroCodici riquadro = null;
 	private int commessaId;
 
-	public RiquadroCodiceInterno(RiquadroCodici rc){
+	public RiquadroCodiceInterno(RiquadroCodici rc) {
 		this.riquadro = rc;
 		setBounds(new Rectangle(0, 0, 0, 0));
-		this.setPreferredSize(new Dimension(200,59));
+		this.setPreferredSize(new Dimension(200, 59));
 		this.setBackground(new Color(30, 144, 255));
 		this.setBorder(new LineBorder(Color.BLACK));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(null);
-		
+
 		scadenza = new JLabel();
 		scadenza.setHorizontalAlignment(SwingConstants.CENTER);
 		scadenza.setHorizontalTextPosition(SwingConstants.LEADING);
 		scadenza.setBounds(100, 30, 100, 30);
 		scadenza.setBorder(new LineBorder(Color.BLACK));
-		
+
 		codiceInterno = new JLabel();
 		codiceInterno.setHorizontalAlignment(SwingConstants.CENTER);
 		codiceInterno.setBounds(0, 30, 100, 30);
 		codiceInterno.setBorder(new LineBorder(Color.BLACK));
-		
+
 		cliente = new JLabel();
 		cliente.setHorizontalAlignment(SwingConstants.CENTER);
 		cliente.setHorizontalTextPosition(SwingConstants.CENTER);
 		cliente.setBorder(new LineBorder(new Color(0, 0, 0)));
 		cliente.setBounds(0, 0, 200, 30);
-		
+
 		add(cliente);
 		add(scadenza);
 		add(codiceInterno);
-				
+
 	}
-	
-	public void load(Cliente c, Ordine o, final Commessa cc){
+
+	public void load(Cliente c, Ordine o, final Commessa cc) {
 		cliente.setText(c.getName());
-		if(o.getDataScadenza() == null)
+		if (o.getDataScadenza() == null)
 			scadenza.setText("--/--/----");
 		else
 			scadenza.setText(o.getDataScadenza().toString());
 		codiceInterno.setText(cc.getCodiceInterno());
 		this.commessaId = cc.getID();
-		
-		this.addMouseListener(new MouseListener(){
+
+		this.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				PlicoCommessa plico_commessa = PlicoCommessa.getInstance();		
+				PlicoCommessa plico_commessa = PlicoCommessa.getInstance();
 				RiquadroCodiceInterno.this.riquadro.deselectAll();
 				plico_commessa.load(RiquadroCodiceInterno.this.commessaId);
 				final int idCommessa = RiquadroCodiceInterno.this.commessaId;
 				Contenitore contenitore = Contenitore.getInstance();
 				contenitore.setCommessaSelezionata(cc);
 				contenitore.getRiquadroplico().getPaperPanel().removeAll();
-				contenitore.getRiquadroplico().getPaperPanel().add(plico_commessa);
+				contenitore.getRiquadroplico().getPaperPanel()
+						.add(plico_commessa);
 				contenitore.getRiquadroplico().aggiornaAltezze();
-				contenitore.getRiquadroplico().
-				aggiornaClipPanel(GestisciCommessaHandler.getInstance().getCommessaById(idCommessa).getDistinta().getODistinta());
+				if (GestisciCommessaHandler.getInstance()
+						.getCommessaById(idCommessa).getDistinta() != null) {
+					contenitore.getRiquadroplico().aggiornaClipPanel(
+							GestisciCommessaHandler.getInstance()
+									.getCommessaById(idCommessa).getDistinta()
+									.getODistinta());
+				}
 				contenitore.getRiquadroplico().getPlico().validate();
 				contenitore.getRiquadroplico().getPlico().repaint();
-				RiquadroCodiceInterno.this.setBackground(new Color(30,44,255));
+				RiquadroCodiceInterno.this
+						.setBackground(new Color(30, 44, 255));
 				RiquadroCodiceInterno.this.validate();
 				RiquadroCodiceInterno.this.repaint();
-				
+
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
-		
+
 	}
 
 	public int getCommessaId() {
 		return commessaId;
 	}
-	
 
 }
