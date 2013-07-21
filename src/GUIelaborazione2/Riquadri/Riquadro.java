@@ -21,14 +21,15 @@ public abstract class Riquadro extends JPanel {
 	protected JButton modifica;
 	protected boolean aperto;
 	protected Object oggetto;
-	
+
 	public Riquadro(String title) {
 		super();
 		this.aperto = true;
 		this.oggetto = null;
 		this.Container = new ArrayList<JTextField>();
 		setLayout(null);
-		setPreferredSize(new Dimension(600, 200));
+		setSize(600,330);
+		setPreferredSize(new Dimension(600, 280));
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.BLACK);
 		separator.setBounds(0, 20, 600, 2);
@@ -39,24 +40,22 @@ public abstract class Riquadro extends JPanel {
 		lblTitolo.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblTitolo.setBounds(0, 1, 143, 20);
 		add(lblTitolo);
-		
-		
+
 		this.modifica = new JButton("modifica");
 		this.modifica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(aperto){
-					Riquadro.this.modifica.setText("salva modifica");
+				if (aperto) {
+					Riquadro.this.modifica.setText("salva");
 					aperto = false;
 					Riquadro.this.makeEditable(true);
-					//form.getParent().setSize(new Dimension(600,30));
-				}
-				else{
+					// form.getParent().setSize(new Dimension(600,30));
+				} else {
 					Riquadro.this.salva();
 					Riquadro.this.modifica.setText("modifica");
 					aperto = true;
 					Riquadro.this.makeEditable(false);
-					//form.getParent().setSize(new Dimension(600,290));
+					// form.getParent().setSize(new Dimension(600,290));
 				}
 				validate();
 				repaint();
@@ -70,24 +69,29 @@ public abstract class Riquadro extends JPanel {
 
 	public void makeEditable(boolean editable) {
 		for (JTextField i : this.Container) {
-			if(!editable)
+			if (!editable) {
 				i.setBackground(Color.getColor("textInactiveText"));
+				Riquadro.this.modifica.setText("modifica");
+				aperto = true;
+			} else {
+				Riquadro.this.modifica.setText("salva");
+				aperto = false;
+			}
 			i.setEditable(editable);
 		}
 		this.validate();
 		this.repaint();
 	}
-	
 
 	public abstract void load(Object o);
-	
-	protected void resetRiquadro(){
-		if(this.Container.size() != 0){
-			for(JTextField txt: Container)
+
+	protected void resetRiquadro() {
+		if (this.Container.size() != 0) {
+			for (JTextField txt : Container)
 				txt.setText("");
 		}
 	}
-	
+
 	protected abstract void salva();
 
 }

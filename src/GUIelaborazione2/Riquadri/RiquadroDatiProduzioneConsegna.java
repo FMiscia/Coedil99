@@ -90,20 +90,16 @@ public class RiquadroDatiProduzioneConsegna extends Riquadro {
 
 	@Override
 	protected void salva() {
-		try {
-			PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
-			if(this.oggetto != null){
-				Ordine ord = (Ordine) this.oggetto;
-				ord.setDataInizio(Date.valueOf(this.txtDataInizio.getText()));
-				ord.setDataFine(Date.valueOf(this.txtDataFine.getText()));
-				ord.setDataScadenza(Date.valueOf(this.txtScadenzaSviluppo.getText()));
-				ord.save();
-				t.commit();
-				JOptionPane.showMessageDialog(null, "Salvataggio avvenuto correttamente","Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
-				this.load(this.oggetto);
-			}
-		} catch (PersistentException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(),"Messaggio di Sistema", JOptionPane.ERROR_MESSAGE);
+		if (this.oggetto != null) {
+			Ordine ord = (Ordine) this.oggetto;
+			ord.setDataInizio(Date.valueOf(this.txtDataInizio.getText()));
+			ord.setDataFine(Date.valueOf(this.txtDataFine.getText()));
+			ord.setDataScadenza(Date.valueOf(this.txtScadenzaSviluppo.getText()));
+			ord.save();
+			JOptionPane.showMessageDialog(null,
+					"Salvataggio avvenuto correttamente",
+					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+			this.load(this.oggetto);
 		}
 	}
 }

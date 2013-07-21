@@ -13,6 +13,9 @@
  */
 package elaboradistinta.model;
 
+import elaboradistinta.AOttimizzatoreStrategy;
+import elaboradistinta.StandardOttimizzatoreStrategy;
+import elaboradistinta.controller.OttimizzatoreHandler;
 import elaboradistinta.operation.ODistinta;
 import elaboradistinta.operation.ODocumentoOttimizzazione;
 
@@ -125,8 +128,10 @@ public class Distinta {
 	private static int count;
 	
 	public void creaDDO() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		OttimizzatoreHandler oh = new OttimizzatoreHandler(new StandardOttimizzatoreStrategy());
+		this.ddo = oh.eseguiOttimizzazione(this);
+		this.ddo.save();
+		this.save();
 	}
 	
 	public ODocumentoOttimizzazione getOddo() {
@@ -144,6 +149,12 @@ public class Distinta {
 
 	public void setLavori(elaboradistinta.model.RigaLavoroListCollection lavori) {
 		this.lavori = lavori;
+	}
+	
+	public void eliminaRigaLavoro(RigaLavoro rg){
+		this.lavori.remove(rg);
+		rg.delete();
+		this.save();
 	}
 	
 }

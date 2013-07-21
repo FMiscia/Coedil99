@@ -119,36 +119,29 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 	
 		DocumentoOttimizzazione o = DocumentoOttimizzazioneFactory.createDocumentoOttimizzazione();
 		JOptionPane.showMessageDialog(null,"Distinta Ottimizzata!");
-		try {
-			PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
-			for(int i=0; i<ddoitem.size(); ++i){
-				o.items.add(ddoitem.get(i));
-			}
-			//for(int i=0; i<rem.size(); ++i){
-			//	rem.get(i).delete();
-			//}
-			/*for(int i=0; i<sfridi.size(); ++i){
-				Geometria geom = GeometriaFactory.createGeometria();
-				geom.setAltezza(sfridi.get(i).getGeometria().getAltezza());
-				geom.setBase(sfridi.get(i).getGeometria().getBase());
-				geom.setLunghezza(sfridi.get(i).getGeometria().getLunghezza());
-				geom.save();
-				
-				History h = HistoryFactory.createHistory();
-				Item nuovoitem = ItemFactory.createItem();
-				nuovoitem.setDescrizione(itm.get(i).getDescrizione());
-				nuovoitem.setGeometria(geom);
-				nuovoitem.setHistory(h);
-				nuovoitem.save();
-			}*/
-			o.save();
-			distinta.setDdo(o);
-			distinta.save();
-			
-			t.commit();
-		} catch (PersistentException e) {
-			e.printStackTrace();
+		for (int i = 0; i < ddoitem.size(); ++i) {
+			o.items.add(ddoitem.get(i));
 		}
+		// for(int i=0; i<rem.size(); ++i){
+		// rem.get(i).delete();
+		// }
+		/*
+		 * for(int i=0; i<sfridi.size(); ++i){ Geometria geom =
+		 * GeometriaFactory.createGeometria();
+		 * geom.setAltezza(sfridi.get(i).getGeometria().getAltezza());
+		 * geom.setBase(sfridi.get(i).getGeometria().getBase());
+		 * geom.setLunghezza(sfridi.get(i).getGeometria().getLunghezza());
+		 * geom.save();
+		 * 
+		 * History h = HistoryFactory.createHistory(); Item nuovoitem =
+		 * ItemFactory.createItem();
+		 * nuovoitem.setDescrizione(itm.get(i).getDescrizione());
+		 * nuovoitem.setGeometria(geom); nuovoitem.setHistory(h);
+		 * nuovoitem.save(); }
+		 */
+		o.save();
+		distinta.setDdo(o);
+		distinta.save();
 		
 		return o;
 		

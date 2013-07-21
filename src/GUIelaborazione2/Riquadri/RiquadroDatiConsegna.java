@@ -78,19 +78,16 @@ public class RiquadroDatiConsegna extends Riquadro {
 
 	@Override
 	protected void salva() {
-		try {
-			PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
-			if(this.oggetto != null){
-				Commessa c = (Commessa) this.oggetto;
-				c.setPrimaConsegna(Date.valueOf(this.txtDataPrimaConsegna.getText()));
-				c.setRitardoConsegna(Integer.valueOf(this.txtRirardoConsegna.getText()));
-				c.save();
-				t.commit();
-				JOptionPane.showMessageDialog(null, "Salvataggio avvenuto correttamente","Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
-				this.load(this.oggetto);
-			}
-		} catch (PersistentException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(),"Messaggio di Sistema", JOptionPane.ERROR_MESSAGE);
+		if (this.oggetto != null) {
+			Commessa c = (Commessa) this.oggetto;
+			c.setPrimaConsegna(Date.valueOf(this.txtDataPrimaConsegna.getText()));
+			c.setRitardoConsegna(Integer.valueOf(this.txtRirardoConsegna
+					.getText()));
+			c.save();
+			JOptionPane.showMessageDialog(null,
+					"Salvataggio avvenuto correttamente",
+					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+			this.load(this.oggetto);
 		}
 	}
 }

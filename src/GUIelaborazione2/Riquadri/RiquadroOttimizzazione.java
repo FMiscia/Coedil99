@@ -34,6 +34,9 @@ public class RiquadroOttimizzazione extends Riquadro {
 	
 	public RiquadroOttimizzazione(String title) {
 		super(title);
+		remove(this.modifica);
+		this.validate();
+		this.repaint();
 		this.setSize(new Dimension(600,310));
 		form = new JPanel();
 		form.setBounds(0,35,600,270);

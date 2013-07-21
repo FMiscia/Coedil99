@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -43,7 +45,7 @@ public class RiquadroPlico extends JPanel {
 		this.paper_container = new JPanel();
 		paper_container.setBounds(4, 5, 1000, 1000);
 		paper_container.setBackground(new Color(240, 230, 140));
-		paper_container.setPreferredSize(new Dimension(860, 1000));
+		paper_container.setPreferredSize(new Dimension(960, 1000));
 		paper_container.setLayout(null);
 
 		this.plico = new JPanel();
@@ -76,10 +78,11 @@ public class RiquadroPlico extends JPanel {
 		this.paper_panel = new JPanel();
 		this.paper_panel.setPreferredSize(new Dimension(1000, 1000));
 		this.paper_panel.setBounds(0, 0, 745, 1000);
+		
 		this.paper_container.add(this.paper_panel);
 
 		clipPanel = new JPanel();
-		clipPanel.setBounds(747, 0, 110, 137);
+		clipPanel.setBounds(747, 0, 213, 137);
 		this.paper_container.add(clipPanel);
 		clipPanel.setBorder(new LineBorder(new Color(160, 82, 45), 2));
 		clipPanel.setBackground(new Color(222, 184, 135));
@@ -87,7 +90,7 @@ public class RiquadroPlico extends JPanel {
 		clipPanel.setLayout(null);
 
 		commessaButton.setText("Commessa");
-		commessaButton.setBounds(0, 7, 110, 25);
+		commessaButton.setBounds(0, 7, 213, 25);
 		commessaButton.setToolTipText("Commessa");
 		commessaButton.setHorizontalTextPosition(SwingConstants.LEFT);
 		commessaButton.setPreferredSize(new Dimension(90, 25));
@@ -99,7 +102,7 @@ public class RiquadroPlico extends JPanel {
 		});
 
 		distintaButton.setText("Distinta");
-		distintaButton.setBounds(0, 37, 110, 25);
+		distintaButton.setBounds(0, 37, 213, 25);
 		distintaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changePlico(PlicoDistinta.getInstance());
@@ -112,7 +115,7 @@ public class RiquadroPlico extends JPanel {
 		distintaButton.setMaximumSize(new Dimension(110, 25));
 
 		btnNewButton_6.setText("LDR");
-		btnNewButton_6.setBounds(0, 97, 110, 25);
+		btnNewButton_6.setBounds(0, 97, 213, 25);
 		btnNewButton_6.setToolTipText("Lista di Rintracciabilita");
 		clipPanel.add(btnNewButton_6);
 
@@ -182,6 +185,32 @@ public class RiquadroPlico extends JPanel {
 		// plico.load( );
 
 		RiquadroPlico.this.getPaperPanel().add(plico);
+		RiquadroPlico.this.getPaperPanel().getComponent(0).addComponentListener(new ComponentListener() {
+			
+			@Override
+			public void componentShown(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void componentResized(ComponentEvent e) {
+				RiquadroPlico.this.aggiornaAltezze();
+				
+			}
+			
+			@Override
+			public void componentMoved(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		aggiornaAltezze();
 		RiquadroPlico.this.getPaperPanel().validate();
 		RiquadroPlico.this.getPaperPanel().repaint();
@@ -203,8 +232,8 @@ public class RiquadroPlico extends JPanel {
 		// TODO Auto-generated method stub
 		JButton btnHasDdo = new JButton("Visualizza DDO");
 		JButton btnHasnotDdo = new JButton("Elabora DDO");
-		btnHasDdo.setBounds(0, 67, 110, 25);
-		btnHasnotDdo.setBounds(0, 67, 110, 25);
+		btnHasDdo.setBounds(0, 67, 213, 25);
+		btnHasnotDdo.setBounds(0, 67, 213, 25);
 		btnHasDdo.setToolTipText("Visualizza Documento di Ottimizzazione");
 		btnHasnotDdo.setToolTipText("Elabora Documento di Ottimizzazione");
 		btnHasnotDdo.setPreferredSize(new Dimension(110, 25));
@@ -226,9 +255,8 @@ public class RiquadroPlico extends JPanel {
 			
 			btnHasnotDdo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//
-					//oDistinta.creaDDO();
-					//changePlico(PlicoDDO.getInstance());
+					Contenitore.getInstance().getCommessaSelezionata().getDistinta().creaDDO();
+					changePlico(PlicoDDO.getInstance());
 				}
 			});
 		}
