@@ -63,9 +63,9 @@ public class RiquadroCodici extends JScrollPane {
 	}
 	
 	public int getPrimaCommessa(){
-		((RiquadroCodiceInterno) this.panel.getComponent(0)).setBackground(new Color(30,44,255));
+		((RiquadroCodiceInterno) this.panel.getComponent(2)).setBackground(new Color(30,44,255));
 		
-		return ((RiquadroCodiceInterno) this.panel.getComponent(0)).getCommessaId();	
+		return ((RiquadroCodiceInterno) this.panel.getComponent(2)).getCommessaId();	
 		
 	}
 	

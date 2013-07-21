@@ -210,6 +210,7 @@ public class RiquadroPlico extends JPanel {
 		btnHasnotDdo.setPreferredSize(new Dimension(110, 25));
 		btnHasDdo.setPreferredSize(new Dimension(110, 25));
 		if(oDistinta.hasDdo()){
+			//System.out.println("has ddo");
 			clipPanel.removeAll();
 			clipPanel.add(btnHasDdo);
 
@@ -219,6 +220,7 @@ public class RiquadroPlico extends JPanel {
 				}
 			});
 		}else{
+			//System.out.println("non has ddo");
 			clipPanel.removeAll();
 			clipPanel.add(btnHasnotDdo);
 			

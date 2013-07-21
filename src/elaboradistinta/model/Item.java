@@ -145,8 +145,8 @@ public class Item {
 	
 	public OItem getOItem() {
 		//TODO: Implement Method
-		OItem oi = new OItem(this);
-		return oi;
+		OItem o = new OItem(this);
+		return o;
 	}
 	
 	public String toString() {
