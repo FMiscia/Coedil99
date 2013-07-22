@@ -1,89 +1,101 @@
 package elaboradistinta.model;
 
 import java.util.Date;
+import java.util.ArrayList;
+import elaboradistinta.model.Commessa;
 
-import almonds.ParseException;
-import almonds.ParseObject;
-import almonds.ParsePointer;
-import almonds.ParseQuery;
+public class Ordine {
+	private int _iD;
+	private String _ordineGestionale;
+	private Date _dataInizio;
+	private Date _dataScadenza;
+	private Date _dataFine;
+	private Integer _anno;
+	private Integer _numeroOrdine;
+	private String _oC;
+	private static int _counter = 0;
+	private ArrayList<Commessa> _commesse = new ArrayList<Commessa>();
+	public Cliente _cliente;
 
-
-	public class Ordine extends ParseObject{
-		
-		public Ordine()
-		{
-			super(Ordine.class.getName());
-			// TODO Auto-generated constructor stub
-		}
-		
-		public String getOrdineGestionale()
-		{
-			return this.getString("ordineGestionale");
-		}
-		public void setOrdineGestionale(String ordineGestionale)
-		{
-			this.put("ordineGestionale", ordineGestionale);
-		}
-		
-		public String getDataInizio()
-		{
-			return this.getString("dataInizio");
-		}
-		public void setDataInizio(Date d)
-		{
-			this.put("dataInizio", d);
-		}
-		
-		public String getDataScadenza()
-		{
-			return this.getString("dataScadenza");
-		}
-		public void setDataScadenza(Date d)
-		{
-			this.put("dataScadenza", d);
-		}
-		
-		public String getDataFine()
-		{
-			return this.getString("dataFine");
-		}
-		public void setDataFine(Date d)
-		{
-			this.put("dataFine", d);
-		}
-		
-		public String getAnno()
-		{
-			return this.getString("anno");
-		}
-		public void setAnno(int anno)
-		{
-			this.put("anno", anno);
-		}
-		
-		public void setClienteId(ParsePointer pointer)
-		{
-			// TODO Auto-generated method stub
-			this.put("clienteId", pointer);
-		}
-		
-		public ParseObject getCliente() {
-			ParseQuery q = new ParseQuery("Cliente");
-			ParseObject mioCliente= null;
-			try {
-				mioCliente = q.get(this.getObjectId());
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return mioCliente;
-		} 
-
+	private Boolean isDateNull() {
+		throw new UnsupportedOperationException();
 	}
 
-//  Da fare...
-	
-//	NumeroOrdine
-//	OC
-//	ClienteID	
+	public Ordine(Cliente aC, String aOg, Integer aAnno) {
+		throw new UnsupportedOperationException();
+	}
 
+	private void checkDate(Commessa aC) {
+		throw new UnsupportedOperationException();
+	}
+
+	public void addCommesse(Commessa aCommesse) {
+		this._commesse.add(aCommesse);
+	}
+
+	public void removeCommesse(Commessa aCommesse) {
+		this._commesse.remove(aCommesse);
+	}
+
+	public Commessa[] toCommesseArray() {
+		Commessa[] lCommesse_Temp = new Commessa[this._commesse.size()];
+		this._commesse.toArray(lCommesse_Temp);
+		return lCommesse_Temp;
+	}
+
+	public void setOrdineGestionale(String aOrdineGestionale) {
+		this._ordineGestionale = aOrdineGestionale;
+	}
+
+	public String getOrdineGestionale() {
+		return this._ordineGestionale;
+	}
+
+	public void setDataInizio(Date aDataInizio) {
+		this._dataInizio = aDataInizio;
+	}
+
+	public Date getDataInizio() {
+		return this._dataInizio;
+	}
+
+	public void setDataScadenza(Date aDataScadenza) {
+		this._dataScadenza = aDataScadenza;
+	}
+
+	public Date getDataScadenza() {
+		return this._dataScadenza;
+	}
+
+	public void setDataFine(Date aDataFine) {
+		this._dataFine = aDataFine;
+	}
+
+	public Date getDataFine() {
+		return this._dataFine;
+	}
+
+	public Integer getAnno() {
+		return this._anno;
+	}
+
+	public void setNumeroOrdine(Integer aNumeroOrdine) {
+		this._numeroOrdine = aNumeroOrdine;
+	}
+
+	public Integer getNumeroOrdine() {
+		return this._numeroOrdine;
+	}
+
+	public void setOC(String aOC) {
+		this._oC = aOC;
+	}
+
+	public String getOC() {
+		return this._oC;
+	}
+
+	public int get_iD() {
+		return this._iD;
+	}
+}

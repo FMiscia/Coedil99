@@ -1,42 +1,9 @@
 package elaboradistinta;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-
-import javax.swing.JOptionPane;
-
 import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
 
-
-import elaboradistinta.controller.GestisciClienteHandler;
 import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.controller.GestisciOrdineHandler;
-import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
 //import elaboradistinta.model.Catalogo;
-import elaboradistinta.model.Commessa;
-import elaboradistinta.model.CommessaFactory;
-import elaboradistinta.model.Distinta;
-import elaboradistinta.model.DistintaFactory;
-import elaboradistinta.model.DocumentoOttimizzazione;
-import elaboradistinta.model.DocumentoOttimizzazioneFactory;
-import elaboradistinta.model.Geometria;
-import elaboradistinta.model.GeometriaFactory;
-import elaboradistinta.model.History;
-import elaboradistinta.model.HistoryFactory;
-import elaboradistinta.model.Item;
-import elaboradistinta.model.ItemFactory;
-import elaboradistinta.model.ListaRintracciabilita;
-import elaboradistinta.model.ListaRintracciabilitaFactory;
-import elaboradistinta.model.Magazzino;
-import elaboradistinta.model.Ordine;
-import elaboradistinta.model.RigaLavoro;
-import elaboradistinta.model.RigaLavoroFactory;
-import elaboradistinta.operation.OCommessa;
-import elaboradistinta.operation.ODistinta;
-import elaboradistinta.operation.OMagazzino;
-import elaboradistinta.operation.OOrdine;
 
 public class StartUp {
 
@@ -44,14 +11,14 @@ public class StartUp {
 	
 	public GestisciCommessaHandler gch;
 	
-	ODistinta dist1; 
-	ODistinta dist2; 
+//	ODistinta dist1; 
+//	ODistinta dist2; 
 
 	//public OOrdine o;
-	public OOrdine o2;
-	public OCommessa c1;
-	public OCommessa c2;
-	public OCommessa c3;
+//	public OOrdine o2;
+//	public OCommessa c1;
+//	public OCommessa c2;
+//	public OCommessa c3;
 	//public Catalogo cat;
 	AOttimizzatoreStrategy optimizer;
 	
@@ -124,7 +91,6 @@ public class StartUp {
 		if (StartUp.instance == null){
 			try {
 				StartUp.instance = new StartUp();
-				Coedil99ingdelsoftwarePersistentManager.instance().disposePersistentManager();
 			}
 			catch (PersistentException e) {
 				e.printStackTrace();

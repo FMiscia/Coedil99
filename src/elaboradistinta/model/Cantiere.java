@@ -1,43 +1,27 @@
 package elaboradistinta.model;
 
-import almonds.ParseObject;
-import almonds.ParsePointer;
+public class Cantiere {
+	private int _iD;
+	private String _nome;
+	private String _indirizzo;
 
-
-public class Cantiere extends ParseObject
-{
-	
-	public Cantiere()
-	{
-		super(Cantiere.class.getName());
-		// TODO Auto-generated constructor stub
-	}
-	
-	public String getIndirizzo()
-	{
-		return this.getString("indirizzo");
+	public Cantiere(String aNome, String aIndirizzo) {
+		throw new UnsupportedOperationException();
 	}
 
-	public void setIndirizzo(String indirizzo)
-	{
-		this.put("indirizzo", indirizzo);
+	public void setNome(String aNome) {
+		this._nome = aNome;
 	}
 
-	public String getNome()
-	{
-		return this.getString("nome");
+	public String getNome() {
+		return this._nome;
 	}
 
-	public void setNome(String nome)
-	{
-		this.put("nome", nome);
+	public void setIndirizzo(String aIndirizzo) {
+		this._indirizzo = aIndirizzo;
 	}
 
-	public void setClienteId(ParsePointer pointer)
-	{
-		// TODO Auto-generated method stub
-		this.put("clienteId", pointer);
+	public String getIndirizzo() {
+		return this._indirizzo;
 	}
-
-
 }

@@ -3,7 +3,6 @@ package elaboradistinta.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import elaboradistinta.model.Cliente;
-import elaboradistinta.model.ClienteFactory;
 
 public class GestisciClienteHandler {
 	
@@ -12,7 +11,7 @@ public class GestisciClienteHandler {
 	private static GestisciClienteHandler instance;
 	
 	private GestisciClienteHandler() {
-		this.clienti = new ArrayList<Cliente>(Arrays.asList(ClienteFactory.listClienteByQuery(null, "ID")));
+		this.clienti = new ArrayList<Cliente>();
 	}
 
 	public void addOrdine(Cliente c) {
@@ -24,7 +23,11 @@ public class GestisciClienteHandler {
 	}
 	
 	public Cliente getClienteById(int id){
-		return ClienteFactory.getClienteByORMID(id);
+		for(Cliente c : clienti){
+			if(c.get_iD() == id)
+				return c;
+		}
+		return null;
 	}
 	
 	public static GestisciClienteHandler getInstance() {

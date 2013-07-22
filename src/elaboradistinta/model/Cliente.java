@@ -1,31 +1,46 @@
 package elaboradistinta.model;
 
-import almonds.ParseObject;
+import java.util.ArrayList;
+import elaboradistinta.model.Ordine;
 
-public class Cliente extends ParseObject{
+public class Cliente {
 	
-	public Cliente(){
-		super(Cliente.class.getName());
-		// TODO Auto-generated constructor stub
-	}
-	
-	public String getName()
-	{
-		return this.getString("name");
-	}
+	private int _iD;
+	private String _name;
+	private Integer _numeroCommessaCliente;
+	private Cantiere _cantiere;
+	public ArrayList<Ordine> _ordini = new ArrayList<Ordine>();
 
-	public void setName(String name)
-	{
-		this.put("name", name);
-	}
-	
-	public String getFamilyName()
-	{
-		return this.getString("familyName");
+	public Cliente(String aN, Cantiere aC) {
+		throw new UnsupportedOperationException();
 	}
 
-	public void setFamilyName(String familyName)
-	{
-		this.put("familyName", familyName);
+	public void setCantiere(Cantiere aCantiere) {
+		this._cantiere = aCantiere;
 	}
+
+	public Cantiere getCantiere() {
+		return this._cantiere;
+	}
+
+	public void setName(String aName) {
+		this._name = aName;
+	}
+
+	public String getName() {
+		return this._name;
+	}
+
+	public void setNumeroCommessaCliente(Integer aNumeroCommessaCliente) {
+		this._numeroCommessaCliente = aNumeroCommessaCliente;
+	}
+
+	public Integer getNumeroCommessaCliente() {
+		return this._numeroCommessaCliente;
+	}
+
+	public int get_iD() {
+		return _iD;
+	}
+
 }

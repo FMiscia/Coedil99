@@ -7,7 +7,6 @@ import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
 import elaboradistinta.model.Commessa;
-import elaboradistinta.model.CommessaFactory;
 import elaboradistinta.model.Distinta;
 
 
@@ -20,7 +19,7 @@ public class GestisciCommessaHandler {
 
 	
 	private GestisciCommessaHandler() {
-		this.commesse = new ArrayList<Commessa>(Arrays.asList(CommessaFactory.listCommessaByQuery(null, "ID")));
+		this.commesse = new ArrayList<Commessa>();
 	}
 	
 

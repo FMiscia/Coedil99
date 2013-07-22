@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import elaboradistinta.model.Ordine;
-import elaboradistinta.model.OrdineFactory;
-
 
 
 public class GestisciOrdineHandler {
@@ -18,7 +16,7 @@ public class GestisciOrdineHandler {
 	 * Costruttore
 	 */
 	private GestisciOrdineHandler() {
-		this.ordini = new ArrayList<Ordine>(Arrays.asList(OrdineFactory.listOrdineByQuery(null, "ID")));
+		this.ordini = new ArrayList<Ordine>();
 	}
 
 	public void addOrdine(Ordine o) {
@@ -30,7 +28,11 @@ public class GestisciOrdineHandler {
 	}
 	
 	public Ordine getOrdineById(int id){
-		return OrdineFactory.getOrdineByORMID(id);
+		for(Ordine o: this.ordini){
+			if(o.get_iD()==id)
+				return o;
+		}
+		return null;
 	}
 	
 	public static GestisciOrdineHandler getInstance() {
