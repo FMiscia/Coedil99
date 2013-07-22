@@ -29,23 +29,12 @@ public class PlicoDistinta extends Plico {
 	private PlicoDistinta() {
 		setBorder(null);
 		setLayout(new WrapLayout());
-		// rd = new RiquadroDatiDistinta("Lavoro");
-		// rd.setBounds(40, 20,rd.getWidth(),rd.getHeight());
+
 		setPreferredSize(new Dimension(745, 1000));
 		setSize(745, 950);
 		addButton = new JButton("aggiungi nuova");
 		addButton.setPreferredSize(new Dimension(160, 20));
-		// addButton.setBounds(269, 12, 175, 25);
 
-		// this.add(rd);
-
-		// rd.addComponentListener(new ComponentAdapter() {
-		// @Override
-		// public void componentResized(ComponentEvent e) {
-		// validate();
-		// repaint();
-		// }
-		// });
 		this.validate();
 		this.repaint();
 	}
