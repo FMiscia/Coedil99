@@ -30,8 +30,8 @@ private void initUI(){
 
         plButton.addMouseListener( new MouseAdapter(){
         public void mouseClicked(MouseEvent arg0){
-        Contenitore p = Contenitore.getInstance();
-                    CoedilFrame.getInstance().montaPanel( p);
+        	ProgrammaLavori p = ProgrammaLavori.getInstance();
+        	CoedilFrame.getInstance().montaPanel( p );
         }
         } );
 

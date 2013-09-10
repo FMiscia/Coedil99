@@ -1,45 +1,28 @@
 package GUIelaborazione2.Riquadri;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.ListIterator;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import GUIelaborazione2.Contenitore;
-import GUIelaborazione2.PlicoDistinta;
-
+import GUIelaborazione2.ProgrammaLavori;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
-import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Distinta;
 import elaboradistinta.model.Geometria;
 import elaboradistinta.model.GeometriaFactory;
 import elaboradistinta.model.RigaLavoro;
 import elaboradistinta.model.RigaLavoroFactory;
 
-import javax.swing.JRadioButton;
-import javax.swing.JToggleButton;
 import javax.swing.JComboBox;
-import javax.transaction.SystemException;
-
-import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -177,7 +160,7 @@ public class RiquadroDatiDistinta extends Riquadro {
 		btnElimina.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Distinta d = Contenitore.getInstance().getCommessaSelezionata()
+				Distinta d = ProgrammaLavori.getInstance().getCommessaSelezionata()
 						.getDistinta();
 				RigaLavoro r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
 				d.eliminaRigaLavoro(r);
@@ -225,7 +208,7 @@ public class RiquadroDatiDistinta extends Riquadro {
 		if (this.oggetto != null) {
 			r = (RigaLavoro) this.oggetto;
 		} else {
-			Distinta d = Contenitore.getInstance().getCommessaSelezionata()
+			Distinta d = ProgrammaLavori.getInstance().getCommessaSelezionata()
 					.getDistinta();
 			d.getLavori().add(r);
 		}

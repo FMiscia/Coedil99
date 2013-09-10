@@ -67,16 +67,9 @@ public class CoedilFrame extends JFrame {
 		this.setResizable(true);
 		this.setIconImage(new ImageIcon(GDistinta.class
 				.getResource("image/coedilIco.png")).getImage());
-		this.setBounds(100, 100, 549, 326);
-		Toolkit tk = Toolkit.getDefaultToolkit();
-		int xSize = ((int) tk.getScreenSize().getWidth());
-		int ySize = ((int) tk.getScreenSize().getHeight() - 55);
-		this.setSize(xSize, ySize);
-		// Centraggio della finestra
-		Dimension screenSize = tk.getScreenSize();
-		Dimension frameSize = this.getSize();
-		this.setLocation((screenSize.width - frameSize.width) / 2,
-				(screenSize.height - frameSize.height) / 2);
+		this.setVisible(true);
+		this.setMinimumSize(new Dimension(1200, 700));
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(new BorderLayout());

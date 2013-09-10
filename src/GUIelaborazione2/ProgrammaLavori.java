@@ -20,18 +20,18 @@ import javax.swing.SwingConstants;
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.Commessa;
 
-public class Contenitore extends JPanel {
+public class ProgrammaLavori extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	private static Contenitore instance = null;
+	private static ProgrammaLavori instance = null;
 	private RiquadroCodici riquadrocodici;
 	private RiquadroPlico riquadroplico;
 	private JMenuBar menuBar;
 	private Commessa commessaSelezionata = null;
 	
-	private Contenitore() {
+	private ProgrammaLavori() {
 		setMinimumSize(new Dimension(500, 600));
 		
 		this.riquadrocodici = new RiquadroCodici();
@@ -81,11 +81,11 @@ public class Contenitore extends JPanel {
 
 	}
 	
-	public static Contenitore getInstance(){
-		if(Contenitore.instance == null)
-			Contenitore.instance = new Contenitore();
+	public static ProgrammaLavori getInstance(){
+		if(ProgrammaLavori.instance == null)
+			ProgrammaLavori.instance = new ProgrammaLavori();
 		
-		return Contenitore.instance;
+		return ProgrammaLavori.instance;
 	}
 
 	public RiquadroCodici getRiquadrocodici() {
