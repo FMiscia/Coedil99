@@ -218,7 +218,35 @@ public class RiquadroDatiDistinta extends Riquadro {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public void avoidEditing(){
+		super.avoidEditing();
+		this.btnElimina.setEnabled(false);
+		for (MouseListener al : this.btnElimina.getMouseListeners()) {
+			this.btnElimina.removeMouseListener(al);
+		}
+		this.validate();
+		this.repaint();
+	}
 
+	@Override
+	public void enableEditing(){
+		super.enableEditing();
+		this.btnElimina.setEnabled(true);
+		btnElimina.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Distinta d = Contenitore.getInstance().getCommessaSelezionata()
+						.getDistinta();
+				RigaLavoro r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
+				d.eliminaRigaLavoro(r);
+			}
+		});
+		this.validate();
+		this.repaint();
+	}
+	
 	@Override
 	protected void salva() {
 		RigaLavoro r = RigaLavoroFactory.createRigaLavoro();
