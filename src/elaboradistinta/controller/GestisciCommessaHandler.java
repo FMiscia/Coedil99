@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.CommessaFactory;
 import elaboradistinta.model.Distinta;
+import elaboradistinta.model.RigaLavoro;
 
 
 
@@ -133,6 +134,10 @@ public class GestisciCommessaHandler {
 				return true;
 		}
 		return false;
+	}
+	
+	public void modificaRigaLavoro(int id_commessa, RigaLavoro rg){
+		this.getCommessaById(id_commessa).getDistinta().getODistinta().modificaRigaLavoro(rg);
 	}
 	
 	/**

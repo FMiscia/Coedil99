@@ -1,51 +1,29 @@
 package GUIelaborazione2;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Iterator;
-
+import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.Distinta;
-import elaboradistinta.model.RigaLavoro;
-
 import GUIelaborazione2.Riquadri.RiquadroDatiDistinta;
-import javax.swing.SwingConstants;
 
 public class PlicoDistinta extends Plico {
 
 	private static PlicoDistinta instance = null;
 	private JButton addButton = null;
 	private int formCounter;
+	private ArrayList<RiquadroDatiDistinta> riquadri = new ArrayList<RiquadroDatiDistinta>();
 
 	private PlicoDistinta() {
 		setBorder(null);
 		setLayout(new WrapLayout());
-		// rd = new RiquadroDatiDistinta("Lavoro");
-		// rd.setBounds(40, 20,rd.getWidth(),rd.getHeight());
+
 		setPreferredSize(new Dimension(745, 1000));
 		setSize(745, 950);
 		addButton = new JButton("aggiungi nuova");
 		addButton.setPreferredSize(new Dimension(160, 20));
-		// addButton.setBounds(269, 12, 175, 25);
-
-		// this.add(rd);
-
-		// rd.addComponentListener(new ComponentAdapter() {
-		// @Override
-		// public void componentResized(ComponentEvent e) {
-		// validate();
-		// repaint();
-		// }
-		// });
 		this.validate();
 		this.repaint();
 	}
@@ -75,29 +53,46 @@ public class PlicoDistinta extends Plico {
 				temp.load(d.getLavori().get(i));
 				temp.setLocation(40, 20 * (i + 1));
 				this.add(temp);
+				this.riquadri.add(temp);
 			}
 		} else {
 			temp = new RiquadroDatiDistinta("Riga Lavoro");
 			temp.makeEditable(true);
 			temp.setLocation(40, 20);
 			this.add(temp);
+			this.riquadri.add(temp);
 		}
-		addButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				RiquadroDatiDistinta temp = new RiquadroDatiDistinta(
-						"Riga Lavoro");
-				temp.makeEditable(true);
-				PlicoDistinta.this.add(temp);
-				PlicoDistinta.this.remove(addButton);
-				PlicoDistinta.this.add(addButton);
-				PlicoDistinta.this.aggiornaAltezze();
-				
-//				PlicoDistinta.this.validate();
-//				PlicoDistinta.this.repaint();
+		if (!ProgrammaLavori.getInstance().getCommessaSelezionata().getODistinta()
+				.hasDdo()) {
+			addButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					// TODO Auto-generated method stub
+					RiquadroDatiDistinta temp = new RiquadroDatiDistinta(
+							"Riga Lavoro");
+					temp.makeEditable(true);
+					PlicoDistinta.this.add(temp);
+					PlicoDistinta.this.remove(addButton);
+					PlicoDistinta.this.add(addButton);
+					PlicoDistinta.this.aggiornaAltezze();
+					PlicoDistinta.this.riquadri.add(temp);
+				}
+			});
+		}
+		if (ProgrammaLavori.getInstance().getCommessaSelezionata().getODistinta()
+				.hasDdo()){
+			for(RiquadroDatiDistinta r: riquadri){
+				r.avoidEditing();
+				addButton.setEnabled(false);
 			}
-		});
+		}
+		else {
+			addButton.setEnabled(true);
+			for(RiquadroDatiDistinta r: riquadri){
+				r.enableEditing();
+				r.makeEditable(true);
+			}
+		}
 		this.add(addButton);
 		this.aggiornaAltezze();
 		this.validate();

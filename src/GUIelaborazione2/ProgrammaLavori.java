@@ -7,6 +7,9 @@ import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JMenu;
+import javax.swing.KeyStroke;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -15,60 +18,39 @@ import javax.swing.JMenuItem;
 import java.awt.ComponentOrientation;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
 import javax.swing.SwingConstants;
 
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.Commessa;
 
-public class Contenitore extends JPanel {
+public class ProgrammaLavori extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	private static Contenitore instance = null;
+	private static ProgrammaLavori instance = null;
 	private RiquadroCodici riquadrocodici;
 	private RiquadroPlico riquadroplico;
 	private JMenuBar menuBar;
 	private Commessa commessaSelezionata = null;
 	
-	private Contenitore() {
+	private ProgrammaLavori() {
 		setMinimumSize(new Dimension(500, 600));
 		
 		this.riquadrocodici = new RiquadroCodici();
-		this.riquadrocodici.setMinimumSize(new Dimension(0, 0));
 		this.riquadrocodici.setPreferredSize(new Dimension(200, 0));
 		this.commessaSelezionata = GestisciCommessaHandler.
 				getInstance().getCommessaById(this.riquadrocodici.getPrimaCommessa());
 		this.riquadroplico = new RiquadroPlico();
 		this.riquadroplico.aggiornaClipPanel(this.commessaSelezionata.getDistinta().getODistinta());
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout());
 		
-		this.menuBar = new JMenuBar();
-		FlowLayout fl_menuBar = new FlowLayout();
-		fl_menuBar.setAlignment(FlowLayout.LEFT);
-		this.menuBar.setLayout(fl_menuBar);
-		add(this.menuBar, BorderLayout.NORTH);
+		this.addMenuBar();
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("File");
-		mntmNewMenuItem.setBorder(new LineBorder(new Color(0, 0, 0)));
-		this.menuBar.add(mntmNewMenuItem);
-		mntmNewMenuItem.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		
-		JMenuItem mntmModifica = new JMenuItem("Modifica");
-		mntmModifica.setBorder(new LineBorder(new Color(0, 0, 0)));
-		this.menuBar.add(mntmModifica);
-		mntmModifica.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		
-		JMenuItem mntmVisualizza = new JMenuItem("Visualizza");
-		mntmVisualizza.setBorder(new LineBorder(new Color(0, 0, 0)));
-		this.menuBar.add(mntmVisualizza);
-		mntmVisualizza.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		
-		JMenuItem mntmHelp = new JMenuItem("Help");
-		mntmHelp.setBorder(new LineBorder(new Color(0, 0, 0)));
-		this.menuBar.add(mntmHelp);
-		mntmHelp.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		add(this.riquadrocodici, BorderLayout.WEST);
 		
 		JLabel lblNewLabel = new JLabel("Scegli una Commessa");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -76,16 +58,40 @@ public class Contenitore extends JPanel {
 		lblNewLabel.setDoubleBuffered(true);
 		lblNewLabel.setPreferredSize(new Dimension(70, 40));
 		this.riquadrocodici.setColumnHeaderView(lblNewLabel);
-		add(this.riquadroplico);
+		this.add(this.riquadroplico, BorderLayout.CENTER);
+		this.add(this.riquadrocodici, BorderLayout.WEST);
 		this.riquadroplico.caricaPrimaCommessa(this.commessaSelezionata);
 
 	}
 	
-	public static Contenitore getInstance(){
-		if(Contenitore.instance == null)
-			Contenitore.instance = new Contenitore();
+	private void addMenuBar() {
+		// TODO Auto-generated method stub
+		menuBar = new JMenuBar();
+
+		//Build the first menu.
+		JMenu menu = new JMenu("File");
+		menuBar.add(menu);
 		
-		return Contenitore.instance;
+		JMenuItem eMenuItem = new JMenuItem("Exit");
+      eMenuItem.setToolTipText("Exit application");
+      eMenuItem.addActionListener(
+      		new ActionListener(){
+      			public void actionPerformed(ActionEvent e){
+      				System.exit(0);
+      			}
+      		}
+      );
+		menu.add(eMenuItem);
+		JMenuItem hMenuItem = new JMenuItem("Help");
+		menuBar.add(hMenuItem);
+		add(this.menuBar, BorderLayout.NORTH);
+	}
+
+	public static ProgrammaLavori getInstance(){
+		if(ProgrammaLavori.instance == null)
+			ProgrammaLavori.instance = new ProgrammaLavori();
+		
+		return ProgrammaLavori.instance;
 	}
 
 	public RiquadroCodici getRiquadrocodici() {
