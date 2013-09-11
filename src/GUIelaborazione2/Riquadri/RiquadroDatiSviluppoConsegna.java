@@ -11,8 +11,6 @@ import org.jdesktop.swingx.JXDatePicker;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
-import util.Validator;
-
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -84,7 +82,7 @@ public class RiquadroDatiSviluppoConsegna extends Riquadro {
 	        @Override
 	        public void caretUpdate(CaretEvent e) {
 	        	String line = txtResponsabile.getText();
-	            String pattern = "[^a-zA-Zàòùèéì']";
+	            String pattern = "[^a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½']";
 	            Pattern r = Pattern.compile(pattern);
 	            Matcher m = r.matcher(line);
 	            if (m.find( )) {
