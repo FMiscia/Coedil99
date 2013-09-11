@@ -1,19 +1,23 @@
 package GUIelaborazione2.Riquadri;
 
 import java.awt.Dimension;
+import java.sql.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.jdesktop.swingx.JXDatePicker;
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
+import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Ordine;
 
 @SuppressWarnings("serial")
@@ -21,88 +25,53 @@ public class RiquadroDatiProduzioneConsegna extends Riquadro {
 
 	private JPanel form;
 	private JLabel lblDataInizio;
+	private JTextField txtDataInizio;
 	private JLabel lblDataFine;
+	private JTextField txtDataFine;
 	private JLabel lblScadenzaSviluppo;
-	private JXDatePicker dateDataInizio;
-	private JLabel lblIcoDataInizio;
-	private JXDatePicker dateDataFine;
-	private JLabel lblIcoDataFine;
-	private JXDatePicker dateScadenzaSviluppo;
-	private JLabel lblIcoScadenzaSviluppo;
+	private JTextField txtScadenzaSviluppo;
 	
 	public RiquadroDatiProduzioneConsegna(String title) {
 		super(title);
-		this.setSize(new Dimension(600, 150));
+		this.setSize(new Dimension(600, 130));
 		this.form = new JPanel();
-		this.form.setBounds(0,30,600,120);
+		this.form.setBounds(0,30,600,90);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(155px;default)"),
+				ColumnSpec.decode("max(230px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(31px;default)"),
+				ColumnSpec.decode("max(50px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(140dlu;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(35dlu;default)"),},
+				ColumnSpec.decode("default:grow"),},
 			new RowSpec[] {
 				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("30px"),
+				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("30px"),
+				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("30px"),}));
-		
-		/*
-		 *Campo Data Inizio 
-		 */
+				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		this.lblDataInizio = new JLabel("Data Inizio");
 		this.form.add(this.lblDataInizio, "2, 2");
 		
-		this.dateDataInizio = new JXDatePicker();
-		this.dateDataInizio.getEditor().setEditable(false);
-		this.dateDataInizio.setFormats("yyyy-MM-dd");
-		this.form.add(this.dateDataInizio, "6, 2, fill, fill");
-		
-		this.lblIcoDataInizio = new JLabel("");
-		this.lblIcoDataInizio.setVisible(false);
-		this.form.add(lblIcoDataInizio, "8, 2, center, top");
-		this.Label.add(lblIcoDataInizio);
-		
-		/*
-		 * Campo Data Fine
-		 */
+		this.txtDataInizio = new JTextField();
+		this.Container.add(this.txtDataInizio);
+		this.form.add(this.txtDataInizio, "6, 2, fill, default");
 		
 		this.lblDataFine = new JLabel("Data Fine");
 		this.form.add(this.lblDataFine, "2, 4");
 		
-		this.dateDataFine = new JXDatePicker();
-		this.dateDataFine.getEditor().setEditable(false);
-		this.dateDataFine.setFormats("yyyy-MM-dd");
-		this.form.add(this.dateDataFine, "6, 4, fill, fill");
-		
-		this.lblIcoDataFine = new JLabel("");
-		this.lblIcoDataFine.setVisible(false);
-		this.form.add(lblIcoDataFine, "8, 4, center, top");
-		this.Label.add(lblIcoDataFine);
-		
-		/*
-		 * Campo Data Scadenza Sviluppo
-		 */
+		this.txtDataFine = new JTextField();
+		this.Container.add(this.txtDataFine);
+		this.form.add(this.txtDataFine, "6, 4, fill, default");
 		
 		this.lblScadenzaSviluppo = new JLabel("Scadenza Sviluppo");
 		this.form.add(this.lblScadenzaSviluppo, "2, 6");
 		
-		this.dateScadenzaSviluppo  = new JXDatePicker();
-		dateScadenzaSviluppo.getEditor().setEditable(false);
-		this.dateScadenzaSviluppo.setFormats("yyyy-MM-dd");
-		this.form.add(this.dateScadenzaSviluppo, "6, 6, fill, fill");
-		
-		this.lblIcoScadenzaSviluppo = new JLabel("");
-		this.lblIcoScadenzaSviluppo.setVisible(false);
-		this.form.add(lblIcoScadenzaSviluppo, "8, 6, center, top");
-		this.Label.add(lblIcoScadenzaSviluppo);
+		this.txtScadenzaSviluppo = new JTextField();
+		this.Container.add(this.txtScadenzaSviluppo);
+		this.form.add(this.txtScadenzaSviluppo, "6, 6, fill, default");
 		this.makeEditable(false);
 	}
 
@@ -112,42 +81,25 @@ public class RiquadroDatiProduzioneConsegna extends Riquadro {
 		this.resetRiquadro();
 		Ordine ord = (Ordine) o;
 		if(ord.getDataInizio() != null)
-			this.dateDataInizio.setDate(ord.getDataInizio());
-		else
-			this.dateDataInizio.setDate(null);
-		
+			this.txtDataInizio.setText(ord.getDataInizio().toString());
 		if(ord.getDataFine() != null)
-			this.dateDataFine.setDate(ord.getDataFine());
-		else
-			this.dateDataFine.setDate(null);
-		
+			this.txtDataFine.setText(ord.getDataFine().toString());
 		if(ord.getDataScadenza() != null)
-			this.dateScadenzaSviluppo.setDate(ord.getDataScadenza());
-		else
-			this.dateScadenzaSviluppo.setDate(null);
+			this.txtScadenzaSviluppo.setText(ord.getDataScadenza().toString());
 	}
 
 	@Override
 	protected void salva() {
 		if (this.oggetto != null) {
 			Ordine ord = (Ordine) this.oggetto;
-			ord.setDataInizio(this.dateDataInizio.getDate());
-			ord.setDataFine(this.dateDataFine.getDate());
-			ord.setDataScadenza(this.dateScadenzaSviluppo.getDate());
+			ord.setDataInizio(Date.valueOf(this.txtDataInizio.getText()));
+			ord.setDataFine(Date.valueOf(this.txtDataFine.getText()));
+			ord.setDataScadenza(Date.valueOf(this.txtScadenzaSviluppo.getText()));
 			ord.save();
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
 			this.load(this.oggetto);
 		}
-	}
-	
-	@Override
-	public void makeEditable(boolean editable) {
-		this.dateDataInizio.setEnabled(editable);
-		this.dateDataFine.setEnabled(editable);
-		this.dateScadenzaSviluppo.setEnabled(editable);
-		super.makeEditable(editable);
-
 	}
 }

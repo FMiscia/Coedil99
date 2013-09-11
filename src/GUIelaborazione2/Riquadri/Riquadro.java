@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,16 +24,12 @@ public abstract class Riquadro extends JPanel {
 	protected JButton modifica;
 	protected boolean aperto;
 	protected Object oggetto;
-	protected ArrayList<JLabel> Label;
-	protected ImageIcon IcoErrore = new ImageIcon(RiquadroDatiAziendali.class.getResource("/GUIelaboradistinta/image/cancel.png"));
-	protected ImageIcon IcoOk = new ImageIcon(RiquadroDatiAziendali.class.getResource("/GUIelaboradistinta/image/ok.png"));
 
 	public Riquadro(String title) {
 		super();
 		this.aperto = true;
 		this.oggetto = null;
 		this.Container = new ArrayList<JTextField>();
-		this.Label = new ArrayList<JLabel>();
 		setLayout(null);
 		setSize(600, 330);
 		setPreferredSize(new Dimension(600, 280));
@@ -54,13 +49,13 @@ public abstract class Riquadro extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (aperto) {
-					//Riquadro.this.modifica.setText("salva"); inutile
+					Riquadro.this.modifica.setText("salva");
 					aperto = false;
 					Riquadro.this.makeEditable(true);
 					// form.getParent().setSize(new Dimension(600,30));
 				} else {
 					Riquadro.this.salva();
-					//Riquadro.this.modifica.setText("modifica"); inutile
+					Riquadro.this.modifica.setText("modifica");
 					aperto = true;
 					Riquadro.this.makeEditable(false);
 					// form.getParent().setSize(new Dimension(600,290));
@@ -86,13 +81,6 @@ public abstract class Riquadro extends JPanel {
 				aperto = false;
 			}
 			i.setEditable(editable);
-		}
-		for(JLabel j : this.Label){
-			if (!editable){
-				j.setVisible(false);
-			} else {
-				j.setVisible(true);
-			}
 		}
 		this.validate();
 		this.repaint();
