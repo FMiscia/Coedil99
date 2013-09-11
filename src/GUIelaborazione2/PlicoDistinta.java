@@ -1,25 +1,13 @@
 package GUIelaborazione2;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.Distinta;
-import elaboradistinta.model.RigaLavoro;
-
 import GUIelaborazione2.Riquadri.RiquadroDatiDistinta;
-import javax.swing.SwingConstants;
 
 public class PlicoDistinta extends Plico {
 
@@ -74,7 +62,7 @@ public class PlicoDistinta extends Plico {
 			this.add(temp);
 			this.riquadri.add(temp);
 		}
-		if (!Contenitore.getInstance().getCommessaSelezionata().getODistinta()
+		if (!ProgrammaLavori.getInstance().getCommessaSelezionata().getODistinta()
 				.hasDdo()) {
 			addButton.addMouseListener(new MouseAdapter() {
 				@Override
@@ -91,7 +79,7 @@ public class PlicoDistinta extends Plico {
 				}
 			});
 		}
-		if (Contenitore.getInstance().getCommessaSelezionata().getODistinta()
+		if (ProgrammaLavori.getInstance().getCommessaSelezionata().getODistinta()
 				.hasDdo()){
 			for(RiquadroDatiDistinta r: riquadri){
 				r.avoidEditing();
