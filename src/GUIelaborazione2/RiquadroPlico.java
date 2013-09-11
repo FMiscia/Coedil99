@@ -34,6 +34,7 @@ public class RiquadroPlico extends JPanel {
 	private JPanel paper_container;
 	private JPanel paper_panel;
 	private JPanel clipPanel;
+	private JButton menuButton = new JButton();
 	private JButton commessaButton = new JButton();
 	private JButton distintaButton = new JButton();
 	private JButton btnNewButton_6 = new JButton();
@@ -61,6 +62,22 @@ public class RiquadroPlico extends JPanel {
 		clipPanel.setBackground(new Color(222, 184, 135));
 		clipPanel.setPreferredSize(new Dimension(210, 50));
 
+		menuButton.setText("Torna al menu");
+		menuButton.setToolTipText("Torna al menu principale");
+		menuButton.setHorizontalTextPosition(SwingConstants.LEFT);
+		menuButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CoedilFrame cf = CoedilFrame.getInstance();
+				PanelStart pl = new PanelStart(cf);
+				pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
+				cf.getContentPane().add(pl, BorderLayout.NORTH);
+				cf.validate();
+				cf.repaint();
+				CoedilFrame.getInstance().montaPanel(pl);
+			}
+		});
+		clipPanel.add(menuButton);
+		
 		commessaButton.setText("Commessa");
 		commessaButton.setToolTipText("Commessa");
 		commessaButton.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -109,34 +126,6 @@ public class RiquadroPlico extends JPanel {
 		this.paper_panel = paper_panel;
 	}
 
-//	public void aggiornaAltezze() {
-//
-//		RiquadroPlico.this.getPaperPanel().setSize(
-//				RiquadroPlico.this.getPaperPanel().getWidth(),
-//				RiquadroPlico.this.getPaperPanel().getComponent(0).getHeight());
-//		RiquadroPlico.this.getPaperPanel().setPreferredSize(
-//				new Dimension(RiquadroPlico.this.getPaperPanel().getWidth(),
-//						RiquadroPlico.this.getPaperPanel().getComponent(0)
-//								.getHeight()));
-//
-//		RiquadroPlico.this.getPaperContainer().setSize(
-//				RiquadroPlico.this.getPaperContainer().getWidth(),
-//				RiquadroPlico.this.getPaperPanel().getHeight());
-//		RiquadroPlico.this.getPaperContainer().setPreferredSize(
-//				new Dimension(
-//						RiquadroPlico.this.getPaperContainer().getWidth(),
-//						RiquadroPlico.this.getPaperPanel().getHeight()));
-//
-//		RiquadroPlico.this.getPlico().setPreferredSize(
-//						new Dimension(RiquadroPlico.this.getPlico().getWidth(),
-//								RiquadroPlico.this.getPaperContainer()
-//										.getHeight() + 20));
-//		RiquadroPlico.this.getPlico().setSize(
-//				RiquadroPlico.this.getPlico().getWidth(),
-//				RiquadroPlico.this.getPaperContainer().getHeight() + 20);
-//		validate();
-//		repaint();
-//	}
 
 	private void changePlico(Plico plico) {
 
@@ -199,9 +188,26 @@ public class RiquadroPlico extends JPanel {
 		btnHasnotDdo.setToolTipText("Elabora Documento di Ottimizzazione");
 		btnHasnotDdo.setPreferredSize(new Dimension(110, 25));
 		btnHasDdo.setPreferredSize(new Dimension(110, 25));
+
+		clipPanel.removeAll();
+		menuButton.setText("Torna al menu");
+		menuButton.setToolTipText("Torna al menu principale");
+		menuButton.setHorizontalTextPosition(SwingConstants.LEFT);
+		menuButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CoedilFrame cf = CoedilFrame.getInstance();
+				PanelStart pl = new PanelStart(cf);
+				pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
+				cf.getContentPane().add(pl, BorderLayout.NORTH);
+				cf.validate();
+				cf.repaint();
+				CoedilFrame.getInstance().montaPanel(pl);
+			}
+		});
+		clipPanel.add(menuButton);
+		
 		if(oDistinta.hasDdo()){
 			//System.out.println("has ddo");
-			clipPanel.removeAll();
 			clipPanel.add(btnHasDdo);
 
 			btnHasDdo.addActionListener(new ActionListener() {
@@ -211,7 +217,6 @@ public class RiquadroPlico extends JPanel {
 			});
 		}else{
 			System.out.println("non has ddo");
-			clipPanel.removeAll();
 			clipPanel.add(btnHasnotDdo);
 			
 			btnHasnotDdo.addActionListener(new ActionListener() {
