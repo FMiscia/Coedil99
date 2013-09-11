@@ -17,6 +17,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
@@ -46,17 +47,16 @@ public class RiquadroPlico extends JPanel {
 		this.paper_container = new JPanel();
 		paper_container.setBackground(new Color(240, 230, 140));
 		paper_container.setLayout(new BorderLayout());
-		
+
 		this.add(this.scrollPaneWrapper, BorderLayout.CENTER);
 		this.scrollPaneWrapper.setViewportView(this.paper_container);
 		this.scrollPaneWrapper.getVerticalScrollBar().setUnitIncrement(20);
 
-
 		this.paper_panel = new JPanel();
-		
-		this.paper_container.add(this.paper_panel,BorderLayout.CENTER);
+
+		this.paper_container.add(this.paper_panel, BorderLayout.CENTER);
 		this.clipPanel = new JPanel();
-		this.clipPanel.setLayout(new GridLayout(1,0) );
+		this.clipPanel.setLayout(new GridLayout(1, 0));
 
 		this.add(this.clipPanel, BorderLayout.NORTH);
 		clipPanel.setBackground(new Color(222, 184, 135));
@@ -74,7 +74,7 @@ public class RiquadroPlico extends JPanel {
 			}
 		});
 		clipPanel.add(menuButton);
-		
+
 		commessaButton.setText("Commessa");
 		commessaButton.setToolTipText("Commessa");
 		commessaButton.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -123,7 +123,6 @@ public class RiquadroPlico extends JPanel {
 		this.paper_panel = paper_panel;
 	}
 
-
 	private void changePlico(Plico plico) {
 
 		RiquadroPlico.this.getPaperPanel().removeAll();
@@ -132,45 +131,46 @@ public class RiquadroPlico extends JPanel {
 		// plico.load( );
 
 		RiquadroPlico.this.getPaperPanel().add(plico);
-		RiquadroPlico.this.getPaperPanel().getComponent(0).addComponentListener(new ComponentListener() {
-			
-			@Override
-			public void componentShown(ComponentEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void componentResized(ComponentEvent e) {
-				//RiquadroPlico.this.aggiornaAltezze();
-				
-			}
-			
-			@Override
-			public void componentMoved(ComponentEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void componentHidden(ComponentEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		//aggiornaAltezze();
+		RiquadroPlico.this.getPaperPanel().getComponent(0)
+				.addComponentListener(new ComponentListener() {
+
+					@Override
+					public void componentShown(ComponentEvent e) {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void componentResized(ComponentEvent e) {
+						// RiquadroPlico.this.aggiornaAltezze();
+
+					}
+
+					@Override
+					public void componentMoved(ComponentEvent e) {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void componentHidden(ComponentEvent e) {
+						// TODO Auto-generated method stub
+
+					}
+				});
+		// aggiornaAltezze();
 		RiquadroPlico.this.getPaperPanel().validate();
 		RiquadroPlico.this.getPaperPanel().repaint();
 
 	}
-	
-	public void caricaPrimaCommessa(Commessa c){
+
+	public void caricaPrimaCommessa(Commessa c) {
 		PlicoCommessa plico = PlicoCommessa.getInstance();
 		plico.load(c.getID());
 		// plico.load( );
 
 		RiquadroPlico.this.getPaperPanel().add(plico);
-		//aggiornaAltezze();
+		// aggiornaAltezze();
 		RiquadroPlico.this.getPaperPanel().validate();
 		RiquadroPlico.this.getPaperPanel().repaint();
 	}
@@ -195,16 +195,16 @@ public class RiquadroPlico extends JPanel {
 				CoedilFrame cf = CoedilFrame.getInstance();
 				PanelStart pl = new PanelStart(cf);
 				pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
-//				cf.getContentPane().add(pl, BorderLayout.NORTH);
-//				cf.validate();
-//				cf.repaint();
+				// cf.getContentPane().add(pl, BorderLayout.NORTH);
+				// cf.validate();
+				// cf.repaint();
 				CoedilFrame.getInstance().montaPanel(pl);
 			}
 		});
 		clipPanel.add(menuButton);
-		
-		if(oDistinta.hasDdo()){
-			//System.out.println("has ddo");
+
+		if (oDistinta.hasDdo()) {
+			// System.out.println("has ddo");
 			clipPanel.add(btnHasDdo);
 
 			btnHasDdo.addActionListener(new ActionListener() {
@@ -212,14 +212,28 @@ public class RiquadroPlico extends JPanel {
 					changePlico(PlicoDDO.getInstance());
 				}
 			});
-		}else{
-			System.out.println("non has ddo");
+		} else {
+			// System.out.println("non has ddo");
 			clipPanel.add(btnHasnotDdo);
-			
+
 			btnHasnotDdo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					ProgrammaLavori.getInstance().getCommessaSelezionata().getDistinta().creaDDO();
-					changePlico(PlicoDDO.getInstance());
+					JOptionPane confermaOtt = new JOptionPane();
+					Object[] options = { "Si", "No" };
+					int n = JOptionPane
+							.showOptionDialog(
+									RiquadroPlico.this,
+									"Vuoi elaborare l'ottimizzazione?\n"
+											+ "Nota: questa operazione non è reversibile",
+									"Conferma operazione",
+									JOptionPane.YES_NO_CANCEL_OPTION,
+									JOptionPane.QUESTION_MESSAGE, null,
+									options, options[1]);
+					if (n == JOptionPane.YES_OPTION) {
+						ProgrammaLavori.getInstance().getCommessaSelezionata()
+								.getDistinta().creaDDO();
+						changePlico(PlicoDDO.getInstance());
+					}
 				}
 			});
 		}
@@ -230,5 +244,4 @@ public class RiquadroPlico extends JPanel {
 		clipPanel.repaint();
 	}
 
-	
 }
