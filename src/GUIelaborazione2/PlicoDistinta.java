@@ -101,8 +101,8 @@ public class PlicoDistinta extends Plico {
 		else {
 			addButton.setEnabled(true);
 			for(RiquadroDatiDistinta r: riquadri){
-				r.makeEditable(false);
 				r.enableEditing();
+				r.makeEditable(true);
 			}
 		}
 		this.add(addButton);
