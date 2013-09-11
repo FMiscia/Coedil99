@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import GUIelaboradistinta.GDistinta;
@@ -20,7 +23,7 @@ public class PanelStart extends JPanel{
     }
 private void initUI(){
    
-    this.setLayout( new FlowLayout() );
+    this.setLayout( new BorderLayout() );
 
         JButton plButton = new JButton("Programma Lavori");
         plButton.setToolTipText("Programma Lavori");
@@ -30,14 +33,37 @@ private void initUI(){
 
         plButton.addMouseListener( new MouseAdapter(){
         public void mouseClicked(MouseEvent arg0){
-        Contenitore p = Contenitore.getInstance();
-                    CoedilFrame.getInstance().montaPanel( p);
+        	ProgrammaLavori p = ProgrammaLavori.getInstance();
+        	CoedilFrame.getInstance().montaPanel( p );
         }
         } );
-
-
         
-        this.add(plButton);
+        this.add(plButton,BorderLayout.CENTER);
+        this.addMenuBar();
         
     }
+
+private void addMenuBar() {
+	// TODO Auto-generated method stub
+	JMenuBar menuBar = new JMenuBar();
+
+	//Build the first menu.
+	JMenu menu = new JMenu("File");
+	menuBar.add(menu);
+	
+	JMenuItem eMenuItem = new JMenuItem("Exit");
+  eMenuItem.setToolTipText("Exit application");
+  eMenuItem.addActionListener(
+  		new ActionListener(){
+  			public void actionPerformed(ActionEvent e){
+  				System.exit(0);
+  			}
+  		}
+  );
+	menu.add(eMenuItem);
+	JMenuItem hMenuItem = new JMenuItem("Help");
+	menuBar.add(hMenuItem);
+	add(menuBar, BorderLayout.NORTH);
+}
+
 } 
