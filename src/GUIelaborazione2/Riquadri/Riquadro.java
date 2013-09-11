@@ -2,8 +2,11 @@ package GUIelaborazione2.Riquadri;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -33,7 +36,7 @@ public abstract class Riquadro extends JPanel {
 		this.Container = new ArrayList<JTextField>();
 		this.Label = new ArrayList<JLabel>();
 		setLayout(null);
-		setSize(600,330);
+		setSize(600, 330);
 		setPreferredSize(new Dimension(600, 280));
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.BLACK);
@@ -93,6 +96,44 @@ public abstract class Riquadro extends JPanel {
 		}
 		this.validate();
 		this.repaint();
+	}
+
+	public void avoidEditing() {
+		Riquadro.this.modifica.setEnabled(false);
+		for (MouseListener al : Riquadro.this.modifica.getMouseListeners()) {
+			Riquadro.this.modifica.removeMouseListener(al);
+		}
+		
+		this.validate();
+		this.repaint();
+
+	}
+
+	public void enableEditing() {
+		Riquadro.this.modifica.setEnabled(true);
+		Riquadro.this.modifica.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (aperto) {
+					Riquadro.this.modifica.setText("salva");
+					aperto = false;
+					Riquadro.this.makeEditable(true);
+					// form.getParent().setSize(new Dimension(600,30));
+				} else {
+					Riquadro.this.salva();
+					Riquadro.this.modifica.setText("modifica");
+					aperto = true;
+					Riquadro.this.makeEditable(false);
+					// form.getParent().setSize(new Dimension(600,290));
+				}
+				validate();
+				repaint();
+			}
+		});
+
+		this.validate();
+		this.repaint();
+
 	}
 
 	public abstract void load(Object o);
