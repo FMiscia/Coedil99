@@ -17,6 +17,11 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import elaboradistinta.model.Cliente;
 import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
+import javax.swing.SwingConstants;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
+import java.util.regex.*;
+
 
 @SuppressWarnings("serial")
 public class RiquadroDatiClienteConsegna extends Riquadro {
@@ -28,49 +33,136 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 	private JTextField txtCliente;
 	private JLabel lblCommessa;
 	private JTextField txtCommessa;
+	private JLabel lblIcoCantiere;
+	private JLabel lblIcoCliente;
+	private JLabel lblIcoCommessa;
 
 	public RiquadroDatiClienteConsegna(String title) {
 		super(title);
-		this.setSize(new Dimension(600,130));
+		this.setSize(new Dimension(600, 150));
 		this.form = new JPanel();
-		this.form.setBounds(0,30,600,90);
+		this.form.setBounds(0,30,600,120);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(230px;default)"),
+				ColumnSpec.decode("max(155px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(50px;default)"),
+				ColumnSpec.decode("max(31px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),},
+				ColumnSpec.decode("max(140dlu;default)"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(35dlu;default)"),},
 			new RowSpec[] {
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("30px"),
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("30px"),
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+				RowSpec.decode("30px"),}));
 		
+		/*
+		 * Campo Cantiere
+		 */
 		
 		this.lblCantiere = new JLabel("Cantiere");
 		this.form.add(this.lblCantiere, "2, 2");
 		
 		this.txtCantiere = new JTextField();
+		this.txtCantiere.setHorizontalAlignment(SwingConstants.CENTER);
+		this.txtCantiere.addCaretListener(new CaretListener() {
+
+	        @Override
+	        public void caretUpdate(CaretEvent e) {
+	        	String line = txtCantiere.getText();
+	            String pattern = "[^\\wאעשטיל\\s]+";
+	            Pattern r = Pattern.compile(pattern);
+	            Matcher m = r.matcher(line);
+	            if (m.find( )) {
+	            	lblIcoCantiere.setIcon(IcoErrore);
+	            	lblIcoCantiere.setToolTipText("Il campo Cantiere deve contenere solo lettere e/o numeri!");
+	            }
+	            else{
+	            	lblIcoCantiere.setIcon(IcoOk);
+	            	lblIcoCantiere.setToolTipText("");
+	            }
+	        }
+	    });
 		this.Container.add(this.txtCantiere);
-		this.form.add(this.txtCantiere, "6, 2, fill, default");
+		this.form.add(this.txtCantiere, "6, 2, fill, fill");
+		this.lblIcoCantiere = new JLabel("");
+		this.lblIcoCantiere.setVisible(false);
+		this.form.add(lblIcoCantiere, "8, 2, center, top");
+		this.Label.add(lblIcoCantiere);
+		
+		
+		/*
+		 * Campo Cliente
+		 */
 		
 		this.lblCliente = new JLabel("Cliente");
 		this.form.add(this.lblCliente, "2, 4, left, center");
 		
 		this.txtCliente = new JTextField();
+		this.txtCliente.setHorizontalAlignment(SwingConstants.CENTER);
+		this.txtCliente.addCaretListener(new CaretListener() {
+
+	        @Override
+	        public void caretUpdate(CaretEvent e) {
+	        	String line = txtCliente.getText();
+	            String pattern = "[^\\wאעשטיל\\s]+";
+	            Pattern r = Pattern.compile(pattern);
+	            Matcher m = r.matcher(line);
+	            if (m.find( )) {
+	            	lblIcoCliente.setIcon(IcoErrore);
+	            	lblIcoCliente.setToolTipText("Il campo Cliente deve contenere solo lettere e/o numeri!");
+	            }
+	            else{
+	            	lblIcoCliente.setIcon(IcoOk);
+	            	lblIcoCliente.setToolTipText("");
+	            }
+	        }
+	    });
 		this.Container.add(this.txtCliente);
-		this.form.add(this.txtCliente, "6, 4, fill, default");
+		this.form.add(this.txtCliente, "6, 4, fill, fill");
+		this.lblIcoCliente = new JLabel("");
+		this.lblIcoCliente.setVisible(false);
+		this.form.add(lblIcoCliente, "8, 4, center, top");
+		this.Label.add(lblIcoCliente);
+		
+		/*
+		 * Campo Commessa
+		 */
 		
 		this.lblCommessa = new JLabel("Commessa");
 		this.form.add(lblCommessa, "2, 6, left, center");
 		
-		txtCommessa = new JTextField();
+		this.txtCommessa = new JTextField();
+		this.txtCommessa.setHorizontalAlignment(SwingConstants.CENTER);
+		this.txtCommessa.addCaretListener(new CaretListener() {
+
+	        @Override
+	        public void caretUpdate(CaretEvent e) {
+	        	String line = txtCommessa.getText();
+	            String pattern = "[\\D]+";
+	            Pattern r = Pattern.compile(pattern);
+	            Matcher m = r.matcher(line);
+	            if (m.find( )) {
+	            	lblIcoCommessa.setIcon(IcoErrore);
+	            	lblIcoCommessa.setToolTipText("Il campo Commessa deve contenere solo numeri!");
+	            }
+	            else{
+	            	lblIcoCommessa.setIcon(IcoOk);
+	            	lblIcoCommessa.setToolTipText("");
+	            }
+	        }
+	    });
 		this.Container.add(this.txtCommessa);
-		this.form.add(this.txtCommessa, "6, 6, fill, default");
+		this.form.add(this.txtCommessa, "6, 6, fill, fill");
+		this.lblIcoCommessa = new JLabel("");
+		this.lblIcoCommessa.setVisible(false);
+		this.form.add(lblIcoCommessa, "8, 6, center, top");
+		this.Label.add(lblIcoCommessa);
+		
 		this.makeEditable(false);
 		
 	}
