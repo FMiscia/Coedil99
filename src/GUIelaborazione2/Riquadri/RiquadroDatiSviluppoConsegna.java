@@ -17,6 +17,7 @@ import elaboradistinta.model.Commessa;
 public class RiquadroDatiSviluppoConsegna extends Riquadro {
 	
 	private JPanel form;
+	
 	private JLabel lblResponsabile;
 	private JTextField txtResponsabile;
 	private JLabel lblEmissioneCommessa;
