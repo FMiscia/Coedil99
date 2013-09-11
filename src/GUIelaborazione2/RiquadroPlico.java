@@ -202,7 +202,9 @@ public class RiquadroPlico extends JPanel {
 			}
 		});
 		clipPanel.add(menuButton);
-		
+		clipPanel.add(commessaButton);
+		clipPanel.add(distintaButton);
+
 		if(oDistinta.hasDdo()){
 			//System.out.println("has ddo");
 			clipPanel.add(btnHasDdo);
@@ -223,8 +225,6 @@ public class RiquadroPlico extends JPanel {
 				}
 			});
 		}
-		clipPanel.add(commessaButton);
-		clipPanel.add(distintaButton);
 		clipPanel.add(btnNewButton_6);
 		clipPanel.validate();
 		clipPanel.repaint();
