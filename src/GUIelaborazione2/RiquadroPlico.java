@@ -70,9 +70,6 @@ public class RiquadroPlico extends JPanel {
 				CoedilFrame cf = CoedilFrame.getInstance();
 				PanelStart pl = new PanelStart(cf);
 				pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
-				cf.getContentPane().add(pl, BorderLayout.NORTH);
-				cf.validate();
-				cf.repaint();
 				CoedilFrame.getInstance().montaPanel(pl);
 			}
 		});
@@ -198,9 +195,9 @@ public class RiquadroPlico extends JPanel {
 				CoedilFrame cf = CoedilFrame.getInstance();
 				PanelStart pl = new PanelStart(cf);
 				pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
-				cf.getContentPane().add(pl, BorderLayout.NORTH);
-				cf.validate();
-				cf.repaint();
+//				cf.getContentPane().add(pl, BorderLayout.NORTH);
+//				cf.validate();
+//				cf.repaint();
 				CoedilFrame.getInstance().montaPanel(pl);
 			}
 		});

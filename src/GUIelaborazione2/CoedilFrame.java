@@ -105,5 +105,15 @@ public class CoedilFrame extends JFrame {
 		this.invalidate();
 		this.validate();
 		this.repaint();
+		System.out.print("montapanel");
 	}
+	
+//	public void montaPanel(JPanel p , String position) {
+//		BorderLayout myLayout = (BorderLayout) this.getLayout();
+//		this.remove(myLayout.getLayoutComponent(BorderLayout.CENTER));
+//		this.add(p,BorderLayout.CENTER);
+//		this.invalidate();
+//		this.validate();
+//		this.repaint();
+//	}
 }

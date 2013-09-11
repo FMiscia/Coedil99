@@ -37,8 +37,6 @@ private void initUI(){
         	CoedilFrame.getInstance().montaPanel( p );
         }
         } );
-
-
         
         this.add(plButton,BorderLayout.CENTER);
         this.addMenuBar();
