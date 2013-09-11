@@ -2,6 +2,7 @@ package elaboradistinta.operation;
 
 import java.util.ListIterator;
 
+import elaboradistinta.Ottimizzatore;
 import elaboradistinta.StandardOttimizzatoreStrategy;
 import elaboradistinta.controller.OttimizzatoreHandler;
 import elaboradistinta.model.Distinta;
@@ -52,7 +53,8 @@ public class ODistinta {
 	 * @return 
 	 */
 	public void creaDDO() {
-		this.distinta.setDdo(new OttimizzatoreHandler(new StandardOttimizzatoreStrategy()).eseguiOttimizzazione(this.distinta));
+		Ottimizzatore standardOtt = new Ottimizzatore(new StandardOttimizzatoreStrategy(),this.distinta);
+		this.distinta.setDdo(standardOtt.Ottimizza());
 		this.distinta.save();
 	}
 	

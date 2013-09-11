@@ -14,6 +14,7 @@
 package elaboradistinta.model;
 
 import elaboradistinta.operation.OCommessa;
+import elaboradistinta.operation.ODistinta;
 
 public class Commessa {
 	public Commessa() {
@@ -376,6 +377,10 @@ public class Commessa {
 	public Integer getOrdineId() {
 		//TODO: Implement Method
 		return this.ordine.getID();
+	}
+	
+	public ODistinta getODistinta(){
+		return new ODistinta(this.getDistinta());
 	}
 	
 	

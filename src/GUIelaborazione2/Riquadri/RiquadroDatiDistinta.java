@@ -3,6 +3,7 @@ package GUIelaborazione2.Riquadri;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -201,7 +202,35 @@ public class RiquadroDatiDistinta extends Riquadro {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public void avoidEditing(){
+		super.avoidEditing();
+		this.btnElimina.setEnabled(false);
+		for (MouseListener al : this.btnElimina.getMouseListeners()) {
+			this.btnElimina.removeMouseListener(al);
+		}
+		this.validate();
+		this.repaint();
+	}
 
+	@Override
+	public void enableEditing(){
+		super.enableEditing();
+		this.btnElimina.setEnabled(true);
+		btnElimina.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Distinta d = ProgrammaLavori.getInstance().getCommessaSelezionata()
+						.getDistinta();
+				RigaLavoro r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
+				d.eliminaRigaLavoro(r);
+			}
+		});
+		this.validate();
+		this.repaint();
+	}
+	
 	@Override
 	protected void salva() {
 		RigaLavoro r = RigaLavoroFactory.createRigaLavoro();
