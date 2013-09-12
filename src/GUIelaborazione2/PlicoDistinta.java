@@ -35,7 +35,6 @@ public class PlicoDistinta extends Plico {
 		setPreferredSize(new Dimension(745, 1000));
 		setSize(745, 950);
 		addButton = new JButton("aggiungi nuova");
-		addButton.setPreferredSize(new Dimension(160, 20));
 		this.validate();
 		this.repaint();
 	}
@@ -84,13 +83,14 @@ public class PlicoDistinta extends Plico {
 							"Riga Lavoro");
 					temp.makeEditable(true);
 					PlicoDistinta.this.add(temp);
-					PlicoDistinta.this.remove(addButton);
-					PlicoDistinta.this.add(addButton);
-					PlicoDistinta.this.aggiornaAltezze();
 					PlicoDistinta.this.riquadri.add(temp);
+					PlicoDistinta.this.posizionaAddButton();
 				}
 			});
 		}
+		this.add(addButton);
+		this.aggiornaAltezze();
+		addButton.setPreferredSize(new Dimension(160, 20));
 		if (ProgrammaLavori.getInstance().getCommessaSelezionata().getODistinta()
 				.hasDdo()){
 			for(RiquadroDatiDistinta r: riquadri){
@@ -99,14 +99,10 @@ public class PlicoDistinta extends Plico {
 			}
 		}
 		else {
-			addButton.setEnabled(true);
 			for(RiquadroDatiDistinta r: riquadri){
-				r.makeEditable(false);
-				r.enableEditing();
+				addButton.setEnabled(true);
 			}
 		}
-		this.add(addButton);
-		this.aggiornaAltezze();
 		this.validate();
 		this.repaint();
 	}
@@ -121,5 +117,19 @@ public class PlicoDistinta extends Plico {
 						* (this.getComponentCount()));
 
 	}
+	
+	public void removeRiquadro(RiquadroDatiDistinta r){
+		this.remove(r);
+		this.riquadri.remove(r);
+	}
+	
+	public void posizionaAddButton(){
+		this.remove(addButton);
+		this.add(addButton);
+		this.aggiornaAltezze();
+		this.validate();
+		this.repaint();
+	}
+	
 
 }

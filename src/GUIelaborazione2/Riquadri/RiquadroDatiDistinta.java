@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import GUIelaborazione2.PlicoDistinta;
 import GUIelaborazione2.ProgrammaLavori;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -45,7 +46,7 @@ public class RiquadroDatiDistinta extends Riquadro {
 	private JTextField tftipocapitello;
 	private JLabel lbnote;
 	private JTextField tfnote;
-	private JButton toggle;
+	//private JButton toggle;
 	private boolean aperto = true;
 	private JButton btnElimina;
 
@@ -135,7 +136,7 @@ public class RiquadroDatiDistinta extends Riquadro {
 		this.Container.add(tfnote);
 		form.add(this.tfnote, "6, 14, fill, default");
 
-		this.toggle = new JButton("Chiudi");
+		/*this.toggle = new JButton("Chiudi");
 		this.toggle.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -154,7 +155,7 @@ public class RiquadroDatiDistinta extends Riquadro {
 		});
 		this.toggle.setSize(131, 20);
 		this.toggle.setLocation(469, 0);
-		add(this.toggle);
+		add(this.toggle);*/
 
 		btnElimina = new JButton("Elimina");
 		btnElimina.setBounds(270, 0, 131, 20);
@@ -165,6 +166,11 @@ public class RiquadroDatiDistinta extends Riquadro {
 						.getDistinta();
 				RigaLavoro r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
 				d.eliminaRigaLavoro(r);
+				RiquadroDatiDistinta.this.removeAll();
+//				RiquadroDatiDistinta.this.validate();
+//				RiquadroDatiDistinta.this.repaint();
+				PlicoDistinta.getInstance().removeRiquadro(RiquadroDatiDistinta.this);
+				PlicoDistinta.getInstance().posizionaAddButton();
 			}
 		});
 		add(btnElimina);
@@ -210,25 +216,11 @@ public class RiquadroDatiDistinta extends Riquadro {
 		for (MouseListener al : this.btnElimina.getMouseListeners()) {
 			this.btnElimina.removeMouseListener(al);
 		}
-		this.validate();
-		this.repaint();
 	}
-
+	
 	@Override
 	public void enableEditing(){
 		super.enableEditing();
-		this.btnElimina.setEnabled(true);
-		btnElimina.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Distinta d = ProgrammaLavori.getInstance().getCommessaSelezionata()
-						.getDistinta();
-				RigaLavoro r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
-				d.eliminaRigaLavoro(r);
-			}
-		});
-		this.validate();
-		this.repaint();
 	}
 	
 	@Override
@@ -256,7 +248,6 @@ public class RiquadroDatiDistinta extends Riquadro {
 				"Salvataggio avvenuto correttamente", "Messaggio di Sistema",
 				JOptionPane.INFORMATION_MESSAGE);
 		this.load(this.oggetto);
-
 	}
 
 	public static Dimension getFormDimension() {

@@ -26,8 +26,12 @@ public abstract class Riquadro extends JPanel {
 	protected boolean aperto;
 	protected Object oggetto;
 	protected ArrayList<JLabel> Label;
-	protected ImageIcon IcoErrore = new ImageIcon(RiquadroDatiAziendali.class.getResource("/GUIelaboradistinta/image/cancel.png"));
-	protected ImageIcon IcoOk = new ImageIcon(RiquadroDatiAziendali.class.getResource("/GUIelaboradistinta/image/ok.png"));
+	protected ImageIcon IcoErrore = new ImageIcon(
+			RiquadroDatiAziendali.class
+					.getResource("/GUIelaboradistinta/image/cancel.png"));
+	protected ImageIcon IcoOk = new ImageIcon(
+			RiquadroDatiAziendali.class
+					.getResource("/GUIelaboradistinta/image/ok.png"));
 	protected JLabel lblTitolo;
 
 	public Riquadro(String title) {
@@ -85,13 +89,13 @@ public abstract class Riquadro extends JPanel {
 				aperto = true;
 			} else {
 				Riquadro.this.modifica.setText("salva");
-				controlloErrori();
+				//controlloErrori();
 				aperto = false;
 			}
 			i.setEditable(editable);
 		}
-		for(JLabel j : this.Label){
-			if (!editable){
+		for (JLabel j : this.Label) {
+			if (!editable) {
 				j.setVisible(false);
 			} else {
 				j.setVisible(true);
@@ -102,19 +106,17 @@ public abstract class Riquadro extends JPanel {
 	}
 
 	public void avoidEditing() {
-		Riquadro.this.modifica.setEnabled(false);
+		this.modifica.setEnabled(false);
 		for (MouseListener al : Riquadro.this.modifica.getMouseListeners()) {
 			Riquadro.this.modifica.removeMouseListener(al);
 		}
-		
 		this.validate();
 		this.repaint();
-
 	}
 
 	public void enableEditing() {
-		Riquadro.this.modifica.setEnabled(true);
-		Riquadro.this.modifica.addMouseListener(new MouseAdapter() {
+		this.modifica.setEnabled(true);
+		this.modifica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (aperto) {
@@ -129,14 +131,10 @@ public abstract class Riquadro extends JPanel {
 					Riquadro.this.makeEditable(false);
 					// form.getParent().setSize(new Dimension(600,290));
 				}
-				validate();
-				repaint();
 			}
 		});
-
-		this.validate();
-		this.repaint();
-
+		validate();
+		repaint();
 	}
 
 	public abstract void load(Object o);
@@ -149,19 +147,18 @@ public abstract class Riquadro extends JPanel {
 	}
 
 	protected abstract void salva();
-	
-	
-	public void controlloErrori(){
+
+	public void controlloErrori() {
 		boolean test = true;
-		for(JLabel j : this.Label){
+		for (JLabel j : this.Label) {
 			if (j.getIcon() != null && j.getIcon().equals(IcoErrore))
 				test = false;
 		}
-		if(test){
+		if (test) {
 			enableEditing();
-		}else{
+		} else {
 			avoidEditing();
-		}		
+		}
 	}
 
 }

@@ -69,7 +69,7 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String line = txtCantiere.getText();
-				String pattern = "[^\\wатщийм\\s]+";
+				String pattern = "[^\\wпїЅпїЅпїЅпїЅпїЅпїЅ\\s]+";
 				Pattern r = Pattern.compile(pattern);
 				Matcher m = r.matcher(line);
 				if (line.equals("")) {
@@ -87,7 +87,7 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 					lblIcoCantiere.setToolTipText("");
 					txtCantiere.setBorder(new LineBorder(Color.green));
 				}
-				controlloErrori();
+				RiquadroDatiClienteConsegna.this.controlloErrori();
 			}
 		});
 		this.Container.add(this.txtCantiere);
@@ -110,7 +110,7 @@ public class RiquadroDatiClienteConsegna extends Riquadro {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String line = txtCliente.getText();
-				String pattern = "[^\\wатщийм\\s]+";
+				String pattern = "[^\\wпїЅпїЅпїЅпїЅпїЅпїЅ\\s]+";
 				Pattern r = Pattern.compile(pattern);
 				Matcher m = r.matcher(line);
 				if (line.equals("")) {
