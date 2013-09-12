@@ -146,4 +146,5 @@ public class RiquadroOttimizzazione extends Riquadro {
 	}
 
 
+
 }

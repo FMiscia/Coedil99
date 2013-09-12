@@ -262,4 +262,5 @@ public class RiquadroDatiDistinta extends Riquadro {
 	public static Dimension getFormDimension() {
 		return RiquadroDatiDistinta.dimension;
 	}
+
 }
