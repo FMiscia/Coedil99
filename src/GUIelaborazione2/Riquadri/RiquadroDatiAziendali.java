@@ -98,8 +98,7 @@ public class RiquadroDatiAziendali extends Riquadro {
 		this.lblOC = new JLabel("O/C");
 		this.form.add(this.lblOC, "2, 2, left, default");
 		this.txtOC = new JTextField();
-		txtOC.setName("");
-		txtOC.addKeyListener(new KeyAdapter() {
+		this.txtOC.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String line = txtOC.getText();

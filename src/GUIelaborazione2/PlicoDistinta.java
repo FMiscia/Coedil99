@@ -30,7 +30,10 @@ public class PlicoDistinta extends Plico {
 
 	private PlicoDistinta() {
 		setBorder(null);
-		setLayout(new WrapLayout());
+		WrapLayout wrapLayout = new WrapLayout();
+		wrapLayout.setVgap(20);
+		wrapLayout.setHgap(0);
+		setLayout(wrapLayout);
 
 		setPreferredSize(new Dimension(745, 1000));
 		setSize(745, 950);
