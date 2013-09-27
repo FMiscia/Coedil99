@@ -24,6 +24,8 @@ import GUIelaboradistinta.GDistinta;
 import javax.swing.SwingConstants;
 
 public class PanelStart extends JPanel {
+	
+	private JPanel pannelloUseCases = new JPanel();
 	public PanelStart(CoedilFrame f) {
 
 		this.initUI();
@@ -33,28 +35,24 @@ public class PanelStart extends JPanel {
 	private void initUI() {
 
 		this.setLayout(new BorderLayout());
+		this.addPannelloUseCases();
+		this.addPLButton();
+		this.addRDAButton();
+		this.addOTHERButton();
+		this.addMenuBar();
+	}
 
-		JButton plButton = new JButton();
-		plButton.setToolTipText("Programma Lavori");
-		plButton.setPreferredSize(new Dimension(100, 100));
-		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"/GUIelaboradistinta/image/proglavori.png"));
-			plButton.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		plButton.setFocusable(false);
+	private void addPannelloUseCases() {
+		// TODO Auto-generated method stub
+		this.pannelloUseCases = new JPanel();
+		pannelloUseCases.setLayout(new GridLayout(2, 2));
+		pannelloUseCases.setBorder(new EmptyBorder(100, 300, 100, 300));
+		this.add(pannelloUseCases, BorderLayout.CENTER);
+		
+	}
 
-		JButton RDAButton = new JButton();
-		RDAButton.setToolTipText("Gestisci RDA");
-		RDAButton.setSize(100, 100);
-		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"/GUIelaboradistinta/image/rda.png"));
-			RDAButton.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		RDAButton.setFocusable(false);
+	private void addOTHERButton() {
+		// TODO Auto-generated method stub
 
 		JButton otherbutton = new JButton();
 		otherbutton.setToolTipText("Work in progress...");
@@ -67,23 +65,47 @@ public class PanelStart extends JPanel {
 		}
 		otherbutton.setFocusable(false);
 
-		JPanel pannelloUseCases = new JPanel();
-		pannelloUseCases.setLayout(new GridLayout(2, 2));
-		pannelloUseCases.setBorder(new EmptyBorder(100, 300, 100, 300));
-		pannelloUseCases.add(plButton);
-		pannelloUseCases.add(RDAButton);
 		pannelloUseCases.add(otherbutton);
+		
+	}
 
+	private void addRDAButton() {
+		// TODO Auto-generated method stub
+		JButton RDAButton = new JButton();
+		RDAButton.setToolTipText("Gestisci RDA");
+		RDAButton.setSize(100, 100);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"/GUIelaboradistinta/image/rda.png"));
+			RDAButton.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		RDAButton.setFocusable(false);
+		pannelloUseCases.add(RDAButton);
+		
+	}
+
+	private void addPLButton() {
+		// TODO Auto-generated method stub
+		JButton plButton = new JButton();
+		plButton.setToolTipText("Programma Lavori");
+		plButton.setPreferredSize(new Dimension(100, 100));
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"/GUIelaboradistinta/image/proglavori.png"));
+			plButton.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		plButton.setFocusable(false);
+		this.pannelloUseCases.add(plButton);
+		
 		plButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				ProgrammaLavori p = ProgrammaLavori.getInstance();
 				CoedilFrame.getInstance().montaPanel(p);
 			}
 		});
-
-		this.add(pannelloUseCases, BorderLayout.CENTER);
-		this.addMenuBar();
-
+		
 	}
 
 	private void addMenuBar() {

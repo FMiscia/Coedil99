@@ -50,20 +50,23 @@ public class ProgrammaLavori extends JPanel {
 		setLayout(new BorderLayout());
 		
 		this.addMenuBar();
-		
-		
-		JLabel lblNewLabel = new JLabel("Scegli una Commessa");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setMinimumSize(new Dimension(200, 15));
-		lblNewLabel.setDoubleBuffered(true);
-		lblNewLabel.setPreferredSize(new Dimension(70, 40));
-		this.riquadrocodici.setColumnHeaderView(lblNewLabel);
+		this.addScegliCommessaLabel();
 		this.add(this.riquadroplico, BorderLayout.CENTER);
 		this.add(this.riquadrocodici, BorderLayout.WEST);
 		this.riquadroplico.caricaPrimaCommessa(this.commessaSelezionata);
 
 	}
 	
+	private void addScegliCommessaLabel() {
+		// TODO Auto-generated method stub
+		JLabel scegliCommessaLabel = new JLabel("Scegli una Commessa");
+		scegliCommessaLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		scegliCommessaLabel.setMinimumSize(new Dimension(200, 15));
+		scegliCommessaLabel.setDoubleBuffered(true);
+		scegliCommessaLabel.setPreferredSize(new Dimension(70, 40));
+		this.riquadrocodici.setColumnHeaderView(scegliCommessaLabel);
+	}
+
 	private void addMenuBar() {
 		// TODO Auto-generated method stub
 		menuBar = new JMenuBar();
