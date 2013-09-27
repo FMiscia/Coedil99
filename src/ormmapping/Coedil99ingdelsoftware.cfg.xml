@@ -13,20 +13,24 @@ License Type: Purchased
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://localhost:3306/coedil99</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">r00tdir31</property>
+		<property name="connection.password">annalucia</property>
 		<property name="show_sql">false</property>
 		<property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
 		<!-- mapping files -->
-		<mapping resource="ormmapping/elaboradistinta/model/Cantiere.hbm.xml" />
-		<mapping resource="ormmapping/elaboradistinta/model/Cliente.hbm.xml" />
-		<mapping resource="ormmapping/elaboradistinta/model/Commessa.hbm.xml" />
-		<mapping resource="ormmapping/elaboradistinta/model/Distinta.hbm.xml" />
-		<mapping resource="ormmapping/elaboradistinta/model/DocumentoOttimizzazione.hbm.xml" />
-		<mapping resource="ormmapping/elaboradistinta/model/Geometria.hbm.xml" />
-		<mapping resource="ormmapping/elaboradistinta/model/History.hbm.xml" />
-		<mapping resource="ormmapping/elaboradistinta/model/Item.hbm.xml" />
-		<mapping resource="ormmapping/elaboradistinta/model/ListaRintracciabilita.hbm.xml" />
-		<mapping resource="ormmapping/elaboradistinta/model/Ordine.hbm.xml" />
-		<mapping resource="ormmapping/elaboradistinta/model/RigaLavoro.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/Cantiere.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/CatalogoFornitore.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/Cliente.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/Commessa.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/Distinta.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/DocumentoOttimizzazione.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/Geometria.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/History.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/Item.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/ListaRintracciabilita.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/Ordine.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/ProductDescription.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/RDA.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/RigaLavoro.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/model/RigaRDA.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

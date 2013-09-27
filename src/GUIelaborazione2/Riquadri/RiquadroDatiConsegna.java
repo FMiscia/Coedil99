@@ -18,12 +18,13 @@ import javax.swing.border.LineBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
 
+import coedil99.model.Commessa;
+
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-import elaboradistinta.model.Commessa;
 
 @SuppressWarnings("serial")
 public class RiquadroDatiConsegna extends Riquadro {

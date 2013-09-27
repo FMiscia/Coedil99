@@ -11,13 +11,14 @@ import javax.swing.table.AbstractTableModel;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
-import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
-import elaboradistinta.model.Commessa;
-import elaboradistinta.model.Distinta;
-import elaboradistinta.model.Geometria;
-import elaboradistinta.model.GeometriaFactory;
-import elaboradistinta.model.RigaLavoro;
+import coedil99.controller.GestisciCommessaHandler;
+import coedil99.model.Coedil99ingdelsoftwarePersistentManager;
+import coedil99.model.Commessa;
+import coedil99.model.Distinta;
+import coedil99.model.Geometria;
+import coedil99.model.GeometriaFactory;
+import coedil99.model.RigaLavoro;
+
 
 public class GDatiDistintaModel extends AbstractTableModel implements ActionListener{
 

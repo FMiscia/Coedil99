@@ -5,13 +5,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import coedil99.model.Item;
+import coedil99.operation.OItem;
+
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-import elaboradistinta.model.Item;
-import elaboradistinta.operation.OItem;
 
 @SuppressWarnings("serial")
 public class RiquadroOttimizzazione extends Riquadro {

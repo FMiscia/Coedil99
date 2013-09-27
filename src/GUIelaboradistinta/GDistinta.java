@@ -16,15 +16,16 @@ import javax.swing.JViewport;
 import javax.swing.border.EmptyBorder;
 
 
-import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
-import elaboradistinta.model.Distinta;
-import elaboradistinta.model.DocumentoOttimizzazione;
-import elaboradistinta.model.Geometria;
-import elaboradistinta.model.RigaLavoro;
-import elaboradistinta.operation.ODistinta;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.PersistentTransaction;
+
+import coedil99.model.Coedil99ingdelsoftwarePersistentManager;
+import coedil99.model.Distinta;
+import coedil99.model.DocumentoOttimizzazione;
+import coedil99.model.Geometria;
+import coedil99.model.RigaLavoro;
+import coedil99.operation.ODistinta;
 
 import GUIelaboradistinta.model.GDatiDistintaModel;
 import GUIelaboradistinta.table.GDatiDistintaTable;

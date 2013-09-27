@@ -24,8 +24,9 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.SwingConstants;
 
-import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.model.Commessa;
+import coedil99.controller.GestisciCommessaHandler;
+import coedil99.model.Commessa;
+
 
 public class ProgrammaLavori extends JPanel {
 

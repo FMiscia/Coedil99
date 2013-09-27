@@ -6,13 +6,14 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
+import coedil99.model.Distinta;
+
 import GUIelaboradistinta.ButtonEditor;
 import GUIelaboradistinta.ButtonRenderer;
 
 import GUIelaboradistinta.model.GDatiDistintaModel;
 
 
-import elaboradistinta.model.Distinta;
 
 public class GDatiDistintaTable extends JTable {
 	

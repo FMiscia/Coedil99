@@ -3,10 +3,11 @@ package GUIelaboradistinta.model;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-import elaboradistinta.controller.GestisciClienteHandler;
-import elaboradistinta.model.Cliente;
-import elaboradistinta.model.Commessa;
-import elaboradistinta.model.Ordine;
+import coedil99.controller.GestisciClienteHandler;
+import coedil99.model.Cliente;
+import coedil99.model.Commessa;
+import coedil99.model.Ordine;
+
 
 public class GDatiCodiceInternoModel extends AbstractTableModel {
 

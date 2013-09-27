@@ -15,16 +15,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import coedil99.model.Distinta;
+import coedil99.model.Geometria;
+import coedil99.model.GeometriaFactory;
+import coedil99.model.RigaLavoro;
+import coedil99.model.RigaLavoroFactory;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 
-import elaboradistinta.model.Distinta;
-import elaboradistinta.model.Geometria;
-import elaboradistinta.model.GeometriaFactory;
-import elaboradistinta.model.RigaLavoro;
-import elaboradistinta.model.RigaLavoroFactory;
 
 import javax.swing.JEditorPane;
 

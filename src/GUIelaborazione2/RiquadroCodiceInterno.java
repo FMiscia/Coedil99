@@ -9,10 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.model.Cliente;
-import elaboradistinta.model.Commessa;
-import elaboradistinta.model.Ordine;
+import coedil99.controller.GestisciCommessaHandler;
+import coedil99.model.Cliente;
+import coedil99.model.Commessa;
+import coedil99.model.Ordine;
+
 import GUIelaborazione2.RiquadroCodici;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;

@@ -6,11 +6,12 @@ import javax.swing.table.AbstractTableModel;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
-import elaboradistinta.controller.GestisciClienteHandler;
-import elaboradistinta.model.Cliente;
-import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
-import elaboradistinta.model.Commessa;
-import elaboradistinta.model.Ordine;
+import coedil99.controller.GestisciClienteHandler;
+import coedil99.model.Cliente;
+import coedil99.model.Coedil99ingdelsoftwarePersistentManager;
+import coedil99.model.Commessa;
+import coedil99.model.Ordine;
+
 
 public class GDatiClienteModel extends AbstractTableModel {
 
@@ -69,7 +70,7 @@ public class GDatiClienteModel extends AbstractTableModel {
 
 	public void cambiaValore(int cid, int c, String value)throws PersistentException {
 			PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
-			Cliente cliente = elaboradistinta.model.ClienteFactory.getClienteByORMID(cid);
+			Cliente cliente = coedil99.model.ClienteFactory.getClienteByORMID(cid);
 			switch(c){
 			case Cliente:
 				cliente.setName(value);

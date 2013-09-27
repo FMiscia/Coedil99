@@ -12,11 +12,12 @@ import javax.swing.table.AbstractTableModel;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
-import elaboradistinta.controller.GestisciClienteHandler;
-import elaboradistinta.model.Cliente;
-import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
-import elaboradistinta.model.Ordine;
-import elaboradistinta.model.Commessa;
+import coedil99.controller.GestisciClienteHandler;
+import coedil99.model.Cliente;
+import coedil99.model.Coedil99ingdelsoftwarePersistentManager;
+import coedil99.model.Commessa;
+import coedil99.model.Ordine;
+
 
 public class GDatiAziendaliModel extends AbstractTableModel {
 
@@ -97,9 +98,9 @@ public class GDatiAziendaliModel extends AbstractTableModel {
 			throws PersistentException {
 		PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager
 				.instance().getSession().beginTransaction();
-		Commessa commessa = elaboradistinta.model.CommessaFactory
+		Commessa commessa = coedil99.model.CommessaFactory
 				.getCommessaByORMID(cid);
-		Ordine ordine = elaboradistinta.model.OrdineFactory
+		Ordine ordine = coedil99.model.OrdineFactory
 				.getOrdineByORMID(oid);
 		switch (c) {
 		case OC:

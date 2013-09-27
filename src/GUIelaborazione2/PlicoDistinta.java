@@ -14,12 +14,13 @@ import java.util.Iterator;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.model.Distinta;
-import elaboradistinta.model.RigaLavoro;
 
 import GUIelaborazione2.Riquadri.RiquadroDatiDistinta;
 import javax.swing.SwingConstants;
+
+import coedil99.controller.GestisciCommessaHandler;
+import coedil99.model.Distinta;
+import coedil99.model.RigaLavoro;
 
 public class PlicoDistinta extends Plico {
 

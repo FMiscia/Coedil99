@@ -15,11 +15,12 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import elaboradistinta.controller.GestisciClienteHandler;
-import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.model.Cliente;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
+
+import coedil99.controller.GestisciClienteHandler;
+import coedil99.controller.GestisciCommessaHandler;
+import coedil99.model.Cliente;
 
 @SuppressWarnings("serial")
 public class RiquadroCodici extends JScrollPane {

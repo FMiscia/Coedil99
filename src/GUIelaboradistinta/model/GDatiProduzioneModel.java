@@ -13,11 +13,12 @@ import javax.swing.table.AbstractTableModel;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
-import elaboradistinta.controller.GestisciClienteHandler;
-import elaboradistinta.model.Cliente;
-import elaboradistinta.model.Coedil99ingdelsoftwarePersistentManager;
-import elaboradistinta.model.Commessa;
-import elaboradistinta.model.Ordine;
+import coedil99.controller.GestisciClienteHandler;
+import coedil99.model.Cliente;
+import coedil99.model.Coedil99ingdelsoftwarePersistentManager;
+import coedil99.model.Commessa;
+import coedil99.model.Ordine;
+
 
 public class GDatiProduzioneModel extends AbstractTableModel {
 
@@ -108,7 +109,7 @@ public class GDatiProduzioneModel extends AbstractTableModel {
 
 	public void cambiaValore(int cid, int c, Object value) throws PersistentException {
 		PersistentTransaction t = Coedil99ingdelsoftwarePersistentManager.instance().getSession().beginTransaction();
-		Commessa commessa = elaboradistinta.model.CommessaFactory.getCommessaByORMID(cid);
+		Commessa commessa = coedil99.model.CommessaFactory.getCommessaByORMID(cid);
 		switch (c) {
 		case DataI:
 			commessa.setInizioProduzione(this.convertiData(value.toString()));

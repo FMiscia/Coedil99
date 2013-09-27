@@ -24,16 +24,17 @@ import javax.swing.border.LineBorder;
 import GUIelaborazione2.PlicoDistinta;
 import GUIelaborazione2.ProgrammaLavori;
 
+import coedil99.model.Distinta;
+import coedil99.model.Geometria;
+import coedil99.model.GeometriaFactory;
+import coedil99.model.RigaLavoro;
+import coedil99.model.RigaLavoroFactory;
+
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-import elaboradistinta.model.Distinta;
-import elaboradistinta.model.Geometria;
-import elaboradistinta.model.GeometriaFactory;
-import elaboradistinta.model.RigaLavoro;
-import elaboradistinta.model.RigaLavoroFactory;
 
 public class RiquadroDatiDistinta extends Riquadro {
 

@@ -10,8 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
-import elaboradistinta.model.Distinta;
-import elaboradistinta.operation.ODocumentoOttimizzazione;
+
+import coedil99.model.Distinta;
+import coedil99.operation.ODocumentoOttimizzazione;
 
 public class GDocOtt {
 

@@ -25,8 +25,9 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
-import elaboradistinta.model.Commessa;
-import elaboradistinta.operation.ODistinta;
+import coedil99.model.Commessa;
+import coedil99.operation.ODistinta;
+
 
 @SuppressWarnings("serial")
 public class RiquadroPlico extends JPanel {

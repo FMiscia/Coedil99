@@ -3,17 +3,18 @@ import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
+import coedil99.controller.GestisciClienteHandler;
+import coedil99.controller.GestisciCommessaHandler;
+import coedil99.controller.GestisciOrdineHandler;
+import coedil99.model.Cliente;
+import coedil99.model.Commessa;
+import coedil99.model.Ordine;
+
 import GUIelaborazione2.Riquadri.RiquadroDatiAziendali;
 import GUIelaborazione2.Riquadri.RiquadroDatiClienteConsegna;
 import GUIelaborazione2.Riquadri.RiquadroDatiConsegna;
 import GUIelaborazione2.Riquadri.RiquadroDatiProduzioneConsegna;
 import GUIelaborazione2.Riquadri.RiquadroDatiSviluppoConsegna;
-import elaboradistinta.controller.GestisciClienteHandler;
-import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.controller.GestisciOrdineHandler;
-import elaboradistinta.model.Cliente;
-import elaboradistinta.model.Commessa;
-import elaboradistinta.model.Ordine;
 
 
 @SuppressWarnings("serial")

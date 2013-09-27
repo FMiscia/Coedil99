@@ -16,16 +16,17 @@ import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.SwingConstants;
 
+import coedil99.StartUp;
+import coedil99.controller.GestisciCommessaHandler;
+import coedil99.model.Commessa;
+import coedil99.model.Distinta;
+import coedil99.model.DistintaFactory;
+import coedil99.model.DocumentoOttimizzazione;
+import coedil99.model.Geometria;
+import coedil99.model.RigaLavoro;
+
 
 import GUIelaboradistinta.table.*;
-import elaboradistinta.StartUp;
-import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.model.Commessa;
-import elaboradistinta.model.Distinta;
-import elaboradistinta.model.DistintaFactory;
-import elaboradistinta.model.DocumentoOttimizzazione;
-import elaboradistinta.model.Geometria;
-import elaboradistinta.model.RigaLavoro;
 import java.awt.FlowLayout;
 
 public class GProgLavori extends JPanel {

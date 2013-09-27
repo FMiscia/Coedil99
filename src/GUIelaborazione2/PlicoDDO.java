@@ -4,9 +4,10 @@ import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 
-import elaboradistinta.controller.GestisciCommessaHandler;
-import elaboradistinta.model.Commessa;
-import elaboradistinta.model.DocumentoOttimizzazione;
+import coedil99.controller.GestisciCommessaHandler;
+import coedil99.model.Commessa;
+import coedil99.model.DocumentoOttimizzazione;
+
 import GUIelaborazione2.Riquadri.RiquadroOttimizzazione;
 
 
