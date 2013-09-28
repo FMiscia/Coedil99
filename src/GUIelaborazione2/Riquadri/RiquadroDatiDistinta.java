@@ -270,7 +270,7 @@ public class RiquadroDatiDistinta extends Riquadro {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String line = tftipocapitello.getText();
-				String pattern = "[^a-zA-Z0-9атщийм'\\s]";
+				String pattern = "[^a-zA-Z0-9пїЅпїЅпїЅпїЅпїЅпїЅ'\\s]";
 				Pattern r = Pattern.compile(pattern);
 				Matcher m = r.matcher(line);
 				if (line.equals("")) {
@@ -325,7 +325,7 @@ public class RiquadroDatiDistinta extends Riquadro {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String line = tfnote.getText();
-				String pattern = "[^a-zA-Z0-9атщийм',;:.\\s]";
+				String pattern = "[^a-zA-Z0-9пїЅпїЅпїЅпїЅпїЅпїЅ',;:.\\s]";
 				Pattern r = Pattern.compile(pattern);
 				Matcher m = r.matcher(line);
 				if (line.equals("")) {
@@ -446,6 +446,7 @@ public class RiquadroDatiDistinta extends Riquadro {
 					.getDistinta();
 			d.getLavori().add(r);
 		}
+		PlicoDistinta.getInstance().addRiquadroinLista(this);
 		Geometria g = GeometriaFactory.createGeometria();
 		g.setBase(Float.parseFloat(this.tfbase.getText()));
 		g.setAltezza(Float.parseFloat(this.tfaltezza.getText()));

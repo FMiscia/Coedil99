@@ -86,7 +86,7 @@ public class PlicoDistinta extends Plico {
 							"Riga Lavoro");
 					temp.makeEditable(true);
 					PlicoDistinta.this.add(temp);
-					PlicoDistinta.this.riquadri.add(temp);
+					//PlicoDistinta.this.riquadri.add(temp);
 					PlicoDistinta.this.posizionaAddButton();
 				}
 			});
@@ -127,11 +127,15 @@ public class PlicoDistinta extends Plico {
 	}
 	
 	public void posizionaAddButton(){
+		this.aggiornaAltezze();
 		this.remove(addButton);
 		this.add(addButton);
-		this.aggiornaAltezze();
 		this.validate();
 		this.repaint();
+	}
+	
+	public void addRiquadroinLista(RiquadroDatiDistinta r){
+		this.riquadri.add(r);
 	}
 	
 

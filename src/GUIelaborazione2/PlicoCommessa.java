@@ -14,6 +14,9 @@ import elaboradistinta.controller.GestisciOrdineHandler;
 import elaboradistinta.model.Cliente;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Ordine;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 
 
 @SuppressWarnings("serial")
@@ -45,10 +48,12 @@ public class PlicoCommessa extends Plico{
 		rdpc = new RiquadroDatiProduzioneConsegna("Dati Consegna Produzione");
 		rsc = new RiquadroDatiSviluppoConsegna("Dati Sviluppo Consegna");
 		posizionaRiquadri();
-		setPreferredSize(new Dimension(745,calcolaAltezza()));
+		setPreferredSize(new Dimension(745, 1110));
 		setSize(745,950);
 		add(rda);
 		add(rdcc);
+		rdcc.setLayout(new FormLayout(new ColumnSpec[] {},
+			new RowSpec[] {}));
 		add(rdc);
 		add(rdpc);
 		add(rsc);
