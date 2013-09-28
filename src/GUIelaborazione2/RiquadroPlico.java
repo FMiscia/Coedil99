@@ -36,7 +36,8 @@ public class RiquadroPlico extends JPanel {
 	private JPanel paper_panel;
 	private JPanel clipPanel;
 	private ClipPanelProgrammaLavori menu;
-	JScrollPane scrollPaneWrapper = new JScrollPane();
+	private JScrollPane scrollPaneWrapper = new JScrollPane();
+	
 	private static RiquadroPlico instance = null;
 
 	private RiquadroPlico() {
@@ -142,6 +143,11 @@ public class RiquadroPlico extends JPanel {
 		return instance;
 		
 	}
+	
+	public JScrollPane getScrollPaneWrapper() {
+		return scrollPaneWrapper;
+	}
+
 
 
 

@@ -87,6 +87,8 @@ public class RiquadroCodiceInterno extends JPanel {
 				RiquadroCodiceInterno.this.setBackground(new Color(30,44,255));
 				RiquadroCodiceInterno.this.validate();
 				RiquadroCodiceInterno.this.repaint();
+				RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
+				RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 				
 			}
 

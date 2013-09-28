@@ -37,7 +37,7 @@ import elaboradistinta.model.RigaLavoroFactory;
 
 public class RiquadroDatiDistinta extends Riquadro {
 
-	private static final Dimension dimension = new Dimension(600, 275);
+	private static final Dimension dimension = new Dimension(600, 330);
 	private JPanel form;
 	private JLabel lbbase;
 	private JTextField tfbase;

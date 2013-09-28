@@ -2,16 +2,11 @@ package GUIelaborazione2;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import java.awt.Dimension;
-import javax.swing.JLabel;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.SwingConstants;
-
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.Commessa;
 
@@ -34,7 +29,6 @@ public class ProgrammaLavori extends JPanel {
 	private ProgrammaLavori() {
 		setMinimumSize(new Dimension(500, 600));
 		this.riquadroplico = RiquadroPlico.getInstance();
-		// this.riquadroplico.getMenu().aggiornaClipPanel(this.commessaSelezionata.getDistinta().getODistinta());
 		setLayout(new BorderLayout());
 		this.addMenuBar();
 
@@ -77,6 +71,8 @@ public class ProgrammaLavori extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						riquadroplico.changePlico(PlicoCommessa.getInstance());
+						RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
+						RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 					}
 				});
 		this.clip.addButton("Distinta", "Vai alla distinta",
@@ -85,6 +81,11 @@ public class ProgrammaLavori extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						riquadroplico.changePlico(PlicoDistinta.getInstance());
+						System.out.println(PlicoDistinta.getInstance().getRiquadri().size()+"\n");
+						PlicoDistinta.getInstance().getRiquadri().clear();
+						System.out.println(PlicoDistinta.getInstance().getRiquadri().size()+"\n");
+						RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
+						RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 					}
 				});
 		this.clip.addButton("DDO", "Vai al DDO", new ActionListener() {
@@ -111,6 +112,8 @@ public class ProgrammaLavori extends JPanel {
 						riquadroplico.changePlico(PlicoDDO.getInstance());
 					}
 				}
+				RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
+				RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 			}
 		});
 		this.clip.addButton("LDR", "Vai alla LDR", new ActionListener() {

@@ -1,31 +1,18 @@
 package GUIelaborazione2;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.Distinta;
-import elaboradistinta.model.RigaLavoro;
-
 import GUIelaborazione2.Riquadri.RiquadroDatiDistinta;
-import javax.swing.SwingConstants;
 
 public class PlicoDistinta extends Plico {
 
 	private static PlicoDistinta instance = null;
 	private JButton addButton = null;
-	private int formCounter;
 	private ArrayList<RiquadroDatiDistinta> riquadri = new ArrayList<RiquadroDatiDistinta>();
 
 	private PlicoDistinta() {
@@ -118,7 +105,8 @@ public class PlicoDistinta extends Plico {
 				this.getWidth(),
 				RiquadroDatiDistinta.getFormDimension().height
 						* (this.getComponentCount()));
-
+		RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
+		RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 	}
 	
 	public void removeRiquadro(RiquadroDatiDistinta r){
@@ -138,5 +126,7 @@ public class PlicoDistinta extends Plico {
 		this.riquadri.add(r);
 	}
 	
-
+	public ArrayList<RiquadroDatiDistinta> getRiquadri() {
+		return riquadri;
+	}
 }

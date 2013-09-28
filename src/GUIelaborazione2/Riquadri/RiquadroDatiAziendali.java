@@ -59,8 +59,6 @@ public class RiquadroDatiAziendali extends Riquadro {
 
 	public RiquadroDatiAziendali(String title) {
 		super(title);
-
-		// this.setPreferredSize(new Dimension(600, 370));
 		this.setSize(new Dimension(630, 370));
 		this.form = new JPanel();
 		this.form.setBounds(0, 30, 600, 340);
