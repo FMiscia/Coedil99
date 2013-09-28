@@ -11,9 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
-
 import org.jdesktop.swingx.JXDatePicker;
 
 import com.jgoodies.forms.factories.FormFactory;
@@ -25,10 +22,6 @@ import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Ordine;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -424,7 +417,7 @@ public class RiquadroDatiAziendali extends Riquadro {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String line = txtOrario.getText();
-				String pattern = "[^a-zA-Zàòùèéì]";
+				String pattern = "[^a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]";
 				Pattern r = Pattern.compile(pattern);
 				Matcher m = r.matcher(line);
 				if (line.equals("")) {
@@ -467,7 +460,7 @@ public class RiquadroDatiAziendali extends Riquadro {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String line = txtDescrizione.getText();
-				String pattern = "[^a-zA-Zàòùèéì'\\s]";
+				String pattern = "[^a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'\\s]";
 				Pattern r = Pattern.compile(pattern);
 				Matcher m = r.matcher(line);
 				if (line.equals("")) {

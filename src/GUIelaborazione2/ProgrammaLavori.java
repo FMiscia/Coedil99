@@ -48,11 +48,25 @@ public class ProgrammaLavori extends JPanel {
 		this.riquadroplico = RiquadroPlico.getInstance();
 		// this.riquadroplico.getMenu().aggiornaClipPanel(this.commessaSelezionata.getDistinta().getODistinta());
 		setLayout(new BorderLayout());
-		this.addPanel();
+		this.addMenuBar();
+		this.addScegliCommessaLabel();
+		this.add(this.riquadroplico, BorderLayout.CENTER);
+		this.add(this.riquadrocodici, BorderLayout.WEST);
+		this.riquadroplico.caricaPrimaCommessa(this.commessaSelezionata);
 
 	}
+	
+	private void addScegliCommessaLabel() {
+		// TODO Auto-generated method stub
+		JLabel scegliCommessaLabel = new JLabel("Scegli una Commessa");
+		scegliCommessaLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		scegliCommessaLabel.setMinimumSize(new Dimension(200, 15));
+		scegliCommessaLabel.setDoubleBuffered(true);
+		scegliCommessaLabel.setPreferredSize(new Dimension(70, 40));
+		this.riquadrocodici.setColumnHeaderView(scegliCommessaLabel);
+	}
 
-	private void addPanel() {
+	private void addMenuBar() {
 		// TODO Auto-generated method stub
 		menuBar = new JMenuBar();
 
