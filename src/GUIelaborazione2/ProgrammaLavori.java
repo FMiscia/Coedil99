@@ -43,7 +43,6 @@ public class ProgrammaLavori extends JPanel {
 	private void addMenuBar() {
 		// TODO Auto-generated method stub
 
-
 		JPanel proglavoripanel = new JPanel();
 		add(proglavoripanel, BorderLayout.CENTER);
 		proglavoripanel.setLayout(new BorderLayout(0, 0));
