@@ -42,23 +42,7 @@ public class ProgrammaLavori extends JPanel {
 
 	private void addMenuBar() {
 		// TODO Auto-generated method stub
-		menuBar = new JMenuBar();
 
-		// Build the first menu.
-		JMenu menu = new JMenu("File");
-		menuBar.add(menu);
-
-		JMenuItem eMenuItem = new JMenuItem("Exit");
-		eMenuItem.setToolTipText("Exit application");
-		eMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		menu.add(eMenuItem);
-		JMenuItem hMenuItem = new JMenuItem("Help");
-		menuBar.add(hMenuItem);
-		add(this.menuBar, BorderLayout.NORTH);
 
 		JPanel proglavoripanel = new JPanel();
 		add(proglavoripanel, BorderLayout.CENTER);
