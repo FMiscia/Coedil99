@@ -13,7 +13,7 @@ import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.Cliente;
 import elaboradistinta.model.Commessa;
 import elaboradistinta.model.Ordine;
-import GUIelaborazione2.RiquadroCodici;
+import GUIelaborazione2.RiquadroCodiciProgrammaLavoro;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -24,10 +24,10 @@ public class RiquadroCodiceInterno extends JPanel {
 	private JLabel scadenza;
 	private JLabel codiceInterno;
 	private JLabel cliente;
-	private RiquadroCodici riquadro = null;
+	private RiquadroCodiciProgrammaLavoro riquadro = null;
 	private int commessaId;
 
-	public RiquadroCodiceInterno(RiquadroCodici rc){
+	public RiquadroCodiceInterno(RiquadroCodiciProgrammaLavoro rc){
 		this.riquadro = rc;
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(200,59));
@@ -83,8 +83,7 @@ public class RiquadroCodiceInterno extends JPanel {
 				contenitore.getRiquadroplico().getPaperPanel().validate();
 				contenitore.getRiquadroplico().getPaperPanel().repaint();
 				contenitore.getRiquadroplico().getPaperPanel().add(plico_commessa);
-				contenitore.getRiquadroplico().
-				aggiornaClipPanel(GestisciCommessaHandler.getInstance().getCommessaById(idCommessa).getDistinta().getODistinta());
+				//contenitore.getRiquadroplico().getMenu().aggiornaClipPanel(GestisciCommessaHandler.getInstance().getCommessaById(idCommessa).getDistinta().getODistinta());
 				RiquadroCodiceInterno.this.setBackground(new Color(30,44,255));
 				RiquadroCodiceInterno.this.validate();
 				RiquadroCodiceInterno.this.repaint();

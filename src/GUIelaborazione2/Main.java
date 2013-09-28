@@ -53,18 +53,6 @@ public class Main {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1000, 500);
-//		RiquadroCodici codici = new RiquadroCodici();
-//		RiquadroPlico plico  = new RiquadroPlico();
-		//r.setSize(100,500);
-		//r.load();
-//		JButton bottone1 = new JButton("New button");
-//		toolBar.add(bottone1);
-//		JButton bottone2 = new JButton("New button");
-//		toolBar.add(bottone2);
-//		
-//		frame.getContentPane().add(codici,BorderLayout.WEST);
-//		frame.getContentPane().add(plico,BorderLayout.CENTER);
-		
 		frame.getContentPane().add(ProgrammaLavori.getInstance(),BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

@@ -83,6 +83,13 @@ public class PanelStart extends JPanel {
 		RDAButton.setFocusable(false);
 		pannelloUseCases.add(RDAButton);
 		
+		RDAButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				RDAPanel rdap = RDAPanel.getInstance();
+				CoedilFrame.getInstance().montaPanel(rdap);
+			}
+		});
+		
 	}
 
 	private void addPLButton() {
@@ -101,7 +108,7 @@ public class PanelStart extends JPanel {
 		
 		plButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				ProgrammaLavori p = ProgrammaLavori.getInstance();
+				ProgLavoriPanel p = ProgLavoriPanel.getInstance();
 				CoedilFrame.getInstance().montaPanel(p);
 			}
 		});
