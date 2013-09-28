@@ -1,38 +1,26 @@
 package GUIelaborazione2;
 
 import javax.swing.JPanel;
-import javax.swing.JToolBar;
-import java.awt.FlowLayout;
 import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
-
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import java.awt.ComponentOrientation;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.SwingConstants;
 
 import elaboradistinta.controller.GestisciCommessaHandler;
 import elaboradistinta.model.Commessa;
-import javax.swing.JButton;
 
 public class ProgrammaLavori extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Create the panel.
 	 */
@@ -49,21 +37,7 @@ public class ProgrammaLavori extends JPanel {
 		// this.riquadroplico.getMenu().aggiornaClipPanel(this.commessaSelezionata.getDistinta().getODistinta());
 		setLayout(new BorderLayout());
 		this.addMenuBar();
-		this.addScegliCommessaLabel();
-		this.add(this.riquadroplico, BorderLayout.CENTER);
-		this.add(this.riquadrocodici, BorderLayout.WEST);
-		this.riquadroplico.caricaPrimaCommessa(this.commessaSelezionata);
 
-	}
-	
-	private void addScegliCommessaLabel() {
-		// TODO Auto-generated method stub
-		JLabel scegliCommessaLabel = new JLabel("Scegli una Commessa");
-		scegliCommessaLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		scegliCommessaLabel.setMinimumSize(new Dimension(200, 15));
-		scegliCommessaLabel.setDoubleBuffered(true);
-		scegliCommessaLabel.setPreferredSize(new Dimension(70, 40));
-		this.riquadrocodici.setColumnHeaderView(scegliCommessaLabel);
 	}
 
 	private void addMenuBar() {
@@ -156,7 +130,7 @@ public class ProgrammaLavori extends JPanel {
 				}
 			}
 		});
-		this.clip.addButton("LD", "Vai alla LDR", new ActionListener() {
+		this.clip.addButton("LDR", "Vai alla LDR", new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
