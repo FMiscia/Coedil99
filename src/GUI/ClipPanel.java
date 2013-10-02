@@ -5,19 +5,21 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 
 public abstract class ClipPanel extends JPanel {
 	
 
 	private static final long serialVersionUID = 1L;
-
+	private ArrayList<JButton> buttons = new ArrayList<JButton>(); 
 
 	public ClipPanel() {
 		// TODO Auto-generated constructor stub
@@ -38,6 +40,7 @@ public abstract class ClipPanel extends JPanel {
 		temp.setToolTipText(ToolTip);
 		temp.setHorizontalTextPosition(SwingConstants.LEFT);
 		temp.addActionListener(click);
+		this.buttons.add(temp);
 		this.add(temp);
 		this.validate();
 		this.repaint();
@@ -67,6 +70,17 @@ public abstract class ClipPanel extends JPanel {
       		});
 		}
 	}
+	
+	public void focusOut(){
+		for(JButton b: buttons){
+			b.setBackground(UIManager.getColor("Button.background"));
+		}
+	}
+
+	public ArrayList<JButton> getButtons() {
+		return buttons;
+	}
+	
 	
 
 	
