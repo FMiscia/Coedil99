@@ -1,10 +1,12 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -73,9 +75,14 @@ public class ProgrammaLavori extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						riquadroplico.changePlico(PlicoCommessa.getInstance());
+						ProgrammaLavori.this.clip.focusOut();
+						JButton b = (JButton) e.getSource();
+						b.setBackground(new Color(180,180,180));
 						RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
 						RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 					}
+					
+					
 				});
 		this.clip.addButton("Distinta", "Vai alla distinta",
 				new ActionListener() {
@@ -83,6 +90,9 @@ public class ProgrammaLavori extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						riquadroplico.changePlico(PlicoDistinta.getInstance());
+						ProgrammaLavori.this.clip.focusOut();
+						JButton b = (JButton) e.getSource();
+						b.setBackground(new Color(180,180,180));
 						RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
 						RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 					}
@@ -91,8 +101,12 @@ public class ProgrammaLavori extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (commessaSelezionata.getODistinta().hasDdo())
+				if (commessaSelezionata.getODistinta().hasDdo()){
+					ProgrammaLavori.this.clip.focusOut();
+					JButton b = (JButton) e.getSource();
+					b.setBackground(new Color(180,180,180));
 					riquadroplico.changePlico(PlicoDDO.getInstance());
+				}
 				else {
 					//JOptionPane confermaOtt = new JOptionPane();
 					Object[] options = { "Si", "No" };
@@ -125,6 +139,7 @@ public class ProgrammaLavori extends JPanel {
 
 		proglavoripanel.add(clip, BorderLayout.NORTH);
 		this.clip.fill();
+		this.clip.getButtons().get(1).setBackground(new Color(180,180,180));
 		this.validate();
 		this.repaint();
 

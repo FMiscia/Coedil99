@@ -80,7 +80,6 @@ public class RiquadroPlico extends JPanel {
 					@Override
 					public void componentShown(ComponentEvent e) {
 						// TODO Auto-generated method stub
-
 					}
 
 					@Override
