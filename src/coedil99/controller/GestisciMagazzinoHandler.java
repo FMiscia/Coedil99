@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-import coedil99.model.Commessa;
 import coedil99.model.DocumentoOttimizzazione;
 import coedil99.model.Item;
 import coedil99.model.Magazzino;

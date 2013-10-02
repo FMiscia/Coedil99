@@ -1,7 +1,7 @@
 package coedil99.operation;
 
-import coedil99.model.Ordine;
 import coedil99.model.Commessa;
+import coedil99.model.Ordine;
 
 public class OOrdine {
 

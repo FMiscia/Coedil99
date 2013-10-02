@@ -13,7 +13,6 @@
  */
 package coedil99.model;
 
-import coedil99.AOttimizzatoreStrategy;
 import coedil99.StandardOttimizzatoreStrategy;
 import coedil99.controller.OttimizzatoreHandler;
 import coedil99.operation.ODistinta;

@@ -1,39 +1,11 @@
 package coedil99;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-
-import javax.swing.JOptionPane;
-
 import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
 
-import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
-import coedil99.controller.GestisciOrdineHandler;
 import coedil99.model.Coedil99ingdelsoftwarePersistentManager;
-import coedil99.model.Commessa;
-import coedil99.model.CommessaFactory;
-import coedil99.model.Distinta;
-import coedil99.model.DistintaFactory;
-import coedil99.model.DocumentoOttimizzazione;
-import coedil99.model.DocumentoOttimizzazioneFactory;
-import coedil99.model.Geometria;
-import coedil99.model.GeometriaFactory;
-import coedil99.model.History;
-import coedil99.model.HistoryFactory;
-import coedil99.model.Item;
-import coedil99.model.ItemFactory;
-import coedil99.model.ListaRintracciabilita;
-import coedil99.model.ListaRintracciabilitaFactory;
-import coedil99.model.Magazzino;
-import coedil99.model.Ordine;
-import coedil99.model.RigaLavoro;
-import coedil99.model.RigaLavoroFactory;
 import coedil99.operation.OCommessa;
 import coedil99.operation.ODistinta;
-import coedil99.operation.OMagazzino;
 import coedil99.operation.OOrdine;
 
 

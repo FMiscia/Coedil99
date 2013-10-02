@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ListIterator;
 
-import javax.swing.JOptionPane;
-
 import coedil99.model.Commessa;
 import coedil99.model.CommessaFactory;
 import coedil99.model.Distinta;

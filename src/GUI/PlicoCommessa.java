@@ -15,8 +15,8 @@ import coedil99.model.Cliente;
 import coedil99.model.Commessa;
 import coedil99.model.Ordine;
 
-import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 

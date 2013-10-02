@@ -3,22 +3,18 @@ package GUI;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Cliente;
 import coedil99.model.Commessa;
 import coedil99.model.Ordine;
-
-import GUI.RiquadroCodiciProgrammaLavoro;
-
-import java.awt.Rectangle;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 @SuppressWarnings("serial")
 public class RiquadroCodiceInterno extends JPanel {
@@ -89,6 +85,8 @@ public class RiquadroCodiceInterno extends JPanel {
 				RiquadroCodiceInterno.this.setBackground(new Color(30,44,255));
 				RiquadroCodiceInterno.this.validate();
 				RiquadroCodiceInterno.this.repaint();
+				RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
+				RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 				
 			}
 

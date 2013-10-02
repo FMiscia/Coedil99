@@ -5,19 +5,11 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
-
-import coedil99.model.Coedil99ingdelsoftwarePersistentManager;
 import coedil99.model.Distinta;
 import coedil99.model.DocumentoOttimizzazione;
 import coedil99.model.DocumentoOttimizzazioneFactory;
 import coedil99.model.Geometria;
-import coedil99.model.GeometriaFactory;
-import coedil99.model.History;
-import coedil99.model.HistoryFactory;
 import coedil99.model.Item;
-import coedil99.model.ItemFactory;
 import coedil99.model.Magazzino;
 import coedil99.model.RigaLavoro;
 import coedil99.operation.OMagazzino;

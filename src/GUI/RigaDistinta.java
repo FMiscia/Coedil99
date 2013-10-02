@@ -5,13 +5,13 @@ import java.awt.Cursor;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
-import javax.swing.JFormattedTextField;
 
 public class RigaDistinta extends JPanel{
 		

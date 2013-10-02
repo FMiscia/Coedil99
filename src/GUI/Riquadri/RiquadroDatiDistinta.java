@@ -23,7 +23,6 @@ import javax.swing.border.LineBorder;
 
 import GUI.PlicoDistinta;
 import GUI.ProgrammaLavori;
-
 import coedil99.model.Distinta;
 import coedil99.model.Geometria;
 import coedil99.model.GeometriaFactory;
@@ -35,10 +34,9 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-
 public class RiquadroDatiDistinta extends Riquadro {
 
-	private static final Dimension dimension = new Dimension(600, 275);
+	private static final Dimension dimension = new Dimension(600, 330);
 	private JPanel form;
 	private JLabel lbbase;
 	private JTextField tfbase;

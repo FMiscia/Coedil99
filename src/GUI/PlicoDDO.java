@@ -4,11 +4,10 @@ import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 
+import GUI.Riquadri.RiquadroOttimizzazione;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Commessa;
 import coedil99.model.DocumentoOttimizzazione;
-
-import GUI.Riquadri.RiquadroOttimizzazione;
 
 
 
@@ -51,7 +50,6 @@ public class PlicoDDO extends Plico{
 		// TODO Auto-generated method stub
 		Commessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
 		DocumentoOttimizzazione docott = GestisciCommessaHandler.getInstance().getCommessaById(id).getDistinta().getDdo();
-		System.out.print(docott.toString());
 		this.panel.removeAll();
 		this.panel.setPreferredSize(new Dimension ( 800, docott.items.size()*600 ));
 		this.setPreferredSize(new Dimension ( 800, this.panel.getHeight()));

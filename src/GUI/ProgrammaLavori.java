@@ -31,7 +31,6 @@ public class ProgrammaLavori extends JPanel {
 	private ProgrammaLavori() {
 		setMinimumSize(new Dimension(500, 600));
 		this.riquadroplico = RiquadroPlico.getInstance();
-		// this.riquadroplico.getMenu().aggiornaClipPanel(this.commessaSelezionata.getDistinta().getODistinta());
 		setLayout(new BorderLayout());
 		this.addMenuBar();
 
@@ -57,7 +56,7 @@ public class ProgrammaLavori extends JPanel {
 				.getCommessaById(this.riquadrocodici.getPrimaCommessa());
 
 		this.clip = new ClipPanelProgrammaLavori();
-		this.clip.addButton("Menu Principale", "Torna al Menu Principale",
+		this.clip.addButton("Menu", "Torna al Menu Principale",
 				new ActionListener() {
 
 					@Override
@@ -74,6 +73,8 @@ public class ProgrammaLavori extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						riquadroplico.changePlico(PlicoCommessa.getInstance());
+						RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
+						RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 					}
 				});
 		this.clip.addButton("Distinta", "Vai alla distinta",
@@ -82,6 +83,8 @@ public class ProgrammaLavori extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						riquadroplico.changePlico(PlicoDistinta.getInstance());
+						RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
+						RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 					}
 				});
 		this.clip.addButton("DDO", "Vai al DDO", new ActionListener() {
@@ -108,6 +111,8 @@ public class ProgrammaLavori extends JPanel {
 						riquadroplico.changePlico(PlicoDDO.getInstance());
 					}
 				}
+				RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
+				RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 			}
 		});
 		this.clip.addButton("LDR", "Vai alla LDR", new ActionListener() {
@@ -119,9 +124,10 @@ public class ProgrammaLavori extends JPanel {
 		});
 
 		proglavoripanel.add(clip, BorderLayout.NORTH);
-
+		this.clip.fill();
 		this.validate();
 		this.repaint();
+
 
 	}
 

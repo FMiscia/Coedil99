@@ -13,9 +13,10 @@
  */
 package coedil99.model;
 
-import org.orm.*;
-import org.hibernate.Query;
 import java.util.List;
+
+import org.hibernate.Query;
+import org.orm.PersistentSession;
 
 public class HistoryFactory {
 	public static History loadHistoryByORMID(int ID) {

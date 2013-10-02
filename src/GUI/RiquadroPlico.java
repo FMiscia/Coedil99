@@ -2,32 +2,14 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
 
 import coedil99.model.Commessa;
-import coedil99.operation.ODistinta;
-
 
 @SuppressWarnings("serial")
 public class RiquadroPlico extends JPanel {
@@ -37,7 +19,8 @@ public class RiquadroPlico extends JPanel {
 	private JPanel paper_panel;
 	private JPanel clipPanel;
 	private ClipPanelProgrammaLavori menu;
-	JScrollPane scrollPaneWrapper = new JScrollPane();
+	private JScrollPane scrollPaneWrapper = new JScrollPane();
+	
 	private static RiquadroPlico instance = null;
 
 	private RiquadroPlico() {
@@ -88,7 +71,7 @@ public class RiquadroPlico extends JPanel {
 		RiquadroPlico.this.getPaperPanel().removeAll();
 		ProgrammaLavori cont = ProgrammaLavori.getInstance();
 		plico.load(cont.getCommessaSelezionata().getID());
-		//plico.load( );
+		// plico.load( );
 
 		RiquadroPlico.this.getPaperPanel().add(plico);
 		RiquadroPlico.this.getPaperPanel().getComponent(0)
@@ -143,6 +126,11 @@ public class RiquadroPlico extends JPanel {
 		return instance;
 		
 	}
+	
+	public JScrollPane getScrollPaneWrapper() {
+		return scrollPaneWrapper;
+	}
+
 
 
 

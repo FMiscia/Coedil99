@@ -13,7 +13,7 @@
  */
 package coedil99.model;
 
-import org.orm.*;
+import org.orm.PersistentException;
 
 import coedil99.operation.OItem;
 public class Item {

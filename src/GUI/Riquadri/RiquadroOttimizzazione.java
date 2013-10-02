@@ -1,6 +1,7 @@
 package GUI.Riquadri;
 
 import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -12,7 +13,6 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-
 
 @SuppressWarnings("serial")
 public class RiquadroOttimizzazione extends Riquadro {

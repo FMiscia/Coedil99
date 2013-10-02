@@ -1,24 +1,9 @@
 package GUI;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
-import java.awt.Cursor;
-import java.awt.Dimension;
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Insets;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JToolBar;
-
-import java.awt.BorderLayout;
-import javax.swing.ScrollPaneConstants;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
 
 public class Main {
 

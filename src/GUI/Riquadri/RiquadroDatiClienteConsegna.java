@@ -13,8 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 
 import coedil99.model.Cliente;
 
@@ -22,7 +20,6 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-
 
 @SuppressWarnings("serial")
 public class RiquadroDatiClienteConsegna extends Riquadro {

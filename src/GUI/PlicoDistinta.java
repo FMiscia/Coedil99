@@ -1,33 +1,21 @@
 package GUI;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
-
 
 import GUI.Riquadri.RiquadroDatiDistinta;
-
-import javax.swing.SwingConstants;
-
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Distinta;
-import coedil99.model.RigaLavoro;
 
 public class PlicoDistinta extends Plico {
 
 	private static PlicoDistinta instance = null;
 	private JButton addButton = null;
-	private int formCounter;
 	private ArrayList<RiquadroDatiDistinta> riquadri = new ArrayList<RiquadroDatiDistinta>();
 
 	private PlicoDistinta() {
@@ -80,18 +68,20 @@ public class PlicoDistinta extends Plico {
 		}
 		if (!ProgrammaLavori.getInstance().getCommessaSelezionata().getODistinta()
 				.hasDdo()) {
-			addButton.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					// TODO Auto-generated method stub
-					RiquadroDatiDistinta temp = new RiquadroDatiDistinta(
-							"Riga Lavoro");
-					temp.makeEditable(true);
-					PlicoDistinta.this.add(temp);
-					//PlicoDistinta.this.riquadri.add(temp);
-					PlicoDistinta.this.posizionaAddButton();
-				}
-			});
+			MouseListener[] arrML = addButton.getMouseListeners();
+			if (arrML.length == 1){
+				addButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						RiquadroDatiDistinta temp = new RiquadroDatiDistinta(
+								"Riga Lavoro");
+						temp.makeEditable(true);
+						PlicoDistinta.this.add(temp);
+						PlicoDistinta.this.posizionaAddButton();
+					}
+				});	
+			}
 		}
 		this.add(addButton);
 		this.aggiornaAltezze();
@@ -120,7 +110,8 @@ public class PlicoDistinta extends Plico {
 				this.getWidth(),
 				RiquadroDatiDistinta.getFormDimension().height
 						* (this.getComponentCount()));
-
+		RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
+		RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
 	}
 	
 	public void removeRiquadro(RiquadroDatiDistinta r){
@@ -140,5 +131,7 @@ public class PlicoDistinta extends Plico {
 		this.riquadri.add(r);
 	}
 	
-
+	public ArrayList<RiquadroDatiDistinta> getRiquadri() {
+		return riquadri;
+	}
 }

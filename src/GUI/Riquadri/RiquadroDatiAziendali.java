@@ -2,6 +2,10 @@ package GUI.Riquadri;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
 import org.jdesktop.swingx.JXDatePicker;
 
 import coedil99.model.Commessa;
@@ -20,11 +25,6 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 @SuppressWarnings("serial")
 public class RiquadroDatiAziendali extends Riquadro {
@@ -60,8 +60,6 @@ public class RiquadroDatiAziendali extends Riquadro {
 
 	public RiquadroDatiAziendali(String title) {
 		super(title);
-
-		// this.setPreferredSize(new Dimension(600, 370));
 		this.setSize(new Dimension(630, 370));
 		this.form = new JPanel();
 		this.form.setBounds(0, 30, 600, 340);

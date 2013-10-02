@@ -1,22 +1,10 @@
 package GUI;
 
 
-import java.awt.AWTEvent;
-import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Robot;
-import java.awt.event.InputEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
 
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;

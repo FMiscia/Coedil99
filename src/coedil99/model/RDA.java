@@ -15,7 +15,7 @@ package coedil99.model;
 
 import java.util.ArrayList;
 
-import org.orm.*;
+import org.orm.PersistentException;
 public class RDA implements coedil99.model.Subject {
 	
 	private ArrayList<Observer> observers = new ArrayList<Observer>();

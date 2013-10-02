@@ -1,7 +1,7 @@
 package coedil99.operation;
 
-import coedil99.model.Magazzino;
 import coedil99.model.Item;
+import coedil99.model.Magazzino;
 
 public class OMagazzino {
 

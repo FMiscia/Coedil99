@@ -1,7 +1,5 @@
 package coedil99;
 
-import java.util.ArrayList;
-
 import coedil99.model.Distinta;
 import coedil99.model.DocumentoOttimizzazione;
 

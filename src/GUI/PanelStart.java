@@ -2,11 +2,8 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -14,13 +11,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import javax.swing.SwingConstants;
 
 public class PanelStart extends JPanel {
 	
@@ -38,7 +30,6 @@ public class PanelStart extends JPanel {
 		this.addPLButton();
 		this.addRDAButton();
 		this.addOTHERButton();
-		this.addMenuBar();
 	}
 
 	private void addPannelloUseCases() {
@@ -113,26 +104,4 @@ public class PanelStart extends JPanel {
 		});
 		
 	}
-
-	private void addMenuBar() {
-		// TODO Auto-generated method stub
-		JMenuBar menuBar = new JMenuBar();
-
-		// Build the first menu.
-		JMenu menu = new JMenu("File");
-		menuBar.add(menu);
-
-		JMenuItem eMenuItem = new JMenuItem("Exit");
-		eMenuItem.setToolTipText("Exit application");
-		eMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		menu.add(eMenuItem);
-		JMenuItem hMenuItem = new JMenuItem("Help");
-		menuBar.add(hMenuItem);
-		add(menuBar, BorderLayout.NORTH);
-	}
-
 }
