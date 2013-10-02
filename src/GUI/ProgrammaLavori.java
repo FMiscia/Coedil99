@@ -1,16 +1,13 @@
 package GUI;
 
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JMenu;
-import javax.swing.JOptionPane;
 import java.awt.Dimension;
-import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.SwingConstants;
+
+import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Commessa;
