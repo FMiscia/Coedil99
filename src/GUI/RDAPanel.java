@@ -13,7 +13,6 @@ public class RDAPanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private static RDAPanel instance = null;
-	private JButton menuButton = new JButton();
 	
 	private RDAPanel() {
 		setMinimumSize(new Dimension(500, 600));

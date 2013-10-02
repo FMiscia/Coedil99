@@ -13,7 +13,6 @@ public class ProgLavoriPanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private static ProgLavoriPanel instance = null;
-	private JButton menuButton = new JButton();
 	
 	private ProgLavoriPanel() {
 		setMinimumSize(new Dimension(500, 600));

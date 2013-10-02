@@ -9,8 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class RDACenter extends JPanel {
-	private JButton backButton = new JButton();
-	private JButton newRDAButton = new JButton();
+	
 	private RiquadroCodici riquadrocodici;
 	
 	public RDACenter(){
