@@ -15,7 +15,6 @@ import javax.swing.SwingConstants;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Commessa;
 
-
 public class ProgrammaLavori extends JPanel {
 
 	/**
