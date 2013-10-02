@@ -14,10 +14,8 @@
 package coedil99.model;
 
 import org.orm.*;
-
-import coedil99.operation.OItem;
-public class Item {
-	public Item() {
+public class RigaRDA {
+	public RigaRDA() {
 	}
 	
 	public boolean save() throws PersistentException {
@@ -64,17 +62,46 @@ public class Item {
 		}
 	}
 	
+	public boolean deleteAndDissociate()throws PersistentException {
+		try {
+			if(getRDA() != null) {
+				getRDA().righeRDA.remove(this);
+			}
+			
+			return delete();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
+	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
+		try {
+			if(getRDA() != null) {
+				getRDA().righeRDA.remove(this);
+			}
+			
+			try {
+				session.delete(this);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
 	private void this_setOwner(Object owner, int key) {
-		if (key == coedil99.model.ORMConstants.KEY_ITEM_PRODUCTDESCRIPTION) {
-			this.productDescription = (coedil99.model.ProductDescription) owner;
+		if (key == coedil99.model.ORMConstants.KEY_RIGARDA_RDA) {
+			this.RDA = (coedil99.model.RDA) owner;
 		}
 		
-		else if (key == coedil99.model.ORMConstants.KEY_ITEM_GEOMETRIA) {
-			this.geometria = (coedil99.model.Geometria) owner;
-		}
-		
-		else if (key == coedil99.model.ORMConstants.KEY_ITEM_HISTORY) {
-			this.history = (coedil99.model.History) owner;
+		else if (key == coedil99.model.ORMConstants.KEY_RIGARDA_DESCRIPTION) {
+			this.description = (coedil99.model.ProductDescription) owner;
 		}
 	}
 	
@@ -87,15 +114,11 @@ public class Item {
 	
 	private int ID;
 	
-	private coedil99.model.ProductDescription productDescription;
+	private coedil99.model.RDA RDA;
 	
-	private coedil99.model.Geometria geometria;
+	private coedil99.model.ProductDescription description;
 	
-	private coedil99.model.History history;
-	
-	private String descrizione;
-	
-	private Float prezzo;
+	private int quantity;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -109,58 +132,44 @@ public class Item {
 		return getID();
 	}
 	
-	public void setDescrizione(String value) {
-		this.descrizione = value;
+	public void setQuantity(int value) {
+		this.quantity = value;
 	}
 	
-	public String getDescrizione() {
-		return descrizione;
+	public int getQuantity() {
+		return quantity;
 	}
 	
-	public void setPrezzo(float value) {
-		setPrezzo(new Float(value));
+	public void setRDA(coedil99.model.RDA value) {
+		if (RDA != null) {
+			RDA.righeRDA.remove(this);
+		}
+		if (value != null) {
+			value.righeRDA.add(this);
+		}
 	}
 	
-	public void setPrezzo(Float value) {
-		this.prezzo = value;
+	public coedil99.model.RDA getRDA() {
+		return RDA;
 	}
 	
-	public Float getPrezzo() {
-		return prezzo;
+	/**
+	 * This method is for internal use only.
+	 */
+	private void setORM_RDA(coedil99.model.RDA value) {
+		this.RDA = value;
 	}
 	
-	public void setProductDescription(coedil99.model.ProductDescription value) {
-		this.productDescription = value;
+	private coedil99.model.RDA getORM_RDA() {
+		return RDA;
 	}
 	
-	public coedil99.model.ProductDescription getProductDescription() {
-		return productDescription;
+	public void setDescription(coedil99.model.ProductDescription value) {
+		this.description = value;
 	}
 	
-	public void setGeometria(coedil99.model.Geometria value) {
-		this.geometria = value;
-	}
-	
-	public coedil99.model.Geometria getGeometria() {
-		return geometria;
-	}
-	
-	public void setHistory(coedil99.model.History value) {
-		this.history = value;
-	}
-	
-	public coedil99.model.History getHistory() {
-		return history;
-	}
-	
-	public Item(coedil99.model.Geometria g, String d) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public OItem getOItem() {
-		//TODO: Implement Method
-		return new OItem(this); 
+	public coedil99.model.ProductDescription getDescription() {
+		return description;
 	}
 	
 	public String toString() {
