@@ -16,7 +16,12 @@ import javax.swing.border.EmptyBorder;
 
 public class PanelStart extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel pannelloUseCases = new JPanel();
+	private ClipPanelMenu clipPanel = new ClipPanelMenu();
 	public PanelStart(CoedilFrame f) {
 
 		this.initUI();
@@ -30,6 +35,13 @@ public class PanelStart extends JPanel {
 		this.addPLButton();
 		this.addRDAButton();
 		this.addOTHERButton();
+		this.addClipPanel();
+	}
+
+	private void addClipPanel() {
+		// TODO Auto-generated method stub
+		this.clipPanel.fill();
+		this.add(clipPanel, BorderLayout.NORTH);
 	}
 
 	private void addPannelloUseCases() {

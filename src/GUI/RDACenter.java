@@ -11,11 +11,10 @@ import javax.swing.JPanel;
 public class RDACenter extends JPanel {
 	
 	private RiquadroCodici riquadrocodici;
-	
+	private ClipPanelRDA clipPanel = new ClipPanelRDA();	
 	public RDACenter(){
 		this.setLayout(new BorderLayout());
 		
-		ClipPanelRDA clipPanel = new ClipPanelRDA();
 		clipPanel.addButton("Menu", "Torna al menu principale", new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CoedilFrame cf = CoedilFrame.getInstance();
