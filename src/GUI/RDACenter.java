@@ -8,15 +8,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import GUI.Abstract.ARiquadroCodici;
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.Plichi.PlicoRDA;
-import GUI.Riquadri.RiquadroCodici;
 import GUI.Riquadri.RiquadroCodiciRDA;
 
 public class RDACenter extends JPanel {
 	
 	private static RDACenter instance = null;
-	private RiquadroCodici riquadrocodici;
+	private ARiquadroCodici riquadrocodici;
 	private ClipPanelRDA clipPanel = new ClipPanelRDA();	
 	private PlicoRDA plicoRDA = PlicoRDA.getInstance();
 	public RDACenter(){

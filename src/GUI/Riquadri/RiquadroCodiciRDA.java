@@ -6,12 +6,14 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import GUI.Abstract.ARiquadroCodici;
+
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Cliente;
 
 @SuppressWarnings("serial")
-public class RiquadroCodiciRDA extends RiquadroCodici {
+public class RiquadroCodiciRDA extends ARiquadroCodici {
 	
 	
 	public RiquadroCodiciRDA(){

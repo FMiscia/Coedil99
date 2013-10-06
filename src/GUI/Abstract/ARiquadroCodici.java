@@ -1,4 +1,4 @@
-package GUI.Riquadri;
+package GUI.Abstract;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -9,13 +9,13 @@ import javax.swing.JScrollPane;
 
 import GUI.WrapLayout;
 
-public abstract class RiquadroCodici extends JScrollPane {
+public abstract class ARiquadroCodici extends JScrollPane {
 
 	private static final long serialVersionUID = 1L;
 
 	protected JPanel panel;
 
-	public RiquadroCodici() {
+	public ARiquadroCodici() {
 		this.panel = new JPanel(null);
 		this.setViewportView(this.panel);
 		this.panel.setLayout(new WrapLayout());
