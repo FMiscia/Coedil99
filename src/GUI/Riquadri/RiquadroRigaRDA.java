@@ -4,7 +4,9 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 
-public class RiquadroRigaRDA extends Riquadro {
+import GUI.Abstract.ARiquadro;
+
+public class RiquadroRigaRDA extends ARiquadro {
 
 	/**
 	 * 

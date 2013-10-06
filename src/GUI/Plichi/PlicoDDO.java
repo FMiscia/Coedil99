@@ -1,9 +1,10 @@
-package GUI;
+package GUI.Plichi;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 
+import GUI.Abstract.APlico;
 import GUI.Riquadri.RiquadroOttimizzazione;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Commessa;
@@ -12,7 +13,7 @@ import coedil99.model.DocumentoOttimizzazione;
 
 
 @SuppressWarnings("serial")
-public class PlicoDDO extends Plico{
+public class PlicoDDO extends APlico{
 
 	private RiquadroOttimizzazione ro;
 	private static PlicoDDO instance = null;

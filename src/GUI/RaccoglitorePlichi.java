@@ -1,4 +1,4 @@
-package GUI.Riquadri;
+package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,26 +9,24 @@ import java.awt.event.ComponentListener;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import GUI.ClipPanelProgrammaLavori;
-import GUI.Plico;
-import GUI.PlicoCommessa;
 import GUI.ProgrammaLavori;
+import GUI.Abstract.APlico;
+import GUI.ClipPanels.ClipPanelProgrammaLavori;
+import GUI.Plichi.PlicoCommessa;
 
 import coedil99.model.Commessa;
 
 @SuppressWarnings("serial")
-public class RiquadroPlico extends JPanel {
+public class RaccoglitorePlichi extends JPanel {
 
 	private JPanel plico;
 	private JPanel paper_container;
 	private JPanel paper_panel;
-	private JPanel clipPanel;
-	private ClipPanelProgrammaLavori menu;
 	private JScrollPane scrollPaneWrapper = new JScrollPane();
 	
-	private static RiquadroPlico instance = null;
+	private static RaccoglitorePlichi instance = null;
 
-	private RiquadroPlico() {
+	private RaccoglitorePlichi() {
 
 		this.setLayout(new BorderLayout());
 		this.paper_container = new JPanel();
@@ -42,8 +40,6 @@ public class RiquadroPlico extends JPanel {
 		this.paper_panel = new JPanel();
 
 		this.paper_container.add(this.paper_panel, BorderLayout.CENTER);
-		this.clipPanel = new JPanel();
-		this.clipPanel.setLayout(new GridLayout(1, 0));
 
 	}
 
@@ -71,15 +67,15 @@ public class RiquadroPlico extends JPanel {
 		this.paper_panel = paper_panel;
 	}
 
-	public void changePlico(Plico plico) {
+	public void changePlico(APlico plico) {
 
-		RiquadroPlico.this.getPaperPanel().removeAll();
+		RaccoglitorePlichi.this.getPaperPanel().removeAll();
 		ProgrammaLavori cont = ProgrammaLavori.getInstance();
 		plico.load(cont.getCommessaSelezionata().getID());
 		// plico.load( );
 
-		RiquadroPlico.this.getPaperPanel().add(plico);
-		RiquadroPlico.this.getPaperPanel().getComponent(0)
+		RaccoglitorePlichi.this.getPaperPanel().add(plico);
+		RaccoglitorePlichi.this.getPaperPanel().getComponent(0)
 				.addComponentListener(new ComponentListener() {
 
 					@Override
@@ -106,8 +102,8 @@ public class RiquadroPlico extends JPanel {
 					}
 				});
 		// aggiornaAltezze();
-		RiquadroPlico.this.getPaperPanel().validate();
-		RiquadroPlico.this.getPaperPanel().repaint();
+		RaccoglitorePlichi.this.getPaperPanel().validate();
+		RaccoglitorePlichi.this.getPaperPanel().repaint();
 
 	}
 
@@ -116,16 +112,16 @@ public class RiquadroPlico extends JPanel {
 		plico.load(c.getID());
 		// plico.load( );
 
-		RiquadroPlico.this.getPaperPanel().add(plico);
+		RaccoglitorePlichi.this.getPaperPanel().add(plico);
 		// aggiornaAltezze();
-		RiquadroPlico.this.getPaperPanel().validate();
-		RiquadroPlico.this.getPaperPanel().repaint();
+		RaccoglitorePlichi.this.getPaperPanel().validate();
+		RaccoglitorePlichi.this.getPaperPanel().repaint();
 	}
 
 	
-	public static RiquadroPlico getInstance(){
+	public static RaccoglitorePlichi getInstance(){
 		if(instance==null)
-			RiquadroPlico.instance = new RiquadroPlico();
+			RaccoglitorePlichi.instance = new RaccoglitorePlichi();
 		
 		return instance;
 		

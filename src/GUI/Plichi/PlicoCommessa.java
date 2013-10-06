@@ -1,8 +1,9 @@
-package GUI;
+package GUI.Plichi;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
+import GUI.Abstract.APlico;
 import GUI.Riquadri.RiquadroDatiAziendali;
 import GUI.Riquadri.RiquadroDatiClienteConsegna;
 import GUI.Riquadri.RiquadroDatiConsegna;
@@ -21,7 +22,7 @@ import com.jgoodies.forms.layout.RowSpec;
 
 
 @SuppressWarnings("serial")
-public class PlicoCommessa extends Plico{
+public class PlicoCommessa extends APlico{
 
 	private RiquadroDatiClienteConsegna rdcc;
 	private RiquadroDatiAziendali rda;

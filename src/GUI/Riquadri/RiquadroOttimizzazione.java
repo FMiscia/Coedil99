@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import GUI.Abstract.ARiquadro;
 import coedil99.model.Item;
 import coedil99.operation.OItem;
 
@@ -15,7 +16,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 @SuppressWarnings("serial")
-public class RiquadroOttimizzazione extends Riquadro {
+public class RiquadroOttimizzazione extends ARiquadro {
 
 	private JPanel form;
 	private JLabel lblQual;

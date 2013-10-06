@@ -12,8 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import GUI.PlicoCommessa;
 import GUI.ProgrammaLavori;
+import GUI.RaccoglitorePlichi;
+import GUI.Plichi.PlicoCommessa;
 
 import coedil99.model.Cliente;
 import coedil99.model.Commessa;
@@ -80,16 +81,16 @@ public class RiquadroCodiceInterno extends JPanel {
 				final int idCommessa = RiquadroCodiceInterno.this.commessaId;
 				ProgrammaLavori contenitore = ProgrammaLavori.getInstance();
 				contenitore.setCommessaSelezionata(cc);
-				contenitore.getRiquadroplico().getPaperPanel().removeAll();
-				contenitore.getRiquadroplico().getPaperPanel().validate();
-				contenitore.getRiquadroplico().getPaperPanel().repaint();
-				contenitore.getRiquadroplico().getPaperPanel().add(plico_commessa);
+				contenitore.getRaccoglitorePlichi().getPaperPanel().removeAll();
+				contenitore.getRaccoglitorePlichi().getPaperPanel().validate();
+				contenitore.getRaccoglitorePlichi().getPaperPanel().repaint();
+				contenitore.getRaccoglitorePlichi().getPaperPanel().add(plico_commessa);
 				//contenitore.getRiquadroplico().getMenu().aggiornaClipPanel(GestisciCommessaHandler.getInstance().getCommessaById(idCommessa).getDistinta().getODistinta());
 				RiquadroCodiceInterno.this.setBackground(new Color(30,44,255));
 				RiquadroCodiceInterno.this.validate();
 				RiquadroCodiceInterno.this.repaint();
-				RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
-				RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
+				RaccoglitorePlichi.getInstance().getScrollPaneWrapper().validate();
+				RaccoglitorePlichi.getInstance().getScrollPaneWrapper().repaint();
 				
 			}
 

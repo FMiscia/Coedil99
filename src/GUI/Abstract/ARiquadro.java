@@ -1,4 +1,4 @@
-package GUI.Riquadri;
+package GUI.Abstract;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,8 +16,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import GUI.Riquadri.RiquadroDatiAziendali;
+
 @SuppressWarnings("serial")
-public abstract class Riquadro extends JPanel {
+public abstract class ARiquadro extends JPanel {
 
 	protected ArrayList<JTextField> Container;
 	protected JButton modifica;
@@ -32,7 +34,7 @@ public abstract class Riquadro extends JPanel {
 					.getResource("/GUI/image/ok.png"));
 	protected JLabel lblTitolo;
 
-	public Riquadro(String title) {
+	public ARiquadro(String title) {
 		super();
 		this.aperto = true;
 		this.oggetto = null;
@@ -57,15 +59,15 @@ public abstract class Riquadro extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (aperto) {
-					Riquadro.this.modifica.setText("salva");
+					ARiquadro.this.modifica.setText("salva");
 					aperto = false;
-					Riquadro.this.makeEditable(true);
+					ARiquadro.this.makeEditable(true);
 					// form.getParent().setSize(new Dimension(600,30));
 				} else {
-					Riquadro.this.salva();
-					Riquadro.this.modifica.setText("modifica");
+					ARiquadro.this.salva();
+					ARiquadro.this.modifica.setText("modifica");
 					aperto = true;
-					Riquadro.this.makeEditable(false);
+					ARiquadro.this.makeEditable(false);
 					// form.getParent().setSize(new Dimension(600,290));
 				}
 				validate();
@@ -83,10 +85,10 @@ public abstract class Riquadro extends JPanel {
 			if (!editable) {
 				i.setBackground(Color.getColor("textInactiveText"));
 				i.setBorder(new LineBorder(Color.gray));
-				Riquadro.this.modifica.setText("modifica");
+				ARiquadro.this.modifica.setText("modifica");
 				aperto = true;
 			} else {
-				Riquadro.this.modifica.setText("salva");
+				ARiquadro.this.modifica.setText("salva");
 				//controlloErrori();
 				aperto = false;
 			}
@@ -105,8 +107,8 @@ public abstract class Riquadro extends JPanel {
 
 	public void avoidEditing() {
 		this.modifica.setEnabled(false);
-		for (MouseListener al : Riquadro.this.modifica.getMouseListeners()) {
-			Riquadro.this.modifica.removeMouseListener(al);
+		for (MouseListener al : ARiquadro.this.modifica.getMouseListeners()) {
+			ARiquadro.this.modifica.removeMouseListener(al);
 		}
 		this.validate();
 		this.repaint();
@@ -118,15 +120,15 @@ public abstract class Riquadro extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (aperto) {
-					Riquadro.this.modifica.setText("salva");
+					ARiquadro.this.modifica.setText("salva");
 					aperto = false;
-					Riquadro.this.makeEditable(true);
+					ARiquadro.this.makeEditable(true);
 					// form.getParent().setSize(new Dimension(600,30));
 				} else {
-					Riquadro.this.salva();
-					Riquadro.this.modifica.setText("modifica");
+					ARiquadro.this.salva();
+					ARiquadro.this.modifica.setText("modifica");
 					aperto = true;
-					Riquadro.this.makeEditable(false);
+					ARiquadro.this.makeEditable(false);
 					// form.getParent().setSize(new Dimension(600,290));
 				}
 			}

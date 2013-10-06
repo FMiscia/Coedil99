@@ -1,10 +1,10 @@
-package GUI;
+package GUI.Abstract;
 
 import javax.swing.JPanel;
 
-public abstract class Plico extends JPanel {
+public abstract class APlico extends JPanel {
 	
-	public Plico(){
+	public APlico(){
 		super();
 	}
 	

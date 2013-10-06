@@ -18,6 +18,7 @@ import javax.swing.border.LineBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
 
+import GUI.Abstract.ARiquadro;
 import coedil99.model.Commessa;
 
 import com.jgoodies.forms.factories.FormFactory;
@@ -26,7 +27,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 @SuppressWarnings("serial")
-public class RiquadroDatiConsegna extends Riquadro {
+public class RiquadroDatiConsegna extends ARiquadro {
 
 	private JPanel form;
 	private JLabel lblDataPrimaConsegna;

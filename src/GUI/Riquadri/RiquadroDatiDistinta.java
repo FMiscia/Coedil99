@@ -21,8 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import GUI.PlicoDistinta;
 import GUI.ProgrammaLavori;
+import GUI.Abstract.ARiquadro;
+import GUI.Plichi.PlicoDistinta;
 import coedil99.model.Distinta;
 import coedil99.model.Geometria;
 import coedil99.model.GeometriaFactory;
@@ -34,7 +35,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-public class RiquadroDatiDistinta extends Riquadro {
+public class RiquadroDatiDistinta extends ARiquadro {
 
 	private static final Dimension dimension = new Dimension(600, 330);
 	private JPanel form;

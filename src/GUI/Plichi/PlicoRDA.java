@@ -1,4 +1,4 @@
-package GUI;
+package GUI.Plichi;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+import GUI.WrapLayout;
+import GUI.Abstract.APlico;
 import GUI.Riquadri.RiquadroRigaRDA;
 
-public class PlicoRDA extends Plico {
+public class PlicoRDA extends APlico {
 
 	private static PlicoRDA instance = null;
 	private JButton addButton = null;

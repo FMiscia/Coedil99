@@ -11,8 +11,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import GUI.ClipPanels.ClipPanelProgrammaLavori;
+import GUI.Plichi.PlicoCommessa;
+import GUI.Plichi.PlicoDDO;
+import GUI.Plichi.PlicoDistinta;
 import GUI.Riquadri.RiquadroCodiciProgrammaLavoro;
-import GUI.Riquadri.RiquadroPlico;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Commessa;
 
@@ -27,14 +30,14 @@ public class ProgrammaLavori extends JPanel {
 	 */
 	private static ProgrammaLavori instance = null;
 	private RiquadroCodiciProgrammaLavoro riquadrocodici;
-	private RiquadroPlico riquadroplico;
+	private RaccoglitorePlichi raccoglitoreplichi;
 	private JMenuBar menuBar;
 	private ClipPanelProgrammaLavori clip;
 	private Commessa commessaSelezionata = null;
 
 	private ProgrammaLavori() {
 		setMinimumSize(new Dimension(500, 600));
-		this.riquadroplico = RiquadroPlico.getInstance();
+		this.raccoglitoreplichi = RaccoglitorePlichi.getInstance();
 		setLayout(new BorderLayout());
 		this.addMenuBar();
 
@@ -51,97 +54,18 @@ public class ProgrammaLavori extends JPanel {
 		this.riquadrocodici.setPreferredSize(new Dimension(200, 0));
 		proglavoripanel.add(riquadrocodici, BorderLayout.WEST);
 
-		proglavoripanel.add(this.riquadroplico, BorderLayout.CENTER);
+		proglavoripanel.add(this.raccoglitoreplichi, BorderLayout.CENTER);
 		this.commessaSelezionata = GestisciCommessaHandler.getInstance()
 				.getCommessaById(this.riquadrocodici.getPrimaCommessa());
-		this.riquadroplico.caricaPrimaCommessa(this.commessaSelezionata);
+		this.raccoglitoreplichi.caricaPrimaCommessa(this.commessaSelezionata);
 
 		this.commessaSelezionata = GestisciCommessaHandler.getInstance()
 				.getCommessaById(this.riquadrocodici.getPrimaCommessa());
 
 		this.clip = new ClipPanelProgrammaLavori();
-		this.clip.addButton("Menu", "Torna al Menu Principale",
-				new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						CoedilFrame cf = CoedilFrame.getInstance();
-						PanelStart pl = new PanelStart(cf);
-						pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
-						CoedilFrame.getInstance().montaPanel(pl);
-					}
-				});
-		this.clip.addButton("Commessa", "Vai alla Commessa",
-				new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						riquadroplico.changePlico(PlicoCommessa.getInstance());
-						ProgrammaLavori.this.clip.focusOut();
-						JButton b = (JButton) e.getSource();
-						b.setBackground(new Color(180,180,180));
-						RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
-						RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
-					}
-					
-					
-				});
-		this.clip.addButton("Distinta", "Vai alla distinta",
-				new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						riquadroplico.changePlico(PlicoDistinta.getInstance());
-						ProgrammaLavori.this.clip.focusOut();
-						JButton b = (JButton) e.getSource();
-						b.setBackground(new Color(180,180,180));
-						RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
-						RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
-					}
-				});
-		this.clip.addButton("DDO", "Vai al DDO", new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (commessaSelezionata.getODistinta().hasDdo()){
-					ProgrammaLavori.this.clip.focusOut();
-					JButton b = (JButton) e.getSource();
-					b.setBackground(new Color(180,180,180));
-					riquadroplico.changePlico(PlicoDDO.getInstance());
-				}
-				else {
-					//JOptionPane confermaOtt = new JOptionPane();
-					Object[] options = { "Si", "No" };
-					int n = JOptionPane
-							.showOptionDialog(
-									ProgrammaLavori.this,
-									"Il DDO non esiste.\nVuoi elaborare l'ottimizzazione?\n"
-											+ "Nota: questa operazione non è reversibile",
-									"Conferma operazione",
-									JOptionPane.YES_NO_CANCEL_OPTION,
-									JOptionPane.QUESTION_MESSAGE, null,
-									options, options[1]);
-					if (n == JOptionPane.YES_OPTION) {
-						ProgrammaLavori.getInstance().getCommessaSelezionata()
-								.getDistinta().creaDDO();
-						riquadroplico.changePlico(PlicoDDO.getInstance());
-					}
-				}
-				RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
-				RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
-			}
-		});
-		this.clip.addButton("LDR", "Vai alla LDR", new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
+		
 
 		proglavoripanel.add(clip, BorderLayout.NORTH);
-		this.clip.fill();
-		this.clip.getButtons().get(1).setBackground(new Color(180,180,180));
 		this.validate();
 		this.repaint();
 
@@ -163,12 +87,12 @@ public class ProgrammaLavori extends JPanel {
 		this.riquadrocodici = riquadrocodici;
 	}
 
-	public RiquadroPlico getRiquadroplico() {
-		return riquadroplico;
+	public RaccoglitorePlichi getRaccoglitorePlichi() {
+		return raccoglitoreplichi;
 	}
 
-	public void setRiquadroplico(RiquadroPlico riquadroplico) {
-		this.riquadroplico = riquadroplico;
+	public void setraccoglitoreplichi(RaccoglitorePlichi raccoglitoreplichi) {
+		this.raccoglitoreplichi = raccoglitoreplichi;
 	}
 
 	public JMenuBar getMenuBar() {

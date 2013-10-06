@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import GUI.ClipPanels.ClipPanelRDA;
+import GUI.Plichi.PlicoRDA;
 import GUI.Riquadri.RiquadroCodici;
 import GUI.Riquadri.RiquadroCodiciRDA;
 
@@ -19,22 +21,6 @@ public class RDACenter extends JPanel {
 	private PlicoRDA plicoRDA = PlicoRDA.getInstance();
 	public RDACenter(){
 		this.setLayout(new BorderLayout());
-		
-		clipPanel.addButton("Menu", "Torna al menu principale", new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				CoedilFrame cf = CoedilFrame.getInstance();
-				PanelStart pl = new PanelStart(cf);
-				pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
-				CoedilFrame.getInstance().montaPanel(pl);
-			}
-		});
-
-		clipPanel.addButton("Nuova RDA", "Crea una nuova RDA", new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("NEW RDA\n");
-			}
-		});
-		clipPanel.fill();
 		
 		this.add(clipPanel, BorderLayout.NORTH);
 		this.riquadrocodici = new RiquadroCodiciRDA();

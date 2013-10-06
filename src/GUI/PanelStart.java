@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import GUI.ClipPanels.ClipPanelMenu;
+
 public class PanelStart extends JPanel {
 	
 	/**
@@ -40,7 +42,6 @@ public class PanelStart extends JPanel {
 
 	private void addClipPanel() {
 		// TODO Auto-generated method stub
-		this.clipPanel.fill();
 		this.add(clipPanel, BorderLayout.NORTH);
 	}
 

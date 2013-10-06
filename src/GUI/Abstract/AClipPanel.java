@@ -1,4 +1,4 @@
-package GUI;
+package GUI.Abstract;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,13 +15,13 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 
-public abstract class ClipPanel extends JPanel {
+public abstract class AClipPanel extends JPanel {
 	
 
 	private static final long serialVersionUID = 1L;
 	private ArrayList<JButton> buttons = new ArrayList<JButton>(); 
 
-	public ClipPanel() {
+	public AClipPanel() {
 		// TODO Auto-generated constructor stub
 		this.setLayout(new GridLayout(1, 0));
 		this.setBackground(new Color(238, 238, 238));

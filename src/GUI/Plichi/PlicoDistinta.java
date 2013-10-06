@@ -1,4 +1,4 @@
-package GUI;
+package GUI.Plichi;
 
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
@@ -8,12 +8,15 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+import GUI.ProgrammaLavori;
+import GUI.RaccoglitorePlichi;
+import GUI.WrapLayout;
+import GUI.Abstract.APlico;
 import GUI.Riquadri.RiquadroDatiDistinta;
-import GUI.Riquadri.RiquadroPlico;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Distinta;
 
-public class PlicoDistinta extends Plico {
+public class PlicoDistinta extends APlico {
 
 	private static PlicoDistinta instance = null;
 	private JButton addButton = null;
@@ -111,8 +114,8 @@ public class PlicoDistinta extends Plico {
 				this.getWidth(),
 				RiquadroDatiDistinta.getFormDimension().height
 						* (this.getComponentCount()));
-		RiquadroPlico.getInstance().getScrollPaneWrapper().validate();
-		RiquadroPlico.getInstance().getScrollPaneWrapper().repaint();
+		RaccoglitorePlichi.getInstance().getScrollPaneWrapper().validate();
+		RaccoglitorePlichi.getInstance().getScrollPaneWrapper().repaint();
 	}
 	
 	public void removeRiquadro(RiquadroDatiDistinta r){
