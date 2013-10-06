@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 public class RDACenter extends JPanel {
 	
+	private static RDACenter instance = null;
 	private RiquadroCodici riquadrocodici;
 	private ClipPanelRDA clipPanel = new ClipPanelRDA();	
 	public RDACenter(){
@@ -36,5 +37,12 @@ public class RDACenter extends JPanel {
 		this.riquadrocodici.setPreferredSize(new Dimension(200, 0));
 		this.add(this.riquadrocodici, BorderLayout.WEST);
 		
+	}
+	
+	//Singleton
+	public static RDACenter getInstance(){
+		if(RDACenter.instance == null)
+			RDACenter.instance = new RDACenter();
+		return RDACenter.instance;
 	}
 }
