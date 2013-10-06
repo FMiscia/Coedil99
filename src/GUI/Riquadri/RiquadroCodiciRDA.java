@@ -30,7 +30,7 @@ public class RiquadroCodiciRDA extends ARiquadroCodici {
 		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		for(int k=0; k<t.size(); ++k){
-			final RiquadroCodiceRDA r = new RiquadroCodiceRDA(null);
+			final RiquadroCodiceRDA r = new RiquadroCodiceRDA(this);
 			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
 			panel.add(r);
 		}
