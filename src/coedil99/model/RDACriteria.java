@@ -16,9 +16,7 @@ package coedil99.model;
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import org.orm.criteria.AbstractORMCriteria;
-import org.orm.criteria.IntegerExpression;
-import org.orm.criteria.StringExpression;
+import org.orm.criteria.*;
 
 public class RDACriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
@@ -38,8 +36,8 @@ public class RDACriteria extends AbstractORMCriteria {
 		this(coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession());
 	}
 	
-	public coedil99.model.RigaRDACriteria createRigheRDACriteria() {
-		return new coedil99.model.RigaRDACriteria(createCriteria("ORM_RigheRDA"));
+	public RigaRDACriteria createRigheRDACriteria() {
+		return new RigaRDACriteria(createCriteria("ORM_RigheRDA"));
 	}
 	
 	public RDA uniqueRDA() {

@@ -1,9 +1,8 @@
-package coedil99;
+package coedil99.model;
 
 import org.orm.PersistentException;
 
 import coedil99.controller.GestisciCommessaHandler;
-import coedil99.model.Coedil99ingdelsoftwarePersistentManager;
 import coedil99.operation.OCommessa;
 import coedil99.operation.ODistinta;
 import coedil99.operation.OOrdine;

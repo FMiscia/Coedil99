@@ -13,7 +13,7 @@
  */
 package coedil99.model;
 
-import org.orm.PersistentException;
+import org.orm.*;
 public class CatalogoFornitore {
 	public CatalogoFornitore() {
 	}

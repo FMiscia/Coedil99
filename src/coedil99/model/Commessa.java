@@ -13,59 +13,58 @@
  */
 package coedil99.model;
 
-import coedil99.operation.OCommessa;
-import coedil99.operation.ODistinta;
+import org.orm.*;
 
+import coedil99.operation.ODistinta;
 public class Commessa {
 	public Commessa() {
-		this.oCommessa = new OCommessa(this);
 	}
 	
-	public boolean save() {
+	public boolean save() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().saveObject(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean delete() {
+	public boolean delete() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().deleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean refresh() {
+	public boolean refresh() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().refresh(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean evict() {
+	public boolean evict() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().evict(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean deleteAndDissociate() {
+	public boolean deleteAndDissociate()throws PersistentException {
 		try {
 			if(getOrdine() != null) {
 				getOrdine().commesse.remove(this);
@@ -75,11 +74,11 @@ public class Commessa {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean deleteAndDissociate(org.orm.PersistentSession session) {
+	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
 		try {
 			if(getOrdine() != null) {
 				getOrdine().commesse.remove(this);
@@ -94,21 +93,21 @@ public class Commessa {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
 	private void this_setOwner(Object owner, int key) {
-		if (key == coedil99.model.ORMConstants.KEY_COMMESSA_ORDINE) {
-			this.ordine = (coedil99.model.Ordine) owner;
+		if (key == coedil99.model.ORMConstants.KEY_COMMESSA_DISTINTA) {
+			this.distinta = (coedil99.model.Distinta) owner;
 		}
 		
 		else if (key == coedil99.model.ORMConstants.KEY_COMMESSA_LDR) {
 			this.ldr = (coedil99.model.ListaRintracciabilita) owner;
 		}
 		
-		else if (key == coedil99.model.ORMConstants.KEY_COMMESSA_DISTINTA) {
-			this.distinta = (coedil99.model.Distinta) owner;
+		else if (key == coedil99.model.ORMConstants.KEY_COMMESSA_ORDINE) {
+			this.ordine = (coedil99.model.Ordine) owner;
 		}
 	}
 	
@@ -154,12 +153,6 @@ public class Commessa {
 	private String descrizione;
 	
 	private String responsabile;
-	
-	private OCommessa oCommessa;
-	
-	public OCommessa getOCommessa(){
-		return this.oCommessa;
-	}
 	
 	public void setCodiceInterno(String value) {
 		this.codiceInterno = value;
@@ -329,6 +322,22 @@ public class Commessa {
 		return getID();
 	}
 	
+	public void setDistinta(coedil99.model.Distinta value) {
+		this.distinta = value;
+	}
+	
+	public coedil99.model.Distinta getDistinta() {
+		return distinta;
+	}
+	
+	public void setLdr(coedil99.model.ListaRintracciabilita value) {
+		this.ldr = value;
+	}
+	
+	public coedil99.model.ListaRintracciabilita getLdr() {
+		return ldr;
+	}
+	
 	public void setOrdine(coedil99.model.Ordine value) {
 		if (ordine != null) {
 			ordine.commesse.remove(this);
@@ -353,22 +362,6 @@ public class Commessa {
 		return ordine;
 	}
 	
-	public void setLdr(coedil99.model.ListaRintracciabilita value) {
-		this.ldr = value;
-	}
-	
-	public coedil99.model.ListaRintracciabilita getLdr() {
-		return ldr;
-	}
-	
-	public void setDistinta(coedil99.model.Distinta value) {
-		this.distinta = value;
-	}
-	
-	public coedil99.model.Distinta getDistinta() {
-		return distinta;
-	}
-	
 	/**
 	 * dipendente
 	 */
@@ -379,10 +372,20 @@ public class Commessa {
 		return this.ordine.getID();
 	}
 	
-	public ODistinta getODistinta(){
-		return new ODistinta(this.getDistinta());
+	public java.util.Date getScadenza() {
+		//TODO: Implement Method
+		return this.scadenzaCommessa;
 	}
 	
+	public void setScadenza(java.util.Date scadenza) {
+		//TODO: Implement Method
+		this.scadenzaCommessa = scadenza;
+	}
+	
+	public ODistinta getOdistinta() {
+		//TODO: Implement Method
+		return new ODistinta(this.distinta);
+	}
 	
 	public String toString() {
 		return String.valueOf(getID());

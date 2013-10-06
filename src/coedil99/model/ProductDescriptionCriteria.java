@@ -16,15 +16,20 @@ package coedil99.model;
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import org.orm.criteria.AbstractORMCriteria;
-import org.orm.criteria.IntegerExpression;
+import org.orm.criteria.*;
 
 public class ProductDescriptionCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
+	public final StringExpression essenza;
+	public final FloatExpression prezzo;
+	public final IntegerExpression pezzi_per_pacco;
 	
 	public ProductDescriptionCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
+		essenza = new StringExpression("essenza", this);
+		prezzo = new FloatExpression("prezzo", this);
+		pezzi_per_pacco = new IntegerExpression("pezzi_per_pacco", this);
 	}
 	
 	public ProductDescriptionCriteria(PersistentSession session) {

@@ -13,119 +13,118 @@
  */
 package coedil99.model;
 
+import org.orm.*;
+import org.hibernate.Query;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.orm.PersistentSession;
-
 public class ClienteFactory {
-	public static Cliente loadClienteByORMID(int ID) {
+	public static Cliente loadClienteByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadClienteByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente getClienteByORMID(int ID) {
+	public static Cliente getClienteByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getClienteByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente loadClienteByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Cliente loadClienteByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadClienteByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente getClienteByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Cliente getClienteByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getClienteByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente loadClienteByORMID(PersistentSession session, int ID) {
+	public static Cliente loadClienteByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (Cliente) session.load(coedil99.model.Cliente.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente getClienteByORMID(PersistentSession session, int ID) {
+	public static Cliente getClienteByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (Cliente) session.get(coedil99.model.Cliente.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente loadClienteByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Cliente loadClienteByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (Cliente) session.load(coedil99.model.Cliente.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente getClienteByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Cliente getClienteByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (Cliente) session.get(coedil99.model.Cliente.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente[] listClienteByQuery(String condition, String orderBy) {
+	public static Cliente[] listClienteByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listClienteByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente[] listClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Cliente[] listClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listClienteByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente[] listClienteByQuery(PersistentSession session, String condition, String orderBy) {
+	public static Cliente[] listClienteByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Cliente as Cliente");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -138,11 +137,11 @@ public class ClienteFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente[] listClienteByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Cliente[] listClienteByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Cliente as Cliente");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -156,33 +155,33 @@ public class ClienteFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente loadClienteByQuery(String condition, String orderBy) {
+	public static Cliente loadClienteByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadClienteByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente loadClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Cliente loadClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadClienteByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cliente loadClienteByQuery(PersistentSession session, String condition, String orderBy) {
+	public static Cliente loadClienteByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		Cliente[] clientes = listClienteByQuery(session, condition, orderBy);
 		if (clientes != null && clientes.length > 0)
 			return clientes[0];
@@ -190,7 +189,7 @@ public class ClienteFactory {
 			return null;
 	}
 	
-	public static Cliente loadClienteByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Cliente loadClienteByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		Cliente[] clientes = listClienteByQuery(session, condition, orderBy, lockMode);
 		if (clientes != null && clientes.length > 0)
 			return clientes[0];
@@ -198,29 +197,29 @@ public class ClienteFactory {
 			return null;
 	}
 	
-	public static java.util.Iterator iterateClienteByQuery(String condition, String orderBy) {
+	public static java.util.Iterator iterateClienteByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateClienteByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateClienteByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateClienteByQuery(PersistentSession session, String condition, String orderBy) {
+	public static java.util.Iterator iterateClienteByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Cliente as Cliente");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -232,11 +231,11 @@ public class ClienteFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateClienteByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateClienteByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Cliente as Cliente");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -249,7 +248,7 @@ public class ClienteFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	

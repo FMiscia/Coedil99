@@ -13,59 +13,55 @@
  */
 package coedil99.model;
 
-import coedil99.StandardOttimizzatoreStrategy;
-import coedil99.controller.OttimizzatoreHandler;
+import org.orm.*;
+
 import coedil99.operation.ODistinta;
 import coedil99.operation.ODocumentoOttimizzazione;
-
 public class Distinta {
-	private ODistinta oDistinta;
-	
 	public Distinta() {
-		this.oDistinta = new ODistinta(this);
 	}
 	
-	public boolean save() {
+	public boolean save() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().saveObject(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean delete() {
+	public boolean delete() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().deleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean refresh() {
+	public boolean refresh() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().refresh(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean evict() {
+	public boolean evict() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().evict(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
@@ -102,10 +98,6 @@ public class Distinta {
 		return getID();
 	}
 	
-	public ODistinta getODistinta(){
-		return this.oDistinta;
-	}
-	
 	public void setDdo(coedil99.model.DocumentoOttimizzazione value) {
 		this.ddo = value;
 	}
@@ -122,20 +114,18 @@ public class Distinta {
 		return ORM_lavori;
 	}
 	
-	private coedil99.model.RigaLavoroListCollection lavori = new coedil99.model.RigaLavoroListCollection(this, _ormAdapter, coedil99.model.ORMConstants.KEY_DISTINTA_LAVORI, coedil99.model.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final coedil99.model.RigaLavoroListCollection lavori = new coedil99.model.RigaLavoroListCollection(this, _ormAdapter, coedil99.model.ORMConstants.KEY_DISTINTA_LAVORI, coedil99.model.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private static int count;
 	
 	public void creaDDO() {
-		OttimizzatoreHandler oh = new OttimizzatoreHandler(new StandardOttimizzatoreStrategy());
-		this.ddo = oh.eseguiOttimizzazione(this);
-		this.ddo.save();
-		this.save();
+		this.getOdistinta().creaDDO();
+		
 	}
 	
 	public ODocumentoOttimizzazione getOddo() {
 		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return new ODocumentoOttimizzazione(this.ddo);
 	}
 	
 	public String toString() {
@@ -145,15 +135,9 @@ public class Distinta {
 	public coedil99.model.RigaLavoroListCollection getLavori() {
 		return lavori;
 	}
-
-	public void setLavori(coedil99.model.RigaLavoroListCollection lavori) {
-		this.lavori = lavori;
-	}
 	
-	public void eliminaRigaLavoro(RigaLavoro rg){
-		this.lavori.remove(rg);
-		rg.delete();
-		this.save();
+	public ODistinta getOdistinta(){
+		return new ODistinta(this);
 	}
 	
 }

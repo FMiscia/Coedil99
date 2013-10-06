@@ -1,6 +1,6 @@
 package coedil99.controller;
 
-import coedil99.AOttimizzatoreStrategy;
+import coedil99.model.AOttimizzatoreStrategy;
 import coedil99.model.Distinta;
 import coedil99.model.DocumentoOttimizzazione;
 

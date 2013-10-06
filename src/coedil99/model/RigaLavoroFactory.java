@@ -13,119 +13,118 @@
  */
 package coedil99.model;
 
+import org.orm.*;
+import org.hibernate.Query;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.orm.PersistentSession;
-
 public class RigaLavoroFactory {
-	public static RigaLavoro loadRigaLavoroByORMID(int ID) {
+	public static RigaLavoro loadRigaLavoroByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadRigaLavoroByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro getRigaLavoroByORMID(int ID) {
+	public static RigaLavoro getRigaLavoroByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getRigaLavoroByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro loadRigaLavoroByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static RigaLavoro loadRigaLavoroByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadRigaLavoroByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro getRigaLavoroByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static RigaLavoro getRigaLavoroByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getRigaLavoroByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro loadRigaLavoroByORMID(PersistentSession session, int ID) {
+	public static RigaLavoro loadRigaLavoroByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (RigaLavoro) session.load(coedil99.model.RigaLavoro.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro getRigaLavoroByORMID(PersistentSession session, int ID) {
+	public static RigaLavoro getRigaLavoroByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (RigaLavoro) session.get(coedil99.model.RigaLavoro.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro loadRigaLavoroByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static RigaLavoro loadRigaLavoroByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (RigaLavoro) session.load(coedil99.model.RigaLavoro.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro getRigaLavoroByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static RigaLavoro getRigaLavoroByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (RigaLavoro) session.get(coedil99.model.RigaLavoro.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro[] listRigaLavoroByQuery(String condition, String orderBy) {
+	public static RigaLavoro[] listRigaLavoroByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listRigaLavoroByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro[] listRigaLavoroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static RigaLavoro[] listRigaLavoroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listRigaLavoroByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro[] listRigaLavoroByQuery(PersistentSession session, String condition, String orderBy) {
+	public static RigaLavoro[] listRigaLavoroByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.RigaLavoro as RigaLavoro");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -138,11 +137,11 @@ public class RigaLavoroFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro[] listRigaLavoroByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static RigaLavoro[] listRigaLavoroByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.RigaLavoro as RigaLavoro");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -156,33 +155,33 @@ public class RigaLavoroFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro loadRigaLavoroByQuery(String condition, String orderBy) {
+	public static RigaLavoro loadRigaLavoroByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadRigaLavoroByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro loadRigaLavoroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static RigaLavoro loadRigaLavoroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadRigaLavoroByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static RigaLavoro loadRigaLavoroByQuery(PersistentSession session, String condition, String orderBy) {
+	public static RigaLavoro loadRigaLavoroByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		RigaLavoro[] rigaLavoros = listRigaLavoroByQuery(session, condition, orderBy);
 		if (rigaLavoros != null && rigaLavoros.length > 0)
 			return rigaLavoros[0];
@@ -190,7 +189,7 @@ public class RigaLavoroFactory {
 			return null;
 	}
 	
-	public static RigaLavoro loadRigaLavoroByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static RigaLavoro loadRigaLavoroByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		RigaLavoro[] rigaLavoros = listRigaLavoroByQuery(session, condition, orderBy, lockMode);
 		if (rigaLavoros != null && rigaLavoros.length > 0)
 			return rigaLavoros[0];
@@ -198,29 +197,29 @@ public class RigaLavoroFactory {
 			return null;
 	}
 	
-	public static java.util.Iterator iterateRigaLavoroByQuery(String condition, String orderBy) {
+	public static java.util.Iterator iterateRigaLavoroByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateRigaLavoroByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateRigaLavoroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateRigaLavoroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateRigaLavoroByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateRigaLavoroByQuery(PersistentSession session, String condition, String orderBy) {
+	public static java.util.Iterator iterateRigaLavoroByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.RigaLavoro as RigaLavoro");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -232,11 +231,11 @@ public class RigaLavoroFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateRigaLavoroByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateRigaLavoroByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.RigaLavoro as RigaLavoro");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -249,7 +248,7 @@ public class RigaLavoroFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	

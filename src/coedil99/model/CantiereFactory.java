@@ -13,119 +13,118 @@
  */
 package coedil99.model;
 
+import org.orm.*;
+import org.hibernate.Query;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.orm.PersistentSession;
-
 public class CantiereFactory {
-	public static Cantiere loadCantiereByORMID(int ID) {
+	public static Cantiere loadCantiereByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCantiereByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere getCantiereByORMID(int ID) {
+	public static Cantiere getCantiereByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getCantiereByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere loadCantiereByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Cantiere loadCantiereByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCantiereByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere getCantiereByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Cantiere getCantiereByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getCantiereByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere loadCantiereByORMID(PersistentSession session, int ID) {
+	public static Cantiere loadCantiereByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (Cantiere) session.load(coedil99.model.Cantiere.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere getCantiereByORMID(PersistentSession session, int ID) {
+	public static Cantiere getCantiereByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (Cantiere) session.get(coedil99.model.Cantiere.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere loadCantiereByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Cantiere loadCantiereByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (Cantiere) session.load(coedil99.model.Cantiere.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere getCantiereByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Cantiere getCantiereByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (Cantiere) session.get(coedil99.model.Cantiere.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere[] listCantiereByQuery(String condition, String orderBy) {
+	public static Cantiere[] listCantiereByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listCantiereByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere[] listCantiereByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Cantiere[] listCantiereByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listCantiereByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere[] listCantiereByQuery(PersistentSession session, String condition, String orderBy) {
+	public static Cantiere[] listCantiereByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Cantiere as Cantiere");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -138,11 +137,11 @@ public class CantiereFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere[] listCantiereByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Cantiere[] listCantiereByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Cantiere as Cantiere");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -156,33 +155,33 @@ public class CantiereFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere loadCantiereByQuery(String condition, String orderBy) {
+	public static Cantiere loadCantiereByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCantiereByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere loadCantiereByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Cantiere loadCantiereByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCantiereByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Cantiere loadCantiereByQuery(PersistentSession session, String condition, String orderBy) {
+	public static Cantiere loadCantiereByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		Cantiere[] cantieres = listCantiereByQuery(session, condition, orderBy);
 		if (cantieres != null && cantieres.length > 0)
 			return cantieres[0];
@@ -190,7 +189,7 @@ public class CantiereFactory {
 			return null;
 	}
 	
-	public static Cantiere loadCantiereByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Cantiere loadCantiereByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		Cantiere[] cantieres = listCantiereByQuery(session, condition, orderBy, lockMode);
 		if (cantieres != null && cantieres.length > 0)
 			return cantieres[0];
@@ -198,29 +197,29 @@ public class CantiereFactory {
 			return null;
 	}
 	
-	public static java.util.Iterator iterateCantiereByQuery(String condition, String orderBy) {
+	public static java.util.Iterator iterateCantiereByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateCantiereByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateCantiereByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateCantiereByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateCantiereByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateCantiereByQuery(PersistentSession session, String condition, String orderBy) {
+	public static java.util.Iterator iterateCantiereByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Cantiere as Cantiere");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -232,11 +231,11 @@ public class CantiereFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateCantiereByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateCantiereByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Cantiere as Cantiere");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -249,7 +248,7 @@ public class CantiereFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	

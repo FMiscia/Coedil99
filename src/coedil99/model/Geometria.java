@@ -13,51 +13,52 @@
  */
 package coedil99.model;
 
+import org.orm.*;
 public class Geometria {
 	public Geometria() {
 	}
 	
-	public boolean save() {
+	public boolean save() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().saveObject(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean delete() {
+	public boolean delete() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().deleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean refresh() {
+	public boolean refresh() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().refresh(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean evict() {
+	public boolean evict() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().evict(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	

@@ -1,7 +1,5 @@
-package coedil99;
+package coedil99.model;
 
-import coedil99.model.Distinta;
-import coedil99.model.DocumentoOttimizzazione;
 
 public abstract class AOttimizzatoreStrategy {
 

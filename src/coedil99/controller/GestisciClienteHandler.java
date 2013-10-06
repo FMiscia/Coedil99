@@ -3,6 +3,8 @@ package coedil99.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.orm.PersistentException;
+
 import coedil99.model.Cliente;
 import coedil99.model.ClienteFactory;
 
@@ -13,7 +15,12 @@ public class GestisciClienteHandler {
 	private static GestisciClienteHandler instance;
 	
 	private GestisciClienteHandler() {
-		this.clienti = new ArrayList<Cliente>(Arrays.asList(ClienteFactory.listClienteByQuery(null, "ID")));
+		try {
+			this.clienti = new ArrayList<Cliente>(Arrays.asList(ClienteFactory.listClienteByQuery(null, "ID")));
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void addOrdine(Cliente c) {
@@ -25,7 +32,13 @@ public class GestisciClienteHandler {
 	}
 	
 	public Cliente getClienteById(int id){
-		return ClienteFactory.getClienteByORMID(id);
+		try {
+			return ClienteFactory.getClienteByORMID(id);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static GestisciClienteHandler getInstance() {

@@ -1,17 +1,12 @@
-package coedil99;
+package coedil99.model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-import coedil99.model.Distinta;
-import coedil99.model.DocumentoOttimizzazione;
-import coedil99.model.DocumentoOttimizzazioneFactory;
-import coedil99.model.Geometria;
-import coedil99.model.Item;
-import coedil99.model.Magazzino;
-import coedil99.model.RigaLavoro;
+import org.orm.PersistentException;
+
 import coedil99.operation.OMagazzino;
 
 
@@ -132,9 +127,19 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 		 * nuovoitem.setGeometria(geom); nuovoitem.setHistory(h);
 		 * nuovoitem.save(); }
 		 */
-		o.save();
+		try {
+			o.save();
+		} catch (PersistentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		distinta.setDdo(o);
-		distinta.save();
+		try {
+			distinta.save();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return o;
 		

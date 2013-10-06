@@ -13,7 +13,7 @@
  */
 package coedil99.model;
 
-import org.orm.PersistentException;
+import org.orm.*;
 public class ProductDescription {
 	public ProductDescription() {
 	}
@@ -112,6 +112,12 @@ public class ProductDescription {
 	
 	private coedil99.model.CatalogoFornitore catalogoFornitore;
 	
+	private String essenza;
+	
+	private float prezzo;
+	
+	private int pezzi_per_pacco;
+	
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -122,6 +128,30 @@ public class ProductDescription {
 	
 	public int getORMID() {
 		return getID();
+	}
+	
+	public void setEssenza(String value) {
+		this.essenza = value;
+	}
+	
+	public String getEssenza() {
+		return essenza;
+	}
+	
+	public void setPrezzo(float value) {
+		this.prezzo = value;
+	}
+	
+	public float getPrezzo() {
+		return prezzo;
+	}
+	
+	public void setPezzi_per_pacco(int value) {
+		this.pezzi_per_pacco = value;
+	}
+	
+	public int getPezzi_per_pacco() {
+		return pezzi_per_pacco;
 	}
 	
 	public void setCatalogoFornitore(coedil99.model.CatalogoFornitore value) {

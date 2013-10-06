@@ -29,7 +29,7 @@
     <Column name="CatalogoFornitoreID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>Coedil99.model.CatalogoFornitore.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.model.CatalogoFornitore.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>false</Nullable>
@@ -39,6 +39,39 @@
       <UserTypes/>
     </Column>
     <Column name="CatalogoFornitoreIndex">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Essenza">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Prezzo">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>4</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Pezzi_per_pacco">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
@@ -65,7 +98,7 @@
     <Column name="RDAID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>Coedil99.model.RDA.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.model.RDA.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>false</Nullable>
@@ -77,7 +110,7 @@
     <Column name="ProductDescriptionID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>Coedil99.model.ProductDescription.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.model.ProductDescription.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>false</Nullable>
@@ -700,7 +733,7 @@
     <Column name="ProductDescriptionID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>Coedil99.model.ProductDescription.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.model.ProductDescription.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>true</Nullable>
@@ -838,46 +871,6 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <ForeignKey name="FKItem644069">
-    <ReferenceTable>Item</ReferenceTable>
-    <ReferencedTable>ProductDescription</ReferencedTable>
-    <Columns>
-      <Column>ProductDescriptionID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="FKRigaRDA397912">
-    <ReferenceTable>RigaRDA</ReferenceTable>
-    <ReferencedTable>ProductDescription</ReferencedTable>
-    <Columns>
-      <Column>ProductDescriptionID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="FKRigaRDA54006">
-    <ReferenceTable>RigaRDA</ReferenceTable>
-    <ReferencedTable>RDA</ReferencedTable>
-    <Columns>
-      <Column>RDAID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="FKProductDes574048">
-    <ReferenceTable>ProductDescription</ReferenceTable>
-    <ReferencedTable>CatalogoFornitore</ReferencedTable>
-    <Columns>
-      <Column>CatalogoFornitoreID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
   <ForeignKey name="FKCommessa136300">
     <ReferenceTable>Commessa</ReferenceTable>
     <ReferencedTable>Ordine</ReferencedTable>
@@ -987,6 +980,46 @@
     <ReferencedTable>Distinta</ReferencedTable>
     <Columns>
       <Column>DistintaID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKItem644069">
+    <ReferenceTable>Item</ReferenceTable>
+    <ReferencedTable>ProductDescription</ReferencedTable>
+    <Columns>
+      <Column>ProductDescriptionID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKRigaRDA397912">
+    <ReferenceTable>RigaRDA</ReferenceTable>
+    <ReferencedTable>ProductDescription</ReferencedTable>
+    <Columns>
+      <Column>ProductDescriptionID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKRigaRDA54006">
+    <ReferenceTable>RigaRDA</ReferenceTable>
+    <ReferencedTable>RDA</ReferencedTable>
+    <Columns>
+      <Column>RDAID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKProductDes574048">
+    <ReferenceTable>ProductDescription</ReferenceTable>
+    <ReferencedTable>CatalogoFornitore</ReferencedTable>
+    <Columns>
+      <Column>CatalogoFornitoreID</Column>
     </Columns>
     <RefColumns>
       <Column>ID</Column>

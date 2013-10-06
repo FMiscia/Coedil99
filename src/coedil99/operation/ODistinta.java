@@ -2,10 +2,12 @@ package coedil99.operation;
 
 import java.util.ListIterator;
 
-import coedil99.Ottimizzatore;
-import coedil99.StandardOttimizzatoreStrategy;
+import org.orm.PersistentException;
+
 import coedil99.model.Distinta;
+import coedil99.model.Ottimizzatore;
 import coedil99.model.RigaLavoro;
+import coedil99.model.StandardOttimizzatoreStrategy;
 
 public class ODistinta {
 
@@ -63,7 +65,12 @@ public class ODistinta {
 	public void creaDDO() {
 		Ottimizzatore standardOtt = new Ottimizzatore(new StandardOttimizzatoreStrategy(),this.distinta);
 		this.distinta.setDdo(standardOtt.Ottimizza());
-		this.distinta.save();
+		try {
+			this.distinta.save();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

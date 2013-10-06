@@ -13,8 +13,7 @@
  */
 package coedil99.model;
 
-import org.orm.PersistentException;
-import org.orm.PersistentManager;
+import org.orm.*;
 
 public class RigaRDAListCollection extends org.orm.util.ORMList {
 	public RigaRDAListCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {

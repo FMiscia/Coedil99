@@ -16,8 +16,7 @@ package coedil99.model;
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import org.orm.criteria.AbstractORMCriteria;
-import org.orm.criteria.IntegerExpression;
+import org.orm.criteria.*;
 
 public class CatalogoFornitoreCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
@@ -35,8 +34,8 @@ public class CatalogoFornitoreCriteria extends AbstractORMCriteria {
 		this(coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession());
 	}
 	
-	public coedil99.model.ProductDescriptionCriteria createProductDescriptionCriteria() {
-		return new coedil99.model.ProductDescriptionCriteria(createCriteria("ORM_ProductDescription"));
+	public ProductDescriptionCriteria createProductDescriptionCriteria() {
+		return new ProductDescriptionCriteria(createCriteria("ORM_ProductDescription"));
 	}
 	
 	public CatalogoFornitore uniqueCatalogoFornitore() {
