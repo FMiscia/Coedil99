@@ -69,7 +69,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (ProgrammaLavori.getInstance().getCommessaSelezionata().getODistinta().hasDdo()){
+				if (ProgrammaLavori.getInstance().getCommessaSelezionata().getOdistinta().hasDdo()){
 					ClipPanelProgrammaLavori.this.focusOut();
 					JButton b = (JButton) e.getSource();
 					b.setBackground(new Color(180,180,180));
@@ -105,9 +105,12 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 			}
 		});
 		this.fill();
-		this.getButtons().get(1).setBackground(new Color(180,180,180));
+		this.resetInitialState();
 	}
 	
-	
+	public void resetInitialState(){
+		this.focusOut();
+		this.getButtons().get(1).setBackground(new Color(180,180,180));
+	}
 
 }

@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import org.orm.PersistentException;
+
 import GUI.ProgrammaLavori;
 import GUI.Abstract.ARiquadro;
 import GUI.Plichi.PlicoDistinta;
@@ -377,7 +379,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 				Distinta d = ProgrammaLavori.getInstance()
 						.getCommessaSelezionata().getDistinta();
 				RigaLavoro r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
-				d.eliminaRigaLavoro(r);
+				d.getOdistinta().eliminaRigaLavoro(r);
 				RiquadroDatiDistinta.this.removeAll();
 				// RiquadroDatiDistinta.this.validate();
 				// RiquadroDatiDistinta.this.repaint();
@@ -456,7 +458,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		r.setProfiloCapitello(this.tftipocapitello.getText());
 		r.setNumero(Integer.parseInt(this.tfnumero.getText()));
 		r.setNote(this.tfnote.getText());
-		r.save();
+		try {
+			r.save();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.oggetto = r;
 		JOptionPane.showMessageDialog(null,
 				"Salvataggio avvenuto correttamente", "Messaggio di Sistema",

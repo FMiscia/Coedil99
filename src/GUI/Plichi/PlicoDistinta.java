@@ -70,7 +70,7 @@ public class PlicoDistinta extends APlico {
 			this.add(temp);
 			this.riquadri.add(temp);
 		}
-		if (!ProgrammaLavori.getInstance().getCommessaSelezionata().getODistinta()
+		if (!ProgrammaLavori.getInstance().getCommessaSelezionata().getOdistinta()
 				.hasDdo()) {
 			MouseListener[] arrML = addButton.getMouseListeners();
 			if (arrML.length == 1){
@@ -90,7 +90,7 @@ public class PlicoDistinta extends APlico {
 		this.add(addButton);
 		this.aggiornaAltezze();
 		addButton.setPreferredSize(new Dimension(160, 20));
-		if (ProgrammaLavori.getInstance().getCommessaSelezionata().getODistinta()
+		if (ProgrammaLavori.getInstance().getCommessaSelezionata().getOdistinta()
 				.hasDdo()){
 			for(RiquadroDatiDistinta r: riquadri){
 				r.avoidEditing();
