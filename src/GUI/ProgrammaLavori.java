@@ -11,6 +11,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import GUI.Riquadri.RiquadroCodiciProgrammaLavoro;
+import GUI.Riquadri.RiquadroPlico;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Commessa;
 

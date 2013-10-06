@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 import GUI.Riquadri.RiquadroDatiDistinta;
+import GUI.Riquadri.RiquadroPlico;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Distinta;
 

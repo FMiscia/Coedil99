@@ -110,7 +110,7 @@ public class PanelStart extends JPanel {
 		
 		plButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				ProgLavoriPanel p = ProgLavoriPanel.getInstance();
+				ProgrammaLavori p = ProgrammaLavori.getInstance();
 				CoedilFrame.getInstance().montaPanel(p);
 			}
 		});

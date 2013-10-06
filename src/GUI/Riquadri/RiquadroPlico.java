@@ -1,4 +1,4 @@
-package GUI;
+package GUI.Riquadri;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,6 +8,11 @@ import java.awt.event.ComponentListener;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import GUI.ClipPanelProgrammaLavori;
+import GUI.Plico;
+import GUI.PlicoCommessa;
+import GUI.ProgrammaLavori;
 
 import coedil99.model.Commessa;
 

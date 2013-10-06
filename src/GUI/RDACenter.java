@@ -8,11 +8,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import GUI.Riquadri.RiquadroCodici;
+import GUI.Riquadri.RiquadroCodiciRDA;
+
 public class RDACenter extends JPanel {
 	
 	private static RDACenter instance = null;
 	private RiquadroCodici riquadrocodici;
 	private ClipPanelRDA clipPanel = new ClipPanelRDA();	
+	private PlicoRDA plicoRDA = PlicoRDA.getInstance();
 	public RDACenter(){
 		this.setLayout(new BorderLayout());
 		
@@ -33,10 +37,12 @@ public class RDACenter extends JPanel {
 		clipPanel.fill();
 		
 		this.add(clipPanel, BorderLayout.NORTH);
-		this.riquadrocodici = new RiquadroCodiciProgrammaLavoro();
+		this.riquadrocodici = new RiquadroCodiciRDA();
 		this.riquadrocodici.setPreferredSize(new Dimension(200, 0));
 		this.add(this.riquadrocodici, BorderLayout.WEST);
 		
+		
+		this.add(this.plicoRDA, BorderLayout.CENTER);
 	}
 	
 	//Singleton

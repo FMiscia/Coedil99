@@ -1,4 +1,4 @@
-package GUI;
+package GUI.Riquadri;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import GUI.WrapLayout;
 
 public abstract class RiquadroCodici extends JScrollPane {
 

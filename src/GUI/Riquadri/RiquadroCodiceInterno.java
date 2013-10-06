@@ -1,4 +1,4 @@
-package GUI;
+package GUI.Riquadri;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
+import GUI.PlicoCommessa;
+import GUI.ProgrammaLavori;
 
 import coedil99.model.Cliente;
 import coedil99.model.Commessa;

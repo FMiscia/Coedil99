@@ -1,4 +1,4 @@
-package GUI;
+package GUI.Riquadri;
 
 
 import java.awt.Color;
