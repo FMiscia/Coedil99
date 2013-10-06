@@ -8,9 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import GUI.Abstract.RiquadroCodici;
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.Plichi.PlicoRDA;
-import GUI.Riquadri.RiquadroCodici;
 import GUI.Riquadri.RiquadroCodiciRDA;
 
 public class RDACenter extends JPanel {
