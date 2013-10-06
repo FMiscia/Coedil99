@@ -33,6 +33,7 @@ public class ProgrammaLavori extends JPanel {
 	private RaccoglitorePlichi raccoglitoreplichi;
 	private JMenuBar menuBar;
 	private ClipPanelProgrammaLavori clip;
+
 	private Commessa commessaSelezionata = null;
 
 	private ProgrammaLavori() {
@@ -110,6 +111,9 @@ public class ProgrammaLavori extends JPanel {
 	public void setCommessaSelezionata(Commessa selectedComm) {
 		// TODO Auto-generated method stub
 		this.commessaSelezionata = selectedComm;
+	}
+	public ClipPanelProgrammaLavori getClipPanel() {
+		return clip;
 	}
 
 }

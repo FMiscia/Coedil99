@@ -10,8 +10,6 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="geometria" column="GeometriaID" class="coedil99.model.Geometria" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
-		</many-to-one>
 		<many-to-one name="catalogoFornitore" cascade="lock" column="CatalogoFornitoreID" class="coedil99.model.CatalogoFornitore" not-null="true" update="false" insert="false" lazy="no-proxy" access="field">
 		</many-to-one>
 		<property name="essenza" column="Essenza" type="string" length="255" not-null="false" lazy="false"/>

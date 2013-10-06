@@ -40,10 +40,6 @@ public class ProductDescriptionCriteria extends AbstractORMCriteria {
 		this(coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession());
 	}
 	
-	public GeometriaCriteria createGeometriaCriteria() {
-		return new GeometriaCriteria(createCriteria("geometria"));
-	}
-	
 	public CatalogoFornitoreCriteria createCatalogoFornitoreCriteria() {
 		return new CatalogoFornitoreCriteria(createCriteria("catalogoFornitore"));
 	}

@@ -119,8 +119,8 @@ public class Distinta {
 	private static int count;
 	
 	public void creaDDO() {
-		//TODO: Implement Method
 		this.getOdistinta().creaDDO();
+		
 	}
 	
 	public ODocumentoOttimizzazione getOddo() {

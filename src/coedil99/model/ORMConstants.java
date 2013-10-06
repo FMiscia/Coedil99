@@ -44,8 +44,6 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_PRODUCTDESCRIPTION_CATALOGOFORNITORE = 312700234;
 	
-	final int KEY_PRODUCTDESCRIPTION_GEOMETRIA = 1688930861;
-	
 	final int KEY_RDA_RIGHERDA = -1173257966;
 	
 	final int KEY_RIGALAVORO_GEOMETRIA = -1262296516;

@@ -99,10 +99,6 @@ public class ProductDescription {
 		if (key == coedil99.model.ORMConstants.KEY_PRODUCTDESCRIPTION_CATALOGOFORNITORE) {
 			this.catalogoFornitore = (coedil99.model.CatalogoFornitore) owner;
 		}
-		
-		else if (key == coedil99.model.ORMConstants.KEY_PRODUCTDESCRIPTION_GEOMETRIA) {
-			this.geometria = (coedil99.model.Geometria) owner;
-		}
 	}
 	
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
@@ -113,8 +109,6 @@ public class ProductDescription {
 	};
 	
 	private int ID;
-	
-	private coedil99.model.Geometria geometria;
 	
 	private coedil99.model.CatalogoFornitore catalogoFornitore;
 	
@@ -182,14 +176,6 @@ public class ProductDescription {
 	
 	private coedil99.model.CatalogoFornitore getORM_CatalogoFornitore() {
 		return catalogoFornitore;
-	}
-	
-	public void setGeometria(coedil99.model.Geometria value) {
-		this.geometria = value;
-	}
-	
-	public coedil99.model.Geometria getGeometria() {
-		return geometria;
 	}
 	
 	public String toString() {
