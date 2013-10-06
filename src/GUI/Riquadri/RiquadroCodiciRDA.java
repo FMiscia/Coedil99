@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.Cliente;
@@ -29,9 +30,9 @@ public class RiquadroCodiciRDA extends ARiquadroCodici {
 		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		for(int k=0; k<t.size(); ++k){
-//			final RiquadroRDA r = new RiquadroRDA(this);
-//			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
-//			panel.add(r);
+			final RiquadroCodiceRDA r = new RiquadroCodiceRDA(null);
+			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
+			panel.add(r);
 		}
 		this.setPreferredSize(new Dimension(154,panel.getHeight()));
 		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
