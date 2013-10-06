@@ -85,7 +85,7 @@ public class RiquadroCodiceInterno extends JPanel {
 				contenitore.getRaccoglitorePlichi().getPaperPanel().validate();
 				contenitore.getRaccoglitorePlichi().getPaperPanel().repaint();
 				contenitore.getRaccoglitorePlichi().getPaperPanel().add(plico_commessa);
-				//contenitore.getRiquadroplico().getMenu().aggiornaClipPanel(GestisciCommessaHandler.getInstance().getCommessaById(idCommessa).getDistinta().getODistinta());
+				contenitore.getClipPanel().resetInitialState();
 				RiquadroCodiceInterno.this.setBackground(new Color(30,44,255));
 				RiquadroCodiceInterno.this.validate();
 				RiquadroCodiceInterno.this.repaint();

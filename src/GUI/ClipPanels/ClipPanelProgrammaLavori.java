@@ -105,9 +105,12 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 			}
 		});
 		this.fill();
-		this.getButtons().get(1).setBackground(new Color(180,180,180));
+		this.resetInitialState();
 	}
 	
-	
+	public void resetInitialState(){
+		this.focusOut();
+		this.getButtons().get(1).setBackground(new Color(180,180,180));
+	}
 
 }
