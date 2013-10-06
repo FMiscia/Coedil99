@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
+import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
 import coedil99.model.Commessa;
@@ -336,7 +337,12 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 			c.setScadenzaCommessa(this.dateScadenzaCommessa.getDate());
 			c.setFineCommessa(this.dateDataFine.getDate());
 			c.setRitardoProduzione(Integer.getInteger(this.txtRitardo.getText()));
-			c.save();
+			try {
+				c.save();
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);

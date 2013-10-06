@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import org.jdesktop.swingx.JXDatePicker;
+import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
 import coedil99.model.Ordine;
@@ -237,7 +238,12 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 			ord.setDataInizio(this.dateDataInizio.getDate());
 			ord.setDataFine(this.dateDataFine.getDate());
 			ord.setDataScadenza(this.dateScadenzaSviluppo.getDate());
-			ord.save();
+			try {
+				ord.save();
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);

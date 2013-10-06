@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import org.orm.PersistentException;
+
 import GUI.Abstract.ARiquadro;
 import coedil99.model.Cliente;
 
@@ -201,7 +203,12 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 			Cliente c = (Cliente) this.oggetto;
 			c.getCantiere().setNome(this.txtCantiere.getText());
 			c.setName(this.txtCliente.getText());
-			c.save();
+			try {
+				c.save();
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
