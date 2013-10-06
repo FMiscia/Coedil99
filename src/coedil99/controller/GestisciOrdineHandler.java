@@ -3,6 +3,8 @@ package coedil99.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.orm.PersistentException;
+
 import coedil99.model.Ordine;
 import coedil99.model.OrdineFactory;
 
@@ -19,7 +21,12 @@ public class GestisciOrdineHandler {
 	 * Costruttore
 	 */
 	private GestisciOrdineHandler() {
-		this.ordini = new ArrayList<Ordine>(Arrays.asList(OrdineFactory.listOrdineByQuery(null, "ID")));
+		try {
+			this.ordini = new ArrayList<Ordine>(Arrays.asList(OrdineFactory.listOrdineByQuery(null, "ID")));
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void addOrdine(Ordine o) {
@@ -31,7 +38,13 @@ public class GestisciOrdineHandler {
 	}
 	
 	public Ordine getOrdineById(int id){
-		return OrdineFactory.getOrdineByORMID(id);
+		try {
+			return OrdineFactory.getOrdineByORMID(id);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static GestisciOrdineHandler getInstance() {

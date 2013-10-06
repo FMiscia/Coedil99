@@ -13,119 +13,118 @@
  */
 package coedil99.model;
 
+import org.orm.*;
+import org.hibernate.Query;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.orm.PersistentSession;
-
 public class CommessaFactory {
-	public static Commessa loadCommessaByORMID(int ID) {
+	public static Commessa loadCommessaByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCommessaByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa getCommessaByORMID(int ID) {
+	public static Commessa getCommessaByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getCommessaByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa loadCommessaByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Commessa loadCommessaByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCommessaByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa getCommessaByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Commessa getCommessaByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getCommessaByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa loadCommessaByORMID(PersistentSession session, int ID) {
+	public static Commessa loadCommessaByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (Commessa) session.load(coedil99.model.Commessa.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa getCommessaByORMID(PersistentSession session, int ID) {
+	public static Commessa getCommessaByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (Commessa) session.get(coedil99.model.Commessa.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa loadCommessaByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Commessa loadCommessaByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (Commessa) session.load(coedil99.model.Commessa.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa getCommessaByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Commessa getCommessaByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (Commessa) session.get(coedil99.model.Commessa.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa[] listCommessaByQuery(String condition, String orderBy) {
+	public static Commessa[] listCommessaByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listCommessaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa[] listCommessaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Commessa[] listCommessaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listCommessaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa[] listCommessaByQuery(PersistentSession session, String condition, String orderBy) {
+	public static Commessa[] listCommessaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Commessa as Commessa");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -138,11 +137,11 @@ public class CommessaFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa[] listCommessaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Commessa[] listCommessaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Commessa as Commessa");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -156,33 +155,33 @@ public class CommessaFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa loadCommessaByQuery(String condition, String orderBy) {
+	public static Commessa loadCommessaByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCommessaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa loadCommessaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Commessa loadCommessaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadCommessaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Commessa loadCommessaByQuery(PersistentSession session, String condition, String orderBy) {
+	public static Commessa loadCommessaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		Commessa[] commessas = listCommessaByQuery(session, condition, orderBy);
 		if (commessas != null && commessas.length > 0)
 			return commessas[0];
@@ -190,7 +189,7 @@ public class CommessaFactory {
 			return null;
 	}
 	
-	public static Commessa loadCommessaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Commessa loadCommessaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		Commessa[] commessas = listCommessaByQuery(session, condition, orderBy, lockMode);
 		if (commessas != null && commessas.length > 0)
 			return commessas[0];
@@ -198,29 +197,29 @@ public class CommessaFactory {
 			return null;
 	}
 	
-	public static java.util.Iterator iterateCommessaByQuery(String condition, String orderBy) {
+	public static java.util.Iterator iterateCommessaByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateCommessaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateCommessaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateCommessaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateCommessaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateCommessaByQuery(PersistentSession session, String condition, String orderBy) {
+	public static java.util.Iterator iterateCommessaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Commessa as Commessa");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -232,11 +231,11 @@ public class CommessaFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateCommessaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateCommessaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Commessa as Commessa");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -249,7 +248,7 @@ public class CommessaFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	

@@ -14,13 +14,9 @@
 package coedil99.model;
 
 import java.util.List;
-
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
-import org.orm.criteria.AbstractORMDetachedCriteria;
-import org.orm.criteria.FloatExpression;
-import org.orm.criteria.IntegerExpression;
-import org.orm.criteria.StringExpression;
+import org.orm.criteria.*;
 
 public class ItemDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
@@ -41,16 +37,16 @@ public class ItemDetachedCriteria extends AbstractORMDetachedCriteria {
 		prezzo = new FloatExpression("prezzo", this.getDetachedCriteria());
 	}
 	
-	public coedil99.model.ProductDescriptionDetachedCriteria createProductDescriptionCriteria() {
-		return new coedil99.model.ProductDescriptionDetachedCriteria(createCriteria("productDescription"));
+	public ProductDescriptionDetachedCriteria createProductDescriptionCriteria() {
+		return new ProductDescriptionDetachedCriteria(createCriteria("productDescription"));
 	}
 	
-	public coedil99.model.GeometriaDetachedCriteria createGeometriaCriteria() {
-		return new coedil99.model.GeometriaDetachedCriteria(createCriteria("geometria"));
+	public GeometriaDetachedCriteria createGeometriaCriteria() {
+		return new GeometriaDetachedCriteria(createCriteria("geometria"));
 	}
 	
-	public coedil99.model.HistoryDetachedCriteria createHistoryCriteria() {
-		return new coedil99.model.HistoryDetachedCriteria(createCriteria("history"));
+	public HistoryDetachedCriteria createHistoryCriteria() {
+		return new HistoryDetachedCriteria(createCriteria("history"));
 	}
 	
 	public Item uniqueItem(PersistentSession session) {

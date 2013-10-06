@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ListIterator;
 
+import org.orm.PersistentException;
+
 import coedil99.model.Commessa;
 import coedil99.model.CommessaFactory;
 import coedil99.model.Distinta;
@@ -20,7 +22,12 @@ public class GestisciCommessaHandler {
 
 	
 	private GestisciCommessaHandler() {
-		this.commesse = new ArrayList<Commessa>(Arrays.asList(CommessaFactory.listCommessaByQuery(null, "ID")));
+		try {
+			this.commesse = new ArrayList<Commessa>(Arrays.asList(CommessaFactory.listCommessaByQuery(null, "ID")));
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 
@@ -136,7 +143,7 @@ public class GestisciCommessaHandler {
 	}
 	
 	public void modificaRigaLavoro(int id_commessa, RigaLavoro rg){
-		this.getCommessaById(id_commessa).getDistinta().getODistinta().modificaRigaLavoro(rg);
+		this.getCommessaById(id_commessa).getOdistinta().modificaRigaLavoro(rg);
 	}
 	
 	/**

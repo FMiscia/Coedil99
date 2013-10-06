@@ -13,7 +13,7 @@
  */
 package coedil99.model;
 
-import org.orm.PersistentException;
+import org.orm.*;
 
 import coedil99.operation.OItem;
 public class Item {
@@ -155,12 +155,12 @@ public class Item {
 	
 	public Item(coedil99.model.Geometria g, String d) {
 		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		
 	}
 	
 	public OItem getOItem() {
 		//TODO: Implement Method
-		return new OItem(this); 
+		return new OItem(this);
 	}
 	
 	public String toString() {

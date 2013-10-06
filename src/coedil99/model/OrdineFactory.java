@@ -13,119 +13,118 @@
  */
 package coedil99.model;
 
+import org.orm.*;
+import org.hibernate.Query;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.orm.PersistentSession;
-
 public class OrdineFactory {
-	public static Ordine loadOrdineByORMID(int ID) {
+	public static Ordine loadOrdineByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadOrdineByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine getOrdineByORMID(int ID) {
+	public static Ordine getOrdineByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getOrdineByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine loadOrdineByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Ordine loadOrdineByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadOrdineByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine getOrdineByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Ordine getOrdineByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getOrdineByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine loadOrdineByORMID(PersistentSession session, int ID) {
+	public static Ordine loadOrdineByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (Ordine) session.load(coedil99.model.Ordine.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine getOrdineByORMID(PersistentSession session, int ID) {
+	public static Ordine getOrdineByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (Ordine) session.get(coedil99.model.Ordine.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine loadOrdineByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Ordine loadOrdineByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (Ordine) session.load(coedil99.model.Ordine.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine getOrdineByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Ordine getOrdineByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (Ordine) session.get(coedil99.model.Ordine.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine[] listOrdineByQuery(String condition, String orderBy) {
+	public static Ordine[] listOrdineByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listOrdineByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine[] listOrdineByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Ordine[] listOrdineByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listOrdineByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine[] listOrdineByQuery(PersistentSession session, String condition, String orderBy) {
+	public static Ordine[] listOrdineByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Ordine as Ordine");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -138,11 +137,11 @@ public class OrdineFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine[] listOrdineByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Ordine[] listOrdineByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Ordine as Ordine");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -156,33 +155,33 @@ public class OrdineFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine loadOrdineByQuery(String condition, String orderBy) {
+	public static Ordine loadOrdineByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadOrdineByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine loadOrdineByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Ordine loadOrdineByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadOrdineByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static Ordine loadOrdineByQuery(PersistentSession session, String condition, String orderBy) {
+	public static Ordine loadOrdineByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		Ordine[] ordines = listOrdineByQuery(session, condition, orderBy);
 		if (ordines != null && ordines.length > 0)
 			return ordines[0];
@@ -190,7 +189,7 @@ public class OrdineFactory {
 			return null;
 	}
 	
-	public static Ordine loadOrdineByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static Ordine loadOrdineByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		Ordine[] ordines = listOrdineByQuery(session, condition, orderBy, lockMode);
 		if (ordines != null && ordines.length > 0)
 			return ordines[0];
@@ -198,29 +197,29 @@ public class OrdineFactory {
 			return null;
 	}
 	
-	public static java.util.Iterator iterateOrdineByQuery(String condition, String orderBy) {
+	public static java.util.Iterator iterateOrdineByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateOrdineByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateOrdineByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateOrdineByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateOrdineByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateOrdineByQuery(PersistentSession session, String condition, String orderBy) {
+	public static java.util.Iterator iterateOrdineByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Ordine as Ordine");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -232,11 +231,11 @@ public class OrdineFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateOrdineByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateOrdineByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.Ordine as Ordine");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -249,7 +248,7 @@ public class OrdineFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	

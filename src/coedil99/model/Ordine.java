@@ -13,55 +13,56 @@
  */
 package coedil99.model;
 
+import org.orm.*;
 public class Ordine {
 	public Ordine() {
 	}
 	
-	public boolean save() {
+	public boolean save() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().saveObject(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean delete() {
+	public boolean delete() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().deleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean refresh() {
+	public boolean refresh() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().refresh(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean evict() {
+	public boolean evict() throws PersistentException {
 		try {
 			coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession().evict(this);
 			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean deleteAndDissociate() {
+	public boolean deleteAndDissociate()throws PersistentException {
 		try {
 			if(getCliente() != null) {
 				getCliente().ordini.remove(this);
@@ -75,11 +76,11 @@ public class Ordine {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public boolean deleteAndDissociate(org.orm.PersistentSession session) {
+	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
 		try {
 			if(getCliente() != null) {
 				getCliente().ordini.remove(this);
@@ -98,7 +99,7 @@ public class Ordine {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new PersistentException(e);
 		}
 	}
 	
@@ -223,16 +224,6 @@ public class Ordine {
 		return OC;
 	}
 	
-	private void setORM_Commesse(java.util.List value) {
-		this.ORM_commesse = value;
-	}
-	
-	private java.util.List getORM_Commesse() {
-		return ORM_commesse;
-	}
-	
-	public final coedil99.model.CommessaListCollection commesse = new coedil99.model.CommessaListCollection(this, _ormAdapter, coedil99.model.ORMConstants.KEY_ORDINE_COMMESSE, coedil99.model.ORMConstants.KEY_COMMESSA_ORDINE, coedil99.model.ORMConstants.KEY_MUL_ONE_TO_MANY);
-	
 	public void setCliente(coedil99.model.Cliente value) {
 		if (cliente != null) {
 			cliente.ordini.remove(this);
@@ -256,6 +247,16 @@ public class Ordine {
 	private coedil99.model.Cliente getORM_Cliente() {
 		return cliente;
 	}
+	
+	private void setORM_Commesse(java.util.List value) {
+		this.ORM_commesse = value;
+	}
+	
+	private java.util.List getORM_Commesse() {
+		return ORM_commesse;
+	}
+	
+	public final coedil99.model.CommessaListCollection commesse = new coedil99.model.CommessaListCollection(this, _ormAdapter, coedil99.model.ORMConstants.KEY_ORDINE_COMMESSE, coedil99.model.ORMConstants.KEY_COMMESSA_ORDINE, coedil99.model.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private static int counter = 0;
 	

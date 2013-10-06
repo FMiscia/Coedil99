@@ -14,11 +14,9 @@
 package coedil99.model;
 
 import java.util.List;
-
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
-import org.orm.criteria.AbstractORMDetachedCriteria;
-import org.orm.criteria.IntegerExpression;
+import org.orm.criteria.*;
 
 public class RigaRDADetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
@@ -36,12 +34,12 @@ public class RigaRDADetachedCriteria extends AbstractORMDetachedCriteria {
 		quantity = new IntegerExpression("quantity", this.getDetachedCriteria());
 	}
 	
-	public coedil99.model.RDADetachedCriteria createRDACriteria() {
-		return new coedil99.model.RDADetachedCriteria(createCriteria("RDA"));
+	public RDADetachedCriteria createRDACriteria() {
+		return new RDADetachedCriteria(createCriteria("RDA"));
 	}
 	
-	public coedil99.model.ProductDescriptionDetachedCriteria createDescriptionCriteria() {
-		return new coedil99.model.ProductDescriptionDetachedCriteria(createCriteria("description"));
+	public ProductDescriptionDetachedCriteria createDescriptionCriteria() {
+		return new ProductDescriptionDetachedCriteria(createCriteria("description"));
 	}
 	
 	public RigaRDA uniqueRigaRDA(PersistentSession session) {

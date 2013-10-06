@@ -13,8 +13,7 @@
  */
 package coedil99.model;
 
-import org.orm.PersistentException;
-import org.orm.PersistentManager;
+import org.orm.*;
 
 public class ProductDescriptionListCollection extends org.orm.util.ORMList {
 	public ProductDescriptionListCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
@@ -72,6 +71,9 @@ public class ProductDescriptionListCollection extends org.orm.util.ORMList {
 	 * Return an sorted array containing all of the persistent objects in ORMList
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
+	 * <li>essenza</li>
+	 * <li>prezzo</li>
+	 * <li>pezzi_per_pacco</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
@@ -83,6 +85,9 @@ public class ProductDescriptionListCollection extends org.orm.util.ORMList {
 	 * Return an sorted array containing all of the persistent objects in ORMList
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
+	 * <li>essenza</li>
+	 * <li>prezzo</li>
+	 * <li>pezzi_per_pacco</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array

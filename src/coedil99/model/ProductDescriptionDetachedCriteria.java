@@ -14,27 +14,34 @@
 package coedil99.model;
 
 import java.util.List;
-
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
-import org.orm.criteria.AbstractORMDetachedCriteria;
-import org.orm.criteria.IntegerExpression;
+import org.orm.criteria.*;
 
 public class ProductDescriptionDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
+	public final StringExpression essenza;
+	public final FloatExpression prezzo;
+	public final IntegerExpression pezzi_per_pacco;
 	
 	public ProductDescriptionDetachedCriteria() {
 		super(coedil99.model.ProductDescription.class, coedil99.model.ProductDescriptionCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		essenza = new StringExpression("essenza", this.getDetachedCriteria());
+		prezzo = new FloatExpression("prezzo", this.getDetachedCriteria());
+		pezzi_per_pacco = new IntegerExpression("pezzi_per_pacco", this.getDetachedCriteria());
 	}
 	
 	public ProductDescriptionDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.model.ProductDescriptionCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		essenza = new StringExpression("essenza", this.getDetachedCriteria());
+		prezzo = new FloatExpression("prezzo", this.getDetachedCriteria());
+		pezzi_per_pacco = new IntegerExpression("pezzi_per_pacco", this.getDetachedCriteria());
 	}
 	
-	public coedil99.model.CatalogoFornitoreDetachedCriteria createCatalogoFornitoreCriteria() {
-		return new coedil99.model.CatalogoFornitoreDetachedCriteria(createCriteria("catalogoFornitore"));
+	public CatalogoFornitoreDetachedCriteria createCatalogoFornitoreCriteria() {
+		return new CatalogoFornitoreDetachedCriteria(createCriteria("catalogoFornitore"));
 	}
 	
 	public ProductDescription uniqueProductDescription(PersistentSession session) {

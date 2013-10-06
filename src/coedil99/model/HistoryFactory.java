@@ -13,119 +13,118 @@
  */
 package coedil99.model;
 
+import org.orm.*;
+import org.hibernate.Query;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.orm.PersistentSession;
-
 public class HistoryFactory {
-	public static History loadHistoryByORMID(int ID) {
+	public static History loadHistoryByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadHistoryByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History getHistoryByORMID(int ID) {
+	public static History getHistoryByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getHistoryByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History loadHistoryByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static History loadHistoryByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadHistoryByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History getHistoryByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static History getHistoryByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return getHistoryByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History loadHistoryByORMID(PersistentSession session, int ID) {
+	public static History loadHistoryByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (History) session.load(coedil99.model.History.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History getHistoryByORMID(PersistentSession session, int ID) {
+	public static History getHistoryByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
 			return (History) session.get(coedil99.model.History.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History loadHistoryByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static History loadHistoryByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (History) session.load(coedil99.model.History.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History getHistoryByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static History getHistoryByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (History) session.get(coedil99.model.History.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History[] listHistoryByQuery(String condition, String orderBy) {
+	public static History[] listHistoryByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listHistoryByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History[] listHistoryByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static History[] listHistoryByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return listHistoryByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History[] listHistoryByQuery(PersistentSession session, String condition, String orderBy) {
+	public static History[] listHistoryByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.History as History");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -138,11 +137,11 @@ public class HistoryFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History[] listHistoryByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static History[] listHistoryByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.History as History");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -156,33 +155,33 @@ public class HistoryFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History loadHistoryByQuery(String condition, String orderBy) {
+	public static History loadHistoryByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadHistoryByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History loadHistoryByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static History loadHistoryByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return loadHistoryByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static History loadHistoryByQuery(PersistentSession session, String condition, String orderBy) {
+	public static History loadHistoryByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		History[] historys = listHistoryByQuery(session, condition, orderBy);
 		if (historys != null && historys.length > 0)
 			return historys[0];
@@ -190,7 +189,7 @@ public class HistoryFactory {
 			return null;
 	}
 	
-	public static History loadHistoryByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static History loadHistoryByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		History[] historys = listHistoryByQuery(session, condition, orderBy, lockMode);
 		if (historys != null && historys.length > 0)
 			return historys[0];
@@ -198,29 +197,29 @@ public class HistoryFactory {
 			return null;
 	}
 	
-	public static java.util.Iterator iterateHistoryByQuery(String condition, String orderBy) {
+	public static java.util.Iterator iterateHistoryByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateHistoryByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateHistoryByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateHistoryByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = coedil99.model.Coedil99ingdelsoftwarePersistentManager.instance().getSession();
 			return iterateHistoryByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateHistoryByQuery(PersistentSession session, String condition, String orderBy) {
+	public static java.util.Iterator iterateHistoryByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.History as History");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -232,11 +231,11 @@ public class HistoryFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	
-	public static java.util.Iterator iterateHistoryByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
+	public static java.util.Iterator iterateHistoryByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From coedil99.model.History as History");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -249,7 +248,7 @@ public class HistoryFactory {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new PersistentException(e);
 		}
 	}
 	

@@ -13,11 +13,9 @@
  */
 package coedil99.model;
 
-import java.util.List;
-
+import org.orm.*;
 import org.hibernate.Query;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
+import java.util.List;
 
 public class ProductDescriptionFactory {
 	public static ProductDescription loadProductDescriptionByORMID(int ID) throws PersistentException {
