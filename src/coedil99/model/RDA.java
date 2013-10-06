@@ -14,9 +14,7 @@
 package coedil99.model;
 
 import org.orm.*;
-
 public class RDA implements coedil99.model.Subject {
-	
 	public RDA() {
 	}
 	

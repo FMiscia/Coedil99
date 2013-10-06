@@ -15,7 +15,6 @@ package coedil99.model;
 
 import org.orm.*;
 public class DocumentoOttimizzazione {
-	
 	public DocumentoOttimizzazione() {
 	}
 	
@@ -106,7 +105,7 @@ public class DocumentoOttimizzazione {
 	
 	public DocumentoOttimizzazione(java.util.ArrayList<Item> l) {
 		//TODO: Implement Method
-		
+		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {
