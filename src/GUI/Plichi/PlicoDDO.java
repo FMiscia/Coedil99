@@ -25,8 +25,7 @@ public class PlicoDDO extends APlico{
 		setLayout(null);
 		panel = new JPanel(null);
 		panel.setLayout(new FlowLayout());
-		panel.setPreferredSize(new Dimension(800,900));
-		panel.setBounds(60, 20,625,938);
+		panel.setBounds(60, 20,625,100);
 		setPreferredSize(new Dimension(745,panel.getHeight()));
 		setSize(745,panel.getHeight());
 		add(panel);
@@ -53,6 +52,7 @@ public class PlicoDDO extends APlico{
 		DocumentoOttimizzazione docott = GestisciCommessaHandler.getInstance().getCommessaById(id).getDistinta().getDdo();
 		this.panel.removeAll();
 		this.panel.setPreferredSize(new Dimension ( 800, docott.items.size()*600 ));
+		this.panel.setSize(new Dimension ( 800, docott.items.size()*600 ));
 		this.setPreferredSize(new Dimension ( 800, this.panel.getHeight()));
 		this.setSize(new Dimension ( 800, this.panel.getHeight()));
 		for (int i = 0; i < docott.items.size(); i++){

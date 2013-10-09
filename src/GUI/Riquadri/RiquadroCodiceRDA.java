@@ -1,10 +1,5 @@
 package GUI.Riquadri;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -13,10 +8,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
+import GUI.RDACenter;
+import GUI.RaccoglitorePlichi;
 import GUI.Liste.ListaRDA;
-
+import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 
@@ -24,6 +25,7 @@ public class RiquadroCodiceRDA extends JPanel {
 
 	private ListaRDA riquadro = null;
 
+	private int RDAId;
 	private JLabel id = null;
 	private JLabel stato = null;
 	private JLabel icona = null;
@@ -93,12 +95,13 @@ public class RiquadroCodiceRDA extends JPanel {
 		add(data);
 	}
 
-	public void load(RDA rda) {
+	public void load(final RDA rda) {
+		this.RDAId = rda.getID();
 		this.id.setText(rda.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());
 		this.stato.setText(rda.getState());
 		this.icona.setIcon(RiquadroCodiceRDA.state_map.get(rda.getState()));
 		this.data.setText(rda.getDate().toString());
-		this.setBackground(new Color(30, 44, 255));
+		this.setBackground(new Color(30, 144, 255));
 		this.validate();
 		this.repaint();
 		this.addMouseListener(new MouseListener() {
@@ -106,6 +109,15 @@ public class RiquadroCodiceRDA extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
+				PlicoRDA plico_rda = PlicoRDA.getInstance();
+				RiquadroCodiceRDA.this.riquadro.deselectAll();
+				//plico_rda.load(RiquadroCodiceInterno.this.commessaId);
+				RDACenter contenitore = RDACenter.getInstance();
+				contenitore.setRDASelezionata(rda);
+				
+				RiquadroCodiceRDA.this.setBackground(new Color(30,44,255));
+				RiquadroCodiceRDA.this.validate();
+				RiquadroCodiceRDA.this.repaint();
 
 			}
 
@@ -138,7 +150,7 @@ public class RiquadroCodiceRDA extends JPanel {
 	}
 
 	public int getRDAId() {
-		return Integer.parseInt(this.id.getText());
+		return this.RDAId;
 	}
 
 }

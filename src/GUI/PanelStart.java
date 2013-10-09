@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -76,6 +77,7 @@ public class PanelStart extends JPanel {
 		// TODO Auto-generated method stub
 		JButton RDAButton = new JButton();
 		RDAButton.setToolTipText("Gestisci RDA");
+		RDAButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		RDAButton.setSize(100, 100);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -99,6 +101,7 @@ public class PanelStart extends JPanel {
 		// TODO Auto-generated method stub
 		JButton plButton = new JButton();
 		plButton.setToolTipText("Programma Lavori");
+		plButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		plButton.setPreferredSize(new Dimension(100, 100));
 		try {
 			Image img = ImageIO.read(getClass().getResource(
