@@ -11,6 +11,7 @@ License Type: Purchased
 			</generator>
 		</id>
 		<property name="state" column="State" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="date" column="`Date`" type="date" not-null="false" lazy="false"/>
 		<list name="ORM_RigheRDA" lazy="true" cascade="save-update,lock" inverse="false">
 			<key column="RDAID" not-null="true"/>
 			<index column="RDAIndex" type="integer"/>

@@ -20,15 +20,18 @@ import org.orm.criteria.*;
 
 public class CatalogoFornitoreDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
+	public final StringExpression name;
 	
 	public CatalogoFornitoreDetachedCriteria() {
 		super(coedil99.model.CatalogoFornitore.class, coedil99.model.CatalogoFornitoreCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		name = new StringExpression("name", this.getDetachedCriteria());
 	}
 	
 	public CatalogoFornitoreDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.model.CatalogoFornitoreCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		name = new StringExpression("name", this.getDetachedCriteria());
 	}
 	
 	public ProductDescriptionDetachedCriteria createProductDescriptionCriteria() {

@@ -35,22 +35,22 @@ public class RiquadroCodiceRDA extends JPanel {
 		RiquadroCodiceRDA.state_map = new HashMap<String, ImageIcon>();
 		
 		RiquadroCodiceRDA.state_map.put(
-				"CONGELATA",
+				GestisciRDAHandler.CONGELATA,
 				new ImageIcon(RiquadroCodiceRDA.class
 						.getResource("/GUI/image/congelata.png")));
 		
 		RiquadroCodiceRDA.state_map.put(
-				"RIFIUTATA",
+				GestisciRDAHandler.RIFIUTATA,
 				new ImageIcon(RiquadroCodiceRDA.class
 						.getResource("/GUI/image/rifiutata.png")));
 		
 		RiquadroCodiceRDA.state_map.put(
-				"ATTESA_CONFERMA",
+				GestisciRDAHandler.ATTESA_CONFERMA,
 				new ImageIcon(RiquadroCodiceRDA.class
 						.getResource("/GUI/image/attesaconferma.png")));
 		
 		RiquadroCodiceRDA.state_map.put(
-				"CONFERMATA",
+				GestisciRDAHandler.CONFERMATA,
 				new ImageIcon(RiquadroCodiceRDA.class
 						.getResource("/GUI/image/confermata.png")));
 	}

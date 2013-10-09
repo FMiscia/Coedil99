@@ -14,9 +14,7 @@
 package coedil99.model;
 
 import org.orm.*;
-
 public class RDA implements coedil99.model.Subject {
-	
 	public RDA() {
 	}
 	
@@ -116,6 +114,8 @@ public class RDA implements coedil99.model.Subject {
 	
 	private String state;
 	
+	private java.util.Date date;
+	
 	private java.util.List ORM_righeRDA = new java.util.ArrayList();
 	
 	private void setID(int value) {
@@ -136,6 +136,14 @@ public class RDA implements coedil99.model.Subject {
 	
 	public String getState() {
 		return state;
+	}
+	
+	public void setDate(java.util.Date value) {
+		this.date = value;
+	}
+	
+	public java.util.Date getDate() {
+		return date;
 	}
 	
 	private void setORM_RigheRDA(java.util.List value) {

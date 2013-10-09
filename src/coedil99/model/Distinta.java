@@ -119,25 +119,26 @@ public class Distinta {
 	private static int count;
 	
 	public void creaDDO() {
+		//TODO: Implement Method
 		this.getOdistinta().creaDDO();
-		
 	}
 	
 	public ODocumentoOttimizzazione getOddo() {
 		//TODO: Implement Method
-		return new ODocumentoOttimizzazione(this.ddo);
+		return new ODocumentoOttimizzazione(this.getDdo());
 	}
 	
 	public String toString() {
 		return String.valueOf(getID());
 	}
-
-	public coedil99.model.RigaLavoroListCollection getLavori() {
-		return lavori;
-	}
 	
 	public ODistinta getOdistinta(){
 		return new ODistinta(this);
+	}
+
+	public RigaLavoroListCollection getLavori() {
+		// TODO Auto-generated method stub
+		return this.lavori;
 	}
 	
 }
