@@ -15,11 +15,17 @@ public class GestisciRDAHandler {
 
 	private ArrayList<RDA> arrayRDA = null;
 	private static GestisciRDAHandler instance;
-
+	
+	public static String CONGELATA = "CONGELATA";
+	public static String RIFIUTATA = "RIFIUTATA";
+	public static String ATTESA_CONFERMA = "ATTESA_CONFERMA";
+	public static String CONFERMATA = "CONFERMATA";
+	
 	/**
 	 * Costruttore
 	 */
 	private GestisciRDAHandler() {
+		
 		try {
 			this.arrayRDA = new ArrayList<RDA>(Arrays.asList(RDAFactory.listRDAByQuery(null, "ID")));
 		} catch (PersistentException e) {
