@@ -22,7 +22,7 @@ public class ListaRDA extends ALista {
 	
 	public ListaRDA(){
 		super();
-		this.setPreferredSize(new Dimension(260,6));
+		this.setPreferredSize(new Dimension(260,0));
 		this.load(new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayRDA()));
 	
 	}
@@ -37,7 +37,7 @@ public class ListaRDA extends ALista {
 			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
 			panel.add(r);
 		}
-		this.setPreferredSize(new Dimension(154,panel.getHeight()));
+		this.setPreferredSize(new Dimension(260,panel.getHeight()));
 		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
 	}
 

@@ -94,10 +94,10 @@ public class RiquadroCodiceRDA extends JPanel {
 	}
 
 	public void load(RDA rda) {
-		//this.id.setText(rda.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());
+		this.id.setText(rda.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());
 		this.stato.setText(rda.getState());
 		this.icona.setIcon(RiquadroCodiceRDA.state_map.get(rda.getState()));
-		//this.data.setText(rda.getDate().toString());
+		this.data.setText(rda.getDate().toString());
 		this.setBackground(new Color(30, 44, 255));
 		this.validate();
 		this.repaint();
