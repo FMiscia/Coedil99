@@ -4,14 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.RDA;
+import javax.swing.JPanel;
 
-import GUI.RDACenter;
 import GUI.Abstract.ALista;
-import GUI.Riquadri.RiquadroCodiceRDA;
-import GUI.Riquadri.RiquadroDatiDistinta;
 import GUI.Riquadri.RiquadroRigaRDA;
+import coedil99.model.RDA;
 
 public class ListaRigheRDA extends ALista {
 
@@ -29,7 +26,6 @@ public class ListaRigheRDA extends ALista {
 	public void load(RDA rda) {
 		// TODO Auto-generated method stub
 		int row = rda.righeRDA.size();
-		System.out.print(row+"\n");
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		RiquadroRigaRDA riquadroRigaRDA;
 		for(int k=0; k<row; ++k){
@@ -37,7 +33,6 @@ public class ListaRigheRDA extends ALista {
 			riquadroRigaRDA = new RiquadroRigaRDA(this);
 			riquadroRigaRDA.load(rda.righeRDA.get(k));
 			this.panel.add(riquadroRigaRDA);
-			System.out.print(panel.getComponent(0));
 			this.panel.validate();
 			this.panel.repaint();
 		}
@@ -57,6 +52,10 @@ public class ListaRigheRDA extends ALista {
 	public void load(ArrayList<Object> t) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public JPanel getPanel(){
+		return this.panel;
 	}
 
 }

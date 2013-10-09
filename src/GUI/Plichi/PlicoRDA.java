@@ -47,4 +47,14 @@ public class PlicoRDA extends APlico {
 	}
 
 
+	public ListaRigheRDA getListaRigheRDA() {
+		return listaRigheRDA;
+	}
+
+
+	public void setListaRigheRDA(ListaRigheRDA listaRigheRDA) {
+		this.listaRigheRDA = listaRigheRDA;
+	}
+
+
 }

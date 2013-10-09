@@ -110,11 +110,13 @@ public class RiquadroCodiceRDA extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				ListaRigheRDA lista_rda = new ListaRigheRDA();
+				PlicoRDA plico_rda = PlicoRDA.getInstance();
 				RiquadroCodiceRDA.this.riquadro.deselectAll();
 				
 				RDACenter contenitore = RDACenter.getInstance();
 				contenitore.setRDASelezionata(rda);
+				ListaRigheRDA lista_rda = plico_rda.getListaRigheRDA();
+				lista_rda.getPanel().removeAll();
 				lista_rda.load(rda);
 				RiquadroCodiceRDA.this.setBackground(new Color(30,44,255));
 				RiquadroCodiceRDA.this.validate();
