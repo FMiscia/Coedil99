@@ -36,7 +36,7 @@ public class ListaRigheRDA extends ALista {
 			this.panel.validate();
 			this.panel.repaint();
 		}
-		this.setPreferredSize(new Dimension(260,panel.getHeight()));
+		this.setPreferredSize(new Dimension(471,panel.getHeight()));
 		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
 		this.validate();
 		this.repaint();
