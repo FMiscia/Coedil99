@@ -27,12 +27,12 @@ public class ListaRDA extends ALista {
 		super();
 		this.setPreferredSize(new Dimension(260,0));
 		this.load(new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayRDA()));
-	
+		this.deselectAll();
 	}
 	
-	@Override
-	public void load(ArrayList<Object> t){
 
+	public void load(){
+		ArrayList<Object> t = new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayRDA());
 		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		for(int k=0; k<t.size(); ++k){
@@ -43,6 +43,9 @@ public class ListaRDA extends ALista {
 		}
 		this.setPreferredSize(new Dimension(260,panel.getHeight()));
 		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
+		this.validate();
+		this.repaint();
+
 	}
 
 	public void deselectAll() {
@@ -60,6 +63,23 @@ public class ListaRDA extends ALista {
 		((RiquadroCodiceRDA) this.panel.getComponent(0)).setBackground(new Color(30,44,255));
 		return ((RiquadroCodiceRDA) this.panel.getComponent(0)).getRDAId();	
 		
+	}
+
+
+	@Override
+	public void load(ArrayList<Object> t) {
+		// TODO Auto-generated method stub
+		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
+		this.panel.setPreferredSize(new Dimension(150,row*70));
+		for(int k=0; k<t.size(); ++k){
+			final RiquadroCodiceRDA r = new RiquadroCodiceRDA(this);
+			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
+			panel.add(r);
+		}
+		this.setPreferredSize(new Dimension(260,panel.getHeight()));
+		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
+		this.validate();
+		this.repaint();
 	}
 	
 
