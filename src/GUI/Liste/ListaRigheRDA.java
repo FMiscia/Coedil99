@@ -29,6 +29,7 @@ public class ListaRigheRDA extends ALista {
 	public void load(RDA rda) {
 		// TODO Auto-generated method stub
 		int row = rda.righeRDA.size();
+		System.out.print(row+"\n");
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		RiquadroRigaRDA riquadroRigaRDA;
 		for(int k=0; k<row; ++k){
