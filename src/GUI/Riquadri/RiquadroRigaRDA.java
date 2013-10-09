@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import org.orm.PersistentException;
 
 import GUI.ProgrammaLavori;
+import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoDDO;
 import coedil99.model.RigaRDA;
 
@@ -44,9 +45,11 @@ public class RiquadroRigaRDA extends JPanel {
 	JLabel txtPezzi;
 	JLabel lblPrezzo;
 	JLabel txtPrezzo;
+	ListaRigheRDA listaRigheRDA;
 
-	public RiquadroRigaRDA() {
+	public RiquadroRigaRDA(ListaRigheRDA lrRDA) {
 		// TODO Auto-generated constructor stub
+		this.listaRigheRDA = lrRDA;
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(471, 190));
 		this.setBackground(Color.LIGHT_GRAY);
@@ -112,6 +115,7 @@ public class RiquadroRigaRDA extends JPanel {
 
 		txtPrezzo = new JLabel("");
 		add(txtPrezzo, "4, 16");
+		
 	}
 
 	public void load(final RigaRDA riga) {
@@ -140,7 +144,8 @@ public class RiquadroRigaRDA extends JPanel {
 								options, options[1]);
 				if (n == JOptionPane.YES_OPTION) {
 					try {
-						riga.delete();
+						riga.deleteAndDissociate();
+						RiquadroRigaRDA.this.listaRigheRDA.removeRiquadro(RiquadroRigaRDA.this);
 					} catch (PersistentException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -173,6 +178,8 @@ public class RiquadroRigaRDA extends JPanel {
 			}
 			
 		});			
-
+		
+		this.validate();
+		this.repaint();
 	}
 }

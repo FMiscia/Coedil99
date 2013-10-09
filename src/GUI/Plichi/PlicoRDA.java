@@ -4,15 +4,25 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 
 import GUI.Abstract.APlico;
+import GUI.Liste.ListaRigheRDA;
 
 public class PlicoRDA extends APlico {
 
 	private static PlicoRDA instance = null;
+	private ListaRigheRDA listaRigheRDA;
 
 	private PlicoRDA() {
 		setLayout(new BorderLayout());
+		addListaRigheRDA();
 		this.validate();
 		this.repaint();
+	}
+
+
+	private void addListaRigheRDA() {
+		// TODO Auto-generated method stub
+		this.listaRigheRDA = new ListaRigheRDA();
+		this.add(listaRigheRDA,BorderLayout.WEST);
 	}
 
 
