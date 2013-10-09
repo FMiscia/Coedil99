@@ -71,43 +71,43 @@ public class RiquadroRigaRDA extends JPanel {
 		lblElimina = new JLabel("");
 		add(lblElimina, "6, 2");
 
-		lblEssenza = new JLabel("Essenza");
+		lblEssenza = new JLabel("Essenza: ");
 		add(lblEssenza, "2, 4");
 
 		txtEssenza = new JLabel("");
 		add(txtEssenza, "4, 4");
 
-		lblQuantita = new JLabel("Quantità");
+		lblQuantita = new JLabel("Quantità: ");
 		add(lblQuantita, "2, 6");
 
 		txtQuantita = new JLabel("");
 		add(txtQuantita, "4, 6");
 
-		lblAltezza = new JLabel("Altezza");
+		lblAltezza = new JLabel("Altezza: ");
 		add(lblAltezza, "2, 8");
 
 		txtAltezza = new JLabel("");
 		add(txtAltezza, "4, 8");
 
-		lblLunghezza = new JLabel("Lunghezza");
+		lblLunghezza = new JLabel("Lunghezza: ");
 		add(lblLunghezza, "2, 10");
 
 		txtLunghezza = new JLabel("");
 		add(txtLunghezza, "4, 10");
 
-		lblBase = new JLabel("Base");
+		lblBase = new JLabel("Base: ");
 		add(lblBase, "2, 12");
 
 		txtLarghezza = new JLabel("");
 		add(txtLarghezza, "4, 12");
 
-		lblPezzi = new JLabel("Pezzi per pacco");
+		lblPezzi = new JLabel("Pezzi per pacco: ");
 		add(lblPezzi, "2, 14");
 
 		txtPezzi = new JLabel("");
 		add(txtPezzi, "4, 14");
 
-		lblPrezzo = new JLabel("Prezzo");
+		lblPrezzo = new JLabel("Prezzo: ");
 		add(lblPrezzo, "2, 16");
 
 		txtPrezzo = new JLabel("");
