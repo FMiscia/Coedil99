@@ -81,6 +81,13 @@ public class ListaRDA extends ALista {
 		this.validate();
 		this.repaint();
 	}
+
+
+	@Override
+	public void load(RDA rda) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

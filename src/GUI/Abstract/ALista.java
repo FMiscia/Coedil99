@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import coedil99.model.RDA;
+
 import GUI.WrapLayout;
 
 public abstract class ALista extends JScrollPane {
@@ -32,4 +34,5 @@ public abstract class ALista extends JScrollPane {
 
 	public abstract void load(ArrayList<Object> t);
 
+	public abstract void load(RDA rda);
 }

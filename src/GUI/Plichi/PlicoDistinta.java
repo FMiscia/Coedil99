@@ -29,8 +29,8 @@ public class PlicoDistinta extends APlico {
 		wrapLayout.setHgap(0);
 		setLayout(wrapLayout);
 
-		setPreferredSize(new Dimension(745, 1000));
-		setSize(745, 950);
+		setPreferredSize(new Dimension(745, 200));
+		setSize(745, 250);
 		addButton = new JButton("aggiungi nuova");
 		this.validate();
 		this.repaint();

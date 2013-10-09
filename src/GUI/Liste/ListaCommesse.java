@@ -11,6 +11,7 @@ import GUI.Riquadri.RiquadroCodiceInterno;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Cliente;
+import coedil99.model.RDA;
 
 @SuppressWarnings("serial")
 public class ListaCommesse extends ALista {
@@ -56,6 +57,12 @@ public class ListaCommesse extends ALista {
 		((RiquadroCodiceInterno) this.panel.getComponent(0)).setBackground(new Color(30,44,255));
 		
 		return ((RiquadroCodiceInterno) this.panel.getComponent(0)).getCommessaId();	
+		
+	}
+
+	@Override
+	public void load(RDA rda) {
+		// TODO Auto-generated method stub
 		
 	}
 	

@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 import GUI.RDACenter;
 import GUI.RaccoglitorePlichi;
 import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
@@ -109,15 +110,17 @@ public class RiquadroCodiceRDA extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				PlicoRDA plico_rda = PlicoRDA.getInstance();
+				ListaRigheRDA lista_rda = new ListaRigheRDA();
 				RiquadroCodiceRDA.this.riquadro.deselectAll();
-				//plico_rda.load(RiquadroCodiceInterno.this.commessaId);
+				
 				RDACenter contenitore = RDACenter.getInstance();
 				contenitore.setRDASelezionata(rda);
-				
+				lista_rda.load(rda);
 				RiquadroCodiceRDA.this.setBackground(new Color(30,44,255));
 				RiquadroCodiceRDA.this.validate();
 				RiquadroCodiceRDA.this.repaint();
+				lista_rda.validate();
+				lista_rda.repaint();
 
 			}
 
