@@ -10,6 +10,7 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
+		<property name="name" column="Name" type="string" length="255" not-null="false" lazy="false"/>
 		<list name="ORM_ProductDescription" lazy="true" cascade="save-update,lock" inverse="false">
 			<key column="CatalogoFornitoreID" not-null="true"/>
 			<index column="CatalogoFornitoreIndex" type="integer"/>

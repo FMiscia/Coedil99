@@ -112,6 +112,8 @@ public class CatalogoFornitore {
 	
 	private int ID;
 	
+	private String name;
+	
 	private java.util.List ORM_productDescription = new java.util.ArrayList();
 	
 	private void setID(int value) {
@@ -124,6 +126,14 @@ public class CatalogoFornitore {
 	
 	public int getORMID() {
 		return getID();
+	}
+	
+	public void setName(String value) {
+		this.name = value;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	private void setORM_ProductDescription(java.util.List value) {

@@ -368,7 +368,6 @@ public class Commessa {
 	private static int counter = 0;
 	
 	public Integer getOrdineId() {
-		//TODO: Implement Method
 		return this.ordine.getID();
 	}
 	
@@ -384,7 +383,7 @@ public class Commessa {
 	
 	public ODistinta getOdistinta() {
 		//TODO: Implement Method
-		return new ODistinta(this.distinta);
+		return new ODistinta(this.getDistinta());
 	}
 	
 	public String toString() {

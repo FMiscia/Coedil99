@@ -1,0 +1,2 @@
+ALTER TABLE RDA 
+  ADD COLUMN `Date` date;

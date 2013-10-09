@@ -40,6 +40,10 @@ public class ProductDescriptionDetachedCriteria extends AbstractORMDetachedCrite
 		pezzi_per_pacco = new IntegerExpression("pezzi_per_pacco", this.getDetachedCriteria());
 	}
 	
+	public GeometriaDetachedCriteria createGeometriaCriteria() {
+		return new GeometriaDetachedCriteria(createCriteria("geometria"));
+	}
+	
 	public CatalogoFornitoreDetachedCriteria createCatalogoFornitoreCriteria() {
 		return new CatalogoFornitoreDetachedCriteria(createCriteria("catalogoFornitore"));
 	}

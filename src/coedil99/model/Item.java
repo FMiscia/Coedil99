@@ -155,7 +155,7 @@ public class Item {
 	
 	public Item(coedil99.model.Geometria g, String d) {
 		//TODO: Implement Method
-		
+		throw new UnsupportedOperationException();
 	}
 	
 	public OItem getOItem() {

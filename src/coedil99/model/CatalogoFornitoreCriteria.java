@@ -20,10 +20,12 @@ import org.orm.criteria.*;
 
 public class CatalogoFornitoreCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
+	public final StringExpression name;
 	
 	public CatalogoFornitoreCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
+		name = new StringExpression("name", this);
 	}
 	
 	public CatalogoFornitoreCriteria(PersistentSession session) {

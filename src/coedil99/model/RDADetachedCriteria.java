@@ -21,17 +21,20 @@ import org.orm.criteria.*;
 public class RDADetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression state;
+	public final DateExpression date;
 	
 	public RDADetachedCriteria() {
 		super(coedil99.model.RDA.class, coedil99.model.RDACriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		state = new StringExpression("state", this.getDetachedCriteria());
+		date = new DateExpression("date", this.getDetachedCriteria());
 	}
 	
 	public RDADetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.model.RDACriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		state = new StringExpression("state", this.getDetachedCriteria());
+		date = new DateExpression("date", this.getDetachedCriteria());
 	}
 	
 	public RigaRDADetachedCriteria createRigheRDACriteria() {

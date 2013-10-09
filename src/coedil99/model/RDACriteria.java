@@ -21,11 +21,13 @@ import org.orm.criteria.*;
 public class RDACriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression state;
+	public final DateExpression date;
 	
 	public RDACriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		state = new StringExpression("state", this);
+		date = new DateExpression("date", this);
 	}
 	
 	public RDACriteria(PersistentSession session) {
