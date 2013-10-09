@@ -9,13 +9,13 @@ import javax.swing.JScrollPane;
 
 import GUI.WrapLayout;
 
-public abstract class ARiquadroCodici extends JScrollPane {
+public abstract class ALista extends JScrollPane {
 
 	private static final long serialVersionUID = 1L;
 
 	protected JPanel panel;
 
-	public ARiquadroCodici() {
+	public ALista() {
 		this.panel = new JPanel(null);
 		this.setViewportView(this.panel);
 		this.panel.setLayout(new WrapLayout());

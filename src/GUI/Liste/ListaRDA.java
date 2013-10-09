@@ -1,4 +1,4 @@
-package GUI.Riquadri;
+package GUI.Liste;
 
 
 import java.awt.Color;
@@ -12,14 +12,17 @@ import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.Cliente;
 import coedil99.model.RDA;
 
-import GUI.Abstract.ARiquadroCodici;
+import GUI.Abstract.ALista;
+import GUI.Riquadri.RiquadroCodiceInterno;
+import GUI.Riquadri.RiquadroCodiceRDA;
 
 @SuppressWarnings("serial")
-public class RiquadroCodiciRDA extends ARiquadroCodici {
+public class ListaRDA extends ALista {
 	
 	
-	public RiquadroCodiciRDA(){
+	public ListaRDA(){
 		super();
+		this.setPreferredSize(new Dimension(260,6));
 		this.load(new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayRDA()));
 	
 	}

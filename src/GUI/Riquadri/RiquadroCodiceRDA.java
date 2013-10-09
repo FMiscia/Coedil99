@@ -15,15 +15,19 @@ import java.util.HashMap;
 
 import javax.swing.SwingConstants;
 
+import GUI.Liste.ListaRDA;
+
+import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 
 public class RiquadroCodiceRDA extends JPanel {
 
-	private RiquadroCodiciRDA riquadro = null;
+	private ListaRDA riquadro = null;
 
 	private JLabel id = null;
 	private JLabel stato = null;
 	private JLabel icona = null;
+	private JLabel data = null;
 
 	private static HashMap<String, ImageIcon> state_map;
 	static {
@@ -51,10 +55,10 @@ public class RiquadroCodiceRDA extends JPanel {
 						.getResource("/GUI/image/confermata.png")));
 	}
 
-	public RiquadroCodiceRDA(RiquadroCodiciRDA rda) {
+	public RiquadroCodiceRDA(ListaRDA rda) {
 		this.riquadro = rda;
 		setBounds(new Rectangle(0, 0, 0, 0));
-		this.setPreferredSize(new Dimension(200, 59));
+		this.setPreferredSize(new Dimension(260, 60));
 		this.setBackground(new Color(30, 144, 255));
 		this.setBorder(new LineBorder(Color.BLACK));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -63,12 +67,12 @@ public class RiquadroCodiceRDA extends JPanel {
 		icona = new JLabel();
 		icona.setHorizontalAlignment(SwingConstants.CENTER);
 		icona.setHorizontalTextPosition(SwingConstants.LEADING);
-		icona.setBounds(100, 30, 100, 30);
+		icona.setBounds(200, 0, 60, 60);
 		icona.setBorder(new LineBorder(Color.BLACK));
 
 		stato = new JLabel();
 		stato.setHorizontalAlignment(SwingConstants.CENTER);
-		stato.setBounds(0, 30, 100, 30);
+		stato.setBounds(100, 30, 100, 30);
 		stato.setBorder(new LineBorder(Color.BLACK));
 
 		id = new JLabel();
@@ -77,15 +81,23 @@ public class RiquadroCodiceRDA extends JPanel {
 		id.setBorder(new LineBorder(new Color(0, 0, 0)));
 		id.setBounds(0, 0, 200, 30);
 
+		data = new JLabel();
+		data.setHorizontalAlignment(SwingConstants.CENTER);
+		data.setHorizontalTextPosition(SwingConstants.CENTER);
+		data.setBorder(new LineBorder(new Color(0, 0, 0)));
+		data.setBounds(0, 30, 100, 30);
+		
 		add(id);
 		add(stato);
 		add(icona);
+		add(data);
 	}
 
 	public void load(RDA rda) {
-		this.id.setText("RDA numero: "+String.valueOf(rda.getID()));
+		//this.id.setText(rda.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());
 		this.stato.setText(rda.getState());
 		this.icona.setIcon(RiquadroCodiceRDA.state_map.get(rda.getState()));
+		//this.data.setText(rda.getDate().toString());
 		this.setBackground(new Color(30, 44, 255));
 		this.validate();
 		this.repaint();

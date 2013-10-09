@@ -1,4 +1,4 @@
-package GUI.Riquadri;
+package GUI.Liste;
 
 
 import java.awt.Color;
@@ -6,17 +6,17 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import GUI.Abstract.ARiquadroCodici;
-
+import GUI.Abstract.ALista;
+import GUI.Riquadri.RiquadroCodiceInterno;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Cliente;
 
 @SuppressWarnings("serial")
-public class RiquadroCodiciProgrammaLavoro extends ARiquadroCodici {
+public class ListaCommesse extends ALista {
 	
 	
-	public RiquadroCodiciProgrammaLavoro(){
+	public ListaCommesse(){
 		super();
 		this.load(new ArrayList<Object>(GestisciClienteHandler.getInstance().getClienti()));
 		

@@ -11,11 +11,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import GUI.Abstract.ALista;
 import GUI.ClipPanels.ClipPanelProgrammaLavori;
+import GUI.Liste.ListaCommesse;
 import GUI.Plichi.PlicoCommessa;
 import GUI.Plichi.PlicoDDO;
 import GUI.Plichi.PlicoDistinta;
-import GUI.Riquadri.RiquadroCodiciProgrammaLavoro;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Commessa;
 
@@ -29,7 +30,7 @@ public class ProgrammaLavori extends JPanel {
 	 * Create the panel.
 	 */
 	private static ProgrammaLavori instance = null;
-	private RiquadroCodiciProgrammaLavoro riquadrocodici;
+	private ALista lista;
 	private RaccoglitorePlichi raccoglitoreplichi;
 	private JMenuBar menuBar;
 	private ClipPanelProgrammaLavori clip;
@@ -51,17 +52,17 @@ public class ProgrammaLavori extends JPanel {
 		add(proglavoripanel, BorderLayout.CENTER);
 		proglavoripanel.setLayout(new BorderLayout(0, 0));
 
-		this.riquadrocodici = new RiquadroCodiciProgrammaLavoro();
-		this.riquadrocodici.setPreferredSize(new Dimension(200, 0));
-		proglavoripanel.add(riquadrocodici, BorderLayout.WEST);
+		this.lista = new ListaCommesse();
+		this.lista.setPreferredSize(new Dimension(200, 0));
+		proglavoripanel.add(lista, BorderLayout.WEST);
 
 		proglavoripanel.add(this.raccoglitoreplichi, BorderLayout.CENTER);
 		this.commessaSelezionata = GestisciCommessaHandler.getInstance()
-				.getCommessaById(this.riquadrocodici.getPrimaCommessa());
+				.getCommessaById(((ListaCommesse) this.lista).getPrimaCommessa());
 		this.raccoglitoreplichi.caricaPrimaCommessa(this.commessaSelezionata);
 
 		this.commessaSelezionata = GestisciCommessaHandler.getInstance()
-				.getCommessaById(this.riquadrocodici.getPrimaCommessa());
+				.getCommessaById(((ListaCommesse) this.lista).getPrimaCommessa());
 
 		this.clip = new ClipPanelProgrammaLavori();
 		
@@ -80,12 +81,12 @@ public class ProgrammaLavori extends JPanel {
 		return ProgrammaLavori.instance;
 	}
 
-	public RiquadroCodiciProgrammaLavoro getRiquadrocodici() {
-		return riquadrocodici;
+	public ListaCommesse getRiquadrocodici() {
+		return (ListaCommesse) lista;
 	}
 
-	public void setRiquadrocodici(RiquadroCodiciProgrammaLavoro riquadrocodici) {
-		this.riquadrocodici = riquadrocodici;
+	public void setRiquadrocodici(ListaCommesse riquadrocodici) {
+		this.lista = riquadrocodici;
 	}
 
 	public RaccoglitorePlichi getRaccoglitorePlichi() {

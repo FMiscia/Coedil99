@@ -14,6 +14,7 @@ import javax.swing.border.LineBorder;
 
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
+import GUI.Liste.ListaCommesse;
 import GUI.Plichi.PlicoCommessa;
 
 import coedil99.model.Cliente;
@@ -26,10 +27,10 @@ public class RiquadroCodiceInterno extends JPanel {
 	private JLabel scadenza;
 	private JLabel codiceInterno;
 	private JLabel cliente;
-	private RiquadroCodiciProgrammaLavoro riquadro = null;
+	private ListaCommesse riquadro = null;
 	private int commessaId;
 
-	public RiquadroCodiceInterno(RiquadroCodiciProgrammaLavoro rc){
+	public RiquadroCodiceInterno(ListaCommesse rc){
 		this.riquadro = rc;
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(200,59));
