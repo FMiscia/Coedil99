@@ -18,16 +18,15 @@ public class RDACenter extends JPanel {
 	
 	private ListaRDA lista;
 	private ClipPanelRDA clipPanel = new ClipPanelRDA();	
-	private PlicoRDA plicoRDA = PlicoRDA.getInstance();
 	
 	public RDACenter(){
 		this.setLayout(new BorderLayout());
 		this.add(clipPanel, BorderLayout.NORTH);
 		this.lista = new ListaRDA();
 		this.add(this.lista, BorderLayout.WEST);
-		this.add(this.plicoRDA, BorderLayout.CENTER);
+		this.add(PlicoRDA.getInstance(), BorderLayout.CENTER);
 		this.setRDASelezionata(GestisciRDAHandler.getInstance().getRDAById(this.lista.getPrimaRDA()));
-		this.plicoRDA.getListaRigheRDA().load(this.getRDASelezionata());
+		PlicoRDA.getInstance().getListaRigheRDA().load(this.getRDASelezionata());
 	}
 	
 	//Singleton

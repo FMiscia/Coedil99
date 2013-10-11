@@ -58,6 +58,13 @@ public class ListaCommesse extends ALista {
 		
 		return ((RiquadroCodiceInterno) this.panel.getComponent(0)).getCommessaId();	
 		
-	}	
+	}
+
+	@Override
+	public void load(RDA rda) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }

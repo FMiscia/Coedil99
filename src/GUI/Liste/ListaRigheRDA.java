@@ -22,10 +22,11 @@ public class ListaRigheRDA extends ALista {
 		this.repaint();
 	}
 
+	@Override
 	public void load(RDA rda) {
+		// TODO Auto-generated method stub
 		int row = rda.righeRDA.size();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
-		this.panel.removeAll();
 		RiquadroRigaRDA riquadroRigaRDA;
 		for(int k=0; k<row; ++k){
 			riquadroRigaRDA = new RiquadroRigaRDA(this);
