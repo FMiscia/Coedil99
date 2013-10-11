@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 
 import GUI.Abstract.APlico;
 import GUI.Riquadri.RiquadroOttimizzazione;
-import GUI.Riquadri.RiquadroOttimizzazioneFactory;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Commessa;
 import coedil99.model.DocumentoOttimizzazione;
@@ -57,7 +56,7 @@ public class PlicoDDO extends APlico{
 		this.setPreferredSize(new Dimension ( 800, this.panel.getHeight()));
 		this.setSize(new Dimension ( 800, this.panel.getHeight()));
 		for (int i = 0; i < docott.items.size(); i++){
-			ro = (RiquadroOttimizzazione) RiquadroOttimizzazioneFactory.getInstance().makeRiquadro();
+			ro = new RiquadroOttimizzazione("Ottimizzazione");
 			ro.load( c.getDistinta().getDdo().items.toArray()[i] );
 			this.panel.add(ro);
 		}

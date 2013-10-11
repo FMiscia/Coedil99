@@ -5,15 +5,10 @@ import java.awt.event.ComponentEvent;
 
 import GUI.Abstract.APlico;
 import GUI.Riquadri.RiquadroDatiAziendali;
-import GUI.Riquadri.RiquadroDatiAziendaliFactory;
 import GUI.Riquadri.RiquadroDatiClienteConsegna;
-import GUI.Riquadri.RiquadroDatiClienteConsegnaFactory;
 import GUI.Riquadri.RiquadroDatiConsegna;
-import GUI.Riquadri.RiquadroDatiConsegnaFactory;
 import GUI.Riquadri.RiquadroDatiProduzioneConsegna;
-import GUI.Riquadri.RiquadroDatiProduzioneConsegnaFactory;
 import GUI.Riquadri.RiquadroDatiSviluppoConsegna;
-import GUI.Riquadri.RiquadroDatiSviluppoConsegnaFactory;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.controller.GestisciOrdineHandler;
@@ -42,7 +37,7 @@ public class PlicoCommessa extends APlico{
 		setBorder(null);
 		setLayout(null);
 		
-		rda = (RiquadroDatiAziendali) RiquadroDatiAziendaliFactory.getInstance().makeRiquadro();
+		rda = new RiquadroDatiAziendali("Dati Aziendali");
 
 		rda.addComponentListener(new ComponentAdapter() {
 			@Override
@@ -50,10 +45,10 @@ public class PlicoCommessa extends APlico{
 				posizionaRiquadri();
 			}
 		});
-		rdcc = (RiquadroDatiClienteConsegna) RiquadroDatiClienteConsegnaFactory.getInstance().makeRiquadro();
-		rdc = (RiquadroDatiConsegna) RiquadroDatiConsegnaFactory.getInstance().makeRiquadro();
-		rdpc = (RiquadroDatiProduzioneConsegna) RiquadroDatiProduzioneConsegnaFactory.getInstance().makeRiquadro();
-		rsc = (RiquadroDatiSviluppoConsegna) RiquadroDatiSviluppoConsegnaFactory.getInstance().makeRiquadro();
+		rdcc = new RiquadroDatiClienteConsegna("Dati Consegna Cliente");
+		rdc = new RiquadroDatiConsegna("Dati Consenga");
+		rdpc = new RiquadroDatiProduzioneConsegna("Dati Consegna Produzione");
+		rsc = new RiquadroDatiSviluppoConsegna("Dati Sviluppo Consegna");
 		posizionaRiquadri();
 		setPreferredSize(new Dimension(745, 1110));
 		setSize(745,950);

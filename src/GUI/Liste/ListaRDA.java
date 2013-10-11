@@ -16,7 +16,6 @@ import coedil99.model.RDA;
 
 import GUI.RDACenter;
 import GUI.Abstract.ALista;
-import GUI.Plichi.PlicoRDA;
 import GUI.Riquadri.RiquadroCodiceInterno;
 import GUI.Riquadri.RiquadroCodiceRDA;
 
