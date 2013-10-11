@@ -4,9 +4,9 @@ import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import coedil99.controller.GestisciFornitoreHandler;
@@ -80,16 +80,26 @@ public class FormRDA extends JPanel {
 				
 				@Override
 				public void itemStateChanged(ItemEvent e) {
-	                FormRDA.this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(cbFornitore.getSelectedItem().toString()));
-	                FormRDA.this.cbEssenza.setEnabled(true);
+					System.out.println("change");
+	                if(e.getStateChange() == ItemEvent.SELECTED) {
+		                FormRDA.this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(cbFornitore.getSelectedItem().toString()));
+		                FormRDA.this.cbEssenza.setEnabled(true);
+	                }
+
 	            }
 			});
 		}
 	}
 	
 	private void loadEssenze(CatalogoFornitore fornitore){
-		for(int i=0; i<fornitore.productDescription.size(); ++i)
-			this.cbEssenza.addItem(fornitore.productDescription.get(i).getEssenza());
+		TreeSet<String> essenze = new TreeSet<String>();
+		for(int i=0; i<fornitore.productDescription.size(); ++i){
+			essenze.add(fornitore.productDescription.get(i).getEssenza());
+		}
+		for(int i=0; i<essenze.size(); ++i){
+			this.cbEssenza.addItem(essenze.toArray()[i]);
+		}
+			
 	}
 
 	private void loadGeometrie(){
