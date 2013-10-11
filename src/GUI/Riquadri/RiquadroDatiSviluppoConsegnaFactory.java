@@ -6,6 +6,8 @@ public class RiquadroDatiSviluppoConsegnaFactory extends RiquadroFactory {
 
 	private static RiquadroFactory instance;
 	
+	private RiquadroDatiSviluppoConsegnaFactory(){};
+	
 	@Override
 	public ARiquadro makeRiquadro() {
 		// TODO Auto-generated method stub

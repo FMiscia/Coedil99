@@ -6,6 +6,8 @@ public class RiquadroOttimizzazioneFactory extends RiquadroFactory {
 
 	private static RiquadroFactory instance;
 	
+	private RiquadroOttimizzazioneFactory(){};
+	
 	@Override
 	public ARiquadro makeRiquadro() {
 		// TODO Auto-generated method stub

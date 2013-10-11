@@ -5,7 +5,9 @@ import GUI.Abstract.ARiquadro;
 public class RiquadroDatiAziendaliFactory extends RiquadroFactory {
 	
 	private static RiquadroFactory instance;
-
+	
+	private RiquadroDatiAziendaliFactory(){};
+	
 	@Override
 	public ARiquadro makeRiquadro() {
 		return new RiquadroDatiAziendali("Dati Aziendali");

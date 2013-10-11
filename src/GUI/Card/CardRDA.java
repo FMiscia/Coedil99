@@ -128,7 +128,7 @@ public class CardRDA extends ACard {
 				contenitore.setRDASelezionata(rda);
 				ListaRigheRDA lista_rda = plico_rda.getListaRigheRDA();
 				lista_rda.getPanel().removeAll();
-				lista_rda.load(new ArrayList<>(rda.righeRDA.getCollection()));
+				lista_rda.load(new ArrayList<Object>(rda.righeRDA.getCollection()));
 				CardRDA.this.setBackground(new Color(30,44,255));
 				CardRDA.this.validate();
 				CardRDA.this.repaint();
