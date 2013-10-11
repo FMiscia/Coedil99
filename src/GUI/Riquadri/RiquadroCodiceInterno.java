@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -92,7 +93,6 @@ public class RiquadroCodiceInterno extends JPanel {
 				RiquadroCodiceInterno.this.repaint();
 				RaccoglitorePlichi.getInstance().getScrollPaneWrapper().validate();
 				RaccoglitorePlichi.getInstance().getScrollPaneWrapper().repaint();
-				
 			}
 
 			@Override
