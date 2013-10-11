@@ -115,15 +115,13 @@ public class RiquadroCodiceRDA extends JPanel {
 				
 				RDACenter contenitore = RDACenter.getInstance();
 				contenitore.setRDASelezionata(rda);
-				ListaRigheRDA lista_rda = plico_rda.getListaRigheRDA();
-				lista_rda.getPanel().removeAll();
-				lista_rda.load(rda);
+				ListaRigheRDA lista_righe_rda = plico_rda.getListaRigheRDA();
+				lista_righe_rda.load(rda);
+				lista_righe_rda.validate();
+				lista_righe_rda.repaint();
 				RiquadroCodiceRDA.this.setBackground(new Color(30,44,255));
 				RiquadroCodiceRDA.this.validate();
 				RiquadroCodiceRDA.this.repaint();
-				lista_rda.validate();
-				lista_rda.repaint();
-
 			}
 
 			@Override

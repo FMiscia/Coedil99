@@ -83,11 +83,4 @@ public class ListaRDA extends ALista {
 	}
 
 
-	@Override
-	public void load(RDA rda) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-
 }

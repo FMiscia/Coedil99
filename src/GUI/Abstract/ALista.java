@@ -34,5 +34,4 @@ public abstract class ALista extends JScrollPane {
 
 	public abstract void load(ArrayList<Object> t);
 
-	public abstract void load(RDA rda);
 }
