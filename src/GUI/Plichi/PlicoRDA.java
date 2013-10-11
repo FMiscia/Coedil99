@@ -14,8 +14,6 @@ public class PlicoRDA extends APlico {
 	private PlicoRDA() {
 		setLayout(new BorderLayout());
 		addListaRigheRDA();
-		this.validate();
-		this.repaint();
 	}
 
 

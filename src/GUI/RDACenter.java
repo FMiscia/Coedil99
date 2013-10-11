@@ -1,6 +1,8 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 
 import coedil99.controller.GestisciRDAHandler;
@@ -18,15 +20,16 @@ public class RDACenter extends JPanel {
 	
 	private ListaRDA lista;
 	private ClipPanelRDA clipPanel = new ClipPanelRDA();	
-	private PlicoRDA plicoRDA = PlicoRDA.getInstance();
 	public RDACenter(){
 		this.setLayout(new BorderLayout());
 		this.add(clipPanel, BorderLayout.NORTH);
 		this.lista = new ListaRDA();
-		this.add(this.lista, BorderLayout.WEST);
-		this.add(this.plicoRDA, BorderLayout.CENTER);
 		this.setRDASelezionata(GestisciRDAHandler.getInstance().getRDAById(this.lista.getPrimaRDA()));
-		
+		this.add(this.lista, BorderLayout.WEST);
+		this.add(PlicoRDA.getInstance(), BorderLayout.CENTER);	
+		this.validate();
+		this.repaint();
+		PlicoRDA.getInstance().getListaRigheRDA().load(this.getRDASelezionata());
 	}
 	
 	//Singleton

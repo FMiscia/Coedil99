@@ -13,6 +13,7 @@ import GUI.RaccoglitorePlichi;
 import GUI.WrapLayout;
 import GUI.Abstract.APlico;
 import GUI.Riquadri.RiquadroDatiDistinta;
+import GUI.Riquadri.RiquadroDatiDistintaFactory;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Distinta;
 
@@ -57,48 +58,49 @@ public class PlicoDistinta extends APlico {
 				.getCommessaById(id).getDistinta();
 		if (d != null && d.getLavori().size() != 0) {
 			for (int i = 0; i < d.getLavori().size(); i++) {
-				temp = new RiquadroDatiDistinta("Riga Lavoro");
+				temp = (RiquadroDatiDistinta) RiquadroDatiDistintaFactory
+						.getInstance().makeRiquadro();
 				temp.load(d.getLavori().get(i));
 				temp.setLocation(40, 20 * (i + 1));
 				this.add(temp);
 				this.riquadri.add(temp);
 			}
 		} else {
-			temp = new RiquadroDatiDistinta("Riga Lavoro");
+			temp = (RiquadroDatiDistinta) RiquadroDatiDistintaFactory
+					.getInstance().makeRiquadro();
 			temp.makeEditable(true);
 			temp.setLocation(40, 20);
 			this.add(temp);
 			this.riquadri.add(temp);
 		}
-		if (!ProgrammaLavori.getInstance().getCommessaSelezionata().getOdistinta()
-				.hasDdo()) {
+		if (!ProgrammaLavori.getInstance().getCommessaSelezionata()
+				.getOdistinta().hasDdo()) {
 			MouseListener[] arrML = addButton.getMouseListeners();
-			if (arrML.length == 1){
+			if (arrML.length == 1) {
 				addButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
 						// TODO Auto-generated method stub
-						RiquadroDatiDistinta temp = new RiquadroDatiDistinta(
-								"Riga Lavoro");
+						RiquadroDatiDistinta temp = (RiquadroDatiDistinta) RiquadroDatiDistintaFactory
+								.getInstance().makeRiquadro();
 						temp.makeEditable(true);
 						PlicoDistinta.this.add(temp);
 						PlicoDistinta.this.posizionaAddButton();
 					}
-				});	
+				});
 			}
 		}
 		this.add(addButton);
 		this.aggiornaAltezze();
 		addButton.setPreferredSize(new Dimension(160, 20));
-		if (ProgrammaLavori.getInstance().getCommessaSelezionata().getOdistinta()
-				.hasDdo()){
-			for(RiquadroDatiDistinta r: riquadri){
+		if (ProgrammaLavori.getInstance().getCommessaSelezionata()
+				.getOdistinta().hasDdo()) {
+			for (RiquadroDatiDistinta r : riquadri) {
 				r.avoidEditing();
 				addButton.setEnabled(false);
 			}
-		}
-		else {
-			for(RiquadroDatiDistinta r: riquadri){
+		} else {
+			for (RiquadroDatiDistinta r : riquadri) {
 				addButton.setEnabled(true);
 			}
 		}
@@ -117,24 +119,24 @@ public class PlicoDistinta extends APlico {
 		RaccoglitorePlichi.getInstance().getScrollPaneWrapper().validate();
 		RaccoglitorePlichi.getInstance().getScrollPaneWrapper().repaint();
 	}
-	
-	public void removeRiquadro(RiquadroDatiDistinta r){
+
+	public void removeRiquadro(RiquadroDatiDistinta r) {
 		this.remove(r);
 		this.riquadri.remove(r);
 	}
-	
-	public void posizionaAddButton(){
+
+	public void posizionaAddButton() {
 		this.aggiornaAltezze();
 		this.remove(addButton);
 		this.add(addButton);
 		this.validate();
 		this.repaint();
 	}
-	
-	public void addRiquadroinLista(RiquadroDatiDistinta r){
+
+	public void addRiquadroinLista(RiquadroDatiDistinta r) {
 		this.riquadri.add(r);
 	}
-	
+
 	public ArrayList<RiquadroDatiDistinta> getRiquadri() {
 		return riquadri;
 	}
