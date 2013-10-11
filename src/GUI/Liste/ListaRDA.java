@@ -4,20 +4,13 @@ package GUI.Liste;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 
-import coedil99.controller.GestisciCommessaHandler;
 import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.Cliente;
-import coedil99.model.RDA;
-
-import GUI.RDACenter;
 import GUI.Abstract.ALista;
-import GUI.Riquadri.RiquadroCodiceInterno;
-import GUI.Riquadri.RiquadroCodiceRDA;
+import GUI.Card.CardRDA;
+
 
 @SuppressWarnings("serial")
 public class ListaRDA extends ALista {
@@ -36,7 +29,7 @@ public class ListaRDA extends ALista {
 		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		for(int k=0; k<t.size(); ++k){
-			final RiquadroCodiceRDA r = new RiquadroCodiceRDA(this);
+			final CardRDA r = new CardRDA(this);
 			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
 			panel.add(r);
 			
@@ -60,8 +53,8 @@ public class ListaRDA extends ALista {
 	}
 	
 	public int getPrimaRDA(){
-		((RiquadroCodiceRDA) this.panel.getComponent(0)).setBackground(new Color(30,44,255));
-		return ((RiquadroCodiceRDA) this.panel.getComponent(0)).getRDAId();	
+		((CardRDA) this.panel.getComponent(0)).setBackground(new Color(30,44,255));
+		return ((CardRDA) this.panel.getComponent(0)).getRDAId();	
 		
 	}
 
@@ -72,7 +65,7 @@ public class ListaRDA extends ALista {
 		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		for(int k=0; k<t.size(); ++k){
-			final RiquadroCodiceRDA r = new RiquadroCodiceRDA(this);
+			final CardRDA r = new CardRDA(this);
 			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
 			panel.add(r);
 		}
@@ -82,12 +75,6 @@ public class ListaRDA extends ALista {
 		this.repaint();
 	}
 
-
-	@Override
-	public void load(RDA rda) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 
 }

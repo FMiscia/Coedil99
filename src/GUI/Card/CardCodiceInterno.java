@@ -1,4 +1,4 @@
-package GUI.Riquadri;
+package GUI.Card;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -6,14 +6,15 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
+import GUI.Abstract.ACard;
 import GUI.Liste.ListaCommesse;
 import GUI.Plichi.PlicoCommessa;
 
@@ -22,7 +23,7 @@ import coedil99.model.Commessa;
 import coedil99.model.Ordine;
 
 @SuppressWarnings("serial")
-public class RiquadroCodiceInterno extends JPanel {
+public class CardCodiceInterno extends ACard {
 	
 	private JLabel scadenza;
 	private JLabel codiceInterno;
@@ -30,7 +31,8 @@ public class RiquadroCodiceInterno extends JPanel {
 	private ListaCommesse riquadro = null;
 	private int commessaId;
 
-	public RiquadroCodiceInterno(ListaCommesse rc){
+	public CardCodiceInterno(ListaCommesse rc){
+		super(rc);
 		this.riquadro = rc;
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(200,59));
@@ -62,7 +64,19 @@ public class RiquadroCodiceInterno extends JPanel {
 				
 	}
 	
-	public void load(Cliente c, Ordine o, final Commessa cc){
+
+
+	public int getCommessaId() {
+		return commessaId;
+	}
+
+	@Override
+	public void load(Object obj) {
+		// TODO Auto-generated method stub
+		ArrayList<Object> param = (ArrayList<Object>) obj;
+		Cliente c = (Cliente) param.get(0);
+		Ordine o = (Ordine) param.get(1);
+		final Commessa cc = (Commessa) param.get(2);
 		cliente.setText(c.getName());
 		if(o.getDataScadenza() == null)
 			scadenza.setText("--/--/----");
@@ -77,9 +91,9 @@ public class RiquadroCodiceInterno extends JPanel {
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				PlicoCommessa plico_commessa = PlicoCommessa.getInstance();		
-				RiquadroCodiceInterno.this.riquadro.deselectAll();
-				plico_commessa.load(RiquadroCodiceInterno.this.commessaId);
-				final int idCommessa = RiquadroCodiceInterno.this.commessaId;
+				CardCodiceInterno.this.riquadro.deselectAll();
+				plico_commessa.load(CardCodiceInterno.this.commessaId);
+				final int idCommessa = CardCodiceInterno.this.commessaId;
 				ProgrammaLavori contenitore = ProgrammaLavori.getInstance();
 				contenitore.setCommessaSelezionata(cc);
 				contenitore.getRaccoglitorePlichi().getPaperPanel().removeAll();
@@ -87,9 +101,9 @@ public class RiquadroCodiceInterno extends JPanel {
 				contenitore.getRaccoglitorePlichi().getPaperPanel().repaint();
 				contenitore.getRaccoglitorePlichi().getPaperPanel().add(plico_commessa);
 				contenitore.getClipPanel().resetInitialState();
-				RiquadroCodiceInterno.this.setBackground(new Color(30,44,255));
-				RiquadroCodiceInterno.this.validate();
-				RiquadroCodiceInterno.this.repaint();
+				CardCodiceInterno.this.setBackground(new Color(30,44,255));
+				CardCodiceInterno.this.validate();
+				CardCodiceInterno.this.repaint();
 				RaccoglitorePlichi.getInstance().getScrollPaneWrapper().validate();
 				RaccoglitorePlichi.getInstance().getScrollPaneWrapper().repaint();
 				
@@ -121,10 +135,6 @@ public class RiquadroCodiceInterno extends JPanel {
 			
 		});
 		
-	}
-
-	public int getCommessaId() {
-		return commessaId;
 	}
 	
 

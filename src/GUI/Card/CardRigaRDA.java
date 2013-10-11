@@ -1,4 +1,4 @@
-package GUI.Riquadri;
+package GUI.Card;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import org.orm.PersistentException;
 
 import GUI.ProgrammaLavori;
+import GUI.Abstract.ACard;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoDDO;
 import coedil99.model.RigaRDA;
@@ -28,7 +29,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 
-public class RiquadroRigaRDA extends JPanel {
+public class CardRigaRDA extends ACard {
 
 	JLabel lblElimina;
 	JLabel lblEssenza;
@@ -47,8 +48,9 @@ public class RiquadroRigaRDA extends JPanel {
 	JLabel txtPrezzo;
 	ListaRigheRDA listaRigheRDA;
 
-	public RiquadroRigaRDA(ListaRigheRDA lrRDA) {
+	public CardRigaRDA(ListaRigheRDA lrRDA) {
 		// TODO Auto-generated constructor stub
+		super(lrRDA);
 		this.listaRigheRDA = lrRDA;
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(300, 200));
@@ -118,7 +120,11 @@ public class RiquadroRigaRDA extends JPanel {
 		
 	}
 
-	public void load(final RigaRDA riga) {
+
+	@Override
+	public void load(Object o) {
+		// TODO Auto-generated method stub
+		final RigaRDA riga = (RigaRDA) o;
 		this.txtEssenza.setText(riga.getDescription().getEssenza());
 		this.txtQuantita.setText(String.valueOf(riga.getQuantity()));
 		this.txtAltezza.setText(String.valueOf(riga.getDescription().getGeometria().getAltezza()));
@@ -126,7 +132,7 @@ public class RiquadroRigaRDA extends JPanel {
 		this.txtLarghezza.setText(String.valueOf(riga.getDescription().getGeometria().getBase()));
 		this.txtPezzi.setText(String.valueOf(riga.getDescription().getPezzi_per_pacco()));
 		this.txtPrezzo.setText(String.valueOf(riga.getDescription().getPrezzo()));
-		this.lblElimina.setIcon(new ImageIcon(RiquadroRigaRDA.class
+		this.lblElimina.setIcon(new ImageIcon(CardRigaRDA.class
 				.getResource("/GUI/image/cancella.png")));
 		this.lblElimina.addMouseListener(new MouseListener() {
 
@@ -145,7 +151,7 @@ public class RiquadroRigaRDA extends JPanel {
 				if (n == JOptionPane.YES_OPTION) {
 					try {
 						riga.deleteAndDissociate();
-						RiquadroRigaRDA.this.listaRigheRDA.removeRiquadro(RiquadroRigaRDA.this);
+						CardRigaRDA.this.listaRigheRDA.removeRiquadro(CardRigaRDA.this);
 					} catch (PersistentException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -181,5 +187,8 @@ public class RiquadroRigaRDA extends JPanel {
 		
 		this.validate();
 		this.repaint();
+
 	}
+
+
 }

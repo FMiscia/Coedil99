@@ -7,7 +7,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 
 import GUI.Abstract.ALista;
-import GUI.Riquadri.RiquadroCodiceInterno;
+import GUI.Card.CardCodiceInterno;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Cliente;
@@ -31,8 +31,15 @@ public class ListaCommesse extends ALista {
 			Cliente temp = (Cliente)t.get(k);
 			for(int j=0; j<temp.ordini.size(); ++j){
 				for(int i=0; i<temp.ordini.get(j).commesse.size(); ++i){
-					final RiquadroCodiceInterno r = new RiquadroCodiceInterno(this);
-					r.load(temp, temp.ordini.get(j), temp.ordini.get(j).commesse.get(i));
+					final CardCodiceInterno r = new CardCodiceInterno(this);
+					ArrayList<Object> commessaIdentifier = new ArrayList<Object>();
+					//cliente
+					commessaIdentifier.add(0, temp);
+					//ordine
+					commessaIdentifier.add(1, temp.ordini.get(j));
+					//commessa
+					commessaIdentifier.add(2, temp.ordini.get(j).commesse.get(i));
+					r.load(commessaIdentifier);
 					panel.add(r);
 				}
 			}
@@ -54,17 +61,13 @@ public class ListaCommesse extends ALista {
 	}
 	
 	public int getPrimaCommessa(){
-		((RiquadroCodiceInterno) this.panel.getComponent(0)).setBackground(new Color(30,44,255));
+		((CardCodiceInterno) this.panel.getComponent(0)).setBackground(new Color(30,44,255));
 		
-		return ((RiquadroCodiceInterno) this.panel.getComponent(0)).getCommessaId();	
+		return ((CardCodiceInterno) this.panel.getComponent(0)).getCommessaId();	
 		
 	}
 
-	@Override
-	public void load(RDA rda) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
+
 
 }
