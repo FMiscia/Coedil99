@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import coedil99.controller.GestisciRDAHandler;
 import GUI.Abstract.ALista;
 import GUI.Card.CardRDA;
+import GUI.Card.CardRDAFactory;
 
 
 @SuppressWarnings("serial")
@@ -29,7 +30,7 @@ public class ListaRDA extends ALista {
 		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		for(int k=0; k<t.size(); ++k){
-			final CardRDA r = new CardRDA(this);
+			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(this);
 			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
 			panel.add(r);
 			
@@ -65,7 +66,7 @@ public class ListaRDA extends ALista {
 		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		for(int k=0; k<t.size(); ++k){
-			final CardRDA r = new CardRDA(this);
+			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(this);
 			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
 			panel.add(r);
 		}

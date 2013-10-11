@@ -4,20 +4,21 @@ import GUI.Abstract.ARiquadro;
 
 public class RiquadroDatiConsegnaFactory extends RiquadroFactory {
 
-	private static RiquadroFactory instance;
-	
-	private RiquadroDatiConsegnaFactory(){};
-	
+	private static RiquadroFactory instance = null;
+
+	private RiquadroDatiConsegnaFactory() {
+	};
+
 	@Override
 	public ARiquadro makeRiquadro() {
 		// TODO Auto-generated method stub
 		return new RiquadroDatiConsegna("Dati Consegna");
 	}
-	
-	public static RiquadroFactory getInstance(){
-		if(instance == null)
-			return new RiquadroDatiConsegnaFactory();
-		else return instance;
+
+	public static RiquadroFactory getInstance() {
+		if (instance == null)
+			instance = new RiquadroDatiConsegnaFactory();
+		return instance;
 	}
 
 }

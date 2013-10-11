@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import GUI.ClipPanels.ClipPanelMenu;
+import GUI.ClipPanels.ClipPanelMenuFactory;
 
 public class PanelStart extends JPanel {
 	
@@ -24,7 +25,7 @@ public class PanelStart extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel pannelloUseCases = new JPanel();
-	private ClipPanelMenu clipPanel = new ClipPanelMenu();
+	private ClipPanelMenu clipPanel = (ClipPanelMenu) ClipPanelMenuFactory.getInstance().makeClipPanel();
 	public PanelStart(CoedilFrame f) {
 
 		this.initUI();

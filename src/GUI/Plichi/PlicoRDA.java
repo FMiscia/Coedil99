@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import GUI.FormRDA;
 import GUI.Abstract.APlico;
 import GUI.Liste.ListaRigheRDA;
+import GUI.Liste.ListaRigheRDAFactory;
 
 public class PlicoRDA extends APlico {
 
@@ -23,7 +24,7 @@ public class PlicoRDA extends APlico {
 
 	private void addListaRigheRDA() {
 		// TODO Auto-generated method stub
-		this.listaRigheRDA = new ListaRigheRDA();
+		this.listaRigheRDA = (ListaRigheRDA) ListaRigheRDAFactory.getInstance().makeLista();
 		this.add(listaRigheRDA,BorderLayout.WEST);
 	}
 	

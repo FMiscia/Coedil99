@@ -9,7 +9,9 @@ import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 
 import GUI.ClipPanels.ClipPanelRDA;
+import GUI.ClipPanels.ClipPanelRDAFactory;
 import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDAFactory;
 import GUI.Plichi.PlicoRDA;
 
 public class RDACenter extends JPanel {
@@ -19,12 +21,12 @@ public class RDACenter extends JPanel {
 
 	
 	private ListaRDA lista;
-	private ClipPanelRDA clipPanel = new ClipPanelRDA();	
+	private ClipPanelRDA clipPanel = (ClipPanelRDA) ClipPanelRDAFactory.getInstance().makeClipPanel();	
 	
 	public RDACenter(){
 		this.setLayout(new BorderLayout());
 		this.add(clipPanel, BorderLayout.NORTH);
-		this.lista = new ListaRDA();
+		this.lista = (ListaRDA)ListaRDAFactory.getInstance().makeLista();
 		this.add(this.lista, BorderLayout.WEST);
 		this.add(PlicoRDA.getInstance(), BorderLayout.CENTER);
 		this.setRDASelezionata(GestisciRDAHandler.getInstance().getRDAById(this.lista.getPrimaRDA()));

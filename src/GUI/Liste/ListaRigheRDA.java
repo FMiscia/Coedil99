@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import GUI.Abstract.ALista;
 import GUI.Card.CardRigaRDA;
+import GUI.Card.CardRigaRDAFactory;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 import coedil99.model.RigaRDA;
@@ -28,7 +29,7 @@ public class ListaRigheRDA extends ALista {
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		CardRigaRDA riquadroRigaRDA;
 		for(int k=0; k<row; ++k){
-			riquadroRigaRDA = new CardRigaRDA(this);
+			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance().makeCard(this);
 			riquadroRigaRDA.load(t.get(k));
 			this.panel.add(riquadroRigaRDA);
 			this.panel.validate();

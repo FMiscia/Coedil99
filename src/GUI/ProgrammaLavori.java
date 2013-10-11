@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 
 import GUI.Abstract.ALista;
 import GUI.ClipPanels.ClipPanelProgrammaLavori;
+import GUI.ClipPanels.ClipPanelProgrammaLavoriFactory;
 import GUI.Liste.ListaCommesse;
+import GUI.Liste.ListaCommesseFactory;
 import GUI.Plichi.PlicoCommessa;
 import GUI.Plichi.PlicoDDO;
 import GUI.Plichi.PlicoDistinta;
@@ -52,7 +54,7 @@ public class ProgrammaLavori extends JPanel {
 		add(proglavoripanel, BorderLayout.CENTER);
 		proglavoripanel.setLayout(new BorderLayout(0, 0));
 
-		this.lista = new ListaCommesse();
+		this.lista = (ListaCommesse)ListaCommesseFactory.getInstance().makeLista();
 		this.lista.setPreferredSize(new Dimension(200, 0));
 		proglavoripanel.add(lista, BorderLayout.WEST);
 
@@ -64,7 +66,7 @@ public class ProgrammaLavori extends JPanel {
 		this.commessaSelezionata = GestisciCommessaHandler.getInstance()
 				.getCommessaById(((ListaCommesse) this.lista).getPrimaCommessa());
 
-		this.clip = new ClipPanelProgrammaLavori();
+		this.clip = (ClipPanelProgrammaLavori) ClipPanelProgrammaLavoriFactory.getInstance().makeClipPanel();
 		
 
 		proglavoripanel.add(clip, BorderLayout.NORTH);

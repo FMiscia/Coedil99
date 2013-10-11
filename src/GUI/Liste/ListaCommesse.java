@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import GUI.Abstract.ALista;
 import GUI.Card.CardCodiceInterno;
+import GUI.Card.CardCodiceInternoFactory;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Cliente;
@@ -31,7 +32,7 @@ public class ListaCommesse extends ALista {
 			Cliente temp = (Cliente)t.get(k);
 			for(int j=0; j<temp.ordini.size(); ++j){
 				for(int i=0; i<temp.ordini.get(j).commesse.size(); ++i){
-					final CardCodiceInterno r = new CardCodiceInterno(this);
+					final CardCodiceInterno r = (CardCodiceInterno) CardCodiceInternoFactory.getInstance().makeCard(this);
 					ArrayList<Object> commessaIdentifier = new ArrayList<Object>();
 					//cliente
 					commessaIdentifier.add(0, temp);

@@ -4,20 +4,21 @@ import GUI.Abstract.ARiquadro;
 
 public class RiquadroOttimizzazioneFactory extends RiquadroFactory {
 
-	private static RiquadroFactory instance;
-	
-	private RiquadroOttimizzazioneFactory(){};
-	
+	private static RiquadroFactory instance = null;
+
+	private RiquadroOttimizzazioneFactory() {
+	};
+
 	@Override
 	public ARiquadro makeRiquadro() {
 		// TODO Auto-generated method stub
 		return new RiquadroOttimizzazione("Ottimizzazione");
 	}
-	
-	public static RiquadroFactory getInstance(){
-		if(instance == null)
-			return new RiquadroOttimizzazioneFactory();
-		else return instance;
+
+	public static RiquadroFactory getInstance() {
+		if (instance == null)
+			instance = new RiquadroOttimizzazioneFactory();
+		return instance;
 	}
 
 }
