@@ -4,18 +4,24 @@ import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.CatalogoFornitore;
+import coedil99.model.CatalogoFornitoreFactory;
+import coedil99.model.ProductDescription;
+import coedil99.model.ProductDescriptionFactory;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.JLabel;
+
+import org.orm.PersistentException;
 
 public class FormRDA extends JPanel {
 	
@@ -24,6 +30,9 @@ public class FormRDA extends JPanel {
 	private JComboBox<Object> cbEssenza;
 	private JComboBox<Object> cbGeometria;
 	private ArrayList<CatalogoFornitore> fornitori;
+	private JLabel lblFornitore;
+	private JLabel lblEssenza;
+	private JLabel lblGeometria;
 	
 	public FormRDA() {
 		this.setPreferredSize(new Dimension(351, 200));
@@ -36,23 +45,36 @@ public class FormRDA extends JPanel {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		cbFornitore = new JComboBox<Object>();
-		cbFornitore.addItem("Seleziona il catalogo del Fornitore...");
-		add(cbFornitore, "2, 2");
+		add(cbFornitore, "2, 4");
+		
+		lblFornitore = new JLabel("Seleziona il catalogo del Fornitore");
+		add(lblFornitore, "2, 2");
 		
 		cbEssenza = new JComboBox<Object>();
 		cbEssenza.setEnabled(false);
-		cbEssenza.addItem("Seleziona l'essenza...");
-		add(cbEssenza, "2, 4");
+		add(cbEssenza, "2, 8");
+		
+		lblEssenza = new JLabel("Seleziona l'essenza");
+		add(lblEssenza, "2, 6");
 		
 		cbGeometria = new JComboBox<Object>();
 		cbGeometria.setEnabled(false);
-		cbGeometria.addItem("Seleziona la geometria...");
-		add(cbGeometria, "2, 6");
+		add(cbGeometria, "2, 12");
+		
+		lblGeometria = new JLabel("Seleziona la geometria");
+		add(lblGeometria, "2, 10");
 		
 		this.load();
+		this.cbFornitore.setSelectedItem(null);
 	}
 
 	
@@ -74,26 +96,61 @@ public class FormRDA extends JPanel {
 	}
 	
 	private void loadFornitori(){
+		this.cbFornitore.removeAllItems();
 		for(int i=0; i<this.fornitori.size(); ++i){
 			this.cbFornitore.addItem(this.fornitori.get(i).getName());
 			this.cbFornitore.addItemListener(new ItemListener() {
 				
 				@Override
 				public void itemStateChanged(ItemEvent e) {
-	                FormRDA.this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(cbFornitore.getSelectedItem().toString()));
-	                FormRDA.this.cbEssenza.setEnabled(true);
+					System.out.println("change");
+	                if(e.getStateChange() == ItemEvent.SELECTED) {
+		                FormRDA.this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(cbFornitore.getSelectedItem().toString()));
+		                FormRDA.this.cbEssenza.setEnabled(true);
+	                }
+
 	            }
 			});
 		}
 	}
 	
 	private void loadEssenze(CatalogoFornitore fornitore){
-		for(int i=0; i<fornitore.productDescription.size(); ++i)
-			this.cbEssenza.addItem(fornitore.productDescription.get(i).getEssenza());
+		this.cbEssenza.removeAllItems();
+		TreeSet<String> essenze = new TreeSet<String>();
+		for(int i=0; i<fornitore.productDescription.size(); ++i){
+			essenze.add(fornitore.productDescription.get(i).getEssenza());
+		}
+		for(int i=0; i<essenze.size(); ++i){
+			this.cbEssenza.addItem(essenze.toArray()[i]);
+			this.cbEssenza.addItemListener(new ItemListener() {
+				
+				@Override
+				public void itemStateChanged(ItemEvent e) {
+					System.out.println("change essenza");
+	                if(e.getStateChange() == ItemEvent.SELECTED) {
+		                FormRDA.this.loadGeometria(cbFornitore.getSelectedItem().toString(),cbEssenza.getSelectedItem().toString());
+		                FormRDA.this.cbGeometria.setEnabled(true);
+	                }
+
+	            }
+			});
+		}
+		
+			
 	}
 
-	private void loadGeometrie(){
-		
+	private void loadGeometria(String fornitore,String essenza){
+		this.cbGeometria.removeAllItems();
+		ProductDescription[] pd = null;
+		try {
+			pd = ProductDescriptionFactory.listProductDescriptionByQuery(" Name = '"+fornitore+"' and Essenza = '"+essenza+"'", null);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i=0; i<pd.length; ++i){
+			this.cbGeometria.addItem(pd[i].getGeometria().toString());
+		}
 	}
 
 }
