@@ -13,6 +13,7 @@ import GUI.RaccoglitorePlichi;
 import GUI.WrapLayout;
 import GUI.Abstract.APlico;
 import GUI.Riquadri.RiquadroDatiDistinta;
+import GUI.Riquadri.RiquadroDatiDistintaFactory;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Distinta;
 
@@ -64,7 +65,7 @@ public class PlicoDistinta extends APlico {
 				this.riquadri.add(temp);
 			}
 		} else {
-			temp = new RiquadroDatiDistinta("Riga Lavoro");
+			temp =  (RiquadroDatiDistinta) RiquadroDatiDistintaFactory.getInstance().makeRiquadro();
 			temp.makeEditable(true);
 			temp.setLocation(40, 20);
 			this.add(temp);
@@ -78,8 +79,7 @@ public class PlicoDistinta extends APlico {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
 						// TODO Auto-generated method stub
-						RiquadroDatiDistinta temp = new RiquadroDatiDistinta(
-								"Riga Lavoro");
+						RiquadroDatiDistinta temp = (RiquadroDatiDistinta) RiquadroDatiDistintaFactory.getInstance().makeRiquadro();
 						temp.makeEditable(true);
 						PlicoDistinta.this.add(temp);
 						PlicoDistinta.this.posizionaAddButton();
