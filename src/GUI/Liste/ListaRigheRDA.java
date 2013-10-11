@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import GUI.Abstract.ALista;
 import GUI.Riquadri.RiquadroRigaRDA;
+import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 
 public class ListaRigheRDA extends ALista {
@@ -15,9 +16,8 @@ public class ListaRigheRDA extends ALista {
 	public ListaRigheRDA() {
 		// TODO Auto-generated constructor stub
 		super();
-		panel.setBackground(Color.ORANGE);
-		this.setPreferredSize(new Dimension(471,0));
-		//this.load(new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayRDA()));
+		this.setPreferredSize(new Dimension(320,0));
+		this.load(new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayRDA()));
 		this.validate();
 		this.repaint();
 	}
@@ -29,7 +29,6 @@ public class ListaRigheRDA extends ALista {
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		RiquadroRigaRDA riquadroRigaRDA;
 		for(int k=0; k<row; ++k){
-			//System.out.println(k);
 			riquadroRigaRDA = new RiquadroRigaRDA(this);
 			riquadroRigaRDA.load(rda.righeRDA.get(k));
 			this.panel.add(riquadroRigaRDA);

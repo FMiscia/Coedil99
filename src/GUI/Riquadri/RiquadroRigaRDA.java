@@ -51,7 +51,7 @@ public class RiquadroRigaRDA extends JPanel {
 		// TODO Auto-generated constructor stub
 		this.listaRigheRDA = lrRDA;
 		setBounds(new Rectangle(0, 0, 0, 0));
-		this.setPreferredSize(new Dimension(471, 190));
+		this.setPreferredSize(new Dimension(300, 200));
 		this.setBackground(Color.LIGHT_GRAY);
 		this.setBorder(new LineBorder(Color.BLACK));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
