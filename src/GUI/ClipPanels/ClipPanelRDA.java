@@ -1,5 +1,6 @@
 package GUI.ClipPanels;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,6 +13,10 @@ import GUI.RDACenter;
 import GUI.Abstract.AClipPanel;
 import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
+import GUI.FormRDA.CreaFormRDA;
+import GUI.FormRDA.CreaFormRDAFactory;
+import GUI.FormRDA.ModificaFormRDA;
+import GUI.FormRDA.ModificaFormRDAFactory;
 import GUI.Plichi.PlicoRDA;
 
 public class ClipPanelRDA extends AClipPanel {
@@ -52,6 +57,10 @@ public class ClipPanelRDA extends AClipPanel {
 				rdac.getLista().getPrimaRDA();
 				PlicoRDA prda = PlicoRDA.getInstance();
 				prda.getListaRigheRDA().svuota();
+				CreaFormRDA form = (CreaFormRDA) CreaFormRDAFactory.getInstance().makeFormRDA();
+				prda.add(form,BorderLayout.CENTER);
+				prda.validate();
+				prda.repaint();	
 			}
 		});
 		this.fill();
