@@ -1,6 +1,7 @@
 package GUI.Card;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -20,8 +21,11 @@ import org.orm.PersistentException;
 
 import GUI.ProgrammaLavori;
 import GUI.Abstract.ACard;
+import GUI.FormRDA.ModificaFormRDA;
+import GUI.FormRDA.ModificaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoDDO;
+import GUI.Plichi.PlicoRDA;
 import coedil99.model.RigaRDA;
 
 import com.jgoodies.forms.layout.FormLayout;
@@ -47,6 +51,7 @@ public class CardRigaRDA extends ACard {
 	JLabel lblPrezzo;
 	JLabel txtPrezzo;
 	ListaRigheRDA listaRigheRDA;
+	private JLabel lblModifica;
 
 	public CardRigaRDA(ListaRigheRDA lrRDA) {
 		// TODO Auto-generated constructor stub
@@ -54,7 +59,7 @@ public class CardRigaRDA extends ACard {
 		this.listaRigheRDA = lrRDA;
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(300, 200));
-		this.setBackground(Color.LIGHT_GRAY);
+		this.setBackground(new Color(204, 204, 204));
 		this.setBorder(new LineBorder(Color.BLACK));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(new FormLayout(new ColumnSpec[] {
@@ -72,6 +77,9 @@ public class CardRigaRDA extends ACard {
 				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, }));
+		
+		lblModifica = new JLabel("");
+		add(lblModifica, "4, 2");
 
 		lblElimina = new JLabel("");
 		add(lblElimina, "6, 2");
@@ -132,6 +140,43 @@ public class CardRigaRDA extends ACard {
 		this.txtLarghezza.setText(String.valueOf(riga.getDescription().getGeometria().getBase()));
 		this.txtPezzi.setText(String.valueOf(riga.getDescription().getPezzi_per_pacco()));
 		this.txtPrezzo.setText(String.valueOf(riga.getDescription().getPrezzo()));
+		this.lblModifica.setIcon(new ImageIcon(CardRigaRDA.class.getResource("/GUI/image/congelata.png")));
+		this.lblModifica.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				CardRigaRDA.this.listaRigheRDA.deselectAll();
+				CardRigaRDA.this.setBackground(new Color(90, 90, 90));
+				ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory.getInstance().makeFormRDA();
+				form.modificaRDA(riga);
+				PlicoRDA.getInstance().addFormRDA(form);
+			}
+		});
 		this.lblElimina.setIcon(new ImageIcon(CardRigaRDA.class
 				.getResource("/GUI/image/cancella.png")));
 		this.lblElimina.addMouseListener(new MouseListener() {

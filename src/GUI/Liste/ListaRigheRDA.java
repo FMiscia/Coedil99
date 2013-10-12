@@ -1,5 +1,7 @@
 package GUI.Liste;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -39,23 +41,23 @@ public class ListaRigheRDA extends ALista {
 			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance().makeCard(this);
 			final RigaRDA riga = (RigaRDA) t.get(k);
 			riquadroRigaRDA.load(riga);
-			riquadroRigaRDA.addMouseListener(new MouseAdapter() {
-			
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					/**
-					 * Una volta che clicco sul riquadro della lista righe rda viene montata 
-					 * la form per la modifica della rda
-					 */
-					ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory.getInstance().makeFormRDA();
-					form.modificaRDA(riga);
-					PlicoRDA.getInstance().addFormRDA(form);
-					
-					//PlicoRDA.getInstance().resetFormRDA();
-					
-				}
-				
-			});
+//			riquadroRigaRDA.addMouseListener(new MouseAdapter() {
+//			
+//				@Override
+//				public void mouseClicked(MouseEvent e) {
+//					/**
+//					 * Una volta che clicco sul riquadro della lista righe rda viene montata 
+//					 * la form per la modifica della rda
+//					 */
+//					ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory.getInstance().makeFormRDA();
+//					form.modificaRDA(riga);
+//					PlicoRDA.getInstance().addFormRDA(form);
+//					
+//					//PlicoRDA.getInstance().resetFormRDA();
+//					
+//				}
+//				
+//			});
 			this.panel.add(riquadroRigaRDA);
 			this.panel.validate();
 			this.panel.repaint();
@@ -75,6 +77,15 @@ public class ListaRigheRDA extends ALista {
 	
 	public JPanel getPanel(){
 		return this.panel;
+	}
+	
+	@Override
+	public void deselectAll(){
+		for(Component c:this.panel.getComponents()){
+			c.setBackground(new Color(209,209,209));
+			c.validate();
+			c.repaint();
+		}
 	}
 
 }
