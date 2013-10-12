@@ -2,7 +2,7 @@ package GUI.Plichi;
 
 import java.awt.BorderLayout;
 
-import GUI.FormRDA;
+import GUI.FormRDA.ModificaFormRDA;
 import GUI.Abstract.APlico;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Liste.ListaRigheRDAFactory;
@@ -11,7 +11,7 @@ public class PlicoRDA extends APlico {
 
 	private static PlicoRDA instance = null;
 	private ListaRigheRDA listaRigheRDA;
-	private FormRDA formRDA;
+	private ModificaFormRDA formRDA;
 
 	private PlicoRDA() {
 		setLayout(new BorderLayout());
@@ -29,7 +29,7 @@ public class PlicoRDA extends APlico {
 	}
 	
 	private void addFormRDA(){
-		this.formRDA = new FormRDA();
+		this.formRDA = new ModificaFormRDA();
 		this.add(formRDA,BorderLayout.CENTER);
 	}
 

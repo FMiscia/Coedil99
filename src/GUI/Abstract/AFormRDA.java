@@ -1,4 +1,5 @@
-package GUI;
+package GUI.Abstract;
+
 
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -21,7 +22,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-public class FormRDA extends JPanel {
+public abstract class AFormRDA extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	private JComboBox<Object> cbFornitore;
@@ -32,7 +33,7 @@ public class FormRDA extends JPanel {
 	private JLabel lblEssenza;
 	private JLabel lblGeometria;
 	
-	public FormRDA() {
+	public AFormRDA() {
 		this.setPreferredSize(new Dimension(351, 200));
 		setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -102,8 +103,8 @@ public class FormRDA extends JPanel {
 				public void itemStateChanged(ItemEvent e) {
 					System.out.println("change");
 	                if(e.getStateChange() == ItemEvent.SELECTED) {
-		                FormRDA.this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(cbFornitore.getSelectedItem().toString()));
-		                FormRDA.this.cbEssenza.setEnabled(true);
+	                	AFormRDA.this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(cbFornitore.getSelectedItem().toString()));
+	                	AFormRDA.this.cbEssenza.setEnabled(true);
 	                }
 	            }
 			});
@@ -125,8 +126,8 @@ public class FormRDA extends JPanel {
 				public void itemStateChanged(ItemEvent e) {
 					System.out.println("change essenza");
 	                if(e.getStateChange() == ItemEvent.SELECTED) {
-		                FormRDA.this.loadGeometria(cbFornitore.getSelectedItem().toString(),cbEssenza.getSelectedItem().toString());
-		                FormRDA.this.cbGeometria.setEnabled(true);
+	                	AFormRDA.this.loadGeometria(cbFornitore.getSelectedItem().toString(),cbEssenza.getSelectedItem().toString());
+	                	AFormRDA.this.cbGeometria.setEnabled(true);
 	                }
 	            }
 			});
@@ -152,11 +153,6 @@ public class FormRDA extends JPanel {
 		this.cbGeometria.removeAllItems();
 		this.cbGeometria.setEnabled(true);
 	}
-	
-	public void modificaRDA(RigaRDA rigaRDA){
-		
-	}
-	
 	
 
 }
