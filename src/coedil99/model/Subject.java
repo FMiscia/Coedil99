@@ -1,26 +1,30 @@
 package coedil99.model;
 
+import java.util.ArrayList;
 
-public interface Subject {
+
+public abstract class Subject {
+
+	protected ArrayList<Observer> observers = new ArrayList<Observer>();
+	
+	/**
+	 * 
+	 * @param obj
+	 * @return 
+	 */
+	public abstract void Attach(Observer obj);
 
 	/**
 	 * 
 	 * @param obj
 	 * @return 
 	 */
-	public void Attach(Observer obj);
-
-	/**
-	 * 
-	 * @param obj
-	 * @return 
-	 */
-	public void Detach(Observer obj);
+	public abstract void Detach(Observer obj);
 
 	/**
 	 * 
 	 * @return 
 	 */
-	public void Notify();
+	public abstract void Notify();
 
 }

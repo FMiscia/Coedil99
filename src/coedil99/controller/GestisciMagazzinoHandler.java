@@ -14,7 +14,9 @@ public class GestisciMagazzinoHandler {
 
 	List<Magazzino> magazzino;
 	private static GestisciMagazzinoHandler instance = null;
-	
+	public static String IN_ARRIVO = "IN_ARRIVO";
+	public static String RICHIESTO = "RICHIESTO";
+	public static String IN_MAGAZZINO = "IN_MAGAZZINO";
 	
 
 	private GestisciMagazzinoHandler(){

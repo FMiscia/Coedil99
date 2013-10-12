@@ -21,6 +21,10 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.JTextField;
+import javax.swing.JScrollBar;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public abstract class AFormRDA extends JPanel {
 	
@@ -32,13 +36,25 @@ public abstract class AFormRDA extends JPanel {
 	private JLabel lblFornitore;
 	private JLabel lblEssenza;
 	private JLabel lblGeometria;
+	private JLabel lblPrezzo;
+	private JLabel lblQuantita;
+	private JTextField textField;
+	private JSpinner spinner;
 	
 	public AFormRDA() {
-		this.setPreferredSize(new Dimension(351, 200));
+		this.setPreferredSize(new Dimension(286, 240));
 		setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(225dlu;default)"),},
+				ColumnSpec.decode("max(179dlu;default)"),},
 			new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
@@ -72,6 +88,21 @@ public abstract class AFormRDA extends JPanel {
 		lblGeometria = new JLabel("Seleziona la geometria");
 		add(lblGeometria, "2, 10");
 		
+		lblQuantita = new JLabel("Seleziona il numero di pacchi");
+		add(lblQuantita, "2, 14");
+		
+		spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		add(spinner, "2, 16");
+		
+		lblPrezzo = new JLabel("Riepilogo spesa");
+		add(lblPrezzo, "2, 18");
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		add(textField, "2, 20");
+		textField.setColumns(10);
+		
 		this.load();
 	}
 
@@ -81,6 +112,21 @@ public abstract class AFormRDA extends JPanel {
 		this.loadFornitori();
 		this.validate();
 		this.repaint();
+	}
+
+
+	public JComboBox<Object> getCbFornitore() {
+		return cbFornitore;
+	}
+
+
+	public JComboBox<Object> getCbGeometria() {
+		return cbGeometria;
+	}
+
+
+	public JComboBox<Object> getCbEssenza() {
+		return cbEssenza;
 	}
 
 
