@@ -120,4 +120,9 @@ public class Geometria {
 		return String.valueOf(getID());
 	}
 	
+	public String myToString() {
+
+		return this.base+" x "+this.lunghezza+" x "+this.altezza;
+	}
+	
 }
