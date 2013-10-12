@@ -12,6 +12,7 @@ import GUI.RDACenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
+import GUI.FormRDA.ModificaFormRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
@@ -35,12 +36,22 @@ public class ListaRigheRDA extends ALista {
 		CardRigaRDA riquadroRigaRDA;
 		for(int k=0; k<row; ++k){
 			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance().makeCard(this);
-			riquadroRigaRDA.load(t.get(k));
+			final RigaRDA riga = (RigaRDA) t.get(k);
+			riquadroRigaRDA.load(riga);
 			riquadroRigaRDA.addMouseListener(new MouseAdapter() {
 			
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					/**
+					 * Una volta che clicco sul riquadro della lista righe rda viene montata 
+					 * la form per la modifica della rda
+					 */
+					ModificaFormRDA form = new ModificaFormRDA();
+					form.modificaRDA(riga);
+					PlicoRDA.getInstance().addFormRDA(form);
+					
 					//PlicoRDA.getInstance().resetFormRDA();
+					
 				}
 				
 			});
