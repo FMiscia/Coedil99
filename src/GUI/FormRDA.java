@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.CatalogoFornitore;
 import coedil99.model.CatalogoFornitoreFactory;
+import coedil99.model.Geometria;
 import coedil99.model.ProductDescription;
 import coedil99.model.ProductDescriptionFactory;
 
@@ -74,7 +75,6 @@ public class FormRDA extends JPanel {
 		add(lblGeometria, "2, 10");
 		
 		this.load();
-		this.cbFornitore.setSelectedItem(null);
 	}
 
 	
@@ -112,6 +112,7 @@ public class FormRDA extends JPanel {
 	            }
 			});
 		}
+		this.cbFornitore.setSelectedItem(null);
 	}
 	
 	private void loadEssenze(CatalogoFornitore fornitore){
@@ -135,22 +136,19 @@ public class FormRDA extends JPanel {
 	            }
 			});
 		}
-		
+		this.cbEssenza.setSelectedItem(null);
 			
 	}
 
 	private void loadGeometria(String fornitore,String essenza){
 		this.cbGeometria.removeAllItems();
-		ProductDescription[] pd = null;
-		try {
-			pd = ProductDescriptionFactory.listProductDescriptionByQuery(" Name = '"+fornitore+"' and Essenza = '"+essenza+"'", null);
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		for(int i=0; i<pd.length; ++i){
-			this.cbGeometria.addItem(pd[i].getGeometria().toString());
+		ArrayList<ProductDescription> pd = new ArrayList<ProductDescription>(GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore).productDescription.getCollection());
+		for(int i=0; i<pd.size(); ++i){
+			Geometria g = pd.get(i).getGeometria();
+			this.cbGeometria.addItem(g.getBase()+" x "+g.getLunghezza()+" x "+g.getAltezza());
 		}
 	}
+	
+	
 
 }
