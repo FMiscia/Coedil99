@@ -75,6 +75,12 @@ public class ListaRDA extends ALista {
 		this.validate();
 		this.repaint();
 	}
+	
+	public void addCard(CardRDA c){
+		panel.add(c,0);
+		this.validate();
+		this.repaint();
+	}
 
 	
 

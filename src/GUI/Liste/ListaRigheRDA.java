@@ -64,5 +64,11 @@ public class ListaRigheRDA extends ALista {
 	public JPanel getPanel(){
 		return this.panel;
 	}
+	
+	public void svuota(){
+		this.panel.removeAll();
+		this.validate();
+		this.repaint();
+	}
 
 }

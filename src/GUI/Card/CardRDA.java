@@ -6,7 +6,9 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -109,13 +111,22 @@ public class CardRDA extends ACard {
 		// TODO Auto-generated method stub
 		final RDA rda = (RDA) o;
 		this.RDAId = rda.getID();
-		this.id.setText(rda.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());
+		if(!rda.righeRDA.isEmpty()){
+			this.id.setText(rda.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());			
+		}else{
+			this.id.setText("da settare");
+		}
 		this.stato.setText(rda.getState());
 		this.icona.setIcon(CardRDA.state_map.get(rda.getState()));
-		this.data.setText(rda.getDate().toString());
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		dateFormat.format(rda.getDate());
+		
+		this.data.setText(		dateFormat.format(rda.getDate()));
 		this.setBackground(new Color(30, 144, 255));
 		this.validate();
 		this.repaint();
+		System.out.println("dsdeed");
 		this.addMouseListener(new MouseListener() {
 
 			@Override

@@ -13,9 +13,16 @@
  */
 package coedil99.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.orm.*;
+
+import coedil99.controller.GestisciRDAHandler;
 public class RDA implements coedil99.model.Subject {
 	public RDA() {
+		this.date = new Date();
+		this.state = GestisciRDAHandler.CONGELATA;
 	}
 	
 	public boolean save() throws PersistentException {
