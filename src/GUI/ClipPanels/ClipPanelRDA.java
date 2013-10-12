@@ -3,9 +3,16 @@ package GUI.ClipPanels;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import coedil99.model.RDA;
+import coedil99.model.RDAFactory;
+
 import GUI.CoedilFrame;
 import GUI.PanelStart;
+import GUI.RDACenter;
 import GUI.Abstract.AClipPanel;
+import GUI.Card.CardRDA;
+import GUI.Card.CardRDAFactory;
+import GUI.Plichi.PlicoRDA;
 
 public class ClipPanelRDA extends AClipPanel {
 
@@ -26,10 +33,25 @@ public class ClipPanelRDA extends AClipPanel {
 				CoedilFrame.getInstance().montaPanel(pl);
 			}
 		});
-
+		
+		this.addButton("Lista RDA", "Visualizza tutte le RDA", new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RDACenter rdac = RDACenter.getInstance();
+			}
+		});
+		
 		this.addButton("Nuova RDA", "Crea una nuova RDA", new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("NEW RDA\n");
+				RDACenter rdac = RDACenter.getInstance();
+				RDA rda = RDAFactory.createRDA();
+				CardRDA rdaCard = (CardRDA) CardRDAFactory.getInstance().makeCard(rdac.getLista());
+				rdaCard.load(rda);
+				rdac.getLista().addCard(rdaCard);
+				rdac.setRDASelezionata(rda);
+				rdac.getLista().deselectAll();
+				rdac.getLista().getPrimaRDA();
+				PlicoRDA prda = PlicoRDA.getInstance();
+				prda.getListaRigheRDA().svuota();
 			}
 		});
 		this.fill();

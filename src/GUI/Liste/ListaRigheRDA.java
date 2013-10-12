@@ -79,6 +79,7 @@ public class ListaRigheRDA extends ALista {
 		return this.panel;
 	}
 	
+
 	@Override
 	public void deselectAll(){
 		for(Component c:this.panel.getComponents()){
@@ -86,6 +87,12 @@ public class ListaRigheRDA extends ALista {
 			c.validate();
 			c.repaint();
 		}
+	}
+		
+	public void svuota(){
+		this.panel.removeAll();
+		this.validate();
+		this.repaint();
 	}
 
 }

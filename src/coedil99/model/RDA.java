@@ -13,9 +13,15 @@
  */
 package coedil99.model;
 
+import java.util.Date;
+
 import org.orm.*;
+
+import coedil99.controller.GestisciRDAHandler;
 public class RDA extends coedil99.model.Subject {
 	public RDA() {
+		this.date = new Date();
+		this.state = GestisciRDAHandler.CONGELATA;
 	}
 	
 	public boolean save() throws PersistentException {
@@ -118,7 +124,6 @@ public class RDA extends coedil99.model.Subject {
 	
 	private java.util.List ORM_righeRDA = new java.util.ArrayList();
 	
-	
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -160,26 +165,25 @@ public class RDA extends coedil99.model.Subject {
 	public String toString() {
 		return String.valueOf(getID());
 	}
-	
-	
 
 	@Override
 	public void Attach(Observer obj) {
+		// TODO Auto-generated method stub
 		this.observers.add(obj);
-		
 	}
 
 	@Override
 	public void Detach(Observer obj) {
+		// TODO Auto-generated method stub
 		this.observers.remove(obj);
 		
 	}
 
 	@Override
 	public void Notify() {
-		for(Observer i: this.observers)
-			i.Update();
-		
+		// TODO Auto-generated method stub
+		for(Observer temp : this.observers)
+			temp.Update();
 	}
 	
 }
