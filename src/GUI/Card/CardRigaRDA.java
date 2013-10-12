@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -35,31 +36,31 @@ import com.jgoodies.forms.factories.FormFactory;
 
 public class CardRigaRDA extends ACard {
 
-	JLabel lblElimina;
-	JLabel lblEssenza;
-	JLabel txtEssenza;
-	JLabel lblQuantita;
-	JLabel txtQuantita;
-	JLabel lblAltezza;
-	JLabel txtAltezza;
-	JLabel lblLunghezza;
-	JLabel txtLunghezza;
-	JLabel lblBase;
-	JLabel txtLarghezza;
-	JLabel lblPezzi;
-	JLabel txtPezzi;
-	JLabel lblPrezzo;
-	JLabel txtPrezzo;
+	private JButton btnElimina;
+	private JLabel lblEssenza;
+	private JLabel txtEssenza;
+	private JLabel lblQuantita;
+	private JLabel txtQuantita;
+	private JLabel lblAltezza;
+	private JLabel txtAltezza;
+	private JLabel lblLunghezza;
+	private JLabel txtLunghezza;
+	private JLabel lblBase;
+	private JLabel txtLarghezza;
+	private JLabel lblPezzi;
+	private JLabel txtPezzi;
+	private JLabel lblPrezzo;
+	private JLabel txtPrezzo;
 	ListaRigheRDA listaRigheRDA;
-	private JLabel lblModifica;
+	private JButton btnModifica;
 
 	public CardRigaRDA(ListaRigheRDA lrRDA) {
 		// TODO Auto-generated constructor stub
 		super(lrRDA);
 		this.listaRigheRDA = lrRDA;
 		setBounds(new Rectangle(0, 0, 0, 0));
-		this.setPreferredSize(new Dimension(300, 200));
-		this.setBackground(new Color(204, 204, 204));
+		this.setPreferredSize(new Dimension(269, 221));
+		this.setBackground(new Color(192, 192, 192));
 		this.setBorder(new LineBorder(Color.BLACK));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(new FormLayout(new ColumnSpec[] {
@@ -77,12 +78,14 @@ public class CardRigaRDA extends ACard {
 				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, }));
-		
-		lblModifica = new JLabel("");
-		add(lblModifica, "4, 2");
 
-		lblElimina = new JLabel("");
-		add(lblElimina, "6, 2");
+		btnModifica = new JButton("");
+		btnModifica.setBackground(Color.LIGHT_GRAY);
+		add(btnModifica, "2, 2");
+
+		btnElimina = new JButton("");
+		btnElimina.setBackground(Color.LIGHT_GRAY);
+		add(btnElimina, "4, 2");
 
 		lblEssenza = new JLabel("Essenza: ");
 		add(lblEssenza, "2, 4");
@@ -125,9 +128,15 @@ public class CardRigaRDA extends ACard {
 
 		txtPrezzo = new JLabel("");
 		add(txtPrezzo, "4, 16");
-		
-	}
 
+		this.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				CardRigaRDA.this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+	}
 
 	@Override
 	public void load(Object o) {
@@ -135,68 +144,57 @@ public class CardRigaRDA extends ACard {
 		final RigaRDA riga = (RigaRDA) o;
 		this.txtEssenza.setText(riga.getDescription().getEssenza());
 		this.txtQuantita.setText(String.valueOf(riga.getQuantity()));
-		this.txtAltezza.setText(String.valueOf(riga.getDescription().getGeometria().getAltezza()));
-		this.txtLunghezza.setText(String.valueOf(riga.getDescription().getGeometria().getLunghezza()));
-		this.txtLarghezza.setText(String.valueOf(riga.getDescription().getGeometria().getBase()));
-		this.txtPezzi.setText(String.valueOf(riga.getDescription().getPezzi_per_pacco()));
-		this.txtPrezzo.setText(String.valueOf(riga.getDescription().getPrezzo()));
-		this.lblModifica.setIcon(new ImageIcon(CardRigaRDA.class.getResource("/GUI/image/congelata.png")));
-		this.lblModifica.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+		this.txtAltezza.setText(String.valueOf(riga.getDescription()
+				.getGeometria().getAltezza()));
+		this.txtLunghezza.setText(String.valueOf(riga.getDescription()
+				.getGeometria().getLunghezza()));
+		this.txtLarghezza.setText(String.valueOf(riga.getDescription()
+				.getGeometria().getBase()));
+		this.txtPezzi.setText(String.valueOf(riga.getDescription()
+				.getPezzi_per_pacco()));
+		this.txtPrezzo.setText(String
+				.valueOf(riga.getDescription().getPrezzo()));
+		this.btnModifica.setIcon(new ImageIcon(CardRigaRDA.class
+				.getResource("/GUI/image/congelata.png")));
+		this.btnModifica.addMouseListener(new MouseAdapter() {
+
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				CardRigaRDA.this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				CardRigaRDA.this.listaRigheRDA.deselectAll();
-				CardRigaRDA.this.setBackground(new Color(90, 90, 90));
-				ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory.getInstance().makeFormRDA();
+				CardRigaRDA.this.setBackground(new Color(130,130,130));
+				ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory
+						.getInstance().makeFormRDA();
 				form.modificaRDA(riga);
 				PlicoRDA.getInstance().addFormRDA(form);
 			}
 		});
-		this.lblElimina.setIcon(new ImageIcon(CardRigaRDA.class
+		this.btnElimina.setIcon(new ImageIcon(CardRigaRDA.class
 				.getResource("/GUI/image/cancella.png")));
-		this.lblElimina.addMouseListener(new MouseListener() {
+		this.btnElimina.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Object[] options = { "Si", "No" };
-				int n = JOptionPane
-						.showOptionDialog(
-								ProgrammaLavori.getInstance(),
-								"Sei sicuro di voler eliminare questa riga RDA?\n"
-										+ "Nota: questa operazione non è reversibile",
-								"Conferma operazione",
-								JOptionPane.YES_NO_CANCEL_OPTION,
-								JOptionPane.QUESTION_MESSAGE, null,
-								options, options[1]);
+				int n = JOptionPane.showOptionDialog(
+						ProgrammaLavori.getInstance(),
+						"Sei sicuro di voler eliminare questa riga RDA?\n"
+								+ "Nota: questa operazione non è reversibile",
+						"Conferma operazione",
+						JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 				if (n == JOptionPane.YES_OPTION) {
 					try {
 						riga.deleteAndDissociate();
-						CardRigaRDA.this.listaRigheRDA.removeRiquadro(CardRigaRDA.this);
+						CardRigaRDA.this.listaRigheRDA
+								.removeRiquadro(CardRigaRDA.this);
 					} catch (PersistentException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -206,34 +204,14 @@ public class CardRigaRDA extends ACard {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				CardRigaRDA.this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+		});
 
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});			
-		
 		this.validate();
 		this.repaint();
 
 	}
-
 
 }

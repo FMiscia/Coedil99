@@ -26,7 +26,7 @@ public class ListaRigheRDA extends ALista {
 	public ListaRigheRDA() {
 		// TODO Auto-generated constructor stub
 		super();
-		this.setPreferredSize(new Dimension(320,0));
+		this.setPreferredSize(new Dimension(290, 0));
 		this.validate();
 		this.repaint();
 	}
@@ -41,28 +41,11 @@ public class ListaRigheRDA extends ALista {
 			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance().makeCard(this);
 			final RigaRDA riga = (RigaRDA) t.get(k);
 			riquadroRigaRDA.load(riga);
-//			riquadroRigaRDA.addMouseListener(new MouseAdapter() {
-//			
-//				@Override
-//				public void mouseClicked(MouseEvent e) {
-//					/**
-//					 * Una volta che clicco sul riquadro della lista righe rda viene montata 
-//					 * la form per la modifica della rda
-//					 */
-//					ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory.getInstance().makeFormRDA();
-//					form.modificaRDA(riga);
-//					PlicoRDA.getInstance().addFormRDA(form);
-//					
-//					//PlicoRDA.getInstance().resetFormRDA();
-//					
-//				}
-//				
-//			});
 			this.panel.add(riquadroRigaRDA);
 			this.panel.validate();
 			this.panel.repaint();
 		}
-		this.setPreferredSize(new Dimension(471,panel.getHeight()));
+		this.setPreferredSize(new Dimension(290,panel.getHeight()));
 		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
 		this.validate();
 		this.repaint();
