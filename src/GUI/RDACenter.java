@@ -47,6 +47,7 @@ public class RDACenter extends JPanel {
 	public void setRDASelezionata(RDA rdaSelezionata) {
 		this.rdaSelezionata = rdaSelezionata;
 	}
+	
 
 	
 }

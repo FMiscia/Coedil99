@@ -1,13 +1,18 @@
 package GUI.Liste;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import GUI.RDACenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
+import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 import coedil99.model.RigaRDA;
@@ -31,6 +36,14 @@ public class ListaRigheRDA extends ALista {
 		for(int k=0; k<row; ++k){
 			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance().makeCard(this);
 			riquadroRigaRDA.load(t.get(k));
+			riquadroRigaRDA.addMouseListener(new MouseAdapter() {
+			
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					//PlicoRDA.getInstance().resetFormRDA();
+				}
+				
+			});
 			this.panel.add(riquadroRigaRDA);
 			this.panel.validate();
 			this.panel.repaint();

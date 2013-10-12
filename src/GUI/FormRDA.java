@@ -7,22 +7,19 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.CatalogoFornitore;
-import coedil99.model.CatalogoFornitoreFactory;
 import coedil99.model.Geometria;
 import coedil99.model.ProductDescription;
-import coedil99.model.ProductDescriptionFactory;
+import coedil99.model.RigaRDA;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.JLabel;
-
-import org.orm.PersistentException;
 
 public class FormRDA extends JPanel {
 	
@@ -146,6 +143,18 @@ public class FormRDA extends JPanel {
 				this.cbGeometria.addItem(g.getBase()+" x "+g.getLunghezza()+" x "+g.getAltezza());
 			}
 		}
+	}
+	
+	public void reset(){
+		this.cbFornitore.removeAllItems();
+		this.cbEssenza.removeAllItems();
+		this.cbEssenza.setEnabled(true);
+		this.cbGeometria.removeAllItems();
+		this.cbGeometria.setEnabled(true);
+	}
+	
+	public void modificaRDA(RigaRDA rigaRDA){
+		
 	}
 	
 	

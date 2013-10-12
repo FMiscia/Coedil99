@@ -64,5 +64,9 @@ public class PlicoRDA extends APlico {
 		this.listaRigheRDA = listaRigheRDA;
 	}
 
+	
+	public void resetFormRDA(){
+		this.formRDA.reset();
+	}
 
 }
