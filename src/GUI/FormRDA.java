@@ -108,7 +108,6 @@ public class FormRDA extends JPanel {
 		                FormRDA.this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(cbFornitore.getSelectedItem().toString()));
 		                FormRDA.this.cbEssenza.setEnabled(true);
 	                }
-
 	            }
 			});
 		}
@@ -132,20 +131,20 @@ public class FormRDA extends JPanel {
 		                FormRDA.this.loadGeometria(cbFornitore.getSelectedItem().toString(),cbEssenza.getSelectedItem().toString());
 		                FormRDA.this.cbGeometria.setEnabled(true);
 	                }
-
 	            }
 			});
 		}
 		this.cbEssenza.setSelectedItem(null);
-			
 	}
 
 	private void loadGeometria(String fornitore,String essenza){
 		this.cbGeometria.removeAllItems();
 		ArrayList<ProductDescription> pd = new ArrayList<ProductDescription>(GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore).productDescription.getCollection());
 		for(int i=0; i<pd.size(); ++i){
-			Geometria g = pd.get(i).getGeometria();
-			this.cbGeometria.addItem(g.getBase()+" x "+g.getLunghezza()+" x "+g.getAltezza());
+			if(pd.get(i).getEssenza().equals(essenza)){
+				Geometria g = pd.get(i).getGeometria();
+				this.cbGeometria.addItem(g.getBase()+" x "+g.getLunghezza()+" x "+g.getAltezza());
+			}
 		}
 	}
 	
