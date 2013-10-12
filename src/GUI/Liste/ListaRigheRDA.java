@@ -13,6 +13,7 @@ import GUI.Abstract.ALista;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.FormRDA.ModificaFormRDA;
+import GUI.FormRDA.ModificaFormRDAFactory;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
@@ -46,7 +47,7 @@ public class ListaRigheRDA extends ALista {
 					 * Una volta che clicco sul riquadro della lista righe rda viene montata 
 					 * la form per la modifica della rda
 					 */
-					ModificaFormRDA form = new ModificaFormRDA();
+					ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory.getInstance().makeFormRDA();
 					form.modificaRDA(riga);
 					PlicoRDA.getInstance().addFormRDA(form);
 					

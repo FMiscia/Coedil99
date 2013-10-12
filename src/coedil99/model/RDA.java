@@ -14,7 +14,7 @@
 package coedil99.model;
 
 import org.orm.*;
-public class RDA implements coedil99.model.Subject {
+public class RDA extends coedil99.model.Subject {
 	public RDA() {
 	}
 	
@@ -118,6 +118,7 @@ public class RDA implements coedil99.model.Subject {
 	
 	private java.util.List ORM_righeRDA = new java.util.ArrayList();
 	
+	
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -159,22 +160,25 @@ public class RDA implements coedil99.model.Subject {
 	public String toString() {
 		return String.valueOf(getID());
 	}
+	
+	
 
 	@Override
 	public void Attach(Observer obj) {
-		// TODO Auto-generated method stub
+		this.observers.add(obj);
 		
 	}
 
 	@Override
 	public void Detach(Observer obj) {
-		// TODO Auto-generated method stub
+		this.observers.remove(obj);
 		
 	}
 
 	@Override
 	public void Notify() {
-		// TODO Auto-generated method stub
+		for(Observer i: this.observers)
+			i.Update();
 		
 	}
 	

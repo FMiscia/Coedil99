@@ -97,6 +97,8 @@ public class Item {
 	
 	private Float prezzo;
 	
+	private String state;
+	
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -165,6 +167,14 @@ public class Item {
 	
 	public String toString() {
 		return String.valueOf(getID());
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 }

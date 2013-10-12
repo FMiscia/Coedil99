@@ -1,13 +1,16 @@
 package coedil99.model;
 
-public interface Observer {
+public abstract class Observer {
+	
+	protected Subject subject;
+	
 
-	Subject getSubject();
+	public abstract Subject getSubject();
 
 	/**
 	 * 
 	 * @return 
 	 */
-	abstract void Update();
+	public abstract void Update();
 
 }
