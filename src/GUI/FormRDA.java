@@ -15,6 +15,7 @@ import coedil99.model.CatalogoFornitore;
 import coedil99.model.Geometria;
 import coedil99.model.ProductDescription;
 import coedil99.model.RigaRDA;
+import coedil99.operation.OGeometria;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -140,7 +141,7 @@ public class FormRDA extends JPanel {
 		for(int i=0; i<pd.size(); ++i){
 			if(pd.get(i).getEssenza().equals(essenza)){
 				Geometria g = pd.get(i).getGeometria();
-				this.cbGeometria.addItem(g.getBase()+" x "+g.getLunghezza()+" x "+g.getAltezza());
+				this.cbGeometria.addItem(new OGeometria(g).toString());
 			}
 		}
 	}
@@ -154,6 +155,10 @@ public class FormRDA extends JPanel {
 	}
 	
 	public void modificaRDA(RigaRDA rigaRDA){
+		String fornitoreRDA = rigaRDA.getDescription().getCatalogoFornitore().getName();
+		String essenzaRDA = rigaRDA.getDescription().getEssenza();
+		String geometriaRDA = new OGeometria(rigaRDA.getDescription().getGeometria()).toString();
+		this.load();
 		
 	}
 	
