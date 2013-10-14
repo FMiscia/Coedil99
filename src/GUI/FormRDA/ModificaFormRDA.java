@@ -35,7 +35,7 @@ public class ModificaFormRDA extends AFormRDA {
 				this.getCbGeometria().setSelectedIndex(i);
 		}
 		this.getCbGeometria().setEnabled(true);
-		
+		this.setQuantity(rigaRDA.getQuantity());
 	}
 
 }

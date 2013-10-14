@@ -68,6 +68,12 @@ public class ListaCommesse extends ALista {
 		
 	}
 
+	@Override
+	public void updatePanel() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 
