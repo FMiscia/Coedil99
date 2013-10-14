@@ -53,7 +53,7 @@ public abstract class AFormRDA extends JPanel {
 	private JLabel lblGeometria;
 	private JLabel lblPrezzo;
 	private JLabel lblQuantita;
-	private JTextField textField;
+	private JTextField tfSpesa;
 	private JHorizontalSpinner spinner;
 	private JLabel lblErrorePacchi;
 	private ImageIcon IcoErrore = new ImageIcon(
@@ -142,7 +142,14 @@ public abstract class AFormRDA extends JPanel {
             }
 
         });
-
+		this.spinner.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				aggiornaSpesa();
+				
+			}
+		});
 
 		add(spinner, "2, 16, left, center");
 		
@@ -156,10 +163,10 @@ public abstract class AFormRDA extends JPanel {
 		lblPrezzo = new JLabel("Riepilogo spesa");
 		add(lblPrezzo, "2, 18");
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		add(textField, "2, 20");
-		textField.setColumns(10);
+		tfSpesa = new JTextField();
+		tfSpesa.setEditable(false);
+		add(tfSpesa, "2, 20");
+		tfSpesa.setColumns(10);
 		
 		this.load();
 	}
@@ -201,17 +208,17 @@ public abstract class AFormRDA extends JPanel {
 		this.cbFornitore.removeAllItems();
 		for(int i=0; i<this.fornitori.size(); ++i){
 			this.cbFornitore.addItem(this.fornitori.get(i).getName());
-			this.cbFornitore.addItemListener(new ItemListener() {
-				
-				@Override
-				public void itemStateChanged(ItemEvent e) {
-	                if(e.getStateChange() == ItemEvent.SELECTED) {
-	                	AFormRDA.this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(cbFornitore.getSelectedItem().toString()));
-	                	AFormRDA.this.cbEssenza.setEnabled(true);
-	                }
-	            }
-			});
 		}
+		this.cbFornitore.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED) {
+                	AFormRDA.this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(cbFornitore.getSelectedItem().toString()));
+                	AFormRDA.this.cbEssenza.setEnabled(true);
+                }
+            }
+		});
 		this.cbFornitore.setSelectedItem(null);
 	}
 	
@@ -223,17 +230,17 @@ public abstract class AFormRDA extends JPanel {
 		}
 		for(int i=0; i<essenze.size(); ++i){
 			this.cbEssenza.addItem(essenze.toArray()[i]);
-			this.cbEssenza.addItemListener(new ItemListener() {
-				
-				@Override
-				public void itemStateChanged(ItemEvent e) {
-	                if(e.getStateChange() == ItemEvent.SELECTED) {
-	                	AFormRDA.this.loadGeometria(cbFornitore.getSelectedItem().toString(),cbEssenza.getSelectedItem().toString());
-	                	AFormRDA.this.cbGeometria.setEnabled(true);
-	                }
-	            }
-			});
 		}
+		this.cbEssenza.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED) {
+                	AFormRDA.this.loadGeometria(cbFornitore.getSelectedItem().toString(),cbEssenza.getSelectedItem().toString());
+                	AFormRDA.this.cbGeometria.setEnabled(true);
+                }
+            }
+		});
 		this.cbEssenza.setSelectedItem(null);
 	}
 
@@ -244,17 +251,18 @@ public abstract class AFormRDA extends JPanel {
 			if(pd.get(i).getEssenza().equals(essenza)){
 				Geometria g = pd.get(i).getGeometria();
 				this.cbGeometria.addItem(new OGeometria(g).toString());
-				this.cbGeometria.addItemListener(new ItemListener() {
-					
-					@Override
-					public void itemStateChanged(ItemEvent e) {
-						 if(e.getStateChange() == ItemEvent.SELECTED) {
-			                	AFormRDA.this.spinner.setEnabled(true);
-			                }
-					}
-				});
 			}
 		}
+		this.cbGeometria.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				 if(e.getStateChange() == ItemEvent.SELECTED) {
+	                	AFormRDA.this.spinner.setEnabled(true);
+	                	aggiornaSpesa();
+	                }
+			}
+		});
 		this.cbGeometria.setSelectedItem(null);
 	}
 	
@@ -266,6 +274,7 @@ public abstract class AFormRDA extends JPanel {
 		this.cbGeometria.setEnabled(true);
 		this.spinner.setValue(1);
 		this.spinner.setEnabled(false);
+		this.tfSpesa.setText(null);
 	}
 	
 	
@@ -273,6 +282,11 @@ public abstract class AFormRDA extends JPanel {
 		if (lblErrorePacchi.isVisible())
 			return -1;
 		return (Integer) ((DefaultEditor) spinner.getEditor()).getTextField().getValue();
+	}
+	
+	public void aggiornaSpesa(){
+		ProductDescription pd = GestisciFornitoreHandler.getInstance().getProductDescription(this.cbEssenza.getSelectedItem().toString(), this.cbGeometria.getSelectedItem().toString(), this.cbFornitore.getSelectedItem().toString());
+		this.tfSpesa.setText(String.valueOf((Integer)this.spinner.getValue()*pd.getPrezzo()));
 	}
 
 }
