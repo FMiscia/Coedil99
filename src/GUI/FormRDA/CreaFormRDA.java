@@ -13,6 +13,8 @@ import coedil99.model.CatalogoFornitore;
 import coedil99.model.ProductDescription;
 import coedil99.model.ProductDescriptionFactory;
 import coedil99.model.ProductDescriptionListCollection;
+import coedil99.model.RDA;
+import coedil99.model.RDAFactory;
 import coedil99.model.RigaRDA;
 import coedil99.model.RigaRDAFactory;
 
@@ -37,9 +39,9 @@ public class CreaFormRDA extends AFormRDA {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				int a = CreaFormRDA.this.getCbFornitore().getSelectedIndex();
-				int b = CreaFormRDA.this.getCbEssenza().getSelectedIndex();
-				int c = CreaFormRDA.this.getCbGeometria().getSelectedIndex();
+				int indiceCbFornitore = CreaFormRDA.this.getCbFornitore().getSelectedIndex();
+				int indiceCbEssenza = CreaFormRDA.this.getCbEssenza().getSelectedIndex();
+				int indiceCbGeometria = CreaFormRDA.this.getCbGeometria().getSelectedIndex();
 				
 				//MODIFICARE DOPO CHE SIMONE PUSHA IL GETQUANTITY IN AFORMRDA
 				int numero = 1;
@@ -47,7 +49,7 @@ public class CreaFormRDA extends AFormRDA {
 				String essenza	= "";
 				String geometria	= "";
 				
-				if(a != -1 || b != -1 || c != -1){
+				if(indiceCbFornitore != -1 || indiceCbEssenza != -1 || indiceCbGeometria != -1){
 					fornitore = CreaFormRDA.this.getCbFornitore().getSelectedItem().toString();
 					CatalogoFornitore cf = GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore);
 					essenza = CreaFormRDA.this.getCbEssenza().getSelectedItem().toString();
@@ -73,6 +75,15 @@ public class CreaFormRDA extends AFormRDA {
 
 			}
 		});
+		RDACenter rdac = RDACenter.getInstance();
+		RDA rda = RDAFactory.createRDA();
+		CardRDA rdaCard = (CardRDA) CardRDAFactory.getInstance()
+				.makeCard(rdac.getLista());
+		rdaCard.load(rda);
+		rdac.getLista().addCard(rdaCard);
+		rdac.setRDASelezionata(rda);
+		rdac.getLista().deselectAll();
+		rdac.getLista().getPrimaRDA();
 		this.add(JBAddRiga, "2, 22");
 	}
 
