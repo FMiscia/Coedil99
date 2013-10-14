@@ -1,8 +1,11 @@
 package GUI.Plichi;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 
+import GUI.RDACenter;
 import GUI.Abstract.AFormRDA;
 import GUI.Abstract.APlico;
 import GUI.Liste.ListaRigheRDA;
@@ -16,8 +19,7 @@ public class PlicoRDA extends APlico {
 	private PlicoRDA() {
 		setLayout(new BorderLayout());
 		addListaRigheRDA();
-		this.validate();
-		this.repaint();
+		
 	}
 
 
@@ -71,6 +73,14 @@ public class PlicoRDA extends APlico {
 	public void resetFormRDA(){
 		if(this.formRDA != null)
 			this.remove(this.formRDA);
+		this.validate();
+		this.repaint();
+	}
+	
+	public void refresh(){
+		this.resetFormRDA();
+		this.listaRigheRDA.svuota();
+		this.listaRigheRDA.load(new ArrayList<Object>(RDACenter.getInstance().getRDASelezionata().righeRDA.getCollection()) );
 		this.validate();
 		this.repaint();
 	}
