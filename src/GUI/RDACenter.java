@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 
+import GUI.Abstract.APlico;
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
 import GUI.Liste.ListaRDA;
@@ -50,6 +51,26 @@ public class RDACenter extends JPanel {
 
 	public ListaRDA getLista() {
 		return lista;
+	}
+	
+	public void setLista(ListaRDA r){
+		this.remove(this.lista);
+		this.validate();
+		this.repaint();
+		this.lista = r;
+		this.add(this.lista, BorderLayout.WEST);
+		this.validate();
+		this.repaint();
+	}
+	
+	public void removePlicoRDA(){
+		this.remove(PlicoRDA.getInstance());
+		this.validate();
+		this.repaint();
+	}
+	
+	public void addPlicoRDA(){
+		this.add(PlicoRDA.getInstance());
 	}
 	
 

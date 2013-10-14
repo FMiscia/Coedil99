@@ -78,6 +78,15 @@ public abstract class AClipPanel extends JPanel {
 			b.setBackground(UIManager.getColor("Button.background"));
 		}
 	}
+	
+	public Boolean isButtonFocused(JButton b){
+		return b.getBackground().equals(new Color(180,180,180));
+	}
+	
+	public void resetInitialState(){
+		this.focusOut();
+		this.getButtons().get(1).setBackground(new Color(180,180,180));
+	}
 
 	public ArrayList<JButton> getButtons() {
 		return buttons;
