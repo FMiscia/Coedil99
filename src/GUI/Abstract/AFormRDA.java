@@ -125,9 +125,7 @@ public abstract class AFormRDA extends JPanel {
 					
 				}
 		    });
-		spinner.setBorder(null);
-		spinner.setPreferredSize(new Dimension(60, 20));
-		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+
 		add(spinner, "2, 16, left, center");
 		
 		lblErrorePacchi = new JLabel("Seleziona un numero diverso da zero!");
@@ -254,6 +252,8 @@ public abstract class AFormRDA extends JPanel {
 	
 	
 	public Integer getQuantity(){
+		if (lblErrorePacchi.isVisible())
+			return -1;
 		return (Integer) spinner.getValue();
 	}
 

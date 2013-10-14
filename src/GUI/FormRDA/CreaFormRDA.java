@@ -43,13 +43,12 @@ public class CreaFormRDA extends AFormRDA {
 				int indiceCbEssenza = CreaFormRDA.this.getCbEssenza().getSelectedIndex();
 				int indiceCbGeometria = CreaFormRDA.this.getCbGeometria().getSelectedIndex();
 				
-				//MODIFICARE DOPO CHE SIMONE PUSHA IL GETQUANTITY IN AFORMRDA
-				int numero = 1;
+				int numero = CreaFormRDA.this.getQuantity();
 				String fornitore	= "";
 				String essenza	= "";
 				String geometria	= "";
 				
-				if(indiceCbFornitore != -1 || indiceCbEssenza != -1 || indiceCbGeometria != -1){
+				if(numero != -1 || indiceCbFornitore != -1 || indiceCbEssenza != -1 || indiceCbGeometria != -1){
 					fornitore = CreaFormRDA.this.getCbFornitore().getSelectedItem().toString();
 					CatalogoFornitore cf = GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore);
 					essenza = CreaFormRDA.this.getCbEssenza().getSelectedItem().toString();
@@ -69,7 +68,7 @@ public class CreaFormRDA extends AFormRDA {
 					lista.getPrimaCard().validate();
 					lista.getPrimaCard().repaint();
 				}else{
-					JOptionPane.showMessageDialog(null, "Per creare una riga della nuova RDA, seleziona un fornitore, un'essenza e una geometria", "achtung", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Per creare una riga della nuova RDA, seleziona un fornitore, un'essenza una geometria e una quantità valida", "achtung", JOptionPane.PLAIN_MESSAGE);
 				}
 				
 
