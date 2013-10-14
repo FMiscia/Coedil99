@@ -76,10 +76,6 @@ public class ListaRigheRDA extends ALista {
 	}
 	
 		
-	public void svuota(){
-		this.panel.removeAll();
-		this.validate();
-		this.repaint();
-	}
+
 
 }

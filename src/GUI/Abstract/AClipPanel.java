@@ -76,6 +76,7 @@ public abstract class AClipPanel extends JPanel {
 	public void focusOut(){
 		for(JButton b: buttons){
 			b.setBackground(UIManager.getColor("Button.background"));
+			b.setEnabled(true);
 		}
 	}
 	

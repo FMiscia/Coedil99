@@ -93,7 +93,7 @@ public class CreaFormRDA extends AFormRDA {
 								.showMessageDialog(
 										null,
 										"Per creare una riga della nuova RDA, seleziona un fornitore, un'essenza una geometria e una quantità valida",
-										"achtung", JOptionPane.PLAIN_MESSAGE);
+										"Attenzione", JOptionPane.PLAIN_MESSAGE);
 					}
 
 				}

@@ -42,6 +42,9 @@ public class ClipPanelRDA extends AClipPanel {
 		this.addButton("Menu", "Torna al menu principale",
 				new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						JButton b = (JButton) arg0.getSource();
+//						System.out.println(b);
+//						System.out.println(ClipPanelRDA.this.getComponent(3));
 						CoedilFrame cf = CoedilFrame.getInstance();
 						PanelStart pl = new PanelStart(cf);
 						pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
@@ -49,24 +52,13 @@ public class ClipPanelRDA extends AClipPanel {
 					}
 				});
 
-		this.addButton("Lista RDA", "Visualizza tutte le RDA",
+		this.addButton("RDA Congelate", "Visualizza le RDA Congelate",
 				new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						if (!ClipPanelRDA.this.isButtonFocused((JButton) arg0
-								.getSource())) {
-							Object[] options = { "Si", "No" };
-							int n = JOptionPane.showOptionDialog(
-									ProgrammaLavori.getInstance(),
-									"Sicuro di voler tornare alle RDA?\n"
-											+ "Nota: Le modifiche non salvate andranno perse",
-									"Conferma operazione",
-									JOptionPane.YES_NO_CANCEL_OPTION,
-									JOptionPane.QUESTION_MESSAGE, null,
-									options, options[1]);
-							if (n == JOptionPane.YES_OPTION) {
+						
 								ClipPanelRDA.this.focusOut();
 								JButton b = (JButton) arg0.getSource();
-								b.setBackground(new Color(180, 180, 180));
+								b.setBackground(new Color(180,180,180));
 								RDACenter rdac = RDACenter.getInstance();
 								ListaRDA listarda = (ListaRDA) ListaRDAFactory
 										.getInstance().makeLista();
@@ -84,16 +76,34 @@ public class ClipPanelRDA extends AClipPanel {
 										.getCollection()));
 								lista_rda.validate();
 								lista_rda.repaint();
-							}
-						}
+
+
 					}
 				});
-
+		
+		this.addButton("RDA Attesa", "Visualizza le RDA in attesa conferma",
+				new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						ClipPanelRDA.this.focusOut();
+						JButton b = (JButton) arg0.getSource();
+						b.setBackground(new Color(180,180,180));
+						PlicoRDA prda = PlicoRDA.getInstance();
+						prda.getListaRigheRDA().svuota();
+						RDACenter rdac = RDACenter.getInstance();
+						rdac.getLista().svuota();
+						BorderLayout layout = (BorderLayout) prda.getLayout();
+						if (layout.getLayoutComponent(BorderLayout.CENTER)!=null)
+							prda.remove(layout.getLayoutComponent(BorderLayout.CENTER));
+						prda.validate();
+						prda.repaint();
+					}
+				});
+		
 		this.addButton("Nuova RDA", "Crea una nuova RDA", new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ClipPanelRDA.this.focusOut();
 				JButton b = (JButton) arg0.getSource();
-				b.setBackground(new Color(180, 180, 180));
+				b.setBackground(new Color(180,180,180));
 				PlicoRDA prda = PlicoRDA.getInstance();
 				prda.getListaRigheRDA().svuota();
 				CreaFormRDA form = (CreaFormRDA) CreaFormRDAFactory
