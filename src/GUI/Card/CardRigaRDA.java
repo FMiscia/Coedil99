@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import org.orm.PersistentException;
 
 import GUI.ProgrammaLavori;
+import GUI.RDACenter;
 import GUI.Abstract.ACard;
 import GUI.FormRDA.ModificaFormRDA;
 import GUI.FormRDA.ModificaFormRDAFactory;
@@ -184,7 +185,7 @@ public class CardRigaRDA extends ACard {
 			public void mouseClicked(MouseEvent e) {
 				Object[] options = { "Si", "No" };
 				int n = JOptionPane.showOptionDialog(
-						ProgrammaLavori.getInstance(),
+						RDACenter.getInstance(),
 						"Sei sicuro di voler eliminare questa riga RDA?\n"
 								+ "Nota: questa operazione non è reversibile",
 						"Conferma operazione",
