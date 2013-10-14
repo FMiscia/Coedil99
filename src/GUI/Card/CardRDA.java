@@ -146,11 +146,12 @@ public class CardRDA extends ACard {
 				CardRDA.this.repaint();
 				lista_rda.validate();
 				lista_rda.repaint();
-
 			}
-
 		});
-
+	}
+	
+	public void setNomeFornitore(String s){
+		this.id.setText(s);
 	}
 
 }

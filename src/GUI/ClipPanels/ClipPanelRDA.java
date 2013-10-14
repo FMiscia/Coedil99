@@ -94,15 +94,6 @@ public class ClipPanelRDA extends AClipPanel {
 				ClipPanelRDA.this.focusOut();
 				JButton b = (JButton) arg0.getSource();
 				b.setBackground(new Color(180, 180, 180));
-				RDACenter rdac = RDACenter.getInstance();
-				RDA rda = RDAFactory.createRDA();
-				CardRDA rdaCard = (CardRDA) CardRDAFactory.getInstance()
-						.makeCard(rdac.getLista());
-				rdaCard.load(rda);
-				rdac.getLista().addCard(rdaCard);
-				rdac.setRDASelezionata(rda);
-				rdac.getLista().deselectAll();
-				rdac.getLista().getPrimaRDA();
 				PlicoRDA prda = PlicoRDA.getInstance();
 				prda.getListaRigheRDA().svuota();
 				CreaFormRDA form = (CreaFormRDA) CreaFormRDAFactory

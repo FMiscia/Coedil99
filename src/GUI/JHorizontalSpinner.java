@@ -1,13 +1,19 @@
 package GUI;
 
 import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+
 import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 
     public class JHorizontalSpinner extends JSpinner{
 
         public JHorizontalSpinner(){
-            super();
+            super(	new SpinnerNumberModel(1,1,50,1));
+    		setBorder(null);
+    		setPreferredSize(new Dimension(60, 20));
             setUI(new HorizontalSpinnerUI());
         }
 
