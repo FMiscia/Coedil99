@@ -1,30 +1,40 @@
 package GUI.Abstract;
 
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.CatalogoFornitore;
 import coedil99.model.Geometria;
 import coedil99.model.ProductDescription;
 import coedil99.operation.OGeometria;
+import GUI.JHorizontalSpinner;
+import GUI.Riquadri.RiquadroDatiAziendali;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.JTextField;
-import javax.swing.JScrollBar;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
+import java.awt.Component;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import javax.swing.SwingConstants;
 
 public abstract class AFormRDA extends JPanel {
 	
@@ -39,7 +49,11 @@ public abstract class AFormRDA extends JPanel {
 	private JLabel lblPrezzo;
 	private JLabel lblQuantita;
 	private JTextField textField;
-	private JSpinner spinner;
+	private JHorizontalSpinner spinner;
+	private JLabel lblErrorePacchi;
+	private ImageIcon IcoErrore = new ImageIcon(
+			RiquadroDatiAziendali.class
+					.getResource("/GUI/image/cancel.png"));
 	
 	public AFormRDA() {
 		this.setPreferredSize(new Dimension(286, 240));
@@ -93,9 +107,35 @@ public abstract class AFormRDA extends JPanel {
 		lblQuantita = new JLabel("Seleziona il numero di pacchi");
 		add(lblQuantita, "2, 14");
 		
-		spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		add(spinner, "2, 16");
+		spinner = new JHorizontalSpinner();
+		spinner.setEnabled(false);
+		spinner.addChangeListener(new ChangeListener() {
+
+				@Override
+				public void stateChanged(ChangeEvent e) {
+					if(spinner.getValue().equals(0)){
+						lblErrorePacchi.setVisible(true);
+						spinner.setBorder(new LineBorder(Color.red));
+
+					}
+					else{
+						lblErrorePacchi.setVisible(false);
+						spinner.setBorder(null);
+					}
+					
+				}
+		    });
+		spinner.setBorder(null);
+		spinner.setPreferredSize(new Dimension(60, 20));
+		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		add(spinner, "2, 16, left, center");
+		
+		lblErrorePacchi = new JLabel("Seleziona un numero diverso da zero!");
+		lblErrorePacchi.setHorizontalTextPosition(SwingConstants.LEFT);
+		lblErrorePacchi.setIcon(IcoErrore);
+		lblErrorePacchi.setToolTipText("Il numero di pacchi deve essere diverso da zero!");
+		lblErrorePacchi.setVisible(false);
+		add(lblErrorePacchi,"2, 16, right, center");
 		
 		lblPrezzo = new JLabel("Riepilogo spesa");
 		add(lblPrezzo, "2, 18");
@@ -188,8 +228,18 @@ public abstract class AFormRDA extends JPanel {
 			if(pd.get(i).getEssenza().equals(essenza)){
 				Geometria g = pd.get(i).getGeometria();
 				this.cbGeometria.addItem(new OGeometria(g).toString());
+				this.cbGeometria.addItemListener(new ItemListener() {
+					
+					@Override
+					public void itemStateChanged(ItemEvent e) {
+						 if(e.getStateChange() == ItemEvent.SELECTED) {
+			                	AFormRDA.this.spinner.setEnabled(true);
+			                }
+					}
+				});
 			}
 		}
+		this.cbGeometria.setSelectedItem(null);
 	}
 	
 	public void reset(){
@@ -198,7 +248,13 @@ public abstract class AFormRDA extends JPanel {
 		this.cbEssenza.setEnabled(true);
 		this.cbGeometria.removeAllItems();
 		this.cbGeometria.setEnabled(true);
+		this.spinner.setValue(1);
+		this.spinner.setEnabled(false);
 	}
 	
+	
+	public Integer getQuantity(){
+		return (Integer) spinner.getValue();
+	}
 
 }
