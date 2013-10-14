@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 
 import org.orm.PersistentException;
 
+import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 
 import GUI.RDACenter;
@@ -43,20 +44,13 @@ public abstract class ALista extends JScrollPane {
 		this.btnSalva.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					Object[] options = { "Ok", "Cancel" };
-					RDACenter.getInstance().getRDASelezionata().save();
-					JOptionPane
-							.showMessageDialog(
-									null,
-									"RDA salvata con successo!\n",
-									"Conferma operazione",
-									JOptionPane.PLAIN_MESSAGE);
+				Object[] options = { "Ok", "Cancel" };
+				GestisciRDAHandler.getInstance().saveAndAddRDA(
+						RDACenter.getInstance().getRDASelezionata());
+				JOptionPane.showMessageDialog(null,
+						"RDA salvata con successo!\n", "Conferma operazione",
+						JOptionPane.PLAIN_MESSAGE);
 
-				} catch (PersistentException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 			}
 		});
 	}
@@ -77,24 +71,8 @@ public abstract class ALista extends JScrollPane {
 	public abstract void load(ArrayList<Object> t);
 
 	/**
-	 * @author francesco Aggiorna posizione e valore di Titolo e Prezzo delle
-	 *         righe RDA
+	 * @author francesco Aggiorna posizione e valore del Titolo e info aggiutivi
 	 */
-	public void updateTitlePanel() {
-		this.panelTitle.removeAll();
-		panelTitle.setSize(new Dimension(200, 90));
-		panelTitle.setPreferredSize(new Dimension(200, 90));
-		panel.add(panelTitle, 0);
-		panelTitle.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panelTitle.add(labeltitle);
-		panelTitle.add(labelprezzo);
-		JLabel prezzo = new JLabel("0.0");
-		panelTitle.add(prezzo);
-		this.btnSalva.setPreferredSize(new Dimension(120, 30));
-		panelTitle.add(btnSalva);
-		this.validate();
-		this.repaint();
-
-	}
+	public abstract void updatePanel();
 
 }

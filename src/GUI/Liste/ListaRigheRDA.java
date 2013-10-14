@@ -35,7 +35,7 @@ public class ListaRigheRDA extends ALista {
 	@Override
 	public void load(ArrayList<Object> t) {
 		//Aggiorna titolo e prezzo delle righe rda
-		this.updateTitlePanel();
+		this.updatePanel();
 		this.setPreferredSize(new Dimension(290, 0));
 		int row = t.size();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
@@ -78,6 +78,23 @@ public class ListaRigheRDA extends ALista {
 		
 	public void svuota(){
 		this.panel.removeAll();
+		this.validate();
+		this.repaint();
+	}
+
+	@Override
+	public void updatePanel() {
+		this.panelTitle.removeAll();
+		panelTitle.setSize(new Dimension(200, 90));
+		panelTitle.setPreferredSize(new Dimension(200, 90));
+		panel.add(panelTitle, 0);
+		panelTitle.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panelTitle.add(labeltitle);
+		panelTitle.add(labelprezzo);
+		JLabel prezzo = new JLabel("0.0");
+		panelTitle.add(prezzo);
+		this.btnSalva.setPreferredSize(new Dimension(120, 30));
+		panelTitle.add(btnSalva);
 		this.validate();
 		this.repaint();
 	}

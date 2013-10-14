@@ -64,5 +64,15 @@ public class GestisciRDAHandler {
 		// TODO Auto-generated method stub
 		return this.arrayRDA.size();
 	}
+	
+	public void saveAndAddRDA(RDA r){
+		try {
+			r.save();
+			this.arrayRDA.add(r);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
