@@ -81,6 +81,11 @@ public class ListaRDA extends ALista {
 		this.validate();
 		this.repaint();
 	}
+	
+	public CardRDA getPrimaCard(){
+		return (CardRDA) panel.getComponent(0);
+
+	}
 
 	
 

@@ -126,7 +126,6 @@ public class CardRDA extends ACard {
 		this.setBackground(new Color(30, 144, 255));
 		this.validate();
 		this.repaint();
-		System.out.println("dsdeed");
 		this.addMouseListener(new MouseListener() {
 
 			@Override
