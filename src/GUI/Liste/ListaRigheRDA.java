@@ -34,21 +34,9 @@ public class ListaRigheRDA extends ALista {
 
 	@Override
 	public void load(ArrayList<Object> t) {
+		//Aggiorna titolo e prezzo delle righe rda
+		this.updateTitlePanel();
 		this.setPreferredSize(new Dimension(290, 0));
-		JPanel panelTitle = new JPanel();
-		panelTitle.setSize(new Dimension(200, 50));
-		panelTitle.setPreferredSize(new Dimension(200, 50));
-		panel.add(panelTitle);
-		panelTitle.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JLabel labeltitle = new JLabel("Lista Righe RDA");
-		panelTitle.add(labeltitle);
-		
-		JLabel labelprezzo = new JLabel("Prezzo RDA:");
-		panelTitle.add(labelprezzo);
-		
-		JLabel prezzo = new JLabel("0.0");
-		panelTitle.add(prezzo);
 		int row = t.size();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		CardRigaRDA riquadroRigaRDA;
@@ -86,6 +74,7 @@ public class ListaRigheRDA extends ALista {
 			c.repaint();
 		}
 	}
+	
 		
 	public void svuota(){
 		this.panel.removeAll();

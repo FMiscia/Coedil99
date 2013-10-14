@@ -23,6 +23,11 @@ public abstract class ALista extends JScrollPane {
 	private static final long serialVersionUID = 1L;
 
 	protected JPanel panel;
+	protected JPanel panelTitle = new JPanel();
+	JLabel labeltitle = new JLabel("Lista Righe RDA");
+	JLabel labelprezzo = new JLabel("Prezzo RDA:");
+	
+	
 
 	public ALista() {
 		this.panel = new JPanel(null);
@@ -44,5 +49,24 @@ public abstract class ALista extends JScrollPane {
 	}
 
 	public abstract void load(ArrayList<Object> t);
+	
+	/**
+	 * @author francesco
+	 * Aggiorna posizione e valore di Titolo e Prezzo delle righe RDA
+	 */
+	public void updateTitlePanel(){
+		this.panelTitle.removeAll();
+		panelTitle.setSize(new Dimension(200, 50));
+		panelTitle.setPreferredSize(new Dimension(200, 50));
+		panel.add(panelTitle,0);
+		panelTitle.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));	
+		panelTitle.add(labeltitle);
+		panelTitle.add(labelprezzo);
+		JLabel prezzo = new JLabel("0.0");
+		panelTitle.add(prezzo);
+		this.validate();
+		this.repaint();
+		
+	}
 
 }
