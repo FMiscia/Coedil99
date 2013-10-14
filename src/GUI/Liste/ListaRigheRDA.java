@@ -98,7 +98,6 @@ public class ListaRigheRDA extends ALista {
 			this.btnSalva.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					Object[] options = { "Ok", "Cancel" };
 					GestisciRDAHandler.getInstance().saveAndAddRDA(
 							RDACenter.getInstance().getRDASelezionata());
 					JOptionPane.showMessageDialog(null,
@@ -120,6 +119,8 @@ public class ListaRigheRDA extends ALista {
 					lista_rda.getPanel().removeAll();
 					lista_rda.load(new ArrayList<Object>(rdac
 							.getRDASelezionata().righeRDA.getCollection()));
+					
+					rdac.getClipPanel().focusToRDACongelate();
 					lista_rda.validate();
 					lista_rda.repaint();
 				}

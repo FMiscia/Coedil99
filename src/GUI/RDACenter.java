@@ -24,6 +24,7 @@ public class RDACenter extends JPanel {
 	private ListaRDA lista;
 	private ClipPanelRDA clipPanel = (ClipPanelRDA) ClipPanelRDAFactory.getInstance().makeClipPanel();	
 	
+
 	public RDACenter(){
 		this.setLayout(new BorderLayout());
 		this.add(clipPanel, BorderLayout.NORTH);
@@ -72,7 +73,13 @@ public class RDACenter extends JPanel {
 	public void addPlicoRDA(){
 		this.add(PlicoRDA.getInstance());
 	}
-	
+	public ClipPanelRDA getClipPanel() {
+		return clipPanel;
+	}
+
+	public void setClipPanel(ClipPanelRDA clipPanel) {
+		this.clipPanel = clipPanel;
+	}
 
 	
 }
