@@ -2,8 +2,11 @@ package GUI.Abstract;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -11,6 +14,10 @@ import coedil99.model.RDA;
 
 import GUI.WrapLayout;
 
+/**
+ * @author francesco
+ *
+ */
 public abstract class ALista extends JScrollPane {
 
 	private static final long serialVersionUID = 1L;
@@ -30,6 +37,10 @@ public abstract class ALista extends JScrollPane {
 			c.validate();
 			c.repaint();
 		}
+	}
+	
+	public JPanel getPanel(){
+		return this.panel;
 	}
 
 	public abstract void load(ArrayList<Object> t);

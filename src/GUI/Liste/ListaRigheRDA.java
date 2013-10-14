@@ -3,11 +3,13 @@ package GUI.Liste;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import GUI.RDACenter;
@@ -26,14 +28,27 @@ public class ListaRigheRDA extends ALista {
 	public ListaRigheRDA() {
 		// TODO Auto-generated constructor stub
 		super();
-		this.setPreferredSize(new Dimension(290, 0));
 		this.validate();
 		this.repaint();
 	}
 
 	@Override
 	public void load(ArrayList<Object> t) {
-		// TODO Auto-generated method stub
+		this.setPreferredSize(new Dimension(290, 0));
+		JPanel panelTitle = new JPanel();
+		panelTitle.setSize(new Dimension(200, 50));
+		panelTitle.setPreferredSize(new Dimension(200, 50));
+		panel.add(panelTitle);
+		panelTitle.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel labeltitle = new JLabel("Lista Righe RDA");
+		panelTitle.add(labeltitle);
+		
+		JLabel labelprezzo = new JLabel("Prezzo RDA:");
+		panelTitle.add(labelprezzo);
+		
+		JLabel prezzo = new JLabel("0.0");
+		panelTitle.add(prezzo);
 		int row = t.size();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		CardRigaRDA riquadroRigaRDA;

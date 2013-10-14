@@ -25,6 +25,7 @@ import GUI.Card.CardRDAFactory;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDAFactory;
 import GUI.Plichi.PlicoRDA;
 
 public class CreaFormRDA extends AFormRDA {
@@ -77,6 +78,7 @@ public class CreaFormRDA extends AFormRDA {
 		CardRDA rdaCard = (CardRDA) CardRDAFactory.getInstance()
 				.makeCard(rdac.getLista());
 		rdaCard.load(rda);
+		rdac.getLista().getPanel().removeAll();
 		rdac.getLista().addCard(rdaCard);
 		rdac.setRDASelezionata(rda);
 		rdac.getLista().deselectAll();
