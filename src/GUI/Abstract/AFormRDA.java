@@ -289,4 +289,12 @@ public abstract class AFormRDA extends JPanel {
 		this.tfSpesa.setText(String.valueOf((Integer)this.spinner.getValue()*pd.getPrezzo()));
 	}
 
+
+	public void setQuantity(int i) {
+		this.spinner.setValue(i);
+		this.aggiornaSpesa();
+	}
+
+	
+
 }
