@@ -11,6 +11,10 @@ import coedil99.controller.GestisciRDAHandler;
 import GUI.Abstract.ALista;
 import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
 
 
 @SuppressWarnings("serial")
@@ -19,7 +23,7 @@ public class ListaRDA extends ALista {
 	
 	public ListaRDA(){
 		super();
-		this.setPreferredSize(new Dimension(260,0));
+		this.setPreferredSize(new Dimension(260,0));		
 		this.load(new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayRDA()));
 		this.deselectAll();
 	}
@@ -70,7 +74,6 @@ public class ListaRDA extends ALista {
 			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
 			panel.add(r);
 		}
-		this.setPreferredSize(new Dimension(260,panel.getHeight()));
 		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
 		this.validate();
 		this.repaint();
