@@ -1,5 +1,8 @@
 package GUI.FormRDA;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import GUI.Abstract.AFormRDA;
 import coedil99.model.RigaRDA;
 import coedil99.operation.OGeometria;

@@ -82,7 +82,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 							.showOptionDialog(
 									ProgrammaLavori.getInstance(),
 									"Il DDO non esiste.\nVuoi elaborare l'ottimizzazione?\n"
-											+ "Nota: questa operazione non è reversibile",
+											+ "Nota: questa operazione non ï¿½ reversibile",
 									"Conferma operazione",
 									JOptionPane.YES_NO_CANCEL_OPTION,
 									JOptionPane.QUESTION_MESSAGE, null,
@@ -106,11 +106,6 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 		});
 		this.fill();
 		this.resetInitialState();
-	}
-	
-	public void resetInitialState(){
-		this.focusOut();
-		this.getButtons().get(1).setBackground(new Color(180,180,180));
 	}
 
 }
