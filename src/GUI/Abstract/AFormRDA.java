@@ -5,14 +5,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.LineBorder;
@@ -109,22 +114,35 @@ public abstract class AFormRDA extends JPanel {
 		
 		spinner = new JHorizontalSpinner();
 		spinner.setEnabled(false);
-		spinner.addChangeListener(new ChangeListener() {
+		
+		((JSpinner.DefaultEditor)spinner.getEditor()).getTextField().addKeyListener(new KeyListener(){
 
-				@Override
-				public void stateChanged(ChangeEvent e) {
-					if(spinner.getValue().equals(0)){
-						lblErrorePacchi.setVisible(true);
-						spinner.setBorder(new LineBorder(Color.red));
+            @Override
+            public void keyPressed(KeyEvent e) {    
+            	
+            }
 
-					}
-					else{
-						lblErrorePacchi.setVisible(false);
-						spinner.setBorder(null);
-					}
-					
-				}
-		    });
+            @Override
+            public void keyReleased(KeyEvent e) {
+                System.out.println("PRESSED!");    
+				System.out.println("rel");
+				Pattern p = Pattern.compile("[^0-9]+");
+				String myString = ((DefaultEditor) spinner.getEditor()).getTextField().getText();
+				Matcher m = p.matcher(myString);
+				String clean = m.replaceAll("");
+				System.out.println(clean);
+				((DefaultEditor) spinner.getEditor()).getTextField().setText(clean);
+				if(clean.equalsIgnoreCase("0"))
+					((DefaultEditor) spinner.getEditor()).getTextField().setText("1");
+				
+            }
+
+            @Override
+            public void keyTyped(KeyEvent e) {                    
+            }
+
+        });
+
 
 		add(spinner, "2, 16, left, center");
 		
@@ -254,7 +272,7 @@ public abstract class AFormRDA extends JPanel {
 	public Integer getQuantity(){
 		if (lblErrorePacchi.isVisible())
 			return -1;
-		return (Integer) spinner.getValue();
+		return (Integer) ((DefaultEditor) spinner.getEditor()).getTextField().getValue();
 	}
 
 }
