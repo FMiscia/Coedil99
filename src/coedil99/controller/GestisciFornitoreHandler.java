@@ -10,6 +10,7 @@ import coedil99.model.CatalogoFornitore;
 import coedil99.model.CatalogoFornitoreFactory;
 import coedil99.model.ProductDescription;
 import coedil99.model.RDAFactory;
+import coedil99.operation.OGeometria;
 
 public class GestisciFornitoreHandler {
 
@@ -58,7 +59,7 @@ public class GestisciFornitoreHandler {
 		ProductDescription pd = null;
 		for ( int i=0 ; i<l.size() ; i++  ){
 			pd = (ProductDescription) l.get(i);
-			if( pd.getEssenza().toString().equalsIgnoreCase(essenza)  && pd.getGeometria().myToString().equalsIgnoreCase(geometria)){
+			if( pd.getEssenza().toString().equalsIgnoreCase(essenza)  && new OGeometria(pd.getGeometria()).toString().equalsIgnoreCase(geometria)){
 				return pd;
 			}
 		}
