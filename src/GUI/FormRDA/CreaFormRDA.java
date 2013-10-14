@@ -56,7 +56,6 @@ public class CreaFormRDA extends AFormRDA {
 					RigaRDA rrda = RigaRDAFactory.createRigaRDA();
 					RDACenter rdac = RDACenter.getInstance();
 					rrda.setRDA(rdac.getRDASelezionata());
-//					rdac.getLista().load();
 					rrda.setDescription(pd);
 					rrda.setQuantity(numero);
 					PlicoRDA prda = PlicoRDA.getInstance();
@@ -64,6 +63,9 @@ public class CreaFormRDA extends AFormRDA {
 					cardRigaRDA.load(rrda);
 					ListaRDA lista =  rdac.getLista();
 					prda.getListaRigheRDA().load(new ArrayList<Object>(rdac.getRDASelezionata().righeRDA.getCollection()) );
+					lista.getPrimaCard().setNomeFornitore(fornitore);
+					lista.getPrimaCard().validate();
+					lista.getPrimaCard().repaint();
 				}else{
 					JOptionPane.showMessageDialog(null, "Per creare una riga della nuova RDA, seleziona un fornitore, un'essenza e una geometria", "achtung", JOptionPane.PLAIN_MESSAGE);
 				}
