@@ -55,8 +55,8 @@ public class CreaFormRDA extends AFormRDA {
 					String essenza = "";
 					String geometria = "";
 
-					if (numero != -1 || indiceCbFornitore != -1
-							|| indiceCbEssenza != -1 || indiceCbGeometria != -1) {
+					if (numero != -1 && indiceCbFornitore != -1
+							&& indiceCbEssenza != -1 && indiceCbGeometria != -1) {
 						fornitore = CreaFormRDA.this.getCbFornitore()
 								.getSelectedItem().toString();
 						CatalogoFornitore cf = GestisciFornitoreHandler
@@ -85,6 +85,7 @@ public class CreaFormRDA extends AFormRDA {
 										rdac.getRDASelezionata().righeRDA
 												.getCollection()));
 						lista.getPrimaCard().setNomeFornitore(fornitore);
+						CreaFormRDA.this.getCbFornitore().setEnabled(false);
 						lista.getPrimaCard().validate();
 						lista.getPrimaCard().repaint();
 					} else {
