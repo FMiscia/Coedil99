@@ -56,6 +56,7 @@ public class CreaFormRDA extends AFormRDA {
 					RigaRDA rrda = RigaRDAFactory.createRigaRDA();
 					RDACenter rdac = RDACenter.getInstance();
 					rrda.setRDA(rdac.getRDASelezionata());
+//					rdac.getLista().load();
 					rrda.setDescription(pd);
 					rrda.setQuantity(numero);
 					PlicoRDA prda = PlicoRDA.getInstance();
