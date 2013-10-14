@@ -7,6 +7,7 @@ import org.orm.PersistentException;
 
 import coedil99.model.RDA;
 import coedil99.model.RDAFactory;
+import coedil99.model.RigaRDA;
 
 
 
@@ -68,7 +69,22 @@ public class GestisciRDAHandler {
 	public void saveAndAddRDA(RDA r){
 		try {
 			r.save();
-			this.arrayRDA.add(r);
+			this.arrayRDA.add(0, r);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteAndRemoveRDA(RDA r){
+		try {
+			ArrayList<RigaRDA> listarighe = new ArrayList<RigaRDA>( r.righeRDA.getCollection() );
+			for (RigaRDA temp : listarighe){
+				this.arrayRDA.remove(temp);
+				temp.deleteAndDissociate();
+			}
+			r.delete();
+			this.arrayRDA.remove(r);
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

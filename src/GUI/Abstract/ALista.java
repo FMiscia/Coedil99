@@ -36,23 +36,12 @@ public abstract class ALista extends JScrollPane {
 	protected JLabel labeltitle = new JLabel("Lista Righe RDA");
 	protected JLabel labelprezzo = new JLabel("Prezzo RDA:");
 	protected JButton btnSalva = new JButton("Salva RDA");
+	protected JButton btnElimina = new JButton("Elimina RDA");
 
 	public ALista() {
 		this.panel = new JPanel(null);
 		this.setViewportView(this.panel);
 		this.panel.setLayout(new WrapLayout());
-		this.btnSalva.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Object[] options = { "Ok", "Cancel" };
-				GestisciRDAHandler.getInstance().saveAndAddRDA(
-						RDACenter.getInstance().getRDASelezionata());
-				JOptionPane.showMessageDialog(null,
-						"RDA salvata con successo!\n", "Conferma operazione",
-						JOptionPane.PLAIN_MESSAGE);
-
-			}
-		});
 	}
 
 	public void deselectAll() {
@@ -72,7 +61,16 @@ public abstract class ALista extends JScrollPane {
 
 	/**
 	 * @author francesco Aggiorna posizione e valore del Titolo e info aggiutivi
+	 * del panelTitle
 	 */
 	public abstract void updatePanel();
+
+	public JPanel getPanelTitle() {
+		return panelTitle;
+	}
+
+	public void setPanelTitle(JPanel panelTitle) {
+		this.panelTitle = panelTitle;
+	}
 
 }
