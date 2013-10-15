@@ -92,6 +92,7 @@ public class PanelStart extends JPanel {
 		RDAButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				RDACenter rda = RDACenter.getInstance();
+				rda.loadListaRigheRDA();
 				CoedilFrame.getInstance().montaPanel(rda);
 			}
 		});

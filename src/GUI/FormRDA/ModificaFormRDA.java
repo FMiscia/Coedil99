@@ -59,7 +59,7 @@ public class ModificaFormRDA extends AFormRDA {
 				
 			}
 		});
-		add(btSalvaModifica, "2, 22");
+		add(btSalvaModifica, "2, 22, 3, 1");
 	}
 	
 	

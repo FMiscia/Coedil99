@@ -26,8 +26,12 @@ public class RDACenter extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.add(clipPanel, BorderLayout.NORTH);
 		this.lista = (ListaRDA) ListaRDAFactory.getInstance().makeLista();
-		this.add(this.lista, BorderLayout.WEST);
 		this.add(PlicoRDA.getInstance(), BorderLayout.CENTER);
+	}
+	
+	public void loadListaRigheRDA(){
+		this.lista = (ListaRDA)ListaRDAFactory.getInstance().makeLista();
+		this.add(this.lista, BorderLayout.WEST);
 		this.setRDASelezionata(GestisciRDAHandler.getInstance().getRDAById(this.lista.getPrimaRDA()));
 		PlicoRDA.getInstance().getListaRigheRDA().load(new ArrayList<Object>(this.getRDASelezionata().righeRDA.getCollection()) );
 	}
