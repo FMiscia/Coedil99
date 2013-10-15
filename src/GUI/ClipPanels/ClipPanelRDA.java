@@ -29,7 +29,8 @@ public class ClipPanelRDA extends AClipPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+    private JButton bCongelate;
+    private JButton bAttesa;
 
 	public ClipPanelRDA() {
 		super();
@@ -52,12 +53,12 @@ public class ClipPanelRDA extends AClipPanel {
 				new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 
-						JButton b = (JButton) arg0.getSource();
+						ClipPanelRDA.this.bCongelate = (JButton) arg0.getSource();
 						if (!ClipPanelRDA.this.clickFromNuovaRDA()) {
 							return;
 						}
 						ClipPanelRDA.this.focusOut();
-						b.setBackground(new Color(180, 180, 180));
+						ClipPanelRDA.this.bCongelate.setBackground(new Color(180, 180, 180));
 						RDACenter rdac = RDACenter.getInstance();
 						ListaRDA listarda = (ListaRDA) ListaRDAFactory
 								.getInstance().makeLista();
@@ -79,12 +80,12 @@ public class ClipPanelRDA extends AClipPanel {
 				new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 
-						JButton b = (JButton) arg0.getSource();
+						ClipPanelRDA.this.bAttesa = (JButton) arg0.getSource();
 						if (!ClipPanelRDA.this.clickFromNuovaRDA()) {
 							return;
 						}
 						ClipPanelRDA.this.focusOut();
-						b.setBackground(new Color(180, 180, 180));
+						ClipPanelRDA.this.bAttesa.setBackground(new Color(180, 180, 180));
 						
 						
 						PlicoRDA prda = PlicoRDA.getInstance();
@@ -117,6 +118,14 @@ public class ClipPanelRDA extends AClipPanel {
 
 		this.fill();
 		this.resetInitialState();
+	}
+
+	public JButton getbCongelate() {
+		return bCongelate;
+	}
+
+	public JButton getbAttesa() {
+		return bAttesa;
 	}
 
 	public void focusToRDACongelate(){
