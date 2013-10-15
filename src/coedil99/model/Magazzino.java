@@ -7,7 +7,6 @@ import coedil99.controller.GestisciRDAHandler;
 
 public class Magazzino extends Observer {
 
-	ArrayList<RDA> rdaSubjects;
 	private java.util.HashMap<Item, Integer> items;
 	private String name;
 
@@ -28,13 +27,18 @@ public class Magazzino extends Observer {
 	 * @return
 	 */
 	public Magazzino() {
-		this.subject = RDAFactory.createRDA();
+		this.subjects = new ArrayList<Subject>(GestisciRDAHandler.getInstance().getArrayRDA());
 	}
 
 	@Override
-	public Subject getSubject() {
-		// TODO Auto-generated method stub
-		return this.subject;
+	public ArrayList<Subject> getSubject() {
+		return this.subjects;
+	}
+	
+	@Override
+	public void setSubject(ArrayList<Subject> s) {
+		this.subjects = s;
+		
 	}
 
 	@Override
@@ -54,4 +58,6 @@ public class Magazzino extends Observer {
 		}
 
 	}
+
+
 }
