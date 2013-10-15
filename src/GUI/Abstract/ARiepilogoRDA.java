@@ -28,8 +28,13 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
+import java.awt.FlowLayout;
 
 public class ARiepilogoRDA extends JPanel {
+	
+	private static int width = 200;
+	private static int height = 200;
+	private JPanel panel;
 	private JLabel lblTitolo;
 	private JLabel lblPrezzo;
 	private JLabel lblTotale;
@@ -43,14 +48,21 @@ public class ARiepilogoRDA extends JPanel {
 	private JLabel lblQuantita;
 
 	public ARiepilogoRDA() {
-		this.setBackground(SystemColor.controlHighlight);
-		this.setSize(new Dimension(200, 200));
-		this.setPreferredSize(new Dimension(200, 200));
-		this.setLayout(new FormLayout(new ColumnSpec[] {
+		this.setSize(new Dimension(width,height));
+		this.setPreferredSize(new Dimension(270, 200));
+		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+		this.panel = new JPanel();
+		this.add(this.panel);
+		this.panel.setBackground(SystemColor.controlHighlight);
+		this.panel.setPreferredSize(new Dimension(280, 200));
+		this.panel.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("40px"),
 				ColumnSpec.decode("10px"),
 				ColumnSpec.decode("max(60px;default)"),
 				ColumnSpec.decode("10px"),
-				ColumnSpec.decode("max(70px;default)"),},
+				ColumnSpec.decode("max(70px;default)"),
+				ColumnSpec.decode("10px"),
+				ColumnSpec.decode("40px"),},
 			new RowSpec[] {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
@@ -72,40 +84,40 @@ public class ARiepilogoRDA extends JPanel {
 		lblTitolo = new JLabel("Lista Righe RDA");
 		lblTitolo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitolo.setHorizontalAlignment(SwingConstants.CENTER);
-		add(lblTitolo, "2, 2, 3, 1");
+		this.panel.add(lblTitolo, "3, 2, 3, 1");
 		
 		separator = new JSeparator();
-		add(separator, "2, 4, 3, 1");
+		this.panel.add(separator, "3, 4, 3, 1");
 		
 		lblFornitore = new JLabel("Fornitore");
 		lblFornitore.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		add(lblFornitore, "2, 6");
+		this.panel.add(lblFornitore, "3, 6");
 		
 		lblFornitoreSelezionato = new JLabel("");
-		add(lblFornitoreSelezionato, "4, 6, right, default");
+		this.panel.add(lblFornitoreSelezionato, "5, 6, right, default");
 		
 		lblNumeroPacchi = new JLabel("Numero di pacchi");
 		lblNumeroPacchi.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		add(lblNumeroPacchi, "2, 8");
+		this.panel.add(lblNumeroPacchi, "3, 8");
 		
 		lblQuantita = new JLabel("");
-		add(lblQuantita, "4, 8, right, default");
+		this.panel.add(lblQuantita, "5, 8, right, default");
 		
 		lblTotale = new JLabel("");
-		add(lblTotale, "4, 10, right, default");
+		this.panel.add(lblTotale, "5, 10, right, default");
 		
 		lblPrezzo = new JLabel("Prezzo Totale RDA");
 		lblPrezzo.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		add(lblPrezzo, "2, 10");
+		this.panel.add(lblPrezzo, "3, 10");
 		
 		separator_1 = new JSeparator();
-		add(separator_1, "2, 12, 3, 1");
+		this.panel.add(separator_1, "3, 12, 3, 1");
 		
 		btnSalva = new JButton("Salva RDA");
-		add(btnSalva, "2, 14");
+		this.panel.add(btnSalva, "3, 14");
 		
 		btnElimina = new JButton("Elimina RDA");
-		add(btnElimina, "2, 16");
+		this.panel.add(btnElimina, "3, 16");
 	}
 	
 	public void refresh(){

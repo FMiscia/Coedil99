@@ -40,6 +40,7 @@ import java.awt.Component;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public abstract class AFormRDA extends JPanel {
 	
@@ -55,17 +56,21 @@ public abstract class AFormRDA extends JPanel {
 	private JLabel lblQuantita;
 	private JTextField tfSpesa;
 	private JHorizontalSpinner spinner;
-	private JLabel lblErrorePacchi;
 	private ImageIcon IcoErrore = new ImageIcon(
 			RiquadroDatiAziendali.class
 					.getResource("/GUI/image/cancel.png"));
+	private JLabel lblValuta;
 	
 	public AFormRDA() {
-		this.setPreferredSize(new Dimension(286, 240));
+		this.setPreferredSize(new Dimension(317, 240));
 		setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(179dlu;default)"),},
+				ColumnSpec.decode("54px"),
+				ColumnSpec.decode("19px"),
+				ColumnSpec.decode("center:220px"),},
 			new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
@@ -90,29 +95,32 @@ public abstract class AFormRDA extends JPanel {
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		cbFornitore = new JComboBox<Object>();
-		add(cbFornitore, "2, 4");
+		add(cbFornitore, "2, 4, 3, 1");
 		
 		lblFornitore = new JLabel("Seleziona il catalogo del Fornitore");
-		add(lblFornitore, "2, 2");
+		add(lblFornitore, "2, 2, 3, 1");
 		
 		cbEssenza = new JComboBox<Object>();
 		cbEssenza.setEnabled(false);
-		add(cbEssenza, "2, 8");
+		add(cbEssenza, "2, 8, 3, 1");
 		
 		lblEssenza = new JLabel("Seleziona l'essenza");
-		add(lblEssenza, "2, 6");
+		add(lblEssenza, "2, 6, 3, 1");
 		
 		cbGeometria = new JComboBox<Object>();
 		cbGeometria.setEnabled(false);
-		add(cbGeometria, "2, 12");
+		add(cbGeometria, "2, 12, 3, 1");
 		
 		lblGeometria = new JLabel("Seleziona la geometria");
-		add(lblGeometria, "2, 10");
+		add(lblGeometria, "2, 10, 3, 1");
 		
 		lblQuantita = new JLabel("Seleziona il numero di pacchi");
-		add(lblQuantita, "2, 14");
+		add(lblQuantita, "2, 14, 3, 1");
 		
 		spinner = new JHorizontalSpinner();
+		spinner.setPreferredSize(new Dimension(75, 20));
+		spinner.setMinimumSize(new Dimension(60, 20));
+		spinner.setBorder(null);
 		spinner.setEnabled(false);
 		
 		((JSpinner.DefaultEditor)spinner.getEditor()).getTextField().addKeyListener(new KeyListener(){
@@ -151,22 +159,23 @@ public abstract class AFormRDA extends JPanel {
 			}
 		});
 
-		add(spinner, "2, 16, left, center");
-		
-		lblErrorePacchi = new JLabel("Seleziona un numero diverso da zero!");
-		lblErrorePacchi.setHorizontalTextPosition(SwingConstants.LEFT);
-		lblErrorePacchi.setIcon(IcoErrore);
-		lblErrorePacchi.setToolTipText("Il numero di pacchi deve essere diverso da zero!");
-		lblErrorePacchi.setVisible(false);
-		add(lblErrorePacchi,"2, 16, right, center");
+		add(spinner, "2, 16, 3, 1, left, center");
 		
 		lblPrezzo = new JLabel("Riepilogo spesa");
-		add(lblPrezzo, "2, 18");
+		add(lblPrezzo, "2, 18, 3, 1");
 		
 		tfSpesa = new JTextField();
+		tfSpesa.setHorizontalAlignment(SwingConstants.TRAILING);
+		tfSpesa.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		tfSpesa.setBorder(null);
 		tfSpesa.setEditable(false);
-		add(tfSpesa, "2, 20");
+		add(tfSpesa, "2, 20, left, default");
 		tfSpesa.setColumns(10);
+		
+		lblValuta = new JLabel("\u20AC");
+		lblValuta.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblValuta.setHorizontalAlignment(SwingConstants.RIGHT);
+		add(lblValuta, "3, 20, right, default");
 		
 		this.load();
 	}
@@ -279,8 +288,6 @@ public abstract class AFormRDA extends JPanel {
 	
 	
 	public Integer getQuantity(){
-		if (lblErrorePacchi.isVisible())
-			return -1;
 		return (Integer) ((DefaultEditor) spinner.getEditor()).getTextField().getValue();
 	}
 	

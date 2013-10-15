@@ -109,7 +109,7 @@ public class CreaFormRDA extends AFormRDA {
 		rdac.setRDASelezionata(rda);
 		rdac.getLista().deselectAll();
 		rdac.getLista().getPrimaRDA();
-		this.add(JBAddRiga, "2, 22");
+		this.add(JBAddRiga, "2, 22, 3, 1");
 	}
 
 }
