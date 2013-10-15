@@ -80,11 +80,11 @@ public class CardRigaRDA extends ACard {
 				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, }));
 
-		btnModifica = new JButton("");
+		btnModifica = new JButton("Modifica");
 		btnModifica.setBackground(Color.LIGHT_GRAY);
 		add(btnModifica, "2, 2");
 
-		btnElimina = new JButton("");
+		btnElimina = new JButton("Elimina");
 		btnElimina.setBackground(Color.LIGHT_GRAY);
 		add(btnElimina, "4, 2");
 
