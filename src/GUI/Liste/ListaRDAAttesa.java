@@ -1,38 +1,33 @@
 package GUI.Liste;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import coedil99.controller.GestisciRDAHandler;
+import org.orm.PersistentException;
+
 import GUI.Abstract.ALista;
 import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import coedil99.controller.GestisciRDAHandler;
 
-import org.orm.PersistentException;
+public class ListaRDAAttesa extends ALista {
 
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-
-@SuppressWarnings("serial")
-public class ListaRDACongelate extends ALista {
-
-	public ListaRDACongelate() {
+	public ListaRDAAttesa() {
+		// TODO Auto-generated constructor stub
 		super();
 		this.setPreferredSize(new Dimension(260, 0));
 		this.load();
 		this.deselectAll();
 	}
-	
+
 	@Override
 	public void load() {
+		// TODO Auto-generated method stub
 		ArrayList<Object> t=null;
 		try {
 			t = new ArrayList<Object>(GestisciRDAHandler
-					.getInstance().getArrayRDA(GestisciRDAHandler.CONGELATA));
+					.getInstance().getArrayRDA(GestisciRDAHandler.ATTESA_CONFERMA));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,9 +45,14 @@ public class ListaRDACongelate extends ALista {
 		this.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 		this.validate();
 		this.repaint();
-
 	}
 
+	@Override
+	public void updatePanel() {
+		// TODO Auto-generated method stub
+
+	}
+	
 	public int getPrimaRDA() {
 		((CardRDA) this.panel.getComponent(0)).setBackground(new Color(30, 44,
 				255));
@@ -73,8 +73,5 @@ public class ListaRDACongelate extends ALista {
 
 	}
 
-	@Override
-	public void updatePanel() {
-	}
 
 }

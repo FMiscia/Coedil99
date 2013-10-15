@@ -96,6 +96,8 @@ public abstract class ALista extends JScrollPane {
 	public void setPanelTitle(JPanel panelTitle) {
 		this.panelTitle = panelTitle;
 	}
+	
+	
 
 
 }
