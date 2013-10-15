@@ -1,112 +1,124 @@
-package GUI.Liste;
+package GUI.Abstract;
 
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import org.orm.PersistentException;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 import GUI.ProgrammaLavori;
 import GUI.RDACenter;
-import GUI.Abstract.ALista;
-import GUI.Card.CardRigaRDA;
-import GUI.Card.CardRigaRDAFactory;
-import GUI.FormRDA.ModificaFormRDA;
-import GUI.FormRDA.ModificaFormRDAFactory;
+import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDAFactory;
+import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
-import GUI.Riquadri.RiquadroRiepilogoRDA;
-import GUI.Riquadri.RiquadroRiepilogoRDAFactory;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
-import coedil99.model.RigaRDA;
 
-public class ListaRigheRDA extends ALista {
+import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
 
-	public ListaRigheRDA() {
-		// TODO Auto-generated constructor stub
-		super();
-		//this.setPreferredSize(new Dimension(100, 0));
-		this.validate();
-		this.repaint();
-	}
+public class ARiepilogoRDA extends JPanel {
+	private JLabel lblTitolo;
+	private JLabel lblPrezzo;
+	private JLabel lblTotale;
+	private JButton btnSalva;
+	private JButton btnElimina;
+	private JSeparator separator;
+	private JSeparator separator_1;
+	private JLabel lblFornitore;
+	private JLabel lblFornitoreSelezionato;
+	private JLabel lblNumeroPacchi;
+	private JLabel lblQuantita;
 
-	@Override
-	public void load(ArrayList<Object> t) {
-		// Aggiorna titolo e prezzo delle righe rda
+	public ARiepilogoRDA() {
+		this.setBackground(SystemColor.controlHighlight);
+		this.setSize(new Dimension(200, 200));
+		this.setPreferredSize(new Dimension(200, 200));
+		this.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("10px"),
+				ColumnSpec.decode("max(60px;default)"),
+				ColumnSpec.decode("10px"),
+				ColumnSpec.decode("max(70px;default)"),},
+			new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,}));
 		
+		lblTitolo = new JLabel("Lista Righe RDA");
+		lblTitolo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitolo.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblTitolo, "2, 2, 3, 1");
 		
-		this.updatePanel();
-		int row = t.size();
-		this.panel.setPreferredSize(new Dimension(180, row * 70));
-		//this.panel.setSize(new Dimension(180, row*70));
-		CardRigaRDA riquadroRigaRDA;
-		for (int k = 0; k < row; ++k) {
-			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance()
-					.makeCard(this);
-			final RigaRDA riga = (RigaRDA) t.get(k);
-			riquadroRigaRDA.load(riga);
-			this.panel.add(riquadroRigaRDA);
-			this.panel.validate();
-			this.panel.repaint();
-		}
-		this.setPreferredSize(new Dimension(290, panel.getHeight()));
-		this.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
-		this.validate();
-		this.repaint();
+		separator = new JSeparator();
+		add(separator, "2, 4, 3, 1");
+		
+		lblFornitore = new JLabel("Fornitore");
+		lblFornitore.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		add(lblFornitore, "2, 6");
+		
+		lblFornitoreSelezionato = new JLabel("");
+		add(lblFornitoreSelezionato, "4, 6, right, default");
+		
+		lblNumeroPacchi = new JLabel("Numero di pacchi");
+		lblNumeroPacchi.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		add(lblNumeroPacchi, "2, 8");
+		
+		lblQuantita = new JLabel("");
+		add(lblQuantita, "4, 8, right, default");
+		
+		lblTotale = new JLabel("");
+		add(lblTotale, "4, 10, right, default");
+		
+		lblPrezzo = new JLabel("Prezzo Totale RDA");
+		lblPrezzo.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		add(lblPrezzo, "2, 10");
+		
+		separator_1 = new JSeparator();
+		add(separator_1, "2, 12, 3, 1");
+		
+		btnSalva = new JButton("Salva RDA");
+		add(btnSalva, "2, 14");
+		
+		btnElimina = new JButton("Elimina RDA");
+		add(btnElimina, "2, 16");
 	}
-
-	public void removeRiquadro(CardRigaRDA r) {
-		this.panel.remove(r);
-		this.validate();
-		this.repaint();
-	}
-
-	public JPanel getPanel() {
-		return this.panel;
-	}
-
-	@Override
-	public void deselectAll() {
-		for (Component c : this.panel.getComponents()) {
-			c.setBackground(new Color(209, 209, 209));
-			c.validate();
-			c.repaint();
-		}
-	}
-
 	
-
-	@Override
-	public void updatePanel() {
-		this.riepilogoRDA = (RiquadroRiepilogoRDA) RiquadroRiepilogoRDAFactory.getInstance().makeRiepilogo();
-		this.riepilogoRDA.refresh();
-		this.panel.add(this.riepilogoRDA,0);
-		/*
-		this.panelTitle.removeAll();
-		panelTitle.setSize(new Dimension(200, 200));
-		panelTitle.setPreferredSize(new Dimension(200, 200));
-		panel.add(panelTitle, 0);
-		panelTitle.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panelTitle.add(labeltitle);
-		panelTitle.add(labelprezzo);
+	public void refresh(){
 		RDA r = RDACenter.getInstance().getRDASelezionata(); 
+		this.lblFornitoreSelezionato.setText(r.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());
 		float prezzo_totale = 0;
+		int quantita_totale = 0;
 		for(int i=0; i<r.righeRDA.size(); ++i){
 			prezzo_totale += (r.righeRDA.get(i).getQuantity()*r.righeRDA.get(i).getDescription().getPrezzo());
+			quantita_totale += r.righeRDA.get(i).getQuantity();
 		}
-		JLabel prezzo = new JLabel(String.valueOf(prezzo_totale));
-		panelTitle.add(prezzo);
-		this.btnSalva.setPreferredSize(new Dimension(120, 30));
-		panelTitle.add(btnSalva);
+		this.lblTotale.setText(String.valueOf(prezzo_totale));
+		this.lblQuantita.setText(String.valueOf(quantita_totale));
 		MouseListener[] arrML = this.btnSalva.getMouseListeners();
 		if (arrML.length == 1) {
 			this.btnSalva.addMouseListener(new MouseAdapter() {
@@ -141,8 +153,6 @@ public class ListaRigheRDA extends ALista {
 
 			});
 		}
-		this.btnElimina.setPreferredSize(new Dimension(120, 30));
-		this.panelTitle.add(this.btnElimina);
 		arrML = this.btnElimina.getMouseListeners();
 		if (arrML.length == 1) {
 			this.btnElimina.addMouseListener(new MouseAdapter() {
@@ -182,7 +192,7 @@ public class ListaRigheRDA extends ALista {
 					}
 				}
 			});
-		}*/
+		}
 		this.validate();
 		this.repaint();
 	}

@@ -69,7 +69,8 @@ public class GestisciRDAHandler {
 	public void saveAndAddRDA(RDA r){
 		try {
 			r.save();
-			this.arrayRDA.add(0, r);
+			if(!this.arrayRDA.contains(r))
+				this.arrayRDA.add(0, r);
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
