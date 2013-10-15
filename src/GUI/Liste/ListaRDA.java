@@ -38,7 +38,7 @@ public class ListaRDA extends ALista {
 			e.printStackTrace();
 		}
 		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
-		this.panel.setPreferredSize(new Dimension(150, row * 70));
+		this.getViewport().setPreferredSize(new Dimension(150, row * 70));
 		for (int k = 0; k < t.size(); ++k) {
 			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
 					this);
@@ -51,8 +51,7 @@ public class ListaRDA extends ALista {
 			panel.add(r);
 
 		}
-		this.setPreferredSize(new Dimension(260, panel.getHeight()));
-		this.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+		//this.setPreferredSize(new Dimension(260, panel.getHeight()));
 		this.validate();
 		this.repaint();
 

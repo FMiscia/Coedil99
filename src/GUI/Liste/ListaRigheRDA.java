@@ -19,20 +19,16 @@ public class ListaRigheRDA extends ALista {
 	public ListaRigheRDA() {
 		// TODO Auto-generated constructor stub
 		super();
-		//this.setPreferredSize(new Dimension(100, 0));
+		this.setPreferredSize(new Dimension(290, 0));
 		this.validate();
 		this.repaint();
 	}
 
 
 	public void load(ArrayList<Object> t) {
-		// Aggiorna titolo e prezzo delle righe rda
-		
-		
 		this.updatePanel();
 		int row = t.size();
-		this.panel.setPreferredSize(new Dimension(180, row * 70));
-		//this.panel.setSize(new Dimension(180, row*70));
+		this.getViewport().setPreferredSize(new Dimension(180, row * 70));
 		CardRigaRDA riquadroRigaRDA;
 		for (int k = 0; k < row; ++k) {
 			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance()
@@ -43,8 +39,6 @@ public class ListaRigheRDA extends ALista {
 			this.panel.validate();
 			this.panel.repaint();
 		}
-		this.setPreferredSize(new Dimension(290, panel.getHeight()));
-		this.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 		this.validate();
 		this.repaint();
 	}
@@ -75,99 +69,6 @@ public class ListaRigheRDA extends ALista {
 		this.riepilogoRDA = (RiquadroRiepilogoRDA) RiquadroRiepilogoRDAFactory.getInstance().makeRiepilogo();
 		this.riepilogoRDA.refresh();
 		this.panel.add(this.riepilogoRDA,0);
-		/*
-		this.panelTitle.removeAll();
-		panelTitle.setSize(new Dimension(200, 200));
-		panelTitle.setPreferredSize(new Dimension(200, 200));
-		panel.add(panelTitle, 0);
-		panelTitle.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panelTitle.add(labeltitle);
-		panelTitle.add(labelprezzo);
-		RDA r = RDACenter.getInstance().getRDASelezionata(); 
-		float prezzo_totale = 0;
-		for(int i=0; i<r.righeRDA.size(); ++i){
-			prezzo_totale += (r.righeRDA.get(i).getQuantity()*r.righeRDA.get(i).getDescription().getPrezzo());
-		}
-		JLabel prezzo = new JLabel(String.valueOf(prezzo_totale));
-		panelTitle.add(prezzo);
-		this.btnSalva.setPreferredSize(new Dimension(120, 30));
-		panelTitle.add(btnSalva);
-		MouseListener[] arrML = this.btnSalva.getMouseListeners();
-		if (arrML.length == 1) {
-			this.btnSalva.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					GestisciRDAHandler.getInstance().saveAndAddRDA(
-							RDACenter.getInstance().getRDASelezionata());
-					JOptionPane.showMessageDialog(null,
-							"RDA salvata con successo!\n",
-							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
-					RDACenter rdac = RDACenter.getInstance();
-					ListaRDA listarda = (ListaRDA) ListaRDAFactory
-							.getInstance().makeLista();
-					rdac.setLista(listarda);
-
-					rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
-							.getRDAById(
-									RDACenter.getInstance().getLista()
-											.getPrimaRDA()));
-
-					PlicoRDA prda = PlicoRDA.getInstance();
-					ListaRigheRDA lista_rda = prda.getListaRigheRDA();
-					prda.resetFormRDA();
-					lista_rda.getPanel().removeAll();
-					lista_rda.load(new ArrayList<Object>(rdac
-							.getRDASelezionata().righeRDA.getCollection()));
-					
-					rdac.getClipPanel().focusToRDACongelate();
-					lista_rda.validate();
-					lista_rda.repaint();
-				}
-
-			});
-		}
-		this.btnElimina.setPreferredSize(new Dimension(120, 30));
-		this.panelTitle.add(this.btnElimina);
-		arrML = this.btnElimina.getMouseListeners();
-		if (arrML.length == 1) {
-			this.btnElimina.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					Object[] options = { "Si", "No" };
-					int n = JOptionPane.showOptionDialog(
-							ProgrammaLavori.getInstance(),
-							"Sicuro di voler eliminare la RDA?\n"
-									+ "Nota: Questa operazione non è reversibile",
-							"Conferma operazione",
-							JOptionPane.YES_NO_CANCEL_OPTION,
-							JOptionPane.QUESTION_MESSAGE, null, options,
-							options[1]);
-					if (n == JOptionPane.YES_OPTION) {
-						GestisciRDAHandler.getInstance().deleteAndRemoveRDA(
-								RDACenter.getInstance().getRDASelezionata());
-						ListaRDA listarda = (ListaRDA) ListaRDAFactory
-								.getInstance().makeLista();
-						RDACenter.getInstance().setLista(listarda);
-						PlicoRDA prda = PlicoRDA.getInstance();
-						ListaRigheRDA lista_rda = prda.getListaRigheRDA();
-						prda.resetFormRDA();
-						listarda.getPanel().removeAll();
-						listarda.load("");
-						RDACenter.getInstance().setRDASelezionata(
-								GestisciRDAHandler.getInstance().getRDAById(
-										listarda.getPrimaRDA()));
-						lista_rda.getPanel().removeAll();
-						lista_rda.load(new ArrayList<Object>(RDACenter
-								.getInstance().getRDASelezionata().righeRDA
-								.getCollection()));
-						lista_rda.validate();
-						lista_rda.repaint();
-						listarda.validate();
-						listarda.repaint();
-					}
-				}
-			});
-		}*/
 		this.validate();
 		this.repaint();
 	}
