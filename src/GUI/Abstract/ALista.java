@@ -57,7 +57,7 @@ public abstract class ALista extends JScrollPane {
 		return this.panel;
 	}
 
-	public abstract void load();
+	public abstract void load(String s);
 
 	/**
 	 * @author francesco Aggiorna posizione e valore del Titolo e info aggiutivi

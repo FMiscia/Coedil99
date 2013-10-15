@@ -9,17 +9,19 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import coedil99.controller.GestisciRDAHandler;
+import org.orm.PersistentException;
+
 import GUI.CoedilFrame;
 import GUI.PanelStart;
 import GUI.RDACenter;
 import GUI.Abstract.AClipPanel;
 import GUI.FormRDA.CreaFormRDA;
 import GUI.FormRDA.CreaFormRDAFactory;
-import GUI.Liste.ListaRDACongelate;
-import GUI.Liste.ListaRDACongelateFactory;
+import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
+import coedil99.controller.GestisciRDAHandler;
 
 public class ClipPanelRDA extends AClipPanel {
 
@@ -28,23 +30,6 @@ public class ClipPanelRDA extends AClipPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private boolean clickFromNuovaRDA() {
-		if (ClipPanelRDA.this.isButtonFocused((JButton) ClipPanelRDA.this
-				.getComponent(3))) {
-			Object[] options = { "Si", "No" };
-			int n = JOptionPane.showOptionDialog(null,
-					"Sicuro di voler abbandonare la creazione RDA?\n"
-							+ "Nota: Le modifiche non salvate andranno perse",
-					"Conferma operazione", JOptionPane.YES_NO_CANCEL_OPTION,
-					JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-			if (n == JOptionPane.YES_OPTION) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		return true;
-	}
 
 	public ClipPanelRDA() {
 		super();
@@ -74,7 +59,7 @@ public class ClipPanelRDA extends AClipPanel {
 						ClipPanelRDA.this.focusOut();
 						b.setBackground(new Color(180, 180, 180));
 						RDACenter rdac = RDACenter.getInstance();
-						ListaRDACongelate listarda = (ListaRDACongelate) ListaRDACongelateFactory
+						ListaRDA listarda = (ListaRDA) ListaRDAFactory
 								.getInstance().makeLista();
 						rdac.setLista(listarda);
 						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
@@ -100,14 +85,18 @@ public class ClipPanelRDA extends AClipPanel {
 						}
 						ClipPanelRDA.this.focusOut();
 						b.setBackground(new Color(180, 180, 180));
+						
+						
 						PlicoRDA prda = PlicoRDA.getInstance();
 						prda.getListaRigheRDA().svuota();
+						
 						RDACenter rdac = RDACenter.getInstance();
 						rdac.getLista().svuota();
+						rdac.getLista().load(GestisciRDAHandler.ATTESA_CONFERMA);
+						
 						BorderLayout layout = (BorderLayout) prda.getLayout();
 						if (layout.getLayoutComponent(BorderLayout.CENTER) != null)
-							prda.remove(layout
-									.getLayoutComponent(BorderLayout.CENTER));
+							prda.remove(layout.getLayoutComponent(BorderLayout.CENTER));
 						prda.validate();
 						prda.repaint();
 					}
@@ -134,5 +123,23 @@ public class ClipPanelRDA extends AClipPanel {
 		this.focusOut();
 		JButton b = (JButton) ClipPanelRDA.this.getComponent(1);
 		b.setBackground(new Color(180,180,180));
+	}
+	
+	private boolean clickFromNuovaRDA() {
+		if (ClipPanelRDA.this.isButtonFocused((JButton) ClipPanelRDA.this
+				.getComponent(3))) {
+			Object[] options = { "Si", "No" };
+			int n = JOptionPane.showOptionDialog(null,
+					"Sicuro di voler abbandonare la creazione RDA?\n"
+							+ "Nota: Le modifiche non salvate andranno perse",
+					"Conferma operazione", JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+			if (n == JOptionPane.YES_OPTION) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return true;
 	}
 }

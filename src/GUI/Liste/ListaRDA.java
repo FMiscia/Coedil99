@@ -18,21 +18,21 @@ import java.awt.GridLayout;
 import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
-public class ListaRDACongelate extends ALista {
+public class ListaRDA extends ALista {
 
-	public ListaRDACongelate() {
+	public ListaRDA() {
 		super();
 		this.setPreferredSize(new Dimension(260, 0));
-		this.load();
+		this.load(GestisciRDAHandler.CONGELATA);
 		this.deselectAll();
 	}
 	
 	@Override
-	public void load() {
+	public void load(String tipo) {
 		ArrayList<Object> t=null;
 		try {
 			t = new ArrayList<Object>(GestisciRDAHandler
-					.getInstance().getArrayRDA(GestisciRDAHandler.CONGELATA));
+					.getInstance().getArrayRDA(tipo));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,7 +42,12 @@ public class ListaRDACongelate extends ALista {
 		for (int k = 0; k < t.size(); ++k) {
 			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
 					this);
-			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
+			try {
+				r.load(GestisciRDAHandler.getInstance().getArrayRDA(tipo).get(k));
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			panel.add(r);
 
 		}

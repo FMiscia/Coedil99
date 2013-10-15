@@ -2,19 +2,13 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
-
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
-
-import GUI.Abstract.APlico;
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
-
-import GUI.Liste.ListaRDACongelate;
-import GUI.Liste.ListaRDACongelateFactory;
-
+import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDAFactory;
 import GUI.Plichi.PlicoRDA;
 
 public class RDACenter extends JPanel {
@@ -23,14 +17,15 @@ public class RDACenter extends JPanel {
 	private RDA rdaSelezionata = null;
 
 	
-	private ListaRDACongelate lista;
+	private ListaRDA lista;
+
 	private ClipPanelRDA clipPanel = (ClipPanelRDA) ClipPanelRDAFactory.getInstance().makeClipPanel();	
 	
 
 	public RDACenter(){
 		this.setLayout(new BorderLayout());
 		this.add(clipPanel, BorderLayout.NORTH);
-		this.lista = (ListaRDACongelate)ListaRDACongelateFactory.getInstance().makeLista();
+		this.lista = (ListaRDA) ListaRDAFactory.getInstance().makeLista();
 		this.add(this.lista, BorderLayout.WEST);
 		this.add(PlicoRDA.getInstance(), BorderLayout.CENTER);
 		this.setRDASelezionata(GestisciRDAHandler.getInstance().getRDAById(this.lista.getPrimaRDA()));
@@ -52,11 +47,12 @@ public class RDACenter extends JPanel {
 		this.rdaSelezionata = rdaSelezionata;
 	}
 
-	public ListaRDACongelate getLista() {
+	
+	public ListaRDA getLista() {
 		return lista;
 	}
 	
-	public void setLista(ListaRDACongelate r){
+	public void setLista(ListaRDA r){
 		this.remove(this.lista);
 		this.validate();
 		this.repaint();
@@ -65,6 +61,8 @@ public class RDACenter extends JPanel {
 		this.validate();
 		this.repaint();
 	}
+	
+
 	
 	public void removePlicoRDA(){
 		this.remove(PlicoRDA.getInstance());
