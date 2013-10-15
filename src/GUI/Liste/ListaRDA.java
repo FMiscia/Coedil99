@@ -11,6 +11,9 @@ import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import org.orm.PersistentException;
+
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 
@@ -20,14 +23,31 @@ public class ListaRDA extends ALista {
 	public ListaRDA() {
 		super();
 		this.setPreferredSize(new Dimension(260, 0));
-		this.load(new ArrayList<Object>(GestisciRDAHandler.getInstance()
-				.getArrayRDA()));
+		this.load();
 		this.deselectAll();
-	}
+		ArrayList<Object> a=null;
+		try {
+			a = new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayRDA(GestisciRDAHandler.CONGELATA));
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int k = 0; k < a.size(); ++k) {
+			System.out.println(a.toArray()[k]);
+		}
 
+	}
+	
+	@Override
 	public void load() {
-		ArrayList<Object> t = new ArrayList<Object>(GestisciRDAHandler
-				.getInstance().getArrayRDA());
+		ArrayList<Object> t=null;
+		try {
+			t = new ArrayList<Object>(GestisciRDAHandler
+					.getInstance().getArrayRDA(GestisciRDAHandler.CONGELATA));
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.panel.setPreferredSize(new Dimension(150, row * 70));
 		for (int k = 0; k < t.size(); ++k) {
@@ -61,21 +81,7 @@ public class ListaRDA extends ALista {
 
 	}
 
-	@Override
-	public void load(ArrayList<Object> t) {
-		// TODO Auto-generated method stub
-		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
-		this.panel.setPreferredSize(new Dimension(150, row * 70));
-		for (int k = 0; k < t.size(); ++k) {
-			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
-					this);
-			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
-			panel.add(r);
-		}
-		this.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
-		this.validate();
-		this.repaint();
-	}
+
 
 	public void addCard(CardRDA c) {
 		panel.add(c, 0);

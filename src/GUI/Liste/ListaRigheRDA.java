@@ -36,7 +36,7 @@ public class ListaRigheRDA extends ALista {
 		this.repaint();
 	}
 
-	@Override
+
 	public void load(ArrayList<Object> t) {
 		// Aggiorna titolo e prezzo delle righe rda
 		this.updatePanel();
@@ -171,6 +171,13 @@ public class ListaRigheRDA extends ALista {
 		}
 		this.validate();
 		this.repaint();
+	}
+
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

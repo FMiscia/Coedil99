@@ -43,6 +43,12 @@ public class GestisciRDAHandler {
 		return this.arrayRDA;
 	}
 	
+	public ArrayList<RDA> getArrayRDA(String state) throws PersistentException{
+		ArrayList<RDA> filteredAdday = 
+				new ArrayList<RDA>(Arrays.asList(RDAFactory.listRDAByQuery("State =  '"+state+"' ", "ID")));
+		return filteredAdday;
+	}
+	
 	public RDA getRDAById(int id){
 		try {
 			return RDAFactory.getRDAByORMID(id);

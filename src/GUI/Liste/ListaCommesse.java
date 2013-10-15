@@ -20,12 +20,13 @@ public class ListaCommesse extends ALista {
 	
 	public ListaCommesse(){
 		super();
-		this.load(new ArrayList<Object>(GestisciClienteHandler.getInstance().getClienti()));
+		this.load();
 		
 	}
 	
 	@Override
-	public void load(ArrayList<Object> t){
+	public void load(){
+		ArrayList<Object> t = new ArrayList<Object>(GestisciClienteHandler.getInstance().getClienti());
 		int row = GestisciCommessaHandler.getInstance().getNumOfCommesse();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		for(int k=0; k<t.size(); ++k){
