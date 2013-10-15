@@ -37,6 +37,7 @@ public abstract class ALista extends JScrollPane {
 	protected JLabel labelprezzo = new JLabel("Prezzo RDA:");
 	protected JButton btnSalva = new JButton("Salva RDA");
 	protected JButton btnElimina = new JButton("Elimina RDA");
+	protected ARiepilogoRDA riepilogoRDA;
 
 	public ALista() {
 		this.panel = new JPanel(null);
@@ -59,34 +60,17 @@ public abstract class ALista extends JScrollPane {
 
 	public abstract void load(ArrayList<Object> t);
 
-	/**
-	 * @author francesco Aggiorna posizione e valore del Titolo e info aggiutivi
-	 * del panelTitle
-	 */
 
-	public void updateTitlePanel() {
-		this.panelTitle.removeAll();
-		panelTitle.setSize(new Dimension(200, 90));
-		panelTitle.setPreferredSize(new Dimension(200, 90));
-		panel.add(panelTitle, 0);
-		panelTitle.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panelTitle.add(labeltitle);
-		panelTitle.add(labelprezzo);
-		JLabel prezzo = new JLabel("0.0");
-		panelTitle.add(prezzo);
-		this.btnSalva.setPreferredSize(new Dimension(120, 30));
-		panelTitle.add(btnSalva);
-		this.validate();
-		this.repaint();
-
-	}
-	
 	public void svuota(){
 		this.panel.removeAll();
 		this.validate();
 		this.repaint();
 	}
 
+	/**
+	 * @author francesco Aggiorna posizione e valore del Titolo e info aggiutivi
+	 * del panelTitle
+	 */
 	public abstract void updatePanel();
 
 	public JPanel getPanelTitle() {
