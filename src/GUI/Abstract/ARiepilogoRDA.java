@@ -211,7 +211,7 @@ public class ARiepilogoRDA extends JPanel {
 			});
 		}
 		if (this.btnInvia.getMouseListeners().length == 1) {
-			this.btnElimina.addMouseListener(new MouseAdapter() {
+			this.btnInvia.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					RDA temp = RDACenter.getInstance().getRDASelezionata();

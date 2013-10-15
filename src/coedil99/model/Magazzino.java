@@ -7,6 +7,8 @@ import coedil99.controller.GestisciRDAHandler;
 
 public class Magazzino extends Observer {
 
+	private static Magazzino instance = null;
+	
 	private java.util.HashMap<Item, Integer> items;
 	private String name;
 
@@ -26,8 +28,7 @@ public class Magazzino extends Observer {
 	 * 
 	 * @return
 	 */
-	public Magazzino() {
-		this.subjects = new ArrayList<Subject>(GestisciRDAHandler.getInstance().getArrayRDA());
+	private Magazzino() {
 	}
 
 	@Override
@@ -44,9 +45,10 @@ public class Magazzino extends Observer {
 	@Override
 	public void Update() {
 		ArrayList<RigaRDA> righe = null;
-		for (RDA rda : GestisciRDAHandler.getInstance().getArrayRDA()) {
-			if (rda.getState() == GestisciRDAHandler.ATTESA_CONFERMA) {
-				righe = new ArrayList<RigaRDA>(rda.righeRDA.getCollection());
+		this.setSubject(new ArrayList<Subject>(GestisciRDAHandler.getInstance().getArrayRDA()));
+		for (Subject rda : this.getSubject()) {
+			if (((RDA)rda).getState() == GestisciRDAHandler.ATTESA_CONFERMA) {
+				righe = new ArrayList<RigaRDA>(((RDA)rda).righeRDA.getCollection());
 				for (RigaRDA temp : righe) {
 					Item i = ItemFactory.createItem();
 					i.setGeometria(temp.getDescription().getGeometria());
@@ -57,6 +59,12 @@ public class Magazzino extends Observer {
 			}
 		}
 
+	}
+	
+	public static Magazzino getInstance(){
+		if(instance == null)
+			instance = new Magazzino();
+		return instance;
 	}
 
 

@@ -23,8 +23,7 @@ public class RDA extends coedil99.model.Subject {
 	public RDA() {
 		this.date = new Date();
 		this.state = GestisciRDAHandler.CONGELATA;
-		Magazzino temp = new Magazzino();//GestisciMagazzinoHandler.getInstance().getMagazzinoByName(null);
-		this.Attach(temp);
+		this.Attach(Magazzino.getInstance());
 	}
 	
 	public boolean save() throws PersistentException {
