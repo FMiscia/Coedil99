@@ -17,11 +17,13 @@ import java.util.Date;
 
 import org.orm.*;
 
+import coedil99.controller.GestisciMagazzinoHandler;
 import coedil99.controller.GestisciRDAHandler;
 public class RDA extends coedil99.model.Subject {
 	public RDA() {
 		this.date = new Date();
 		this.state = GestisciRDAHandler.CONGELATA;
+		this.Attach(Magazzino.getInstance());
 	}
 	
 	public boolean save() throws PersistentException {
@@ -138,6 +140,7 @@ public class RDA extends coedil99.model.Subject {
 	
 	public void setState(String value) {
 		this.state = value;
+		this.Notify();
 	}
 	
 	public String getState() {

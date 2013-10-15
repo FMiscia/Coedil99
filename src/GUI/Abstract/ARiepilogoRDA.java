@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+import org.orm.PersistentException;
+
 import GUI.ProgrammaLavori;
 import GUI.RDACenter;
 import GUI.Liste.ListaRDA;
@@ -40,6 +42,7 @@ public class ARiepilogoRDA extends JPanel {
 	private JLabel lblTotale;
 	private JButton btnSalva;
 	private JButton btnElimina;
+	private JButton btnInvia;
 	private JSeparator separator;
 	private JSeparator separator_1;
 	private JLabel lblFornitore;
@@ -48,38 +51,37 @@ public class ARiepilogoRDA extends JPanel {
 	private JLabel lblQuantita;
 
 	public ARiepilogoRDA() {
-		this.setSize(new Dimension(width,height));
-		this.setPreferredSize(new Dimension(270, 200));
+		this.setSize(new Dimension(width, height));
+		this.setPreferredSize(new Dimension(270, 210));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		this.panel = new JPanel();
 		this.add(this.panel);
 		this.panel.setBackground(SystemColor.controlHighlight);
-		this.panel.setPreferredSize(new Dimension(280, 200));
+		this.panel.setPreferredSize(new Dimension(280, 210));
 		this.panel.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("40px"),
-				ColumnSpec.decode("10px"),
+				ColumnSpec.decode("40px"), ColumnSpec.decode("10px"),
 				ColumnSpec.decode("max(60px;default)"),
 				ColumnSpec.decode("10px"),
 				ColumnSpec.decode("max(70px;default)"),
-				ColumnSpec.decode("10px"),
-				ColumnSpec.decode("40px"),},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+				ColumnSpec.decode("10px"), ColumnSpec.decode("40px"), },
+				new RowSpec[] { FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC, }));
 
 		lblTitolo = new JLabel("Lista Righe RDA");
 		lblTitolo.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -118,21 +120,25 @@ public class ARiepilogoRDA extends JPanel {
 
 		btnElimina = new JButton("Elimina RDA");
 		this.panel.add(btnElimina, "3, 16");
+
+		btnInvia = new JButton("Invia RDA");
+		this.panel.add(btnInvia, "3,18");
 	}
+
 
 	public void refresh(){
 		RDA r = RDACenter.getInstance().getRDASelezionata(); 
 		this.lblFornitoreSelezionato.setText(r.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());
 		float prezzo_totale = 0;
 		int quantita_totale = 0;
-		for(int i=0; i<r.righeRDA.size(); ++i){
-			prezzo_totale += (r.righeRDA.get(i).getQuantity()*r.righeRDA.get(i).getDescription().getPrezzo());
+		for (int i = 0; i < r.righeRDA.size(); ++i) {
+			prezzo_totale += (r.righeRDA.get(i).getQuantity() * r.righeRDA
+					.get(i).getDescription().getPrezzo());
 			quantita_totale += r.righeRDA.get(i).getQuantity();
 		}
 		this.lblTotale.setText(String.valueOf(prezzo_totale));
 		this.lblQuantita.setText(String.valueOf(quantita_totale));
-		MouseListener[] arrML = this.btnSalva.getMouseListeners();
-		if (arrML.length == 1) {
+		if (this.btnSalva.getMouseListeners().length == 1) {
 			this.btnSalva.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -165,8 +171,7 @@ public class ARiepilogoRDA extends JPanel {
 
 			});
 		}
-		arrML = this.btnElimina.getMouseListeners();
-		if (arrML.length == 1) {
+		if (this.btnElimina.getMouseListeners().length == 1) {
 			this.btnElimina.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -202,6 +207,19 @@ public class ARiepilogoRDA extends JPanel {
 						listarda.validate();
 						listarda.repaint();
 					}
+				}
+			});
+		}
+		if (this.btnInvia.getMouseListeners().length == 1) {
+			this.btnInvia.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					RDA temp = RDACenter.getInstance().getRDASelezionata();
+					temp.setState(GestisciRDAHandler.ATTESA_CONFERMA);
+					GestisciRDAHandler.getInstance().saveAndAddRDA(temp);
+					JOptionPane.showMessageDialog(null,
+							"RDA inviata con successo!\n",
+							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
 				}
 			});
 		}

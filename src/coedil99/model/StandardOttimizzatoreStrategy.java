@@ -21,7 +21,7 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 	public DocumentoOttimizzazione elaboraOttimizzazione(Distinta distinta) {
 		
 		
-		OMagazzino m = new OMagazzino(new Magazzino());
+		OMagazzino m = new OMagazzino(Magazzino.getInstance());
 		//Geometrie presenti nella distinta
 		ArrayList<Geometria> distitems = new ArrayList<Geometria>();
 		//Item da aggiungere al DDO
