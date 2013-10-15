@@ -25,8 +25,8 @@ import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
-import GUI.Liste.ListaRDA;
-import GUI.Liste.ListaRDAFactory;
+import GUI.Liste.ListaRDACongelate;
+import GUI.Liste.ListaRDACongelateFactory;
 import GUI.Plichi.PlicoRDA;
 
 public class CreaFormRDA extends AFormRDA {
@@ -78,7 +78,7 @@ public class CreaFormRDA extends AFormRDA {
 								.getInstance()
 								.makeCard(prda.getListaRigheRDA());
 						cardRigaRDA.load(rrda);
-						ListaRDA lista = rdac.getLista();
+						ListaRDACongelate lista = rdac.getLista();
 						prda.getListaRigheRDA().getPanel().removeAll();
 						prda.getListaRigheRDA().load(
 								new ArrayList<Object>(

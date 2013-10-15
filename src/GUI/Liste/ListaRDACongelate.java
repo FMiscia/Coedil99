@@ -18,9 +18,9 @@ import java.awt.GridLayout;
 import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
-public class ListaRDA extends ALista {
+public class ListaRDACongelate extends ALista {
 
-	public ListaRDA() {
+	public ListaRDACongelate() {
 		super();
 		this.setPreferredSize(new Dimension(260, 0));
 		this.load();

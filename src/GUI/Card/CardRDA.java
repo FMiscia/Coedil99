@@ -21,7 +21,7 @@ import javax.swing.border.LineBorder;
 import GUI.RDACenter;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.ACard;
-import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDACongelate;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
@@ -29,7 +29,7 @@ import coedil99.model.RDA;
 
 public class CardRDA extends ACard {
 
-	private ListaRDA riquadro = null;
+	private ListaRDACongelate riquadro = null;
 
 	private int RDAId;
 	private JLabel id = null;
@@ -63,7 +63,7 @@ public class CardRDA extends ACard {
 						.getResource("/GUI/image/confermata.png")));
 	}
 
-	public CardRDA(ListaRDA rda) {
+	public CardRDA(ListaRDACongelate rda) {
 		super(rda);
 		this.riquadro = rda;
 		setBounds(new Rectangle(0, 0, 0, 0));

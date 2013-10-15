@@ -2,7 +2,7 @@ package GUI.Card;
 
 import GUI.Abstract.ACard;
 import GUI.Abstract.ALista;
-import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDACongelate;
 
 public class CardRDAFactory extends CardFactory {
 
@@ -13,7 +13,7 @@ public class CardRDAFactory extends CardFactory {
 	@Override
 	public ACard makeCard(ALista lista) {
 		// TODO Auto-generated method stub
-		return new CardRDA((ListaRDA) lista);
+		return new CardRDA((ListaRDACongelate) lista);
 	}
 	
 	public static CardRDAFactory getInstance(){

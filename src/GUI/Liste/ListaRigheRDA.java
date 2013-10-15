@@ -104,7 +104,7 @@ public class ListaRigheRDA extends ALista {
 							"RDA salvata con successo!\n",
 							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
 					RDACenter rdac = RDACenter.getInstance();
-					ListaRDA listarda = (ListaRDA) ListaRDAFactory
+					ListaRDACongelate listarda = (ListaRDACongelate) ListaRDACongelateFactory
 							.getInstance().makeLista();
 					rdac.setLista(listarda);
 
@@ -146,7 +146,7 @@ public class ListaRigheRDA extends ALista {
 					if (n == JOptionPane.YES_OPTION) {
 						GestisciRDAHandler.getInstance().deleteAndRemoveRDA(
 								RDACenter.getInstance().getRDASelezionata());
-						ListaRDA listarda = (ListaRDA) ListaRDAFactory
+						ListaRDACongelate listarda = (ListaRDACongelate) ListaRDACongelateFactory
 								.getInstance().makeLista();
 						RDACenter.getInstance().setLista(listarda);
 						PlicoRDA prda = PlicoRDA.getInstance();

@@ -10,22 +10,14 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.RDA;
-import coedil99.model.RDAFactory;
-
 import GUI.CoedilFrame;
 import GUI.PanelStart;
-import GUI.ProgrammaLavori;
 import GUI.RDACenter;
 import GUI.Abstract.AClipPanel;
-import GUI.Card.CardRDA;
-import GUI.Card.CardRDAFactory;
 import GUI.FormRDA.CreaFormRDA;
 import GUI.FormRDA.CreaFormRDAFactory;
-import GUI.FormRDA.ModificaFormRDA;
-import GUI.FormRDA.ModificaFormRDAFactory;
-import GUI.Liste.ListaRDA;
-import GUI.Liste.ListaRDAFactory;
+import GUI.Liste.ListaRDACongelate;
+import GUI.Liste.ListaRDACongelateFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 
@@ -82,7 +74,7 @@ public class ClipPanelRDA extends AClipPanel {
 						ClipPanelRDA.this.focusOut();
 						b.setBackground(new Color(180, 180, 180));
 						RDACenter rdac = RDACenter.getInstance();
-						ListaRDA listarda = (ListaRDA) ListaRDAFactory
+						ListaRDACongelate listarda = (ListaRDACongelate) ListaRDACongelateFactory
 								.getInstance().makeLista();
 						rdac.setLista(listarda);
 						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
@@ -91,8 +83,7 @@ public class ClipPanelRDA extends AClipPanel {
 						ListaRigheRDA lista_rda = prda.getListaRigheRDA();
 						prda.resetFormRDA();
 						lista_rda.getPanel().removeAll();
-						lista_rda.load(new ArrayList<Object>(rdac
-								.getRDASelezionata().righeRDA.getCollection()));
+						lista_rda.load(new ArrayList<Object>(rdac.getRDASelezionata().righeRDA.getCollection()));
 						lista_rda.validate();
 						lista_rda.repaint();
 
