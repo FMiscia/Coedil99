@@ -220,6 +220,7 @@ public class ARiepilogoRDA extends JPanel {
 					JOptionPane.showMessageDialog(null,
 							"RDA inviata con successo!\n",
 							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
+
 				}
 			});
 		}

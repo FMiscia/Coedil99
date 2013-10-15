@@ -61,7 +61,10 @@ public class ListaRDA extends ALista {
 	public int getPrimaRDA() {
 		((CardRDA) this.panel.getComponent(0)).setBackground(new Color(30, 44,
 				255));
-		return ((CardRDA) this.panel.getComponent(0)).getRDAId();
+		int id = ((CardRDA)this.panel.getComponent(0)).getRDAId();
+		/*if (GestisciRDAHandler.getInstance().getRDAById(id).getState() == GestisciRDAHandler.CONGELATA)
+			return id;*/
+		return id;
 
 	}
 
