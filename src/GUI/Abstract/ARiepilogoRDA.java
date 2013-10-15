@@ -19,6 +19,7 @@ import org.orm.PersistentException;
 
 import GUI.ProgrammaLavori;
 import GUI.RDACenter;
+import GUI.Card.CardRDA;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
 import GUI.Liste.ListaRigheRDA;
@@ -144,6 +145,7 @@ public class ARiepilogoRDA extends JPanel {
 				public void mouseClicked(MouseEvent e) {
 					GestisciRDAHandler.getInstance().saveAndAddRDA(
 							RDACenter.getInstance().getRDASelezionata());
+					((CardRDA) RDACenter.getInstance().getLista().getPrimaCard()).setSaved(true);
 					JOptionPane.showMessageDialog(null,
 							"RDA salvata con successo!\n",
 							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
@@ -216,10 +218,12 @@ public class ARiepilogoRDA extends JPanel {
 				public void mouseClicked(MouseEvent e) {
 					RDA temp = RDACenter.getInstance().getRDASelezionata();
 					temp.setState(GestisciRDAHandler.ATTESA_CONFERMA);
+					((CardRDA) RDACenter.getInstance().getLista().getPrimaCard()).setSaved(true);
 					GestisciRDAHandler.getInstance().saveAndAddRDA(temp);
 					JOptionPane.showMessageDialog(null,
 							"RDA inviata con successo!\n",
 							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
+					RDACenter.getInstance().getClipPanel().getButtons().get(2).doClick();
 
 				}
 			});

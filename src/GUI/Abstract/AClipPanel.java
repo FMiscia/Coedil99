@@ -45,7 +45,15 @@ public abstract class AClipPanel extends JPanel {
 		this.buttons.add(temp);
 		this.add(temp);
 		this.validate();
-		this.repaint();
+		this.repaint();	
+	}
+	
+	public JButton createButton(String label,String ToolTip){
+		JButton temp = new JButton(label);
+		temp.setToolTipText(ToolTip);
+		temp.setHorizontalTextPosition(SwingConstants.LEFT);
+		temp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		return temp;
 		
 	}
 	

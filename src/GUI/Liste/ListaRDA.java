@@ -66,7 +66,10 @@ public class ListaRDA extends ALista {
 		return id;
 
 	}
-
+	public boolean getPrimaRDASaved() {
+		return ((CardRDA) this.getPrimaCard()).isSaved();
+		
+	}
 
 
 	public void addCard(CardRDA c) {

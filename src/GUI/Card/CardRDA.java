@@ -36,6 +36,17 @@ public class CardRDA extends ACard {
 	private JLabel stato = null;
 	private JLabel icona = null;
 	private JLabel data = null;
+	private boolean saved = false;
+
+	public boolean isSaved() {
+		return saved;
+	}
+
+
+	public void setSaved(boolean saved) {
+		this.saved = saved;
+	}
+
 
 	private static HashMap<String, ImageIcon> state_map;
 	static {
@@ -152,6 +163,12 @@ public class CardRDA extends ACard {
 	
 	public void setNomeFornitore(String s){
 		this.id.setText(s);
+	}
+
+
+	public boolean getRDAState() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
