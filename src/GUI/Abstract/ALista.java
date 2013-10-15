@@ -22,6 +22,7 @@ import coedil99.model.RDA;
 
 import GUI.RDACenter;
 import GUI.WrapLayout;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * @author francesco
@@ -40,6 +41,9 @@ public abstract class ALista extends JScrollPane {
 	protected ARiepilogoRDA riepilogoRDA;
 
 	public ALista() {
+		this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		this.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+		this.getVerticalScrollBar().setUnitIncrement(20);
 		this.panel = new JPanel(null);
 		this.setViewportView(this.panel);
 		this.panel.setLayout(new WrapLayout());
