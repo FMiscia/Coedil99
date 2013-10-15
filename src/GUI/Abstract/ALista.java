@@ -37,6 +37,7 @@ public abstract class ALista extends JScrollPane {
 	protected JLabel labelprezzo = new JLabel("Prezzo RDA:");
 	protected JButton btnSalva = new JButton("Salva RDA");
 	protected JButton btnElimina = new JButton("Elimina RDA");
+	protected ARiepilogoRDA riepilogoRDA;
 
 	public ALista() {
 		this.panel = new JPanel(null);
