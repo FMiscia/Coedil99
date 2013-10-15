@@ -89,7 +89,12 @@ public class ListaRigheRDA extends ALista {
 		panelTitle.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelTitle.add(labeltitle);
 		panelTitle.add(labelprezzo);
-		JLabel prezzo = new JLabel("0.0");
+		RDA r = RDACenter.getInstance().getRDASelezionata(); 
+		float prezzo_totale = 0;
+		for(int i=0; i<r.righeRDA.size(); ++i){
+			prezzo_totale += (r.righeRDA.get(i).getQuantity()*r.righeRDA.get(i).getDescription().getPrezzo());
+		}
+		JLabel prezzo = new JLabel(String.valueOf(prezzo_totale));
 		panelTitle.add(prezzo);
 		this.btnSalva.setPreferredSize(new Dimension(120, 30));
 		panelTitle.add(btnSalva);
