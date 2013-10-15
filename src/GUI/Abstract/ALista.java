@@ -58,8 +58,9 @@ public abstract class ALista extends JScrollPane {
 		return this.panel;
 	}
 
-	public abstract void load(ArrayList<Object> t);
-
+	public abstract void load(String s);
+	public abstract void load();
+	
 	public void svuota(){
 		this.panel.removeAll();
 		this.validate();
@@ -79,6 +80,8 @@ public abstract class ALista extends JScrollPane {
 	public void setPanelTitle(JPanel panelTitle) {
 		this.panelTitle = panelTitle;
 	}
+	
+	
 
 
 }

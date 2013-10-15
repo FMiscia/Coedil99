@@ -4,6 +4,7 @@ import GUI.Abstract.ACard;
 import GUI.Abstract.ALista;
 import GUI.Liste.ListaRDA;
 
+
 public class CardRDAFactory extends CardFactory {
 
 	private static CardRDAFactory instance = null;

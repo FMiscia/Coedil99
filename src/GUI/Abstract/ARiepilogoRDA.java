@@ -125,10 +125,10 @@ public class ARiepilogoRDA extends JPanel {
 		this.panel.add(btnInvia, "3,18");
 	}
 
-	public void refresh() {
-		RDA r = RDACenter.getInstance().getRDASelezionata();
-		this.lblFornitoreSelezionato.setText(r.righeRDA.get(0).getDescription()
-				.getCatalogoFornitore().getName());
+
+	public void refresh(){
+		RDA r = RDACenter.getInstance().getRDASelezionata(); 
+		this.lblFornitoreSelezionato.setText(r.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());
 		float prezzo_totale = 0;
 		int quantita_totale = 0;
 		for (int i = 0; i < r.righeRDA.size(); ++i) {
@@ -194,7 +194,7 @@ public class ARiepilogoRDA extends JPanel {
 						ListaRigheRDA lista_rda = prda.getListaRigheRDA();
 						prda.resetFormRDA();
 						listarda.getPanel().removeAll();
-						listarda.load();
+						listarda.load("");
 						RDACenter.getInstance().setRDASelezionata(
 								GestisciRDAHandler.getInstance().getRDAById(
 										listarda.getPrimaRDA()));

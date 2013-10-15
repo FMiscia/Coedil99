@@ -26,7 +26,6 @@ import GUI.Card.CardRDAFactory;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Liste.ListaRDA;
-import GUI.Liste.ListaRDAFactory;
 import GUI.Plichi.PlicoRDA;
 
 public class CreaFormRDA extends AFormRDA {

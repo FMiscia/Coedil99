@@ -11,6 +11,9 @@ import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import org.orm.PersistentException;
+
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 
@@ -20,20 +23,31 @@ public class ListaRDA extends ALista {
 	public ListaRDA() {
 		super();
 		this.setPreferredSize(new Dimension(260, 0));
-		this.load(new ArrayList<Object>(GestisciRDAHandler.getInstance()
-				.getArrayRDA()));
+		this.load(GestisciRDAHandler.CONGELATA);
 		this.deselectAll();
 	}
-
-	public void load() {
-		ArrayList<Object> t = new ArrayList<Object>(GestisciRDAHandler
-				.getInstance().getArrayRDA());
+	
+	@Override
+	public void load(String tipo) {
+		ArrayList<Object> t=null;
+		try {
+			t = new ArrayList<Object>(GestisciRDAHandler
+					.getInstance().getArrayRDA(tipo));
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.panel.setPreferredSize(new Dimension(150, row * 70));
 		for (int k = 0; k < t.size(); ++k) {
 			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
 					this);
-			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
+			try {
+				r.load(GestisciRDAHandler.getInstance().getArrayRDA(tipo).get(k));
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			panel.add(r);
 
 		}
@@ -44,16 +58,6 @@ public class ListaRDA extends ALista {
 
 	}
 
-	public void deselectAll() {
-		// TODO Auto-generated method stub
-		for (Component c : panel.getComponents()) {
-			c.setBackground(new Color(30, 144, 255));
-			c.validate();
-			c.repaint();
-		}
-
-	}
-
 	public int getPrimaRDA() {
 		((CardRDA) this.panel.getComponent(0)).setBackground(new Color(30, 44,
 				255));
@@ -61,21 +65,7 @@ public class ListaRDA extends ALista {
 
 	}
 
-	@Override
-	public void load(ArrayList<Object> t) {
-		// TODO Auto-generated method stub
-		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
-		this.panel.setPreferredSize(new Dimension(150, row * 70));
-		for (int k = 0; k < t.size(); ++k) {
-			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
-					this);
-			r.load(GestisciRDAHandler.getInstance().getArrayRDA().get(k));
-			panel.add(r);
-		}
-		this.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
-		this.validate();
-		this.repaint();
-	}
+
 
 	public void addCard(CardRDA c) {
 		panel.add(c, 0);
@@ -90,6 +80,12 @@ public class ListaRDA extends ALista {
 
 	@Override
 	public void updatePanel() {
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

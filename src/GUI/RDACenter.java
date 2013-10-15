@@ -2,13 +2,9 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
-
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
-
-import GUI.Abstract.APlico;
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
 import GUI.Liste.ListaRDA;
@@ -22,12 +18,14 @@ public class RDACenter extends JPanel {
 
 	
 	private ListaRDA lista;
+
 	private ClipPanelRDA clipPanel = (ClipPanelRDA) ClipPanelRDAFactory.getInstance().makeClipPanel();	
 	
 
 	public RDACenter(){
 		this.setLayout(new BorderLayout());
 		this.add(clipPanel, BorderLayout.NORTH);
+		this.lista = (ListaRDA) ListaRDAFactory.getInstance().makeLista();
 		this.add(PlicoRDA.getInstance(), BorderLayout.CENTER);
 	}
 	
@@ -53,6 +51,7 @@ public class RDACenter extends JPanel {
 		this.rdaSelezionata = rdaSelezionata;
 	}
 
+	
 	public ListaRDA getLista() {
 		return lista;
 	}
@@ -66,6 +65,8 @@ public class RDACenter extends JPanel {
 		this.validate();
 		this.repaint();
 	}
+	
+
 	
 	public void removePlicoRDA(){
 		this.remove(PlicoRDA.getInstance());
