@@ -1,11 +1,14 @@
 package coedil99.model;
 
+import java.util.ArrayList;
+
 public abstract class Observer {
 	
-	protected Subject subject;
+	protected ArrayList<Subject> subjects = new ArrayList<Subject>();
 	
 
-	public abstract Subject getSubject();
+	public abstract ArrayList<Subject> getSubject();
+	public abstract void setSubject(ArrayList<Subject> s);
 
 	/**
 	 * 
