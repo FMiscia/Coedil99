@@ -1,26 +1,23 @@
 package GUI.Riquadri;
 
-import GUI.Abstract.ARiquadro;
+import GUI.Abstract.ARiepilogoRDA;
 
-public class RiquadroRiepilogoRDAFactory extends RiquadroFactory {
+public class RiquadroRiepilogoRDAFactory {
 
-	private static RiquadroFactory instance = null;
-
-	private RiquadroRiepilogoRDAFactory() {
-	};
-
-
-	public static RiquadroFactory getInstance() {
-		if (instance == null)
+	private static RiquadroRiepilogoRDAFactory instance = null;
+	
+	private RiquadroRiepilogoRDAFactory(){};
+	
+	
+	public ARiepilogoRDA makeRiepilogo() {
+		// TODO Auto-generated method stub
+		return new RiquadroRiepilogoRDA();
+	}
+	
+	public static RiquadroRiepilogoRDAFactory getInstance(){
+		if(instance == null)
 			instance = new RiquadroRiepilogoRDAFactory();
 		return instance;
-	}
-
-
-	@Override
-	public ARiquadro makeRiquadro() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 

@@ -64,7 +64,7 @@ public abstract class ALista extends JScrollPane {
 	 * @author francesco Aggiorna posizione e valore del Titolo e info aggiutivi
 	 * del panelTitle
 	 */
-
+	/*
 	public void updateTitlePanel() {
 		this.panelTitle.removeAll();
 		panelTitle.setSize(new Dimension(200, 90));
@@ -81,7 +81,7 @@ public abstract class ALista extends JScrollPane {
 		this.repaint();
 
 	}
-	
+	*/
 	public void svuota(){
 		this.panel.removeAll();
 		this.validate();

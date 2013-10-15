@@ -3,14 +3,25 @@ package GUI.Abstract;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+import GUI.ProgrammaLavori;
 import GUI.RDACenter;
+import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDAFactory;
+import GUI.Liste.ListaRigheRDA;
+import GUI.Plichi.PlicoRDA;
+import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 
 import com.jgoodies.forms.factories.FormFactory;
@@ -22,8 +33,8 @@ public class ARiepilogoRDA extends JPanel {
 	private JLabel lblTitolo;
 	private JLabel lblPrezzo;
 	private JLabel lblTotale;
-	private JButton btSalva;
-	private JButton btElimina;
+	private JButton btnSalva;
+	private JButton btnElimina;
 	private JSeparator separator;
 	private JSeparator separator_1;
 	private JLabel lblFornitore;
@@ -32,13 +43,14 @@ public class ARiepilogoRDA extends JPanel {
 	private JLabel lblQuantita;
 
 	public ARiepilogoRDA() {
-		setBackground(SystemColor.controlHighlight);
-		this.setPreferredSize(new Dimension(180, 200));
-		setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(41dlu;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(49dlu;default)"),},
+		this.setBackground(SystemColor.controlHighlight);
+		this.setSize(new Dimension(200, 200));
+		this.setPreferredSize(new Dimension(200, 200));
+		this.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("10px"),
+				ColumnSpec.decode("max(60px;default)"),
+				ColumnSpec.decode("10px"),
+				ColumnSpec.decode("max(70px;default)"),},
 			new RowSpec[] {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
@@ -89,11 +101,11 @@ public class ARiepilogoRDA extends JPanel {
 		separator_1 = new JSeparator();
 		add(separator_1, "2, 12, 3, 1");
 		
-		btSalva = new JButton("Salva RDA");
-		add(btSalva, "2, 14");
+		btnSalva = new JButton("Salva RDA");
+		add(btnSalva, "2, 14");
 		
-		btElimina = new JButton("Elimina RDA");
-		add(btElimina, "2, 16");
+		btnElimina = new JButton("Elimina RDA");
+		add(btnElimina, "2, 16");
 	}
 	
 	public void refresh(){
@@ -107,6 +119,80 @@ public class ARiepilogoRDA extends JPanel {
 		}
 		this.lblTotale.setText(String.valueOf(prezzo_totale));
 		this.lblQuantita.setText(String.valueOf(quantita_totale));
+		MouseListener[] arrML = this.btnSalva.getMouseListeners();
+		if (arrML.length == 1) {
+			this.btnSalva.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					GestisciRDAHandler.getInstance().saveAndAddRDA(
+							RDACenter.getInstance().getRDASelezionata());
+					JOptionPane.showMessageDialog(null,
+							"RDA salvata con successo!\n",
+							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
+					RDACenter rdac = RDACenter.getInstance();
+					ListaRDA listarda = (ListaRDA) ListaRDAFactory
+							.getInstance().makeLista();
+					rdac.setLista(listarda);
+
+					rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
+							.getRDAById(
+									RDACenter.getInstance().getLista()
+											.getPrimaRDA()));
+
+					PlicoRDA prda = PlicoRDA.getInstance();
+					ListaRigheRDA lista_rda = prda.getListaRigheRDA();
+					prda.resetFormRDA();
+					lista_rda.getPanel().removeAll();
+					lista_rda.load(new ArrayList<Object>(rdac
+							.getRDASelezionata().righeRDA.getCollection()));
+					
+					rdac.getClipPanel().focusToRDACongelate();
+					lista_rda.validate();
+					lista_rda.repaint();
+				}
+
+			});
+		}
+		arrML = this.btnElimina.getMouseListeners();
+		if (arrML.length == 1) {
+			this.btnElimina.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					Object[] options = { "Si", "No" };
+					int n = JOptionPane.showOptionDialog(
+							ProgrammaLavori.getInstance(),
+							"Sicuro di voler eliminare la RDA?\n"
+									+ "Nota: Questa operazione non è reversibile",
+							"Conferma operazione",
+							JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE, null, options,
+							options[1]);
+					if (n == JOptionPane.YES_OPTION) {
+						GestisciRDAHandler.getInstance().deleteAndRemoveRDA(
+								RDACenter.getInstance().getRDASelezionata());
+						ListaRDA listarda = (ListaRDA) ListaRDAFactory
+								.getInstance().makeLista();
+						RDACenter.getInstance().setLista(listarda);
+						PlicoRDA prda = PlicoRDA.getInstance();
+						ListaRigheRDA lista_rda = prda.getListaRigheRDA();
+						prda.resetFormRDA();
+						listarda.getPanel().removeAll();
+						listarda.load();
+						RDACenter.getInstance().setRDASelezionata(
+								GestisciRDAHandler.getInstance().getRDAById(
+										listarda.getPrimaRDA()));
+						lista_rda.getPanel().removeAll();
+						lista_rda.load(new ArrayList<Object>(RDACenter
+								.getInstance().getRDASelezionata().righeRDA
+								.getCollection()));
+						lista_rda.validate();
+						lista_rda.repaint();
+						listarda.validate();
+						listarda.repaint();
+					}
+				}
+			});
+		}
 		this.validate();
 		this.repaint();
 	}

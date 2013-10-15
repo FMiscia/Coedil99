@@ -23,6 +23,8 @@ import GUI.Card.CardRigaRDAFactory;
 import GUI.FormRDA.ModificaFormRDA;
 import GUI.FormRDA.ModificaFormRDAFactory;
 import GUI.Plichi.PlicoRDA;
+import GUI.Riquadri.RiquadroRiepilogoRDA;
+import GUI.Riquadri.RiquadroRiepilogoRDAFactory;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 import coedil99.model.RigaRDA;
@@ -32,6 +34,7 @@ public class ListaRigheRDA extends ALista {
 	public ListaRigheRDA() {
 		// TODO Auto-generated constructor stub
 		super();
+		//this.setPreferredSize(new Dimension(100, 0));
 		this.validate();
 		this.repaint();
 	}
@@ -39,10 +42,12 @@ public class ListaRigheRDA extends ALista {
 	@Override
 	public void load(ArrayList<Object> t) {
 		// Aggiorna titolo e prezzo delle righe rda
+		
+		
 		this.updatePanel();
-		this.setPreferredSize(new Dimension(290, 0));
 		int row = t.size();
-		this.panel.setPreferredSize(new Dimension(150, row * 70));
+		this.panel.setPreferredSize(new Dimension(180, row * 70));
+		//this.panel.setSize(new Dimension(180, row*70));
 		CardRigaRDA riquadroRigaRDA;
 		for (int k = 0; k < row; ++k) {
 			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance()
@@ -82,6 +87,10 @@ public class ListaRigheRDA extends ALista {
 
 	@Override
 	public void updatePanel() {
+		this.riepilogoRDA = (RiquadroRiepilogoRDA) RiquadroRiepilogoRDAFactory.getInstance().makeRiepilogo();
+		this.riepilogoRDA.refresh();
+		this.panel.add(this.riepilogoRDA,0);
+		/*
 		this.panelTitle.removeAll();
 		panelTitle.setSize(new Dimension(200, 200));
 		panelTitle.setPreferredSize(new Dimension(200, 200));
@@ -173,7 +182,7 @@ public class ListaRigheRDA extends ALista {
 					}
 				}
 			});
-		}
+		}*/
 		this.validate();
 		this.repaint();
 	}
