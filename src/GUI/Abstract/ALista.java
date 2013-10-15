@@ -59,7 +59,8 @@ public abstract class ALista extends JScrollPane {
 	}
 
 	public abstract void load(String s);
-
+	public abstract void load();
+	
 	public void svuota(){
 		this.panel.removeAll();
 		this.validate();

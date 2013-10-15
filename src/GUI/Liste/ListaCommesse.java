@@ -20,35 +20,12 @@ public class ListaCommesse extends ALista {
 	
 	public ListaCommesse(){
 		super();
-		this.load("");
+		this.load();
 		
 	}
 	
 	@Override
-	public void load(String nonMiServe){
-		ArrayList<Object> t = new ArrayList<Object>(GestisciClienteHandler.getInstance().getClienti());
-		int row = GestisciCommessaHandler.getInstance().getNumOfCommesse();
-		this.panel.setPreferredSize(new Dimension(150,row*70));
-		for(int k=0; k<t.size(); ++k){
-			Cliente temp = (Cliente)t.get(k);
-			for(int j=0; j<temp.ordini.size(); ++j){
-				for(int i=0; i<temp.ordini.get(j).commesse.size(); ++i){
-					final CardCodiceInterno r = (CardCodiceInterno) CardCodiceInternoFactory.getInstance().makeCard(this);
-					ArrayList<Object> commessaIdentifier = new ArrayList<Object>();
-					//cliente
-					commessaIdentifier.add(0, temp);
-					//ordine
-					commessaIdentifier.add(1, temp.ordini.get(j));
-					//commessa
-					commessaIdentifier.add(2, temp.ordini.get(j).commesse.get(i));
-					r.load(commessaIdentifier);
-					panel.add(r);
-				}
-			}
-		}
-		this.setPreferredSize(new Dimension(154,panel.getHeight()));
-		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
-		
+	public void load(String n){
 	}
 
 	public void deselectAll() {
@@ -73,6 +50,33 @@ public class ListaCommesse extends ALista {
 	public void updatePanel() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		ArrayList<Object> t = new ArrayList<Object>(GestisciClienteHandler.getInstance().getClienti());
+		int row = GestisciCommessaHandler.getInstance().getNumOfCommesse();
+		this.panel.setPreferredSize(new Dimension(150,row*70));
+		for(int k=0; k<t.size(); ++k){
+			Cliente temp = (Cliente)t.get(k);
+			for(int j=0; j<temp.ordini.size(); ++j){
+				for(int i=0; i<temp.ordini.get(j).commesse.size(); ++i){
+					final CardCodiceInterno r = (CardCodiceInterno) CardCodiceInternoFactory.getInstance().makeCard(this);
+					ArrayList<Object> commessaIdentifier = new ArrayList<Object>();
+					//cliente
+					commessaIdentifier.add(0, temp);
+					//ordine
+					commessaIdentifier.add(1, temp.ordini.get(j));
+					//commessa
+					commessaIdentifier.add(2, temp.ordini.get(j).commesse.get(i));
+					r.load(commessaIdentifier);
+					panel.add(r);
+				}
+			}
+		}
+		this.setPreferredSize(new Dimension(154,panel.getHeight()));
+		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
 	}
 
 

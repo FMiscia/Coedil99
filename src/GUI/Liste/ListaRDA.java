@@ -82,4 +82,10 @@ public class ListaRDA extends ALista {
 	public void updatePanel() {
 	}
 
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

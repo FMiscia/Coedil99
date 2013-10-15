@@ -3,30 +3,15 @@ package GUI.Liste;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import org.orm.PersistentException;
-
-import GUI.ProgrammaLavori;
-import GUI.RDACenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
-import GUI.FormRDA.ModificaFormRDA;
-import GUI.FormRDA.ModificaFormRDAFactory;
-import GUI.Plichi.PlicoRDA;
 import GUI.Riquadri.RiquadroRiepilogoRDA;
 import GUI.Riquadri.RiquadroRiepilogoRDAFactory;
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.RDA;
 import coedil99.model.RigaRDA;
 
 public class ListaRigheRDA extends ALista {
@@ -192,6 +177,13 @@ public class ListaRigheRDA extends ALista {
 
 	@Override
 	public void load(String s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void load() {
 		// TODO Auto-generated method stub
 		
 	}
