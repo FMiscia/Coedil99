@@ -144,6 +144,7 @@ public class CardRDA extends ACard {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
+				System.out.println("click su card");
 				PlicoRDA plico_rda = PlicoRDA.getInstance();
 				CardRDA.this.riquadro.deselectAll();				
 				RDACenter contenitore = RDACenter.getInstance();

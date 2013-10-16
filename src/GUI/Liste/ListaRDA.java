@@ -1,22 +1,14 @@
 package GUI.Liste;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
 import coedil99.controller.GestisciRDAHandler;
-import GUI.RDACenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import org.orm.PersistentException;
-
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
 public class ListaRDA extends ALista {
@@ -70,6 +62,7 @@ public class ListaRDA extends ALista {
 	}
 
 	public void addCard(CardRDA c) {
+		System.out.println("addcard");
 		panel.add(c, 0);
 		this.validate();
 		this.repaint();
