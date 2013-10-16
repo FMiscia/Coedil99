@@ -41,14 +41,9 @@ public class ListaRDA extends ALista {
 		// int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.getViewport().setPreferredSize(new Dimension(150, t.size() * 70));
 		for (int k = 0; k < t.size(); ++k) {
-			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(this);
-			try {
-				r.load(GestisciRDAHandler.getInstance().getArrayRDA(tipo).get(k));
-			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
+					this);
+			r.load(t.get(k));
 			panel.add(r);
 
 		}
