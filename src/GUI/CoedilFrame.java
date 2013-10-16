@@ -21,8 +21,8 @@ public class CoedilFrame extends JFrame {
 	public static void main(String[] args) {
 		try {
 			//developement mode
-			int delay = 1;
-			//int delay = 1000;
+			//int delay = 1;
+			int delay = 1000;
 			
 			final JSplash splash = new JSplash(
 					CoedilFrame.class.getResource("image/coedil.png"), true,

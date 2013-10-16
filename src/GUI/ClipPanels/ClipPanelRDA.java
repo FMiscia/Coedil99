@@ -60,9 +60,12 @@ public class ClipPanelRDA extends AClipPanel {
 						ClipPanelRDA.this.focusOut();
 						b.setBackground(new Color(180, 180, 180));
 						RDACenter rdac = RDACenter.getInstance();
-						ListaRDA listarda = (ListaRDA) ListaRDAFactory
-								.getInstance().makeLista();
-						rdac.setLista(listarda);
+						rdac.getLista().svuota();
+						rdac.getLista().load(GestisciRDAHandler.CONGELATA);
+						
+						//ListaRDA listarda = (ListaRDA) ListaRDAFactory
+								//.getInstance().makeLista();
+						//rdac.setLista(listarda);
 						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
 								.getRDAById(rdac.getLista().getPrimaRDA()));
 						PlicoRDA prda = PlicoRDA.getInstance();
