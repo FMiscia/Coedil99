@@ -6,6 +6,7 @@ import GUI.Abstract.ALista;
 
 public abstract class ListaFactory {
 
-	public abstract ALista makeLista() throws PersistentException;
+	public abstract ALista makeLista();
+	public abstract ALista makeLista(String tipo);
 	
 }

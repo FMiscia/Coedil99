@@ -1,6 +1,7 @@
 package GUI.Liste;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
@@ -9,20 +10,21 @@ import GUI.RDACenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import org.orm.PersistentException;
+
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
 public class ListaRDA extends ALista {
 
-	public ListaRDA() {
+	public ListaRDA(String tipo) {
 		super();
 		this.setPreferredSize(new Dimension(260, 0));
-		if(this.panelHasRDA()){
-			this.load( GestisciRDAHandler.getInstance().getRDAById(this.getPrimaRDA()).getState());
-		}else{
-			this.load( GestisciRDAHandler.CONGELATA);	
-		}
-		
+		this.load(tipo);
 		this.deselectAll();
 	}
 
@@ -39,9 +41,14 @@ public class ListaRDA extends ALista {
 		// int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.getViewport().setPreferredSize(new Dimension(150, t.size() * 70));
 		for (int k = 0; k < t.size(); ++k) {
-			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
-					this);
-			r.load(t.get(k));
+			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(this);
+			try {
+				r.load(GestisciRDAHandler.getInstance().getArrayRDA(tipo).get(k));
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 			panel.add(r);
 
 		}
@@ -63,7 +70,6 @@ public class ListaRDA extends ALista {
 	}
 
 	public void addCard(CardRDA c) {
-		System.out.println("addcard");
 		panel.add(c, 0);
 		this.validate();
 		this.repaint();
@@ -75,11 +81,9 @@ public class ListaRDA extends ALista {
 	}
 	
 	public boolean panelHasRDA(){
-		if ( panel.getComponentCount() ==0){
+		if(panel.getComponentCount()==0)
 			return false;
-		}
 		return true;
-		
 	}
 
 	@Override

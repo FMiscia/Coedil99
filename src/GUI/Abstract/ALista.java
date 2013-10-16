@@ -67,8 +67,8 @@ public abstract class ALista extends JScrollPane {
 	
 	public void svuota(){
 		this.panel.removeAll();
-		this.validate();
-		this.repaint();
+		this.panel.validate();
+		this.panel.repaint();
 	}
 
 	/**

@@ -3,6 +3,9 @@ package GUI;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+
+import org.orm.PersistentException;
+
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 import GUI.ClipPanels.ClipPanelRDA;
@@ -22,23 +25,21 @@ public class RDACenter extends JPanel {
 	private ClipPanelRDA clipPanel = (ClipPanelRDA) ClipPanelRDAFactory.getInstance().makeClipPanel();	
 
 
-	public RDACenter(){
+	public RDACenter() {
 		this.setLayout(new BorderLayout());
 		this.add(clipPanel, BorderLayout.NORTH);
-		this.lista = (ListaRDA) ListaRDAFactory.getInstance().makeLista();
+		this.lista = (ListaRDA) ListaRDAFactory.getInstance().makeLista(GestisciRDAHandler.CONGELATA);
 		this.add(PlicoRDA.getInstance(), BorderLayout.CENTER);
 	}
 
 	public void loadListaRigheRDA(){
-		this.lista = (ListaRDA)ListaRDAFactory.getInstance().makeLista();
+		
 		this.add(this.lista, BorderLayout.WEST);
-		System.out.println(GestisciRDAHandler.getInstance().getRDAById(this.lista.getPrimaRDA()));
-		this.setRDASelezionata(GestisciRDAHandler.getInstance().getRDAById(this.lista.getPrimaRDA()));
 		PlicoRDA.getInstance().getListaRigheRDA().load(new ArrayList<Object>(this.getRDASelezionata().righeRDA.getCollection()) );
 	}
 
 	//Singleton
-	public static RDACenter getInstance(){
+	public static RDACenter getInstance() {
 		if(RDACenter.instance == null)
 			RDACenter.instance = new RDACenter();
 		return RDACenter.instance;
@@ -67,8 +68,6 @@ public class RDACenter extends JPanel {
 		this.repaint();
 	}
 
-
-
 	public void removePlicoRDA(){
 		this.remove(PlicoRDA.getInstance());
 		this.validate();
@@ -84,5 +83,9 @@ public class RDACenter extends JPanel {
 
 	public void setClipPanel(ClipPanelRDA clipPanel) {
 		this.clipPanel = clipPanel;
+	}
+	
+	public static boolean isInstanciated(){
+		return instance==null;
 	}
 }

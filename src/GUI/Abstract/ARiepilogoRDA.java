@@ -151,7 +151,7 @@ public class ARiepilogoRDA extends JPanel {
 							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
 					RDACenter rdac = RDACenter.getInstance();
 					ListaRDA listarda = (ListaRDA) ListaRDAFactory
-							.getInstance().makeLista();
+							.getInstance().makeLista(GestisciRDAHandler.CONGELATA);
 					rdac.setLista(listarda);
 
 					rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
@@ -190,7 +190,7 @@ public class ARiepilogoRDA extends JPanel {
 						GestisciRDAHandler.getInstance().deleteAndRemoveRDA(
 								RDACenter.getInstance().getRDASelezionata());
 						ListaRDA listarda = (ListaRDA) ListaRDAFactory
-								.getInstance().makeLista();
+								.getInstance().makeLista(GestisciRDAHandler.CONGELATA);
 						RDACenter.getInstance().setLista(listarda);
 						PlicoRDA prda = PlicoRDA.getInstance();
 						ListaRigheRDA lista_rda = prda.getListaRigheRDA();

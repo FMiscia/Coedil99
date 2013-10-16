@@ -1,5 +1,7 @@
 package GUI.Liste;
 
+import org.orm.PersistentException;
+
 import GUI.Abstract.ALista;
 
 public class ListaRDAFactory extends ListaFactory {
@@ -10,8 +12,14 @@ public class ListaRDAFactory extends ListaFactory {
 	
 	@Override
 	public ALista makeLista() {
+		return null;
 		// TODO Auto-generated method stub
-		return new ListaRDA();
+	}
+	
+	@Override
+	public ALista makeLista(String tipo)  {
+		// TODO Auto-generated method stub
+		return new ListaRDA(tipo);
 	}
 	
 	public static ListaRDAFactory getInstance(){
@@ -19,6 +27,8 @@ public class ListaRDAFactory extends ListaFactory {
 			instance = new ListaRDAFactory();
 		return instance;
 	}
+
+
 
 
 }

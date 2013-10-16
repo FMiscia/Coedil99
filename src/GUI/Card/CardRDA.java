@@ -38,32 +38,31 @@ public class CardRDA extends ACard {
 	private JLabel data = null;
 	private boolean saved = false;
 
-	public boolean isSaved() {
-		return saved;
-	}
-
-	public void setSaved(boolean saved) {
-		this.saved = saved;
-	}
 
 	private static HashMap<String, ImageIcon> state_map;
 	static {
-
+		
 		CardRDA.state_map = new HashMap<String, ImageIcon>();
-
-		CardRDA.state_map.put(GestisciRDAHandler.CONGELATA, new ImageIcon(
-				CardRDA.class.getResource("/GUI/image/congelata.png")));
-
-		CardRDA.state_map.put(GestisciRDAHandler.RIFIUTATA, new ImageIcon(
-				CardRDA.class.getResource("/GUI/image/rifiutata.png")));
-
+		
+		CardRDA.state_map.put(
+				GestisciRDAHandler.CONGELATA,
+				new ImageIcon(CardRDA.class
+						.getResource("/GUI/image/congelata.png")));
+		
+		CardRDA.state_map.put(
+				GestisciRDAHandler.RIFIUTATA,
+				new ImageIcon(CardRDA.class
+						.getResource("/GUI/image/rifiutata.png")));
+		
 		CardRDA.state_map.put(
 				GestisciRDAHandler.ATTESA_CONFERMA,
 				new ImageIcon(CardRDA.class
 						.getResource("/GUI/image/attesaconferma.png")));
-
-		CardRDA.state_map.put(GestisciRDAHandler.CONFERMATA, new ImageIcon(
-				CardRDA.class.getResource("/GUI/image/confermata.png")));
+		
+		CardRDA.state_map.put(
+				GestisciRDAHandler.CONFERMATA,
+				new ImageIcon(CardRDA.class
+						.getResource("/GUI/image/confermata.png")));
 	}
 
 	public CardRDA(ListaRDA rda) {
@@ -98,12 +97,13 @@ public class CardRDA extends ACard {
 		data.setHorizontalTextPosition(SwingConstants.CENTER);
 		data.setBorder(new LineBorder(new Color(0, 0, 0)));
 		data.setBounds(0, 30, 100, 30);
-
+		
 		add(id);
 		add(stato);
 		add(icona);
 		add(data);
 	}
+
 
 	public int getRDAId() {
 		return this.RDAId;
@@ -114,59 +114,57 @@ public class CardRDA extends ACard {
 		// TODO Auto-generated method stub
 		final RDA rda = (RDA) o;
 		this.RDAId = rda.getID();
-		if (!rda.righeRDA.isEmpty()) {
-			this.id.setText(rda.righeRDA.get(0).getDescription()
-					.getCatalogoFornitore().getName());
-		} else {
+		if(!rda.righeRDA.isEmpty()){
+			this.id.setText(rda.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());			
+		}else{
 			this.id.setText("da settare");
 		}
 		this.stato.setText(rda.getState());
 		this.icona.setIcon(CardRDA.state_map.get(rda.getState()));
-
+		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		dateFormat.format(rda.getDate());
-
-		this.data.setText(dateFormat.format(rda.getDate()));
+		
+		this.data.setText(		dateFormat.format(rda.getDate()));
 		this.setBackground(new Color(30, 144, 255));
 		this.validate();
 		this.repaint();
-
+		
 		this.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
+				PlicoRDA plico_rda = PlicoRDA.getInstance();
+				CardRDA.this.riquadro.deselectAll();				
 				RDACenter contenitore = RDACenter.getInstance();
-				if (contenitore.getClipPanel().isSelectedCongelate()) {
-					PlicoRDA plico_rda = PlicoRDA.getInstance();
-					CardRDA.this.riquadro.deselectAll();
-
-					contenitore.setRDASelezionata(rda);
-					ListaRigheRDA lista_righe_rda = plico_rda
-							.getListaRigheRDA();
-					plico_rda.resetFormRDA();
-					lista_righe_rda.getPanel().removeAll();
-					lista_righe_rda.load(new ArrayList<Object>(rda.righeRDA.getCollection()));
-					CardRDA.this.setBackground(new Color(30, 44, 255));
-					CardRDA.this.validate();
-					CardRDA.this.repaint();
-					lista_righe_rda.validate();
-					lista_righe_rda.repaint();
-					System.out.println(RDACenter.getInstance()
-							.getRDASelezionata().toString());
-					
-
-				} else if (contenitore.getClipPanel().isSelectedAttesa()){
-
-				}
-
+				contenitore.setRDASelezionata(rda);
+				ListaRigheRDA lista_righe_rda = plico_rda.getListaRigheRDA();
+				plico_rda.resetFormRDA();
+				lista_righe_rda.getPanel().removeAll();
+				lista_righe_rda.load(new ArrayList<Object>(rda.righeRDA.getCollection()));
+				CardRDA.this.setBackground(new Color(30,44,255));
+				CardRDA.this.validate();
+				CardRDA.this.repaint();
+				lista_righe_rda.validate();
+				lista_righe_rda.repaint();
 			}
 		});
 	}
+	
+	public boolean isSaved() {
+		return saved;
+	}
 
-	public void setNomeFornitore(String s) {
+
+	public void setSaved(boolean saved) {
+		this.saved = saved;
+	}
+	
+	public void setNomeFornitore(String s){
 		this.id.setText(s);
 	}
+
 
 	public boolean getRDAState() {
 		// TODO Auto-generated method stub

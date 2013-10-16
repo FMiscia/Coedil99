@@ -16,19 +16,23 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.orm.PersistentException;
+
 import coedil99.controller.GestisciRDAHandler;
 
 import GUI.ClipPanels.ClipPanelMenu;
 import GUI.ClipPanels.ClipPanelMenuFactory;
 
 public class PanelStart extends JPanel {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel pannelloUseCases = new JPanel();
-	private ClipPanelMenu clipPanel = (ClipPanelMenu) ClipPanelMenuFactory.getInstance().makeClipPanel();
+	private ClipPanelMenu clipPanel = (ClipPanelMenu) ClipPanelMenuFactory
+			.getInstance().makeClipPanel();
+
 	public PanelStart(CoedilFrame f) {
 
 		this.initUI();
@@ -56,7 +60,7 @@ public class PanelStart extends JPanel {
 		pannelloUseCases.setLayout(new GridLayout(2, 2));
 		pannelloUseCases.setBorder(new EmptyBorder(100, 300, 100, 300));
 		this.add(pannelloUseCases, BorderLayout.CENTER);
-		
+
 	}
 
 	private void addOTHERButton() {
@@ -74,7 +78,7 @@ public class PanelStart extends JPanel {
 		otherbutton.setFocusable(false);
 
 		pannelloUseCases.add(otherbutton);
-		
+
 	}
 
 	private void addRDAButton() {
@@ -91,19 +95,22 @@ public class PanelStart extends JPanel {
 		}
 		RDAButton.setFocusable(false);
 		pannelloUseCases.add(RDAButton);
-		
+
 		RDAButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				RDACenter rda = RDACenter.getInstance();
-				rda.loadListaRigheRDA();
-				ArrayList<JButton> b = rda.getClipPanel().getButtons();
-				
-				CoedilFrame.getInstance().montaPanel(rda);
+				if (!RDACenter.isInstanciated()) {
+					RDACenter rda = RDACenter.getInstance();
+					rda.loadListaRigheRDA();
+				}
+				RDACenter.getInstance().add(RDACenter.getInstance().getLista(),
+						BorderLayout.WEST);
+				ArrayList<JButton> b = RDACenter.getInstance().getClipPanel()
+						.getButtons();
+				CoedilFrame.getInstance().montaPanel(RDACenter.getInstance());
 				b.get(1).doClick();
 			}
 		});
-		System.out.println("click su gestisci rda");
-		
+
 	}
 
 	private void addPLButton() {
@@ -120,13 +127,13 @@ public class PanelStart extends JPanel {
 		}
 		plButton.setFocusable(false);
 		this.pannelloUseCases.add(plButton);
-		
+
 		plButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				ProgrammaLavori p = ProgrammaLavori.getInstance();
 				CoedilFrame.getInstance().montaPanel(p);
 			}
 		});
-		
+
 	}
 }
