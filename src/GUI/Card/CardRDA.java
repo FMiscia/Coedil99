@@ -138,25 +138,25 @@ public class CardRDA extends ACard {
 		this.setBackground(new Color(30, 144, 255));
 		this.validate();
 		this.repaint();
+		
 		this.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				PlicoRDA plico_rda = PlicoRDA.getInstance();
-				CardRDA.this.riquadro.deselectAll();
-				
+				CardRDA.this.riquadro.deselectAll();				
 				RDACenter contenitore = RDACenter.getInstance();
 				contenitore.setRDASelezionata(rda);
-				ListaRigheRDA lista_rda = plico_rda.getListaRigheRDA();
+				ListaRigheRDA lista_righe_rda = plico_rda.getListaRigheRDA();
 				plico_rda.resetFormRDA();
-				lista_rda.getPanel().removeAll();
-				lista_rda.load(new ArrayList<Object>(rda.righeRDA.getCollection()));
+				lista_righe_rda.getPanel().removeAll();
+				lista_righe_rda.load(new ArrayList<Object>(rda.righeRDA.getCollection()));
 				CardRDA.this.setBackground(new Color(30,44,255));
 				CardRDA.this.validate();
 				CardRDA.this.repaint();
-				lista_rda.validate();
-				lista_rda.repaint();
+				lista_righe_rda.validate();
+				lista_righe_rda.repaint();
 			}
 		});
 	}

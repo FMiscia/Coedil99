@@ -52,7 +52,7 @@ public class ClipPanelRDA extends AClipPanel {
 				new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						JButton b = (JButton) arg0.getSource();
-						if(!RDACenter.getInstance().getLista().getPrimaRDASaved()){
+						if(!RDACenter.getInstance().getLista().isPrimaRDASaved()){
 							if (!ClipPanelRDA.this.clickFromNuovaRDA()) {
 								return;
 							}
@@ -62,10 +62,6 @@ public class ClipPanelRDA extends AClipPanel {
 						RDACenter rdac = RDACenter.getInstance();
 						rdac.getLista().svuota();
 						rdac.getLista().load(GestisciRDAHandler.CONGELATA);
-						
-						//ListaRDA listarda = (ListaRDA) ListaRDAFactory
-								//.getInstance().makeLista();
-						//rdac.setLista(listarda);
 						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
 								.getRDAById(rdac.getLista().getPrimaRDA()));
 						PlicoRDA prda = PlicoRDA.getInstance();
@@ -84,7 +80,7 @@ public class ClipPanelRDA extends AClipPanel {
 					public void actionPerformed(ActionEvent arg0) {
 
 						JButton b = (JButton) arg0.getSource();
-						if(!RDACenter.getInstance().getLista().getPrimaRDASaved()){
+						if(!RDACenter.getInstance().getLista().isPrimaRDASaved()){
 							if (!ClipPanelRDA.this.clickFromNuovaRDA()) {
 								return;
 							}
@@ -99,12 +95,18 @@ public class ClipPanelRDA extends AClipPanel {
 						RDACenter rdac = RDACenter.getInstance();
 						rdac.getLista().svuota();
 						rdac.getLista().load(GestisciRDAHandler.ATTESA_CONFERMA);
+						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
+								.getRDAById(rdac.getLista().getPrimaRDA()));
 						
 						BorderLayout layout = (BorderLayout) prda.getLayout();
 						if (layout.getLayoutComponent(BorderLayout.CENTER) != null)
 							prda.remove(layout.getLayoutComponent(BorderLayout.CENTER));
-						prda.validate();
-						prda.repaint();
+						ListaRigheRDA lista_rda = prda.getListaRigheRDA();
+						prda.resetFormRDA();
+						lista_rda.getPanel().removeAll();
+						lista_rda.load(new ArrayList<Object>(rdac.getRDASelezionata().righeRDA.getCollection()));
+						lista_rda.validate();
+						lista_rda.repaint();
 					}
 				});
 

@@ -66,6 +66,7 @@ public class ListaRigheRDA extends ALista {
 
 	@Override
 	public void updatePanel() {
+		this.panel.removeAll();
 		this.riepilogoRDA = (RiquadroRiepilogoRDA) RiquadroRiepilogoRDAFactory.getInstance().makeRiepilogo();
 		this.riepilogoRDA.refresh();
 		this.panel.add(this.riepilogoRDA,0);

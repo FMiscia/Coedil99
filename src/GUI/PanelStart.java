@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import coedil99.controller.GestisciRDAHandler;
+
 import GUI.ClipPanels.ClipPanelMenu;
 import GUI.ClipPanels.ClipPanelMenuFactory;
 

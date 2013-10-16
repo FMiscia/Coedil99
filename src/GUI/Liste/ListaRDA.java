@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 
 import coedil99.controller.GestisciRDAHandler;
+import GUI.RDACenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
@@ -26,51 +27,43 @@ public class ListaRDA extends ALista {
 		this.load(GestisciRDAHandler.CONGELATA);
 		this.deselectAll();
 	}
-	
+
 	@Override
 	public void load(String tipo) {
-		ArrayList<Object> t=null;
+		ArrayList<Object> t = null;
 		try {
-			t = new ArrayList<Object>(GestisciRDAHandler
-					.getInstance().getArrayRDA(tipo));
+			t = new ArrayList<Object>(GestisciRDAHandler.getInstance()
+					.getArrayRDA(tipo));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
-		this.getViewport().setPreferredSize(new Dimension(150, row * 70));
+		// int row = GestisciRDAHandler.getInstance().getNumOfRDA();
+		this.getViewport().setPreferredSize(new Dimension(150, t.size() * 70));
 		for (int k = 0; k < t.size(); ++k) {
 			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
 					this);
-			try {
-				r.load(GestisciRDAHandler.getInstance().getArrayRDA(tipo).get(k));
-			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			r.load(t.get(k));
+
 			panel.add(r);
 
 		}
-		//this.setPreferredSize(new Dimension(260, panel.getHeight()));
+		// this.setPreferredSize(new Dimension(260, panel.getHeight()));
 		this.validate();
 		this.repaint();
 
 	}
 
 	public int getPrimaRDA() {
-		((CardRDA) this.panel.getComponent(0)).setBackground(new Color(30, 44,
-				255));
-		int id = ((CardRDA)this.panel.getComponent(0)).getRDAId();
-		/*if (GestisciRDAHandler.getInstance().getRDAById(id).getState() == GestisciRDAHandler.CONGELATA)
-			return id;*/
-		return id;
+		this.getPrimaCard().setBackground(new Color(30, 44, 255));
+		return this.getPrimaCard().getRDAId();
 
 	}
-	public boolean getPrimaRDASaved() {
+
+	public boolean isPrimaRDASaved() {
 		return ((CardRDA) this.getPrimaCard()).isSaved();
-		
-	}
 
+	}
 
 	public void addCard(CardRDA c) {
 		panel.add(c, 0);
@@ -90,7 +83,7 @@ public class ListaRDA extends ALista {
 	@Override
 	public void load() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

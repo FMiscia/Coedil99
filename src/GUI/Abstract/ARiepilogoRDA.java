@@ -196,7 +196,7 @@ public class ARiepilogoRDA extends JPanel {
 						ListaRigheRDA lista_rda = prda.getListaRigheRDA();
 						prda.resetFormRDA();
 						listarda.getPanel().removeAll();
-						listarda.load("");
+						listarda.load(RDACenter.getInstance().getRDASelezionata().getState());
 						RDACenter.getInstance().setRDASelezionata(
 								GestisciRDAHandler.getInstance().getRDAById(
 										listarda.getPrimaRDA()));
