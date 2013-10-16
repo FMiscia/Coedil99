@@ -31,8 +31,7 @@ public class ListaRDA extends ALista {
 	public void load(String tipo) {
 		ArrayList<Object> t=null;
 		try {
-			t = new ArrayList<Object>(GestisciRDAHandler
-					.getInstance().getArrayRDA(tipo));
+			t = new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayRDA(tipo));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,8 +39,7 @@ public class ListaRDA extends ALista {
 		int row = GestisciRDAHandler.getInstance().getNumOfRDA();
 		this.getViewport().setPreferredSize(new Dimension(150, row * 70));
 		for (int k = 0; k < t.size(); ++k) {
-			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
-					this);
+			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(this);
 			try {
 				r.load(GestisciRDAHandler.getInstance().getArrayRDA(tipo).get(k));
 			} catch (PersistentException e) {
@@ -70,7 +68,6 @@ public class ListaRDA extends ALista {
 		return ((CardRDA) this.getPrimaCard()).isSaved();
 		
 	}
-
 
 	public void addCard(CardRDA c) {
 		panel.add(c, 0);
