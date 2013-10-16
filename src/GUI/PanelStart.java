@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -95,9 +96,13 @@ public class PanelStart extends JPanel {
 			public void mouseClicked(MouseEvent arg0) {
 				RDACenter rda = RDACenter.getInstance();
 				rda.loadListaRigheRDA();
+				ArrayList<JButton> b = rda.getClipPanel().getButtons();
+				
 				CoedilFrame.getInstance().montaPanel(rda);
+				b.get(1).doClick();
 			}
 		});
+		System.out.println("click su gestisci rda");
 		
 	}
 

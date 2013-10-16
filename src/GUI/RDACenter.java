@@ -32,6 +32,7 @@ public class RDACenter extends JPanel {
 	public void loadListaRigheRDA(){
 		this.lista = (ListaRDA)ListaRDAFactory.getInstance().makeLista();
 		this.add(this.lista, BorderLayout.WEST);
+		System.out.println(GestisciRDAHandler.getInstance().getRDAById(this.lista.getPrimaRDA()));
 		this.setRDASelezionata(GestisciRDAHandler.getInstance().getRDAById(this.lista.getPrimaRDA()));
 		PlicoRDA.getInstance().getListaRigheRDA().load(new ArrayList<Object>(this.getRDASelezionata().righeRDA.getCollection()) );
 	}

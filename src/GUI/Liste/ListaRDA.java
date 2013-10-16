@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 
 import coedil99.controller.GestisciRDAHandler;
+import GUI.RDACenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
@@ -16,7 +17,12 @@ public class ListaRDA extends ALista {
 	public ListaRDA() {
 		super();
 		this.setPreferredSize(new Dimension(260, 0));
-		this.load(GestisciRDAHandler.CONGELATA);
+		if(this.panelHasRDA()){
+			this.load( GestisciRDAHandler.getInstance().getRDAById(this.getPrimaRDA()).getState());
+		}else{
+			this.load( GestisciRDAHandler.CONGELATA);	
+		}
+		
 		this.deselectAll();
 	}
 
@@ -66,6 +72,14 @@ public class ListaRDA extends ALista {
 	public CardRDA getPrimaCard() {
 		return (CardRDA) panel.getComponent(0);
 
+	}
+	
+	public boolean panelHasRDA(){
+		if ( panel.getComponentCount() ==0){
+			return false;
+		}
+		return true;
+		
 	}
 
 	@Override
