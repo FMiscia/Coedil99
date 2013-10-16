@@ -44,7 +44,7 @@ public class ClipPanelRDA extends AClipPanel {
 						PanelStart pl = new PanelStart(cf);
 						pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
 						CoedilFrame.getInstance().montaPanel(pl);
-
+						RDACenter.getInstance().getLista().svuota();
 					}
 				});
 
