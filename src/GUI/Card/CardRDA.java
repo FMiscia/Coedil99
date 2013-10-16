@@ -158,6 +158,7 @@ public class CardRDA extends ACard {
 				CardRDA.this.repaint();
 				lista_righe_rda.validate();
 				lista_righe_rda.repaint();
+				System.out.println(RDACenter.getInstance().getRDASelezionata().toString());
 			}
 		});
 	}
