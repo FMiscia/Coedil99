@@ -1,5 +1,9 @@
 package GUI.Riepiloghi;
 
+import java.util.HashMap;
+
+import coedil99.controller.GestisciRDAHandler;
+
 import GUI.Abstract.ARiepilogoRDA;
 
 public class RiepilogoRDAFactory {
@@ -8,16 +12,18 @@ public class RiepilogoRDAFactory {
 	
 	private RiepilogoRDAFactory(){};
 	
+	protected static HashMap<String, ARiepilogoRDA> className;
+	{
+		className = new HashMap<String, ARiepilogoRDA>();
+		className.put(GestisciRDAHandler.CONGELATA, new RiepilogoRDACongelata());
+		className.put(GestisciRDAHandler.ATTESA_CONFERMA,  new RiepilogoRDAAttesaConferma());
+	}
+	
+
 	
 	public ARiepilogoRDA makeRiepilogo(String tipo) {
-		switch(tipo){
-			case "CONGELATA":
-				return new RiepilogoRDACongelata();
-			case "ATTESA_CONFERMA":
-				return new RiepilogoRDAAttesaConferma();
-		}
-		// TODO Auto-generated method stub
-		return null;
+		
+		return className.get(tipo);
 		
 	}
 	
@@ -26,6 +32,7 @@ public class RiepilogoRDAFactory {
 			instance = new RiepilogoRDAFactory();
 		return instance;
 	}
+	
 
 
 }
