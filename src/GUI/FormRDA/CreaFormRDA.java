@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.CatalogoFornitore;
@@ -27,6 +29,8 @@ import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Plichi.PlicoRDA;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class CreaFormRDA extends AFormRDA {
 
@@ -35,6 +39,15 @@ public class CreaFormRDA extends AFormRDA {
 	public CreaFormRDA() {
 		// TODO Auto-generated constructor stub
 		super();
+		this.JBAddRiga.setEnabled(false);
+		this.getSpinner().addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				if(evt.getPropertyName().equals("enabled"))
+					CreaFormRDA.this.JBAddRiga.setEnabled(true);
+			}
+		});
+		
+		
 		MouseListener[] arrML = this.JBAddRiga.getMouseListeners();
 		if (arrML.length == 1) {
 			this.JBAddRiga.addActionListener(new ActionListener() {

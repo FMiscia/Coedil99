@@ -132,13 +132,13 @@ public abstract class AFormRDA extends JPanel {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("PRESSED!");    
-				System.out.println("rel");
+               // System.out.println("PRESSED!");    
+				//System.out.println("rel");
 				Pattern p = Pattern.compile("[^0-9]+");
 				String myString = ((DefaultEditor) spinner.getEditor()).getTextField().getText();
 				Matcher m = p.matcher(myString);
 				String clean = m.replaceAll("");
-				System.out.println(clean);
+				//System.out.println(clean);
 				((DefaultEditor) spinner.getEditor()).getTextField().setText(clean);
 				if(clean.equalsIgnoreCase("0"))
 					((DefaultEditor) spinner.getEditor()).getTextField().setText("1");
@@ -159,7 +159,7 @@ public abstract class AFormRDA extends JPanel {
 			}
 		});
 
-		add(spinner, "2, 16, 3, 1, left, center");
+		add(spinner, "2, 16, 2, 1, left, center");
 		
 		lblPrezzo = new JLabel("Riepilogo spesa");
 		add(lblPrezzo, "2, 18, 3, 1");
@@ -300,6 +300,11 @@ public abstract class AFormRDA extends JPanel {
 	public void setQuantity(int i) {
 		this.spinner.setValue(i);
 		this.aggiornaSpesa();
+	}
+
+
+	public JHorizontalSpinner getSpinner() {
+		return spinner;
 	}
 
 	
