@@ -52,9 +52,9 @@ public class ClipPanelRDA extends AClipPanel {
 						JButton b = (JButton) arg0.getSource();
 						if (!RDACenter.getInstance().getLista()
 								.isPrimaRDASaved()
-							&& !ClipPanelRDA.this.clickFromNuovaRDA()) {
-								return;
-							
+								&& !ClipPanelRDA.this.clickFromNuovaRDA()) {
+							return;
+
 						}
 						ClipPanelRDA.this.focusOut();
 						b.setBackground(new Color(180, 180, 180));
@@ -82,9 +82,9 @@ public class ClipPanelRDA extends AClipPanel {
 						JButton b = (JButton) arg0.getSource();
 						if (!RDACenter.getInstance().getLista()
 								.isPrimaRDASaved()
-							&& !ClipPanelRDA.this.clickFromNuovaRDA()) {
-								return;
-							
+								&& !ClipPanelRDA.this.clickFromNuovaRDA()) {
+							return;
+
 						}
 						ClipPanelRDA.this.focusOut();
 						b.setBackground(new Color(180, 180, 180));
