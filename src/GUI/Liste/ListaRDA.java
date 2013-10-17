@@ -30,6 +30,7 @@ public class ListaRDA extends ALista {
 
 	@Override
 	public void load(String tipo) {
+		this.panel.removeAll();
 		ArrayList<Object> t = null;
 		try {
 			t = new ArrayList<Object>(GestisciRDAHandler.getInstance()
