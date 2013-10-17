@@ -3,6 +3,7 @@ package GUI.Riepiloghi;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -18,6 +19,11 @@ import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 
 public class RiepilogoRDACongelata extends ARiepilogoRDA {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public RiepilogoRDACongelata(){
 		super();
@@ -115,13 +121,13 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 				public void mouseClicked(MouseEvent e) {
 					RDA temp = RDACenter.getInstance().getRDASelezionata();
 					temp.setState(GestisciRDAHandler.ATTESA_CONFERMA);
+					temp.setDate(new Date());
 					((CardRDA) RDACenter.getInstance().getLista().getPrimaCard()).setSaved(true);
 					GestisciRDAHandler.getInstance().saveAndAddRDA(temp);
 					JOptionPane.showMessageDialog(null,
 							"RDA inviata con successo!\n",
 							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
 					RDACenter.getInstance().getClipPanel().getButtons().get(2).doClick();
-
 				}
 			});
 		}
