@@ -5,13 +5,15 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import GUI.RDACenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
-import GUI.Riquadri.RiquadroRiepilogoRDA;
-import GUI.Riquadri.RiquadroRiepilogoRDAFactory;
+import GUI.Riepiloghi.RiepilogoRDACongelata;
+import GUI.Riepiloghi.RiepilogoRDAFactory;
 import coedil99.model.RigaRDA;
 
 public class ListaRigheRDA extends ALista {
@@ -67,7 +69,8 @@ public class ListaRigheRDA extends ALista {
 	@Override
 	public void updatePanel() {
 		this.panel.removeAll();
-		this.riepilogoRDA = (RiquadroRiepilogoRDA) RiquadroRiepilogoRDAFactory.getInstance().makeRiepilogo();
+		String stato = RDACenter.getInstance().getRDASelezionata().getState();
+		this.riepilogoRDA = RiepilogoRDAFactory.getInstance().makeRiepilogo(stato);
 		this.riepilogoRDA.refresh();
 		this.panel.add(this.riepilogoRDA,0);
 		this.validate();

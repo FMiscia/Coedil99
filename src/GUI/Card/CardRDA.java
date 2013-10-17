@@ -6,20 +6,16 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import GUI.RDACenter;
-import GUI.RaccoglitorePlichi;
 import GUI.Abstract.ACard;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRigheRDA;
