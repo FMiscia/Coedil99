@@ -23,7 +23,7 @@ public class RDA extends coedil99.model.Subject {
 	public RDA() {
 		this.date = new Date();
 		this.state = GestisciRDAHandler.CONGELATA;
-		this.Attach(Magazzino.getInstance());
+		this.Attach(Magazzino.getInstance());	
 	}
 	
 	public boolean save() throws PersistentException {
@@ -185,8 +185,9 @@ public class RDA extends coedil99.model.Subject {
 	@Override
 	public void Notify() {
 		// TODO Auto-generated method stub
-		for(Observer temp : this.observers)
+		for(Observer temp : this.observers){
 			temp.Update();
+		}
 	}
 	
 }

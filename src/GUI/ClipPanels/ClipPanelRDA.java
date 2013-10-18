@@ -178,7 +178,7 @@ public class ClipPanelRDA extends AClipPanel {
 
 	private boolean clickFromNuovaRDA() {
 		if (ClipPanelRDA.this.isButtonFocused((JButton) ClipPanelRDA.this
-				.getComponent(4))) {
+				.getButtons().get(4))) {
 			Object[] options = { "Si", "No" };
 			int n = JOptionPane.showOptionDialog(null,
 					"Sicuro di voler abbandonare la creazione RDA?\n"
@@ -195,30 +195,33 @@ public class ClipPanelRDA extends AClipPanel {
 	}
 
 	public boolean isSelectedCongelate() {
-		JButton b = (JButton) ClipPanelRDA.this.getComponent(1);
+		JButton b = (JButton) ClipPanelRDA.this.getButtons().get(1);
 		return this.isButtonFocused(b);
 	}
 
 	public boolean isSelectedAttesa() {
-		JButton b = (JButton) ClipPanelRDA.this.getComponent(2);
+		JButton b = (JButton) ClipPanelRDA.this.getButtons().get(2);
 		return this.isButtonFocused(b);
 	}
 
 
 	public void updateNotifiche() {
-		JButton temp = (JButton)this.getComponent(2);
-		temp.setText("Ciao");//add(new JLabel(String.valueOf(GestisciRDAHandler.getInstance().getArrayRDA(GestisciRDAHandler.ATTESA_CONFERMA).size())));
+		String AttesaSize = String.valueOf(GestisciRDAHandler.getInstance().getArrayRDA(GestisciRDAHandler.ATTESA_CONFERMA).size());
+		String ConfermateSize = String.valueOf(GestisciRDAHandler.getInstance().getArrayRDA(GestisciRDAHandler.CONFERMATA).size());
+		this.AddNotificaLabel(AttesaSize, GestisciRDAHandler.ATTESA_CONFERMA);
+		this.AddNotificaLabel(ConfermateSize, GestisciRDAHandler.CONFERMATA);
 		this.validate();
 		this.repaint();
+		
 	}
 	
 	public boolean isSelectedConfermate() {
-		JButton b = (JButton) ClipPanelRDA.this.getComponent(3);
+		JButton b = (JButton) ClipPanelRDA.this.getButtons().get(3);
 		return this.isButtonFocused(b);
 	}
 	
 	public boolean isSelectedNuova() {
-		JButton b = (JButton) ClipPanelRDA.this.getComponent(4);
+		JButton b = (JButton) ClipPanelRDA.this.getButtons().get(4);
 		return this.isButtonFocused(b);
 
 	}

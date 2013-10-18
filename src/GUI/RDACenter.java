@@ -30,6 +30,7 @@ public class RDACenter extends JPanel {
 		this.add(clipPanel, BorderLayout.NORTH);
 		this.lista = (ListaRDA) ListaRDAFactory.getInstance().makeLista(GestisciRDAHandler.CONGELATA);
 		this.add(PlicoRDA.getInstance(), BorderLayout.CENTER);
+		this.clipPanel.updateNotifiche();
 	}
 
 	public void loadListaRigheRDA(){

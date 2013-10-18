@@ -1,6 +1,9 @@
 package coedil99.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import coedil99.controller.GestisciRDAHandler;
 
 
 public abstract class Subject {

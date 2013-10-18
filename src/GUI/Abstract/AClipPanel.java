@@ -1,26 +1,39 @@
 package GUI.Abstract;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 
+import coedil99.controller.GestisciRDAHandler;
+
 public abstract class AClipPanel extends JPanel {
 	
-
+	public static HashMap<String, Integer> RDAButtonState;
+	{
+		RDAButtonState = new HashMap<String, Integer>();
+		RDAButtonState.put(GestisciRDAHandler.CONFERMATA, 3);
+		RDAButtonState.put(GestisciRDAHandler.ATTESA_CONFERMA, 2);
+		RDAButtonState.put(GestisciRDAHandler.CONGELATA, 1);		
+	}
 	private static final long serialVersionUID = 1L;
 	private ArrayList<JButton> buttons = new ArrayList<JButton>(); 
+	
 
 	public AClipPanel() {
 		// TODO Auto-generated constructor stub
@@ -37,16 +50,30 @@ public abstract class AClipPanel extends JPanel {
 	}
 	
 	public void addButton(String label,String ToolTip,ActionListener click){
-		JButton temp = new JButton(label);
+		JButton temp = new JButton();
+		temp.setLayout(new BorderLayout());
 		temp.setToolTipText(ToolTip);
 		temp.setHorizontalTextPosition(SwingConstants.LEFT);
 		temp.addActionListener(click);
 		temp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		JLabel nome = new JLabel(label);
+		temp.add(nome,BorderLayout.WEST);
 		this.buttons.add(temp);
 		this.add(temp);
 		this.validate();
 		this.repaint();	
 	}
+	
+	protected void AddNotificaLabel(String value,String RDAState){
+		
+		JLabel notifica = new JLabel(value);
+		notifica.setHorizontalAlignment(SwingConstants.RIGHT);
+		if(this.getButtons().get(AClipPanel.RDAButtonState.get(RDAState)).getComponentCount() != 1)
+			this.getButtons().get(AClipPanel.RDAButtonState.get(RDAState)).remove(1);
+		this.getButtons().get(AClipPanel.RDAButtonState.get(RDAState)).add(notifica,BorderLayout.EAST);
+	}
+	
+	
 	
 	public JButton createButton(String label,String ToolTip){
 		JButton temp = new JButton(label);

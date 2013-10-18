@@ -41,9 +41,8 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 
 	}
 
-	public void addRDA(RDA rda) {
-		rda.Attach(this);
-		this.arrayRDA.add(rda);
+	public void addRDA(int pos,RDA rda) {
+		this.arrayRDA.add(pos,rda);
 	}
 
 	public ArrayList<RDA> getArrayRDA(){
@@ -88,7 +87,7 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 		try {
 			r.save();
 			if(!this.arrayRDA.contains(r))
-				this.arrayRDA.add(0, r);
+				this.addRDA(0, r);
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,5 +126,6 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 		RDACenter.getInstance().getClipPanel().updateNotifiche();
 		
 	}
+	
 
 }
