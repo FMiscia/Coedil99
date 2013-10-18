@@ -1,9 +1,10 @@
 package GUI.Plichi;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import GUI.RDACenter;
 import GUI.Abstract.AFormRDA;
@@ -85,4 +86,15 @@ public class PlicoRDA extends APlico {
 		this.repaint();
 	}
 
+	public void cheStaiFacendo(){
+		ListaRigheRDA lrrda = this.getListaRigheRDA();
+		if(lrrda.getNumRigheRDA() == 0){
+			this.formRDA.reset();
+			this.listaRigheRDA.svuota();
+			this.validate();
+			this.repaint();
+		}
+		else
+			JOptionPane.showMessageDialog(null, lrrda.getComponentCount());
+	}
 }

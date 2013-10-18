@@ -28,6 +28,7 @@ import GUI.Card.CardRDAFactory;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
@@ -123,5 +124,8 @@ public class CreaFormRDA extends AFormRDA {
 		rdac.getLista().getPrimaRDA();
 		this.add(JBAddRiga, "2, 22, 3, 1");
 	}
+	
+	
+	
 
 }

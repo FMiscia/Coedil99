@@ -92,5 +92,9 @@ public class ListaRigheRDA extends ALista {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public int getNumRigheRDA(){
+		return this.panel.getComponentCount()-1;
+	}
 
 }

@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
@@ -231,6 +232,7 @@ public abstract class AFormRDA extends JPanel {
 	}
 	
 	protected void loadEssenze(CatalogoFornitore fornitore){
+		JOptionPane.showMessageDialog(null, "Caricate Essenze");
 		AFormRDA.this.cbEssenza.setEnabled(true);
 		this.cbEssenza.removeAllItems();
 		TreeSet<String> essenze = new TreeSet<String>();
@@ -276,14 +278,16 @@ public abstract class AFormRDA extends JPanel {
 	}
 	
 	public void reset(){
+		this.cbFornitore.setEnabled(true);
 		this.cbFornitore.removeAllItems();
 		this.cbEssenza.removeAllItems();
-		this.cbEssenza.setEnabled(true);
+		this.cbEssenza.setEnabled(false);
 		this.cbGeometria.removeAllItems();
 		this.cbGeometria.setEnabled(false);
 		this.spinner.setValue(1);
 		this.spinner.setEnabled(false);
 		this.tfSpesa.setText(null);
+		this.load();
 	}
 	
 	
