@@ -132,7 +132,7 @@ public class ClipPanelRDA extends AClipPanel {
 						RDACenter rdac = RDACenter.getInstance();
 						rdac.getLista().svuota();
 						rdac.getLista()
-								.load(GestisciRDAHandler.ATTESA_CONFERMA);
+								.load(GestisciRDAHandler.CONFERMATA);
 						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
 								.getRDAById(rdac.getLista().getPrimaRDA()));
 
