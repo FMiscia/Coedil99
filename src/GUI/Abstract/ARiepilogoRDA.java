@@ -35,8 +35,8 @@ import java.awt.FlowLayout;
 
 public abstract class ARiepilogoRDA extends JPanel {
 
-	protected static int width = 200;
-	protected static int height = 200;
+	protected static int width = 270;
+	protected static int height = 230;
 	protected JPanel panel;
 	protected JLabel lblTitolo;
 	protected JLabel lblPrezzo;
@@ -53,7 +53,7 @@ public abstract class ARiepilogoRDA extends JPanel {
 
 	public ARiepilogoRDA() {
 		this.setSize(new Dimension(width, height));
-		this.setPreferredSize(new Dimension(270, 230));
+		this.setPreferredSize(new Dimension(width, height));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		this.panel = new JPanel();
 		this.add(this.panel);
