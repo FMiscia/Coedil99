@@ -31,7 +31,7 @@ public class RiepilogoRDAConfermata extends ARiepilogoRDA {
 		this.panel.remove(this.btnSalva);
 		this.panel.remove(this.btnElimina);
 		this.panel.remove(this.btnInvia);
-		this.setPreferredSize(new Dimension(this.width,130));
+		this.setPreferredSize(new Dimension(this.width,180));
 		this.validate();
 		this.repaint();
 	}
@@ -49,6 +49,15 @@ public class RiepilogoRDAConfermata extends ARiepilogoRDA {
 		}
 		this.lblTotale.setText(String.valueOf(prezzo_totale));
 		this.lblQuantita.setText(String.valueOf(quantita_totale));
+		if (this.btnArrivata.getMouseListeners().length == 1) {
+			this.btnArrivata.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					System.out.println("gay chi legge");
+				}
+
+			});
+		}
 		this.validate();
 		this.repaint();
 		
