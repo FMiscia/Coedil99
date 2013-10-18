@@ -1,22 +1,21 @@
 package GUI.Liste;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import coedil99.controller.GestisciRDAHandler;
-import GUI.RDACenter;
-import GUI.Abstract.ALista;
-import GUI.Card.CardRDA;
-import GUI.Card.CardRDAFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 import org.orm.PersistentException;
 
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
+import GUI.Abstract.ALista;
+import GUI.Card.CardRDA;
+import GUI.Card.CardRDAFactory;
+import coedil99.controller.GestisciRDAHandler;
 
 @SuppressWarnings("serial")
 public class ListaRDA extends ALista {

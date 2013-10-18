@@ -3,26 +3,18 @@ package GUI.Abstract;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import org.orm.PersistentException;
-
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.RDA;
-
-import GUI.RDACenter;
-import GUI.WrapLayout;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.UIManager;
+
+import com.alee.laf.scroll.WebScrollBarUI;
+
+import GUI.WrapLayout;
 
 /**
  * @author francesco
@@ -42,7 +34,6 @@ public abstract class ALista extends JScrollPane {
 
 	public ALista() {
 		this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		this.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 		this.getVerticalScrollBar().setUnitIncrement(20);
 		this.panel = new JPanel(null);
 		this.setViewportView(this.panel);

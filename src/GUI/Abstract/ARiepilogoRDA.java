@@ -1,37 +1,21 @@
 package GUI.Abstract;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-
-import org.orm.PersistentException;
-
-import GUI.ProgrammaLavori;
-import GUI.RDACenter;
-import GUI.Card.CardRDA;
-import GUI.Liste.ListaRDA;
-import GUI.Liste.ListaRDAFactory;
-import GUI.Liste.ListaRigheRDA;
-import GUI.Plichi.PlicoRDA;
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.RDA;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-import java.awt.FlowLayout;
 
 public abstract class ARiepilogoRDA extends JPanel {
 
@@ -44,6 +28,7 @@ public abstract class ARiepilogoRDA extends JPanel {
 	protected JButton btnSalva;
 	protected JButton btnElimina;
 	protected JButton btnInvia;
+	protected JButton btnArrivata;
 	protected JSeparator separator;
 	protected JSeparator separator_1;
 	protected JLabel lblFornitore;
@@ -82,7 +67,9 @@ public abstract class ARiepilogoRDA extends JPanel {
 						FormFactory.RELATED_GAP_ROWSPEC,
 						FormFactory.DEFAULT_ROWSPEC,
 						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC, }));
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,}));
 
 		lblTitolo = new JLabel("Lista Righe RDA");
 		lblTitolo.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -124,6 +111,16 @@ public abstract class ARiepilogoRDA extends JPanel {
 
 		btnInvia = new JButton("Invia RDA");
 		this.panel.add(btnInvia, "3, 18, 3, 1");
+		
+		btnArrivata = new JButton();
+		btnArrivata.setLayout(new BorderLayout());
+		   JLabel label1 = new JLabel("Conferma Arrivo");
+		   label1.setHorizontalAlignment(SwingConstants.CENTER);
+		   JLabel label2 = new JLabel("Merci");
+		   label2.setHorizontalAlignment(SwingConstants.CENTER);
+		   btnArrivata.add(BorderLayout.NORTH,label1);
+		   btnArrivata.add(BorderLayout.SOUTH,label2);
+		this.panel.add(btnArrivata, "3, 20, 3, 1");
 	}
 
 

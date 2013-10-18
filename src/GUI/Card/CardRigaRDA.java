@@ -132,6 +132,8 @@ public class CardRigaRDA extends ACard {
 		});
 		
 		this.setCardOptions();
+		this.validate();
+		this.repaint();
 			
 	}
 
@@ -154,18 +156,18 @@ public class CardRigaRDA extends ACard {
 			add(btnElimina, "2, 2");
 			
 			btnModifica = new JButton("Modifica");
-			btnModifica.setBackground(Color.LIGHT_GRAY);
+			//btnModifica.setBackground(Color.LIGHT_GRAY);
 			btnModifica.setVisible(false);
 			add(btnModifica, "4, 2");
 			this.setPreferredSize(new Dimension(269, 190));
 		} else{
 			btnElimina = new JButton("Elimina");
 			btnElimina.setBackground(Color.LIGHT_GRAY);
-			add(btnElimina, "2, 2");
+			add(btnElimina, "4, 2");
 			
 			btnModifica = new JButton("Modifica");
 			btnModifica.setBackground(Color.LIGHT_GRAY);
-			add(btnModifica, "4, 2");
+			add(btnModifica, "2, 2");
 		}
 	}
 
@@ -226,6 +228,7 @@ public class CardRigaRDA extends ACard {
 						riga.deleteAndDissociate();
 						CardRigaRDA.this.listaRigheRDA
 								.removeRiquadro(CardRigaRDA.this);
+						PlicoRDA.getInstance().cheStaiFacendo();
 					} catch (PersistentException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

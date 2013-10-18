@@ -1,5 +1,6 @@
 package GUI.Riepiloghi;
 
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 
 	public RiepilogoRDACongelata(){
 		super();
+		this.panel.remove(this.btnArrivata);
+		this.validate();
+		this.repaint();
 	}
 
 	@Override
@@ -66,10 +70,9 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 					ListaRigheRDA lista_rda = prda.getListaRigheRDA();
 					prda.resetFormRDA();
 					lista_rda.getPanel().removeAll();
+					rdac.getClipPanel().focusToRDACongelate();
 					lista_rda.load(new ArrayList<Object>(rdac
 							.getRDASelezionata().righeRDA.getCollection()));
-
-					rdac.getClipPanel().focusToRDACongelate();
 					lista_rda.validate();
 					lista_rda.repaint();
 				}
