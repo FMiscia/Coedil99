@@ -23,6 +23,7 @@ import org.orm.PersistentException;
 import GUI.ProgrammaLavori;
 import GUI.RDACenter;
 import GUI.Abstract.ACard;
+import GUI.ClipPanels.ClipPanelRDA;
 import GUI.FormRDA.ModificaFormRDA;
 import GUI.FormRDA.ModificaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
@@ -137,6 +138,7 @@ public class CardRigaRDA extends ACard {
 				CardRigaRDA.this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
+		
 	}
 
 	@Override
