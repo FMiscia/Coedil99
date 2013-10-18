@@ -6,8 +6,10 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import GUI.CoedilFrame;
 import GUI.ProgrammaLavori;
 import GUI.RDACenter;
 import GUI.Abstract.ARiepilogoRDA;
@@ -114,6 +116,8 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 						lista_rda.repaint();
 						listarda.validate();
 						listarda.repaint();
+						CoedilFrame.getInstance().pack();
+						CoedilFrame.getInstance().setVisible(true);
 					}
 				}
 			});

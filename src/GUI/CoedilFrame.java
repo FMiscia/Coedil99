@@ -69,7 +69,7 @@ public class CoedilFrame extends JFrame {
 		this.setIconImage(new ImageIcon(CoedilFrame.class
 				.getResource("image/coedilIco.png")).getImage());
 		this.setVisible(true);
-		this.setMinimumSize(new Dimension(1200, 700));
+		this.setMinimumSize(new Dimension(1300, 600));
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,10 +78,6 @@ public class CoedilFrame extends JFrame {
 		PanelStart pl = new PanelStart(this);
 		pl.setBounds(0, 0, this.getWidth(), this.getHeight());
 		this.getContentPane().add(pl, BorderLayout.CENTER);
-		
-		
-		
-		
 		
 		this.validate();
 		this.repaint();
