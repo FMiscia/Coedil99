@@ -70,6 +70,7 @@ public class ListaRigheRDA extends ALista {
 	public void updatePanel() {
 		this.panel.removeAll();
 		String stato = RDACenter.getInstance().getRDASelezionata().getState();
+		System.out.println(stato);
 		this.riepilogoRDA = RiepilogoRDAFactory.getInstance().makeRiepilogo(stato);
 		this.riepilogoRDA.refresh();
 		this.panel.add(this.riepilogoRDA,0);

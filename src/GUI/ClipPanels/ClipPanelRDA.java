@@ -113,6 +113,42 @@ public class ClipPanelRDA extends AClipPanel {
 					}
 				});
 
+		this.addButton("RDA Confermate", "Visualizza le RDA confermate dall'ufficio tecnico",
+				new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+
+						JButton b = (JButton) arg0.getSource();
+						if (!RDACenter.getInstance().getLista().isPrimaRDASaved()	&& 
+								!ClipPanelRDA.this.clickFromNuovaRDA()) {
+							return;
+
+						}
+						ClipPanelRDA.this.focusOut();
+						b.setBackground(new Color(180, 180, 180));
+
+						PlicoRDA prda = PlicoRDA.getInstance();
+						prda.getListaRigheRDA().svuota();
+
+						RDACenter rdac = RDACenter.getInstance();
+						rdac.getLista().svuota();
+						rdac.getLista()
+								.load(GestisciRDAHandler.CONFERMATA);
+						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
+								.getRDAById(rdac.getLista().getPrimaRDA()));
+
+						BorderLayout layout = (BorderLayout) prda.getLayout();
+						if (layout.getLayoutComponent(BorderLayout.CENTER) != null)
+							prda.remove(layout
+									.getLayoutComponent(BorderLayout.CENTER));
+						ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
+						prda.resetFormRDA();
+						lista_righe_rda.getPanel().removeAll();
+						lista_righe_rda.load(new ArrayList<Object>(rdac
+								.getRDASelezionata().righeRDA.getCollection()));
+						lista_righe_rda.getPanel().validate();
+						lista_righe_rda.getPanel().repaint();
+					}
+				});
 		this.addButton("Nuova RDA", "Crea una nuova RDA", new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ClipPanelRDA.this.focusOut();
@@ -138,7 +174,7 @@ public class ClipPanelRDA extends AClipPanel {
 
 	private boolean clickFromNuovaRDA() {
 		if (ClipPanelRDA.this.isButtonFocused((JButton) ClipPanelRDA.this
-				.getComponent(3))) {
+				.getComponent(4))) {
 			Object[] options = { "Si", "No" };
 			int n = JOptionPane.showOptionDialog(null,
 					"Sicuro di voler abbandonare la creazione RDA?\n"
@@ -161,6 +197,16 @@ public class ClipPanelRDA extends AClipPanel {
 
 	public boolean isSelectedAttesa() {
 		JButton b = (JButton) ClipPanelRDA.this.getComponent(2);
+		return this.isButtonFocused(b);
+	}
+	
+	public boolean isSelectedConfermate() {
+		JButton b = (JButton) ClipPanelRDA.this.getComponent(3);
+		return this.isButtonFocused(b);
+	}
+	
+	public boolean isSelectedNuova() {
+		JButton b = (JButton) ClipPanelRDA.this.getComponent(4);
 		return this.isButtonFocused(b);
 	}
 }
