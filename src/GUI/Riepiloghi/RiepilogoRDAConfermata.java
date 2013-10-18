@@ -1,5 +1,6 @@
 package GUI.Riepiloghi;
 
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -27,6 +28,12 @@ public class RiepilogoRDAConfermata extends ARiepilogoRDA {
 
 	public RiepilogoRDAConfermata(){
 		super();
+		this.panel.remove(this.btnSalva);
+		this.panel.remove(this.btnElimina);
+		this.panel.remove(this.btnInvia);
+		this.setPreferredSize(new Dimension(this.width,130));
+		this.validate();
+		this.repaint();
 	}
 
 	@Override
@@ -42,9 +49,6 @@ public class RiepilogoRDAConfermata extends ARiepilogoRDA {
 		}
 		this.lblTotale.setText(String.valueOf(prezzo_totale));
 		this.lblQuantita.setText(String.valueOf(quantita_totale));
-		this.btnElimina.setVisible(false);
-		this.btnInvia.setVisible(false);
-		this.btnSalva.setVisible(false);
 		this.validate();
 		this.repaint();
 		
