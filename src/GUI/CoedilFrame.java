@@ -7,7 +7,9 @@ import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
+import com.alee.laf.scroll.WebScrollBarUI;
 import com.thehowtotutorial.splashscreen.JSplash;
 
 public class CoedilFrame extends JFrame {
@@ -19,6 +21,7 @@ public class CoedilFrame extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		UIManager.put("ScrollBarUI", WebScrollBarUI.class.getName());
 		try {
 			//developement mode
 			//int delay = 1;
