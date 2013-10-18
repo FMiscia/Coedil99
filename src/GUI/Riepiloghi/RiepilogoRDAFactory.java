@@ -17,6 +17,7 @@ public class RiepilogoRDAFactory {
 		className = new HashMap<String, ARiepilogoRDA>();
 		className.put(GestisciRDAHandler.CONGELATA, new RiepilogoRDACongelata());
 		className.put(GestisciRDAHandler.ATTESA_CONFERMA,  new RiepilogoRDAAttesaConferma());
+		className.put(GestisciRDAHandler.CONFERMATA,  new RiepilogoRDAConfermata());
 	}
 	
 
