@@ -2,18 +2,22 @@ package GUI.ClipPanels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import org.orm.PersistentException;
 
+
 import GUI.CoedilFrame;
 import GUI.PanelStart;
 import GUI.RDACenter;
+import GUI.WrapLayout;
 import GUI.Abstract.AClipPanel;
 import GUI.FormRDA.CreaFormRDA;
 import GUI.FormRDA.CreaFormRDAFactory;
@@ -162,5 +166,12 @@ public class ClipPanelRDA extends AClipPanel {
 	public boolean isSelectedAttesa() {
 		JButton b = (JButton) ClipPanelRDA.this.getComponent(2);
 		return this.isButtonFocused(b);
+	}
+
+	public void updateNotifiche() {
+		JButton temp = (JButton)this.getComponent(2);
+		temp.setText("Ciao");//add(new JLabel(String.valueOf(GestisciRDAHandler.getInstance().getArrayRDA(GestisciRDAHandler.ATTESA_CONFERMA).size())));
+		this.validate();
+		this.repaint();
 	}
 }

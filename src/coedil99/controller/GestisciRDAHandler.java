@@ -2,17 +2,22 @@ package coedil99.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.orm.PersistentException;
+
+import GUI.RDACenter;
 
 import coedil99.model.RDA;
 import coedil99.model.RDAFactory;
 import coedil99.model.RigaRDA;
+import coedil99.model.Subject;
 
 
 
 
-public class GestisciRDAHandler {
+public class GestisciRDAHandler extends coedil99.model.Observer{
 
 	private ArrayList<RDA> arrayRDA = null;
 	private static GestisciRDAHandler instance;
@@ -33,9 +38,11 @@ public class GestisciRDAHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	public void addRDA(RDA rda) {
+		rda.Attach(this);
 		this.arrayRDA.add(rda);
 	}
 
@@ -43,9 +50,14 @@ public class GestisciRDAHandler {
 		return this.arrayRDA;
 	}
 	
-	public ArrayList<RDA> getArrayRDA(String state) throws PersistentException{
-		ArrayList<RDA> filteredAdday = 
-				new ArrayList<RDA>(Arrays.asList(RDAFactory.listRDAByQuery("State =  '"+state+"' ", "Date desc")));
+	public ArrayList<RDA> getArrayRDA(String state) {
+		ArrayList<RDA> filteredAdday = null;
+		try {
+			filteredAdday = new ArrayList<RDA>(Arrays.asList(RDAFactory.listRDAByQuery("State =  '"+state+"' ", "Date desc")));
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return filteredAdday;
 	}
 	
@@ -96,6 +108,24 @@ public class GestisciRDAHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ArrayList<Subject> getSubject() {
+		// TODO Auto-generated method stub
+		return new ArrayList<Subject>(this.arrayRDA);
+	}
+
+	@Override
+	public void setSubject(ArrayList<Subject> s) {
+		this.subjects = s;
+		
+	}
+
+	@Override
+	public void Update() {
+		RDACenter.getInstance().getClipPanel().updateNotifiche();
+		
 	}
 
 }
