@@ -68,13 +68,13 @@ public class ClipPanelRDA extends AClipPanel {
 						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
 								.getRDAById(rdac.getLista().getPrimaRDA()));
 						PlicoRDA prda = PlicoRDA.getInstance();
-						ListaRigheRDA lista_rda = prda.getListaRigheRDA();
+						ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
 						prda.resetFormRDA();
-						lista_rda.getPanel().removeAll();
-						lista_rda.load(new ArrayList<Object>(rdac
+						lista_righe_rda.getPanel().removeAll();
+						lista_righe_rda.load(new ArrayList<Object>(rdac
 								.getRDASelezionata().righeRDA.getCollection()));
-						lista_rda.validate();
-						lista_rda.repaint();
+						lista_righe_rda.validate();
+						lista_righe_rda.repaint();
 
 					}
 				});
@@ -107,13 +107,13 @@ public class ClipPanelRDA extends AClipPanel {
 						if (layout.getLayoutComponent(BorderLayout.CENTER) != null)
 							prda.remove(layout
 									.getLayoutComponent(BorderLayout.CENTER));
-						ListaRigheRDA lista_rda = prda.getListaRigheRDA();
+						ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
 						prda.resetFormRDA();
-						lista_rda.getPanel().removeAll();
-						lista_rda.load(new ArrayList<Object>(rdac
+						lista_righe_rda.getPanel().removeAll();
+						lista_righe_rda.load(new ArrayList<Object>(rdac
 								.getRDASelezionata().righeRDA.getCollection()));
-						lista_rda.getPanel().validate();
-						lista_rda.getPanel().repaint();
+						lista_righe_rda.getPanel().validate();
+						lista_righe_rda.getPanel().repaint();
 					}
 				});
 
