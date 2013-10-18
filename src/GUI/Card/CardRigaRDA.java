@@ -132,6 +132,8 @@ public class CardRigaRDA extends ACard {
 		});
 		
 		this.setCardOptions();
+		this.validate();
+		this.repaint();
 			
 	}
 

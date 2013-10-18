@@ -70,10 +70,9 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 					ListaRigheRDA lista_rda = prda.getListaRigheRDA();
 					prda.resetFormRDA();
 					lista_rda.getPanel().removeAll();
+					rdac.getClipPanel().focusToRDACongelate();
 					lista_rda.load(new ArrayList<Object>(rdac
 							.getRDASelezionata().righeRDA.getCollection()));
-
-					rdac.getClipPanel().focusToRDACongelate();
 					lista_rda.validate();
 					lista_rda.repaint();
 				}
