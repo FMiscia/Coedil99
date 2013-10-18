@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -28,6 +29,7 @@ import GUI.Card.CardRDAFactory;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
@@ -98,6 +100,7 @@ public class CreaFormRDA extends AFormRDA {
 												.getCollection()));
 						lista.getPrimaCard().setNomeFornitore(fornitore);
 						CreaFormRDA.this.getCbFornitore().setEnabled(false);
+						CreaFormRDA.this.resetConFornitoreSelezionato(CreaFormRDA.this.getCbFornitore().getSelectedItem().toString());
 						lista.getPrimaCard().validate();
 						lista.getPrimaCard().repaint();
 					} else {
@@ -123,5 +126,37 @@ public class CreaFormRDA extends AFormRDA {
 		rdac.getLista().getPrimaRDA();
 		this.add(JBAddRiga, "2, 22, 3, 1");
 	}
+
+	@Override
+	public void reset() {
+		this.cbEssenza.setEnabled(false);
+		this.cbEssenza.removeAllItems();
+		this.cbGeometria.setEnabled(false);
+		this.cbGeometria.removeAllItems();
+		this.spinner.setValue(1);
+		this.spinner.setEnabled(false);
+		this.tfSpesa.setText(null);
+		this.JBAddRiga.setEnabled(false);
+		this.loadFornitori();
+		this.validate();
+		this.repaint();
+	}
+	
+	public void resetConFornitoreSelezionato(String fornitore){
+		this.cbEssenza.setEnabled(false);
+		this.cbEssenza.removeAllItems();
+		this.cbGeometria.setEnabled(false);
+		this.cbGeometria.removeAllItems();
+		this.spinner.setValue(1);
+		this.spinner.setEnabled(false);
+		this.tfSpesa.setText(null);
+		this.JBAddRiga.setEnabled(false);
+		this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore));
+		this.validate();
+		this.repaint();
+	}
+	
+	
+	
 
 }

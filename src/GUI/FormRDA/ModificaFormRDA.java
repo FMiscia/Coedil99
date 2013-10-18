@@ -97,4 +97,18 @@ public class ModificaFormRDA extends AFormRDA {
 		this.rigaRDA = rigaRDA;
 	}
 
+
+	@Override
+	public void reset() {
+		this.cbFornitore.removeAllItems();
+		this.cbEssenza.removeAllItems();
+		this.cbEssenza.setEnabled(true);
+		this.cbGeometria.removeAllItems();
+		this.cbGeometria.setEnabled(false);
+		this.spinner.setValue(1);
+		this.spinner.setEnabled(false);
+		this.tfSpesa.setText(null);
+		
+	}
+
 }
