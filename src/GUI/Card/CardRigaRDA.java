@@ -81,14 +81,6 @@ public class CardRigaRDA extends ACard {
 				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, }));
 
-		btnModifica = new JButton("Modifica");
-		btnModifica.setBackground(Color.LIGHT_GRAY);
-		add(btnModifica, "2, 2");
-
-		btnElimina = new JButton("Elimina");
-		btnElimina.setBackground(Color.LIGHT_GRAY);
-		add(btnElimina, "4, 2");
-
 		lblEssenza = new JLabel("Essenza: ");
 		add(lblEssenza, "2, 4");
 
@@ -139,6 +131,27 @@ public class CardRigaRDA extends ACard {
 			}
 		});
 		
+
+		if (!RDACenter.getInstance().getClipPanel().isSelectedNuova()){
+			btnModifica = new JButton("Modifica");
+			btnModifica.setBackground(Color.LIGHT_GRAY);
+			add(btnModifica, "2, 2");
+
+			btnElimina = new JButton("Elimina");
+			btnElimina.setBackground(Color.LIGHT_GRAY);
+			add(btnElimina, "4, 2");
+		}
+		else{
+			btnElimina = new JButton("Elimina");
+			btnElimina.setBackground(Color.LIGHT_GRAY);
+			add(btnElimina, "2, 2");
+			
+			btnModifica = new JButton("Modifica");
+			btnModifica.setBackground(Color.LIGHT_GRAY);
+			btnModifica.setVisible(false);
+			add(btnModifica, "4, 2");
+		}
+			
 	}
 
 	@Override

@@ -224,14 +224,14 @@ public abstract class AFormRDA extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED) {
                 	AFormRDA.this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(cbFornitore.getSelectedItem().toString()));
-                	AFormRDA.this.cbEssenza.setEnabled(true);
                 }
             }
 		});
 		this.cbFornitore.setSelectedItem(null);
 	}
 	
-	private void loadEssenze(CatalogoFornitore fornitore){
+	protected void loadEssenze(CatalogoFornitore fornitore){
+		AFormRDA.this.cbEssenza.setEnabled(true);
 		this.cbEssenza.removeAllItems();
 		TreeSet<String> essenze = new TreeSet<String>();
 		for(int i=0; i<fornitore.productDescription.size(); ++i){
@@ -246,7 +246,6 @@ public abstract class AFormRDA extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED) {
                 	AFormRDA.this.loadGeometria(cbFornitore.getSelectedItem().toString(),cbEssenza.getSelectedItem().toString());
-                	AFormRDA.this.cbGeometria.setEnabled(true);
                 }
             }
 		});
@@ -254,6 +253,7 @@ public abstract class AFormRDA extends JPanel {
 	}
 
 	private void loadGeometria(String fornitore,String essenza){
+		AFormRDA.this.cbGeometria.setEnabled(true);
 		this.cbGeometria.removeAllItems();
 		ArrayList<ProductDescription> pd = new ArrayList<ProductDescription>(GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore).productDescription.getCollection());
 		for(int i=0; i<pd.size(); ++i){
@@ -280,11 +280,15 @@ public abstract class AFormRDA extends JPanel {
 		this.cbEssenza.removeAllItems();
 		this.cbEssenza.setEnabled(true);
 		this.cbGeometria.removeAllItems();
-		this.cbGeometria.setEnabled(true);
+		this.cbGeometria.setEnabled(false);
 		this.spinner.setValue(1);
 		this.spinner.setEnabled(false);
 		this.tfSpesa.setText(null);
 	}
+	
+	
+	
+	
 	
 	
 	public Integer getQuantity(){
