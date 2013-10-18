@@ -94,7 +94,5 @@ public class PlicoRDA extends APlico {
 			this.validate();
 			this.repaint();
 		}
-		else
-			JOptionPane.showMessageDialog(null, lrrda.getComponentCount());
 	}
 }

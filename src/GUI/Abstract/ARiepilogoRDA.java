@@ -1,37 +1,20 @@
 package GUI.Abstract;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-
-import org.orm.PersistentException;
-
-import GUI.ProgrammaLavori;
-import GUI.RDACenter;
-import GUI.Card.CardRDA;
-import GUI.Liste.ListaRDA;
-import GUI.Liste.ListaRDAFactory;
-import GUI.Liste.ListaRigheRDA;
-import GUI.Plichi.PlicoRDA;
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.RDA;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-import java.awt.FlowLayout;
 
 public abstract class ARiepilogoRDA extends JPanel {
 

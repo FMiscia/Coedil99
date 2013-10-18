@@ -1,8 +1,8 @@
 package GUI.Abstract;
 
 
-import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
@@ -15,48 +15,41 @@ import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import GUI.JHorizontalSpinner;
+import GUI.Riquadri.RiquadroDatiAziendali;
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.CatalogoFornitore;
 import coedil99.model.Geometria;
 import coedil99.model.ProductDescription;
 import coedil99.operation.OGeometria;
-import GUI.JHorizontalSpinner;
-import GUI.Riquadri.RiquadroDatiAziendali;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-import java.awt.Component;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import javax.swing.SwingConstants;
-import java.awt.Font;
 
 public abstract class AFormRDA extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	private JComboBox<Object> cbFornitore;
-	private JComboBox<Object> cbEssenza;
-	private JComboBox<Object> cbGeometria;
+	protected JComboBox<Object> cbFornitore;
+	protected JComboBox<Object> cbEssenza;
+	protected JComboBox<Object> cbGeometria;
 	private ArrayList<CatalogoFornitore> fornitori;
 	private JLabel lblFornitore;
 	private JLabel lblEssenza;
 	private JLabel lblGeometria;
 	private JLabel lblPrezzo;
 	private JLabel lblQuantita;
-	private JTextField tfSpesa;
-	private JHorizontalSpinner spinner;
+	protected JTextField tfSpesa;
+	protected JHorizontalSpinner spinner;
 	private ImageIcon IcoErrore = new ImageIcon(
 			RiquadroDatiAziendali.class
 					.getResource("/GUI/image/cancel.png"));
@@ -184,6 +177,8 @@ public abstract class AFormRDA extends JPanel {
 	
 	public void load(){
 		this.setFornitori(GestisciFornitoreHandler.getInstance().getArrayFornitori());
+		this.cbEssenza.setEnabled(false);
+		this.cbGeometria.setEnabled(false);
 		this.loadFornitori();
 		this.validate();
 		this.repaint();
@@ -214,8 +209,11 @@ public abstract class AFormRDA extends JPanel {
 		this.fornitori = fornitori;
 	}
 	
-	private void loadFornitori(){
+	protected void loadFornitori(){
+		if(this.cbFornitore.getItemListeners().length != 0)
+			this.cbFornitore.removeItemListener(this.cbFornitore.getItemListeners()[0]);
 		this.cbFornitore.removeAllItems();
+		this.cbFornitore.setEnabled(true);
 		for(int i=0; i<this.fornitori.size(); ++i){
 			this.cbFornitore.addItem(this.fornitori.get(i).getName());
 		}
@@ -232,8 +230,9 @@ public abstract class AFormRDA extends JPanel {
 	}
 	
 	protected void loadEssenze(CatalogoFornitore fornitore){
-		JOptionPane.showMessageDialog(null, "Caricate Essenze");
 		AFormRDA.this.cbEssenza.setEnabled(true);
+		if(this.cbEssenza.getItemListeners().length != 0)
+			this.cbEssenza.removeItemListener(this.cbEssenza.getItemListeners()[0]);
 		this.cbEssenza.removeAllItems();
 		TreeSet<String> essenze = new TreeSet<String>();
 		for(int i=0; i<fornitore.productDescription.size(); ++i){
@@ -256,6 +255,8 @@ public abstract class AFormRDA extends JPanel {
 
 	private void loadGeometria(String fornitore,String essenza){
 		AFormRDA.this.cbGeometria.setEnabled(true);
+		if(this.cbGeometria.getItemListeners().length != 0)
+			this.cbGeometria.removeItemListener(this.cbGeometria.getItemListeners()[0]);
 		this.cbGeometria.removeAllItems();
 		ArrayList<ProductDescription> pd = new ArrayList<ProductDescription>(GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore).productDescription.getCollection());
 		for(int i=0; i<pd.size(); ++i){
@@ -277,20 +278,7 @@ public abstract class AFormRDA extends JPanel {
 		this.cbGeometria.setSelectedItem(null);
 	}
 	
-	public void reset(){
-		this.cbFornitore.setEnabled(true);
-		this.cbFornitore.removeAllItems();
-		this.cbEssenza.removeAllItems();
-		this.cbEssenza.setEnabled(false);
-		this.cbGeometria.removeAllItems();
-		this.cbGeometria.setEnabled(false);
-		this.spinner.setValue(1);
-		this.spinner.setEnabled(false);
-		this.tfSpesa.setText(null);
-		this.load();
-	}
-	
-	
+	public abstract void reset();	
 	
 	
 	
