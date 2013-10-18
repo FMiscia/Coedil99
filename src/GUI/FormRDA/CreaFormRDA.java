@@ -13,6 +13,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import coedil99.controller.GestisciFornitoreHandler;
+import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.CatalogoFornitore;
 import coedil99.model.ProductDescription;
 import coedil99.model.ProductDescriptionFactory;
@@ -38,6 +39,7 @@ public class CreaFormRDA extends AFormRDA {
 
 	private JButton JBAddRiga = new JButton("Aggiungi");
 
+
 	public CreaFormRDA() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -48,7 +50,7 @@ public class CreaFormRDA extends AFormRDA {
 					CreaFormRDA.this.JBAddRiga.setEnabled(true);
 			}
 		});
-		
+	
 		
 		MouseListener[] arrML = this.JBAddRiga.getMouseListeners();
 		if (arrML.length == 1) {
@@ -57,6 +59,7 @@ public class CreaFormRDA extends AFormRDA {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					// TODO Auto-generated method stub
+					
 					int indiceCbFornitore = CreaFormRDA.this.getCbFornitore()
 							.getSelectedIndex();
 					int indiceCbEssenza = CreaFormRDA.this.getCbEssenza()
@@ -115,9 +118,9 @@ public class CreaFormRDA extends AFormRDA {
 			});
 		}
 		RDACenter rdac = RDACenter.getInstance();
-		RDA rda = RDAFactory.createRDA();
 		CardRDA rdaCard = (CardRDA) CardRDAFactory.getInstance().makeCard(
 				rdac.getLista());
+		RDA rda = RDAFactory.createRDA();
 		rdaCard.load(rda);
 		rdac.getLista().getPanel().removeAll();
 		rdac.getLista().addCard(rdaCard);
@@ -141,8 +144,8 @@ public class CreaFormRDA extends AFormRDA {
 		this.validate();
 		this.repaint();
 	}
-	
-	public void resetConFornitoreSelezionato(String fornitore){
+
+	public void resetConFornitoreSelezionato(String fornitore) {
 		this.cbEssenza.setEnabled(false);
 		this.cbEssenza.removeAllItems();
 		this.cbGeometria.setEnabled(false);
@@ -151,12 +154,10 @@ public class CreaFormRDA extends AFormRDA {
 		this.spinner.setEnabled(false);
 		this.tfSpesa.setText(null);
 		this.JBAddRiga.setEnabled(false);
-		this.loadEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore));
+		this.loadEssenze(GestisciFornitoreHandler.getInstance()
+				.getFornitoreByName(fornitore));
 		this.validate();
 		this.repaint();
 	}
-	
-	
-	
 
 }

@@ -15,9 +15,6 @@ package coedil99.model;
 
 import org.orm.*;
 import org.hibernate.Query;
-
-import coedil99.controller.GestisciRDAHandler;
-
 import java.util.List;
 
 public class RDAFactory {
@@ -256,9 +253,7 @@ public class RDAFactory {
 	}
 	
 	public static RDA createRDA() {
-		RDA model = new coedil99.model.RDA();
-		model.Attach(GestisciRDAHandler.getInstance());
-		return model;
+		return new coedil99.model.RDA();
 	}
 	
 	public static RDA loadRDAByCriteria(RDACriteria rDACriteria) {

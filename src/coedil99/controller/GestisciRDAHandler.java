@@ -43,6 +43,7 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 
 	public void addRDA(int pos,RDA rda) {
 		this.arrayRDA.add(pos,rda);
+		rda.Attach(this);
 	}
 
 	public ArrayList<RDA> getArrayRDA(){
