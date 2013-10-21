@@ -8,12 +8,22 @@ import org.orm.PersistentException;
 import coedil99.model.Cliente;
 import coedil99.model.ClienteFactory;
 
+/**
+ * @author francesco
+ *
+ */
 public class GestisciClienteHandler {
 	
 	private int id;
 	private ArrayList<Cliente> clienti = null;
 	private static GestisciClienteHandler instance;
 	
+	
+	/**
+	 * Costruttore
+	 * 
+	 * Carica la lista dei clienti
+	 */
 	private GestisciClienteHandler() {
 		try {
 			this.clienti = new ArrayList<Cliente>(Arrays.asList(ClienteFactory.listClienteByQuery(null, "ID")));
@@ -23,14 +33,27 @@ public class GestisciClienteHandler {
 		}
 	}
 
+	/**
+	 * Aggiunge un Ordine effettuato da un cliente
+	 * @param c:Cliente
+	 */
 	public void addOrdine(Cliente c) {
 		this.clienti.add(c);
 	}
 
+	/**
+	 * Fornisce i clienti
+	 * @return clienti:ArrayList<Cliente>
+	 */
 	public ArrayList<Cliente> getClienti(){
 		return this.clienti;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return clienteID:int
+	 */
 	public Cliente getClienteById(int id){
 		try {
 			return ClienteFactory.getClienteByORMID(id);
@@ -41,6 +64,10 @@ public class GestisciClienteHandler {
 		return null;
 	}
 	
+	/**
+	 * Singleton
+	 * @return instance:GestisciClienteHandler
+	 */
 	public static GestisciClienteHandler getInstance() {
 		if (GestisciClienteHandler.instance == null) {
 			GestisciClienteHandler.instance = new GestisciClienteHandler();

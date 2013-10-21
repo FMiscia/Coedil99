@@ -4,8 +4,8 @@ import java.util.ListIterator;
 
 import org.orm.PersistentException;
 
+import coedil99.controller.OttimizzatoreHandler;
 import coedil99.model.Distinta;
-import coedil99.model.Ottimizzatore;
 import coedil99.model.RigaLavoro;
 import coedil99.model.StandardOttimizzatoreStrategy;
 
@@ -63,7 +63,7 @@ public class ODistinta {
 	 * @return 
 	 */
 	public void creaDDO() {
-		Ottimizzatore standardOtt = new Ottimizzatore(new StandardOttimizzatoreStrategy(),this.distinta);
+		OttimizzatoreHandler standardOtt = new OttimizzatoreHandler(new StandardOttimizzatoreStrategy(),this.distinta);
 		this.distinta.setDdo(standardOtt.Ottimizza());
 		try {
 			this.distinta.save();
