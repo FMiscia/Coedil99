@@ -8,11 +8,12 @@ import java.io.File;
  *
  * Pattern Builder
  */
-public class CatalogoCVSBuilder extends CatalogoFornitoreBuilder {
+
+public class CatalogoExcelBuilder extends CatalogoFornitoreBuilder {
 
 	@Override
 	public void Parse(File catalogo) {
-		
+		// TODO Auto-generated method stub
 		
 	}
 }

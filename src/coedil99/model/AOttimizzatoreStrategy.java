@@ -1,6 +1,11 @@
 package coedil99.model;
 
-
+/**
+ * Pattern Strategy
+ * 
+ * @author francesco
+ *
+ */
 public abstract class AOttimizzatoreStrategy {
 
 	
@@ -10,7 +15,7 @@ public abstract class AOttimizzatoreStrategy {
 	/**
 	 * 
 	 * @param distinta
-	 * @return 
+	 * @return ddo:DocumentoOttimizzazione
 	 */
 	public abstract DocumentoOttimizzazione elaboraOttimizzazione(Distinta distinta);
 

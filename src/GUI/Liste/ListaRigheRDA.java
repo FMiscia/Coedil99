@@ -21,7 +21,7 @@ public class ListaRigheRDA extends ALista {
 	public ListaRigheRDA() {
 		// TODO Auto-generated constructor stub
 		super();
-		this.setPreferredSize(new Dimension(290, 0));
+		this.setPreferredSize(new Dimension(300, 0));
 		this.validate();
 		this.repaint();
 	}
@@ -70,7 +70,6 @@ public class ListaRigheRDA extends ALista {
 	public void updatePanel() {
 		this.panel.removeAll();
 		String stato = RDACenter.getInstance().getRDASelezionata().getState();
-		System.out.println(stato);
 		this.riepilogoRDA = RiepilogoRDAFactory.getInstance().makeRiepilogo(stato);
 		this.riepilogoRDA.refresh();
 		this.panel.add(this.riepilogoRDA,0);

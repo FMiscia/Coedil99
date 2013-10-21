@@ -7,6 +7,7 @@ import java.util.List;
 import org.orm.PersistentException;
 
 import coedil99.model.CatalogoFornitore;
+import coedil99.model.CatalogoFornitoreBuilder;
 import coedil99.model.CatalogoFornitoreFactory;
 import coedil99.model.ProductDescription;
 import coedil99.model.RDAFactory;
@@ -15,6 +16,7 @@ import coedil99.operation.OGeometria;
 public class GestisciFornitoreHandler {
 
 	private ArrayList<CatalogoFornitore> arrayFornitori = null;
+	private CatalogoFornitoreBuilder builder;
 	private static GestisciFornitoreHandler instance;
 	
 	/**
@@ -30,6 +32,10 @@ public class GestisciFornitoreHandler {
 		}
 	}
 	
+	/**
+	 * Singleton
+	 * @return instance:GestisciFornitoreHandler
+	 */
 	public static GestisciFornitoreHandler getInstance() {
 		if (GestisciFornitoreHandler.instance == null) {
 			GestisciFornitoreHandler.instance = new GestisciFornitoreHandler();
@@ -38,10 +44,19 @@ public class GestisciFornitoreHandler {
 		return GestisciFornitoreHandler.instance;
 	}
 
+	/**
+	 * Fornisce i fornitori dell'azienda
+	 * @return arrayFornitori:ArrayList<CatalogoFornitore>
+	 */
 	public ArrayList<CatalogoFornitore> getArrayFornitori() {
 		return arrayFornitori;
 	}
 	
+	/**
+	 * Fornisce un catalogo da un nome
+	 * @param nome:String
+	 * @return catalogo:CatalogoFornitore
+	 */
 	public CatalogoFornitore getFornitoreByName(String nome){
 		try {
 			return CatalogoFornitoreFactory.loadCatalogoFornitoreByQuery(" Name = " + "'" + nome + "'", null);
@@ -52,6 +67,14 @@ public class GestisciFornitoreHandler {
 		return null;
 	}
 
+	/**
+	 * Fornisce la descrizione di un prodotto
+	 * 
+	 * @param essenza:String
+	 * @param geometria:Geometria
+	 * @param fornitore:String
+	 * @return pd:ProductDescription
+	 */
 	public ProductDescription getProductDescription(String essenza, String geometria, String fornitore) {
 		// TODO Auto-generated method stub
 		CatalogoFornitore cf = GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore);
@@ -64,6 +87,19 @@ public class GestisciFornitoreHandler {
 			}
 		}
 		return null;
+	}
+	
+	public void setBuilder(CatalogoFornitoreBuilder builder){
+		this.builder = builder;
+	}
+	
+	public CatalogoFornitore getCatalogo(){
+		return this.builder.getCatalogo();
+	}
+	
+	public void ConstructCataologo(){
+		this.builder.createNewCatalogo();
+		this.builder.Parse(null);
 	}
 	
 	

@@ -73,7 +73,7 @@ public class ModificaFormRDA extends AFormRDA {
 			if(this.getCbFornitore().getItemAt(i).equals(fornitoreRDA))
 				this.getCbFornitore().setSelectedIndex(i);
 		}
-		
+		this.getCbFornitore().setEnabled(false);
 		for(int i=0; i<this.getCbEssenza().getItemCount(); ++i){
 			if(this.getCbEssenza().getItemAt(i).equals(essenzaRDA))
 				this.getCbEssenza().setSelectedIndex(i);
@@ -110,5 +110,7 @@ public class ModificaFormRDA extends AFormRDA {
 		this.tfSpesa.setText(null);
 		
 	}
+
+
 
 }

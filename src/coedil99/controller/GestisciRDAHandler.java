@@ -42,26 +42,50 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 
 	}
 
+	/**
+	 * Aggiunge un RDA alla lista RDA
+	 * nella posizione richiesta
+	 * 
+	 * @param pos:int
+	 * @param rda:RDA
+	 */
 	public void addRDA(int pos,RDA rda) {
 		this.arrayRDA.add(pos,rda);
 		rda.Attach(this);
 	}
 
+	/**
+	 * Fornisce tutte le RDA
+	 * 
+	 * @return arrayRDA:ArrayList<RDA>
+	 */
 	public ArrayList<RDA> getArrayRDA(){
 		return this.arrayRDA;
 	}
 	
+	/**
+	 * Fornisce le RDA in base allo stato
+	 * 
+	 * @param state:String
+	 * @return filteredArrayRDA:ArrayList<RDA>
+	 */
 	public ArrayList<RDA> getArrayRDA(String state) {
-		ArrayList<RDA> filteredAdday = null;
+		ArrayList<RDA> filteredArrayRDA = null;
 		try {
-			filteredAdday = new ArrayList<RDA>(Arrays.asList(RDAFactory.listRDAByQuery("State =  '"+state+"' ", "Date desc, ID desc")));
+			filteredArrayRDA = new ArrayList<RDA>(Arrays.asList(RDAFactory.listRDAByQuery("State =  '"+state+"' ", "Date desc, ID desc")));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return filteredAdday;
+		return filteredArrayRDA;
 	}
 	
+	/**
+	 * Fornisce la RDA da un id
+	 * 
+	 * @param id:int
+	 * @return rda:RDA
+	 */
 	public RDA getRDAById(int id){
 		try {
 			return RDAFactory.getRDAByORMID(id);
@@ -72,6 +96,11 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 		return null;
 	}
 	
+	/**
+	 * Singleton
+	 * 
+	 * @return instance:GestisciRDAHandler
+	 */
 	public static GestisciRDAHandler getInstance() {
 		if (GestisciRDAHandler.instance == null) {
 			GestisciRDAHandler.instance = new GestisciRDAHandler();
@@ -80,11 +109,22 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 		return GestisciRDAHandler.instance;
 	}
 
+	/**
+	 * Fornisce il numero totale di RDA
+	 * 
+	 * @return size:int
+	 */
 	public int getNumOfRDA() {
 		// TODO Auto-generated method stub
 		return this.arrayRDA.size();
 	}
 	
+	/**
+	 * Salva un RDA nel DB e lo aggiunge alla lista delle RDA in ram
+	 * 
+	 * @param r:RDA
+	 * 
+	 */
 	public void saveAndAddRDA(RDA r){
 		try {
 			r.save();
@@ -97,6 +137,12 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 		}
 	}
 	
+	/**
+	 * Elimina un RDA nel DB e lo rimuove dalla lista delle RDA in ram
+	 * 
+	 * @param r:RDA
+	 * 
+	 */
 	public void deleteAndRemoveRDA(RDA r){
 		try {
 			ArrayList<RigaRDA> listarighe = new ArrayList<RigaRDA>( r.righeRDA.getCollection() );
@@ -112,18 +158,27 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 		}
 	}
 
+	/**
+	 * metodo Observer 
+	 */
 	@Override
 	public ArrayList<Subject> getSubject() {
 		// TODO Auto-generated method stub
 		return new ArrayList<Subject>(this.arrayRDA);
 	}
 
+	/**
+	 * metodo Observer
+	 */
 	@Override
 	public void setSubject(ArrayList<Subject> s) {
 		this.subjects = s;
 		
 	}
 
+	/**
+	 * Aggiorna il ClipPanel per le notifiche delle RDA
+	 */
 	@Override
 	public void Update() {
 		RDACenter.getInstance().getClipPanel().updateNotifiche();

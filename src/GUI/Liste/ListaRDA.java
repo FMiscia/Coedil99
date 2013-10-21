@@ -22,7 +22,7 @@ public class ListaRDA extends ALista {
 
 	public ListaRDA(String tipo) {
 		super();
-		this.setPreferredSize(new Dimension(260, 0));
+		this.setPreferredSize(new Dimension(300, 0));
 		this.load(tipo);
 		this.deselectAll();
 	}

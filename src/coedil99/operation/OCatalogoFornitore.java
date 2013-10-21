@@ -2,7 +2,11 @@ package coedil99.operation;
 
 import coedil99.model.CatalogoFornitore;
 
-
+/**
+ * 
+ * @author francesco
+ *
+ */
 
 public class OCatalogoFornitore {
 	

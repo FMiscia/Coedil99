@@ -55,6 +55,10 @@ public abstract class AFormRDA extends JPanel {
 					.getResource("/GUI/image/cancel.png"));
 	private JLabel lblValuta;
 	
+	/**
+	 * Costruttore dello scheletro di una FormRDA
+	 * 
+	 */
 	public AFormRDA() {
 		this.setPreferredSize(new Dimension(317, 240));
 		setLayout(new FormLayout(new ColumnSpec[] {
@@ -126,17 +130,13 @@ public abstract class AFormRDA extends JPanel {
 
             @Override
             public void keyReleased(KeyEvent e) {
-               // System.out.println("PRESSED!");    
-				//System.out.println("rel");
 				Pattern p = Pattern.compile("[^0-9]+");
 				String myString = ((DefaultEditor) spinner.getEditor()).getTextField().getText();
 				Matcher m = p.matcher(myString);
 				String clean = m.replaceAll("");
-				//System.out.println(clean);
 				((DefaultEditor) spinner.getEditor()).getTextField().setText(clean);
 				if(clean.equalsIgnoreCase("0"))
 					((DefaultEditor) spinner.getEditor()).getTextField().setText("1");
-				
             }
 
             @Override
@@ -150,7 +150,6 @@ public abstract class AFormRDA extends JPanel {
 				@Override
 				public void stateChanged(ChangeEvent e) {
 					aggiornaSpesa();
-					
 				}
 			});
 
@@ -175,7 +174,10 @@ public abstract class AFormRDA extends JPanel {
 		this.load();
 	}
 
-	
+	/**
+	 * Metodo che carica i dati relativi ai cataloghi fornitori presenti nel sistema
+	 * 
+	 */
 	public void load(){
 		this.setFornitori(GestisciFornitoreHandler.getInstance().getArrayFornitori());
 		this.cbEssenza.setEnabled(false);
@@ -185,7 +187,7 @@ public abstract class AFormRDA extends JPanel {
 		this.repaint();
 	}
 
-
+	
 	public JComboBox<Object> getCbFornitore() {
 		return cbFornitore;
 	}
@@ -210,6 +212,12 @@ public abstract class AFormRDA extends JPanel {
 		this.fornitori = fornitori;
 	}
 	
+	
+	/**
+	 * Metodo che carica nella combo box tutti i fornitori presenti nel sistema
+	 * Quando un fornitore viene selezionato viene richiamato il metodo loadEssenze
+	 * 
+	 */
 	protected void loadFornitori(){
 		if(this.cbFornitore.getItemListeners().length != 0)
 			this.cbFornitore.removeItemListener(this.cbFornitore.getItemListeners()[0]);
@@ -230,7 +238,13 @@ public abstract class AFormRDA extends JPanel {
 		this.cbFornitore.setSelectedItem(null);
 	}
 	
-	protected void loadEssenze(CatalogoFornitore fornitore){
+	/**
+	 * Metodo che carica le essenze in base al fornitore selezionato
+	 * Quando un'essenza viene selezionata viene richiamato il metodo loadGeometrie
+	 * 
+	 * @param fornitore: Catalogo Fornitore selezionato
+	 */
+	protected void loadEssenze(final CatalogoFornitore fornitore){
 		AFormRDA.this.cbEssenza.setEnabled(true);
 		if(this.cbEssenza.getItemListeners().length != 0)
 			this.cbEssenza.removeItemListener(this.cbEssenza.getItemListeners()[0]);
@@ -247,19 +261,28 @@ public abstract class AFormRDA extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED) {
-                	AFormRDA.this.loadGeometria(cbFornitore.getSelectedItem().toString(),cbEssenza.getSelectedItem().toString());
+                	AFormRDA.this.loadGeometria(fornitore,cbEssenza.getSelectedItem().toString());
                 }
             }
 		});
 		this.cbEssenza.setSelectedItem(null);
 	}
 
-	private void loadGeometria(String fornitore,String essenza){
+	/**
+	 * Metodo che carica i dati relative alle geometrie in base al fornitore e all'essenza selezionati
+	 * Quando una geometria viene selezionata viene attito lo spinner per la selezione della quantita e viene richiamato 
+	 * il metodo aggiornaSpese()
+	 * 
+	 * @param fornitore: CatalogoFornitore selezionato
+	 * @param essenza: Essenza selezionata
+	 * 
+	 */
+	protected void loadGeometria(CatalogoFornitore fornitore,String essenza){
 		AFormRDA.this.cbGeometria.setEnabled(true);
 		if(this.cbGeometria.getItemListeners().length != 0)
 			this.cbGeometria.removeItemListener(this.cbGeometria.getItemListeners()[0]);
 		this.cbGeometria.removeAllItems();
-		ArrayList<ProductDescription> pd = new ArrayList<ProductDescription>(GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore).productDescription.getCollection());
+		ArrayList<ProductDescription> pd = new ArrayList<ProductDescription>(fornitore.productDescription.getCollection());
 		for(int i=0; i<pd.size(); ++i){
 			if(pd.get(i).getEssenza().equals(essenza)){
 				Geometria g = pd.get(i).getGeometria();
@@ -279,15 +302,25 @@ public abstract class AFormRDA extends JPanel {
 		this.cbGeometria.setSelectedItem(null);
 	}
 	
+	/**
+	 * Metodo astratto per il reset della form
+	 * 
+	 */
 	public abstract void reset();	
 	
-	
-	
-	
+	/**
+	 * Metodo che ritorna il valore dello spinner
+	 * 
+	 * @return valore dello spinner
+	 */
 	public Integer getQuantity(){
 		return (Integer) ((DefaultEditor) spinner.getEditor()).getTextField().getValue();
 	}
 	
+	/**
+	 * Metodo che aggiorna il prezzo della riga RDA
+	 * 
+	 */
 	public void aggiornaSpesa(){
 		ProductDescription pd = GestisciFornitoreHandler.getInstance().getProductDescription(this.cbEssenza.getSelectedItem().toString(), this.cbGeometria.getSelectedItem().toString(), this.cbFornitore.getSelectedItem().toString());
 		this.tfSpesa.setText(String.valueOf((Integer)this.spinner.getValue()*pd.getPrezzo()));
