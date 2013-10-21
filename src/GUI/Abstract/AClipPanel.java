@@ -89,13 +89,12 @@ public abstract class AClipPanel extends JPanel {
 		this.add(temp);
 		this.validate();
 		this.repaint();
-		
 	}
 	
 	public void fill(){
-		int totButton = 10;
+		int totButton = 8;
 		for ( int n = totButton - this.getComponentCount(); n>0 ;n-- ){
-			if(n<totButton-2 && n!=2 && n!=1)
+			if(n<=totButton && n!=2 && n!=1)
 				this.addFintoButton();
 			if(n==2)
 				this.addButton("Help", "Help", null);
