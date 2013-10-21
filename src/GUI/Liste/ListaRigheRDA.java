@@ -21,7 +21,7 @@ public class ListaRigheRDA extends ALista {
 	public ListaRigheRDA() {
 		// TODO Auto-generated constructor stub
 		super();
-		this.setPreferredSize(new Dimension(290, 0));
+		this.setPreferredSize(new Dimension(300, 0));
 		this.validate();
 		this.repaint();
 	}
