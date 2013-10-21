@@ -17,6 +17,10 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+/**
+ * @author francesco Mostra un pannello di riepilogo della RDA in focus
+ */
+
 public abstract class ARiepilogoRDA extends JPanel {
 
 	protected static int width = 270;
@@ -36,7 +40,22 @@ public abstract class ARiepilogoRDA extends JPanel {
 	protected JLabel lblNumeroPacchi;
 	protected JLabel lblQuantita;
 
+	/**
+	 * Costruttore
+	 */
 	public ARiepilogoRDA() {
+		this.initialize();
+	}
+
+	/**
+	 * Aggiorna il pannello
+	 */
+	public abstract void refresh();
+
+	/**
+	 * imposta la grafica
+	 */
+	private void initialize() {
 		this.setSize(new Dimension(width, height));
 		this.setPreferredSize(new Dimension(width, height));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
@@ -69,7 +88,7 @@ public abstract class ARiepilogoRDA extends JPanel {
 						FormFactory.RELATED_GAP_ROWSPEC,
 						FormFactory.DEFAULT_ROWSPEC,
 						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,}));
+						FormFactory.DEFAULT_ROWSPEC, }));
 
 		lblTitolo = new JLabel("Lista Righe RDA");
 		lblTitolo.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -111,18 +130,15 @@ public abstract class ARiepilogoRDA extends JPanel {
 
 		btnInvia = new JButton("Invia RDA");
 		this.panel.add(btnInvia, "3, 18, 3, 1");
-		
+
 		btnArrivata = new JButton();
 		btnArrivata.setLayout(new BorderLayout());
-		   JLabel label1 = new JLabel("Conferma Arrivo");
-		   label1.setHorizontalAlignment(SwingConstants.CENTER);
-		   JLabel label2 = new JLabel("Merci");
-		   label2.setHorizontalAlignment(SwingConstants.CENTER);
-		   btnArrivata.add(BorderLayout.NORTH,label1);
-		   btnArrivata.add(BorderLayout.SOUTH,label2);
+		JLabel label1 = new JLabel("Conferma Arrivo");
+		label1.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel label2 = new JLabel("Merci");
+		label2.setHorizontalAlignment(SwingConstants.CENTER);
+		btnArrivata.add(BorderLayout.NORTH, label1);
+		btnArrivata.add(BorderLayout.SOUTH, label2);
 		this.panel.add(btnArrivata, "3, 20, 3, 1");
 	}
-
-
-	public abstract void refresh();
 }

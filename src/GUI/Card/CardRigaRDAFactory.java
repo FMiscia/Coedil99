@@ -3,7 +3,12 @@ package GUI.Card;
 import GUI.Abstract.ACard;
 import GUI.Abstract.ALista;
 import GUI.Liste.ListaRigheRDA;
-
+/**
+ * 
+ * @author francesco
+ * 
+ * Implementazione Factory di Abstract Factory
+ */
 public class CardRigaRDAFactory extends CardFactory {
 	
 	private static CardRigaRDAFactory instance = null;

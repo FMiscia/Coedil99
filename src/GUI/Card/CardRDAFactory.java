@@ -4,7 +4,12 @@ import GUI.Abstract.ACard;
 import GUI.Abstract.ALista;
 import GUI.Liste.ListaRDA;
 
-
+/**
+ * @author francesco
+ * 
+ * Implementazione di una factory di Abstract Factory
+ *
+ */
 public class CardRDAFactory extends CardFactory {
 
 	private static CardRDAFactory instance = null;
