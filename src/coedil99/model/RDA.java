@@ -188,7 +188,10 @@ public class RDA extends coedil99.model.Subject {
 		for(Observer temp : this.observers){
 			temp.Update();
 		}
-		GestisciRDAHandler.getInstance().Update();
+		/*
+		 * Risolvere problema GestisciRDAHandler observer
+		 */
+		//GestisciRDAHandler.getInstance().Update();
 	}
 	
 }

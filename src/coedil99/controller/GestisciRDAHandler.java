@@ -34,6 +34,7 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 		
 		try {
 			this.arrayRDA = new ArrayList<RDA>(Arrays.asList(RDAFactory.listRDAByQuery(null, "ID")));
+			this.setSubject(new ArrayList<Subject>(arrayRDA));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,7 +54,7 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 	public ArrayList<RDA> getArrayRDA(String state) {
 		ArrayList<RDA> filteredAdday = null;
 		try {
-			filteredAdday = new ArrayList<RDA>(Arrays.asList(RDAFactory.listRDAByQuery("State =  '"+state+"' ", "Date desc")));
+			filteredAdday = new ArrayList<RDA>(Arrays.asList(RDAFactory.listRDAByQuery("State =  '"+state+"' ", "Date desc, ID desc")));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,6 +90,7 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 			r.save();
 			if(!this.arrayRDA.contains(r))
 				this.addRDA(0, r);
+			r.Notify();
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
