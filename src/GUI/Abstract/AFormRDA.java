@@ -144,14 +144,15 @@ public abstract class AFormRDA extends JPanel {
             }
 
         });
-		this.spinner.addChangeListener(new ChangeListener() {
-			
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				aggiornaSpesa();
+		if(this.spinner.getChangeListeners().length == 0)
+			this.spinner.addChangeListener(new ChangeListener() {
 				
-			}
-		});
+				@Override
+				public void stateChanged(ChangeEvent e) {
+					aggiornaSpesa();
+					
+				}
+			});
 
 		add(spinner, "2, 16, 2, 1, left, center");
 		
