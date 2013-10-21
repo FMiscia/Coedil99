@@ -10,10 +10,10 @@ import javax.swing.JButton;
 
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
-import GUI.WrapLayout;
 import GUI.Abstract.APlico;
 import GUI.Riquadri.RiquadroDatiDistinta;
 import GUI.Riquadri.RiquadroDatiDistintaFactory;
+import GUI.Utilities.WrapLayout;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Distinta;
 

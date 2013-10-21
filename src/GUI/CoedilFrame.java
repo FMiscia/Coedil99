@@ -14,19 +14,25 @@ import com.thehowtotutorial.splashscreen.JSplash;
 
 public class CoedilFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Object frame;
 	private static CoedilFrame myInstance;
 
 	/**
-	 * Launch the application.
+	 * Lancia l'applicazione
 	 */
 	public static void main(String[] args) {
 		UIManager.put("ScrollBarUI", WebScrollBarUI.class.getName());
 		try {
-			//developement mode
-			//int delay = 1;
-			int delay = 1000;
+			int delay = 500;
+			boolean developmentMode = true;
+			if (developmentMode)
+				delay = 1;
 			
+
 			final JSplash splash = new JSplash(
 					CoedilFrame.class.getResource("image/coedil.png"), true,
 					true, false, "V0.1");
@@ -55,18 +61,16 @@ public class CoedilFrame extends JFrame {
 	}
 
 	/**
-	 * Create the application.
+	 * Crea l'applicazione.
 	 */
 	public CoedilFrame() {
-		System.out.print("init coedilframe\n");
 		initialize();
 	}
 
+	/**
+	 * Inizzializza il Frame
+	 */
 	private void initialize() {
-		// TODO Auto-generated method stub
-		/**
-		 * Initialize the contents of the frame.
-		 */
 		this.setName("Coedil99");
 		this.setResizable(true);
 		this.setIconImage(new ImageIcon(CoedilFrame.class
@@ -78,15 +82,19 @@ public class CoedilFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(new BorderLayout());
 
-		PanelStart pl = new PanelStart(this);
+		PanelStart pl = new PanelStart();
 		pl.setBounds(0, 0, this.getWidth(), this.getHeight());
 		this.getContentPane().add(pl, BorderLayout.CENTER);
-		
+
 		this.validate();
 		this.repaint();
-		System.out.print("aggiunto panelStart \n");
 	}
 
+	/**
+	 * Singleton
+	 * 
+	 * @return CoedilFrame
+	 */
 	public static CoedilFrame getInstance() {
 		if (myInstance == null) {
 			myInstance = new CoedilFrame();
@@ -94,6 +102,11 @@ public class CoedilFrame extends JFrame {
 		return myInstance;
 	}
 
+	/**
+	 * Cambia il ContentPane di CoedilFrame
+	 * 
+	 * @param p: Il pannello da montare
+	 */
 	public void montaPanel(JPanel p) {
 		this.remove(this.getContentPane());
 		this.setContentPane(p);

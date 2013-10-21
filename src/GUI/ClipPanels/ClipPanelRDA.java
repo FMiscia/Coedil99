@@ -17,7 +17,6 @@ import org.orm.PersistentException;
 import GUI.CoedilFrame;
 import GUI.PanelStart;
 import GUI.RDACenter;
-import GUI.WrapLayout;
 import GUI.Abstract.AClipPanel;
 import GUI.FormRDA.CreaFormRDA;
 import GUI.FormRDA.CreaFormRDAFactory;
@@ -25,6 +24,7 @@ import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
+import GUI.Utilities.WrapLayout;
 import coedil99.controller.GestisciRDAHandler;
 
 public class ClipPanelRDA extends AClipPanel {
@@ -44,7 +44,7 @@ public class ClipPanelRDA extends AClipPanel {
 							return;
 						}
 						CoedilFrame cf = CoedilFrame.getInstance();
-						PanelStart pl = new PanelStart(cf);
+						PanelStart pl = new PanelStart();
 						pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
 						CoedilFrame.getInstance().montaPanel(pl);
 					}

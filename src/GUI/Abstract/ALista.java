@@ -14,7 +14,7 @@ import javax.swing.UIManager;
 
 import com.alee.laf.scroll.WebScrollBarUI;
 
-import GUI.WrapLayout;
+import GUI.Utilities.WrapLayout;
 
 /**
  * @author francesco

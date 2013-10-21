@@ -96,10 +96,10 @@ public class CardCodiceInterno extends ACard {
 				final int idCommessa = CardCodiceInterno.this.commessaId;
 				ProgrammaLavori contenitore = ProgrammaLavori.getInstance();
 				contenitore.setCommessaSelezionata(cc);
-				contenitore.getRaccoglitorePlichi().getPaperPanel().removeAll();
-				contenitore.getRaccoglitorePlichi().getPaperPanel().validate();
-				contenitore.getRaccoglitorePlichi().getPaperPanel().repaint();
-				contenitore.getRaccoglitorePlichi().getPaperPanel().add(plico_commessa);
+				contenitore.getRaccoglitorePlichi().getPlico().removeAll();
+				contenitore.getRaccoglitorePlichi().getPlico().validate();
+				contenitore.getRaccoglitorePlichi().getPlico().repaint();
+				contenitore.getRaccoglitorePlichi().getPlico().add(plico_commessa);
 				contenitore.getClipPanel().resetInitialState();
 				CardCodiceInterno.this.setBackground(new Color(30,44,255));
 				CardCodiceInterno.this.validate();

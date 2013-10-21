@@ -23,8 +23,8 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import GUI.JHorizontalSpinner;
 import GUI.Riquadri.RiquadroDatiAziendali;
+import GUI.Utilities.JHorizontalSpinner;
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.CatalogoFornitore;
 import coedil99.model.Geometria;
