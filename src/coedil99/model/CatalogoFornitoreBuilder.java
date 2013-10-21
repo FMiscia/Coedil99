@@ -1,6 +1,7 @@
 package coedil99.model;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Pattern Builder: un catalogo può essere caricato da vari
@@ -17,8 +18,9 @@ public abstract class CatalogoFornitoreBuilder {
 	 * 
 	 * @param catalogo: File
 	 * @return 
+	 * @throws IOException 
 	 */
-	public abstract void Parse(File catalogo);
+	public abstract void Parse(String filePath) throws IOException;
 	
 	public CatalogoFornitore getCatalogo(){
 		return catalogo;

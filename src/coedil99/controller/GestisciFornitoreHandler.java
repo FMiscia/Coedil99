@@ -1,5 +1,6 @@
 package coedil99.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,8 +10,10 @@ import org.orm.PersistentException;
 import coedil99.model.CatalogoFornitore;
 import coedil99.model.CatalogoFornitoreBuilder;
 import coedil99.model.CatalogoFornitoreFactory;
+import coedil99.model.Geometria;
+import coedil99.model.GeometriaFactory;
 import coedil99.model.ProductDescription;
-import coedil99.model.RDAFactory;
+import coedil99.model.ProductDescriptionFactory;
 import coedil99.operation.OGeometria;
 
 public class GestisciFornitoreHandler {
@@ -23,7 +26,6 @@ public class GestisciFornitoreHandler {
 	 * Costruttore
 	 */
 	private GestisciFornitoreHandler() {
-		
 		try {
 			this.arrayFornitori = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.listCatalogoFornitoreByQuery(null, "ID")));
 		} catch (PersistentException e) {
@@ -40,7 +42,6 @@ public class GestisciFornitoreHandler {
 		if (GestisciFornitoreHandler.instance == null) {
 			GestisciFornitoreHandler.instance = new GestisciFornitoreHandler();
 		}
-
 		return GestisciFornitoreHandler.instance;
 	}
 
@@ -97,9 +98,52 @@ public class GestisciFornitoreHandler {
 		return this.builder.getCatalogo();
 	}
 	
-	public void ConstructCataologo(){
+	public void ConstructCatalogo(String filePath){
 		this.builder.createNewCatalogo();
-		this.builder.Parse(null);
+		try {
+			this.builder.Parse(filePath);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public CatalogoFornitore creaCatalogoFornitore(){
+		CatalogoFornitoreFactory fornitore_factory = new CatalogoFornitoreFactory();
+		CatalogoFornitore new_catalogo = fornitore_factory.createCatalogoFornitore();
+		
+		ProductDescriptionFactory descrizione_factory = new ProductDescriptionFactory();
+		ProductDescription new_productDescription = descrizione_factory.createProductDescription();
+		
+		GeometriaFactory geometria_factory = new GeometriaFactory();
+		Geometria new_geometria = geometria_factory.createGeometria();
+		
+		new_productDescription.setGeometria(new_geometria);
+		new_catalogo.productDescription.add(new_productDescription);
+		
+		try {
+			new_catalogo.save();
+			new_productDescription.save();
+			new_geometria.save();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return new_catalogo;
+	}
+	
+	public static boolean isInstanciated(){
+		return GestisciFornitoreHandler.instance == null;
+	}
+	
+	public void reloadFornitori(){
+		try {
+			this.arrayFornitori = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.listCatalogoFornitoreByQuery(null, "ID")));
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

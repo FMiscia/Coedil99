@@ -12,7 +12,7 @@ import java.io.File;
 public class CatalogoExcelBuilder extends CatalogoFornitoreBuilder {
 
 	@Override
-	public void Parse(File catalogo) {
+	public void Parse(String catalogo) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -179,6 +179,9 @@ public abstract class AFormRDA extends JPanel {
 	 * 
 	 */
 	public void load(){
+		if(GestisciFornitoreHandler.isInstanciated()){
+			GestisciFornitoreHandler.getInstance().reloadFornitori();
+		}
 		this.setFornitori(GestisciFornitoreHandler.getInstance().getArrayFornitori());
 		this.cbEssenza.setEnabled(false);
 		this.cbGeometria.setEnabled(false);
