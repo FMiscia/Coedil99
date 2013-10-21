@@ -2,6 +2,12 @@ package GUI.FormRDA;
 
 import GUI.Abstract.AFormRDA;
 
+/**
+ * 
+ * @author francesco
+ * 
+ *  Implementazione Factory di Abstract Factory
+ */
 public class ModificaFormRDAFactory extends FormRDAFactory {
 
 	private static ModificaFormRDAFactory instance = null;

@@ -1,9 +1,12 @@
 package GUI.Liste;
 
-import org.orm.PersistentException;
-
 import GUI.Abstract.ALista;
 
+/**
+ * 
+ * @author francesco
+ * Implementazione Factory di Abstract Factory
+ */
 public class ListaRigheRDAFactory extends ListaFactory {
 
 	private static ListaRigheRDAFactory instance = null;

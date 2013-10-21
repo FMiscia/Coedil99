@@ -5,19 +5,31 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import GUI.RDACenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
-import GUI.Riepiloghi.RiepilogoRDACongelata;
 import GUI.Riepiloghi.RiepilogoRDAFactory;
 import coedil99.model.RigaRDA;
 
+/**
+ * 
+ * @author francesco
+ *
+ * Gestisce la lista delle righe di unaRDA selezionata
+ */
 public class ListaRigheRDA extends ALista {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Costruttore
+	 */
 	public ListaRigheRDA() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -27,6 +39,10 @@ public class ListaRigheRDA extends ALista {
 	}
 
 
+	/**
+	 * Carica le righe RDA
+	 * @param t
+	 */
 	public void load(ArrayList<Object> t) {
 		this.updatePanel();
 		int row = t.size();
@@ -45,6 +61,10 @@ public class ListaRigheRDA extends ALista {
 		this.repaint();
 	}
 
+	/**
+	 * Rimuove un riquadro contenente una riga RDA
+	 * @param r
+	 */
 	public void removeRiquadro(CardRigaRDA r) {
 		this.panel.remove(r);
 		this.validate();
@@ -56,6 +76,9 @@ public class ListaRigheRDA extends ALista {
 	}
 
 	@Override
+	/**
+	 * Toglie il focus a tutte le righe RDA
+	 */
 	public void deselectAll() {
 		for (Component c : this.panel.getComponents()) {
 			c.setBackground(new Color(209, 209, 209));
@@ -67,6 +90,9 @@ public class ListaRigheRDA extends ALista {
 	
 
 	@Override
+	/**
+	 * Aggiorna la lista e il riepilogo subito dopo una modifica
+	 */
 	public void updatePanel() {
 		this.panel.removeAll();
 		String stato = RDACenter.getInstance().getRDASelezionata().getState();
@@ -93,6 +119,10 @@ public class ListaRigheRDA extends ALista {
 		
 	}
 	
+	/**
+	 * Ritorna il numero di righe RDA
+	 * @return count:int
+	 */
 	public int getNumRigheRDA(){
 		return this.panel.getComponentCount()-1;
 	}

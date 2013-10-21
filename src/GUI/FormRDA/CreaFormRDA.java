@@ -4,20 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import coedil99.controller.GestisciFornitoreHandler;
-import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.CatalogoFornitore;
 import coedil99.model.ProductDescription;
-import coedil99.model.ProductDescriptionFactory;
-import coedil99.model.ProductDescriptionListCollection;
 import coedil99.model.RDA;
 import coedil99.model.RDAFactory;
 import coedil99.model.RigaRDA;
@@ -30,19 +21,29 @@ import GUI.Card.CardRDAFactory;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Liste.ListaRDA;
-import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 
+/**
+ * 
+ * @author francesco
+ * 
+ * Gestisce La form per la creazione di una nuova RDA
+ */
 public class CreaFormRDA extends AFormRDA {
 
+	private static final long serialVersionUID = 1L;
 	private JButton JBAddRiga = new JButton("Aggiungi");
 
-
+	/**
+	 * Costruttore
+	 */
 	public CreaFormRDA() {
-		// TODO Auto-generated constructor stub
 		super();
+		/**
+		 * Imposta lo spinner per la selezione della quantità
+		 */
 		this.JBAddRiga.setEnabled(false);
 		this.getSpinner().addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
@@ -50,12 +51,49 @@ public class CreaFormRDA extends AFormRDA {
 					CreaFormRDA.this.JBAddRiga.setEnabled(true);
 			}
 		});
+		this.initialize();
+	}
+
+	@Override
+	public void reset() {
+		this.cbEssenza.setEnabled(false);
+		this.cbEssenza.removeAllItems();
+		this.cbGeometria.setEnabled(false);
+		this.cbGeometria.removeAllItems();
+		this.spinner.setValue(1);
+		this.spinner.setEnabled(false);
+		this.tfSpesa.setText(null);
+		this.JBAddRiga.setEnabled(false);
+		this.loadFornitori();
+		this.validate();
+		this.repaint();
+	}
+
+	public void resetConFornitoreSelezionato(String fornitore) {
+		this.cbEssenza.setEnabled(false);
+		this.cbEssenza.removeAllItems();
+		this.cbGeometria.setEnabled(false);
+		this.cbGeometria.removeAllItems();
+		this.spinner.setValue(1);
+		this.spinner.setEnabled(false);
+		this.tfSpesa.setText(null);
+		this.JBAddRiga.setEnabled(false);
+		this.loadEssenze(GestisciFornitoreHandler.getInstance()
+				.getFornitoreByName(fornitore));
+		this.validate();
+		this.repaint();
+	}
 	
+	/**
+	 * Imposta la grafica e i bottoni con relativi listener
+	 */
+	private void initialize(){
 		
 		MouseListener[] arrML = this.JBAddRiga.getMouseListeners();
 		if (arrML.length == 1) {
 			this.JBAddRiga.addActionListener(new ActionListener() {
 
+				@SuppressWarnings("unchecked")
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					// TODO Auto-generated method stub
@@ -76,6 +114,7 @@ public class CreaFormRDA extends AFormRDA {
 							&& indiceCbEssenza != -1 && indiceCbGeometria != -1) {
 						fornitore = CreaFormRDA.this.getCbFornitore()
 								.getSelectedItem().toString();
+						@SuppressWarnings("unused")
 						CatalogoFornitore cf = GestisciFornitoreHandler
 								.getInstance().getFornitoreByName(fornitore);
 						essenza = CreaFormRDA.this.getCbEssenza()
@@ -128,36 +167,6 @@ public class CreaFormRDA extends AFormRDA {
 		rdac.getLista().deselectAll();
 		rdac.getLista().getPrimaRDA();
 		this.add(JBAddRiga, "2, 22, 3, 1");
-	}
-
-	@Override
-	public void reset() {
-		this.cbEssenza.setEnabled(false);
-		this.cbEssenza.removeAllItems();
-		this.cbGeometria.setEnabled(false);
-		this.cbGeometria.removeAllItems();
-		this.spinner.setValue(1);
-		this.spinner.setEnabled(false);
-		this.tfSpesa.setText(null);
-		this.JBAddRiga.setEnabled(false);
-		this.loadFornitori();
-		this.validate();
-		this.repaint();
-	}
-
-	public void resetConFornitoreSelezionato(String fornitore) {
-		this.cbEssenza.setEnabled(false);
-		this.cbEssenza.removeAllItems();
-		this.cbGeometria.setEnabled(false);
-		this.cbGeometria.removeAllItems();
-		this.spinner.setValue(1);
-		this.spinner.setEnabled(false);
-		this.tfSpesa.setText(null);
-		this.JBAddRiga.setEnabled(false);
-		this.loadEssenze(GestisciFornitoreHandler.getInstance()
-				.getFornitoreByName(fornitore));
-		this.validate();
-		this.repaint();
 	}
 
 }
