@@ -20,8 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import GUI.Utilities.JHorizontalSpinner;
 
-import GUI.JHorizontalSpinner;
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.CatalogoFornitore;
 import coedil99.model.Geometria;

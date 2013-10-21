@@ -17,6 +17,7 @@ import GUI.FormRDA.CreaFormRDA;
 import GUI.FormRDA.CreaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
+import GUI.Utilities.WrapLayout;
 import coedil99.controller.GestisciRDAHandler;
 
 /**
@@ -138,7 +139,7 @@ public class ClipPanelRDA extends AClipPanel {
 							return;
 						}
 						CoedilFrame cf = CoedilFrame.getInstance();
-						PanelStart pl = new PanelStart(cf);
+						PanelStart pl = new PanelStart();
 						pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
 						CoedilFrame.getInstance().montaPanel(pl);
 					}

@@ -47,7 +47,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						CoedilFrame cf = CoedilFrame.getInstance();
-						PanelStart pl = new PanelStart(cf);
+						PanelStart pl = new PanelStart();
 						pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
 						CoedilFrame.getInstance().montaPanel(pl);
 					}

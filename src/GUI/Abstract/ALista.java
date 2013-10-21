@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import GUI.WrapLayout;
+import GUI.Utilities.WrapLayout;
 
 /**
  * @author francesco
