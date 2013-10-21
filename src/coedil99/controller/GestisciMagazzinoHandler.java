@@ -19,10 +19,18 @@ public class GestisciMagazzinoHandler {
 	public static String IN_MAGAZZINO = "IN_MAGAZZINO";
 	
 
+	/**
+	 * Costruttore
+	 */
 	private GestisciMagazzinoHandler(){
 		this.magazzino = new ArrayList<Magazzino>();
 	}
 	
+	/**
+	 * Fornisce un magazzino dal nome
+	 * @param name
+	 * @return magazzino:Magazzino
+	 */
 	public Magazzino getMagazzinoByName(String name){
 		ListIterator<Magazzino> iteratorMagazzino = this.magazzino.listIterator();
 		while(iteratorMagazzino.hasNext())
@@ -32,27 +40,29 @@ public class GestisciMagazzinoHandler {
 	}
 	
 	/**
+	 * TO DO iterazione Gestisci Magazzino
+	 * @param items:List<item>
 	 * 
-	 * @param items
-	 * @return 
 	 * 
-	 * ritorna una map
 	 */
 	public void responseQuantity(List<Item> items) {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
+	 * TO DO iterazione Gestisci Magazzino
 	 * 
-	 * @param ddo
+	 * @param ddo:DocumentoOttimizzazione
 	 * @return 
 	 */
 	public void update(DocumentoOttimizzazione ddo) {
 		throw new UnsupportedOperationException();
 	}
 
-	/*
+	/**
 	 * Singleton
+	 * 
+	 * @return instance:GestisciMagazzinoHandler
 	 */
 	public static GestisciMagazzinoHandler getInstance(){
 		if (GestisciMagazzinoHandler.instance == null)

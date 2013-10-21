@@ -29,14 +29,30 @@ public class GestisciOrdineHandler {
 		}
 	}
 
+	/**
+	 * Aggiunge un ordine al programma lavori
+	 * 
+	 * @param o:Ordine
+	 */
 	public void addOrdine(Ordine o) {
 		this.ordini.add(o);
 	}
 
+	/**
+	 * Fornisce tutti gli ordini
+	 * 
+	 * @return ordini:ArrayList<Ordine>
+	 */
 	public ArrayList<Ordine> getOrdini(){
 		return this.ordini;
 	}
 	
+	/**
+	 * Fornisce un ordine da un id
+	 * 
+	 * @param id:int
+	 * @return ordine:Ordine
+	 */
 	public Ordine getOrdineById(int id){
 		try {
 			return OrdineFactory.getOrdineByORMID(id);
@@ -47,6 +63,11 @@ public class GestisciOrdineHandler {
 		return null;
 	}
 	
+	/**
+	 * Singleton
+	 * 
+	 * @return instance:GestisciOrdineHandler
+	 */
 	public static GestisciOrdineHandler getInstance() {
 		if (GestisciOrdineHandler.instance == null) {
 			GestisciOrdineHandler.instance = new GestisciOrdineHandler();

@@ -4,16 +4,33 @@ import coedil99.model.AOttimizzatoreStrategy;
 import coedil99.model.Distinta;
 import coedil99.model.DocumentoOttimizzazione;
 
+
+
 public class OttimizzatoreHandler {
 
-	private AOttimizzatoreStrategy instance;
+	private AOttimizzatoreStrategy strategia;
+	private Distinta distinta;
 
-	
-	public OttimizzatoreHandler(AOttimizzatoreStrategy s){
-		this.instance = s;
+	/**
+	 * Costruttore
+	 * 
+	 * @param strategy
+	 * @param d
+	 */
+	public OttimizzatoreHandler(AOttimizzatoreStrategy strategy,Distinta d) {
+		
+		this.strategia = strategy;
+		this.distinta = d;
+
 	}
-	
-	public DocumentoOttimizzazione eseguiOttimizzazione(Distinta distinta){
-		return this.instance.elaboraOttimizzazione(distinta);
+
+	/**
+	 * Ottimizza in base alla strategia
+	 * 
+	 * @return ddo:DocumentoOttimizzazione
+	 */
+	public DocumentoOttimizzazione Ottimizza() {
+		return this.strategia.elaboraOttimizzazione(this.distinta);
 	}
+
 }

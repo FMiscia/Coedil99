@@ -1,10 +1,12 @@
 package coedil99.model;
 
-public class CatalogoCVSBuilder implements CatalogoFornitoreBuilder {
+import java.io.File;
+
+public class CatalogoCVSBuilder extends CatalogoFornitoreBuilder {
 
 	@Override
-	public void Parse() {
-		// TODO Auto-generated method stub
+	public void Parse(File catalogo) {
+		
 		
 	}
 }

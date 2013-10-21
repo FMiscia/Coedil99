@@ -20,7 +20,9 @@ public class GestisciCommessaHandler {
 	private ArrayList<Commessa> commesse;
 	private static GestisciCommessaHandler instance;
 
-	
+	/**
+	 * Costruttore
+	 */
 	private GestisciCommessaHandler() {
 		try {
 			this.commesse = new ArrayList<Commessa>(Arrays.asList(CommessaFactory.listCommessaByQuery(null, "ID")));
@@ -34,8 +36,8 @@ public class GestisciCommessaHandler {
 	
 	/**
 	 * 
-	 * @param commessa
-	 * @return
+	 * @param commessa:Commessa
+	 * 
 	 */
 	public void add(Commessa commessa) {
 		this.commesse.add(commessa);
@@ -44,8 +46,7 @@ public class GestisciCommessaHandler {
 
 	/**
 	 * 
-	 * @param idCommessa
-	 * @return
+	 * @param idCommessa:int
 	 */
 	public void eliminaDistinta(int idCommessa) {
 		this.getCommessaById(idCommessa).setDistinta(null);
@@ -53,8 +54,8 @@ public class GestisciCommessaHandler {
 
 	/**
 	 * 
-	 * @param id
-	 * @return Commessa
+	 * @param id:int
+	 * @return commessa:Commessa
 	 */
 	public Commessa getCommessaById(int id) {
 		ListIterator<Commessa> it = this.commesse.listIterator();
@@ -69,8 +70,8 @@ public class GestisciCommessaHandler {
 	
 
 	/**
-	 * 
-	 * @return id
+	 * Commessa id
+	 * @return id:int
 	 */
 	public int getId() {
 		return id;
@@ -78,9 +79,9 @@ public class GestisciCommessaHandler {
 	
 	
 	/**
-	 * 
-	 * @param d
-	 * @param idCommessa
+	 * Associa la distinta alla Commessa
+	 * @param d:Distina
+	 * @param idCommessa:int
 	 */
 	public void associaDistinta(Distinta d, int idCommessa){
 		if(this.getCommessaById(idCommessa) != null)
@@ -88,21 +89,26 @@ public class GestisciCommessaHandler {
 	}
 	
 	/**
-	 * 
-	 * @return commesse
+	 * Fornisce le commesse
+	 * @return commesse:ArrayList<Commessa>
 	 */
 	public ArrayList<Commessa> getCommesse(){
 		return this.commesse;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Fornisce il numero di commesse esistenti
+	 * @return numeroCommesse:int
 	 */
 	public int getNumOfCommesse(){
 		return this.commesse.size();
 	}
 	
+	/**
+	 * Fornisce la commessa in base al codice interno
+	 * @param q:String
+	 * @return commessa:Commessa
+	 */
 	public Commessa getCommessaByCodiceInterno(String q){
 		Commessa c = null;
 		for(int i=0; i<this.commesse.size(); ++i){
@@ -114,8 +120,8 @@ public class GestisciCommessaHandler {
 
 	/**
 	 * 
-	 * @param a
-	 * @return
+	 * @param a:int
+	 * @return c:Commessa
 	 */
 	public Commessa getCommessaByIndex(int a) {
 		Commessa c = null;
@@ -127,9 +133,9 @@ public class GestisciCommessaHandler {
 	}
 	
 	/**
-	 * 
-	 * @param codiceinterno
-	 * @return
+	 * Comunica se la commesa possiede una distinta
+	 * @param codiceinterno:String
+	 * @return boolean:Boolean
 	 */
 	public Boolean hasDistinta(String ci){
 		ListIterator<Commessa> it = this.commesse.listIterator();
@@ -142,13 +148,18 @@ public class GestisciCommessaHandler {
 		return false;
 	}
 	
+	/**
+	 * Modifica la rigaLavoro di una distinta associata alla commessa
+	 * @param id_commessa:int
+	 * @param rg:RigaLavoro
+	 */
 	public void modificaRigaLavoro(int id_commessa, RigaLavoro rg){
 		this.getCommessaById(id_commessa).getOdistinta().modificaRigaLavoro(rg);
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Singleton
+	 * @return instance:GestisciCommessaHandler
 	 */
 	public static GestisciCommessaHandler getInstance() {
 		if (GestisciCommessaHandler.instance == null) {
