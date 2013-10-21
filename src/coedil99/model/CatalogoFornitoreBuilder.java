@@ -13,8 +13,9 @@ public abstract class CatalogoFornitoreBuilder {
 
 	protected CatalogoFornitore catalogo;
 	/**
+	 * Questo metodo sarà il resposabile del parsing del file
 	 * 
-	 * @param catalogo TODO
+	 * @param catalogo: File
 	 * @return 
 	 */
 	public abstract void Parse(File catalogo);
