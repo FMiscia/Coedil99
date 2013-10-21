@@ -19,7 +19,6 @@ import javax.swing.SpinnerNumberModel;
 
         @Override
         public void setComponentOrientation(ComponentOrientation o){
-            System.out.println("setComponentOrientation ");
             super.setComponentOrientation(o);
             if( super.getUI() instanceof HorizontalSpinnerUI){
                 ((HorizontalSpinnerUI) super.getUI()).initButtonListeners();
@@ -28,7 +27,6 @@ import javax.swing.SpinnerNumberModel;
         
         @Override
         public void applyComponentOrientation(ComponentOrientation o){
-            System.out.println("applyComponentOrientation ");
             super.applyComponentOrientation( o);
             if( super.getUI() instanceof HorizontalSpinnerUI){
                 ((HorizontalSpinnerUI) super.getUI()).initButtonListeners();

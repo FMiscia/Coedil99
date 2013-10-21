@@ -42,6 +42,9 @@ public class Magazzino extends Observer {
 
 	}
 
+	/**
+	 * Da controllare nell'iterazione per caso d'uso gestisci magazzino e invia RDA
+	 */
 	@Override
 	public void Update() {
 		ArrayList<RigaRDA> righe = null;
@@ -54,7 +57,6 @@ public class Magazzino extends Observer {
 					righe = new ArrayList<RigaRDA>(
 							((RDA) rda).righeRDA.getCollection());
 					for (RigaRDA temp : righe) {
-						System.out.println("Sono dentro");
 						Item i = ItemFactory.createItem();
 						i.setGeometria(temp.getDescription().getGeometria());
 						i.setProductDescription(temp.getDescription());

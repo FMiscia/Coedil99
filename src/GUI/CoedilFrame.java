@@ -58,7 +58,6 @@ public class CoedilFrame extends JFrame {
 	 * Create the application.
 	 */
 	public CoedilFrame() {
-		System.out.print("init coedilframe\n");
 		initialize();
 	}
 
@@ -84,7 +83,6 @@ public class CoedilFrame extends JFrame {
 		
 		this.validate();
 		this.repaint();
-		System.out.print("aggiunto panelStart \n");
 	}
 
 	public static CoedilFrame getInstance() {

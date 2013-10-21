@@ -53,7 +53,9 @@ public class RiepilogoRDAConfermata extends ARiepilogoRDA {
 			this.btnArrivata.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					System.out.println("gay chi legge");
+					/*
+					 * Funzionalità RDA confermata: caso d'uso invia RDA
+					 */
 				}
 
 			});
