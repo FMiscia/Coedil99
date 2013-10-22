@@ -16,9 +16,9 @@ public abstract class CatalogoFornitoreBuilder {
 
 	protected CatalogoFornitore catalogo;
 	/**
-	 * Questo metodo e' resposabile del parsing del file
+	 * Questo metodo e' resposabile del parsing del file.
 	 * 
-	 * @param catalogo: File
+	 * @param catalogo: nome del file da parsare. Deve essere caricato nella cartella relativa [TestFile].
 	 * @throws IOException 
 	 */
 	public abstract void Parse(String filePath) throws IOException;
