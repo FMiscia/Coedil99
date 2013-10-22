@@ -90,61 +90,72 @@ public class GestisciFornitoreHandler {
 		return null;
 	}
 	
+	/**
+	 * Set
+	 * 
+	 * @param builder
+	 */
 	public void setBuilder(CatalogoFornitoreBuilder builder){
 		this.builder = builder;
 	}
 	
+	/**
+	 * Get
+	 * @return catalogo fornitore
+	 */
 	public CatalogoFornitore getCatalogo(){
 		return this.builder.getCatalogo();
 	}
 	
+	/**
+	 * Metodo che costruisce il catalogo fornitore a partire dal path del file in ingresso
+	 * 
+	 * @param filePath
+	 */
 	public void ConstructCatalogo(String filePath){
 		this.builder.createNewCatalogo();
 		try {
 			this.builder.Parse(filePath);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Metodo che crea uno nuovo catalogo fornitore tramite la sua factory
+	 *  
+	 * @return catalogo fornitore
+	 */
 	public CatalogoFornitore creaCatalogoFornitore(){
 		CatalogoFornitoreFactory fornitore_factory = new CatalogoFornitoreFactory();
 		CatalogoFornitore new_catalogo = fornitore_factory.createCatalogoFornitore();
-		
-		ProductDescriptionFactory descrizione_factory = new ProductDescriptionFactory();
-		ProductDescription new_productDescription = descrizione_factory.createProductDescription();
-		
-		GeometriaFactory geometria_factory = new GeometriaFactory();
-		Geometria new_geometria = geometria_factory.createGeometria();
-		
-		new_productDescription.setGeometria(new_geometria);
-		new_catalogo.productDescription.add(new_productDescription);
-		
 		try {
 			new_catalogo.save();
-			new_productDescription.save();
-			new_geometria.save();
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return new_catalogo;
 	}
 	
+	/**
+	 * Metodo che controlla se il controllore e' stato precedentemente instanziato
+	 * 
+	 * @return boolean
+	 */
 	public static boolean isInstanciated(){
 		return GestisciFornitoreHandler.instance == null;
 	}
 	
+	/**
+	 * Metodo che ricarica l'array dei fornitori. Questo e' reso necessario quando mi varia il numero di fornitori a run time
+	 * 
+	 */
 	public void reloadFornitori(){
 		try {
 			this.arrayFornitori = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.listCatalogoFornitoreByQuery(null, "ID")));
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	
 }

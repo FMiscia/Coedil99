@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
@@ -64,6 +65,8 @@ public abstract class AFormRDA extends JPanel {
 	 * 
 	 */
 	public void load() {
+		if(!GestisciFornitoreHandler.isInstanciated()){
+			GestisciFornitoreHandler.getInstance().reloadFornitori();}
 		this.setFornitori(GestisciFornitoreHandler.getInstance()
 				.getArrayFornitori());
 		this.cbEssenza.setEnabled(false);
