@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 import coedil99.controller.GestisciFornitoreHandler;
-import coedil99.model.CatalogoCVSBuilder;
+import coedil99.model.CatalogoCSVBuilder;
 
 import com.alee.laf.scroll.WebScrollBarUI;
 import com.thehowtotutorial.splashscreen.JSplash;
@@ -29,7 +29,7 @@ public class CoedilFrame extends JFrame {
 	 */
 	public static void main(String[] args) {
 		UIManager.put("ScrollBarUI", WebScrollBarUI.class.getName());
-		CatalogoCVSBuilder cvs = new CatalogoCVSBuilder();
+		CatalogoCSVBuilder cvs = new CatalogoCSVBuilder();
 		GestisciFornitoreHandler.getInstance().setBuilder(cvs);
 		GestisciFornitoreHandler.getInstance().ConstructCatalogo("csv_test.csv");
 		try {

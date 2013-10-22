@@ -19,7 +19,7 @@ import au.com.bytecode.opencsv.CSVReader;
  * 
  * Pattern Builder
  */
-public class CatalogoCVSBuilder extends CatalogoFornitoreBuilder {
+public class CatalogoCSVBuilder extends CatalogoFornitoreBuilder {
 
 	/**
 	 * Implementazione del metoro parse del builder.
@@ -27,7 +27,7 @@ public class CatalogoCVSBuilder extends CatalogoFornitoreBuilder {
 	 */
 	@Override
 	public void Parse(String catalogo) throws IOException {
-		URL url = CatalogoCVSBuilder.class.getResource("/GUI/TestFile/"+catalogo);
+		URL url = CatalogoCSVBuilder.class.getResource("/GUI/TestFile/"+catalogo);
 		CSVReader reader = new CSVReader(new FileReader(url.getPath()), '#');
 		String[] fornitore = reader.readNext();
 		String[] nome_fornitore = reader.readNext();

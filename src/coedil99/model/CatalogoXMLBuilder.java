@@ -9,7 +9,7 @@ import java.io.File;
  * Pattern Builder
  */
 
-public class CatalogoExcelBuilder extends CatalogoFornitoreBuilder {
+public class CatalogoXMLBuilder extends CatalogoFornitoreBuilder {
 
 	@Override
 	public void Parse(String catalogo) {
