@@ -17,24 +17,27 @@ import GUI.Utilities.WrapLayout;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Distinta;
 
+/**
+ * 
+ * @author francesco
+ *
+ * Gestisce il pannello della distinta
+ */
 public class PlicoDistinta extends APlico {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static PlicoDistinta instance = null;
 	private JButton addButton = null;
 	private ArrayList<RiquadroDatiDistinta> riquadri = new ArrayList<RiquadroDatiDistinta>();
 
+	/**
+	 * Costruttore
+	 */
 	private PlicoDistinta() {
-		setBorder(null);
-		WrapLayout wrapLayout = new WrapLayout();
-		wrapLayout.setVgap(20);
-		wrapLayout.setHgap(0);
-		setLayout(wrapLayout);
-
-		setPreferredSize(new Dimension(745, 200));
-		setSize(745, 250);
-		addButton = new JButton("aggiungi nuova");
-		this.validate();
-		this.repaint();
+		this.initialize();
 	}
 
 	@Override
@@ -43,6 +46,10 @@ public class PlicoDistinta extends APlico {
 
 	}
 
+	/**
+	 * Singleton
+	 * @return instance:PlicoDistinta
+	 */
 	public static PlicoDistinta getInstance() {
 		if (PlicoDistinta.instance == null)
 			PlicoDistinta.instance = new PlicoDistinta();
@@ -50,6 +57,10 @@ public class PlicoDistinta extends APlico {
 	}
 
 	@Override
+	/**
+	 * Carica il riquadro della distinta
+	 * @param id:commessaId
+	 */
 	public void load(int id) {
 		// TODO Auto-generated method stub
 		this.removeAll();
@@ -98,7 +109,7 @@ public class PlicoDistinta extends APlico {
 			}
 		}
 		else {
-			for(RiquadroDatiDistinta r: riquadri){
+			for(@SuppressWarnings("unused") RiquadroDatiDistinta r: riquadri){
 				addButton.setEnabled(true);
 			}
 		}
@@ -106,6 +117,9 @@ public class PlicoDistinta extends APlico {
 		this.repaint();
 	}
 
+	/**
+	 * Aggiorna l'altezza del pannello
+	 */
 	private void aggiornaAltezze() {
 		this.setPreferredSize(new Dimension(this.getWidth(),
 				RiquadroDatiDistinta.getFormDimension().height
@@ -123,6 +137,9 @@ public class PlicoDistinta extends APlico {
 		this.riquadri.remove(r);
 	}
 	
+	/**
+	 * Posiziona il bottone per aggiungere un nuovo riquadro distinta
+	 */
 	public void posizionaAddButton(){
 		this.aggiornaAltezze();
 		this.remove(addButton);
@@ -137,5 +154,22 @@ public class PlicoDistinta extends APlico {
 	
 	public ArrayList<RiquadroDatiDistinta> getRiquadri() {
 		return riquadri;
+	}
+	
+	/**
+	 * Imposta la grafica
+	 */
+	private void initialize(){
+		setBorder(null);
+		WrapLayout wrapLayout = new WrapLayout();
+		wrapLayout.setVgap(20);
+		wrapLayout.setHgap(0);
+		setLayout(wrapLayout);
+
+		setPreferredSize(new Dimension(745, 200));
+		setSize(745, 250);
+		addButton = new JButton("aggiungi nuova");
+		this.validate();
+		this.repaint();
 	}
 }

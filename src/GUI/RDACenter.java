@@ -44,6 +44,7 @@ public class RDACenter extends JPanel {
 	/**
 	 * Carica la lista delle RDA
 	 */
+	@SuppressWarnings("unchecked")
 	public void loadListaRigheRDA() {
 		this.add(this.lista, BorderLayout.WEST);
 		PlicoRDA.getInstance()

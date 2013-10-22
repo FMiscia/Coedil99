@@ -1,12 +1,10 @@
 package GUI.Riepiloghi;
 
-import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import GUI.CoedilFrame;
@@ -21,6 +19,14 @@ import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 
+
+/**
+ * 
+ * @author francesco
+ *
+ * Gestisce il pannello di riepilogo posto in alto per RDA
+ * congelate
+ */
 public class RiepilogoRDACongelata extends ARiepilogoRDA {
 
 	/**
@@ -28,14 +34,18 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Costruttore
+	 */
 	public RiepilogoRDACongelata(){
 		super();
-		this.panel.remove(this.btnArrivata);
-		this.validate();
-		this.repaint();
+		this.initialize();
 	}
 
 	@Override
+	/**
+	 * Aggiorna il pannello preoccupandosi dei lstener dei bottoni di invia, elimina e salva RDA
+	 */
 	public void refresh() {
 		RDA r = RDACenter.getInstance().getRDASelezionata(); 
 		this.lblFornitoreSelezionato.setText(r.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());
@@ -50,6 +60,7 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 		this.lblQuantita.setText(String.valueOf(quantita_totale));
 		if (this.btnSalva.getMouseListeners().length == 1) {
 			this.btnSalva.addMouseListener(new MouseAdapter() {
+				@SuppressWarnings("unchecked")
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					GestisciRDAHandler.getInstance().saveAndAddRDA(
@@ -83,6 +94,7 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 		}
 		if (this.btnElimina.getMouseListeners().length == 1) {
 			this.btnElimina.addMouseListener(new MouseAdapter() {
+				@SuppressWarnings("unchecked")
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					Object[] options = { "Si", "No" };
@@ -141,6 +153,15 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 		this.validate();
 		this.repaint();
 		
+	}
+	
+	/**
+	 * Imposta la grafica
+	 */
+	private void initialize(){
+		this.panel.remove(this.btnArrivata);
+		this.validate();
+		this.repaint();
 	}
 
 }

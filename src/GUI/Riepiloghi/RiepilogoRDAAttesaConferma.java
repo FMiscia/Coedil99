@@ -6,6 +6,13 @@ import GUI.RDACenter;
 import GUI.Abstract.ARiepilogoRDA;
 import coedil99.model.RDA;
 
+/**
+ * 
+ * @author francesco
+ *
+ * Gestisce il pannello di riepilogo posto in alto per RDA
+ * in attesa conferma
+ */
 public class RiepilogoRDAAttesaConferma extends ARiepilogoRDA {
 
 	/**
@@ -13,17 +20,18 @@ public class RiepilogoRDAAttesaConferma extends ARiepilogoRDA {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Costruttore
+	 */
 	public RiepilogoRDAAttesaConferma() {
 		super();
-		this.panel.remove(this.btnSalva);
-		this.panel.remove(this.btnElimina);
-		this.panel.remove(this.btnInvia);
-		this.setPreferredSize(new Dimension(this.width,130));
-		this.validate();
-		this.repaint();
+		this.initialize();
 	}
 
 	@Override
+	/**
+	 * Aggiorna il pannello di riepilogo
+	 */
 	public void refresh() {
 		RDA r = RDACenter.getInstance().getRDASelezionata();
 		this.lblFornitoreSelezionato.setText(r.righeRDA.get(0).getDescription()
@@ -37,17 +45,23 @@ public class RiepilogoRDAAttesaConferma extends ARiepilogoRDA {
 		}
 		this.lblTotale.setText(String.valueOf(prezzo_totale));
 		this.lblQuantita.setText(String.valueOf(quantita_totale));
-//		this.btnSalva.removeAll();
-//		this.btnSalva.setVisible(false);
-//		this.btnElimina.removeAll();
-//		this.btnElimina.setVisible(false);
-//		this.btnInvia.removeAll();
-//		this.btnInvia.setVisible(false);
 		
 		
 		this.validate();
 		this.repaint();
 
+	}
+	
+	/**
+	 * Imposta la grafica
+	 */
+	private void initialize(){
+		this.panel.remove(this.btnSalva);
+		this.panel.remove(this.btnElimina);
+		this.panel.remove(this.btnInvia);
+		this.setPreferredSize(new Dimension(ARiepilogoRDA.width,130));
+		this.validate();
+		this.repaint();
 	}
 
 }

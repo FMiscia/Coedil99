@@ -242,7 +242,7 @@ public class CardRigaRDA extends ACard {
 						riga.deleteAndDissociate();
 						CardRigaRDA.this.listaRigheRDA
 								.removeRiquadro(CardRigaRDA.this);
-						PlicoRDA.getInstance().cheStaiFacendo();
+						PlicoRDA.getInstance().controllaListaRighe();
 					} catch (PersistentException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

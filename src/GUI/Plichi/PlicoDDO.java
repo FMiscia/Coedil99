@@ -13,22 +13,23 @@ import coedil99.model.DocumentoOttimizzazione;
 
 
 @SuppressWarnings("serial")
+/**
+ * 
+ * @author francesco
+ * 
+ *  Gestisce il pannello del DDO
+ */
 public class PlicoDDO extends APlico{
 
 	private RiquadroOttimizzazione ro;
 	private static PlicoDDO instance = null;
 	private JPanel panel;
 	
-	
+	/**
+	 * Costruttore
+	 */
 	private PlicoDDO(){
-		setBorder(null);
-		setLayout(null);
-		panel = new JPanel(null);
-		panel.setLayout(new FlowLayout());
-		panel.setBounds(60, 20,625,100);
-		setPreferredSize(new Dimension(745,panel.getHeight()));
-		setSize(745,panel.getHeight());
-		add(panel);
+		this.initialize();
 	}
 
 	@Override
@@ -39,13 +40,20 @@ public class PlicoDDO extends APlico{
 
 
 	
-	
+	/**
+	 * Singleton
+	 * @return instance:PlicoDDO
+	 */
 	public static PlicoDDO getInstance(){
 		if(PlicoDDO.instance == null)
 			PlicoDDO.instance = new PlicoDDO();
 		return PlicoDDO.instance;
 	}
 
+	/**
+	 * Carica il riquadro del documento di ottimizzazione
+	 * @param id:idCommessa
+	 */
 	public void load(int id) {
 		// TODO Auto-generated method stub
 		Commessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
@@ -60,5 +68,19 @@ public class PlicoDDO extends APlico{
 			ro.load( c.getDistinta().getDdo().items.toArray()[i] );
 			this.panel.add(ro);
 		}
+	}
+	
+	/**
+	 * Imposta la grafica
+	 */
+	private void initialize(){
+		setBorder(null);
+		setLayout(null);
+		panel = new JPanel(null);
+		panel.setLayout(new FlowLayout());
+		panel.setBounds(60, 20,625,100);
+		setPreferredSize(new Dimension(745,panel.getHeight()));
+		setSize(745,panel.getHeight());
+		add(panel);
 	}
 }

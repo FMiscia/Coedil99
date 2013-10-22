@@ -23,6 +23,10 @@ import com.jgoodies.forms.layout.RowSpec;
 
 public abstract class ARiepilogoRDA extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected static int width = 270;
 	protected static int height = 230;
 	protected JPanel panel;

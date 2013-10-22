@@ -2,9 +2,6 @@ package coedil99.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Observable;
-import java.util.Observer;
-
 import org.orm.PersistentException;
 
 import GUI.RDACenter;
@@ -145,6 +142,7 @@ public class GestisciRDAHandler extends coedil99.model.Observer{
 	 */
 	public void deleteAndRemoveRDA(RDA r){
 		try {
+			@SuppressWarnings("unchecked")
 			ArrayList<RigaRDA> listarighe = new ArrayList<RigaRDA>( r.righeRDA.getCollection() );
 			for (RigaRDA temp : listarighe){
 				this.arrayRDA.remove(temp);

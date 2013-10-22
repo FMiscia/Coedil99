@@ -10,10 +10,7 @@ import org.orm.PersistentException;
 import coedil99.model.CatalogoFornitore;
 import coedil99.model.CatalogoFornitoreBuilder;
 import coedil99.model.CatalogoFornitoreFactory;
-import coedil99.model.Geometria;
-import coedil99.model.GeometriaFactory;
 import coedil99.model.ProductDescription;
-import coedil99.model.ProductDescriptionFactory;
 import coedil99.operation.OGeometria;
 
 public class GestisciFornitoreHandler {
@@ -79,6 +76,7 @@ public class GestisciFornitoreHandler {
 	public ProductDescription getProductDescription(String essenza, String geometria, String fornitore) {
 		// TODO Auto-generated method stub
 		CatalogoFornitore cf = GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore);
+		@SuppressWarnings("rawtypes")
 		List l = cf.productDescription.getCollection();
 		ProductDescription pd = null;
 		for ( int i=0 ; i<l.size() ; i++  ){
@@ -127,8 +125,7 @@ public class GestisciFornitoreHandler {
 	 * @return catalogo fornitore
 	 */
 	public CatalogoFornitore creaCatalogoFornitore(){
-		CatalogoFornitoreFactory fornitore_factory = new CatalogoFornitoreFactory();
-		CatalogoFornitore new_catalogo = fornitore_factory.createCatalogoFornitore();
+		CatalogoFornitore new_catalogo = CatalogoFornitoreFactory.createCatalogoFornitore();
 		try {
 			new_catalogo.save();
 		} catch (PersistentException e) {

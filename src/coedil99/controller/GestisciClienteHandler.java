@@ -14,7 +14,6 @@ import coedil99.model.ClienteFactory;
  */
 public class GestisciClienteHandler {
 	
-	private int id;
 	private ArrayList<Cliente> clienti = null;
 	private static GestisciClienteHandler instance;
 	

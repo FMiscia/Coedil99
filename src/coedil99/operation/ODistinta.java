@@ -41,6 +41,7 @@ public class ODistinta {
 	 * @return 
 	 */
 	public void modificaRigaLavoro(RigaLavoro rg) {
+		@SuppressWarnings("unchecked")
 		ListIterator<RigaLavoro> righeIterator = (ListIterator<RigaLavoro>) this.distinta.getLavori().getIterator();;
 		while (righeIterator.hasNext()) {
 			if (righeIterator.next().getID() == rg.getID()) {

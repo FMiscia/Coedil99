@@ -1,7 +1,5 @@
 package GUI.Liste;
 
-import org.orm.PersistentException;
-
 import GUI.Abstract.ALista;
 
 /**

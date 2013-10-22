@@ -13,7 +13,6 @@ import coedil99.model.OrdineFactory;
 
 public class GestisciOrdineHandler {
 
-	private int id;
 	private ArrayList<Ordine> ordini = null;
 	private static GestisciOrdineHandler instance;
 

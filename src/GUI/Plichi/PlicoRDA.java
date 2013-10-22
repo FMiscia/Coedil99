@@ -1,35 +1,52 @@
 package GUI.Plichi;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
 
 import GUI.RDACenter;
 import GUI.Abstract.AFormRDA;
 import GUI.Abstract.APlico;
 import GUI.Liste.ListaRigheRDA;
 
+
+/**
+ * 
+ * @author francesco
+ *
+ * Gestisce il pannello della RDA
+ */
 public class PlicoRDA extends APlico {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static PlicoRDA instance = null;
 	private ListaRigheRDA listaRigheRDA;
 	private AFormRDA formRDA = null;
 
+	/**
+	 * Costruttore
+	 */
 	private PlicoRDA() {
 		setLayout(new BorderLayout());
 		addListaRigheRDA();
 		
 	}
 
-
+	/**
+	 * Aggiunge la lista delle righe RDA
+	 */
 	private void addListaRigheRDA() {
 		// TODO Auto-generated method stub
 		this.listaRigheRDA = new ListaRigheRDA();
 		this.add(listaRigheRDA,BorderLayout.WEST);
 	}
 	
+	/**
+	 * Aggiunge il form di creazione o modifica RDA
+	 * @param formRDA: AFormRDA
+	 */
 	public void addFormRDA(AFormRDA formRDA){
 		if(this.formRDA != null)
 			this.remove(this.formRDA);
@@ -40,7 +57,10 @@ public class PlicoRDA extends APlico {
 		
 	}
 
-
+	/**
+	 * Singleton
+	 * @return instance:PlicoRDA
+	 */
 	public static PlicoRDA getInstance() {
 		if (PlicoRDA.instance == null)
 			PlicoRDA.instance = new PlicoRDA();
@@ -71,6 +91,9 @@ public class PlicoRDA extends APlico {
 		this.listaRigheRDA = listaRigheRDA;
 	}
 	
+	/**
+	 * Rimuove gli elementi dalla form RDA
+	 */
 	public void resetFormRDA(){
 		if(this.formRDA != null)
 			this.remove(this.formRDA);
@@ -78,6 +101,10 @@ public class PlicoRDA extends APlico {
 		this.repaint();
 	}
 	
+	/**
+	 * Aggiorna il plico
+	 */
+	@SuppressWarnings("unchecked")
 	public void refresh(){
 		this.resetFormRDA();
 		this.listaRigheRDA.svuota();
@@ -86,7 +113,10 @@ public class PlicoRDA extends APlico {
 		this.repaint();
 	}
 
-	public void cheStaiFacendo(){
+	/**
+	 * Svuola la lista righe se non ci sono righe
+	 */
+	public void controllaListaRighe(){
 		ListaRigheRDA lrrda = this.getListaRigheRDA();
 		if(lrrda.getNumRigheRDA() == 0){
 			this.formRDA.reset();
