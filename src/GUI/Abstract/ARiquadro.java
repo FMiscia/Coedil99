@@ -196,5 +196,7 @@ public abstract class ARiquadro extends JPanel {
 		this.modifica.setLocation(469, 0);
 		add(this.modifica);
 	}
+	
+	protected abstract void initialize();
 
 }

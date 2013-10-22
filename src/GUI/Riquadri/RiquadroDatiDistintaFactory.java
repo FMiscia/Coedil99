@@ -2,6 +2,12 @@ package GUI.Riquadri;
 
 import GUI.Abstract.ARiquadro;
 
+/**
+ * Factory riquadro dati distinta
+ * 
+ * @author Simone
+ *
+ */
 public class RiquadroDatiDistintaFactory extends RiquadroFactory {
 
 	private static RiquadroFactory instance = null;
@@ -11,7 +17,6 @@ public class RiquadroDatiDistintaFactory extends RiquadroFactory {
 
 	@Override
 	public ARiquadro makeRiquadro() {
-		// TODO Auto-generated method stub
 		return new RiquadroDatiDistinta("Riga Lavoro");
 	}
 

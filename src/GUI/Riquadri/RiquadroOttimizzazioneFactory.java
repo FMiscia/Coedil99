@@ -2,6 +2,12 @@ package GUI.Riquadri;
 
 import GUI.Abstract.ARiquadro;
 
+/**
+ * Factory riquadro ottimizzazione
+ * 
+ * @author Simone
+ *
+ */
 public class RiquadroOttimizzazioneFactory extends RiquadroFactory {
 
 	private static RiquadroFactory instance = null;
@@ -11,7 +17,6 @@ public class RiquadroOttimizzazioneFactory extends RiquadroFactory {
 
 	@Override
 	public ARiquadro makeRiquadro() {
-		// TODO Auto-generated method stub
 		return new RiquadroOttimizzazione("Ottimizzazione");
 	}
 

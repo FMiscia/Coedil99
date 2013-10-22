@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,6 +36,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+@SuppressWarnings("serial")
 public class RiquadroDatiDistinta extends ARiquadro {
 
 	private static final Dimension dimension = new Dimension(600, 330);
@@ -56,7 +56,6 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	private JLabel lbnote;
 	private JTextField tfnote;
 	// private JButton toggle;
-	private boolean aperto = true;
 	private JButton btnElimina;
 	private JLabel lblIcoBase;
 	private JLabel lblIcoAltezza;
@@ -67,37 +66,15 @@ public class RiquadroDatiDistinta extends ARiquadro {
 
 	public RiquadroDatiDistinta(String title) {
 		super(title);
-		// TODO Auto-generated constructor stub
-		this.Container = new ArrayList<JTextField>();
-		this.setPreferredSize(new Dimension(600, 300));
-		this.addRiquadro();
+		this.initialize();
+		this.makeEditable(false);
 	}
 
-	public void addRiquadro() {
-		form = new JPanel();
-		form.setBounds(0, 30, 600, 270);
-		this.add(form);
-		form.setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(155px;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(31px;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(140dlu;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(35dlu;default)"), }, new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
-				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
-				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
-				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
-				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
-				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
-				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"), }));
 
-		/*
-		 * Campo Base
-		 */
-
+	/**
+	 * Aggiunge il campo base
+	 */
+	private void addBase(){
 		this.lbbase = new JLabel("Base");
 		this.form.add(this.lbbase, "2, 2");
 		this.tfbase = new JTextField("0.0");
@@ -132,11 +109,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.lblIcoBase.setVisible(false);
 		this.form.add(lblIcoBase, "8, 2, center, top");
 		this.Label.add(lblIcoBase);
-
-		/*
-		 * Campo Altezza
-		 */
-
+	}
+		
+	/**
+	 * Aggiunge il campo altezza
+	 */
+	private void addAltezza(){
 		this.lbaltezza = new JLabel("Altezza");
 		form.add(this.lbaltezza, "2, 4");
 		this.tfaltezza = new JTextField("0.0");
@@ -171,11 +149,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.lblIcoAltezza.setVisible(false);
 		this.form.add(lblIcoAltezza, "8, 4, center, top");
 		this.Label.add(lblIcoAltezza);
-
-		/*
-		 * Campo Lunghezza
-		 */
-
+	}
+		
+	/**
+	 * Aggiunge il campo lunghezza
+	 */
+	private void addLunghezza(){
 		this.lblunghezza = new JLabel("Lunghezza");
 		form.add(this.lblunghezza, "2, 6");
 		this.tflunghezza = new JTextField("0.0");
@@ -210,11 +189,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.lblIcoLunghezza.setVisible(false);
 		this.form.add(lblIcoLunghezza, "8, 6, center, top");
 		this.Label.add(lblIcoLunghezza);
-
-		/*
-		 * Campo Numero
-		 */
-
+	}
+	
+	/**
+	 * Aggiunge il campo numero
+	 */
+	private void addNumero(){
 		this.lbnumero = new JLabel("Numero");
 		form.add(this.lbnumero, "2, 8");
 		this.tfnumero = new JTextField("0");
@@ -249,22 +229,24 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.lblIcoNumero.setVisible(false);
 		this.form.add(lblIcoNumero, "8, 8, center, top");
 		this.Label.add(lblIcoNumero);
-
-		/*
-		 * Campo Capitello
-		 */
-
+	}
+		
+	/**
+	 * Aggiunge il campo capitello
+	 */
+	private void addCapitello(){
 		this.lbcapitello = new JLabel("Capitello");
 		form.add(this.lbcapitello, "2, 10");
 		this.cbcapitello = new JComboBox<Object>();
 		form.add(this.cbcapitello, "6, 10, fill, fill");
 		this.cbcapitello.addItem(new String("Si"));
 		this.cbcapitello.addItem(new String("No"));
-
-		/*
-		 * Campo Tipo Capitello
-		 */
+	}
 		
+	/**
+	 * Aggiunge il campo tipo capitello
+	 */
+	private void addTipoCapitello(){
 		this.lbtipocapitello = new JLabel("Tipo Capitello");
 		form.add(this.lbtipocapitello, "2, 12");
 		this.tftipocapitello = new JTextField("null");
@@ -303,7 +285,6 @@ public class RiquadroDatiDistinta extends ARiquadro {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//System.out.print(cbcapitello.getSelectedItem().toString());
 				if (cbcapitello.getSelectedItem().toString().equals("No")) {
 					tftipocapitello.setEditable(false);
 					tftipocapitello.setText(null);
@@ -313,13 +294,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 				RiquadroDatiDistinta.this.repaint();
 			}
 		});
-		//this.validate();
-		//this.repaint();
+	}
 
-		/*
-		 * Campo Note
-		 */
-		
+	/**
+	 * Aggiunge il campo note
+	 */
+	private void addNote(){
 		this.lbnote = new JLabel("Note");
 		form.add(this.lbnote, "2, 14");
 		this.tfnote = new JTextField("null");
@@ -354,23 +334,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.lblIcoNote.setVisible(false);
 		this.form.add(lblIcoNote, "8, 14, center, top");
 		this.Label.add(lblIcoNote);
-
-		/*
-		 * this.toggle = new JButton("Chiudi"); this.toggle.addMouseListener(new
-		 * MouseAdapter() {
-		 * 
-		 * @Override public void mouseClicked(MouseEvent e) { if
-		 * (RiquadroDatiDistinta.this.aperto) {
-		 * RiquadroDatiDistinta.this.toggle.setText("Apri");
-		 * RiquadroDatiDistinta.this.aperto = false;
-		 * form.getParent().setSize(new Dimension(600, 30)); } else {
-		 * RiquadroDatiDistinta.this.toggle.setText("Chiudi");
-		 * RiquadroDatiDistinta.this.aperto = true; form.getParent().setSize(new
-		 * Dimension(600, 310)); } RiquadroDatiDistinta.this.validate();
-		 * RiquadroDatiDistinta.this.repaint(); } }); this.toggle.setSize(131,
-		 * 20); this.toggle.setLocation(469, 0); add(this.toggle);
-		 */
-
+	}
+	
+	/**
+	 * Aggiunge il bottone elimina
+	 */
+	private void addElimina(){
 		btnElimina = new JButton("Elimina");
 		btnElimina.setBounds(270, 0, 131, 20);
 		btnElimina.addMouseListener(new MouseAdapter() {
@@ -381,8 +350,6 @@ public class RiquadroDatiDistinta extends ARiquadro {
 				RigaLavoro r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
 				d.getOdistinta().eliminaRigaLavoro(r);
 				RiquadroDatiDistinta.this.removeAll();
-				// RiquadroDatiDistinta.this.validate();
-				// RiquadroDatiDistinta.this.repaint();
 				PlicoDistinta.getInstance().removeRiquadro(
 						RiquadroDatiDistinta.this);
 				PlicoDistinta.getInstance().posizionaAddButton();
@@ -392,6 +359,9 @@ public class RiquadroDatiDistinta extends ARiquadro {
 
 	}
 
+	/**
+	 * Carica il contenuto del riquadro
+	 */
 	@Override
 	public void load(Object o) {
 		RigaLavoro d = (RigaLavoro) o;
@@ -410,20 +380,24 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		}
 	}
 
+	/**
+	 * Rende editabile il campo data
+	 */
 	@Override
 	public void makeEditable(boolean editable) {
-		// TODO Auto-generated method stub
 		this.cbcapitello.setEnabled(editable);
 		super.makeEditable(editable);
 
 	}
 
+	
 	@Override
 	protected void resetRiquadro() {
-		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * Impedisca la modifica
+	 */
 	@Override
 	public void avoidEditing() {
 		super.avoidEditing();
@@ -433,11 +407,17 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		}
 	}
 
+	/**
+	 * Abilita la modifica
+	 */
 	@Override
 	public void enableEditing() {
 		super.enableEditing();
 	}
 
+	/**
+	 * Salva le modifiche sul db
+	 */
 	@Override
 	protected void salva() {
 		RigaLavoro r = RigaLavoroFactory.createRigaLavoro();
@@ -461,7 +441,6 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		try {
 			r.save();
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.oggetto = r;
@@ -473,6 +452,40 @@ public class RiquadroDatiDistinta extends ARiquadro {
 
 	public static Dimension getFormDimension() {
 		return RiquadroDatiDistinta.dimension;
+	}
+
+	/**
+	 * Imposta la grafica
+	 */
+	@Override
+	protected void initialize() {
+		this.setPreferredSize(new Dimension(600, 300));
+		this.form = new JPanel();
+		this.form.setBounds(0, 30, 600, 270);
+		this.form.setLayout(new FormLayout(new ColumnSpec[] {
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(155px;default)"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(31px;default)"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(140dlu;default)"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(35dlu;default)"), }, new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"), }));
+		this.addBase();
+		this.addAltezza();
+		this.addLunghezza();
+		this.addCapitello();
+		this.addTipoCapitello();
+		this.addNote();
+		this.addNumero();
+		this.addElimina();
 	}
 
 }

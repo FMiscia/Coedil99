@@ -40,6 +40,51 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 
 	public RiquadroDatiClienteConsegna(String title) {
 		super(title);
+		this.initialize();
+	}
+
+	/**
+	 * Metodo che carica il contenuto del riquadro
+	 */
+	@Override
+	public void load(Object o) {
+		this.oggetto = o;
+		this.resetRiquadro();
+		Cliente c = (Cliente) o;
+		if (c.getCantiere().getNome() != null)
+			this.txtCantiere.setText(c.getCantiere().getNome());
+		if (c.getName() != null)
+			this.txtCliente.setText(c.getName());
+		if (c.getNumeroCommessaCliente() != null)
+			this.txtCommessa.setText(c.getNumeroCommessaCliente().toString());
+	}
+
+	/**
+	 * Metodo che modifica i campi del model e lo salva sul db
+	 */
+	@Override
+	protected void salva() {
+		if (this.oggetto != null) {
+			Cliente c = (Cliente) this.oggetto;
+			c.getCantiere().setNome(this.txtCantiere.getText());
+			c.setName(this.txtCliente.getText());
+			try {
+				c.save();
+			} catch (PersistentException e) {
+				e.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null,
+					"Salvataggio avvenuto correttamente",
+					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+			this.load(this.oggetto);
+		}
+	}
+
+	/**
+	 * Imposta la grafica
+	 */
+	@Override
+	protected void initialize() {
 		this.setSize(new Dimension(600, 150));
 		this.form = new JPanel();
 		this.form.setBounds(0, 30, 600, 120);
@@ -56,11 +101,17 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
 				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
 				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"), }));
-
-		/*
-		 * Campo Cantiere
-		 */
-
+		this.addCantiere();
+		this.addCliente();
+		this.addCommessa();
+		this.makeEditable(false);
+	}
+	
+	/**
+	 * Aggiunge il campo cantiere
+	 * 
+	 */
+	private void addCantiere(){
 		this.lblCantiere = new JLabel("Cantiere");
 		this.form.add(this.lblCantiere, "2, 2");
 
@@ -97,11 +148,12 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		this.lblIcoCantiere.setVisible(false);
 		this.form.add(lblIcoCantiere, "8, 2, center, top");
 		this.Label.add(lblIcoCantiere);
-
-		/*
-		 * Campo Cliente
-		 */
-
+	}
+	
+	/**
+	 * Aggiunge il campo Cliente 
+	 */
+	private void addCliente(){
 		this.lblCliente = new JLabel("Cliente");
 		this.form.add(this.lblCliente, "2, 4, left, center");
 
@@ -138,11 +190,12 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		this.lblIcoCliente.setVisible(false);
 		this.form.add(lblIcoCliente, "8, 4, center, top");
 		this.Label.add(lblIcoCliente);
+	}
 
-		/*
-		 * Campo Commessa
-		 */
-
+	/**
+	 * Aggiunge il campo commessa
+	 */
+	private void addCommessa(){
 		this.lblCommessa = new JLabel("Commessa");
 		this.form.add(lblCommessa, "2, 6, left, center");
 
@@ -179,41 +232,6 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		this.lblIcoCommessa.setVisible(false);
 		this.form.add(lblIcoCommessa, "8, 6, center, top");
 		this.Label.add(lblIcoCommessa);
-
-		this.makeEditable(false);
-
-	}
-
-	@Override
-	public void load(Object o) {
-		this.oggetto = o;
-		this.resetRiquadro();
-		Cliente c = (Cliente) o;
-		if (c.getCantiere().getNome() != null)
-			this.txtCantiere.setText(c.getCantiere().getNome());
-		if (c.getName() != null)
-			this.txtCliente.setText(c.getName());
-		if (c.getNumeroCommessaCliente() != null)
-			this.txtCommessa.setText(c.getNumeroCommessaCliente().toString());
-	}
-
-	@Override
-	protected void salva() {
-		if (this.oggetto != null) {
-			Cliente c = (Cliente) this.oggetto;
-			c.getCantiere().setNome(this.txtCantiere.getText());
-			c.setName(this.txtCliente.getText());
-			try {
-				c.save();
-			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			JOptionPane.showMessageDialog(null,
-					"Salvataggio avvenuto correttamente",
-					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
-			this.load(this.oggetto);
-		}
 	}
 
 

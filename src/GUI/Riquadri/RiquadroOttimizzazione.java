@@ -36,6 +36,40 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	
 	public RiquadroOttimizzazione(String title) {
 		super(title);
+		this.initialize();
+
+	}
+
+	/**
+	 * Carica il contenuto del riquadro
+	 */
+	@Override
+	public void load(Object o) {
+		Item i = (Item) o;
+		OItem oi = i.getOItem();
+		this.txtLarg.setText(oi.getBase()+" cm");
+		this.txtAltezza.setText(oi.getAltezza()+" cm");
+		this.txtCommessaLung.setText(oi.getLunghezza()/100 +" m");
+		this.txtQual.setText("prova");
+		this.txtOrdineQuantita.setText("prova");
+		this.txtVolume.setText(oi.getBase()*oi.getAltezza()*oi.getLunghezza()/1000000+" m^3");
+		this.validate();
+		this.repaint();
+	}
+
+	@Override
+	protected void resetRiquadro() {
+	}
+
+	@Override
+	protected void salva() {
+	}
+
+	/**
+	 * Inizializza gli elementi grafici
+	 */
+	@Override
+	protected void initialize(){
 		remove(this.modifica);
 		this.validate();
 		this.repaint();
@@ -117,36 +151,7 @@ public class RiquadroOttimizzazione extends ARiquadro {
 		form.add(txtVolume, "6, 12, fill, default");
 		this.Container.add(txtVolume);
 		this.makeEditable(false);
-
 	}
-
-	@Override
-	public void load(Object o) {
-		// TODO Auto-generated method stub
-		Item i = (Item) o;
-		OItem oi = i.getOItem();
-		this.txtLarg.setText(oi.getBase()+" cm");
-		this.txtAltezza.setText(oi.getAltezza()+" cm");
-		this.txtCommessaLung.setText(oi.getLunghezza()/100 +" m");
-		this.txtQual.setText("prova");
-		this.txtOrdineQuantita.setText("prova");
-		this.txtVolume.setText(oi.getBase()*oi.getAltezza()*oi.getLunghezza()/1000000+" m^3");
-		this.validate();
-		this.repaint();
-	}
-
-	@Override
-	protected void resetRiquadro() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void salva() {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 
 }
