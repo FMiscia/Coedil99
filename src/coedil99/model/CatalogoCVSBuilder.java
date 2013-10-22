@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import org.orm.PersistentException;
@@ -26,7 +27,8 @@ public class CatalogoCVSBuilder extends CatalogoFornitoreBuilder {
 	 */
 	@Override
 	public void Parse(String catalogo) throws IOException {
-		CSVReader reader = new CSVReader(new FileReader(catalogo), '#');
+		URL url = CatalogoCVSBuilder.class.getResource("/GUI/TestFile/"+catalogo);
+		CSVReader reader = new CSVReader(new FileReader(url.getPath()), '#');
 		String[] fornitore = reader.readNext();
 		String[] nome_fornitore = reader.readNext();
 		String[] intestazione = reader.readNext();
