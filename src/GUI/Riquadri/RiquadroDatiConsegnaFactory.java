@@ -2,6 +2,12 @@ package GUI.Riquadri;
 
 import GUI.Abstract.ARiquadro;
 
+/**
+ * Factory riquadro dati consegna
+ * 
+ * @author Simone
+ *
+ */
 public class RiquadroDatiConsegnaFactory extends RiquadroFactory {
 
 	private static RiquadroFactory instance = null;

@@ -40,6 +40,67 @@ public class RiquadroDatiConsegna extends ARiquadro {
 
 	public RiquadroDatiConsegna(String title) {
 		super(title);
+		this.initialize();
+		this.makeEditable(false);
+	}
+
+	/**
+	 * Carica i dati relativi alla consegna
+	 * 
+	 * @param o
+	 */
+	@Override
+	public void load(Object o) {
+		this.oggetto = o;
+		this.resetRiquadro();
+		Commessa c = (Commessa) o;
+		if (c.getPrimaConsegna() != null)
+			this.dateDataPrimaConsegna.setDate(c.getPrimaConsegna());
+		else
+			this.dateDataPrimaConsegna.setDate(null);
+		if (c.getRitardoConsegna() != null)
+			this.txtRirardoConsegna.setText(c.getRitardoConsegna().toString());
+
+	}
+
+	/**
+	 * Modifica i campi del model e lo salva sul db
+	 */
+	@Override
+	protected void salva() {
+		if (this.oggetto != null) {
+			Commessa c = (Commessa) this.oggetto;
+			c.setPrimaConsegna(this.dateDataPrimaConsegna.getDate());
+			c.setRitardoConsegna(Integer.valueOf(this.txtRirardoConsegna
+					.getText()));
+			try {
+				c.save();
+			} catch (PersistentException e) {
+				e.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null,
+					"Salvataggio avvenuto correttamente",
+					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+			this.load(this.oggetto);
+		}
+	}
+
+	/**
+	 * Rende editabili il campo data
+	 * @param editable booleano
+	 */
+	@Override
+	public void makeEditable(boolean editable) {
+		this.dateDataPrimaConsegna.setEnabled(editable);
+		super.makeEditable(editable);
+
+	}
+
+	/**
+	 * Imposta la grafica
+	 */
+	@Override
+	protected void initialize() {
 		this.setSize(new Dimension(600, 120));
 		this.form = new JPanel();
 		this.form.setBounds(0, 30, 600, 80);
@@ -55,11 +116,14 @@ public class RiquadroDatiConsegna extends ARiquadro {
 				ColumnSpec.decode("max(35dlu;default)"), }, new RowSpec[] {
 				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
 				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"), }));
-
-		/*
-		 * Campo Data Prima Consegna
-		 */
-
+		this.addDataPrimaConsegna();
+		this.addRitardoConsegna();
+	}
+	
+	/**
+	* Aggiunge il campo Data Prima Consegna
+	*/
+	private void addDataPrimaConsegna(){
 		this.lblDataPrimaConsegna = new JLabel("Data Prima Consegna");
 		this.form.add(this.lblDataPrimaConsegna, "2, 2");
 
@@ -101,10 +165,12 @@ public class RiquadroDatiConsegna extends ARiquadro {
 		this.lblIcoDataPrimaConsegna.setVisible(false);
 		this.form.add(lblIcoDataPrimaConsegna, "8, 2, center, top");
 		this.Label.add(lblIcoDataPrimaConsegna);
+	}
 
-		/*
-		 * Campo Ritardo Consegna
-		 */
+	/**
+	 * Aggiunge il campo Ritardo Consegna
+	 */
+	private void addRitardoConsegna(){
 		this.lblRitardoConsegna = new JLabel("Ritardo Consegna");
 		this.form.add(this.lblRitardoConsegna, "2, 4");
 
@@ -141,49 +207,8 @@ public class RiquadroDatiConsegna extends ARiquadro {
 		this.lblIcoRirardoConsegna.setVisible(false);
 		this.form.add(lblIcoRirardoConsegna, "8, 4, center, top");
 		this.Label.add(lblIcoRirardoConsegna);
-		this.makeEditable(false);
 	}
-
-	@Override
-	public void load(Object o) {
-		this.oggetto = o;
-		this.resetRiquadro();
-		Commessa c = (Commessa) o;
-		if (c.getPrimaConsegna() != null)
-			this.dateDataPrimaConsegna.setDate(c.getPrimaConsegna());
-		else
-			this.dateDataPrimaConsegna.setDate(null);
-		if (c.getRitardoConsegna() != null)
-			this.txtRirardoConsegna.setText(c.getRitardoConsegna().toString());
-
-	}
-
-	@Override
-	protected void salva() {
-		if (this.oggetto != null) {
-			Commessa c = (Commessa) this.oggetto;
-			c.setPrimaConsegna(this.dateDataPrimaConsegna.getDate());
-			c.setRitardoConsegna(Integer.valueOf(this.txtRirardoConsegna
-					.getText()));
-			try {
-				c.save();
-			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			JOptionPane.showMessageDialog(null,
-					"Salvataggio avvenuto correttamente",
-					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
-			this.load(this.oggetto);
-		}
-	}
-
-	@Override
-	public void makeEditable(boolean editable) {
-		this.dateDataPrimaConsegna.setEnabled(editable);
-		super.makeEditable(editable);
-
-	}
+		
 
 
 }

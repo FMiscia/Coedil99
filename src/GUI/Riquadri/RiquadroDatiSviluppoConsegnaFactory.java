@@ -1,10 +1,11 @@
 package GUI.Riquadri;
 
 import GUI.Abstract.ARiquadro;
+
 /**
- * Factory di RiquadroDatiSviluppoConsegna
- * @author federico
- *
+ * Factory riquadro dati sviluppo consenga
+ * 
+ * @author Simone
  */
 public class RiquadroDatiSviluppoConsegnaFactory extends RiquadroFactory {
 
@@ -21,7 +22,6 @@ public class RiquadroDatiSviluppoConsegnaFactory extends RiquadroFactory {
 	 */
 	@Override
 	public ARiquadro makeRiquadro() {
-		// TODO Auto-generated method stub
 		return new RiquadroDatiSviluppoConsegna("Dati Sviluppo");
 	}
 

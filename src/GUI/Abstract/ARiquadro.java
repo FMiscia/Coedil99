@@ -21,8 +21,9 @@ import GUI.Riquadri.RiquadroDatiAziendali;
 /**
  * 
  * @author francesco
- *
- * Gestisce i riquadri del programma lavoro contenuti nei vari plichi (distinta,commessa,ddo)
+ * 
+ *         Gestisce i riquadri del programma lavoro contenuti nei vari plichi
+ *         (distinta,commessa,ddo)
  */
 @SuppressWarnings("serial")
 public abstract class ARiquadro extends JPanel {
@@ -33,11 +34,9 @@ public abstract class ARiquadro extends JPanel {
 	protected Object oggetto;
 	protected ArrayList<JLabel> Label;
 	protected ImageIcon IcoErrore = new ImageIcon(
-			RiquadroDatiAziendali.class
-					.getResource("/GUI/image/cancel.png"));
+			RiquadroDatiAziendali.class.getResource("/GUI/image/cancel.png"));
 	protected ImageIcon IcoOk = new ImageIcon(
-			RiquadroDatiAziendali.class
-					.getResource("/GUI/image/ok.png"));
+			RiquadroDatiAziendali.class.getResource("/GUI/image/ok.png"));
 	protected JLabel lblTitolo;
 
 	public ARiquadro(String title) {
@@ -48,7 +47,8 @@ public abstract class ARiquadro extends JPanel {
 	/**
 	 * Rende gli elementi del riquadro editabili su richiesta
 	 * 
-	 * @param editable:boolean
+	 * @param editable
+	 *            :boolean
 	 */
 	public void makeEditable(boolean editable) {
 		for (JTextField i : this.Container) {
@@ -59,7 +59,7 @@ public abstract class ARiquadro extends JPanel {
 				aperto = true;
 			} else {
 				ARiquadro.this.modifica.setText("salva");
-				//controlloErrori();
+				// controlloErrori();
 				aperto = false;
 			}
 			i.setEditable(editable);
@@ -115,7 +115,9 @@ public abstract class ARiquadro extends JPanel {
 
 	/**
 	 * Carica un riquadro
-	 * @param o:Object
+	 * 
+	 * @param o
+	 *            :Object
 	 */
 	public abstract void load(Object o);
 
@@ -149,11 +151,11 @@ public abstract class ARiquadro extends JPanel {
 			avoidEditing();
 		}
 	}
-	
+
 	/**
 	 * Imposta la grafica
 	 */
-	private void initialize(String title){
+	private void initialize(String title) {
 		this.aperto = true;
 		this.oggetto = null;
 		this.Container = new ArrayList<JTextField>();
@@ -196,5 +198,7 @@ public abstract class ARiquadro extends JPanel {
 		this.modifica.setLocation(469, 0);
 		add(this.modifica);
 	}
+
+	protected abstract void initialize();
 
 }

@@ -62,6 +62,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 
 	/**
 	 * Costruttore
+	 * 
 	 * @param title
 	 */
 	public RiquadroDatiAziendali(String title) {
@@ -73,7 +74,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * Aggiunge descrizione
 	 */
 	private void addDescrizione() {
-		// TODO Auto-generated method stub
 		this.lblDescrizione = new JLabel("Descrizione");
 		this.form.add(this.lblDescrizione, "2, 18");
 		this.txtDescrizione = new JTextField();
@@ -105,19 +105,16 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		});
 		this.Container.add(this.txtDescrizione);
 		this.form.add(this.txtDescrizione, "6, 18, fill, fill");
-
 		this.lblIcoDescrizione = new JLabel("");
 		this.lblIcoDescrizione.setVisible(false);
 		this.form.add(lblIcoDescrizione, "8, 18, center, top");
 		this.Label.add(lblIcoDescrizione);
-
 	}
 
 	/**
 	 * Aggiunge orario
 	 */
 	private void addOrario() {
-		// TODO Auto-generated method stub
 		this.lblOrario = new JLabel("Orario");
 		this.form.add(this.lblOrario, "2, 16");
 		this.txtOrario = new JTextField();
@@ -161,8 +158,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * Aggiunge data fine
 	 */
 	private void addDataFine() {
-		// TODO Auto-generated method stub
-
 		this.lblDataFine = new JLabel("Data Fine");
 		this.form.add(this.lblDataFine, "2, 14");
 		this.dateDataFine = new JXDatePicker();
@@ -219,8 +214,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * Aggiunge data inizio
 	 */
 	private void addDataInizio() {
-		// TODO Auto-generated method stub
-
 		this.lblDataInizio = new JLabel("Data Inizio");
 		this.form.add(this.lblDataInizio, "2, 12");
 		this.dateDataInizio = new JXDatePicker();
@@ -276,8 +269,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * Aggiunge ordine gestionale
 	 */
 	private void addOrdineGestionale() {
-		// TODO Auto-generated method stub
-
 		this.lblOrdineGestionale = new JLabel("Ordine Gestionale");
 		this.form.add(this.lblOrdineGestionale, "2, 10");
 		this.txtOrdineGestionale = new JTextField();
@@ -319,8 +310,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * Aggiunge commessa 
 	 */
 	private void addCommessaCoedil() {
-		// TODO Auto-generated method stub
-
 		this.lblCommessaCoedil = new JLabel("Commessa Coedil");
 		this.form.add(this.lblCommessaCoedil, "2, 8");
 		this.txtCommessaCoedil = new JTextField();
@@ -362,8 +351,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * Aggiunge ordine contratto
 	 */
 	private void addOrdineContratto() {
-		// TODO Auto-generated method stub
-
 		this.lblOrdineContratto = new JLabel("Ordine/Contratto");
 		this.form.add(this.lblOrdineContratto, "2, 6");
 		this.txtOrdineContratto = new JTextField();
@@ -407,7 +394,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * Aggiunge anno
 	 */
 	private void addAnno() {
-		// TODO Auto-generated method stub
 		this.lblAnno = new JLabel("Anno");
 		this.form.add(this.lblAnno, "2, 4");
 		this.txtAnno = new JTextField();
@@ -449,8 +435,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * Aggiunge OC
 	 */
 	private void addOC() {
-		// TODO Auto-generated method stub
-
 		this.lblOC = new JLabel("O/C");
 		this.form.add(this.lblOC, "2, 2, left, default");
 		this.txtOC = new JTextField();
@@ -486,11 +470,12 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.Label.add(lblIcoOC);
 	}
 
+	
 	/**
 	 * Inizializza gli elementi grafici
 	 */
-	private void initialize() {
-		// TODO Auto-generated method stub
+	@Override
+	protected void initialize() {
 		this.setSize(new Dimension(630, 370));
 		this.form = new JPanel();
 		this.form.setBounds(0, 30, 600, 340);
@@ -527,7 +512,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 
 	@Override
 	/**
-	 * carica i dati della commessa
+	 * Carica i dati della commessa
 	 */
 	public void load(Object o) {
 		this.oggetto = o;
@@ -559,7 +544,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	}
 
 	/**
-	 * Metodo che modifica i campi deglli oggetti interessati e li salva sul db
+	 * Metodo che modifica i campi degli oggetti interessati e li salva sul db
 	 */
 	@Override
 	protected void salva() {
@@ -574,7 +559,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 			try {
 				ord.save();
 			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			c.setOrario(this.txtOrario.getText());
@@ -582,7 +566,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 			try {
 				c.save();
 			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			JOptionPane.showMessageDialog(null,
@@ -594,10 +577,9 @@ public class RiquadroDatiAziendali extends ARiquadro {
 
 	@Override
 	/**
-	 * rende editabili i campi data 
+	 * Rende editabili i campi data 
 	 */
 	public void makeEditable(boolean editable) {
-		// TODO Auto-generated method stub
 		this.dateDataInizio.setEnabled(editable);
 		this.dateDataFine.setEnabled(editable);
 		super.makeEditable(editable);

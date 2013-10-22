@@ -36,28 +36,15 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 
 	public RiquadroDatiProduzioneConsegna(String title) {
 		super(title);
-		lblTitolo.setBounds(0, 1, 170, 20);
-		this.setSize(new Dimension(600, 150));
-		this.form = new JPanel();
-		this.form.setBounds(0, 30, 600, 120);
-		this.add(form);
-		this.form.setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(155px;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(31px;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(140dlu;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(35dlu;default)"), }, new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
-				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
-				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"), }));
+		this.initialize();
+		this.makeEditable(false);
+	}
+	
 
-		/*
-		 * Campo Data Inizio
-		 */
-
+	/**
+	 * Aggiunge il campo data inizio
+	 */
+	private void addDataInizio(){
 		this.lblDataInizio = new JLabel("Data Inizio");
 		this.form.add(this.lblDataInizio, "2, 2");
 
@@ -107,11 +94,12 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 		this.lblIcoDataInizio.setVisible(false);
 		this.form.add(lblIcoDataInizio, "8, 2, center, top");
 		this.Label.add(lblIcoDataInizio);
-
-		/*
-		 * Campo Data Fine
-		 */
-
+	}
+	
+	/**
+	 * Aggiunge il campo data fine
+	 */
+	private void addDataFine(){
 		this.lblDataFine = new JLabel("Data Fine");
 		this.form.add(this.lblDataFine, "2, 4");
 
@@ -161,11 +149,13 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 		this.lblIcoDataFine.setVisible(false);
 		this.form.add(lblIcoDataFine, "8, 4, center, top");
 		this.Label.add(lblIcoDataFine);
+	}
 
-		/*
-		 * Campo Data Scadenza Sviluppo
-		 */
 
+	/**
+	 * Aggiunge il campo data scadenza sviluppo
+	 */
+	private void addDataScadenzaSviluppo(){
 		this.lblScadenzaSviluppo = new JLabel("Scadenza Sviluppo");
 		this.form.add(this.lblScadenzaSviluppo, "2, 6");
 
@@ -207,9 +197,11 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 		this.lblIcoScadenzaSviluppo.setVisible(false);
 		this.form.add(lblIcoScadenzaSviluppo, "8, 6, center, top");
 		this.Label.add(lblIcoScadenzaSviluppo);
-		this.makeEditable(false);
 	}
 
+	/**
+	 * Carica il contenuto del riquadro
+	 */
 	@Override
 	public void load(Object o) {
 		this.oggetto = o;
@@ -231,6 +223,9 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 			this.dateScadenzaSviluppo.setDate(null);
 	}
 
+	/**
+	 * Salva le modifiche sul db
+	 */
 	@Override
 	protected void salva() {
 		if (this.oggetto != null) {
@@ -241,7 +236,6 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 			try {
 				ord.save();
 			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			JOptionPane.showMessageDialog(null,
@@ -251,6 +245,9 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 		}
 	}
 
+	/**
+	 * Rende editabili i campi data
+	 */
 	@Override
 	public void makeEditable(boolean editable) {
 		this.dateDataInizio.setEnabled(editable);
@@ -258,6 +255,33 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 		this.dateScadenzaSviluppo.setEnabled(editable);
 		super.makeEditable(editable);
 
+	}
+
+	/**
+	 * Imposta la grafica
+	 */
+	@Override
+	protected void initialize() {
+		lblTitolo.setBounds(0, 1, 170, 20);
+		this.setSize(new Dimension(600, 150));
+		this.form = new JPanel();
+		this.form.setBounds(0, 30, 600, 120);
+		this.add(form);
+		this.form.setLayout(new FormLayout(new ColumnSpec[] {
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(155px;default)"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(31px;default)"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(140dlu;default)"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(35dlu;default)"), }, new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"), }));
+		this.addDataInizio();
+		this.addDataFine();
+		this.addDataScadenzaSviluppo();
 	}
 
 }

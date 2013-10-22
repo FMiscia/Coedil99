@@ -45,7 +45,8 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	/**
 	 * Inizializza gli elementi grafici
 	 */
-	private void initialize() {
+	protected void initialize() {
+
 		remove(this.modifica);
 		this.validate();
 		this.repaint();
@@ -78,7 +79,6 @@ public class RiquadroOttimizzazione extends ARiquadro {
 		this.addQuant();
 		this.addVol();
 		this.makeEditable(false);
-
 	}
 
 	/**
