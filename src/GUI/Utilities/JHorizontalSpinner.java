@@ -4,11 +4,11 @@ import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 
 import javax.swing.JSpinner;
-import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
 
-    public class JHorizontalSpinner extends JSpinner{
+    @SuppressWarnings("serial")
+	public class JHorizontalSpinner extends JSpinner{
 
         public JHorizontalSpinner(){
             super(	new SpinnerNumberModel(1,1,50,1));

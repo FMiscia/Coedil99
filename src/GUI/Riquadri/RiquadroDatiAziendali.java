@@ -28,6 +28,12 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+/**
+ * Riquadro dati aziendali
+ * 
+ * @author Simone
+ *
+ */
 @SuppressWarnings("serial")
 public class RiquadroDatiAziendali extends ARiquadro {
 
