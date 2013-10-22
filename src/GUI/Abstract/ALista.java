@@ -2,6 +2,7 @@ package GUI.Abstract;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
@@ -22,11 +23,6 @@ public abstract class ALista extends JScrollPane {
 
 	protected static Color coloreDeselezionato = new Color(30, 144, 255);
 	protected JPanel panel;
-	protected JPanel panelTitle = new JPanel(new GridBagLayout());
-	protected JLabel labeltitle = new JLabel("Lista Righe RDA");
-	protected JLabel labelprezzo = new JLabel("Prezzo RDA:");
-	protected JButton btnSalva = new JButton("Salva RDA");
-	protected JButton btnElimina = new JButton("Elimina RDA");
 	protected ARiepilogoRDA riepilogoRDA;
 
 	/**
@@ -73,6 +69,7 @@ public abstract class ALista extends JScrollPane {
 	 */
 	public void svuota() {
 		this.panel.removeAll();
+		this.panel.setPreferredSize(new Dimension(this.panel.getWidth(),0));
 		this.panel.validate();
 		this.panel.repaint();
 	}
@@ -86,32 +83,13 @@ public abstract class ALista extends JScrollPane {
 	public abstract void updatePanel();
 
 	/**
-	 * 
-	 * @return panelTitle:JPanel
-	 */
-	public JPanel getPanelTitle() {
-		return panelTitle;
-	}
-
-	/**
-	 * 
-	 * @param panelTitle
-	 *            :JPanel
-	 */
-	public void setPanelTitle(JPanel panelTitle) {
-		this.panelTitle = panelTitle;
-	}
-	
-	/**
 	 * Imposta la grafica
 	 */
 	private void initialize() {
 		this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		this.getVerticalScrollBar().setUnitIncrement(20);
-		this.panel = new JPanel(null);
+		this.panel = new JPanel(new WrapLayout());
 		this.setViewportView(this.panel);
-		this.panel.setLayout(new WrapLayout());
-
 	}
 
 }

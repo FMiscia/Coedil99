@@ -81,8 +81,7 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 
 					PlicoRDA prda = PlicoRDA.getInstance();
 					ListaRigheRDA lista_rda = prda.getListaRigheRDA();
-					prda.resetFormRDA();
-					lista_rda.getPanel().removeAll();
+					prda.reset();
 					rdac.getClipPanel().focusToRDACongelate();
 					lista_rda.load(new ArrayList<Object>(rdac
 							.getRDASelezionata().righeRDA.getCollection()));
@@ -113,23 +112,16 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 								.getInstance().makeLista(GestisciRDAHandler.CONGELATA);
 						RDACenter.getInstance().setLista(listarda);
 						PlicoRDA prda = PlicoRDA.getInstance();
-						ListaRigheRDA lista_rda = prda.getListaRigheRDA();
-						prda.resetFormRDA();
-						listarda.getPanel().removeAll();
-						listarda.load(RDACenter.getInstance().getRDASelezionata().getState());
+						prda.reset();
+						ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
+						//listarda.svuota();
+						listarda.load(GestisciRDAHandler.CONGELATA);
 						RDACenter.getInstance().setRDASelezionata(
 								GestisciRDAHandler.getInstance().getRDAById(
 										listarda.getPrimaRDA()));
-						lista_rda.getPanel().removeAll();
-						lista_rda.load(new ArrayList<Object>(RDACenter
+						lista_righe_rda.load(new ArrayList<Object>(RDACenter
 								.getInstance().getRDASelezionata().righeRDA
 								.getCollection()));
-						lista_rda.validate();
-						lista_rda.repaint();
-						listarda.validate();
-						listarda.repaint();
-						CoedilFrame.getInstance().pack();
-						CoedilFrame.getInstance().setVisible(true);
 					}
 				}
 			});

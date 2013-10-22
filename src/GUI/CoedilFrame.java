@@ -29,9 +29,9 @@ public class CoedilFrame extends JFrame {
 	 */
 	public static void main(String[] args) {
 		UIManager.put("ScrollBarUI", WebScrollBarUI.class.getName());
-		CatalogoCSVBuilder cvs = new CatalogoCSVBuilder();
-		GestisciFornitoreHandler.getInstance().setBuilder(cvs);
-		GestisciFornitoreHandler.getInstance().ConstructCatalogo("csv_test.csv");
+		//CatalogoCSVBuilder cvs = new CatalogoCSVBuilder();
+		//GestisciFornitoreHandler.getInstance().setBuilder(cvs);
+		//GestisciFornitoreHandler.getInstance().ConstructCatalogo("csv_test.csv");
 		try {
 			int delay = 500;
 			boolean developmentMode = true;

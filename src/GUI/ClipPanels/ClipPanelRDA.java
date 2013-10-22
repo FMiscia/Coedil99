@@ -257,7 +257,7 @@ public class ClipPanelRDA extends AClipPanel {
 				JButton b = (JButton) arg0.getSource();
 				b.setBackground(new Color(180, 180, 180));
 				PlicoRDA prda = PlicoRDA.getInstance();
-				prda.getListaRigheRDA().svuota();
+				prda.reset();
 				CreaFormRDA form = (CreaFormRDA) CreaFormRDAFactory
 						.getInstance().makeFormRDA();
 				prda.addFormRDA(form);

@@ -125,4 +125,12 @@ public class PlicoRDA extends APlico {
 			this.repaint();
 		}
 	}
+	
+	/**
+	 * Svuota la lista righe rda e resetta la form
+	 */
+	public void reset(){
+		this.listaRigheRDA.svuota();
+		this.resetFormRDA();
+	}
 }

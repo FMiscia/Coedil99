@@ -161,7 +161,7 @@ public class CreaFormRDA extends AFormRDA {
 				rdac.getLista());
 		RDA rda = RDAFactory.createRDA();
 		rdaCard.load(rda);
-		rdac.getLista().getPanel().removeAll();
+		rdac.getLista().svuota();
 		rdac.getLista().addCard(rdaCard);
 		rdac.setRDASelezionata(rda);
 		rdac.getLista().deselectAll();

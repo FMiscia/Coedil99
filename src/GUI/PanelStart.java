@@ -14,8 +14,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import coedil99.controller.GestisciRDAHandler;
 import GUI.ClipPanels.ClipPanelMenu;
 import GUI.ClipPanels.ClipPanelMenuFactory;
+import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDAFactory;
 
 public class PanelStart extends JPanel {
 
@@ -109,8 +113,9 @@ public class PanelStart extends JPanel {
 					RDACenter rda = RDACenter.getInstance();
 					rda.loadListaRigheRDA();
 				}
-				RDACenter.getInstance().add(RDACenter.getInstance().getLista(),
-						BorderLayout.WEST);
+				ListaRDA listarda = (ListaRDA) ListaRDAFactory
+						.getInstance().makeLista(GestisciRDAHandler.CONGELATA);
+				RDACenter.getInstance().setLista(listarda);
 				ArrayList<JButton> b = RDACenter.getInstance().getClipPanel()
 						.getButtons();
 				CoedilFrame.getInstance().montaPanel(RDACenter.getInstance());

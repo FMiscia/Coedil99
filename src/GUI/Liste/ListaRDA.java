@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import GUI.Abstract.ALista;
 import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
+import GUI.Utilities.WrapLayout;
 import coedil99.controller.GestisciRDAHandler;
 
 @SuppressWarnings("serial")
@@ -39,16 +42,15 @@ public class ListaRDA extends ALista {
 		ArrayList<Object> t = null;
 		t = new ArrayList<Object>(GestisciRDAHandler.getInstance()
 				.getArrayRDA(tipo));
-		// int row = GestisciRDAHandler.getInstance().getNumOfRDA();
-		this.getViewport().setPreferredSize(new Dimension(150, t.size() * 70));
+		this.getViewport().setPreferredSize(new Dimension(300, t.size() * 70));
+		this.panel.setPreferredSize(new Dimension(300, t.size() * 70));
 		for (int k = 0; k < t.size(); ++k) {
 			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(this);
 			r.load(GestisciRDAHandler.getInstance().getArrayRDA(tipo).get(k));
 
-			panel.add(r);
+			this.panel.add(r);
 
 		}
-		// this.setPreferredSize(new Dimension(260, panel.getHeight()));
 		this.validate();
 		this.repaint();
 
@@ -117,7 +119,6 @@ public class ListaRDA extends ALista {
 	 * Carica la lista senza alcun tipo (not yet implemented)
 	 */
 	public void load() {
-		// TODO Auto-generated method stub
 
 	}
 
