@@ -18,6 +18,12 @@ import javax.swing.border.LineBorder;
 
 import GUI.Riquadri.RiquadroDatiAziendali;
 
+/**
+ * 
+ * @author francesco
+ *
+ * Gestisce i riquadri del programma lavoro contenuti nei vari plichi (distinta,commessa,ddo)
+ */
 @SuppressWarnings("serial")
 public abstract class ARiquadro extends JPanel {
 
@@ -36,6 +42,118 @@ public abstract class ARiquadro extends JPanel {
 
 	public ARiquadro(String title) {
 		super();
+		this.initialize(title);
+	}
+
+	/**
+	 * Rende gli elementi del riquadro editabili su richiesta
+	 * 
+	 * @param editable:boolean
+	 */
+	public void makeEditable(boolean editable) {
+		for (JTextField i : this.Container) {
+			if (!editable) {
+				i.setBackground(Color.getColor("textInactiveText"));
+				i.setBorder(new LineBorder(Color.gray));
+				ARiquadro.this.modifica.setText("modifica");
+				aperto = true;
+			} else {
+				ARiquadro.this.modifica.setText("salva");
+				//controlloErrori();
+				aperto = false;
+			}
+			i.setEditable(editable);
+		}
+		for (JLabel j : this.Label) {
+			if (!editable) {
+				j.setVisible(false);
+			} else {
+				j.setVisible(true);
+			}
+		}
+		this.validate();
+		this.repaint();
+	}
+
+	/**
+	 * Elimina i listener dai bottoni dei riquadri
+	 */
+	public void avoidEditing() {
+		this.modifica.setEnabled(false);
+		for (MouseListener al : ARiquadro.this.modifica.getMouseListeners()) {
+			ARiquadro.this.modifica.removeMouseListener(al);
+		}
+		this.validate();
+		this.repaint();
+	}
+
+	/**
+	 * Riabilita i listener dai bottoni dei riquadri
+	 */
+	public void enableEditing() {
+		this.modifica.setEnabled(true);
+		this.modifica.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (aperto) {
+					ARiquadro.this.modifica.setText("salva");
+					aperto = false;
+					ARiquadro.this.makeEditable(true);
+					// form.getParent().setSize(new Dimension(600,30));
+				} else {
+					ARiquadro.this.salva();
+					ARiquadro.this.modifica.setText("modifica");
+					aperto = true;
+					ARiquadro.this.makeEditable(false);
+					// form.getParent().setSize(new Dimension(600,290));
+				}
+			}
+		});
+		validate();
+		repaint();
+	}
+
+	/**
+	 * Carica un riquadro
+	 * @param o:Object
+	 */
+	public abstract void load(Object o);
+
+	/**
+	 * Elimina i contenuti delle textField dei riquadri
+	 */
+	protected void resetRiquadro() {
+		if (this.Container.size() != 0) {
+			for (JTextField txt : Container)
+				txt.setText("");
+		}
+	}
+
+	/**
+	 * Salva il riquadro
+	 */
+	protected abstract void salva();
+
+	/**
+	 * Controllo deigli errori di input
+	 */
+	public void controlloErrori() {
+		boolean test = true;
+		for (JLabel j : this.Label) {
+			if (j.getIcon() != null && j.getIcon().equals(IcoErrore))
+				test = false;
+		}
+		if (test) {
+			enableEditing();
+		} else {
+			avoidEditing();
+		}
+	}
+	
+	/**
+	 * Imposta la grafica
+	 */
+	private void initialize(String title){
 		this.aperto = true;
 		this.oggetto = null;
 		this.Container = new ArrayList<JTextField>();
@@ -77,88 +195,6 @@ public abstract class ARiquadro extends JPanel {
 		this.modifica.setSize(131, 20);
 		this.modifica.setLocation(469, 0);
 		add(this.modifica);
-
-	}
-
-	public void makeEditable(boolean editable) {
-		for (JTextField i : this.Container) {
-			if (!editable) {
-				i.setBackground(Color.getColor("textInactiveText"));
-				i.setBorder(new LineBorder(Color.gray));
-				ARiquadro.this.modifica.setText("modifica");
-				aperto = true;
-			} else {
-				ARiquadro.this.modifica.setText("salva");
-				//controlloErrori();
-				aperto = false;
-			}
-			i.setEditable(editable);
-		}
-		for (JLabel j : this.Label) {
-			if (!editable) {
-				j.setVisible(false);
-			} else {
-				j.setVisible(true);
-			}
-		}
-		this.validate();
-		this.repaint();
-	}
-
-	public void avoidEditing() {
-		this.modifica.setEnabled(false);
-		for (MouseListener al : ARiquadro.this.modifica.getMouseListeners()) {
-			ARiquadro.this.modifica.removeMouseListener(al);
-		}
-		this.validate();
-		this.repaint();
-	}
-
-	public void enableEditing() {
-		this.modifica.setEnabled(true);
-		this.modifica.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (aperto) {
-					ARiquadro.this.modifica.setText("salva");
-					aperto = false;
-					ARiquadro.this.makeEditable(true);
-					// form.getParent().setSize(new Dimension(600,30));
-				} else {
-					ARiquadro.this.salva();
-					ARiquadro.this.modifica.setText("modifica");
-					aperto = true;
-					ARiquadro.this.makeEditable(false);
-					// form.getParent().setSize(new Dimension(600,290));
-				}
-			}
-		});
-		validate();
-		repaint();
-	}
-
-	public abstract void load(Object o);
-
-	protected void resetRiquadro() {
-		if (this.Container.size() != 0) {
-			for (JTextField txt : Container)
-				txt.setText("");
-		}
-	}
-
-	protected abstract void salva();
-
-	public void controlloErrori() {
-		boolean test = true;
-		for (JLabel j : this.Label) {
-			if (j.getIcon() != null && j.getIcon().equals(IcoErrore))
-				test = false;
-		}
-		if (test) {
-			enableEditing();
-		} else {
-			avoidEditing();
-		}
 	}
 
 }

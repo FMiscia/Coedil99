@@ -23,6 +23,14 @@ import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.RDA;
 
+/**
+ * 
+ * @author francesco
+ *
+ * Gestisce il pannello che mostra i dettagli principali di una RDA in
+ * modo da rintracciarla visivamente
+ */
+@SuppressWarnings("serial")
 public class CardRDA extends ACard {
 
 	private ListaRDA riquadro = null;
@@ -34,7 +42,9 @@ public class CardRDA extends ACard {
 	private JLabel data = null;
 	private boolean saved = false;
 
-
+	/**
+	 * Hash Map statico che fornisce un icona a seconda di uno stato RDA
+	 */
 	private static HashMap<String, ImageIcon> state_map;
 	static {
 		
@@ -61,6 +71,10 @@ public class CardRDA extends ACard {
 						.getResource("/GUI/image/confermata.png")));
 	}
 
+	/**
+	 * Costruttore (prende il padre come parametro)
+	 * @param rda:ListaRDA
+	 */
 	public CardRDA(ListaRDA rda) {
 		super(rda);
 		this.riquadro = rda;
@@ -106,6 +120,10 @@ public class CardRDA extends ACard {
 	}
 
 	@Override
+	/**
+	 * Carica una RDA
+	 * @param o:Object
+	 */
 	public void load(Object o) {
 		// TODO Auto-generated method stub
 		final RDA rda = (RDA) o;
@@ -128,6 +146,7 @@ public class CardRDA extends ACard {
 		
 		this.addMouseListener(new MouseAdapter() {
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub

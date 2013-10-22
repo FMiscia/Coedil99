@@ -47,20 +47,18 @@ public abstract class AClipPanel extends JPanel {
 	private static Color coloreSelezionato = new Color(180,180,180);
 	
 	/**
-	 * Abstract Factory 
+	 * Costruttore: imposta i parametri standard dei clip panel
 	 */
 	public AClipPanel() {
-		this.setLayout(new GridLayout(1, 0));
-		this.setBackground(new Color(238, 238, 238));
-		this.setPreferredSize(new Dimension(210, 40));
-		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		this.initialize();
+
 	}
-	
-	
+
+
 	/**
 	 * Metodo che aggiunge un nuovo bottone al clipPanel
 	 * 
-	 * @param label: Stringa che dovrà contenere il bottone
+	 * @param label: Stringa che dovrÃ  contenere il bottone
 	 * @param ToolTip: Testo per il tooltip del bottone
 	 * @param click: ActionListener del bottone
 	 */
@@ -96,7 +94,7 @@ public abstract class AClipPanel extends JPanel {
 	/**
 	 * Metodo per la creazione del bottone
 	 * 
-	 * @param label: Stringa che dovrà contenere il bottone
+	 * @param label: Stringa che dovrï¿½ contenere il bottone
 	 * @param ToolTip: Testo per il tooltip del bottone
 	 * @return bottone creato
 	 */
@@ -151,7 +149,7 @@ public abstract class AClipPanel extends JPanel {
 	}
 	
 	/**
-	 * Metodo che controlla se un bottone è selezionato [test in base al suo colore di sfondo]
+	 * Metodo che controlla se un bottone ï¿½ selezionato [test in base al suo colore di sfondo]
 	 * 
 	 * @param b: Bottone 
 	 * @return booleano
@@ -187,6 +185,16 @@ public abstract class AClipPanel extends JPanel {
 	 */
 	public static Color getColoreSelezionato() {
 		return coloreSelezionato;
+	}
+	
+	/**
+	 * Imposta la grafica
+	 */
+	private void initialize() {
+		this.setLayout(new GridLayout(1, 0));
+		this.setBackground(new Color(238, 238, 238));
+		this.setPreferredSize(new Dimension(210, 40));
+		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 	}
 
 }

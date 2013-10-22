@@ -2,136 +2,102 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import GUI.ProgrammaLavori;
 import GUI.Abstract.APlico;
-import GUI.ClipPanels.ClipPanelProgrammaLavori;
 import GUI.Plichi.PlicoCommessa;
-
 import coedil99.model.Commessa;
 
 @SuppressWarnings("serial")
 public class RaccoglitorePlichi extends JPanel {
 
-	private JPanel plico;
-	private JPanel paper_container;
-	private JPanel paper_panel;
+	private JPanel plico_container = new JPanel();
+	private JPanel plico = new JPanel();
 	private JScrollPane scrollPaneWrapper = new JScrollPane();
-	
 	private static RaccoglitorePlichi instance = null;
 
+	/**
+	 * Costruttore
+	 */
 	private RaccoglitorePlichi() {
-
-		this.setLayout(new BorderLayout());
-		this.paper_container = new JPanel();
-		paper_container.setBackground(new Color(240, 230, 140));
-		paper_container.setLayout(new BorderLayout());
-
-		this.add(this.scrollPaneWrapper, BorderLayout.CENTER);
-		this.scrollPaneWrapper.setViewportView(this.paper_container);
-		this.scrollPaneWrapper.getVerticalScrollBar().setUnitIncrement(20);
-
-		this.paper_panel = new JPanel();
-
-		this.paper_container.add(this.paper_panel, BorderLayout.CENTER);
-
+		this.initialize();
 	}
 
+	/**
+	 * Inizializza le componenti grafiche
+	 */
+	private void initialize() {
+		this.setLayout(new BorderLayout());
+		plico_container.setLayout(new BorderLayout());
+		plico_container.setBackground(new Color(240, 230, 140));
+		this.add(this.scrollPaneWrapper, BorderLayout.CENTER);
+		this.scrollPaneWrapper.setViewportView(this.plico_container);
+		this.scrollPaneWrapper.getVerticalScrollBar().setUnitIncrement(20);
+		this.plico_container.add(this.plico, BorderLayout.CENTER);
+	}
+
+	/**
+	 * 
+	 * @return JPanel
+	 */
 	public JPanel getPlico() {
 		return plico;
 	}
 
-	public void setPlico(JPanel plico) {
-		this.plico = plico;
+	/**
+	 * 
+	 * @param paper_panel
+	 */
+	public void setPlico(JPanel paper_panel) {
+		this.plico = paper_panel;
 	}
 
-	public JPanel getPaperContainer() {
-		return paper_container;
-	}
+	/**
+	 * 
+	 * @param p: Il plico da mostrare
+	 */
+	public void changePlico(APlico p) {
 
-	public void setPaperContainer(JPanel panel) {
-		this.paper_container = panel;
-	}
-
-	public JPanel getPaperPanel() {
-		return paper_panel;
-	}
-
-	public void setPaperPanel(JPanel paper_panel) {
-		this.paper_panel = paper_panel;
-	}
-
-	public void changePlico(APlico plico) {
-
-		RaccoglitorePlichi.this.getPaperPanel().removeAll();
-		ProgrammaLavori cont = ProgrammaLavori.getInstance();
-		plico.load(cont.getCommessaSelezionata().getID());
-		// plico.load( );
-
-		RaccoglitorePlichi.this.getPaperPanel().add(plico);
-		RaccoglitorePlichi.this.getPaperPanel().getComponent(0)
-				.addComponentListener(new ComponentListener() {
-
-					@Override
-					public void componentShown(ComponentEvent e) {
-						// TODO Auto-generated method stub
-					}
-
-					@Override
-					public void componentResized(ComponentEvent e) {
-						// RiquadroPlico.this.aggiornaAltezze();
-
-					}
-
-					@Override
-					public void componentMoved(ComponentEvent e) {
-						// TODO Auto-generated method stub
-
-					}
-
-					@Override
-					public void componentHidden(ComponentEvent e) {
-						// TODO Auto-generated method stub
-
-					}
-				});
-		// aggiornaAltezze();
-		RaccoglitorePlichi.this.getPaperPanel().validate();
-		RaccoglitorePlichi.this.getPaperPanel().repaint();
+		RaccoglitorePlichi.this.getPlico().removeAll();
+		ProgrammaLavori pl = ProgrammaLavori.getInstance();
+		p.load(pl.getCommessaSelezionata().getID());
+		RaccoglitorePlichi.this.getPlico().add(p);
+		RaccoglitorePlichi.this.getPlico().validate();
+		RaccoglitorePlichi.this.getPlico().repaint();
 
 	}
 
+	/**
+	 * 
+	 * @param c
+	 *            : la commessa da caricare
+	 */
 	public void caricaPrimaCommessa(Commessa c) {
 		PlicoCommessa plico = PlicoCommessa.getInstance();
 		plico.load(c.getID());
-		// plico.load( );
-
-		RaccoglitorePlichi.this.getPaperPanel().add(plico);
-		// aggiornaAltezze();
-		RaccoglitorePlichi.this.getPaperPanel().validate();
-		RaccoglitorePlichi.this.getPaperPanel().repaint();
+		RaccoglitorePlichi.this.getPlico().add(plico);
+		RaccoglitorePlichi.this.getPlico().validate();
+		RaccoglitorePlichi.this.getPlico().repaint();
 	}
 
-	
-	public static RaccoglitorePlichi getInstance(){
-		if(instance==null)
+	/**
+	 * Singleton
+	 * 
+	 * @return RaccoglitorePlichi
+	 */
+	public static RaccoglitorePlichi getInstance() {
+		if (instance == null)
 			RaccoglitorePlichi.instance = new RaccoglitorePlichi();
-		
 		return instance;
-		
 	}
-	
+
+	/**
+	 * 
+	 * @return JScrollPane
+	 */
 	public JScrollPane getScrollPaneWrapper() {
 		return scrollPaneWrapper;
 	}
-
-
-
 
 }

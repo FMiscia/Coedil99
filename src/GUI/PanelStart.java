@@ -9,36 +9,31 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import org.orm.PersistentException;
-
-import coedil99.controller.GestisciRDAHandler;
-
 import GUI.ClipPanels.ClipPanelMenu;
 import GUI.ClipPanels.ClipPanelMenuFactory;
 
 public class PanelStart extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel pannelloUseCases = new JPanel();
 	private ClipPanelMenu clipPanel = (ClipPanelMenu) ClipPanelMenuFactory
 			.getInstance().makeClipPanel();
 
-	public PanelStart(CoedilFrame f) {
-
+	/**
+	 * Costruttore
+	 */
+	public PanelStart() {
 		this.initUI();
-
 	}
 
+	/**
+	 * Inizializza il panel con un ClipPanel e il Pannello di selezione attività
+	 */
 	private void initUI() {
 
 		this.setLayout(new BorderLayout());
@@ -49,11 +44,17 @@ public class PanelStart extends JPanel {
 		this.addClipPanel();
 	}
 
+	/**
+	 * Aggiunge il ClipPanel, pannello dei button in alto
+	 */
 	private void addClipPanel() {
 		// TODO Auto-generated method stub
 		this.add(clipPanel, BorderLayout.NORTH);
 	}
 
+	/**
+	 * Aggiunge il Pannello di selezione attività
+	 */
 	private void addPannelloUseCases() {
 		// TODO Auto-generated method stub
 		this.pannelloUseCases = new JPanel();
@@ -63,6 +64,9 @@ public class PanelStart extends JPanel {
 
 	}
 
+	/**
+	 * Aggiunge un button vuoto solo per motivi grafici, numero pari
+	 */
 	private void addOTHERButton() {
 		// TODO Auto-generated method stub
 
@@ -81,6 +85,9 @@ public class PanelStart extends JPanel {
 
 	}
 
+	/**
+	 * Aggiunge un button di attività: Gestisci RDA
+	 */
 	private void addRDAButton() {
 		// TODO Auto-generated method stub
 		JButton RDAButton = new JButton();
@@ -113,6 +120,9 @@ public class PanelStart extends JPanel {
 
 	}
 
+	/**
+	 * Aggiunge un button di attività: Programma Lavori
+	 */
 	private void addPLButton() {
 		// TODO Auto-generated method stub
 		JButton plButton = new JButton();

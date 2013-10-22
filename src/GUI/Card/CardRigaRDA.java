@@ -1,33 +1,24 @@
 package GUI.Card;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import javax.swing.JTable;
-
 import org.orm.PersistentException;
 
-import GUI.ProgrammaLavori;
 import GUI.RDACenter;
 import GUI.Abstract.ACard;
-import GUI.ClipPanels.ClipPanelRDA;
 import GUI.FormRDA.ModificaFormRDA;
 import GUI.FormRDA.ModificaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
-import GUI.Plichi.PlicoDDO;
 import GUI.Plichi.PlicoRDA;
 import coedil99.model.RigaRDA;
 
@@ -36,8 +27,19 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 
+/**
+ * 
+ * @author francesco
+ *
+ * Gestisce il pannello che mostra i dettagli principali di una riga RDA
+ * creata o caricata
+ */
 public class CardRigaRDA extends ACard {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton btnElimina;
 	private JLabel lblEssenza;
 	private JLabel txtEssenza;
@@ -56,6 +58,10 @@ public class CardRigaRDA extends ACard {
 	ListaRigheRDA listaRigheRDA;
 	private JButton btnModifica;
 
+	/**
+	 * Costruttore (prende il padre come parametro)
+	 * @param lrRDA
+	 */
 	public CardRigaRDA(ListaRigheRDA lrRDA) {
 		// TODO Auto-generated constructor stub
 		super(lrRDA);
@@ -137,6 +143,10 @@ public class CardRigaRDA extends ACard {
 			
 	}
 
+	/**
+	 * Gestisce i pulsanti da utilizzare per la riga RDA, ovvero 
+	 * a seconda dello stato permetterà la modifica di quella riga
+	 */
 	private void setCardOptions() {
 		// TODO Auto-generated method stub
 		if (RDACenter.getInstance().getClipPanel().isSelectedNuova()){
@@ -172,6 +182,10 @@ public class CardRigaRDA extends ACard {
 	}
 
 	@Override
+	/**
+	 * Carica una riga RDA
+	 * @param o:Object
+	 */
 	public void load(Object o) {
 		// TODO Auto-generated method stub
 		final RigaRDA riga = (RigaRDA) o;

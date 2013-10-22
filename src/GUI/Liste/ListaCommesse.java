@@ -12,12 +12,18 @@ import GUI.Card.CardCodiceInternoFactory;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Cliente;
-import coedil99.model.RDA;
 
 @SuppressWarnings("serial")
+/**
+ * 
+ * @author francesco
+ * Gestisce la lista delle commesse sul lato dello schermo
+ */
 public class ListaCommesse extends ALista {
 	
-	
+	/**
+	 * Costruttore
+	 */
 	public ListaCommesse(){
 		super();
 		this.load();
@@ -28,6 +34,9 @@ public class ListaCommesse extends ALista {
 	public void load(String n){
 	}
 
+	/**
+	 * Toglie il focus a tutte le card Commessa
+	 */
 	public void deselectAll() {
 		// TODO Auto-generated method stub
 		for(Component c:panel.getComponents()){
@@ -39,6 +48,11 @@ public class ListaCommesse extends ALista {
 		
 	}
 	
+	/**
+	 * Fornisce l'id della prima commessa della lista
+	 * 
+	 * @return id:int
+	 */
 	public int getPrimaCommessa(){
 		((CardCodiceInterno) this.panel.getComponent(0)).setBackground(new Color(30,44,255));
 		
@@ -46,13 +60,20 @@ public class ListaCommesse extends ALista {
 		
 	}
 
+	
 	@Override
+	/**
+	 * Aggiorna il pannello contenente la lista se necessario (caso d'uso gestisci commessa)
+	 */
 	public void updatePanel() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
+	/**
+	 * Carica la lista
+	 */
 	public void load() {
 		// TODO Auto-generated method stub
 		ArrayList<Object> t = new ArrayList<Object>(GestisciClienteHandler.getInstance().getClienti());

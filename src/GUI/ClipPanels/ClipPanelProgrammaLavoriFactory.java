@@ -2,6 +2,12 @@ package GUI.ClipPanels;
 
 import GUI.Abstract.AClipPanel;
 
+/**
+ * 
+ * @author francesco
+ *
+ * Implementazione Factory di Abstract Factory
+ */
 public class ClipPanelProgrammaLavoriFactory extends ClipPanelFactory {
 
 	private static ClipPanelProgrammaLavoriFactory instance = null;
