@@ -10,7 +10,7 @@ import GUI.Plichi.PlicoCommessa;
 import coedil99.model.Commessa;
 
 @SuppressWarnings("serial")
-public class RaccoglitorePlichi extends JPanel {
+public class RaccoglitorePlichi extends JScrollPane {
 
 	private JPanel plico_container = new JPanel();
 	private JPanel plico = new JPanel();
@@ -28,12 +28,11 @@ public class RaccoglitorePlichi extends JPanel {
 	 * Inizializza le componenti grafiche
 	 */
 	private void initialize() {
-		this.setLayout(new BorderLayout());
+
+		this.setViewportView(this.plico_container);
 		plico_container.setLayout(new BorderLayout());
 		plico_container.setBackground(new Color(240, 230, 140));
-		this.add(this.scrollPaneWrapper, BorderLayout.CENTER);
-		this.scrollPaneWrapper.setViewportView(this.plico_container);
-		this.scrollPaneWrapper.getVerticalScrollBar().setUnitIncrement(20);
+		this.getVerticalScrollBar().setUnitIncrement(20);
 		this.plico_container.add(this.plico, BorderLayout.CENTER);
 	}
 
@@ -59,13 +58,18 @@ public class RaccoglitorePlichi extends JPanel {
 	 */
 	public void changePlico(APlico p) {
 
-		RaccoglitorePlichi.this.getPlico().removeAll();
+		
 		ProgrammaLavori pl = ProgrammaLavori.getInstance();
 		p.load(pl.getCommessaSelezionata().getID());
-		RaccoglitorePlichi.this.getPlico().add(p);
-		RaccoglitorePlichi.this.getPlico().validate();
-		RaccoglitorePlichi.this.getPlico().repaint();
+		this.getPlico_container().removeAll();
+		this.getPlico_container().add(p,BorderLayout.CENTER);
+		this.validate();
+		this.repaint();
 
+	}
+
+	public JPanel getPlico_container() {
+		return plico_container;
 	}
 
 	/**
@@ -76,9 +80,9 @@ public class RaccoglitorePlichi extends JPanel {
 	public void caricaPrimaCommessa(Commessa c) {
 		PlicoCommessa plico = PlicoCommessa.getInstance();
 		plico.load(c.getID());
-		RaccoglitorePlichi.this.getPlico().add(plico);
-		RaccoglitorePlichi.this.getPlico().validate();
-		RaccoglitorePlichi.this.getPlico().repaint();
+		this.getPlico_container().add(plico,BorderLayout.CENTER);
+		this.getPlico_container().validate();
+		this.getPlico_container().repaint();
 	}
 
 	/**

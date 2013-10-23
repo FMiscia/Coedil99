@@ -78,7 +78,7 @@ public class PlicoDDO extends APlico{
 		setLayout(null);
 		panel = new JPanel(null);
 		panel.setLayout(new FlowLayout());
-		panel.setBounds(60, 20,625,100);
+		panel.setBounds(0, 0,625,100);
 		setPreferredSize(new Dimension(745,panel.getHeight()));
 		setSize(745,panel.getHeight());
 		add(panel);
