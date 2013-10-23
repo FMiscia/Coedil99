@@ -228,7 +228,7 @@ public class CardRigaRDA extends ACard {
 				if(CardRigaRDA.this.listaRigheRDA.getNumRigheRDA() == 1){
 					n = JOptionPane.showOptionDialog(
 							RDACenter.getInstance(),
-							"Cancellando l'ultima riga cancellerai l'intera RDA.\n" +
+							"Eliminando l'ultima riga cancellerai l'intera RDA.\n" +
 							"Sei sicuro di voler eliminare questa riga RDA?\n"
 									+ "Nota: questa operazione non è reversibile",
 							"Conferma operazione",
