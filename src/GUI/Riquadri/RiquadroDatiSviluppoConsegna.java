@@ -146,41 +146,41 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 		this.addRitardo();
 	}
 
-
 	/**
 	 * Aggiunge il campo responsabile
 	 */
-	private void addResponsabile(){
+	private void addResponsabile() {
 		this.lblResponsabile = new JLabel("Responsabile");
 		this.form.add(this.lblResponsabile, "2, 2");
 
 		this.txtResponsabile = new JTextField();
 		this.txtResponsabile.setHorizontalAlignment(SwingConstants.CENTER);
-		this.txtResponsabile.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = txtResponsabile.getText();
-				String pattern = "[^a-zA-Z������']";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("")) {
-					lblIcoResponsabile.setIcon(IcoErrore);
-					lblIcoResponsabile
-							.setToolTipText("Il campo Responsabile deve contenere solo lettere!");
-					txtResponsabile.setBorder(new LineBorder(Color.red));
-				} else if (m.find()) {
-					lblIcoResponsabile.setIcon(IcoErrore);
-					lblIcoResponsabile
-							.setToolTipText("Il campo Responsabile deve contenere solo lettere!");
-					txtResponsabile.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoResponsabile.setIcon(IcoOk);
-					lblIcoResponsabile.setToolTipText("");
-					txtResponsabile.setBorder(new LineBorder(Color.green));
+		if (this.txtResponsabile.getKeyListeners().length == 0)
+			this.txtResponsabile.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = txtResponsabile.getText();
+					String pattern = "[^a-zA-Z������']";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("")) {
+						lblIcoResponsabile.setIcon(IcoErrore);
+						lblIcoResponsabile
+								.setToolTipText("Il campo Responsabile deve contenere solo lettere!");
+						txtResponsabile.setBorder(new LineBorder(Color.red));
+					} else if (m.find()) {
+						lblIcoResponsabile.setIcon(IcoErrore);
+						lblIcoResponsabile
+								.setToolTipText("Il campo Responsabile deve contenere solo lettere!");
+						txtResponsabile.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoResponsabile.setIcon(IcoOk);
+						lblIcoResponsabile.setToolTipText("");
+						txtResponsabile.setBorder(new LineBorder(Color.green));
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
 		this.Container.add(this.txtResponsabile);
 		this.form.add(this.txtResponsabile, "6, 2, fill, fill");
 
@@ -191,52 +191,57 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 	}
 
 	/**
-	 * Aggiunge il campo emissione commessa 
+	 * Aggiunge il campo emissione commessa
 	 */
-	private void addEmissioneCommessa(){
+	private void addEmissioneCommessa() {
 		this.lblEmissioneCommessa = new JLabel("Emissione Commessa");
 		this.form.add(this.lblEmissioneCommessa, "2, 4");
 
 		this.dateEmissioneCommessa = new JXDatePicker();
 		this.dateEmissioneCommessa.setFormats("yyyy-MM-dd");
 		this.dateEmissioneCommessa.getEditor().setEditable(false);
-		this.dateEmissioneCommessa.getEditor().addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (dateDataFine.getDate().before(dateEmissioneCommessa.getDate())) {
-					lblIcoEmissioneCommessa.setIcon(IcoErrore);
-					lblIcoEmissioneCommessa
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-					lblIcoDataFine.setIcon(IcoErrore);
-					lblIcoDataFine
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-				} else {
-					lblIcoDataFine.setIcon(IcoOk);
-					lblIcoDataFine.setToolTipText(null);
-					lblIcoEmissioneCommessa.setIcon(IcoOk);
-					lblIcoEmissioneCommessa.setToolTipText(null);
-				}
-				controlloErrori();
-			}
+		if (this.dateEmissioneCommessa.getEditor().getFocusListeners().length == 0) {
+			this.dateEmissioneCommessa.getEditor().addFocusListener(
+					new FocusAdapter() {
+						@Override
+						public void focusGained(FocusEvent e) {
+							if (dateDataFine.getDate().before(
+									dateEmissioneCommessa.getDate())) {
+								lblIcoEmissioneCommessa.setIcon(IcoErrore);
+								lblIcoEmissioneCommessa
+										.setToolTipText("La data di inizio deve precedere la data di fine!");
+								lblIcoDataFine.setIcon(IcoErrore);
+								lblIcoDataFine
+										.setToolTipText("La data di inizio deve precedere la data di fine!");
+							} else {
+								lblIcoDataFine.setIcon(IcoOk);
+								lblIcoDataFine.setToolTipText(null);
+								lblIcoEmissioneCommessa.setIcon(IcoOk);
+								lblIcoEmissioneCommessa.setToolTipText(null);
+							}
+							controlloErrori();
+						}
 
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (dateDataFine.getDate().before(dateEmissioneCommessa.getDate())) {
-					lblIcoEmissioneCommessa.setIcon(IcoErrore);
-					lblIcoEmissioneCommessa
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-					lblIcoDataFine.setIcon(IcoErrore);
-					lblIcoDataFine
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-				} else {
-					lblIcoDataFine.setIcon(IcoOk);
-					lblIcoDataFine.setToolTipText(null);
-					lblIcoEmissioneCommessa.setIcon(IcoOk);
-					lblIcoEmissioneCommessa.setToolTipText(null);
-				}
-				controlloErrori();
-			}
-		});
+						@Override
+						public void focusLost(FocusEvent e) {
+							if (dateDataFine.getDate().before(
+									dateEmissioneCommessa.getDate())) {
+								lblIcoEmissioneCommessa.setIcon(IcoErrore);
+								lblIcoEmissioneCommessa
+										.setToolTipText("La data di inizio deve precedere la data di fine!");
+								lblIcoDataFine.setIcon(IcoErrore);
+								lblIcoDataFine
+										.setToolTipText("La data di inizio deve precedere la data di fine!");
+							} else {
+								lblIcoDataFine.setIcon(IcoOk);
+								lblIcoDataFine.setToolTipText(null);
+								lblIcoEmissioneCommessa.setIcon(IcoOk);
+								lblIcoEmissioneCommessa.setToolTipText(null);
+							}
+							controlloErrori();
+						}
+					});
+		}
 		this.form.add(this.dateEmissioneCommessa, "6, 4, fill, fill");
 		this.lblIcoEmissioneCommessa = new JLabel("");
 		this.lblIcoEmissioneCommessa.setVisible(false);
@@ -247,141 +252,148 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 	/**
 	 * Aggiunge il campo data fine commessa
 	 */
-	private void addDataFineCommessa(){
+	private void addDataFineCommessa() {
 		this.lblDataFine = new JLabel("Data Fine Commessa");
 		this.form.add(this.lblDataFine, "2, 6");
 
 		this.dateDataFine = new JXDatePicker();
 		this.dateDataFine.setFormats("yyyy-MM-dd");
 		this.dateDataFine.getEditor().setEditable(false);
-		this.dateDataFine.getEditor().addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (dateDataFine.getDate().before(dateEmissioneCommessa.getDate())) {
-					lblIcoEmissioneCommessa.setIcon(IcoErrore);
-					lblIcoEmissioneCommessa
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-					lblIcoDataFine.setIcon(IcoErrore);
-					lblIcoDataFine
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-				} else {
-					lblIcoDataFine.setIcon(IcoOk);
-					lblIcoDataFine.setToolTipText(null);
-					lblIcoEmissioneCommessa.setIcon(IcoOk);
-					lblIcoEmissioneCommessa.setToolTipText(null);
+		if (this.dateDataFine.getEditor().getFocusListeners().length == 0) {
+			this.dateDataFine.getEditor().addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					if (dateDataFine.getDate().before(
+							dateEmissioneCommessa.getDate())) {
+						lblIcoEmissioneCommessa.setIcon(IcoErrore);
+						lblIcoEmissioneCommessa
+								.setToolTipText("La data di inizio deve precedere la data di fine!");
+						lblIcoDataFine.setIcon(IcoErrore);
+						lblIcoDataFine
+								.setToolTipText("La data di inizio deve precedere la data di fine!");
+					} else {
+						lblIcoDataFine.setIcon(IcoOk);
+						lblIcoDataFine.setToolTipText(null);
+						lblIcoEmissioneCommessa.setIcon(IcoOk);
+						lblIcoEmissioneCommessa.setToolTipText(null);
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
 
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (dateDataFine.getDate().before(dateEmissioneCommessa.getDate())) {
-					lblIcoEmissioneCommessa.setIcon(IcoErrore);
-					lblIcoEmissioneCommessa
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-					lblIcoDataFine.setIcon(IcoErrore);
-					lblIcoDataFine
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-				} else {
-					lblIcoDataFine.setIcon(IcoOk);
-					lblIcoDataFine.setToolTipText(null);
-					lblIcoEmissioneCommessa.setIcon(IcoOk);
-					lblIcoEmissioneCommessa.setToolTipText(null);
+				@Override
+				public void focusLost(FocusEvent e) {
+					if (dateDataFine.getDate().before(
+							dateEmissioneCommessa.getDate())) {
+						lblIcoEmissioneCommessa.setIcon(IcoErrore);
+						lblIcoEmissioneCommessa
+								.setToolTipText("La data di inizio deve precedere la data di fine!");
+						lblIcoDataFine.setIcon(IcoErrore);
+						lblIcoDataFine
+								.setToolTipText("La data di inizio deve precedere la data di fine!");
+					} else {
+						lblIcoDataFine.setIcon(IcoOk);
+						lblIcoDataFine.setToolTipText(null);
+						lblIcoEmissioneCommessa.setIcon(IcoOk);
+						lblIcoEmissioneCommessa.setToolTipText(null);
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
+		}
 		this.lblIcoDataFine = new JLabel("");
 		this.lblIcoDataFine.setVisible(false);
 		this.form.add(lblIcoDataFine, "8, 6, center, top");
 		this.Label.add(lblIcoDataFine);
 		this.form.add(this.dateDataFine, "6, 6, fill, fill");
 	}
-		
+
 	/**
 	 * Aggiunge il campo scadenza commessa
 	 */
-	private void addScadenzaCommessa(){
+	private void addScadenzaCommessa() {
 		this.lblScadenzaCommessa = new JLabel("Scadenza Commessa");
 		this.form.add(this.lblScadenzaCommessa, "2, 8");
 
 		this.dateScadenzaCommessa = new JXDatePicker();
 		this.dateScadenzaCommessa.setFormats("yyyy-MM-dd");
 		this.dateScadenzaCommessa.getEditor().setEditable(false);
-		this.dateScadenzaCommessa.getEditor().addFocusListener(
-				new FocusListener() {
+		if (this.dateScadenzaCommessa.getEditor().getFocusListeners().length == 0) {
+			this.dateScadenzaCommessa.getEditor().addFocusListener(
+					new FocusListener() {
 
-					@Override
-					public void focusLost(FocusEvent e) {
-						if (dateScadenzaCommessa.getDate() == null) {
-							lblIcoScadenzaCommessa.setIcon(IcoErrore);
-							lblIcoScadenzaCommessa
-									.setToolTipText("La data di scadenza deve essere selezionata!");
-							dateScadenzaCommessa.setBorder(new LineBorder(
-									Color.red));
-						} else {
-							lblIcoScadenzaCommessa.setIcon(IcoOk);
-							lblIcoScadenzaCommessa.setToolTipText(null);
+						@Override
+						public void focusLost(FocusEvent e) {
+							if (dateScadenzaCommessa.getDate() == null) {
+								lblIcoScadenzaCommessa.setIcon(IcoErrore);
+								lblIcoScadenzaCommessa
+										.setToolTipText("La data di scadenza deve essere selezionata!");
+								dateScadenzaCommessa.setBorder(new LineBorder(
+										Color.red));
+							} else {
+								lblIcoScadenzaCommessa.setIcon(IcoOk);
+								lblIcoScadenzaCommessa.setToolTipText(null);
+							}
+							controlloErrori();
 						}
-						controlloErrori();
-					}
 
-					@Override
-					public void focusGained(FocusEvent e) {
-						if (dateScadenzaCommessa.getDate() == null) {
-							lblIcoScadenzaCommessa.setIcon(IcoErrore);
-							lblIcoScadenzaCommessa
-									.setToolTipText("La data di scadenza deve essere selezionata!");
-							dateScadenzaCommessa.setBorder(new LineBorder(
-									Color.red));
-						} else {
-							lblIcoScadenzaCommessa.setIcon(IcoOk);
-							lblIcoScadenzaCommessa.setToolTipText(null);
+						@Override
+						public void focusGained(FocusEvent e) {
+							if (dateScadenzaCommessa.getDate() == null) {
+								lblIcoScadenzaCommessa.setIcon(IcoErrore);
+								lblIcoScadenzaCommessa
+										.setToolTipText("La data di scadenza deve essere selezionata!");
+								dateScadenzaCommessa.setBorder(new LineBorder(
+										Color.red));
+							} else {
+								lblIcoScadenzaCommessa.setIcon(IcoOk);
+								lblIcoScadenzaCommessa.setToolTipText(null);
+							}
+							controlloErrori();
 						}
-						controlloErrori();
-					}
-				});
+					});
+		}
 		this.form.add(dateScadenzaCommessa, "6, 8, fill, fill");
 		this.lblIcoScadenzaCommessa = new JLabel("");
 		this.lblIcoScadenzaCommessa.setVisible(false);
 		this.form.add(lblIcoScadenzaCommessa, "8, 8, center, top");
 		this.Label.add(lblIcoScadenzaCommessa);
 	}
-		
+
 	/**
 	 * Aggiunge il campo ritardo
 	 */
-	private void addRitardo(){
+	private void addRitardo() {
 		this.lblRitardo = new JLabel("Ritardo Produzione");
 		this.form.add(this.lblRitardo, "2, 10");
 
 		this.txtRitardo = new JTextField();
 		this.txtRitardo.setHorizontalAlignment(SwingConstants.CENTER);
-		this.txtRitardo.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = txtRitardo.getText();
-				String pattern = "[\\D]";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("")) {
-					lblIcoRitardo.setIcon(IcoErrore);
-					lblIcoRitardo
-							.setToolTipText("Il campo Ritardo Produzione deve contenere solo numeri!");
-					txtRitardo.setBorder(new LineBorder(Color.red));
-				} else if (m.find()) {
-					lblIcoRitardo.setIcon(IcoErrore);
-					lblIcoRitardo
-							.setToolTipText("Il campo Ritardo Produzione deve contenere solo numeri!");
-					txtRitardo.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoRitardo.setIcon(IcoOk);
-					lblIcoRitardo.setToolTipText("");
-					txtRitardo.setBorder(new LineBorder(Color.green));
+		if (this.txtRitardo.getKeyListeners().length == 0)
+			this.txtRitardo.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = txtRitardo.getText();
+					String pattern = "[\\D]";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("")) {
+						lblIcoRitardo.setIcon(IcoErrore);
+						lblIcoRitardo
+								.setToolTipText("Il campo Ritardo Produzione deve contenere solo numeri!");
+						txtRitardo.setBorder(new LineBorder(Color.red));
+					} else if (m.find()) {
+						lblIcoRitardo.setIcon(IcoErrore);
+						lblIcoRitardo
+								.setToolTipText("Il campo Ritardo Produzione deve contenere solo numeri!");
+						txtRitardo.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoRitardo.setIcon(IcoOk);
+						lblIcoRitardo.setToolTipText("");
+						txtRitardo.setBorder(new LineBorder(Color.green));
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
 		this.Container.add(this.txtRitardo);
 		this.form.add(this.txtRitardo, "6, 10, fill, fill");
 		this.lblIcoRitardo = new JLabel("");

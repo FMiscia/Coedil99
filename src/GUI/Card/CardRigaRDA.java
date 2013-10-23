@@ -156,6 +156,17 @@ public class CardRigaRDA extends ACard {
 			btnModifica.setVisible(false);
 			add(btnModifica, "4, 2");
 		}
+		else if(RDACenter.getInstance().getClipPanel().isSelectedAttesa()){
+			btnElimina = new JButton("Elimina");
+			btnElimina.setBackground(Color.LIGHT_GRAY);
+			btnElimina.setVisible(false);
+			add(btnElimina, "2, 2");
+			
+			btnModifica = new JButton("Modifica");
+			btnModifica.setVisible(false);
+			add(btnModifica, "4, 2");
+			this.setPreferredSize(new Dimension(269, 190));
+		}
 		else if(RDACenter.getInstance().getClipPanel().isSelectedConfermate()){
 			btnElimina = new JButton("Elimina");
 			btnElimina.setBackground(Color.LIGHT_GRAY);
@@ -163,7 +174,6 @@ public class CardRigaRDA extends ACard {
 			add(btnElimina, "2, 2");
 			
 			btnModifica = new JButton("Modifica");
-			//btnModifica.setBackground(Color.LIGHT_GRAY);
 			btnModifica.setVisible(false);
 			add(btnModifica, "4, 2");
 			this.setPreferredSize(new Dimension(269, 190));

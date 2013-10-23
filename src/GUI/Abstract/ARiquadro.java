@@ -92,23 +92,24 @@ public abstract class ARiquadro extends JPanel {
 	 */
 	public void enableEditing() {
 		this.modifica.setEnabled(true);
-		this.modifica.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (aperto) {
-					ARiquadro.this.modifica.setText("salva");
-					aperto = false;
-					ARiquadro.this.makeEditable(true);
-					// form.getParent().setSize(new Dimension(600,30));
-				} else {
-					ARiquadro.this.salva();
-					ARiquadro.this.modifica.setText("modifica");
-					aperto = true;
-					ARiquadro.this.makeEditable(false);
-					// form.getParent().setSize(new Dimension(600,290));
+		if (this.modifica.getMouseListeners().length == 0)
+			this.modifica.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (aperto) {
+						ARiquadro.this.modifica.setText("salva");
+						aperto = false;
+						ARiquadro.this.makeEditable(true);
+						// form.getParent().setSize(new Dimension(600,30));
+					} else {
+						ARiquadro.this.salva();
+						ARiquadro.this.modifica.setText("modifica");
+						aperto = true;
+						ARiquadro.this.makeEditable(false);
+						// form.getParent().setSize(new Dimension(600,290));
+					}
 				}
-			}
-		});
+			});
 		validate();
 		repaint();
 	}

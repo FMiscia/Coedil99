@@ -41,7 +41,7 @@ import com.jgoodies.forms.layout.RowSpec;
  * Riquadro dati distinta
  * 
  * @author Simone
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class RiquadroDatiDistinta extends ARiquadro {
@@ -76,39 +76,39 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.makeEditable(false);
 	}
 
-
 	/**
 	 * Aggiunge il campo base
 	 */
-	private void addBase(){
+	private void addBase() {
 		this.lbbase = new JLabel("Base");
 		this.form.add(this.lbbase, "2, 2");
 		this.tfbase = new JTextField("0.0");
-		this.tfbase.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = tfbase.getText();
-				String pattern = "^[0-9]*\\.?[0-9]";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("")) {
-					lblIcoBase.setIcon(IcoErrore);
-					lblIcoBase
-							.setToolTipText("Il campo Base deve essere un numero reale!");
-					tfbase.setBorder(new LineBorder(Color.red));
-				} else if (!m.matches()) {
-					lblIcoBase.setIcon(IcoErrore);
-					lblIcoBase
-							.setToolTipText("Il campo Base deve essere un numero reale!");
-					tfbase.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoBase.setIcon(IcoOk);
-					lblIcoBase.setToolTipText(null);
-					tfbase.setBorder(new LineBorder(Color.green));
+		if (this.tfbase.getKeyListeners().length == 0)
+			this.tfbase.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = tfbase.getText();
+					String pattern = "^[0-9]*\\.?[0-9]";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("")) {
+						lblIcoBase.setIcon(IcoErrore);
+						lblIcoBase
+								.setToolTipText("Il campo Base deve essere un numero reale!");
+						tfbase.setBorder(new LineBorder(Color.red));
+					} else if (!m.matches()) {
+						lblIcoBase.setIcon(IcoErrore);
+						lblIcoBase
+								.setToolTipText("Il campo Base deve essere un numero reale!");
+						tfbase.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoBase.setIcon(IcoOk);
+						lblIcoBase.setToolTipText(null);
+						tfbase.setBorder(new LineBorder(Color.green));
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
 		this.Container.add(tfbase);
 		this.form.add(this.tfbase, "6, 2, fill, fill");
 		this.lblIcoBase = new JLabel("");
@@ -116,39 +116,40 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.form.add(lblIcoBase, "8, 2, center, top");
 		this.Label.add(lblIcoBase);
 	}
-		
+
 	/**
 	 * Aggiunge il campo altezza
 	 */
-	private void addAltezza(){
+	private void addAltezza() {
 		this.lbaltezza = new JLabel("Altezza");
 		form.add(this.lbaltezza, "2, 4");
 		this.tfaltezza = new JTextField("0.0");
-		this.tfaltezza.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = tfaltezza.getText();
-				String pattern = "^[0-9]*\\.?[0-9]";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("")) {
-					lblIcoAltezza.setIcon(IcoErrore);
-					lblIcoAltezza
-							.setToolTipText("Il campo Altezza deve essere un numero reale!");
-					tfaltezza.setBorder(new LineBorder(Color.red));
-				} else if (!m.matches()) {
-					lblIcoAltezza.setIcon(IcoErrore);
-					lblIcoAltezza
-							.setToolTipText("Il campo Altezza deve essere un numero reale!");
-					tfaltezza.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoAltezza.setIcon(IcoOk);
-					lblIcoAltezza.setToolTipText(null);
-					tfaltezza.setBorder(new LineBorder(Color.green));
+		if (this.tfaltezza.getKeyListeners().length == 0)
+			this.tfaltezza.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = tfaltezza.getText();
+					String pattern = "^[0-9]*\\.?[0-9]";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("")) {
+						lblIcoAltezza.setIcon(IcoErrore);
+						lblIcoAltezza
+								.setToolTipText("Il campo Altezza deve essere un numero reale!");
+						tfaltezza.setBorder(new LineBorder(Color.red));
+					} else if (!m.matches()) {
+						lblIcoAltezza.setIcon(IcoErrore);
+						lblIcoAltezza
+								.setToolTipText("Il campo Altezza deve essere un numero reale!");
+						tfaltezza.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoAltezza.setIcon(IcoOk);
+						lblIcoAltezza.setToolTipText(null);
+						tfaltezza.setBorder(new LineBorder(Color.green));
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
 		this.Container.add(tfaltezza);
 		form.add(this.tfaltezza, "6, 4, fill, fill");
 		this.lblIcoAltezza = new JLabel("");
@@ -156,39 +157,40 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.form.add(lblIcoAltezza, "8, 4, center, top");
 		this.Label.add(lblIcoAltezza);
 	}
-		
+
 	/**
 	 * Aggiunge il campo lunghezza
 	 */
-	private void addLunghezza(){
+	private void addLunghezza() {
 		this.lblunghezza = new JLabel("Lunghezza");
 		form.add(this.lblunghezza, "2, 6");
 		this.tflunghezza = new JTextField("0.0");
-		this.tflunghezza.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = tflunghezza.getText();
-				String pattern = "^[0-9]*\\.?[0-9]";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("")) {
-					lblIcoLunghezza.setIcon(IcoErrore);
-					lblIcoLunghezza
-							.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
-					tflunghezza.setBorder(new LineBorder(Color.red));
-				} else if (!m.matches()) {
-					lblIcoLunghezza.setIcon(IcoErrore);
-					lblIcoLunghezza
-							.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
-					tflunghezza.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoLunghezza.setIcon(IcoOk);
-					lblIcoLunghezza.setToolTipText(null);
-					tflunghezza.setBorder(new LineBorder(Color.green));
+		if (this.tflunghezza.getKeyListeners().length == 0)
+			this.tflunghezza.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = tflunghezza.getText();
+					String pattern = "^[0-9]*\\.?[0-9]";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("")) {
+						lblIcoLunghezza.setIcon(IcoErrore);
+						lblIcoLunghezza
+								.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
+						tflunghezza.setBorder(new LineBorder(Color.red));
+					} else if (!m.matches()) {
+						lblIcoLunghezza.setIcon(IcoErrore);
+						lblIcoLunghezza
+								.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
+						tflunghezza.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoLunghezza.setIcon(IcoOk);
+						lblIcoLunghezza.setToolTipText(null);
+						tflunghezza.setBorder(new LineBorder(Color.green));
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
 		this.Container.add(tflunghezza);
 		form.add(this.tflunghezza, "6, 6, fill, fill");
 		this.lblIcoLunghezza = new JLabel("");
@@ -196,39 +198,40 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.form.add(lblIcoLunghezza, "8, 6, center, top");
 		this.Label.add(lblIcoLunghezza);
 	}
-	
+
 	/**
 	 * Aggiunge il campo numero
 	 */
-	private void addNumero(){
+	private void addNumero() {
 		this.lbnumero = new JLabel("Numero");
 		form.add(this.lbnumero, "2, 8");
 		this.tfnumero = new JTextField("0");
-		this.tfnumero.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = tfnumero.getText();
-				String pattern = "\\D+";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("") || line.equals("0")) {
-					lblIcoNumero.setIcon(IcoErrore);
-					lblIcoNumero
-							.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
-					tfnumero.setBorder(new LineBorder(Color.red));
-				} else if (m.find()) {
-					lblIcoNumero.setIcon(IcoErrore);
-					lblIcoNumero
-							.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
-					tfnumero.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoNumero.setIcon(IcoOk);
-					lblIcoNumero.setToolTipText(null);
-					tfnumero.setBorder(new LineBorder(Color.green));
+		if (this.tfnumero.getKeyListeners().length == 0)
+			this.tfnumero.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = tfnumero.getText();
+					String pattern = "\\D+";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("") || line.equals("0")) {
+						lblIcoNumero.setIcon(IcoErrore);
+						lblIcoNumero
+								.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
+						tfnumero.setBorder(new LineBorder(Color.red));
+					} else if (m.find()) {
+						lblIcoNumero.setIcon(IcoErrore);
+						lblIcoNumero
+								.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
+						tfnumero.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoNumero.setIcon(IcoOk);
+						lblIcoNumero.setToolTipText(null);
+						tfnumero.setBorder(new LineBorder(Color.green));
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
 		this.Container.add(tfnumero);
 		form.add(this.tfnumero, "6, 8, fill, fill");
 		this.lblIcoNumero = new JLabel("");
@@ -236,11 +239,11 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.form.add(lblIcoNumero, "8, 8, center, top");
 		this.Label.add(lblIcoNumero);
 	}
-		
+
 	/**
 	 * Aggiunge il campo capitello
 	 */
-	private void addCapitello(){
+	private void addCapitello() {
 		this.lbcapitello = new JLabel("Capitello");
 		form.add(this.lbcapitello, "2, 10");
 		this.cbcapitello = new JComboBox<Object>();
@@ -248,39 +251,40 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.cbcapitello.addItem(new String("Si"));
 		this.cbcapitello.addItem(new String("No"));
 	}
-		
+
 	/**
 	 * Aggiunge il campo tipo capitello
 	 */
-	private void addTipoCapitello(){
+	private void addTipoCapitello() {
 		this.lbtipocapitello = new JLabel("Tipo Capitello");
 		form.add(this.lbtipocapitello, "2, 12");
 		this.tftipocapitello = new JTextField("null");
-		this.tftipocapitello.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = tftipocapitello.getText();
-				String pattern = "[^a-zA-Z0-9\'\\s]";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("")) {
-					lblIcoTipoCapitello.setIcon(IcoErrore);
-					lblIcoTipoCapitello
-							.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
-					tftipocapitello.setBorder(new LineBorder(Color.red));
-				} else if (m.find()) {
-					lblIcoTipoCapitello.setIcon(IcoErrore);
-					lblIcoTipoCapitello
-							.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
-					tftipocapitello.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoTipoCapitello.setIcon(IcoOk);
-					lblIcoTipoCapitello.setToolTipText(null);
-					tftipocapitello.setBorder(new LineBorder(Color.green));
+		if (this.tftipocapitello.getKeyListeners().length == 0)
+			this.tftipocapitello.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = tftipocapitello.getText();
+					String pattern = "[^a-zA-Z0-9\'\\s]";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("")) {
+						lblIcoTipoCapitello.setIcon(IcoErrore);
+						lblIcoTipoCapitello
+								.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
+						tftipocapitello.setBorder(new LineBorder(Color.red));
+					} else if (m.find()) {
+						lblIcoTipoCapitello.setIcon(IcoErrore);
+						lblIcoTipoCapitello
+								.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
+						tftipocapitello.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoTipoCapitello.setIcon(IcoOk);
+						lblIcoTipoCapitello.setToolTipText(null);
+						tftipocapitello.setBorder(new LineBorder(Color.green));
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
 		this.Container.add(tftipocapitello);
 		form.add(this.tftipocapitello, "6, 12, fill, fill");
 		this.lblIcoTipoCapitello = new JLabel("");
@@ -305,35 +309,36 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	/**
 	 * Aggiunge il campo note
 	 */
-	private void addNote(){
+	private void addNote() {
 		this.lbnote = new JLabel("Note");
 		form.add(this.lbnote, "2, 14");
 		this.tfnote = new JTextField("null");
-		this.tfnote.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = tfnote.getText();
-				String pattern = "[^a-zA-Z0-9\',;:.\\s]";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("")) {
-					lblIcoNote.setIcon(IcoErrore);
-					lblIcoNote
-							.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
-					tfnote.setBorder(new LineBorder(Color.red));
-				} else if (m.find()) {
-					lblIcoNote.setIcon(IcoErrore);
-					lblIcoNote
-							.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
-					tfnote.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoNote.setIcon(IcoOk);
-					lblIcoNote.setToolTipText(null);
-					tfnote.setBorder(new LineBorder(Color.green));
+		if (this.tfnote.getKeyListeners().length == 0)
+			this.tfnote.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = tfnote.getText();
+					String pattern = "[^a-zA-Z0-9\',;:.\\s]";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("")) {
+						lblIcoNote.setIcon(IcoErrore);
+						lblIcoNote
+								.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
+						tfnote.setBorder(new LineBorder(Color.red));
+					} else if (m.find()) {
+						lblIcoNote.setIcon(IcoErrore);
+						lblIcoNote
+								.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
+						tfnote.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoNote.setIcon(IcoOk);
+						lblIcoNote.setToolTipText(null);
+						tfnote.setBorder(new LineBorder(Color.green));
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
 		this.Container.add(tfnote);
 		form.add(this.tfnote, "6, 14, fill, fill");
 		this.lblIcoNote = new JLabel("");
@@ -341,26 +346,27 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.form.add(lblIcoNote, "8, 14, center, top");
 		this.Label.add(lblIcoNote);
 	}
-	
+
 	/**
 	 * Aggiunge il bottone elimina
 	 */
-	private void addElimina(){
+	private void addElimina() {
 		btnElimina = new JButton("Elimina");
 		btnElimina.setBounds(270, 0, 131, 20);
-		btnElimina.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Distinta d = ProgrammaLavori.getInstance()
-						.getCommessaSelezionata().getDistinta();
-				RigaLavoro r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
-				d.getOdistinta().eliminaRigaLavoro(r);
-				RiquadroDatiDistinta.this.removeAll();
-				PlicoDistinta.getInstance().removeRiquadro(
-						RiquadroDatiDistinta.this);
-				PlicoDistinta.getInstance().posizionaAddButton();
-			}
-		});
+		if (this.btnElimina.getMouseListeners().length == 0)
+			btnElimina.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					Distinta d = ProgrammaLavori.getInstance()
+							.getCommessaSelezionata().getDistinta();
+					RigaLavoro r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
+					d.getOdistinta().eliminaRigaLavoro(r);
+					RiquadroDatiDistinta.this.removeAll();
+					PlicoDistinta.getInstance().removeRiquadro(
+							RiquadroDatiDistinta.this);
+					PlicoDistinta.getInstance().posizionaAddButton();
+				}
+			});
 		add(btnElimina);
 
 	}
@@ -396,7 +402,6 @@ public class RiquadroDatiDistinta extends ARiquadro {
 
 	}
 
-	
 	@Override
 	protected void resetRiquadro() {
 	}
