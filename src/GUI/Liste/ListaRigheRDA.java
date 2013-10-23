@@ -106,6 +106,9 @@ public class ListaRigheRDA extends ALista {
 		this.repaint();
 	}
 	
+	/**
+	 * Aggiorna il riepilogo
+	 */
 	public void updateRiepilogo(){
 		if(this.riepilogoRDA != null)
 			this.riepilogoRDA.refresh();

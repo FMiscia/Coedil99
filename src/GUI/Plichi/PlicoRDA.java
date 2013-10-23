@@ -3,6 +3,8 @@ package GUI.Plichi;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
+import coedil99.controller.GestisciRDAHandler;
+
 import GUI.RDACenter;
 import GUI.Abstract.AFormRDA;
 import GUI.Abstract.APlico;
@@ -118,14 +120,27 @@ public class PlicoRDA extends APlico {
 	 */
 	public void controllaListaRighe(){
 		ListaRigheRDA lrrda = this.getListaRigheRDA();
-		if(lrrda.getNumRigheRDA() == 0){
-			this.formRDA.reset();
-			this.listaRigheRDA.svuota();
+		if(RDACenter.getInstance().getClipPanel().isSelectedCongelate() && lrrda.getNumRigheRDA() == 0){
+			GestisciRDAHandler.getInstance().deleteAndRemoveRDA(RDACenter.getInstance().getRDASelezionata());
+			//RDACenter.getInstance().getClipPanel().getButtons().get(1).doClick();
+			PlicoRDA prda = PlicoRDA.getInstance();
+			ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
+				RDACenter.getInstance().refreshCongelate();
+				lista_righe_rda.load(new ArrayList<Object>(RDACenter
+						.getInstance().getRDASelezionata().righeRDA
+						.getCollection()));
 			this.validate();
 			this.repaint();
 		}
-		else
+		else if(RDACenter.getInstance().getClipPanel().isSelectedNuova() && lrrda.getNumRigheRDA() == 0){
+			RDACenter.getInstance().getClipPanel().getButtons().get(4).doClick();
+			this.validate();
+			this.repaint();
+		}
+		else{
+			this.listaRigheRDA.updateRiepilogo();
 			this.listaRigheRDA.updateAltezza();
+		}
 	}
 	
 	/**

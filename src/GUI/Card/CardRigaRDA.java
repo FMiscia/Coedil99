@@ -224,19 +224,31 @@ public class CardRigaRDA extends ACard {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Object[] options = { "Si", "No" };
-				int n = JOptionPane.showOptionDialog(
-						RDACenter.getInstance(),
-						"Sei sicuro di voler eliminare questa riga RDA?\n"
-								+ "Nota: questa operazione non è reversibile",
-						"Conferma operazione",
-						JOptionPane.YES_NO_CANCEL_OPTION,
-						JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+				int n;
+				if(CardRigaRDA.this.listaRigheRDA.getNumRigheRDA() == 1){
+					n = JOptionPane.showOptionDialog(
+							RDACenter.getInstance(),
+							"Cancellando l'ultima riga cancellerai l'intera RDA.\n" +
+							"Sei sicuro di voler eliminare questa riga RDA?\n"
+									+ "Nota: questa operazione non è reversibile",
+							"Conferma operazione",
+							JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+				}
+				else{
+					n = JOptionPane.showOptionDialog(
+							RDACenter.getInstance(),
+							"Sei sicuro di voler eliminare questa riga RDA?\n"
+									+ "Nota: questa operazione non è reversibile",
+							"Conferma operazione",
+							JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+				}
 				if (n == JOptionPane.YES_OPTION) {
 					try {
 						riga.deleteAndDissociate();
 						CardRigaRDA.this.listaRigheRDA
 								.removeRiquadro(CardRigaRDA.this);
-						CardRigaRDA.this.listaRigheRDA.updateRiepilogo();
 						PlicoRDA.getInstance().controllaListaRighe();
 					} catch (PersistentException e1) {
 						e1.printStackTrace();
