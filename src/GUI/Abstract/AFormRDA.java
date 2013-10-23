@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
@@ -115,9 +116,13 @@ public abstract class AFormRDA extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
+					AFormRDA.this.resetEssenza();
+					AFormRDA.this.resetGeometria();
+					AFormRDA.this.disableSpinner();
 					AFormRDA.this.loadEssenze(GestisciFornitoreHandler
 							.getInstance().getFornitoreByName(
 									cbFornitore.getSelectedItem().toString()));
+					
 				}
 			}
 		});
@@ -149,6 +154,8 @@ public abstract class AFormRDA extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
+					AFormRDA.this.resetGeometria();
+					AFormRDA.this.disableSpinner();
 					AFormRDA.this.loadGeometria(fornitore, cbEssenza
 							.getSelectedItem().toString());
 				}
@@ -190,7 +197,7 @@ public abstract class AFormRDA extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					AFormRDA.this.spinner.setEnabled(true);
-					aggiornaSpesa();
+					AFormRDA.this.setQuantity(1);
 				}
 			}
 		});
@@ -218,20 +225,34 @@ public abstract class AFormRDA extends JPanel {
 	 * 
 	 */
 	public void aggiornaSpesa() {
-		ProductDescription pd = GestisciFornitoreHandler.getInstance()
-				.getProductDescription(
-						this.cbEssenza.getSelectedItem().toString(),
-						this.cbGeometria.getSelectedItem().toString(),
-						this.cbFornitore.getSelectedItem().toString());
-		this.tfSpesa.setText(String.valueOf((Integer) this.spinner.getValue()
-				* pd.getPrezzo()));
+		if(this.spinner.isEnabled()){
+			ProductDescription pd = GestisciFornitoreHandler.getInstance()
+					.getProductDescription(
+							this.cbEssenza.getSelectedItem().toString(),
+							this.cbGeometria.getSelectedItem().toString(),
+							this.cbFornitore.getSelectedItem().toString());
+			this.tfSpesa.setText(String.valueOf((Integer) this.spinner.getValue()
+					* pd.getPrezzo()));
+			this.tfSpesa.validate();
+			this.tfSpesa.repaint();
+		}
 	}
 
+	/**
+	 * Set
+	 * 
+	 * @param i: quantità intera da settare
+	 */
 	public void setQuantity(int i) {
 		this.spinner.setValue(i);
 		this.aggiornaSpesa();
 	}
 
+	/**
+	 * Get
+	 * 
+	 * @return jhorizzontal spinner
+	 */
 	public JHorizontalSpinner getSpinner() {
 		return spinner;
 	}
@@ -326,7 +347,7 @@ public abstract class AFormRDA extends JPanel {
 					}
 
 				});
-		if (this.spinner.getChangeListeners().length == 0)
+		if (this.spinner.getChangeListeners().length == 1)
 			this.spinner.addChangeListener(new ChangeListener() {
 
 				@Override
@@ -354,5 +375,40 @@ public abstract class AFormRDA extends JPanel {
 		add(lblValuta, "3, 20, right, default");
 
 	}
+	
+	/**
+	 * Metodo che disabilita lo spinner resettando il valore a 1
+	 */
+	protected void disableSpinner(){
+		this.spinner.setEnabled(false);
+		this.spinner.setValue(1);
+		this.tfSpesa.setText(null);
+		this.spinner.validate();
+		this.spinner.repaint();
+		this.tfSpesa.validate();
+		this.tfSpesa.repaint();
+	}
+	
+	/**
+	 * Metodo che resetta la combo box essenza
+	 */
+	protected void resetEssenza(){
+		this.cbEssenza.setEnabled(false);
+		this.cbEssenza.removeAllItems();
+		this.cbEssenza.validate();
+		this.cbEssenza.repaint();
+	}
+	
+	/**
+	 * Metodo che resetta la combo box geometria
+	 */
+	protected void resetGeometria(){
+		this.cbGeometria.setEnabled(false);
+		this.cbGeometria.removeAllItems();
+		this.cbGeometria.validate();
+		this.cbGeometria.repaint();
+	}
+	
+	
 
 }
