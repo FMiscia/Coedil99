@@ -31,7 +31,6 @@ public class ListaRigheRDA extends ALista {
 	 * Costruttore
 	 */
 	public ListaRigheRDA() {
-		// TODO Auto-generated constructor stub
 		super();
 		this.setPreferredSize(new Dimension(300, 0));
 		this.validate();
@@ -106,17 +105,18 @@ public class ListaRigheRDA extends ALista {
 		this.validate();
 		this.repaint();
 	}
+	
+	public void updateRiepilogo(){
+		if(this.riepilogoRDA != null)
+			this.riepilogoRDA.refresh();
+	}
 
 	@Override
 	public void load(String s) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void load() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -126,6 +126,18 @@ public class ListaRigheRDA extends ALista {
 	 */
 	public int getNumRigheRDA() {
 		return this.panel.getComponentCount() - 1;
+	}
+	
+	/**
+	 * Metodo che ricalcola l'altezza della lista
+	 */
+	public void updateAltezza(){
+		this.panel.setPreferredSize(new Dimension(this.panel.getWidth(), this.riepilogoRDA
+				.getHeight()
+				+ this.getNumRigheRDA()
+				* (this.panel.getComponent(1).getHeight() + 10)));
+		this.validate();
+		this.repaint();
 	}
 
 }

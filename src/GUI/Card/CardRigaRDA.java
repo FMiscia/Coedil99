@@ -63,11 +63,10 @@ public class CardRigaRDA extends ACard {
 	 * @param lrRDA
 	 */
 	public CardRigaRDA(ListaRigheRDA lrRDA) {
-		// TODO Auto-generated constructor stub
 		super(lrRDA);
 		this.listaRigheRDA = lrRDA;
-		setBounds(new Rectangle(0, 0, 0, 0));
-		this.setPreferredSize(new Dimension(269, 221));
+		//setBounds(new Rectangle(0, 0, 0, 0));
+		this.setPreferredSize(new Dimension(269, 220));
 		this.setBackground(new Color(192, 192, 192));
 		this.setBorder(new LineBorder(Color.BLACK));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -132,7 +131,6 @@ public class CardRigaRDA extends ACard {
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				CardRigaRDA.this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -148,7 +146,6 @@ public class CardRigaRDA extends ACard {
 	 * a seconda dello stato permetterà la modifica di quella riga
 	 */
 	private void setCardOptions() {
-		// TODO Auto-generated method stub
 		if (RDACenter.getInstance().getClipPanel().isSelectedNuova()){
 			btnElimina = new JButton("Elimina");
 			btnElimina.setBackground(Color.LIGHT_GRAY);
@@ -187,7 +184,6 @@ public class CardRigaRDA extends ACard {
 	 * @param o:Object
 	 */
 	public void load(Object o) {
-		// TODO Auto-generated method stub
 		final RigaRDA riga = (RigaRDA) o;
 		this.txtEssenza.setText(riga.getDescription().getEssenza());
 		this.txtQuantita.setText(String.valueOf(riga.getQuantity()));
@@ -207,14 +203,12 @@ public class CardRigaRDA extends ACard {
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				CardRigaRDA.this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				CardRigaRDA.this.listaRigheRDA.deselectAll();
 				CardRigaRDA.this.setBackground(new Color(130,130,130));
 				ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory
@@ -242,9 +236,9 @@ public class CardRigaRDA extends ACard {
 						riga.deleteAndDissociate();
 						CardRigaRDA.this.listaRigheRDA
 								.removeRiquadro(CardRigaRDA.this);
+						CardRigaRDA.this.listaRigheRDA.updateRiepilogo();
 						PlicoRDA.getInstance().controllaListaRighe();
 					} catch (PersistentException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}

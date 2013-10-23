@@ -52,7 +52,6 @@ public class PanelStart extends JPanel {
 	 * Aggiunge il ClipPanel, pannello dei button in alto
 	 */
 	private void addClipPanel() {
-		// TODO Auto-generated method stub
 		this.add(clipPanel, BorderLayout.NORTH);
 	}
 
@@ -60,7 +59,6 @@ public class PanelStart extends JPanel {
 	 * Aggiunge il Pannello di selezione attività
 	 */
 	private void addPannelloUseCases() {
-		// TODO Auto-generated method stub
 		this.pannelloUseCases = new JPanel();
 		pannelloUseCases.setLayout(new GridLayout(2, 2));
 		pannelloUseCases.setBorder(new EmptyBorder(100, 300, 100, 300));
@@ -72,8 +70,6 @@ public class PanelStart extends JPanel {
 	 * Aggiunge un button vuoto solo per motivi grafici, numero pari
 	 */
 	private void addOTHERButton() {
-		// TODO Auto-generated method stub
-
 		JButton otherbutton = new JButton();
 		otherbutton.setToolTipText("Work in progress...");
 		otherbutton.setSize(100, 100);
@@ -84,7 +80,6 @@ public class PanelStart extends JPanel {
 		} catch (IOException ex) {
 		}
 		otherbutton.setFocusable(false);
-
 		pannelloUseCases.add(otherbutton);
 
 	}
@@ -93,7 +88,6 @@ public class PanelStart extends JPanel {
 	 * Aggiunge un button di attività: Gestisci RDA
 	 */
 	private void addRDAButton() {
-		// TODO Auto-generated method stub
 		JButton RDAButton = new JButton();
 		RDAButton.setToolTipText("Gestisci RDA");
 		RDAButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -129,7 +123,6 @@ public class PanelStart extends JPanel {
 	 * Aggiunge un button di attività: Programma Lavori
 	 */
 	private void addPLButton() {
-		// TODO Auto-generated method stub
 		JButton plButton = new JButton();
 		plButton.setToolTipText("Programma Lavori");
 		plButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

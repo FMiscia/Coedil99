@@ -114,7 +114,7 @@ public class PlicoRDA extends APlico {
 	}
 
 	/**
-	 * Svuola la lista righe se non ci sono righe
+	 * Svuola la lista righe se non ci sono righe altrimenti fa un refresh dell'altezza della lista righe rda
 	 */
 	public void controllaListaRighe(){
 		ListaRigheRDA lrrda = this.getListaRigheRDA();
@@ -124,6 +124,8 @@ public class PlicoRDA extends APlico {
 			this.validate();
 			this.repaint();
 		}
+		else
+			this.listaRigheRDA.updateAltezza();
 	}
 	
 	/**

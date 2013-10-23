@@ -7,13 +7,10 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-import GUI.CoedilFrame;
 import GUI.ProgrammaLavori;
 import GUI.RDACenter;
 import GUI.Abstract.ARiepilogoRDA;
 import GUI.Card.CardRDA;
-import GUI.Liste.ListaRDA;
-import GUI.Liste.ListaRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
@@ -68,8 +65,8 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 					((CardRDA) RDACenter.getInstance().getLista().getPrimaCard()).setSaved(true);
 					JOptionPane.showMessageDialog(null,
 							"RDA salvata con successo!\n",
-							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
-					RDACenter.getInstance().refreshCongelate();
+							"Conferma operazione", JOptionPane.INFORMATION_MESSAGE);
+					RDACenter.getInstance().getClipPanel().getButtons().get(1).doClick();
 				}
 
 			});
@@ -91,6 +88,9 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 					if (n == JOptionPane.YES_OPTION) {
 						GestisciRDAHandler.getInstance().deleteAndRemoveRDA(
 								RDACenter.getInstance().getRDASelezionata());
+						JOptionPane.showMessageDialog(null,
+								"RDA eliminata con successo!\n",
+								"Conferma operazione", JOptionPane.INFORMATION_MESSAGE);
 						RDACenter.getInstance().refreshCongelate();
 						PlicoRDA prda = PlicoRDA.getInstance();
 						ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();

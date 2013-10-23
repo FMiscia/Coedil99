@@ -158,18 +158,7 @@ public class ClipPanelRDA extends AClipPanel {
 						ClipPanelRDA.this.focusOut();
 						b.setBackground(new Color(180, 180, 180));
 						RDACenter rdac = RDACenter.getInstance();
-						rdac.getLista().svuota();
-						rdac.getLista().load(GestisciRDAHandler.CONGELATA);
-						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
-								.getRDAById(rdac.getLista().getPrimaRDA()));
-						PlicoRDA prda = PlicoRDA.getInstance();
-						ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
-						prda.resetFormRDA();
-						lista_righe_rda.getPanel().removeAll();
-						lista_righe_rda.load(new ArrayList<Object>(rdac
-								.getRDASelezionata().righeRDA.getCollection()));
-						lista_righe_rda.validate();
-						lista_righe_rda.repaint();
+						rdac.refreshCongelate();
 					}
 				});
 

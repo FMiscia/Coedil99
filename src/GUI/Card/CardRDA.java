@@ -78,7 +78,7 @@ public class CardRDA extends ACard {
 	public CardRDA(ListaRDA rda) {
 		super(rda);
 		this.riquadro = rda;
-		setBounds(new Rectangle(0, 0, 0, 0));
+		//setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(260, 60));
 		this.setBackground(new Color(30, 144, 255));
 		this.setBorder(new LineBorder(Color.BLACK));
