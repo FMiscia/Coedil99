@@ -27,6 +27,12 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+/**
+ * Riquadro dati consegna
+ * 
+ * @author Simone
+ * 
+ */
 @SuppressWarnings("serial")
 public class RiquadroDatiConsegna extends ARiquadro {
 
@@ -87,7 +93,9 @@ public class RiquadroDatiConsegna extends ARiquadro {
 
 	/**
 	 * Rende editabili il campo data
-	 * @param editable booleano
+	 * 
+	 * @param editable
+	 *            booleano
 	 */
 	@Override
 	public void makeEditable(boolean editable) {
@@ -119,45 +127,47 @@ public class RiquadroDatiConsegna extends ARiquadro {
 		this.addDataPrimaConsegna();
 		this.addRitardoConsegna();
 	}
-	
+
 	/**
-	* Aggiunge il campo Data Prima Consegna
-	*/
-	private void addDataPrimaConsegna(){
+	 * Aggiunge il campo Data Prima Consegna
+	 */
+	private void addDataPrimaConsegna() {
 		this.lblDataPrimaConsegna = new JLabel("Data Prima Consegna");
 		this.form.add(this.lblDataPrimaConsegna, "2, 2");
 
 		this.dateDataPrimaConsegna = new JXDatePicker();
 		this.dateDataPrimaConsegna.getEditor().setEditable(false);
-		this.dateDataPrimaConsegna.getEditor().addFocusListener(
-				new FocusListener() {
+		if (this.dateDataPrimaConsegna.getFocusListeners().length == 0) {
+			this.dateDataPrimaConsegna.getEditor().addFocusListener(
+					new FocusListener() {
 
-					@Override
-					public void focusLost(FocusEvent e) {
-						if (dateDataPrimaConsegna.getDate() == null) {
-							lblIcoDataPrimaConsegna.setIcon(IcoErrore);
-							lblIcoDataPrimaConsegna
-									.setToolTipText("La data di scadenza deve essere selezionata!");
-						} else {
-							lblIcoDataPrimaConsegna.setIcon(IcoOk);
-							lblIcoDataPrimaConsegna.setToolTipText(null);
+						@Override
+						public void focusLost(FocusEvent e) {
+							if (dateDataPrimaConsegna.getDate() == null) {
+								lblIcoDataPrimaConsegna.setIcon(IcoErrore);
+								lblIcoDataPrimaConsegna
+										.setToolTipText("La data di scadenza deve essere selezionata!");
+							} else {
+								lblIcoDataPrimaConsegna.setIcon(IcoOk);
+								lblIcoDataPrimaConsegna.setToolTipText(null);
+							}
+							controlloErrori();
 						}
-						controlloErrori();
-					}
 
-					@Override
-					public void focusGained(FocusEvent e) {
-						if (dateDataPrimaConsegna.getDate() == null) {
-							lblIcoDataPrimaConsegna.setIcon(IcoErrore);
-							lblIcoDataPrimaConsegna
-									.setToolTipText("La data di scadenza deve essere selezionata!");
-						} else {
-							lblIcoDataPrimaConsegna.setIcon(IcoOk);
-							lblIcoDataPrimaConsegna.setToolTipText(null);
+						@Override
+						public void focusGained(FocusEvent e) {
+							if (dateDataPrimaConsegna.getDate() == null) {
+								lblIcoDataPrimaConsegna.setIcon(IcoErrore);
+								lblIcoDataPrimaConsegna
+										.setToolTipText("La data di scadenza deve essere selezionata!");
+							} else {
+								lblIcoDataPrimaConsegna.setIcon(IcoOk);
+								lblIcoDataPrimaConsegna.setToolTipText(null);
+							}
+							controlloErrori();
 						}
-						controlloErrori();
-					}
-				});
+					});
+		}
 		this.dateDataPrimaConsegna.setFormats("yyyy-MM-dd");
 		this.form.add(this.dateDataPrimaConsegna, "6, 2, fill, fill");
 
@@ -170,37 +180,39 @@ public class RiquadroDatiConsegna extends ARiquadro {
 	/**
 	 * Aggiunge il campo Ritardo Consegna
 	 */
-	private void addRitardoConsegna(){
+	private void addRitardoConsegna() {
 		this.lblRitardoConsegna = new JLabel("Ritardo Consegna");
 		this.form.add(this.lblRitardoConsegna, "2, 4");
 
 		this.txtRirardoConsegna = new JFormattedTextField();
 		this.txtRirardoConsegna.setHorizontalAlignment(SwingConstants.CENTER);
-		this.txtRirardoConsegna.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = txtRirardoConsegna.getText();
-				String pattern = "[\\D]";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("")) {
-					lblIcoRirardoConsegna.setIcon(IcoErrore);
-					lblIcoRirardoConsegna
-							.setToolTipText("Il campo Ritardo deve contenere solo numeri!");
-					txtRirardoConsegna.setBorder(new LineBorder(Color.red));
-				} else if (m.find()) {
-					lblIcoRirardoConsegna.setIcon(IcoErrore);
-					lblIcoRirardoConsegna
-							.setToolTipText("Il campo Ritardo deve contenere solo numeri!");
-					txtRirardoConsegna.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoRirardoConsegna.setIcon(IcoOk);
-					lblIcoRirardoConsegna.setToolTipText("");
-					txtRirardoConsegna.setBorder(new LineBorder(Color.green));
+		if (this.txtRirardoConsegna.getKeyListeners().length == 0)
+			this.txtRirardoConsegna.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = txtRirardoConsegna.getText();
+					String pattern = "[\\D]";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("")) {
+						lblIcoRirardoConsegna.setIcon(IcoErrore);
+						lblIcoRirardoConsegna
+								.setToolTipText("Il campo Ritardo deve contenere solo numeri!");
+						txtRirardoConsegna.setBorder(new LineBorder(Color.red));
+					} else if (m.find()) {
+						lblIcoRirardoConsegna.setIcon(IcoErrore);
+						lblIcoRirardoConsegna
+								.setToolTipText("Il campo Ritardo deve contenere solo numeri!");
+						txtRirardoConsegna.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoRirardoConsegna.setIcon(IcoOk);
+						lblIcoRirardoConsegna.setToolTipText("");
+						txtRirardoConsegna
+								.setBorder(new LineBorder(Color.green));
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
 		this.Container.add(this.txtRirardoConsegna);
 		this.form.add(this.txtRirardoConsegna, "6, 4, fill, fill");
 		this.lblIcoRirardoConsegna = new JLabel("");
@@ -208,7 +220,5 @@ public class RiquadroDatiConsegna extends ARiquadro {
 		this.form.add(lblIcoRirardoConsegna, "8, 4, center, top");
 		this.Label.add(lblIcoRirardoConsegna);
 	}
-		
-
 
 }

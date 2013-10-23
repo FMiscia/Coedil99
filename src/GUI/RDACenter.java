@@ -9,6 +9,7 @@ import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
+import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 
 public class RDACenter extends JPanel {
@@ -16,8 +17,7 @@ public class RDACenter extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static RDACenter instance = null;
 	private RDA rdaSelezionata = null;
-
-	private ListaRDA lista;
+	private ListaRDA lista = null;
 
 	private ClipPanelRDA clipPanel = (ClipPanelRDA) ClipPanelRDAFactory
 			.getInstance().makeClipPanel();
@@ -35,8 +35,6 @@ public class RDACenter extends JPanel {
 	private void initialize() {
 		this.setLayout(new BorderLayout());
 		this.add(clipPanel, BorderLayout.NORTH);
-		this.lista = (ListaRDA) ListaRDAFactory.getInstance().makeLista(
-				GestisciRDAHandler.CONGELATA);
 		this.add(PlicoRDA.getInstance(), BorderLayout.CENTER);
 		this.clipPanel.updateNotifiche();
 	}
@@ -51,6 +49,8 @@ public class RDACenter extends JPanel {
 				.getListaRigheRDA()
 				.load(new ArrayList<Object>(this.getRDASelezionata().righeRDA
 						.getCollection()));
+		this.validate();
+		this.repaint();
 	}
 
 	/**
@@ -93,7 +93,8 @@ public class RDACenter extends JPanel {
 	 * @param r: la listaRDA da impostare
 	 */
 	public void setLista(ListaRDA r) {
-		this.remove(this.lista);
+		if(this.lista != null)
+			this.remove(this.lista);
 		this.validate();
 		this.repaint();
 		this.lista = r;
@@ -140,5 +141,22 @@ public class RDACenter extends JPanel {
 	 */
 	public static boolean isInstanciated() {
 		return instance == null;
+	}
+	
+	/**
+	 * Metodo che ricarica la lista rda congelate e seleziona la prima rda
+	 */
+	public void refreshCongelate(){
+		this.lista.svuota();
+		this.lista.load(GestisciRDAHandler.CONGELATA);
+		this.setRDASelezionata(GestisciRDAHandler.getInstance()
+				.getRDAById(this.lista.getPrimaRDA()));
+		PlicoRDA prda = PlicoRDA.getInstance();
+		ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
+		prda.reset();
+		lista_righe_rda.load(new ArrayList<Object>(this
+				.getRDASelezionata().righeRDA.getCollection()));
+		lista_righe_rda.validate();
+		lista_righe_rda.repaint();
 	}
 }

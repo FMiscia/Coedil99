@@ -15,6 +15,12 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+/**
+ * Riquadro ottimizzazione
+ * 
+ * @author Simone
+ *
+ */
 @SuppressWarnings("serial")
 public class RiquadroOttimizzazione extends ARiquadro {
 

@@ -20,6 +20,12 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+/**
+ * Riquadro dati produzione consegna
+ * 
+ * @author Simone
+ * 
+ */
 @SuppressWarnings("serial")
 public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 
@@ -39,54 +45,58 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 		this.initialize();
 		this.makeEditable(false);
 	}
-	
 
 	/**
 	 * Aggiunge il campo data inizio
 	 */
-	private void addDataInizio(){
+	private void addDataInizio() {
 		this.lblDataInizio = new JLabel("Data Inizio");
 		this.form.add(this.lblDataInizio, "2, 2");
 
 		this.dateDataInizio = new JXDatePicker();
 		this.dateDataInizio.getEditor().setEditable(false);
-		this.dateDataInizio.getEditor().addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (dateDataFine.getDate().before(dateDataInizio.getDate())) {
-					lblIcoDataInizio.setIcon(IcoErrore);
-					lblIcoDataInizio
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-					lblIcoDataFine.setIcon(IcoErrore);
-					lblIcoDataFine
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-				} else {
-					lblIcoDataFine.setIcon(IcoOk);
-					lblIcoDataFine.setToolTipText(null);
-					lblIcoDataInizio.setIcon(IcoOk);
-					lblIcoDataInizio.setToolTipText(null);
-				}
-				controlloErrori();
-			}
+		if (this.dateDataInizio.getEditor().getFocusListeners().length == 0) {
+			this.dateDataInizio.getEditor().addFocusListener(
+					new FocusAdapter() {
+						@Override
+						public void focusGained(FocusEvent e) {
+							if (dateDataFine.getDate().before(
+									dateDataInizio.getDate())) {
+								lblIcoDataInizio.setIcon(IcoErrore);
+								lblIcoDataInizio
+										.setToolTipText("La data di inizio deve precedere la data di fine!");
+								lblIcoDataFine.setIcon(IcoErrore);
+								lblIcoDataFine
+										.setToolTipText("La data di inizio deve precedere la data di fine!");
+							} else {
+								lblIcoDataFine.setIcon(IcoOk);
+								lblIcoDataFine.setToolTipText(null);
+								lblIcoDataInizio.setIcon(IcoOk);
+								lblIcoDataInizio.setToolTipText(null);
+							}
+							controlloErrori();
+						}
 
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (dateDataFine.getDate().before(dateDataInizio.getDate())) {
-					lblIcoDataInizio.setIcon(IcoErrore);
-					lblIcoDataInizio
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-					lblIcoDataFine.setIcon(IcoErrore);
-					lblIcoDataFine
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-				} else {
-					lblIcoDataFine.setIcon(IcoOk);
-					lblIcoDataFine.setToolTipText(null);
-					lblIcoDataInizio.setIcon(IcoOk);
-					lblIcoDataInizio.setToolTipText(null);
-				}
-				controlloErrori();
-			}
-		});
+						@Override
+						public void focusLost(FocusEvent e) {
+							if (dateDataFine.getDate().before(
+									dateDataInizio.getDate())) {
+								lblIcoDataInizio.setIcon(IcoErrore);
+								lblIcoDataInizio
+										.setToolTipText("La data di inizio deve precedere la data di fine!");
+								lblIcoDataFine.setIcon(IcoErrore);
+								lblIcoDataFine
+										.setToolTipText("La data di inizio deve precedere la data di fine!");
+							} else {
+								lblIcoDataFine.setIcon(IcoOk);
+								lblIcoDataFine.setToolTipText(null);
+								lblIcoDataInizio.setIcon(IcoOk);
+								lblIcoDataInizio.setToolTipText(null);
+							}
+							controlloErrori();
+						}
+					});
+		}
 		this.dateDataInizio.setFormats("yyyy-MM-dd");
 		this.form.add(this.dateDataInizio, "6, 2, fill, fill");
 
@@ -95,53 +105,55 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 		this.form.add(lblIcoDataInizio, "8, 2, center, top");
 		this.Label.add(lblIcoDataInizio);
 	}
-	
+
 	/**
 	 * Aggiunge il campo data fine
 	 */
-	private void addDataFine(){
+	private void addDataFine() {
 		this.lblDataFine = new JLabel("Data Fine");
 		this.form.add(this.lblDataFine, "2, 4");
 
 		this.dateDataFine = new JXDatePicker();
 		this.dateDataFine.getEditor().setEditable(false);
-		this.dateDataFine.getEditor().addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (dateDataFine.getDate().before(dateDataInizio.getDate())) {
-					lblIcoDataInizio.setIcon(IcoErrore);
-					lblIcoDataInizio
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-					lblIcoDataFine.setIcon(IcoErrore);
-					lblIcoDataFine
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-				} else {
-					lblIcoDataFine.setIcon(IcoOk);
-					lblIcoDataFine.setToolTipText(null);
-					lblIcoDataInizio.setIcon(IcoOk);
-					lblIcoDataInizio.setToolTipText(null);
+		if (this.dateDataFine.getEditor().getFocusListeners().length == 0) {
+			this.dateDataFine.getEditor().addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					if (dateDataFine.getDate().before(dateDataInizio.getDate())) {
+						lblIcoDataInizio.setIcon(IcoErrore);
+						lblIcoDataInizio
+								.setToolTipText("La data di inizio deve precedere la data di fine!");
+						lblIcoDataFine.setIcon(IcoErrore);
+						lblIcoDataFine
+								.setToolTipText("La data di inizio deve precedere la data di fine!");
+					} else {
+						lblIcoDataFine.setIcon(IcoOk);
+						lblIcoDataFine.setToolTipText(null);
+						lblIcoDataInizio.setIcon(IcoOk);
+						lblIcoDataInizio.setToolTipText(null);
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
 
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (dateDataFine.getDate().before(dateDataInizio.getDate())) {
-					lblIcoDataInizio.setIcon(IcoErrore);
-					lblIcoDataInizio
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-					lblIcoDataFine.setIcon(IcoErrore);
-					lblIcoDataFine
-							.setToolTipText("La data di inizio deve precedere la data di fine!");
-				} else {
-					lblIcoDataFine.setIcon(IcoOk);
-					lblIcoDataFine.setToolTipText(null);
-					lblIcoDataInizio.setIcon(IcoOk);
-					lblIcoDataInizio.setToolTipText(null);
+				@Override
+				public void focusLost(FocusEvent e) {
+					if (dateDataFine.getDate().before(dateDataInizio.getDate())) {
+						lblIcoDataInizio.setIcon(IcoErrore);
+						lblIcoDataInizio
+								.setToolTipText("La data di inizio deve precedere la data di fine!");
+						lblIcoDataFine.setIcon(IcoErrore);
+						lblIcoDataFine
+								.setToolTipText("La data di inizio deve precedere la data di fine!");
+					} else {
+						lblIcoDataFine.setIcon(IcoOk);
+						lblIcoDataFine.setToolTipText(null);
+						lblIcoDataInizio.setIcon(IcoOk);
+						lblIcoDataInizio.setToolTipText(null);
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
+		}
 		this.dateDataFine.setFormats("yyyy-MM-dd");
 		this.form.add(this.dateDataFine, "6, 4, fill, fill");
 
@@ -151,45 +163,46 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 		this.Label.add(lblIcoDataFine);
 	}
 
-
 	/**
 	 * Aggiunge il campo data scadenza sviluppo
 	 */
-	private void addDataScadenzaSviluppo(){
+	private void addDataScadenzaSviluppo() {
 		this.lblScadenzaSviluppo = new JLabel("Scadenza Sviluppo");
 		this.form.add(this.lblScadenzaSviluppo, "2, 6");
 
 		this.dateScadenzaSviluppo = new JXDatePicker();
 		this.dateScadenzaSviluppo.getEditor().setEditable(false);
-		this.dateScadenzaSviluppo.getEditor().addFocusListener(
-				new FocusListener() {
+		if (this.dateScadenzaSviluppo.getEditor().getFocusListeners().length == 0) {
+			this.dateScadenzaSviluppo.getEditor().addFocusListener(
+					new FocusListener() {
 
-					@Override
-					public void focusLost(FocusEvent e) {
-						if (dateScadenzaSviluppo.getDate() == null) {
-							lblIcoScadenzaSviluppo.setIcon(IcoErrore);
-							lblIcoScadenzaSviluppo
-									.setToolTipText("La data di scadenza deve essere selezionata!");
-						} else {
-							lblIcoScadenzaSviluppo.setIcon(IcoOk);
-							lblIcoScadenzaSviluppo.setToolTipText(null);
+						@Override
+						public void focusLost(FocusEvent e) {
+							if (dateScadenzaSviluppo.getDate() == null) {
+								lblIcoScadenzaSviluppo.setIcon(IcoErrore);
+								lblIcoScadenzaSviluppo
+										.setToolTipText("La data di scadenza deve essere selezionata!");
+							} else {
+								lblIcoScadenzaSviluppo.setIcon(IcoOk);
+								lblIcoScadenzaSviluppo.setToolTipText(null);
+							}
+							controlloErrori();
 						}
-						controlloErrori();
-					}
 
-					@Override
-					public void focusGained(FocusEvent e) {
-						if (dateScadenzaSviluppo.getDate() == null) {
-							lblIcoScadenzaSviluppo.setIcon(IcoErrore);
-							lblIcoScadenzaSviluppo
-									.setToolTipText("La data di scadenza deve essere selezionata!");
-						} else {
-							lblIcoScadenzaSviluppo.setIcon(IcoOk);
-							lblIcoScadenzaSviluppo.setToolTipText(null);
+						@Override
+						public void focusGained(FocusEvent e) {
+							if (dateScadenzaSviluppo.getDate() == null) {
+								lblIcoScadenzaSviluppo.setIcon(IcoErrore);
+								lblIcoScadenzaSviluppo
+										.setToolTipText("La data di scadenza deve essere selezionata!");
+							} else {
+								lblIcoScadenzaSviluppo.setIcon(IcoOk);
+								lblIcoScadenzaSviluppo.setToolTipText(null);
+							}
+							controlloErrori();
 						}
-						controlloErrori();
-					}
-				});
+					});
+		}
 		this.dateScadenzaSviluppo.setFormats("yyyy-MM-dd");
 		this.form.add(this.dateScadenzaSviluppo, "6, 6, fill, fill");
 

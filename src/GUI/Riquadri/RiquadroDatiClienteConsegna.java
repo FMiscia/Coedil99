@@ -24,6 +24,12 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+/**
+ * Riquadro dati cliente consegna
+ * 
+ * @author Simone
+ * 
+ */
 @SuppressWarnings("serial")
 public class RiquadroDatiClienteConsegna extends ARiquadro {
 
@@ -106,42 +112,43 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		this.addCommessa();
 		this.makeEditable(false);
 	}
-	
+
 	/**
 	 * Aggiunge il campo cantiere
 	 * 
 	 */
-	private void addCantiere(){
+	private void addCantiere() {
 		this.lblCantiere = new JLabel("Cantiere");
 		this.form.add(this.lblCantiere, "2, 2");
 
 		this.txtCantiere = new JTextField();
 		this.txtCantiere.setHorizontalAlignment(SwingConstants.CENTER);
-		this.txtCantiere.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = txtCantiere.getText();
-				String pattern = "[^\\w������\\s]+";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("")) {
-					lblIcoCantiere.setIcon(IcoErrore);
-					lblIcoCantiere
-							.setToolTipText("Il campo Cantiere deve contenere solo lettere e/o numeri!");
-					txtCantiere.setBorder(new LineBorder(Color.red));
-				} else if (m.find()) {
-					lblIcoCantiere.setIcon(IcoErrore);
-					lblIcoCantiere
-							.setToolTipText("Il campo Cantiere deve contenere solo lettere e/o numeri!");
-					txtCantiere.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoCantiere.setIcon(IcoOk);
-					lblIcoCantiere.setToolTipText("");
-					txtCantiere.setBorder(new LineBorder(Color.green));
+		if (this.txtCantiere.getKeyListeners().length == 0)
+			this.txtCantiere.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = txtCantiere.getText();
+					String pattern = "[^\\w������\\s]+";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("")) {
+						lblIcoCantiere.setIcon(IcoErrore);
+						lblIcoCantiere
+								.setToolTipText("Il campo Cantiere deve contenere solo lettere e/o numeri!");
+						txtCantiere.setBorder(new LineBorder(Color.red));
+					} else if (m.find()) {
+						lblIcoCantiere.setIcon(IcoErrore);
+						lblIcoCantiere
+								.setToolTipText("Il campo Cantiere deve contenere solo lettere e/o numeri!");
+						txtCantiere.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoCantiere.setIcon(IcoOk);
+						lblIcoCantiere.setToolTipText("");
+						txtCantiere.setBorder(new LineBorder(Color.green));
+					}
+					RiquadroDatiClienteConsegna.this.controlloErrori();
 				}
-				RiquadroDatiClienteConsegna.this.controlloErrori();
-			}
-		});
+			});
 		this.Container.add(this.txtCantiere);
 		this.form.add(this.txtCantiere, "6, 2, fill, fill");
 		this.lblIcoCantiere = new JLabel("");
@@ -149,41 +156,42 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		this.form.add(lblIcoCantiere, "8, 2, center, top");
 		this.Label.add(lblIcoCantiere);
 	}
-	
+
 	/**
-	 * Aggiunge il campo Cliente 
+	 * Aggiunge il campo Cliente
 	 */
-	private void addCliente(){
+	private void addCliente() {
 		this.lblCliente = new JLabel("Cliente");
 		this.form.add(this.lblCliente, "2, 4, left, center");
 
 		this.txtCliente = new JTextField();
 		this.txtCliente.setHorizontalAlignment(SwingConstants.CENTER);
-		this.txtCliente.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = txtCliente.getText();
-				String pattern = "[^\\w������\\s]+";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("")) {
-					lblIcoCliente.setIcon(IcoErrore);
-					lblIcoCliente
-							.setToolTipText("Il campo Cliente deve contenere solo lettere e/o numeri!");
-					txtCliente.setBorder(new LineBorder(Color.red));
-				} else if (m.find()) {
-					lblIcoCliente.setIcon(IcoErrore);
-					lblIcoCliente
-							.setToolTipText("Il campo Cliente deve contenere solo lettere e/o numeri!");
-					txtCliente.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoCliente.setIcon(IcoOk);
-					lblIcoCliente.setToolTipText("");
-					txtCliente.setBorder(new LineBorder(Color.green));
+		if (this.txtCliente.getKeyListeners().length == 0)
+			this.txtCliente.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = txtCliente.getText();
+					String pattern = "[^\\w������\\s]+";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("")) {
+						lblIcoCliente.setIcon(IcoErrore);
+						lblIcoCliente
+								.setToolTipText("Il campo Cliente deve contenere solo lettere e/o numeri!");
+						txtCliente.setBorder(new LineBorder(Color.red));
+					} else if (m.find()) {
+						lblIcoCliente.setIcon(IcoErrore);
+						lblIcoCliente
+								.setToolTipText("Il campo Cliente deve contenere solo lettere e/o numeri!");
+						txtCliente.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoCliente.setIcon(IcoOk);
+						lblIcoCliente.setToolTipText("");
+						txtCliente.setBorder(new LineBorder(Color.green));
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
 		this.Container.add(this.txtCliente);
 		this.form.add(this.txtCliente, "6, 4, fill, fill");
 		this.lblIcoCliente = new JLabel("");
@@ -195,37 +203,38 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	/**
 	 * Aggiunge il campo commessa
 	 */
-	private void addCommessa(){
+	private void addCommessa() {
 		this.lblCommessa = new JLabel("Commessa");
 		this.form.add(lblCommessa, "2, 6, left, center");
 
 		this.txtCommessa = new JTextField();
 		this.txtCommessa.setHorizontalAlignment(SwingConstants.CENTER);
-		this.txtCommessa.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String line = txtCommessa.getText();
-				String pattern = "[\\D]+";
-				Pattern r = Pattern.compile(pattern);
-				Matcher m = r.matcher(line);
-				if (line.equals("")) {
-					lblIcoCommessa.setIcon(IcoErrore);
-					lblIcoCommessa
-							.setToolTipText("Il campo Commessa deve contenere solo numeri!");
-					txtCommessa.setBorder(new LineBorder(Color.red));
-				} else if (m.find()) {
-					lblIcoCommessa.setIcon(IcoErrore);
-					lblIcoCommessa
-							.setToolTipText("Il campo Commessa deve contenere solo numeri!");
-					txtCommessa.setBorder(new LineBorder(Color.red));
-				} else {
-					lblIcoCommessa.setIcon(IcoOk);
-					lblIcoCommessa.setToolTipText("");
-					txtCommessa.setBorder(new LineBorder(Color.green));
+		if (this.txtCommessa.getKeyListeners().length == 0)
+			this.txtCommessa.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String line = txtCommessa.getText();
+					String pattern = "[\\D]+";
+					Pattern r = Pattern.compile(pattern);
+					Matcher m = r.matcher(line);
+					if (line.equals("")) {
+						lblIcoCommessa.setIcon(IcoErrore);
+						lblIcoCommessa
+								.setToolTipText("Il campo Commessa deve contenere solo numeri!");
+						txtCommessa.setBorder(new LineBorder(Color.red));
+					} else if (m.find()) {
+						lblIcoCommessa.setIcon(IcoErrore);
+						lblIcoCommessa
+								.setToolTipText("Il campo Commessa deve contenere solo numeri!");
+						txtCommessa.setBorder(new LineBorder(Color.red));
+					} else {
+						lblIcoCommessa.setIcon(IcoOk);
+						lblIcoCommessa.setToolTipText("");
+						txtCommessa.setBorder(new LineBorder(Color.green));
+					}
+					controlloErrori();
 				}
-				controlloErrori();
-			}
-		});
+			});
 		this.Container.add(this.txtCommessa);
 		this.form.add(this.txtCommessa, "6, 6, fill, fill");
 		this.lblIcoCommessa = new JLabel("");
@@ -233,6 +242,5 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		this.form.add(lblIcoCommessa, "8, 6, center, top");
 		this.Label.add(lblIcoCommessa);
 	}
-
 
 }

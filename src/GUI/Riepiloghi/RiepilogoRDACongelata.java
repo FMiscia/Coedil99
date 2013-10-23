@@ -7,13 +7,10 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-import GUI.CoedilFrame;
 import GUI.ProgrammaLavori;
 import GUI.RDACenter;
 import GUI.Abstract.ARiepilogoRDA;
 import GUI.Card.CardRDA;
-import GUI.Liste.ListaRDA;
-import GUI.Liste.ListaRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
@@ -68,26 +65,8 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 					((CardRDA) RDACenter.getInstance().getLista().getPrimaCard()).setSaved(true);
 					JOptionPane.showMessageDialog(null,
 							"RDA salvata con successo!\n",
-							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
-					RDACenter rdac = RDACenter.getInstance();
-					ListaRDA listarda = (ListaRDA) ListaRDAFactory
-							.getInstance().makeLista(GestisciRDAHandler.CONGELATA);
-					rdac.setLista(listarda);
-
-					rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
-							.getRDAById(
-									RDACenter.getInstance().getLista()
-											.getPrimaRDA()));
-
-					PlicoRDA prda = PlicoRDA.getInstance();
-					ListaRigheRDA lista_rda = prda.getListaRigheRDA();
-					prda.resetFormRDA();
-					lista_rda.getPanel().removeAll();
-					rdac.getClipPanel().focusToRDACongelate();
-					lista_rda.load(new ArrayList<Object>(rdac
-							.getRDASelezionata().righeRDA.getCollection()));
-					lista_rda.validate();
-					lista_rda.repaint();
+							"Conferma operazione", JOptionPane.INFORMATION_MESSAGE);
+					RDACenter.getInstance().getClipPanel().getButtons().get(1).doClick();
 				}
 
 			});
@@ -109,27 +88,16 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 					if (n == JOptionPane.YES_OPTION) {
 						GestisciRDAHandler.getInstance().deleteAndRemoveRDA(
 								RDACenter.getInstance().getRDASelezionata());
-						ListaRDA listarda = (ListaRDA) ListaRDAFactory
-								.getInstance().makeLista(GestisciRDAHandler.CONGELATA);
-						RDACenter.getInstance().setLista(listarda);
 						PlicoRDA prda = PlicoRDA.getInstance();
-						ListaRigheRDA lista_rda = prda.getListaRigheRDA();
-						prda.resetFormRDA();
-						listarda.getPanel().removeAll();
-						listarda.load(RDACenter.getInstance().getRDASelezionata().getState());
-						RDACenter.getInstance().setRDASelezionata(
-								GestisciRDAHandler.getInstance().getRDAById(
-										listarda.getPrimaRDA()));
-						lista_rda.getPanel().removeAll();
-						lista_rda.load(new ArrayList<Object>(RDACenter
-								.getInstance().getRDASelezionata().righeRDA
-								.getCollection()));
-						lista_rda.validate();
-						lista_rda.repaint();
-						listarda.validate();
-						listarda.repaint();
-						CoedilFrame.getInstance().pack();
-						CoedilFrame.getInstance().setVisible(true);
+						ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
+							RDACenter.getInstance().refreshCongelate();
+							lista_righe_rda.load(new ArrayList<Object>(RDACenter
+									.getInstance().getRDASelezionata().righeRDA
+									.getCollection()));
+						JOptionPane.showMessageDialog(null,
+								"RDA eliminata con successo!\n",
+								"Conferma operazione", JOptionPane.INFORMATION_MESSAGE);
+						
 					}
 				}
 			});

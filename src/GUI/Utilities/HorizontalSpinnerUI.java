@@ -116,7 +116,7 @@ public class HorizontalSpinnerUI extends BasicSpinnerUI{
 
     protected boolean isBasicSpinnerUIListener(Object listener){
         boolean handler = false;
-        Class basicSpinnerClass = javax.swing.plaf.basic.BasicSpinnerUI.class;
+        Class<BasicSpinnerUI> basicSpinnerClass = javax.swing.plaf.basic.BasicSpinnerUI.class;
         if (listener != null ){
              try{
                  if(listener.getClass().getEnclosingClass().equals(basicSpinnerClass) &&

@@ -62,10 +62,10 @@ public class CardCodiceInterno extends ACard {
 		Ordine o = (Ordine) param.get(1);
 		final Commessa cc = (Commessa) param.get(2);
 		cliente.setText(c.getName());
-		if (o.getDataScadenza() == null)
+		if (cc.getScadenza() == null)
 			scadenza.setText("--/--/----");
 		else
-			scadenza.setText(o.getDataScadenza().toString());
+			scadenza.setText(cc.getScadenza().toString());
 		codiceInterno.setText(cc.getCodiceInterno());
 		this.commessaId = cc.getID();
 
@@ -73,7 +73,6 @@ public class CardCodiceInterno extends ACard {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				PlicoCommessa plico_commessa = PlicoCommessa.getInstance();
 				CardCodiceInterno.this.riquadro.deselectAll();
 				plico_commessa.load(CardCodiceInterno.this.commessaId);

@@ -54,29 +54,30 @@ public class CreaFormRDA extends AFormRDA {
 		this.initialize();
 	}
 
+	/**
+	 * Metodo che resetta la form
+	 */
 	@Override
 	public void reset() {
-		this.cbEssenza.setEnabled(false);
-		this.cbEssenza.removeAllItems();
-		this.cbGeometria.setEnabled(false);
-		this.cbGeometria.removeAllItems();
-		this.spinner.setValue(1);
-		this.spinner.setEnabled(false);
-		this.tfSpesa.setText(null);
+		this.getCbFornitore().setEnabled(false);
+		this.resetEssenza();
+		this.resetGeometria();
 		this.JBAddRiga.setEnabled(false);
 		this.loadFornitori();
 		this.validate();
 		this.repaint();
 	}
 
+	/**
+	 * Metodo che resetta la form fissando il fornitore e rendendolo non modificabile
+	 * 
+	 * @param fornitore
+	 */
 	public void resetConFornitoreSelezionato(String fornitore) {
-		this.cbEssenza.setEnabled(false);
-		this.cbEssenza.removeAllItems();
-		this.cbGeometria.setEnabled(false);
-		this.cbGeometria.removeAllItems();
-		this.spinner.setValue(1);
-		this.spinner.setEnabled(false);
-		this.tfSpesa.setText(null);
+		this.getCbFornitore().setEnabled(false);
+		this.resetEssenza();
+		this.resetGeometria();
+		this.disableSpinner();
 		this.JBAddRiga.setEnabled(false);
 		this.loadEssenze(GestisciFornitoreHandler.getInstance()
 				.getFornitoreByName(fornitore));
@@ -88,7 +89,6 @@ public class CreaFormRDA extends AFormRDA {
 	 * Imposta la grafica e i bottoni con relativi listener
 	 */
 	private void initialize(){
-		
 		MouseListener[] arrML = this.JBAddRiga.getMouseListeners();
 		if (arrML.length == 1) {
 			this.JBAddRiga.addActionListener(new ActionListener() {
@@ -141,8 +141,7 @@ public class CreaFormRDA extends AFormRDA {
 										rdac.getRDASelezionata().righeRDA
 												.getCollection()));
 						lista.getPrimaCard().setNomeFornitore(fornitore);
-						CreaFormRDA.this.getCbFornitore().setEnabled(false);
-						CreaFormRDA.this.resetConFornitoreSelezionato(CreaFormRDA.this.getCbFornitore().getSelectedItem().toString());
+						CreaFormRDA.this.resetConFornitoreSelezionato(fornitore);
 						lista.getPrimaCard().validate();
 						lista.getPrimaCard().repaint();
 					} else {
@@ -161,7 +160,7 @@ public class CreaFormRDA extends AFormRDA {
 				rdac.getLista());
 		RDA rda = RDAFactory.createRDA();
 		rdaCard.load(rda);
-		rdac.getLista().getPanel().removeAll();
+		rdac.getLista().svuota();
 		rdac.getLista().addCard(rdaCard);
 		rdac.setRDASelezionata(rda);
 		rdac.getLista().deselectAll();

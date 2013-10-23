@@ -14,8 +14,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import coedil99.controller.GestisciRDAHandler;
 import GUI.ClipPanels.ClipPanelMenu;
 import GUI.ClipPanels.ClipPanelMenuFactory;
+import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDAFactory;
 
 public class PanelStart extends JPanel {
 
@@ -48,7 +52,6 @@ public class PanelStart extends JPanel {
 	 * Aggiunge il ClipPanel, pannello dei button in alto
 	 */
 	private void addClipPanel() {
-		// TODO Auto-generated method stub
 		this.add(clipPanel, BorderLayout.NORTH);
 	}
 
@@ -56,7 +59,6 @@ public class PanelStart extends JPanel {
 	 * Aggiunge il Pannello di selezione attività
 	 */
 	private void addPannelloUseCases() {
-		// TODO Auto-generated method stub
 		this.pannelloUseCases = new JPanel();
 		pannelloUseCases.setLayout(new GridLayout(2, 2));
 		pannelloUseCases.setBorder(new EmptyBorder(100, 300, 100, 300));
@@ -68,8 +70,6 @@ public class PanelStart extends JPanel {
 	 * Aggiunge un button vuoto solo per motivi grafici, numero pari
 	 */
 	private void addOTHERButton() {
-		// TODO Auto-generated method stub
-
 		JButton otherbutton = new JButton();
 		otherbutton.setToolTipText("Work in progress...");
 		otherbutton.setSize(100, 100);
@@ -80,7 +80,6 @@ public class PanelStart extends JPanel {
 		} catch (IOException ex) {
 		}
 		otherbutton.setFocusable(false);
-
 		pannelloUseCases.add(otherbutton);
 
 	}
@@ -89,7 +88,6 @@ public class PanelStart extends JPanel {
 	 * Aggiunge un button di attività: Gestisci RDA
 	 */
 	private void addRDAButton() {
-		// TODO Auto-generated method stub
 		JButton RDAButton = new JButton();
 		RDAButton.setToolTipText("Gestisci RDA");
 		RDAButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -109,8 +107,9 @@ public class PanelStart extends JPanel {
 					RDACenter rda = RDACenter.getInstance();
 					rda.loadListaRigheRDA();
 				}
-				RDACenter.getInstance().add(RDACenter.getInstance().getLista(),
-						BorderLayout.WEST);
+				ListaRDA listarda = (ListaRDA) ListaRDAFactory
+						.getInstance().makeLista(GestisciRDAHandler.CONGELATA);
+				RDACenter.getInstance().setLista(listarda);
 				ArrayList<JButton> b = RDACenter.getInstance().getClipPanel()
 						.getButtons();
 				CoedilFrame.getInstance().montaPanel(RDACenter.getInstance());
@@ -124,7 +123,6 @@ public class PanelStart extends JPanel {
 	 * Aggiunge un button di attività: Programma Lavori
 	 */
 	private void addPLButton() {
-		// TODO Auto-generated method stub
 		JButton plButton = new JButton();
 		plButton.setToolTipText("Programma Lavori");
 		plButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
