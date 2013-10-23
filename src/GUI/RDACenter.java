@@ -9,6 +9,7 @@ import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
+import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 
 public class RDACenter extends JPanel {
@@ -140,5 +141,22 @@ public class RDACenter extends JPanel {
 	 */
 	public static boolean isInstanciated() {
 		return instance == null;
+	}
+	
+	/**
+	 * Metodo che ricarica la lista rda congelate e seleziona la prima rda
+	 */
+	public void refreshCongelate(){
+		this.lista.svuota();
+		this.lista.load(GestisciRDAHandler.CONGELATA);
+		this.setRDASelezionata(GestisciRDAHandler.getInstance()
+				.getRDAById(this.lista.getPrimaRDA()));
+		PlicoRDA prda = PlicoRDA.getInstance();
+		ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
+		prda.reset();
+		lista_righe_rda.load(new ArrayList<Object>(this
+				.getRDASelezionata().righeRDA.getCollection()));
+		lista_righe_rda.validate();
+		lista_righe_rda.repaint();
 	}
 }

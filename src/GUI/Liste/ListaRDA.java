@@ -23,11 +23,14 @@ public class ListaRDA extends ALista {
 
 	/**
 	 * Costruttore
-	 * @param tipo:String
+	 * 
+	 * @param tipo
+	 *            :String
 	 */
 	public ListaRDA(String tipo) {
 		super();
 		this.setPreferredSize(new Dimension(300, 0));
+		//this.getViewport().setPreferredSize(new Dimension(300,0));
 		this.load(tipo);
 		this.deselectAll();
 	}
@@ -40,17 +43,21 @@ public class ListaRDA extends ALista {
 	public void load(String tipo) {
 		this.panel.removeAll();
 		ArrayList<Object> t = null;
-		t = new ArrayList<Object>(GestisciRDAHandler.getInstance()
-				.getArrayRDA(tipo));
-		this.getViewport().setPreferredSize(new Dimension(300, t.size() * 70));
-		this.panel.setPreferredSize(new Dimension(300, t.size() * 70));
+		t = new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayRDA(
+				tipo));
+		// this.getViewport().setPreferredSize(new Dimension(300, t.size() *
+		// 70));
 		for (int k = 0; k < t.size(); ++k) {
-			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(this);
+			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
+					this);
 			r.load(GestisciRDAHandler.getInstance().getArrayRDA(tipo).get(k));
-
 			this.panel.add(r);
+			this.panel.validate();
+			this.panel.repaint();
 
 		}
+		this.panel.setPreferredSize(new Dimension(this.panel.getWidth(), t
+				.size() * (this.panel.getComponent(0).getHeight() + 6)));
 		this.validate();
 		this.repaint();
 
@@ -68,8 +75,8 @@ public class ListaRDA extends ALista {
 	}
 
 	/**
-	 * Controlla se la prima RDA è salvata, per eventuali
-	 * problemi all'uscita del pannello crea RDA
+	 * Controlla se la prima RDA è salvata, per eventuali problemi all'uscita
+	 * del pannello crea RDA
 	 * 
 	 * @return saved:boolean
 	 */
@@ -80,7 +87,9 @@ public class ListaRDA extends ALista {
 
 	/**
 	 * Aggiunge la CardRDA al pannello
-	 * @param c:CardRDA
+	 * 
+	 * @param c
+	 *            :CardRDA
 	 */
 	public void addCard(CardRDA c) {
 		panel.add(c, 0);
@@ -90,19 +99,21 @@ public class ListaRDA extends ALista {
 
 	/**
 	 * Fornisce la prima Card della lista
+	 * 
 	 * @return component:Component
 	 */
 	public CardRDA getPrimaCard() {
 		return (CardRDA) panel.getComponent(0);
 
 	}
-	
+
 	/**
 	 * Fornisce true se il pannello ha almeno una RDA, false altrimenti
+	 * 
 	 * @return bool:boolean
 	 */
-	public boolean panelHasRDA(){
-		if(panel.getComponentCount()==0)
+	public boolean panelHasRDA() {
+		if (panel.getComponentCount() == 0)
 			return false;
 		return true;
 	}

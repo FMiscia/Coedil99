@@ -69,24 +69,7 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 					JOptionPane.showMessageDialog(null,
 							"RDA salvata con successo!\n",
 							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
-					RDACenter rdac = RDACenter.getInstance();
-					ListaRDA listarda = (ListaRDA) ListaRDAFactory
-							.getInstance().makeLista(GestisciRDAHandler.CONGELATA);
-					rdac.setLista(listarda);
-
-					rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
-							.getRDAById(
-									RDACenter.getInstance().getLista()
-											.getPrimaRDA()));
-
-					PlicoRDA prda = PlicoRDA.getInstance();
-					ListaRigheRDA lista_rda = prda.getListaRigheRDA();
-					prda.reset();
-					rdac.getClipPanel().focusToRDACongelate();
-					lista_rda.load(new ArrayList<Object>(rdac
-							.getRDASelezionata().righeRDA.getCollection()));
-					lista_rda.validate();
-					lista_rda.repaint();
+					RDACenter.getInstance().refreshCongelate();
 				}
 
 			});
@@ -108,17 +91,9 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 					if (n == JOptionPane.YES_OPTION) {
 						GestisciRDAHandler.getInstance().deleteAndRemoveRDA(
 								RDACenter.getInstance().getRDASelezionata());
-						ListaRDA listarda = (ListaRDA) ListaRDAFactory
-								.getInstance().makeLista(GestisciRDAHandler.CONGELATA);
-						RDACenter.getInstance().setLista(listarda);
+						RDACenter.getInstance().refreshCongelate();
 						PlicoRDA prda = PlicoRDA.getInstance();
-						prda.reset();
 						ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
-						//listarda.svuota();
-						listarda.load(GestisciRDAHandler.CONGELATA);
-						RDACenter.getInstance().setRDASelezionata(
-								GestisciRDAHandler.getInstance().getRDAById(
-										listarda.getPrimaRDA()));
 						lista_righe_rda.load(new ArrayList<Object>(RDACenter
 								.getInstance().getRDASelezionata().righeRDA
 								.getCollection()));

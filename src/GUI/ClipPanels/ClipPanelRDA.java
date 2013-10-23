@@ -170,7 +170,6 @@ public class ClipPanelRDA extends AClipPanel {
 								.getRDASelezionata().righeRDA.getCollection()));
 						lista_righe_rda.validate();
 						lista_righe_rda.repaint();
-
 					}
 				});
 

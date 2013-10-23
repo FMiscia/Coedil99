@@ -17,8 +17,8 @@ import coedil99.model.RigaRDA;
 /**
  * 
  * @author francesco
- *
- * Gestisce la lista delle righe di unaRDA selezionata
+ * 
+ *         Gestisce la lista delle righe di unaRDA selezionata
  */
 public class ListaRigheRDA extends ALista {
 
@@ -38,15 +38,15 @@ public class ListaRigheRDA extends ALista {
 		this.repaint();
 	}
 
-
 	/**
 	 * Carica le righe RDA
+	 * 
 	 * @param t
 	 */
 	public void load(ArrayList<Object> t) {
 		this.updatePanel();
 		int row = t.size();
-		this.getViewport().setPreferredSize(new Dimension(180, row * 70));
+		// this.getViewport().setPreferredSize(new Dimension(300, row * 70));
 		CardRigaRDA riquadroRigaRDA;
 		for (int k = 0; k < row; ++k) {
 			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance()
@@ -57,12 +57,17 @@ public class ListaRigheRDA extends ALista {
 			this.panel.validate();
 			this.panel.repaint();
 		}
+		this.panel.setPreferredSize(new Dimension(this.panel.getWidth(), this.riepilogoRDA
+				.getHeight()
+				+ t.size()
+				* (this.panel.getComponent(1).getHeight() + 10)));
 		this.validate();
 		this.repaint();
 	}
 
 	/**
 	 * Rimuove un riquadro contenente una riga RDA
+	 * 
 	 * @param r
 	 */
 	public void removeRiquadro(CardRigaRDA r) {
@@ -87,8 +92,6 @@ public class ListaRigheRDA extends ALista {
 		}
 	}
 
-	
-
 	@Override
 	/**
 	 * Aggiorna la lista e il riepilogo subito dopo una modifica
@@ -96,35 +99,33 @@ public class ListaRigheRDA extends ALista {
 	public void updatePanel() {
 		this.panel.removeAll();
 		String stato = RDACenter.getInstance().getRDASelezionata().getState();
-		this.riepilogoRDA = RiepilogoRDAFactory.getInstance().makeRiepilogo(stato);
+		this.riepilogoRDA = RiepilogoRDAFactory.getInstance().makeRiepilogo(
+				stato);
 		this.riepilogoRDA.refresh();
-		this.panel.add(this.riepilogoRDA,0);
+		this.panel.add(this.riepilogoRDA, 0);
 		this.validate();
 		this.repaint();
 	}
 
-
-
-
 	@Override
 	public void load(String s) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 	@Override
 	public void load() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	/**
 	 * Ritorna il numero di righe RDA
+	 * 
 	 * @return count:int
 	 */
-	public int getNumRigheRDA(){
-		return this.panel.getComponentCount()-1;
+	public int getNumRigheRDA() {
+		return this.panel.getComponentCount() - 1;
 	}
 
 }
