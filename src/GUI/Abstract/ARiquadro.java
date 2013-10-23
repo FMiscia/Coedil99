@@ -100,13 +100,11 @@ public abstract class ARiquadro extends JPanel {
 						ARiquadro.this.modifica.setText("salva");
 						aperto = false;
 						ARiquadro.this.makeEditable(true);
-						// form.getParent().setSize(new Dimension(600,30));
 					} else {
 						ARiquadro.this.salva();
 						ARiquadro.this.modifica.setText("modifica");
 						aperto = true;
 						ARiquadro.this.makeEditable(false);
-						// form.getParent().setSize(new Dimension(600,290));
 					}
 				}
 			});
@@ -183,13 +181,11 @@ public abstract class ARiquadro extends JPanel {
 					ARiquadro.this.modifica.setText("salva");
 					aperto = false;
 					ARiquadro.this.makeEditable(true);
-					// form.getParent().setSize(new Dimension(600,30));
 				} else {
 					ARiquadro.this.salva();
 					ARiquadro.this.modifica.setText("modifica");
 					aperto = true;
 					ARiquadro.this.makeEditable(false);
-					// form.getParent().setSize(new Dimension(600,290));
 				}
 				validate();
 				repaint();
