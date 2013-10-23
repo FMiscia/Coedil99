@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,7 +62,6 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	private JTextField tftipocapitello;
 	private JLabel lbnote;
 	private JTextField tfnote;
-	// private JButton toggle;
 	private JButton btnElimina;
 	private JLabel lblIcoBase;
 	private JLabel lblIcoAltezza;
@@ -260,7 +260,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String line = tftipocapitello.getText();
-				String pattern = "[^a-zA-Z0-9������'\\s]";
+				String pattern = "[^a-zA-Z0-9\'\\s]";
 				Pattern r = Pattern.compile(pattern);
 				Matcher m = r.matcher(line);
 				if (line.equals("")) {
@@ -313,7 +313,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String line = tfnote.getText();
-				String pattern = "[^a-zA-Z0-9������',;:.\\s]";
+				String pattern = "[^a-zA-Z0-9\',;:.\\s]";
 				Pattern r = Pattern.compile(pattern);
 				Matcher m = r.matcher(line);
 				if (line.equals("")) {
@@ -465,8 +465,10 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	 */
 	@Override
 	protected void initialize() {
+		this.Container = new ArrayList<JTextField>();
 		this.setPreferredSize(new Dimension(600, 300));
 		this.form = new JPanel();
+		this.add(form);
 		this.form.setBounds(0, 30, 600, 270);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -492,6 +494,8 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.addNote();
 		this.addNumero();
 		this.addElimina();
+		this.validate();
+		this.repaint();
 	}
 
 }

@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
@@ -62,7 +63,6 @@ public class PlicoDistinta extends APlico {
 	 * @param id:commessaId
 	 */
 	public void load(int id) {
-		// TODO Auto-generated method stub
 		this.removeAll();
 		RiquadroDatiDistinta temp = null;
 		Distinta d = (Distinta) GestisciCommessaHandler.getInstance()
@@ -89,7 +89,6 @@ public class PlicoDistinta extends APlico {
 				addButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						// TODO Auto-generated method stub
 						RiquadroDatiDistinta temp = (RiquadroDatiDistinta) RiquadroDatiDistintaFactory.getInstance().makeRiquadro();
 						temp.makeEditable(true);
 						PlicoDistinta.this.add(temp);

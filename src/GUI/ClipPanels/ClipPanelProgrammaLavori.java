@@ -95,12 +95,11 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 					ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 							.changePlico(PlicoDDO.getInstance());
 				} else {
-					// JOptionPane confermaOtt = new JOptionPane();
 					Object[] options = { "Si", "No" };
 					int n = JOptionPane.showOptionDialog(
 							ProgrammaLavori.getInstance(),
 							"Il DDO non esiste.\nVuoi elaborare l'ottimizzazione?\n"
-									+ "Nota: questa operazione non � reversibile",
+									+ "Nota: questa operazione non è reversibile",
 							"Conferma operazione",
 							JOptionPane.YES_NO_CANCEL_OPTION,
 							JOptionPane.QUESTION_MESSAGE, null, options,

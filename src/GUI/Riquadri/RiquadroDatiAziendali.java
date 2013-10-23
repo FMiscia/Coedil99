@@ -88,7 +88,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String line = txtDescrizione.getText();
-				String pattern = "[^a-zA-Z������'\\s]";
+				String pattern = "[^a-zA-Z\'\\s]";
 				Pattern r = Pattern.compile(pattern);
 				Matcher m = r.matcher(line);
 				if (line.equals("")) {
@@ -129,7 +129,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String line = txtOrario.getText();
-				String pattern = "[^a-zA-Z������]";
+				String pattern = "[^a-zA-Z\']";
 				Pattern r = Pattern.compile(pattern);
 				Matcher m = r.matcher(line);
 				if (line.equals("")) {
