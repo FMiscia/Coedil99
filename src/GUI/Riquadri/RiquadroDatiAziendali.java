@@ -499,7 +499,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 */
 	@Override
 	protected void initialize() {
-		this.setSize(new Dimension(630, 370));
 		this.form = new JPanel();
 		this.form.setBounds(0, 30, 600, 340);
 		this.add(form);

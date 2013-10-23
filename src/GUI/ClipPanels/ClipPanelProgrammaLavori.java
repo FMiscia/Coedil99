@@ -61,10 +61,8 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 				ClipPanelProgrammaLavori.this.focusOut();
 				JButton b = (JButton) e.getSource();
 				b.setBackground(AClipPanel.getColoreSelezionato());
-				RaccoglitorePlichi.getInstance().getScrollPaneWrapper()
-						.validate();
-				RaccoglitorePlichi.getInstance().getScrollPaneWrapper()
-						.repaint();
+				RaccoglitorePlichi.getInstance().validate();
+				RaccoglitorePlichi.getInstance().repaint();
 			}
 
 		});
@@ -77,10 +75,8 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 				ClipPanelProgrammaLavori.this.focusOut();
 				JButton b = (JButton) e.getSource();
 				b.setBackground(AClipPanel.getColoreSelezionato());
-				RaccoglitorePlichi.getInstance().getScrollPaneWrapper()
-						.validate();
-				RaccoglitorePlichi.getInstance().getScrollPaneWrapper()
-						.repaint();
+				RaccoglitorePlichi.getInstance().validate();
+				RaccoglitorePlichi.getInstance().repaint();
 			}
 		});
 		this.addButton("DDO", "Vai al DDO", new ActionListener() {
@@ -111,10 +107,8 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 								.changePlico(PlicoDDO.getInstance());
 					}
 				}
-				RaccoglitorePlichi.getInstance().getScrollPaneWrapper()
-						.validate();
-				RaccoglitorePlichi.getInstance().getScrollPaneWrapper()
-						.repaint();
+				RaccoglitorePlichi.getInstance().validate();
+				RaccoglitorePlichi.getInstance().repaint();
 			}
 		});
 		this.addButton("LDR", "Vai alla LDR", new ActionListener() {

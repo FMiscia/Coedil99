@@ -59,10 +59,10 @@ public class PlicoDDO extends APlico{
 		Commessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
 		DocumentoOttimizzazione docott = GestisciCommessaHandler.getInstance().getCommessaById(id).getDistinta().getDdo();
 		this.panel.removeAll();
-		this.panel.setPreferredSize(new Dimension ( 800, docott.items.size()*600 ));
-		this.panel.setSize(new Dimension ( 800, docott.items.size()*600 ));
-		this.setPreferredSize(new Dimension ( 800, this.panel.getHeight()));
-		this.setSize(new Dimension ( 800, this.panel.getHeight()));
+		this.panel.setPreferredSize(new Dimension ( 600, docott.items.size()*250 ));
+		this.panel.setSize(new Dimension ( 600, docott.items.size()*250 ));
+		this.setPreferredSize(new Dimension ( 600, this.panel.getHeight()));
+		this.setSize(new Dimension ( 600, this.panel.getHeight()));
 		for (int i = 0; i < docott.items.size(); i++){
 			ro = new RiquadroOttimizzazione("Ottimizzazione");
 			ro.load( c.getDistinta().getDdo().items.toArray()[i] );
@@ -74,13 +74,16 @@ public class PlicoDDO extends APlico{
 	 * Imposta la grafica
 	 */
 	private void initialize(){
+		int bounds = 200;
 		setBorder(null);
 		setLayout(null);
 		panel = new JPanel(null);
-		panel.setLayout(new FlowLayout());
-		panel.setBounds(0, 0,625,100);
+		panel.setBounds(bounds, 20,745,200);
+		setBounds(bounds, 20,745,200);
 		setPreferredSize(new Dimension(745,panel.getHeight()));
 		setSize(745,panel.getHeight());
 		add(panel);
+		this.validate();
+		this.repaint();
 	}
 }

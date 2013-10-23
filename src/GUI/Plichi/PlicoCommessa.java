@@ -76,14 +76,15 @@ public class PlicoCommessa extends APlico {
 	 * Posiziona i riquadri nel pannello
 	 */
 	private void posizionaRiquadri() {
-		rda.setBounds(0, 0, rda.getWidth(), rda.getHeight());
-		rdcc.setBounds(0, rda.getY() + rda.getHeight() + 20, rdcc.getWidth(),
+		int bounds = 200;
+		rda.setBounds(bounds, 20, rda.getWidth(), rda.getHeight());
+		rdcc.setBounds(bounds, rda.getY() + rda.getHeight() + 20, rdcc.getWidth(),
 				rdcc.getHeight());
-		rdc.setBounds(0, rdcc.getY() + rdcc.getHeight() + 20, rdc.getWidth(),
+		rdc.setBounds(bounds, rdcc.getY() + rdcc.getHeight() + 20, rdc.getWidth(),
 				rdc.getHeight());
-		rdpc.setBounds(0, rdc.getY() + rdc.getHeight() + 20, rdpc.getWidth(),
+		rdpc.setBounds(bounds, rdc.getY() + rdc.getHeight() + 20, rdpc.getWidth(),
 				rdpc.getHeight());
-		rsc.setBounds(0, rdpc.getY() + rdpc.getHeight() + 20, rsc.getWidth(),
+		rsc.setBounds(bounds, rdpc.getY() + rdpc.getHeight() + 20, rsc.getWidth(),
 				rsc.getHeight());
 		validate();
 		repaint();

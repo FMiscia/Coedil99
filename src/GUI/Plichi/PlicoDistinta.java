@@ -1,5 +1,6 @@
 package GUI.Plichi;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -31,7 +32,7 @@ public class PlicoDistinta extends APlico {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static PlicoDistinta instance = null;
-	private JButton addButton = null;
+	private JButton addButton ;
 	private ArrayList<RiquadroDatiDistinta> riquadri = new ArrayList<RiquadroDatiDistinta>();
 
 	/**
@@ -63,6 +64,7 @@ public class PlicoDistinta extends APlico {
 	 * @param id:commessaId
 	 */
 	public void load(int id) {
+		int bounds = 200;
 		this.removeAll();
 		RiquadroDatiDistinta temp = null;
 		Distinta d = (Distinta) GestisciCommessaHandler.getInstance()
@@ -71,14 +73,13 @@ public class PlicoDistinta extends APlico {
 			for (int i = 0; i < d.getLavori().size(); i++) {
 				temp = new RiquadroDatiDistinta("Riga Lavoro");
 				temp.load(d.getLavori().get(i));
-				temp.setLocation(40, 20 * (i + 1));
+				temp.setLocation(bounds, 20 * (i + 1));
 				this.add(temp);
 				this.riquadri.add(temp);
 			}
 		} else {
 			temp =  (RiquadroDatiDistinta) RiquadroDatiDistintaFactory.getInstance().makeRiquadro();
 			temp.makeEditable(true);
-			temp.setLocation(40, 20);
 			this.add(temp);
 			this.riquadri.add(temp);
 		}
@@ -93,13 +94,15 @@ public class PlicoDistinta extends APlico {
 						temp.makeEditable(true);
 						PlicoDistinta.this.add(temp);
 						PlicoDistinta.this.posizionaAddButton();
+						RaccoglitorePlichi.getInstance().validate();
+						RaccoglitorePlichi.getInstance().repaint();
 					}
 				});	
 			}
 		}
 		this.add(addButton);
 		this.aggiornaAltezze();
-		addButton.setPreferredSize(new Dimension(160, 20));
+		//addButton.setPreferredSize(new Dimension(160, 20));
 		if (ProgrammaLavori.getInstance().getCommessaSelezionata().getOdistinta()
 				.hasDdo()){
 			for(RiquadroDatiDistinta r: riquadri){
@@ -159,16 +162,12 @@ public class PlicoDistinta extends APlico {
 	 * Imposta la grafica
 	 */
 	private void initialize(){
-		setBorder(null);
-		WrapLayout wrapLayout = new WrapLayout();
-		wrapLayout.setVgap(20);
-		wrapLayout.setHgap(0);
-		setLayout(wrapLayout);
-
-		setPreferredSize(new Dimension(745, 200));
-		setSize(745, 250);
+		int bounds = 200;
+		this.setLayout(new WrapLayout(0, 200, 20));
+		setBounds(bounds, 30,745,200);
 		addButton = new JButton("aggiungi nuova");
 		this.validate();
 		this.repaint();
+		
 	}
 }

@@ -9,7 +9,7 @@ public abstract class APlico extends JPanel {
 	
 	public APlico(){
 		super();
-		this.setBackground(new Color(50,0,0));
+		this.setBackground(new Color(244,238,224));
 	}
 	
 	/**

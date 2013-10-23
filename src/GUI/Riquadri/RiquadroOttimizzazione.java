@@ -56,9 +56,8 @@ public class RiquadroOttimizzazione extends ARiquadro {
 		remove(this.modifica);
 		this.validate();
 		this.repaint();
-		this.setSize(new Dimension(600, 310));
 		form = new JPanel();
-		form.setBounds(0, 35, 600, 270);
+		this.form.setBounds(0, 30, 600, 200);
 		this.add(form);
 		form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
