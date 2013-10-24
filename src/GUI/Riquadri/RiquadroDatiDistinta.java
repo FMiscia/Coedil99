@@ -471,7 +471,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	@Override
 	protected void initialize() {
 		this.Container = new ArrayList<JTextField>();
-		this.setPreferredSize(new Dimension(600, 300));
+		this.setPreferredSize(new Dimension(800, 300));
 		this.form = new JPanel();
 		this.add(form);
 		this.form.setBounds(0, 30, 600, 270);
@@ -503,4 +503,5 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.repaint();
 	}
 
+	
 }

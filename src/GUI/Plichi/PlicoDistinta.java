@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.APlico;
+import GUI.Abstract.ARiquadro;
 import GUI.Riquadri.RiquadroDatiDistinta;
 import GUI.Riquadri.RiquadroDatiDistintaFactory;
 import GUI.Utilities.WrapLayout;
@@ -76,6 +77,7 @@ public class PlicoDistinta extends APlico {
 				temp.setLocation(bounds, 20 * (i + 1));
 				this.add(temp);
 				this.riquadri.add(temp);
+				temp.makeEditable(false);
 			}
 		} else {
 			temp =  (RiquadroDatiDistinta) RiquadroDatiDistintaFactory.getInstance().makeRiquadro();
@@ -169,5 +171,14 @@ public class PlicoDistinta extends APlico {
 		this.validate();
 		this.repaint();
 		
+	}
+
+	public ArrayList<ARiquadro> isModifying() {
+		ArrayList<ARiquadro> modifica = new ArrayList<ARiquadro>(); 
+		for(ARiquadro a :this.riquadri){
+			if(!a.modify())
+				modifica.add(a);
+		}
+		return modifica;
 	}
 }

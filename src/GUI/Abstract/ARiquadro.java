@@ -197,5 +197,9 @@ public abstract class ARiquadro extends JPanel {
 	}
 
 	protected abstract void initialize();
+	
+	public boolean modify(){
+		return aperto;
+	}
 
 }

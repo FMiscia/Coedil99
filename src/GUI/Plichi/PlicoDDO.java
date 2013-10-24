@@ -1,10 +1,12 @@
 package GUI.Plichi;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import GUI.Abstract.APlico;
+import GUI.Abstract.ARiquadro;
 import GUI.Riquadri.RiquadroOttimizzazione;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Commessa;
@@ -86,4 +88,10 @@ public class PlicoDDO extends APlico{
 		this.validate();
 		this.repaint();
 	}
+
+	@Override
+	public ArrayList<ARiquadro> isModifying() {
+		return new ArrayList<ARiquadro>();
+	}
+
 }

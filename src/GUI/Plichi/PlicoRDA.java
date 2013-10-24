@@ -8,6 +8,7 @@ import coedil99.controller.GestisciRDAHandler;
 import GUI.RDACenter;
 import GUI.Abstract.AFormRDA;
 import GUI.Abstract.APlico;
+import GUI.Abstract.ARiquadro;
 import GUI.Liste.ListaRigheRDA;
 
 
@@ -150,4 +151,10 @@ public class PlicoRDA extends APlico {
 		this.listaRigheRDA.svuota();
 		this.resetFormRDA();
 	}
+
+	@Override
+	public ArrayList<ARiquadro> isModifying() {
+		return new ArrayList<ARiquadro>();
+	}
+
 }

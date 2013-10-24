@@ -3,8 +3,10 @@ package GUI.Plichi;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.ArrayList;
 
 import GUI.Abstract.APlico;
+import GUI.Abstract.ARiquadro;
 import GUI.Riquadri.RiquadroDatiAziendali;
 import GUI.Riquadri.RiquadroDatiAziendaliFactory;
 import GUI.Riquadri.RiquadroDatiClienteConsegna;
@@ -40,6 +42,7 @@ public class PlicoCommessa extends APlico {
 	private RiquadroDatiConsegna rdc;
 	private RiquadroDatiProduzioneConsegna rdpc;
 	private RiquadroDatiSviluppoConsegna rsc;
+	private ArrayList<ARiquadro> container;
 	private static PlicoCommessa instance = null;
 
 	/**
@@ -60,6 +63,7 @@ public class PlicoCommessa extends APlico {
 	 * @param id:idCommessa
 	 */
 	public void load(int id) {
+		this.reset();
 		Commessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
 		Ordine o = GestisciOrdineHandler.getInstance().getOrdineById(
 				c.getOrdineId());
@@ -97,10 +101,10 @@ public class PlicoCommessa extends APlico {
 	private void initialize() {
 		setBorder(null);
 		setLayout(null);
-
+		container = new ArrayList<ARiquadro>();
 		rda = (RiquadroDatiAziendali) RiquadroDatiAziendaliFactory
 				.getInstance().makeRiquadro();
-
+		
 		rda.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -119,11 +123,16 @@ public class PlicoCommessa extends APlico {
 		setPreferredSize(new Dimension(745, 1110));
 		setSize(745, 950);
 		add(rda);
+		this.container.add(rda);
 		add(rdcc);
+		this.container.add(rdcc);
 		rdcc.setLayout(new FormLayout(new ColumnSpec[] {}, new RowSpec[] {}));
 		add(rdc);
+		this.container.add(rdc);
 		add(rdpc);
+		this.container.add(rdpc);
 		add(rsc);
+		this.container.add(rsc);
 	}
 
 	/**
@@ -135,4 +144,28 @@ public class PlicoCommessa extends APlico {
 			PlicoCommessa.instance = new PlicoCommessa();
 		return PlicoCommessa.instance;
 	}
+	
+	
+	/**
+	 * Metodo che controlla se è in corso una modifica dei riquadri
+	 * 
+	 * @return modifica: array list contenente i riquadri in modifica
+	 */
+	public ArrayList<ARiquadro> isModifying(){
+		ArrayList<ARiquadro> modifica = new ArrayList<ARiquadro>(); 
+		for(ARiquadro a :this.container){
+			if(!a.modify())
+				modifica.add(a);
+		}
+		return modifica;
+	}
+	
+	public void reset(){
+		this.rda.makeEditable(false);
+		this.rdc.makeEditable(false);
+		this.rdcc.makeEditable(false);
+		this.rdpc.makeEditable(false);
+		this.rsc.makeEditable(false);
+	}
+
 }
