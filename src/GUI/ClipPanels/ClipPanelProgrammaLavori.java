@@ -118,6 +118,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 								.getDistinta().creaDDO();
 						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 								.changePlico(PlicoDDO.getInstance());
+						((JButton)e.getSource()).doClick();
 					}
 				}
 				RaccoglitorePlichi.getInstance().validate();
