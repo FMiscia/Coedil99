@@ -17,11 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-
-import org.orm.PersistentException;
 
 import GUI.ProgrammaLavori;
 import GUI.Abstract.ARiquadro;
@@ -47,7 +44,6 @@ import com.jgoodies.forms.layout.RowSpec;
 public class RiquadroDatiDistinta extends ARiquadro {
 
 	private static final Dimension dimension = new Dimension(600, 330);
-	//private JPanel form;
 	private JLabel lbbase;
 	private JTextField tfbase;
 	private JLabel lbaltezza;
@@ -476,7 +472,6 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	protected void initialize() {
 		this.Container = new ArrayList<JTextField>();
 		this.setPreferredSize(new Dimension(600, 300));
-		//this.form = new JPanel();
 		this.add(form);
 		this.form.setBounds(0, 30, 600, 270);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {

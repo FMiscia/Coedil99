@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -37,7 +36,6 @@ import com.jgoodies.forms.layout.RowSpec;
  */
 public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 
-	//private JPanel form;
 	private JLabel lblResponsabile;
 	private JTextField txtResponsabile;
 	private JLabel lblEmissioneCommessa;
@@ -122,7 +120,6 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 	@Override
 	protected void initialize() {
 		this.setSize(new Dimension(600, 220));
-		//this.form = new JPanel();
 		this.form.setBounds(0, 30, 600, 190);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {

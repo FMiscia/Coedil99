@@ -1,6 +1,5 @@
 package GUI.Plichi;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -9,9 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import GUI.CoedilFrame;
@@ -171,10 +168,10 @@ public class PlicoDistinta extends APlico {
 	 */
 	private void initialize(){
 		int x = (CoedilFrame.getInstance().getBounds().width/6);
-		System.out.println(x);
 		this.setLayout(new WrapLayout(0, x, 20));
 		setBounds(0, 30,745,x);
 		this.panelAddButton = new JPanel();
+		this.panelAddButton.setBackground(new Color(240,240,240));
 		this.panelAddButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panelAddButton.setPreferredSize(new Dimension(600,50));
 		addButton = new JButton("aggiungi nuova");
