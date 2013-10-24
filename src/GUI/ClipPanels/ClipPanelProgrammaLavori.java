@@ -11,6 +11,7 @@ import GUI.PanelStart;
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.AClipPanel;
+import GUI.Abstract.APlico;
 import GUI.Plichi.PlicoCommessa;
 import GUI.Plichi.PlicoDDO;
 import GUI.Plichi.PlicoDistinta;
@@ -46,6 +47,9 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
+							return;
+						}
 						CoedilFrame cf = CoedilFrame.getInstance();
 						PanelStart pl = new PanelStart();
 						pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
@@ -56,6 +60,9 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
+					return;
+				}
 				ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 						.changePlico(PlicoCommessa.getInstance());
 				ClipPanelProgrammaLavori.this.focusOut();
@@ -70,6 +77,9 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
+					return;
+				}
 				ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 						.changePlico(PlicoDistinta.getInstance());
 				ClipPanelProgrammaLavori.this.focusOut();
@@ -83,6 +93,9 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
+					return;
+				}
 				if (ProgrammaLavori.getInstance().getCommessaSelezionata()
 						.getOdistinta().hasDdo()) {
 					ClipPanelProgrammaLavori.this.focusOut();
@@ -105,6 +118,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 								.getDistinta().creaDDO();
 						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 								.changePlico(PlicoDDO.getInstance());
+						((JButton)e.getSource()).doClick();
 					}
 				}
 				RaccoglitorePlichi.getInstance().validate();
@@ -115,11 +129,37 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
+					return;
+				}
 
 			}
 		});
 		this.fill();
 		this.resetInitialState();
+	}
+	
+	/**
+	 * Fornisce true o false a seconda se, durante la modifica di un plico, stiamo 
+	 * andando in focus su altri bottoni 
+	 * 
+	 * @return bool:boolean
+	 */
+	public boolean clickDuringModify() {
+		if( ((APlico)RaccoglitorePlichi.getInstance().getPlico_container().getComponent(0)).isModifying().size() != 0 ) {
+			Object[] options = { "Si", "No" };
+			int n = JOptionPane.showOptionDialog(null,
+					"Sicuro di voler abbandonare la modifica?\n"
+							+ "Nota: Le modifiche non salvate andranno perse",
+					"Conferma operazione", JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+			if (n == JOptionPane.YES_OPTION) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

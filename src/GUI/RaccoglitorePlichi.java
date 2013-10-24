@@ -33,7 +33,7 @@ public class RaccoglitorePlichi extends JScrollPane {
 		plico_container.setLayout(new BorderLayout());
 		plico_container.setBackground(new Color(240, 230, 140));
 		this.getVerticalScrollBar().setUnitIncrement(20);
-		this.plico_container.add(this.plico, BorderLayout.CENTER);
+		//this.plico_container.add(this.plico, BorderLayout.CENTER);
 	}
 
 	/**
@@ -57,8 +57,6 @@ public class RaccoglitorePlichi extends JScrollPane {
 	 * @param p: Il plico da mostrare
 	 */
 	public void changePlico(APlico p) {
-
-		
 		ProgrammaLavori pl = ProgrammaLavori.getInstance();
 		p.load(pl.getCommessaSelezionata().getID());
 		this.getPlico_container().removeAll();

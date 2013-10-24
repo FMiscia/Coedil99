@@ -1,6 +1,7 @@
 package GUI.Abstract;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -9,7 +10,7 @@ public abstract class APlico extends JPanel {
 	
 	public APlico(){
 		super();
-		this.setBackground(new Color(244,238,224));
+		this.setBackground(new Color(240,240,240));
 	}
 	
 	/**
@@ -22,4 +23,6 @@ public abstract class APlico extends JPanel {
 	 * @param id
 	 */
 	abstract public void load(int id);
+	
+	abstract public ArrayList<ARiquadro> isModifying();
 }
