@@ -353,7 +353,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	private void addElimina() {
 		btnElimina = new JButton("Elimina");
 		btnElimina.setBounds(270, 0, 131, 20);
-		if (this.btnElimina.getMouseListeners().length == 0)
+		if (this.btnElimina.getMouseListeners().length == 1)
 			btnElimina.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
