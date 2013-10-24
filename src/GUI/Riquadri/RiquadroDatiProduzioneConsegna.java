@@ -29,7 +29,7 @@ import com.jgoodies.forms.layout.RowSpec;
 @SuppressWarnings("serial")
 public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 
-	private JPanel form;
+	//private JPanel form;
 	private JLabel lblDataInizio;
 	private JLabel lblDataFine;
 	private JLabel lblScadenzaSviluppo;
@@ -277,7 +277,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	protected void initialize() {
 		lblTitolo.setBounds(0, 1, 170, 20);
 		this.setSize(new Dimension(600, 150));
-		this.form = new JPanel();
+		//this.form = new JPanel();
 		this.form.setBounds(0, 30, 600, 120);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {

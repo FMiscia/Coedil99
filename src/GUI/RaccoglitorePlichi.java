@@ -31,7 +31,7 @@ public class RaccoglitorePlichi extends JScrollPane {
 
 		this.setViewportView(this.plico_container);
 		plico_container.setLayout(new BorderLayout());
-		plico_container.setBackground(new Color(240, 230, 140));
+		plico_container.setBackground(new Color(240, 240, 240));
 		this.getVerticalScrollBar().setUnitIncrement(20);
 		//this.plico_container.add(this.plico, BorderLayout.CENTER);
 	}

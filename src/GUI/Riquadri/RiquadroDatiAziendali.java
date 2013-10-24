@@ -37,7 +37,7 @@ import com.jgoodies.forms.layout.RowSpec;
 @SuppressWarnings("serial")
 public class RiquadroDatiAziendali extends ARiquadro {
 
-	private JPanel form;
+	//private JPanel form;
 	private JLabel lblOC;
 	private JTextField txtOC;
 	private JLabel lblAnno;
@@ -499,7 +499,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 */
 	@Override
 	protected void initialize() {
-		this.form = new JPanel();
 		this.form.setBounds(0, 30, 600, 340);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {

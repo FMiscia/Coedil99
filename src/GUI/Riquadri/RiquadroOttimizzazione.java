@@ -24,7 +24,7 @@ import com.jgoodies.forms.layout.RowSpec;
 @SuppressWarnings("serial")
 public class RiquadroOttimizzazione extends ARiquadro {
 
-	private JPanel form;
+	//private JPanel form;
 	private JLabel lblQual;
 	private JTextField txtQual;
 	private JLabel lblLarg;
@@ -56,7 +56,7 @@ public class RiquadroOttimizzazione extends ARiquadro {
 		remove(this.modifica);
 		this.validate();
 		this.repaint();
-		form = new JPanel();
+		//form = new JPanel();
 		this.form.setBounds(0, 30, 600, 200);
 		this.add(form);
 		form.setLayout(new FormLayout(new ColumnSpec[] {

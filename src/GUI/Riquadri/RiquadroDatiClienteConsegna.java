@@ -33,7 +33,7 @@ import com.jgoodies.forms.layout.RowSpec;
 @SuppressWarnings("serial")
 public class RiquadroDatiClienteConsegna extends ARiquadro {
 
-	private JPanel form;
+	//private JPanel form;
 	private JLabel lblCantiere;
 	private JTextField txtCantiere;
 	private JLabel lblCliente;
@@ -92,7 +92,7 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	@Override
 	protected void initialize() {
 		this.setSize(new Dimension(600, 150));
-		this.form = new JPanel();
+		//this.form = new JPanel();
 		this.form.setBounds(0, 30, 600, 120);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {

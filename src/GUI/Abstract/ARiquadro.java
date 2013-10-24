@@ -38,6 +38,7 @@ public abstract class ARiquadro extends JPanel {
 	protected ImageIcon IcoOk = new ImageIcon(
 			RiquadroDatiAziendali.class.getResource("/GUI/image/ok.png"));
 	protected JLabel lblTitolo;
+	protected JPanel form;
 
 	public ARiquadro(String title) {
 		super();
@@ -155,6 +156,9 @@ public abstract class ARiquadro extends JPanel {
 	 * Imposta la grafica
 	 */
 	private void initialize(String title) {
+		this.setBackground(new Color(240,240,240));
+		this.form = new JPanel();
+		this.form.setBackground(new Color(240,240,240));
 		this.aperto = true;
 		this.oggetto = null;
 		this.Container = new ArrayList<JTextField>();
