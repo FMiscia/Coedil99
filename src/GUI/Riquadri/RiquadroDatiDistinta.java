@@ -409,7 +409,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	}
 
 	/**
-	 * Impedisce la modifica
+	 * Impedisca la modifica
 	 */
 	@Override
 	public void avoidEditing() {
