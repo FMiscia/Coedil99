@@ -1,6 +1,7 @@
 package coedil99.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import coedil99.controller.GestisciMagazzinoHandler;
 import coedil99.controller.GestisciRDAHandler;
@@ -9,7 +10,7 @@ public class Magazzino extends Observer {
 
 	private static Magazzino instance = null;
 
-	private java.util.HashMap<Item, Integer> items;
+	private java.util.HashMap<Item, Integer> items = new HashMap<Item, Integer>();
 	private String name;
 
 	public java.util.HashMap<Item, Integer> getItems() {
@@ -25,10 +26,24 @@ public class Magazzino extends Observer {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Costruttore privato: inseriamo alcuni item, per consentire un minimo 
+	 * di ottimizzazione
 	 */
 	private Magazzino() {
+        /*Startup*/
+        Item item1 = new Item(new Geometria(23,50,400),"Listelli Abete");
+        item1.setHistory(new History());
+        Item item2 = new Item(new Geometria(23,50,300),"Listelli Scemi");
+        item2.setHistory(new History());
+        Item item3 = new Item(new Geometria(23,50,200),"Pannelli Stupidi");
+        item3.setHistory(new History());
+        Item item4 = new Item(new Geometria(23,50,100),"Pannelli Biricchini");
+        item4.setHistory(new History());
+        
+        this.items.put(item1,4);
+        this.items.put(item2,3);
+        this.items.put(item3,2);
+        this.items.put(item4,1);
 	}
 
 	@Override

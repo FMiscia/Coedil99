@@ -1,10 +1,9 @@
 package GUI.Plichi;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
+import GUI.CoedilFrame;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
 import GUI.Riquadri.RiquadroOttimizzazione;
@@ -76,7 +75,7 @@ public class PlicoDDO extends APlico{
 	 * Imposta la grafica
 	 */
 	private void initialize(){
-		int bounds = 200;
+		int bounds = (CoedilFrame.getInstance().getBounds().width/6);
 		setBorder(null);
 		setLayout(null);
 		panel = new JPanel(null);

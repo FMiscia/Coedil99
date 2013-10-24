@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import GUI.CoedilFrame;
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.APlico;
@@ -65,7 +66,7 @@ public class PlicoDistinta extends APlico {
 	 * @param id:commessaId
 	 */
 	public void load(int id) {
-		int bounds = 200;
+		int bounds = (CoedilFrame.getInstance().getBounds().width/6);
 		this.removeAll();
 		RiquadroDatiDistinta temp = null;
 		Distinta d = (Distinta) GestisciCommessaHandler.getInstance()
@@ -104,7 +105,6 @@ public class PlicoDistinta extends APlico {
 		}
 		this.add(addButton);
 		this.aggiornaAltezze();
-		//addButton.setPreferredSize(new Dimension(160, 20));
 		if (ProgrammaLavori.getInstance().getCommessaSelezionata().getOdistinta()
 				.hasDdo()){
 			for(RiquadroDatiDistinta r: riquadri){
@@ -165,8 +165,11 @@ public class PlicoDistinta extends APlico {
 	 */
 	private void initialize(){
 		int bounds = 200;
-		this.setLayout(new WrapLayout(0, 200, 20));
-		setBounds(bounds, 30,745,200);
+		int x = (CoedilFrame.getInstance().getBounds().width/6);
+		System.out.println(x);
+		this.setLayout(new WrapLayout(0, x, 20));
+		setBounds(0, 30,745,x);
+
 		addButton = new JButton("aggiungi nuova");
 		this.validate();
 		this.repaint();

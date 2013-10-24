@@ -29,7 +29,7 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 		//Residui dei tagli
 		ArrayList<Item> sfridi = new ArrayList<Item>();
 		//Item presenti nel magazzino
-		ArrayList<Item> itm = new ArrayList<Item>(m.getMagazzino().getItems().keySet());
+		ArrayList<Item> itm = new ArrayList<Item>(Magazzino.getInstance().getItems().keySet());
 		//Item da cancellare
 		//ArrayList<Item> rem = new ArrayList<Item>();
 

@@ -57,6 +57,12 @@ public class ODistinta {
 	 */
 	public void eliminaRigaLavoro(RigaLavoro rg) {
 		this.distinta.getLavori().remove(rg);
+		try {
+			rg.delete();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
