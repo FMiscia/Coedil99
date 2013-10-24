@@ -26,8 +26,8 @@ public class Magazzino extends Observer {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Costruttore privato: inseriamo alcuni item, per consentire un minimo 
+	 * di ottimizzazione
 	 */
 	private Magazzino() {
         /*Startup*/
