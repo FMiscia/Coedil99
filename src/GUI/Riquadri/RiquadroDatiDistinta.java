@@ -365,6 +365,8 @@ public class RiquadroDatiDistinta extends ARiquadro {
 					PlicoDistinta.getInstance().removeRiquadro(
 							RiquadroDatiDistinta.this);
 					PlicoDistinta.getInstance().posizionaAddButton();
+					ProgrammaLavori.getInstance().getRaccoglitorePlichi().validate();
+					ProgrammaLavori.getInstance().getRaccoglitorePlichi().repaint();
 				}
 			});
 		add(btnElimina);
@@ -407,7 +409,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	}
 
 	/**
-	 * Impedisca la modifica
+	 * Impedisce la modifica
 	 */
 	@Override
 	public void avoidEditing() {

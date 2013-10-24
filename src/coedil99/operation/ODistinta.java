@@ -7,6 +7,7 @@ import org.orm.PersistentException;
 import coedil99.controller.OttimizzatoreHandler;
 import coedil99.model.Distinta;
 import coedil99.model.RigaLavoro;
+import coedil99.model.RigaLavoroFactory;
 import coedil99.model.StandardOttimizzatoreStrategy;
 
 public class ODistinta {
@@ -58,7 +59,8 @@ public class ODistinta {
 	public void eliminaRigaLavoro(RigaLavoro rg) {
 		this.distinta.getLavori().remove(rg);
 		try {
-			rg.delete();
+			if(RigaLavoroFactory.getRigaLavoroByORMID(rg.getID())!=null)
+				rg.delete();
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
