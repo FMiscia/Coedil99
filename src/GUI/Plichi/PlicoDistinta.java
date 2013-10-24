@@ -164,7 +164,7 @@ public class PlicoDistinta extends APlico {
 	private void initialize(){
 		int bounds = 200;
 		this.setLayout(new WrapLayout(0, 200, 20));
-		setBounds(bounds, 30,745,200);
+		//setBounds(bounds, 30,745,200);
 		addButton = new JButton("aggiungi nuova");
 		this.validate();
 		this.repaint();

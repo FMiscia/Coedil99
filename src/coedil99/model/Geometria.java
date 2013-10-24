@@ -108,7 +108,9 @@ public class Geometria {
 	
 	public Geometria(float b, float a, float l) {
 		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.base=b;
+		this.altezza=a;
+		this.lunghezza=l;
 	}
 	
 	public Geometria(Object valueAt, Object valueAt2, Object valueAt3) {
