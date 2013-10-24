@@ -1,14 +1,18 @@
 package GUI.Plichi;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import GUI.CoedilFrame;
 import GUI.ProgrammaLavori;
@@ -34,6 +38,7 @@ public class PlicoDistinta extends APlico {
 	private static final long serialVersionUID = 1L;
 	private static PlicoDistinta instance = null;
 	private JButton addButton ;
+	private JPanel panelAddButton;
 	private ArrayList<RiquadroDatiDistinta> riquadri = new ArrayList<RiquadroDatiDistinta>();
 
 	/**
@@ -101,7 +106,8 @@ public class PlicoDistinta extends APlico {
 				});	
 			}
 		}
-		this.add(addButton);
+		panelAddButton.add(addButton);
+		this.add(panelAddButton);
 		this.aggiornaAltezze();
 		if (ProgrammaLavori.getInstance().getCommessaSelezionata().getOdistinta()
 				.hasDdo()){
@@ -144,8 +150,8 @@ public class PlicoDistinta extends APlico {
 	 */
 	public void posizionaAddButton(){
 		this.aggiornaAltezze();
-		this.remove(addButton);
-		this.add(addButton);
+		this.remove(panelAddButton);
+		this.add(panelAddButton);
 		this.validate();
 		this.repaint();
 	}
@@ -162,13 +168,15 @@ public class PlicoDistinta extends APlico {
 	 * Imposta la grafica
 	 */
 	private void initialize(){
-		int bounds = 200;
 		int x = (CoedilFrame.getInstance().getBounds().width/6);
 		System.out.println(x);
 		this.setLayout(new WrapLayout(0, x, 20));
 		setBounds(0, 30,745,x);
-
+		this.panelAddButton = new JPanel();
+		this.panelAddButton.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panelAddButton.setPreferredSize(new Dimension(600,50));
 		addButton = new JButton("aggiungi nuova");
+		panelAddButton.add(addButton);
 		this.validate();
 		this.repaint();
 		
