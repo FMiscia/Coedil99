@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
+import GUI.CoedilFrame;
 import GUI.Abstract.APlico;
 import GUI.Riquadri.RiquadroDatiAziendali;
 import GUI.Riquadri.RiquadroDatiAziendaliFactory;
@@ -76,7 +77,7 @@ public class PlicoCommessa extends APlico {
 	 * Posiziona i riquadri nel pannello
 	 */
 	private void posizionaRiquadri() {
-		int bounds = 200;
+		int bounds = (CoedilFrame.getInstance().getBounds().width/6);
 		rda.setBounds(bounds, 20, rda.getWidth(), rda.getHeight());
 		rdcc.setBounds(bounds, rda.getY() + rda.getHeight() + 20, rdcc.getWidth(),
 				rdcc.getHeight());
