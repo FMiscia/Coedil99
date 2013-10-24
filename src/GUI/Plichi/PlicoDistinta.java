@@ -106,7 +106,7 @@ public class PlicoDistinta extends APlico {
 		if (ProgrammaLavori.getInstance().getCommessaSelezionata().getOdistinta()
 				.hasDdo()){
 			for(RiquadroDatiDistinta r: riquadri){
-				r.avoidEditing();
+				r.avoidEditing(true);
 				addButton.setEnabled(false);
 			}
 		}
@@ -169,6 +169,7 @@ public class PlicoDistinta extends APlico {
 		setBounds(0, 30,745,x);
 
 		addButton = new JButton("aggiungi nuova");
+		addButton.setPreferredSize(new Dimension(600,50));
 		this.validate();
 		this.repaint();
 		

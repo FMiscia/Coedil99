@@ -78,7 +78,7 @@ public abstract class ARiquadro extends JPanel {
 	/**
 	 * Elimina i listener dai bottoni dei riquadri
 	 */
-	public void avoidEditing() {
+	public void avoidEditing(boolean otherButtonstoo) {
 		this.modifica.setEnabled(false);
 		for (MouseListener al : ARiquadro.this.modifica.getMouseListeners()) {
 			ARiquadro.this.modifica.removeMouseListener(al);
@@ -147,7 +147,7 @@ public abstract class ARiquadro extends JPanel {
 		if (test) {
 			enableEditing();
 		} else {
-			avoidEditing();
+			avoidEditing(false);
 		}
 	}
 

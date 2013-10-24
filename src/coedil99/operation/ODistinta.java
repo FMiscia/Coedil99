@@ -14,6 +14,7 @@ public class ODistinta {
 
 	private Distinta distinta;
 
+
 	public Distinta getDistinta() {
 		return this.distinta;
 	}
@@ -58,12 +59,13 @@ public class ODistinta {
 	 */
 	public void eliminaRigaLavoro(RigaLavoro rg) {
 		this.distinta.getLavori().remove(rg);
-		try {
-			if(RigaLavoroFactory.getRigaLavoroByORMID(rg.getID())!=null)
+		if(rg.getOperation().isSaved()){
+			try {
 				rg.delete();
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

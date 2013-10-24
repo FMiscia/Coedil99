@@ -357,16 +357,20 @@ public class RiquadroDatiDistinta extends ARiquadro {
 			btnElimina.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					RigaLavoro r = RigaLavoroFactory.createRigaLavoro();
+					if (RiquadroDatiDistinta.this.oggetto != null) 
+						r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
 					Distinta d = ProgrammaLavori.getInstance()
 							.getCommessaSelezionata().getDistinta();
-					RigaLavoro r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
 					d.getOdistinta().eliminaRigaLavoro(r);
 					RiquadroDatiDistinta.this.removeAll();
 					PlicoDistinta.getInstance().removeRiquadro(
 							RiquadroDatiDistinta.this);
 					PlicoDistinta.getInstance().posizionaAddButton();
-					ProgrammaLavori.getInstance().getRaccoglitorePlichi().validate();
-					ProgrammaLavori.getInstance().getRaccoglitorePlichi().repaint();
+					ProgrammaLavori.getInstance().getRaccoglitorePlichi()
+							.validate();
+					ProgrammaLavori.getInstance().getRaccoglitorePlichi()
+							.repaint();
 				}
 			});
 		add(btnElimina);
@@ -408,15 +412,17 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	protected void resetRiquadro() {
 	}
 
+	@Override
 	/**
 	 * Impedisca la modifica
 	 */
-	@Override
-	public void avoidEditing() {
-		super.avoidEditing();
-		this.btnElimina.setEnabled(false);
-		for (MouseListener al : this.btnElimina.getMouseListeners()) {
-			this.btnElimina.removeMouseListener(al);
+	public void avoidEditing(boolean eliminaButton) {
+		super.avoidEditing(eliminaButton);
+		if (eliminaButton) {
+			this.btnElimina.setEnabled(false);
+			for (MouseListener al : this.btnElimina.getMouseListeners()) {
+				this.btnElimina.removeMouseListener(al);
+			}
 		}
 	}
 
@@ -451,11 +457,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		r.setProfiloCapitello(this.tftipocapitello.getText());
 		r.setNumero(Integer.parseInt(this.tfnumero.getText()));
 		r.setNote(this.tfnote.getText());
-		try {
-			r.save();
-		} catch (PersistentException e) {
-			e.printStackTrace();
-		}
+		r.getOperation().save();
 		this.oggetto = r;
 		JOptionPane.showMessageDialog(null,
 				"Salvataggio avvenuto correttamente", "Messaggio di Sistema",
