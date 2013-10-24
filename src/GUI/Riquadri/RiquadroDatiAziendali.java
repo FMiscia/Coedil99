@@ -607,5 +607,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		super.makeEditable(editable);
 
 	}
+	
 
 }

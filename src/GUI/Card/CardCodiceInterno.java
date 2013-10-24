@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.ACard;
+import GUI.ClipPanels.ClipPanelProgrammaLavori;
 import GUI.Liste.ListaCommesse;
 import GUI.Plichi.PlicoCommessa;
 
@@ -73,15 +74,19 @@ public class CardCodiceInterno extends ACard {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				ProgrammaLavori contenitore = ProgrammaLavori.getInstance();
+				if (!contenitore.getClipPanel().clickDuringModify()) {
+					return;
+				}
 				PlicoCommessa plico_commessa = PlicoCommessa.getInstance();
 				CardCodiceInterno.this.riquadro.deselectAll();
 				plico_commessa.load(CardCodiceInterno.this.commessaId);
-				ProgrammaLavori contenitore = ProgrammaLavori.getInstance();
+				
 				contenitore.setCommessaSelezionata(cc);
 				contenitore.getRaccoglitorePlichi().changePlico(plico_commessa);
 				contenitore.getRaccoglitorePlichi().validate();
 				contenitore.getRaccoglitorePlichi().repaint();
-
+				
 				contenitore.getClipPanel().resetInitialState();
 				CardCodiceInterno.this.setBackground(new Color(30, 44, 255));
 				CardCodiceInterno.this.validate();
