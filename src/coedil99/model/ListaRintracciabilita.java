@@ -14,7 +14,7 @@
 package coedil99.model;
 
 import org.orm.*;
-public class ListaRintracciabilita {
+public class ListaRintracciabilita implements IModelComponent{
 	public ListaRintracciabilita() {
 	}
 	

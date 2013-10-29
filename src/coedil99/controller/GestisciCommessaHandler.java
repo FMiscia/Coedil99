@@ -10,6 +10,7 @@ import coedil99.model.Commessa;
 import coedil99.model.CommessaFactory;
 import coedil99.model.Distinta;
 import coedil99.model.RigaLavoro;
+import coedil99.operation.ODistinta;
 
 
 
@@ -154,7 +155,8 @@ public class GestisciCommessaHandler {
 	 * @param rg:RigaLavoro
 	 */
 	public void modificaRigaLavoro(int id_commessa, RigaLavoro rg){
-		this.getCommessaById(id_commessa).getOdistinta().modificaRigaLavoro(rg);
+		ODistinta odistinta = new ODistinta(this.getCommessaById(id_commessa).getDistinta());
+		odistinta.modificaRigaLavoro(rg);
 	}
 	
 	/**

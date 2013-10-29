@@ -7,7 +7,7 @@ import org.orm.PersistentException;
 
 
 
-public class Catalogo {
+public class Catalogo implements IModelComponent{
 
 	private ArrayList<Item> items;
 	

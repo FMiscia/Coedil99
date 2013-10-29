@@ -1,8 +1,9 @@
 package coedil99.operation;
 
 import coedil99.model.DocumentoOttimizzazione;
+import coedil99.model.IModelComponent;
 
-public class ODocumentoOttimizzazione {
+public class ODocumentoOttimizzazione implements IOperation{
 
 private DocumentoOttimizzazione ddo;
 	
@@ -10,15 +11,12 @@ private DocumentoOttimizzazione ddo;
 		this.ddo = d;
 	}
 
-	public DocumentoOttimizzazione getDdo() {
-		return ddo;
-	}
-	
 	@Override
 	public String toString() {
 		String s = "";
 		for (int i = 0; i < this.ddo.items.size(); ++i) {
-			s = s + this.ddo.items.get(i).getOItem().toString() + "\n";
+			OItem oitem = new OItem(this.ddo.items.get(i));
+			s = s + oitem.toString() + "\n";
 		}
 		return s;
 
@@ -31,6 +29,11 @@ private DocumentoOttimizzazione ddo;
 			s = s + oi.toString();
 		}
 		return s;
+	}
+
+	@Override
+	public IModelComponent getModel() {
+		return this.ddo;
 	}
 
 }

@@ -14,7 +14,7 @@
 package coedil99.model;
 
 import org.orm.*;
-public class DocumentoOttimizzazione {
+public class DocumentoOttimizzazione implements IModelComponent{
 	public DocumentoOttimizzazione() {
 	}
 	

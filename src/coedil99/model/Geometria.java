@@ -14,7 +14,7 @@
 package coedil99.model;
 
 import org.orm.*;
-public class Geometria {
+public class Geometria implements IModelComponent{
 	public Geometria() {
 	}
 	
@@ -111,11 +111,6 @@ public class Geometria {
 		this.base=b;
 		this.altezza=a;
 		this.lunghezza=l;
-	}
-	
-	public Geometria(Object valueAt, Object valueAt2, Object valueAt3) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {

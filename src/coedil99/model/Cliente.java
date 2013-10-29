@@ -14,7 +14,7 @@
 package coedil99.model;
 
 import org.orm.*;
-public class Cliente {
+public class Cliente implements IModelComponent{
 	public Cliente() {
 	}
 	

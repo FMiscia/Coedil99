@@ -28,6 +28,8 @@ import coedil99.model.Geometria;
 import coedil99.model.GeometriaFactory;
 import coedil99.model.RigaLavoro;
 import coedil99.model.RigaLavoroFactory;
+import coedil99.operation.ODistinta;
+import coedil99.operation.ORigaLavoro;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -356,9 +358,9 @@ public class RiquadroDatiDistinta extends ARiquadro {
 					RigaLavoro r = RigaLavoroFactory.createRigaLavoro();
 					if (RiquadroDatiDistinta.this.oggetto != null) 
 						r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
-					Distinta d = ProgrammaLavori.getInstance()
-							.getCommessaSelezionata().getDistinta();
-					d.getOdistinta().eliminaRigaLavoro(r);
+					ODistinta odistinta = new ODistinta(ProgrammaLavori.getInstance()
+							.getCommessaSelezionata().getDistinta());
+					odistinta.eliminaRigaLavoro(r);
 					RiquadroDatiDistinta.this.removeAll();
 					PlicoDistinta.getInstance().removeRiquadro(
 							RiquadroDatiDistinta.this);
@@ -436,6 +438,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	@Override
 	protected void salva() {
 		RigaLavoro r = RigaLavoroFactory.createRigaLavoro();
+		
 		if (this.oggetto != null) {
 			r = (RigaLavoro) this.oggetto;
 		} else {
@@ -453,7 +456,8 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		r.setProfiloCapitello(this.tftipocapitello.getText());
 		r.setNumero(Integer.parseInt(this.tfnumero.getText()));
 		r.setNote(this.tfnote.getText());
-		r.getOperation().save();
+		ORigaLavoro origalavoro = new ORigaLavoro(r);
+		origalavoro.save();
 		this.oggetto = r;
 		JOptionPane.showMessageDialog(null,
 				"Salvataggio avvenuto correttamente", "Messaggio di Sistema",

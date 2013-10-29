@@ -2,9 +2,10 @@ package coedil99.operation;
 
 import org.orm.PersistentException;
 
+import coedil99.model.IModelComponent;
 import coedil99.model.RigaLavoro;
 
-public class ORigaLavoro {
+public class ORigaLavoro implements IOperation{
 
 	private RigaLavoro rigalavoro = null;
 	
@@ -26,5 +27,10 @@ public class ORigaLavoro {
 	
 	public boolean isSaved(){
 		return this.isSaved;
+	}
+
+	@Override
+	public IModelComponent getModel() {
+		return this.rigalavoro;
 	}
 }

@@ -21,6 +21,7 @@ import GUI.Riquadri.RiquadroDatiDistintaFactory;
 import GUI.Utilities.WrapLayout;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.Distinta;
+import coedil99.operation.ODistinta;
 
 /**
  * 
@@ -73,10 +74,10 @@ public class PlicoDistinta extends APlico {
 		RiquadroDatiDistinta temp = null;
 		Distinta d = (Distinta) GestisciCommessaHandler.getInstance()
 				.getCommessaById(id).getDistinta();
-		if (d != null && d.getLavori().size() != 0) {
-			for (int i = 0; i < d.getLavori().size(); i++) {
+		if (d != null && d.lavori.size() != 0) {
+			for (int i = 0; i < d.lavori.size(); i++) {
 				temp = new RiquadroDatiDistinta("Riga Lavoro");
-				temp.load(d.getLavori().get(i));
+				temp.load(d.lavori.get(i));
 				temp.setLocation(bounds, 20 * (i + 1));
 				this.add(temp);
 				this.riquadri.add(temp);
@@ -88,8 +89,8 @@ public class PlicoDistinta extends APlico {
 			this.add(temp);
 			this.riquadri.add(temp);
 		}
-		if (!ProgrammaLavori.getInstance().getCommessaSelezionata().getOdistinta()
-				.hasDdo()) {
+		ODistinta odistinta = new ODistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getDistinta());
+		if (!odistinta.hasDdo()) {
 			MouseListener[] arrML = addButton.getMouseListeners();
 			if (arrML.length == 1){
 				addButton.addMouseListener(new MouseAdapter() {
@@ -108,8 +109,7 @@ public class PlicoDistinta extends APlico {
 		panelAddButton.add(addButton);
 		this.add(panelAddButton);
 		this.aggiornaAltezze();
-		if (ProgrammaLavori.getInstance().getCommessaSelezionata().getOdistinta()
-				.hasDdo()){
+		if (odistinta.hasDdo()){
 			for(RiquadroDatiDistinta r: riquadri){
 				r.avoidEditing(true);
 				addButton.setEnabled(false);

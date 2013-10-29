@@ -6,7 +6,7 @@ import java.util.HashMap;
 import coedil99.controller.GestisciMagazzinoHandler;
 import coedil99.controller.GestisciRDAHandler;
 
-public class Magazzino extends Observer {
+public class Magazzino extends Observer implements IModelComponent{
 
 	private static Magazzino instance = null;
 

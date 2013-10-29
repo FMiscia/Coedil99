@@ -1,17 +1,14 @@
 package coedil99.operation;
 
+import coedil99.model.IModelComponent;
 import coedil99.model.Item;
 
-public class OItem {
+public class OItem implements IOperation{
 
 public Item item;
 	
 	public OItem(Item i){
 		this.item = i;
-	}
-	
-	public Item getItem(){
-		return this.item;
 	}
 	
 	@Override
@@ -35,6 +32,11 @@ public Item item;
 	
 	public float getLunghezza(){
 		return this.item.getGeometria().getLunghezza();
+	}
+
+	@Override
+	public IModelComponent getModel() {
+		return this.item;
 	}
 
 }

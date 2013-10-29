@@ -16,7 +16,7 @@ package coedil99.model;
 import org.orm.*;
 
 import coedil99.operation.OItem;
-public class Item {
+public class Item implements IModelComponent{
 	public Item() {
 	}
 	
@@ -159,11 +159,6 @@ public class Item {
 		//TODO: Implement Method
 		this.geometria=g;
 		this.descrizione=d;
-	}
-	
-	public OItem getOItem() {
-		//TODO: Implement Method
-		return new OItem(this);
 	}
 	
 	public String toString() {

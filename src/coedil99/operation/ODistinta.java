@@ -6,18 +6,14 @@ import org.orm.PersistentException;
 
 import coedil99.controller.OttimizzatoreHandler;
 import coedil99.model.Distinta;
+import coedil99.model.IModelComponent;
 import coedil99.model.RigaLavoro;
-import coedil99.model.RigaLavoroFactory;
 import coedil99.model.StandardOttimizzatoreStrategy;
 
-public class ODistinta {
+public class ODistinta implements IOperation{
 
 	private Distinta distinta;
 
-
-	public Distinta getDistinta() {
-		return this.distinta;
-	}
 
 	/**
 	 * 
@@ -59,7 +55,8 @@ public class ODistinta {
 	 */
 	public void eliminaRigaLavoro(RigaLavoro rg) {
 		this.distinta.getLavori().remove(rg);
-		if(rg.getOperation().isSaved()){
+		ORigaLavoro origalavoro = new ORigaLavoro(rg);
+		if(origalavoro.isSaved()){
 			try {
 				rg.delete();
 			} catch (PersistentException e) {
@@ -90,7 +87,12 @@ public class ODistinta {
 	 */
 	public boolean hasDdo() {
 		// TODO Auto-generated method stub
-				return (this.distinta.getDdo() != null);
+		return (this.distinta.getDdo() != null);
+	}
+
+	@Override
+	public IModelComponent getModel() {
+		return this.distinta;
 	}
 
 }

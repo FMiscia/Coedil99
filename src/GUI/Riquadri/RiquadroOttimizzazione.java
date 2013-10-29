@@ -89,7 +89,7 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	public void load(Object o) {
 		// TODO Auto-generated method stub
 		Item i = (Item) o;
-		OItem oi = i.getOItem();
+		OItem oi = new OItem(i);
 		this.txtLarg.setText(oi.getBase() + " cm");
 		this.txtAltezza.setText(oi.getAltezza() + " cm");
 		this.txtCommessaLung.setText(oi.getLunghezza() / 100 + " m");

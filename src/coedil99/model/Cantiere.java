@@ -14,7 +14,7 @@
 package coedil99.model;
 
 import org.orm.*;
-public class Cantiere {
+public class Cantiere implements IModelComponent{
 	public Cantiere() {
 	}
 	

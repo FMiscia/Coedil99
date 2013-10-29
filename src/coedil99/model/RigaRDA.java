@@ -14,7 +14,7 @@
 package coedil99.model;
 
 import org.orm.*;
-public class RigaRDA {
+public class RigaRDA implements IModelComponent{
 	public RigaRDA() {
 	}
 	

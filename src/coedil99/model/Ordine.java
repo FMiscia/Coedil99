@@ -14,7 +14,7 @@
 package coedil99.model;
 
 import org.orm.*;
-public class Ordine {
+public class Ordine implements IModelComponent{
 	public Ordine() {
 	}
 	

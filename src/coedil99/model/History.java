@@ -14,7 +14,7 @@
 package coedil99.model;
 
 import org.orm.*;
-public class History {
+public class History implements IModelComponent{
 	public History() {
 	}
 	

@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import coedil99.operation.ODistinta;
+
 import GUI.CoedilFrame;
 import GUI.PanelStart;
 import GUI.ProgrammaLavori;
@@ -96,8 +98,8 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
 					return;
 				}
-				if (ProgrammaLavori.getInstance().getCommessaSelezionata()
-						.getOdistinta().hasDdo()) {
+				ODistinta odistinta = new ODistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getDistinta());
+				if (odistinta.hasDdo()) {
 					ClipPanelProgrammaLavori.this.focusOut();
 					JButton b = (JButton) e.getSource();
 					b.setBackground(AClipPanel.getColoreSelezionato());
@@ -114,8 +116,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 							JOptionPane.QUESTION_MESSAGE, null, options,
 							options[1]);
 					if (n == JOptionPane.YES_OPTION) {
-						ProgrammaLavori.getInstance().getCommessaSelezionata()
-								.getDistinta().creaDDO();
+						odistinta.creaDDO();
 						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 								.changePlico(PlicoDDO.getInstance());
 						((JButton)e.getSource()).doClick();

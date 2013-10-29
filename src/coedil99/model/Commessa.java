@@ -16,7 +16,7 @@ package coedil99.model;
 import org.orm.*;
 
 import coedil99.operation.ODistinta;
-public class Commessa {
+public class Commessa implements IModelComponent{
 	public Commessa() {
 	}
 	
@@ -380,12 +380,7 @@ public class Commessa {
 		//TODO: Implement Method
 		this.scadenzaCommessa = scadenza;
 	}
-	
-	public ODistinta getOdistinta() {
-		//TODO: Implement Method
-		return new ODistinta(this.getDistinta());
-	}
-	
+		
 	public String toString() {
 		return String.valueOf(getID());
 	}

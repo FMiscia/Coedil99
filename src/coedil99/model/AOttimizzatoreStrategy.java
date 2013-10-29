@@ -6,7 +6,7 @@ package coedil99.model;
  * @author francesco
  *
  */
-public abstract class AOttimizzatoreStrategy {
+public abstract class AOttimizzatoreStrategy implements IModelComponent{
 
 	
 	protected AOttimizzatoreStrategy(){

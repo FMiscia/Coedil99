@@ -1,6 +1,7 @@
 package coedil99.operation;
 
 import coedil99.model.CatalogoFornitore;
+import coedil99.model.IModelComponent;
 
 /**
  * 
@@ -8,7 +9,7 @@ import coedil99.model.CatalogoFornitore;
  *
  */
 
-public class OCatalogoFornitore {
+public class OCatalogoFornitore implements IOperation{
 	
 	private CatalogoFornitore catalogoFornitore;
 
@@ -23,5 +24,9 @@ public class OCatalogoFornitore {
 	 */
 	public OCatalogoFornitore(CatalogoFornitore c) {
 		this.catalogoFornitore = c;
+	}
+
+	public CatalogoFornitore getModel() {
+		return this.catalogoFornitore;
 	}
 }

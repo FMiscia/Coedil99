@@ -1,18 +1,15 @@
 package coedil99.operation;
 
 import coedil99.model.Commessa;
+import coedil99.model.IModelComponent;
 import coedil99.model.Ordine;
 
-public class OOrdine {
+public class OOrdine implements IOperation{
 
 	private Ordine ordine;
 
 	public OOrdine(Ordine o) {
 		this.ordine = o;
-	}
-	
-	public Ordine getOrdine() {
-		return ordine;
 	}
 	
 	private Boolean isDateNull(){
@@ -37,6 +34,11 @@ public class OOrdine {
 			this.ordine.setDataScadenza(c.getFineCommessa());
 		}
 		
+	}
+
+	@Override
+	public IModelComponent getModel() {
+		return ordine;
 	}
 
 }

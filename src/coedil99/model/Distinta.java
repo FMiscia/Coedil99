@@ -17,7 +17,7 @@ import org.orm.*;
 
 import coedil99.operation.ODistinta;
 import coedil99.operation.ODocumentoOttimizzazione;
-public class Distinta {
+public class Distinta implements IModelComponent{
 	public Distinta() {
 	}
 	
@@ -117,12 +117,7 @@ public class Distinta {
 	public final coedil99.model.RigaLavoroListCollection lavori = new coedil99.model.RigaLavoroListCollection(this, _ormAdapter, coedil99.model.ORMConstants.KEY_DISTINTA_LAVORI, coedil99.model.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private static int count;
-	
-	public void creaDDO() {
-		//TODO: Implement Method
-		this.getOdistinta().creaDDO();
-	}
-	
+		
 	public ODocumentoOttimizzazione getOddo() {
 		//TODO: Implement Method
 		return new ODocumentoOttimizzazione(this.getDdo());
@@ -132,10 +127,6 @@ public class Distinta {
 		return String.valueOf(getID());
 	}
 	
-	public ODistinta getOdistinta(){
-		return new ODistinta(this);
-	}
-
 	public RigaLavoroListCollection getLavori() {
 		// TODO Auto-generated method stub
 		return this.lavori;

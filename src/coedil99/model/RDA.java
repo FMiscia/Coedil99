@@ -19,7 +19,7 @@ import org.orm.*;
 
 import coedil99.controller.GestisciMagazzinoHandler;
 import coedil99.controller.GestisciRDAHandler;
-public class RDA extends coedil99.model.Subject {
+public class RDA extends coedil99.model.Subject implements IModelComponent{
 	public RDA() {
 		this.date = new Date();
 		this.state = GestisciRDAHandler.CONGELATA;

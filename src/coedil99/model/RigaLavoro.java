@@ -16,7 +16,7 @@ package coedil99.model;
 import org.orm.*;
 
 import coedil99.operation.ORigaLavoro;
-public class RigaLavoro {
+public class RigaLavoro implements IModelComponent{
 	public RigaLavoro() {
 	}
 	
@@ -148,10 +148,6 @@ public class RigaLavoro {
 	
 	public String toString() {
 		return String.valueOf(getID());
-	}
-	
-	public ORigaLavoro getOperation(){
-		return new ORigaLavoro(this);
 	}
 	
 }

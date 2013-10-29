@@ -1,14 +1,11 @@
 package coedil99.operation;
 
 import coedil99.model.Commessa;
+import coedil99.model.IModelComponent;
 
-public class OCommessa {
+public class OCommessa implements IOperation{
 
 	private Commessa commessa;
-
-	public Commessa getCommessa() {
-		return this.commessa;
-	}
 
 	/**
 	 * 
@@ -17,6 +14,11 @@ public class OCommessa {
 	 */
 	public OCommessa(Commessa c) {
 		this.commessa = c;
+	}
+
+	@Override
+	public IModelComponent getModel() {
+		return this.commessa;
 	}
 
 }
