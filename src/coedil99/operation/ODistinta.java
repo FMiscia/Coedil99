@@ -95,4 +95,10 @@ public class ODistinta implements IOperation{
 		return this.distinta;
 	}
 
+	@Override
+	public void setModel(IModelComponent m) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -8,4 +8,5 @@ public interface IOperation {
 	
 	IModelComponent getModel();
 	
+	void setModel(IModelComponent m);
 }

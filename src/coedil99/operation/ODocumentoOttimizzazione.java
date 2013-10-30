@@ -36,4 +36,10 @@ private DocumentoOttimizzazione ddo;
 		return this.ddo;
 	}
 
+	@Override
+	public void setModel(IModelComponent m) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

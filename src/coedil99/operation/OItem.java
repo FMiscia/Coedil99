@@ -39,4 +39,10 @@ public Item item;
 		return this.item;
 	}
 
+	@Override
+	public void setModel(IModelComponent m) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

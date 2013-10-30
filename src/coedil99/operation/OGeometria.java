@@ -19,4 +19,10 @@ public class OGeometria implements IOperation{
 	public IModelComponent getModel() {
 		return this.geometria;
 	}
+
+	@Override
+	public void setModel(IModelComponent m) {
+		// TODO Auto-generated method stub
+		
+	}
 }

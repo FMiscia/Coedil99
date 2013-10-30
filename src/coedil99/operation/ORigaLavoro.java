@@ -33,4 +33,10 @@ public class ORigaLavoro implements IOperation{
 	public IModelComponent getModel() {
 		return this.rigalavoro;
 	}
+
+	@Override
+	public void setModel(IModelComponent m) {
+		// TODO Auto-generated method stub
+		
+	}
 }

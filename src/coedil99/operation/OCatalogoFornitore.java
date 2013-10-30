@@ -29,4 +29,10 @@ public class OCatalogoFornitore implements IOperation{
 	public CatalogoFornitore getModel() {
 		return this.catalogoFornitore;
 	}
+
+	@Override
+	public void setModel(IModelComponent m) {
+		// TODO Auto-generated method stub
+		
+	}
 }

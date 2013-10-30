@@ -21,4 +21,10 @@ public class ORDA implements IOperation{
 	public IModelComponent getModel() {
 		return this.rda;
 	}
+
+	@Override
+	public void setModel(IModelComponent m) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -21,4 +21,10 @@ public class OCommessa implements IOperation{
 		return this.commessa;
 	}
 
+	@Override
+	public void setModel(IModelComponent m) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

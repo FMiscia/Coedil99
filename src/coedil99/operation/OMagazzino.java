@@ -26,4 +26,10 @@ private Magazzino magazzino;
 	public IModelComponent getModel() {
 		return this.magazzino;
 	}
+
+	@Override
+	public void setModel(IModelComponent m) {
+		// TODO Auto-generated method stub
+		
+	}
 }

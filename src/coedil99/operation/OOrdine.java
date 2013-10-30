@@ -41,4 +41,10 @@ public class OOrdine implements IOperation{
 		return ordine;
 	}
 
+	@Override
+	public void setModel(IModelComponent m) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
