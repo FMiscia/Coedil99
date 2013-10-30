@@ -71,14 +71,9 @@ public class GestisciOrdineHandler {
 	 * @param id:int
 	 * @return ordine:Ordine
 	 */
-	public Ordine getOrdineById(int id){
-		try {
-			return OrdineFactory.getOrdineByORMID(id);
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public MOrdine getMOrdineById(int id){
+
+			return new MOrdine(id);
 	}
 	
 	/**

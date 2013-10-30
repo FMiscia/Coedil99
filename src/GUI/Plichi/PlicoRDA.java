@@ -111,7 +111,7 @@ public class PlicoRDA extends APlico {
 	public void refresh(){
 		this.resetFormRDA();
 		this.listaRigheRDA.svuota();
-		this.listaRigheRDA.load(new ArrayList<Object>(RDACenter.getInstance().getRDASelezionata().righeRDA.getCollection()) );
+		this.listaRigheRDA.load(new ArrayList<Object>(RDACenter.getInstance().getRDASelezionata().getPersistentModel().righeRDA.getCollection()) );
 		this.validate();
 		this.repaint();
 	}
@@ -122,13 +122,13 @@ public class PlicoRDA extends APlico {
 	public void controllaListaRighe(){
 		ListaRigheRDA lrrda = this.getListaRigheRDA();
 		if(RDACenter.getInstance().getClipPanel().isSelectedCongelate() && lrrda.getNumRigheRDA() == 0){
-			GestisciRDAHandler.getInstance().deleteAndRemoveRDA(RDACenter.getInstance().getRDASelezionata());
+			GestisciRDAHandler.getInstance().deleteAndRemoveMRDA(RDACenter.getInstance().getRDASelezionata());
 			//RDACenter.getInstance().getClipPanel().getButtons().get(1).doClick();
 			PlicoRDA prda = PlicoRDA.getInstance();
 			ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
 				RDACenter.getInstance().refreshCongelate();
 				lista_righe_rda.load(new ArrayList<Object>(RDACenter
-						.getInstance().getRDASelezionata().righeRDA
+						.getInstance().getRDASelezionata().getPersistentModel().righeRDA
 						.getCollection()));
 			this.validate();
 			this.repaint();

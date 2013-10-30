@@ -98,9 +98,9 @@ public class ClipPanelRDA extends AClipPanel {
 	 */
 	public void updateNotifiche() {
 		String AttesaSize = String.valueOf(GestisciRDAHandler.getInstance()
-				.getArrayRDA(GestisciRDAHandler.ATTESA_CONFERMA).size());
+				.getArrayMRDA(GestisciRDAHandler.ATTESA_CONFERMA).size());
 		String ConfermateSize = String.valueOf(GestisciRDAHandler.getInstance()
-				.getArrayRDA(GestisciRDAHandler.CONFERMATA).size());
+				.getArrayMRDA(GestisciRDAHandler.CONFERMATA).size());
 		this.AddNotificaLabel(AttesaSize, GestisciRDAHandler.ATTESA_CONFERMA);
 		this.AddNotificaLabel(ConfermateSize, GestisciRDAHandler.CONFERMATA);
 		this.validate();
@@ -185,7 +185,7 @@ public class ClipPanelRDA extends AClipPanel {
 						rdac.getLista()
 								.load(GestisciRDAHandler.ATTESA_CONFERMA);
 						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
-								.getRDAById(rdac.getLista().getPrimaRDA()));
+								.getMRDAById(rdac.getLista().getPrimaRDA()));
 
 						BorderLayout layout = (BorderLayout) prda.getLayout();
 						if (layout.getLayoutComponent(BorderLayout.CENTER) != null)
@@ -195,7 +195,7 @@ public class ClipPanelRDA extends AClipPanel {
 						prda.resetFormRDA();
 						lista_righe_rda.getPanel().removeAll();
 						lista_righe_rda.load(new ArrayList<Object>(rdac
-								.getRDASelezionata().righeRDA.getCollection()));
+								.getRDASelezionata().getPersistentModel().righeRDA.getCollection()));
 						lista_righe_rda.getPanel().validate();
 						lista_righe_rda.getPanel().repaint();
 					}
@@ -224,7 +224,7 @@ public class ClipPanelRDA extends AClipPanel {
 						rdac.getLista().svuota();
 						rdac.getLista().load(GestisciRDAHandler.CONFERMATA);
 						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
-								.getRDAById(rdac.getLista().getPrimaRDA()));
+								.getMRDAById(rdac.getLista().getPrimaRDA()));
 
 						BorderLayout layout = (BorderLayout) prda.getLayout();
 						if (layout.getLayoutComponent(BorderLayout.CENTER) != null)
@@ -234,7 +234,7 @@ public class ClipPanelRDA extends AClipPanel {
 						prda.resetFormRDA();
 						lista_righe_rda.getPanel().removeAll();
 						lista_righe_rda.load(new ArrayList<Object>(rdac
-								.getRDASelezionata().righeRDA.getCollection()));
+								.getRDASelezionata().getPersistentModel().righeRDA.getCollection()));
 						lista_righe_rda.getPanel().validate();
 						lista_righe_rda.getPanel().repaint();
 					}
