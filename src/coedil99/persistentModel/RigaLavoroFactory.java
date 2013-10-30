@@ -125,7 +125,7 @@ public class RigaLavoroFactory {
 	}
 	
 	public static RigaLavoro[] listRigaLavoroByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RigaLavoro as RigaLavoro");
+		StringBuffer sb = new StringBuffer("From coedil99.persistentModel.RigaLavoro as RigaLavoro");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -142,7 +142,7 @@ public class RigaLavoroFactory {
 	}
 	
 	public static RigaLavoro[] listRigaLavoroByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RigaLavoro as RigaLavoro");
+		StringBuffer sb = new StringBuffer("From coedil99.persistentModel.RigaLavoro as RigaLavoro");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -220,7 +220,7 @@ public class RigaLavoroFactory {
 	}
 	
 	public static java.util.Iterator iterateRigaLavoroByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RigaLavoro as RigaLavoro");
+		StringBuffer sb = new StringBuffer("From coedil99.persistentModel.RigaLavoro as RigaLavoro");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -236,7 +236,7 @@ public class RigaLavoroFactory {
 	}
 	
 	public static java.util.Iterator iterateRigaLavoroByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RigaLavoro as RigaLavoro");
+		StringBuffer sb = new StringBuffer("From coedil99.persistentModel.RigaLavoro as RigaLavoro");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
