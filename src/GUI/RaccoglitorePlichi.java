@@ -73,7 +73,7 @@ public class RaccoglitorePlichi extends JScrollPane {
 
 	/**
 	 * 
-	 * @param c
+	 * @param commessaSelezionata
 	 *            : la commessa da caricare
 	 */
 	public void caricaPrimaCommessa(MCommessa c) {

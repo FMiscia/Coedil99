@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.orm.PersistentException;
 
+import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MGeometria;
 import coedil99.persistentModel.CatalogoFornitore;
 import coedil99.persistentModel.CatalogoFornitoreBuilder;
@@ -15,7 +16,7 @@ import coedil99.persistentModel.ProductDescription;
 
 public class GestisciFornitoreHandler {
 
-	private ArrayList<CatalogoFornitore> arrayFornitori = null;
+	private ArrayList<MCatalogoFornitore> cataloghi = null;
 	private CatalogoFornitoreBuilder builder;
 	private static GestisciFornitoreHandler instance;
 	
@@ -23,10 +24,13 @@ public class GestisciFornitoreHandler {
 	 * Costruttore
 	 */
 	private GestisciFornitoreHandler() {
+		this.cataloghi = new ArrayList<MCatalogoFornitore>();
 		try {
-			this.arrayFornitori = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.listCatalogoFornitoreByQuery(null, "ID")));
+			ArrayList<CatalogoFornitore> persistent_cataloghi = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.listCatalogoFornitoreByQuery(null, "ID")));
+			for(CatalogoFornitore c: persistent_cataloghi){
+				this.cataloghi.add(new MCatalogoFornitore(c.getID()));
+			}
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -46,8 +50,8 @@ public class GestisciFornitoreHandler {
 	 * Fornisce i fornitori dell'azienda
 	 * @return arrayFornitori:ArrayList<CatalogoFornitore>
 	 */
-	public ArrayList<CatalogoFornitore> getArrayFornitori() {
-		return arrayFornitori;
+	public ArrayList<MCatalogoFornitore> getArrayFornitori() {
+		return cataloghi;
 	}
 	
 	/**
@@ -55,11 +59,14 @@ public class GestisciFornitoreHandler {
 	 * @param nome:String
 	 * @return catalogo:CatalogoFornitore
 	 */
-	public CatalogoFornitore getFornitoreByName(String nome){
+	public MCatalogoFornitore getFornitoreByName(String nome){
+		this.cataloghi = new ArrayList<MCatalogoFornitore>();
 		try {
-			return CatalogoFornitoreFactory.loadCatalogoFornitoreByQuery(" Name = " + "'" + nome + "'", null);
+			ArrayList<CatalogoFornitore> persistent_cataloghi = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.loadCatalogoFornitoreByQuery(" Name = " + "'" + nome + "'", null)));
+			for(CatalogoFornitore c: persistent_cataloghi){
+				this.cataloghi.add(new MCatalogoFornitore(c.getID()));
+			}
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -74,10 +81,9 @@ public class GestisciFornitoreHandler {
 	 * @return pd:ProductDescription
 	 */
 	public ProductDescription getProductDescription(String essenza, String geometria, String fornitore) {
-		// TODO Auto-generated method stub
-		CatalogoFornitore cf = GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore);
+		MCatalogoFornitore cf = GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore);
 		@SuppressWarnings("rawtypes")
-		List l = cf.productDescription.getCollection();
+		List l = cf.getPersistentModel().productDescription.getCollection();
 		ProductDescription pd = null;
 		for ( int i=0 ; i<l.size() ; i++  ){
 			pd = (ProductDescription) l.get(i);
@@ -101,7 +107,7 @@ public class GestisciFornitoreHandler {
 	 * Get
 	 * @return catalogo fornitore
 	 */
-	public CatalogoFornitore getCatalogo(){
+	public MCatalogoFornitore getCatalogo(){
 		return this.builder.getCatalogo();
 	}
 	
@@ -120,22 +126,6 @@ public class GestisciFornitoreHandler {
 	}
 	
 	/**
-	 * Metodo che crea uno nuovo catalogo fornitore tramite la sua factory
-	 *  
-	 * @return catalogo fornitore
-	 */
-	public CatalogoFornitore creaCatalogoFornitore(){
-		CatalogoFornitore new_catalogo = CatalogoFornitoreFactory.createCatalogoFornitore();
-		try {
-			new_catalogo.save();
-		} catch (PersistentException e) {
-			e.printStackTrace();
-		}
-		
-		return new_catalogo;
-	}
-	
-	/**
 	 * Metodo che controlla se il controllore e' stato precedentemente instanziato
 	 * 
 	 * @return boolean
@@ -149,8 +139,12 @@ public class GestisciFornitoreHandler {
 	 * 
 	 */
 	public void reloadFornitori(){
+		this.cataloghi = new ArrayList<MCatalogoFornitore>();
 		try {
-			this.arrayFornitori = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.listCatalogoFornitoreByQuery(null, "ID")));
+			ArrayList<CatalogoFornitore> persistent_cataloghi = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.listCatalogoFornitoreByQuery(null, "ID")));
+			for(CatalogoFornitore c: persistent_cataloghi){
+				this.cataloghi.add(new MCatalogoFornitore(c.getID()));
+			}
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}

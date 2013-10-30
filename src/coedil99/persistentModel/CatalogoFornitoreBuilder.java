@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import coedil99.controller.GestisciFornitoreHandler;
+import coedil99.model.MCatalogoFornitore;
 
 /**
  * Pattern Builder: un catalogo può essere caricato da vari
@@ -14,7 +15,7 @@ import coedil99.controller.GestisciFornitoreHandler;
  */
 public abstract class CatalogoFornitoreBuilder {
 
-	protected CatalogoFornitore catalogo;
+	protected MCatalogoFornitore catalogo;
 	/**
 	 * Questo metodo e' resposabile del parsing del file.
 	 * 
@@ -29,7 +30,7 @@ public abstract class CatalogoFornitoreBuilder {
 	 * 
 	 * @return catalogo fornitore
 	 */
-	public CatalogoFornitore getCatalogo(){
+	public MCatalogoFornitore getCatalogo(){
 		return catalogo;
 	}
 
@@ -38,7 +39,7 @@ public abstract class CatalogoFornitoreBuilder {
 	 */
     public void createNewCatalogo()
     { 
-    	this.catalogo = GestisciFornitoreHandler.getInstance().creaCatalogoFornitore();
+    	this.catalogo = new MCatalogoFornitore();
     }
 
 }

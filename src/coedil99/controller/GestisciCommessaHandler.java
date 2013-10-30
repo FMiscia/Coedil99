@@ -6,6 +6,7 @@ import java.util.ListIterator;
 
 import org.orm.PersistentException;
 
+import coedil99.model.MCommessa;
 import coedil99.model.MDistinta;
 import coedil99.persistentModel.Commessa;
 import coedil99.persistentModel.CommessaFactory;
@@ -18,17 +19,20 @@ import coedil99.persistentModel.RigaLavoro;
 public class GestisciCommessaHandler {
 
 	private int id;
-	private ArrayList<Commessa> commesse;
+	private ArrayList<MCommessa> commesse;
 	private static GestisciCommessaHandler instance;
 
 	/**
 	 * Costruttore
 	 */
 	private GestisciCommessaHandler() {
+		this.commesse = new ArrayList<MCommessa>();
 		try {
-			this.commesse = new ArrayList<Commessa>(Arrays.asList(CommessaFactory.listCommessaByQuery(null, "ID")));
+			ArrayList<Commessa> persistent_commesse = new ArrayList<Commessa>(Arrays.asList(CommessaFactory.listCommessaByQuery(null, "ID")));
+			for(Commessa c : persistent_commesse){
+				this.commesse.add(new MCommessa(c.getID()));
+			}
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -40,7 +44,7 @@ public class GestisciCommessaHandler {
 	 * @param commessa:Commessa
 	 * 
 	 */
-	public void add(Commessa commessa) {
+	public void add(MCommessa commessa) {
 		this.commesse.add(commessa);
 	}
 	
@@ -50,7 +54,7 @@ public class GestisciCommessaHandler {
 	 * @param idCommessa:int
 	 */
 	public void eliminaDistinta(int idCommessa) {
-		this.getCommessaById(idCommessa).setDistinta(null);
+		this.getCommessaById(idCommessa).delete();
 	}
 
 	/**
@@ -58,10 +62,10 @@ public class GestisciCommessaHandler {
 	 * @param id:int
 	 * @return commessa:Commessa
 	 */
-	public Commessa getCommessaById(int id) {
-		ListIterator<Commessa> it = this.commesse.listIterator();
+	public MCommessa getCommessaById(int id) {
+		ListIterator<MCommessa> it = this.commesse.listIterator();
 		while (it.hasNext()) {
-			if (it.next().getID() == id)
+			if (it.next().getPersistentModel().getID() == id)
 				return it.previous();
 		}
 
@@ -86,14 +90,14 @@ public class GestisciCommessaHandler {
 	 */
 	public void associaDistinta(Distinta d, int idCommessa){
 		if(this.getCommessaById(idCommessa) != null)
-			this.getCommessaById(idCommessa).setDistinta(d);
+			this.getCommessaById(idCommessa).getPersistentModel().setDistinta(d);
 	}
 	
 	/**
 	 * Fornisce le commesse
-	 * @return commesse:ArrayList<Commessa>
+	 * @return commesse:ArrayList<MCommessa>
 	 */
-	public ArrayList<Commessa> getCommesse(){
+	public ArrayList<MCommessa> getCommesse(){
 		return this.commesse;
 	}
 	
@@ -108,12 +112,12 @@ public class GestisciCommessaHandler {
 	/**
 	 * Fornisce la commessa in base al codice interno
 	 * @param q:String
-	 * @return commessa:Commessa
+	 * @return commessa:MCommessa
 	 */
-	public Commessa getCommessaByCodiceInterno(String q){
-		Commessa c = null;
+	public MCommessa getCommessaByCodiceInterno(String q){
+		MCommessa c = null;
 		for(int i=0; i<this.commesse.size(); ++i){
-			if(this.commesse.get(i).getCodiceInterno() == q)
+			if(this.commesse.get(i).getPersistentModel().getCodiceInterno() == q)
 				c=this.commesse.get(i);
 		}
 		return c;
@@ -122,12 +126,12 @@ public class GestisciCommessaHandler {
 	/**
 	 * 
 	 * @param a:int
-	 * @return c:Commessa
+	 * @return c:MCommessa
 	 */
-	public Commessa getCommessaByIndex(int a) {
-		Commessa c = null;
+	public MCommessa getCommessaByIndex(int a) {
+		MCommessa c = null;
 		for(int i=0; i<this.commesse.size(); ++i){
-			if(this.commesse.get(i).getID() == a)
+			if(this.commesse.get(i).getPersistentModel().getID() == a)
 				c = this.commesse.get(i);
 		}
 		return c;
@@ -139,11 +143,11 @@ public class GestisciCommessaHandler {
 	 * @return boolean:Boolean
 	 */
 	public Boolean hasDistinta(String ci){
-		ListIterator<Commessa> it = this.commesse.listIterator();
-		Commessa temp;
+		ListIterator<MCommessa> it = this.commesse.listIterator();
+		MCommessa temp;
 		while(it.hasNext()){
 			temp = it.next();
-			if(temp.getCodiceInterno().equals(ci) && temp.getDistinta() != null)
+			if(temp.getPersistentModel().getCodiceInterno().equals(ci) && temp.getPersistentModel().getDistinta() != null)
 				return true;
 		}
 		return false;
@@ -155,7 +159,7 @@ public class GestisciCommessaHandler {
 	 * @param rg:RigaLavoro
 	 */
 	public void modificaRigaLavoro(int id_commessa, RigaLavoro rg){
-		MDistinta odistinta = new MDistinta(this.getCommessaById(id_commessa).getDistinta().getID());
+		MDistinta odistinta = new MDistinta(this.getCommessaById(id_commessa).getPersistentModel().getDistinta().getID());
 		odistinta.modificaRigaLavoro(rg);
 	}
 	

@@ -138,15 +138,15 @@ public abstract class AFormRDA extends JPanel {
 	 * @param fornitore
 	 *            : Catalogo Fornitore selezionato
 	 */
-	protected void loadEssenze(final CatalogoFornitore fornitore) {
+	protected void loadEssenze(final MCatalogoFornitore fornitore) {
 		AFormRDA.this.cbEssenza.setEnabled(true);
 		if (this.cbEssenza.getItemListeners().length != 0)
 			this.cbEssenza
 					.removeItemListener(this.cbEssenza.getItemListeners()[0]);
 		this.cbEssenza.removeAllItems();
 		TreeSet<String> essenze = new TreeSet<String>();
-		for (int i = 0; i < fornitore.productDescription.size(); ++i) {
-			essenze.add(fornitore.productDescription.get(i).getEssenza());
+		for (int i = 0; i < fornitore.getPersistentModel().productDescription.size(); ++i) {
+			essenze.add(fornitore.getPersistentModel().productDescription.get(i).getEssenza());
 		}
 		for (int i = 0; i < essenze.size(); ++i) {
 			this.cbEssenza.addItem(essenze.toArray()[i]);
@@ -178,7 +178,7 @@ public abstract class AFormRDA extends JPanel {
 	 *            : Essenza selezionata
 	 * 
 	 */
-	protected void loadGeometria(CatalogoFornitore fornitore, String essenza) {
+	protected void loadGeometria(MCatalogoFornitore fornitore, String essenza) {
 		AFormRDA.this.cbGeometria.setEnabled(true);
 		if (this.cbGeometria.getItemListeners().length != 0)
 			this.cbGeometria.removeItemListener(this.cbGeometria
@@ -186,7 +186,7 @@ public abstract class AFormRDA extends JPanel {
 		this.cbGeometria.removeAllItems();
 		@SuppressWarnings("unchecked")
 		ArrayList<MProductDescription> pd = new ArrayList<MProductDescription>(
-				fornitore.productDescription.getCollection());
+				fornitore.getPersistentModel().productDescription.getCollection());
 		for (int i = 0; i < pd.size(); ++i) {
 			if (pd.get(i).getPersistentModel().getEssenza().equals(essenza)) {
 				this.cbGeometria.addItem(new MGeometria(pd.get(i).getPersistentModel().getGeometria().getID()).toString());
