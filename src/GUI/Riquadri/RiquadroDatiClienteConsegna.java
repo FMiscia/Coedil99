@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
+import coedil99.model.MCliente;
 import coedil99.persistentModel.Cliente;
 
 import com.jgoodies.forms.factories.FormFactory;
@@ -55,13 +56,15 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	public void load(Object o) {
 		this.oggetto = o;
 		this.resetRiquadro();
-		Cliente c = (Cliente) o;
-		if (c.getCantiere().getNome() != null)
-			this.txtCantiere.setText(c.getCantiere().getNome());
-		if (c.getName() != null)
-			this.txtCliente.setText(c.getName());
-		if (c.getNumeroCommessaCliente() != null)
-			this.txtCommessa.setText(c.getNumeroCommessaCliente().toString());
+		MCliente c = (MCliente) o;
+		if (c.getPersistentModel().getCantiere().getNome() != null)
+			this.txtCantiere.setText(c.getPersistentModel().getCantiere()
+					.getNome());
+		if (c.getPersistentModel().getName() != null)
+			this.txtCliente.setText(c.getPersistentModel().getName());
+		if (c.getPersistentModel().getNumeroCommessaCliente() != null)
+			this.txtCommessa.setText(c.getPersistentModel()
+					.getNumeroCommessaCliente().toString());
 	}
 
 	/**
@@ -70,14 +73,11 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	@Override
 	protected void salva() {
 		if (this.oggetto != null) {
-			Cliente c = (Cliente) this.oggetto;
-			c.getCantiere().setNome(this.txtCantiere.getText());
-			c.setName(this.txtCliente.getText());
-			try {
-				c.save();
-			} catch (PersistentException e) {
-				e.printStackTrace();
-			}
+			MCliente c = (MCliente) this.oggetto;
+			c.getPersistentModel().getCantiere()
+					.setNome(this.txtCantiere.getText());
+			c.getPersistentModel().setName(this.txtCliente.getText());
+			c.save();
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);

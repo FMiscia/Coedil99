@@ -12,6 +12,7 @@ import GUI.Abstract.ALista;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Riepiloghi.RiepilogoRDAFactory;
+import coedil99.model.MRigaRDA;
 import coedil99.persistentModel.RigaRDA;
 
 /**
@@ -50,7 +51,7 @@ public class ListaRigheRDA extends ALista {
 		for (int k = 0; k < row; ++k) {
 			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance()
 					.makeCard(this);
-			final RigaRDA riga = (RigaRDA) t.get(k);
+			final MRigaRDA riga = (MRigaRDA) t.get(k);
 			riquadroRigaRDA.load(riga);
 			this.panel.add(riquadroRigaRDA);
 			this.panel.validate();
@@ -97,7 +98,7 @@ public class ListaRigheRDA extends ALista {
 	 */
 	public void updatePanel() {
 		this.panel.removeAll();
-		String stato = RDACenter.getInstance().getRDASelezionata().getState();
+		String stato = RDACenter.getInstance().getRDASelezionata().getPersistentModel().getState();
 		this.riepilogoRDA = RiepilogoRDAFactory.getInstance().makeRiepilogo(
 				stato);
 		this.riepilogoRDA.refresh();

@@ -20,6 +20,7 @@ import GUI.FormRDA.ModificaFormRDA;
 import GUI.FormRDA.ModificaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
+import coedil99.model.MRigaRDA;
 import coedil99.persistentModel.RigaRDA;
 
 import com.jgoodies.forms.layout.FormLayout;
@@ -194,19 +195,19 @@ public class CardRigaRDA extends ACard {
 	 * @param o:Object
 	 */
 	public void load(Object o) {
-		final RigaRDA riga = (RigaRDA) o;
-		this.txtEssenza.setText(riga.getDescription().getEssenza());
-		this.txtQuantita.setText(String.valueOf(riga.getQuantity()));
-		this.txtAltezza.setText(String.valueOf(riga.getDescription()
+		final MRigaRDA riga = (MRigaRDA) o;
+		this.txtEssenza.setText(riga.getPersistentModel().getDescription().getEssenza());
+		this.txtQuantita.setText(String.valueOf(riga.getPersistentModel().getQuantity()));
+		this.txtAltezza.setText(String.valueOf(riga.getPersistentModel().getDescription()
 				.getGeometria().getAltezza()));
-		this.txtLunghezza.setText(String.valueOf(riga.getDescription()
+		this.txtLunghezza.setText(String.valueOf(riga.getPersistentModel().getDescription()
 				.getGeometria().getLunghezza()));
-		this.txtLarghezza.setText(String.valueOf(riga.getDescription()
+		this.txtLarghezza.setText(String.valueOf(riga.getPersistentModel().getDescription()
 				.getGeometria().getBase()));
-		this.txtPezzi.setText(String.valueOf(riga.getDescription()
+		this.txtPezzi.setText(String.valueOf(riga.getPersistentModel().getDescription()
 				.getPezzi_per_pacco()));
 		this.txtPrezzo.setText(String
-				.valueOf(riga.getDescription().getPrezzo()));
+				.valueOf(riga.getPersistentModel().getDescription().getPrezzo()));
 		this.btnModifica.setIcon(new ImageIcon(CardRigaRDA.class
 				.getResource("/GUI/image/congelata.png")));
 		this.btnModifica.addMouseListener(new MouseAdapter() {
@@ -223,7 +224,7 @@ public class CardRigaRDA extends ACard {
 				CardRigaRDA.this.setBackground(new Color(130,130,130));
 				ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory
 						.getInstance().makeFormRDA();
-				form.modificaRDA(riga);
+				form.modificaRDA(riga.getPersistentModel());
 				PlicoRDA.getInstance().addFormRDA(form);
 			}
 		});

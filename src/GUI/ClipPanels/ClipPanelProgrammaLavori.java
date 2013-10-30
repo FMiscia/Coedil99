@@ -98,7 +98,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
 					return;
 				}
-				MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getDistinta().getID());
+				MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getPersistentModel().getDistinta().getID());
 				if (odistinta.hasDdo()) {
 					ClipPanelProgrammaLavori.this.focusOut();
 					JButton b = (JButton) e.getSource();

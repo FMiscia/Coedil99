@@ -11,6 +11,7 @@ import GUI.Card.CardCodiceInterno;
 import GUI.Card.CardCodiceInternoFactory;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
+import coedil99.model.MCliente;
 import coedil99.persistentModel.Cliente;
 
 @SuppressWarnings("serial")
@@ -80,17 +81,17 @@ public class ListaCommesse extends ALista {
 		int row = GestisciCommessaHandler.getInstance().getNumOfCommesse();
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		for(int k=0; k<t.size(); ++k){
-			Cliente temp = (Cliente)t.get(k);
-			for(int j=0; j<temp.ordini.size(); ++j){
-				for(int i=0; i<temp.ordini.get(j).commesse.size(); ++i){
+			MCliente temp = (MCliente)t.get(k);
+			for(int j=0; j<temp.getPersistentModel().ordini.size(); ++j){
+				for(int i=0; i<temp.getPersistentModel().ordini.get(j).commesse.size(); ++i){
 					final CardCodiceInterno r = (CardCodiceInterno) CardCodiceInternoFactory.getInstance().makeCard(this);
 					ArrayList<Object> commessaIdentifier = new ArrayList<Object>();
 					//cliente
 					commessaIdentifier.add(0, temp);
 					//ordine
-					commessaIdentifier.add(1, temp.ordini.get(j));
+					commessaIdentifier.add(1, temp.getPersistentModel().ordini.get(j));
 					//commessa
-					commessaIdentifier.add(2, temp.ordini.get(j).commesse.get(i));
+					commessaIdentifier.add(2, temp.getPersistentModel().ordini.get(j).commesse.get(i));
 					r.load(commessaIdentifier);
 					panel.add(r);
 				}

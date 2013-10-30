@@ -19,6 +19,9 @@ import GUI.ClipPanels.ClipPanelProgrammaLavori;
 import GUI.Liste.ListaCommesse;
 import GUI.Plichi.PlicoCommessa;
 
+import coedil99.model.MCliente;
+import coedil99.model.MCommessa;
+import coedil99.model.MOrdine;
 import coedil99.persistentModel.Cliente;
 import coedil99.persistentModel.Commessa;
 import coedil99.persistentModel.Ordine;
@@ -59,16 +62,16 @@ public class CardCodiceInterno extends ACard {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
 		ArrayList<Object> param = (ArrayList<Object>) obj;
-		Cliente c = (Cliente) param.get(0);
-		Ordine o = (Ordine) param.get(1);
-		final Commessa cc = (Commessa) param.get(2);
-		cliente.setText(c.getName());
-		if (cc.getScadenza() == null)
+		MCliente c = (MCliente) param.get(0);
+		MOrdine o = (MOrdine) param.get(1);
+		final MCommessa cc = (MCommessa) param.get(2);
+		cliente.setText(c.getPersistentModel().getName());
+		if (cc.getPersistentModel().getScadenza() == null)
 			scadenza.setText("--/--/----");
 		else
-			scadenza.setText(cc.getScadenza().toString());
-		codiceInterno.setText(cc.getCodiceInterno());
-		this.commessaId = cc.getID();
+			scadenza.setText(cc.getPersistentModel().getScadenza().toString());
+		codiceInterno.setText(cc.getPersistentModel().getCodiceInterno());
+		this.commessaId = cc.getPersistentModel().getID();
 
 		this.addMouseListener(new MouseAdapter() {
 

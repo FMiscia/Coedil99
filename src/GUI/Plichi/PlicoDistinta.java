@@ -72,12 +72,12 @@ public class PlicoDistinta extends APlico {
 		int bounds = (CoedilFrame.getInstance().getBounds().width/6);
 		this.removeAll();
 		RiquadroDatiDistinta temp = null;
-		Distinta d = (Distinta) GestisciCommessaHandler.getInstance()
+		MDistinta d = (MDistinta) GestisciCommessaHandler.getInstance()
 				.getCommessaById(id).getDistinta();
-		if (d != null && d.lavori.size() != 0) {
-			for (int i = 0; i < d.lavori.size(); i++) {
+		if (d != null && d.getPersistentModel().lavori.size() != 0) {
+			for (int i = 0; i < d.getPersistentModel().lavori.size(); i++) {
 				temp = new RiquadroDatiDistinta("Riga Lavoro");
-				temp.load(d.lavori.get(i));
+				temp.load(d.getPersistentModel().lavori.get(i));
 				temp.setLocation(bounds, 20 * (i + 1));
 				this.add(temp);
 				this.riquadri.add(temp);
@@ -89,7 +89,7 @@ public class PlicoDistinta extends APlico {
 			this.add(temp);
 			this.riquadri.add(temp);
 		}
-		MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getDistinta().getID());
+		MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getPersistentModel().getDistinta().getID());
 		if (!odistinta.hasDdo()) {
 			MouseListener[] arrML = addButton.getMouseListeners();
 			if (arrML.length == 1){

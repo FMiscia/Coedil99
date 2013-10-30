@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import coedil99.controller.GestisciFornitoreHandler;
+import coedil99.model.MCatalogoFornitore;
+import coedil99.model.MProductDescription;
+import coedil99.model.MRDA;
+import coedil99.model.MRigaRDA;
 import coedil99.persistentModel.CatalogoFornitore;
 import coedil99.persistentModel.ProductDescription;
 import coedil99.persistentModel.RDA;
@@ -115,20 +119,20 @@ public class CreaFormRDA extends AFormRDA {
 						fornitore = CreaFormRDA.this.getCbFornitore()
 								.getSelectedItem().toString();
 						@SuppressWarnings("unused")
-						CatalogoFornitore cf = GestisciFornitoreHandler
+						MCatalogoFornitore cf = GestisciFornitoreHandler
 								.getInstance().getFornitoreByName(fornitore);
 						essenza = CreaFormRDA.this.getCbEssenza()
 								.getSelectedItem().toString();
 						geometria = CreaFormRDA.this.getCbGeometria()
 								.getSelectedItem().toString();
-						ProductDescription pd = GestisciFornitoreHandler
+						MProductDescription pd = GestisciFornitoreHandler
 								.getInstance().getProductDescription(essenza,
 										geometria, fornitore);
-						RigaRDA rrda = RigaRDAFactory.createRigaRDA();
+						MRigaRDA rrda = new MRigaRDA();
 						RDACenter rdac = RDACenter.getInstance();
-						rrda.setRDA(rdac.getRDASelezionata());
-						rrda.setDescription(pd);
-						rrda.setQuantity(numero);
+						rrda.getPersistentModel().setRDA(rdac.getRDASelezionata().getPersistentModel());
+						rrda.getPersistentModel().setDescription(pd.getPersistentModel());
+						rrda.getPersistentModel().setQuantity(numero);
 						PlicoRDA prda = PlicoRDA.getInstance();
 						CardRigaRDA cardRigaRDA = (CardRigaRDA) CardRigaRDAFactory
 								.getInstance()
@@ -138,7 +142,7 @@ public class CreaFormRDA extends AFormRDA {
 						prda.getListaRigheRDA().getPanel().removeAll();
 						prda.getListaRigheRDA().load(
 								new ArrayList<Object>(
-										rdac.getRDASelezionata().righeRDA
+										rdac.getRDASelezionata().getPersistentModel().righeRDA
 												.getCollection()));
 						lista.getPrimaCard().setNomeFornitore(fornitore);
 						CreaFormRDA.this.resetConFornitoreSelezionato(fornitore);
@@ -158,7 +162,7 @@ public class CreaFormRDA extends AFormRDA {
 		RDACenter rdac = RDACenter.getInstance();
 		CardRDA rdaCard = (CardRDA) CardRDAFactory.getInstance().makeCard(
 				rdac.getLista());
-		RDA rda = RDAFactory.createRDA();
+		MRDA rda = new MRDA();
 		rdaCard.load(rda);
 		rdac.getLista().svuota();
 		rdac.getLista().addCard(rdaCard);
