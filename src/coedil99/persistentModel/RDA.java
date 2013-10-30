@@ -19,11 +19,10 @@ import org.orm.*;
 
 import coedil99.controller.GestisciMagazzinoHandler;
 import coedil99.controller.GestisciRDAHandler;
-public class RDA extends coedil99.persistentModel.Subject implements IPersistentModel{
+public class RDA implements IPersistentModel{
 	public RDA() {
 		this.date = new Date();
-		this.state = GestisciRDAHandler.CONGELATA;
-		this.Attach(Magazzino.getInstance());	
+		this.state = GestisciRDAHandler.CONGELATA;	
 	}
 	
 	public boolean save() throws PersistentException {
@@ -138,11 +137,6 @@ public class RDA extends coedil99.persistentModel.Subject implements IPersistent
 		return getID();
 	}
 	
-	public void setState(String value) {
-		this.state = value;
-		this.Notify();
-	}
-	
 	public String getState() {
 		return state;
 	}
@@ -169,29 +163,9 @@ public class RDA extends coedil99.persistentModel.Subject implements IPersistent
 		return String.valueOf(getID());
 	}
 
-	@Override
-	public void Attach(Observer obj) {
+	public void setState(String value) {
 		// TODO Auto-generated method stub
-		this.observers.add(obj);
-	}
-
-	@Override
-	public void Detach(Observer obj) {
-		// TODO Auto-generated method stub
-		this.observers.remove(obj);
-		
-	}
-
-	@Override
-	public void Notify() {
-		// TODO Auto-generated method stub
-		for(Observer temp : this.observers){
-			temp.Update();
-		}
-		/*
-		 * Risolvere problema GestisciRDAHandler observer
-		 */
-		//GestisciRDAHandler.getInstance().Update();
+		this.state = value;
 	}
 	
 }
