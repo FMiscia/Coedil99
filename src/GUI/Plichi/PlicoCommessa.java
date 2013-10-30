@@ -22,6 +22,8 @@ import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.controller.GestisciOrdineHandler;
 import coedil99.model.MCliente;
+import coedil99.model.MCommessa;
+import coedil99.model.MOrdine;
 import coedil99.persistentModel.Cliente;
 import coedil99.persistentModel.Commessa;
 import coedil99.persistentModel.Ordine;
@@ -66,11 +68,9 @@ public class PlicoCommessa extends APlico {
 	 */
 	public void load(int id) {
 		this.reset();
-		Commessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
-		Ordine o = GestisciOrdineHandler.getInstance().getOrdineById(
-				c.getOrdineId());
-		MCliente cl = GestisciClienteHandler.getInstance().getClienteById(
-				o.getCliente().getID());
+		MCommessa c = new MCommessa(id);
+		MOrdine o = new MOrdine(c.getPersistentModel().getOrdineId());
+		MCliente cl = new MCliente(o.getPersistentModel().getCliente().getID());
 		rda.load(c);
 		rdcc.load(cl);
 		rdc.load(c);
