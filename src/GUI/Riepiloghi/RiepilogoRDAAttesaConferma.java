@@ -4,7 +4,7 @@ import java.awt.Dimension;
 
 import GUI.RDACenter;
 import GUI.Abstract.ARiepilogoRDA;
-import coedil99.model.RDA;
+import coedil99.persistentModel.RDA;
 
 /**
  * 

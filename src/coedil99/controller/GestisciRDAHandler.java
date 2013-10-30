@@ -6,15 +6,15 @@ import org.orm.PersistentException;
 
 import GUI.RDACenter;
 
-import coedil99.model.RDA;
-import coedil99.model.RDAFactory;
-import coedil99.model.RigaRDA;
-import coedil99.model.Subject;
+import coedil99.persistentModel.RDA;
+import coedil99.persistentModel.RDAFactory;
+import coedil99.persistentModel.RigaRDA;
+import coedil99.persistentModel.Subject;
 
 
 
 
-public class GestisciRDAHandler extends coedil99.model.Observer{
+public class GestisciRDAHandler extends coedil99.persistentModel.Observer{
 
 	private ArrayList<RDA> arrayRDA = null;
 	private static GestisciRDAHandler instance;

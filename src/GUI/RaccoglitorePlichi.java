@@ -7,7 +7,7 @@ import javax.swing.JScrollPane;
 import GUI.ProgrammaLavori;
 import GUI.Abstract.APlico;
 import GUI.Plichi.PlicoCommessa;
-import coedil99.model.Commessa;
+import coedil99.persistentModel.Commessa;
 
 @SuppressWarnings("serial")
 public class RaccoglitorePlichi extends JScrollPane {

@@ -4,8 +4,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import GUI.Abstract.ARiquadro;
-import coedil99.model.Item;
-import coedil99.operation.OItem;
+import coedil99.model.MItem;
+import coedil99.persistentModel.Item;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -89,7 +89,7 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	public void load(Object o) {
 		// TODO Auto-generated method stub
 		Item i = (Item) o;
-		OItem oi = new OItem(i);
+		MItem oi = new MItem(i);
 		this.txtLarg.setText(oi.getBase() + " cm");
 		this.txtAltezza.setText(oi.getAltezza() + " cm");
 		this.txtCommessaLung.setText(oi.getLunghezza() / 100 + " m");

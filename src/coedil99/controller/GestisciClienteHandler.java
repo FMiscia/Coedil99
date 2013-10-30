@@ -5,8 +5,8 @@ import java.util.Arrays;
 
 import org.orm.PersistentException;
 
-import coedil99.model.Cliente;
-import coedil99.model.ClienteFactory;
+import coedil99.persistentModel.Cliente;
+import coedil99.persistentModel.ClienteFactory;
 
 /**
  * @author francesco

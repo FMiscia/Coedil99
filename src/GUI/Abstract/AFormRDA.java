@@ -24,10 +24,10 @@ import javax.swing.event.ChangeListener;
 import GUI.Utilities.JHorizontalSpinner;
 
 import coedil99.controller.GestisciFornitoreHandler;
-import coedil99.model.CatalogoFornitore;
-import coedil99.model.Geometria;
-import coedil99.model.ProductDescription;
-import coedil99.operation.OGeometria;
+import coedil99.model.MGeometria;
+import coedil99.persistentModel.CatalogoFornitore;
+import coedil99.persistentModel.Geometria;
+import coedil99.persistentModel.ProductDescription;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -188,7 +188,7 @@ public abstract class AFormRDA extends JPanel {
 		for (int i = 0; i < pd.size(); ++i) {
 			if (pd.get(i).getEssenza().equals(essenza)) {
 				Geometria g = pd.get(i).getGeometria();
-				this.cbGeometria.addItem(new OGeometria(g).toString());
+				this.cbGeometria.addItem(new MGeometria(g).toString());
 			}
 		}
 		this.cbGeometria.addItemListener(new ItemListener() {

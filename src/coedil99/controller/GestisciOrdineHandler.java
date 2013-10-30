@@ -5,8 +5,8 @@ import java.util.Arrays;
 
 import org.orm.PersistentException;
 
-import coedil99.model.Ordine;
-import coedil99.model.OrdineFactory;
+import coedil99.persistentModel.Ordine;
+import coedil99.persistentModel.OrdineFactory;
 
 
 

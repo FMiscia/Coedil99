@@ -5,7 +5,7 @@ License Type: Purchased
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="coedil99.model.RDA" table="RDA" lazy="false">
+	<class name="coedil99.persistentModel.RDA" table="RDA" lazy="false">
 		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
@@ -15,7 +15,7 @@ License Type: Purchased
 		<list name="ORM_RigheRDA" lazy="true" cascade="save-update,lock" inverse="false">
 			<key column="RDAID" not-null="true"/>
 			<index column="RDAIndex" type="integer"/>
-			<one-to-many class="coedil99.model.RigaRDA"/>
+			<one-to-many class="coedil99.persistentModel.RigaRDA"/>
 		</list>
 	</class>
 </hibernate-mapping>

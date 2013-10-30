@@ -12,7 +12,7 @@ import GUI.Abstract.ALista;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Riepiloghi.RiepilogoRDAFactory;
-import coedil99.model.RigaRDA;
+import coedil99.persistentModel.RigaRDA;
 
 /**
  * 

@@ -5,14 +5,14 @@ License Type: Purchased
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="coedil99.model.RigaRDA" table="RigaRDA" lazy="false">
+	<class name="coedil99.persistentModel.RigaRDA" table="RigaRDA" lazy="false">
 		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="RDA" cascade="lock" column="RDAID" class="coedil99.model.RDA" not-null="true" update="false" insert="false" lazy="no-proxy" access="field">
+		<many-to-one name="RDA" cascade="lock" column="RDAID" class="coedil99.persistentModel.RDA" not-null="true" update="false" insert="false" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="description" column="ProductDescriptionID" class="coedil99.model.ProductDescription" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		<many-to-one name="description" column="ProductDescriptionID" class="coedil99.persistentModel.ProductDescription" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
 		<property name="quantity" column="Quantity" type="integer" length="11" not-null="true" lazy="false"/>
 	</class>

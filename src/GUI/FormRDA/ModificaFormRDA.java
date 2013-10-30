@@ -11,9 +11,9 @@ import GUI.ProgrammaLavori;
 import GUI.Abstract.AFormRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciFornitoreHandler;
-import coedil99.model.ProductDescription;
-import coedil99.model.RigaRDA;
-import coedil99.operation.OGeometria;
+import coedil99.model.MGeometria;
+import coedil99.persistentModel.ProductDescription;
+import coedil99.persistentModel.RigaRDA;
 
 
 /**
@@ -46,7 +46,7 @@ public class ModificaFormRDA extends AFormRDA {
 		this.setRigaRDA(rigaRDA);
 		String fornitoreRDA = rigaRDA.getDescription().getCatalogoFornitore().getName();
 		String essenzaRDA = rigaRDA.getDescription().getEssenza();
-		String geometriaRDA = new OGeometria(rigaRDA.getDescription().getGeometria()).toString();
+		String geometriaRDA = new MGeometria(rigaRDA.getDescription().getGeometria()).toString();
 		this.load();
 		for(int i=0; i<this.getCbFornitore().getItemCount(); ++i){
 			if(this.getCbFornitore().getItemAt(i).equals(fornitoreRDA))

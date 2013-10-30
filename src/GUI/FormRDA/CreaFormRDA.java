@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import coedil99.controller.GestisciFornitoreHandler;
-import coedil99.model.CatalogoFornitore;
-import coedil99.model.ProductDescription;
-import coedil99.model.RDA;
-import coedil99.model.RDAFactory;
-import coedil99.model.RigaRDA;
-import coedil99.model.RigaRDAFactory;
+import coedil99.persistentModel.CatalogoFornitore;
+import coedil99.persistentModel.ProductDescription;
+import coedil99.persistentModel.RDA;
+import coedil99.persistentModel.RDAFactory;
+import coedil99.persistentModel.RigaRDA;
+import coedil99.persistentModel.RigaRDAFactory;
 
 import GUI.RDACenter;
 import GUI.Abstract.AFormRDA;

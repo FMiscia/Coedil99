@@ -5,16 +5,16 @@ License Type: Purchased
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="coedil99.model.Item" table="Item" lazy="false">
+	<class name="coedil99.persistentModel.Item" table="Item" lazy="false">
 		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="productDescription" cascade="lock" column="ProductDescriptionID" class="coedil99.model.ProductDescription" not-null="false" lazy="no-proxy" access="field">
+		<many-to-one name="productDescription" cascade="lock" column="ProductDescriptionID" class="coedil99.persistentModel.ProductDescription" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="geometria" column="GeometriaID" class="coedil99.model.Geometria" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		<many-to-one name="geometria" column="GeometriaID" class="coedil99.persistentModel.Geometria" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="history" column="HistoryID" class="coedil99.model.History" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		<many-to-one name="history" column="HistoryID" class="coedil99.persistentModel.History" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
 		<property name="descrizione" column="Descrizione" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="prezzo" column="Prezzo" type="float" not-null="false" lazy="false"/>

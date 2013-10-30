@@ -6,11 +6,11 @@ import java.util.ListIterator;
 
 import org.orm.PersistentException;
 
-import coedil99.model.Commessa;
-import coedil99.model.CommessaFactory;
-import coedil99.model.Distinta;
-import coedil99.model.RigaLavoro;
-import coedil99.operation.ODistinta;
+import coedil99.model.MDistinta;
+import coedil99.persistentModel.Commessa;
+import coedil99.persistentModel.CommessaFactory;
+import coedil99.persistentModel.Distinta;
+import coedil99.persistentModel.RigaLavoro;
 
 
 
@@ -155,7 +155,7 @@ public class GestisciCommessaHandler {
 	 * @param rg:RigaLavoro
 	 */
 	public void modificaRigaLavoro(int id_commessa, RigaLavoro rg){
-		ODistinta odistinta = new ODistinta(this.getCommessaById(id_commessa).getDistinta());
+		MDistinta odistinta = new MDistinta(this.getCommessaById(id_commessa).getDistinta());
 		odistinta.modificaRigaLavoro(rg);
 	}
 	

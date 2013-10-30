@@ -23,13 +23,13 @@ import javax.swing.border.LineBorder;
 import GUI.ProgrammaLavori;
 import GUI.Abstract.ARiquadro;
 import GUI.Plichi.PlicoDistinta;
-import coedil99.model.Distinta;
-import coedil99.model.Geometria;
-import coedil99.model.GeometriaFactory;
-import coedil99.model.RigaLavoro;
-import coedil99.model.RigaLavoroFactory;
-import coedil99.operation.ODistinta;
-import coedil99.operation.ORigaLavoro;
+import coedil99.model.MDistinta;
+import coedil99.model.MRigaLavoro;
+import coedil99.persistentModel.Distinta;
+import coedil99.persistentModel.Geometria;
+import coedil99.persistentModel.GeometriaFactory;
+import coedil99.persistentModel.RigaLavoro;
+import coedil99.persistentModel.RigaLavoroFactory;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -358,7 +358,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 					RigaLavoro r = RigaLavoroFactory.createRigaLavoro();
 					if (RiquadroDatiDistinta.this.oggetto != null) 
 						r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
-					ODistinta odistinta = new ODistinta(ProgrammaLavori.getInstance()
+					MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance()
 							.getCommessaSelezionata().getDistinta());
 					odistinta.eliminaRigaLavoro(r);
 					RiquadroDatiDistinta.this.removeAll();
@@ -456,7 +456,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		r.setProfiloCapitello(this.tftipocapitello.getText());
 		r.setNumero(Integer.parseInt(this.tfnumero.getText()));
 		r.setNote(this.tfnote.getText());
-		ORigaLavoro origalavoro = new ORigaLavoro(r);
+		MRigaLavoro origalavoro = new MRigaLavoro(r);
 		origalavoro.save();
 		this.oggetto = r;
 		JOptionPane.showMessageDialog(null,

@@ -21,9 +21,9 @@ import GUI.Riquadri.RiquadroDatiSviluppoConsegnaFactory;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.controller.GestisciOrdineHandler;
-import coedil99.model.Cliente;
-import coedil99.model.Commessa;
-import coedil99.model.Ordine;
+import coedil99.persistentModel.Cliente;
+import coedil99.persistentModel.Commessa;
+import coedil99.persistentModel.Ordine;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;

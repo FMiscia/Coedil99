@@ -19,9 +19,9 @@ import GUI.ClipPanels.ClipPanelProgrammaLavori;
 import GUI.Liste.ListaCommesse;
 import GUI.Plichi.PlicoCommessa;
 
-import coedil99.model.Cliente;
-import coedil99.model.Commessa;
-import coedil99.model.Ordine;
+import coedil99.persistentModel.Cliente;
+import coedil99.persistentModel.Commessa;
+import coedil99.persistentModel.Ordine;
 
 /**
  * 

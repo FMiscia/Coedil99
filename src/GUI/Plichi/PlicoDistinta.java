@@ -20,8 +20,8 @@ import GUI.Riquadri.RiquadroDatiDistinta;
 import GUI.Riquadri.RiquadroDatiDistintaFactory;
 import GUI.Utilities.WrapLayout;
 import coedil99.controller.GestisciCommessaHandler;
-import coedil99.model.Distinta;
-import coedil99.operation.ODistinta;
+import coedil99.model.MDistinta;
+import coedil99.persistentModel.Distinta;
 
 /**
  * 
@@ -89,7 +89,7 @@ public class PlicoDistinta extends APlico {
 			this.add(temp);
 			this.riquadri.add(temp);
 		}
-		ODistinta odistinta = new ODistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getDistinta());
+		MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getDistinta());
 		if (!odistinta.hasDdo()) {
 			MouseListener[] arrML = addButton.getMouseListeners();
 			if (arrML.length == 1){

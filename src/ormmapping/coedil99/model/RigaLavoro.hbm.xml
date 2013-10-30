@@ -5,12 +5,12 @@ License Type: Purchased
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="coedil99.model.RigaLavoro" table="RigaLavoro" lazy="false">
+	<class name="coedil99.persistentModel.RigaLavoro" table="RigaLavoro" lazy="false">
 		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="geometria" column="GeometriaID" class="coedil99.model.Geometria" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		<many-to-one name="geometria" column="GeometriaID" class="coedil99.persistentModel.Geometria" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
 		<property name="capitello" column="Capitello" type="boolean" length="1" not-null="true" lazy="false"/>
 		<property name="profiloCapitello" column="ProfiloCapitello" type="string" length="255" not-null="false" lazy="false"/>

@@ -9,7 +9,7 @@ import GUI.ClipPanels.ClipPanelProgrammaLavoriFactory;
 import GUI.Liste.ListaCommesse;
 import GUI.Liste.ListaCommesseFactory;
 import coedil99.controller.GestisciCommessaHandler;
-import coedil99.model.Commessa;
+import coedil99.persistentModel.Commessa;
 
 public class ProgrammaLavori extends JPanel {
 

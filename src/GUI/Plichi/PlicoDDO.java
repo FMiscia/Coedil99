@@ -8,8 +8,8 @@ import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
 import GUI.Riquadri.RiquadroOttimizzazione;
 import coedil99.controller.GestisciCommessaHandler;
-import coedil99.model.Commessa;
-import coedil99.model.DocumentoOttimizzazione;
+import coedil99.persistentModel.Commessa;
+import coedil99.persistentModel.DocumentoOttimizzazione;
 
 
 

@@ -14,7 +14,7 @@ import GUI.Card.CardRDA;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.RDA;
+import coedil99.persistentModel.RDA;
 
 
 /**

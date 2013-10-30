@@ -5,16 +5,16 @@ License Type: Purchased
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="coedil99.model.Commessa" table="Commessa" lazy="false">
+	<class name="coedil99.persistentModel.Commessa" table="Commessa" lazy="false">
 		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="distinta" column="DistintaID" class="coedil99.model.Distinta" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
+		<many-to-one name="distinta" column="DistintaID" class="coedil99.persistentModel.Distinta" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="ldr" column="ListaRintracciabilitaID" class="coedil99.model.ListaRintracciabilita" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		<many-to-one name="ldr" column="ListaRintracciabilitaID" class="coedil99.persistentModel.ListaRintracciabilita" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="ordine" cascade="lock" column="OrdineID" class="coedil99.model.Ordine" not-null="true" update="false" insert="false" lazy="no-proxy" access="field">
+		<many-to-one name="ordine" cascade="lock" column="OrdineID" class="coedil99.persistentModel.Ordine" not-null="true" update="false" insert="false" lazy="no-proxy" access="field">
 		</many-to-one>
 		<property name="codiceInterno" column="CodiceInterno" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="elementoStrutturale" column="ElementoStrutturale" type="string" length="255" not-null="false" lazy="false"/>

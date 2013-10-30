@@ -5,19 +5,19 @@ License Type: Purchased
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="coedil99.model.Cliente" table="Cliente" lazy="false">
+	<class name="coedil99.persistentModel.Cliente" table="Cliente" lazy="false">
 		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="cantiere" column="CantiereID" class="coedil99.model.Cantiere" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
+		<many-to-one name="cantiere" column="CantiereID" class="coedil99.persistentModel.Cantiere" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
 		<property name="name" column="Name" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="numeroCommessaCliente" column="NumeroCommessaCliente" type="integer" length="11" not-null="false" lazy="false"/>
 		<list name="ORM_Ordini" lazy="true" cascade="save-update,lock" inverse="false">
 			<key column="ClienteID" not-null="true"/>
 			<index column="ClienteIndex" type="integer"/>
-			<one-to-many class="coedil99.model.Ordine"/>
+			<one-to-many class="coedil99.persistentModel.Ordine"/>
 		</list>
 	</class>
 </hibernate-mapping>

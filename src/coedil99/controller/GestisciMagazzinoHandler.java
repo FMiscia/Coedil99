@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-import coedil99.model.DocumentoOttimizzazione;
-import coedil99.model.Item;
-import coedil99.model.Magazzino;
+import coedil99.persistentModel.DocumentoOttimizzazione;
+import coedil99.persistentModel.Item;
+import coedil99.persistentModel.Magazzino;
 
 
 
