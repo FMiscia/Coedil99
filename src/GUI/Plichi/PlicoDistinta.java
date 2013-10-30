@@ -89,7 +89,7 @@ public class PlicoDistinta extends APlico {
 			this.add(temp);
 			this.riquadri.add(temp);
 		}
-		MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getDistinta());
+		MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getDistinta().getID());
 		if (!odistinta.hasDdo()) {
 			MouseListener[] arrML = addButton.getMouseListeners();
 			if (arrML.length == 1){
