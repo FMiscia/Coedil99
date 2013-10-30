@@ -228,7 +228,7 @@ public abstract class AFormRDA extends JPanel {
 	public void aggiornaSpesa() {
 		if(this.spinner.isEnabled()){
 			MProductDescription pd = GestisciFornitoreHandler.getInstance()
-					.getProductDescription(
+					.getMProductDescription(
 							this.cbEssenza.getSelectedItem().toString(),
 							this.cbGeometria.getSelectedItem().toString(),
 							this.cbFornitore.getSelectedItem().toString());

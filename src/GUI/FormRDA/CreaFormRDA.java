@@ -126,7 +126,7 @@ public class CreaFormRDA extends AFormRDA {
 						geometria = CreaFormRDA.this.getCbGeometria()
 								.getSelectedItem().toString();
 						MProductDescription pd = GestisciFornitoreHandler
-								.getInstance().getProductDescription(essenza,
+								.getInstance().getMProductDescription(essenza,
 										geometria, fornitore);
 						MRigaRDA rrda = new MRigaRDA();
 						RDACenter rdac = RDACenter.getInstance();

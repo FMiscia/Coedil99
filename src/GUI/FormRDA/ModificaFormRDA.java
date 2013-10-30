@@ -116,15 +116,11 @@ public class ModificaFormRDA extends AFormRDA {
 					String fornitore = ModificaFormRDA.this.getCbFornitore().getSelectedItem().toString();
 					String essenza = ModificaFormRDA.this.getCbEssenza().getSelectedItem().toString();
 					String geometria = ModificaFormRDA.this.getCbGeometria().getSelectedItem().toString();
-					MProductDescription pd = GestisciFornitoreHandler.getInstance().getProductDescription(essenza, geometria, fornitore);
+					MProductDescription pd = GestisciFornitoreHandler.getInstance().getMProductDescription(essenza, geometria, fornitore);
 					ModificaFormRDA.this.getRigaRDA().getPersistentModel().setQuantity(ModificaFormRDA.this.getQuantity());
 					ModificaFormRDA.this.getRigaRDA().getPersistentModel().setDescription(pd.getPersistentModel());
-					try {
-						ModificaFormRDA.this.getRigaRDA().save();
-					} catch (PersistentException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					ModificaFormRDA.this.getRigaRDA().save();
+
 					PlicoRDA.getInstance().refresh();
 				}
 				

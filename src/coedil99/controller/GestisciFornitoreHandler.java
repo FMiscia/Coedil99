@@ -9,6 +9,7 @@ import org.orm.PersistentException;
 
 import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MGeometria;
+import coedil99.model.MProductDescription;
 import coedil99.persistentModel.CatalogoFornitore;
 import coedil99.persistentModel.CatalogoFornitoreBuilder;
 import coedil99.persistentModel.CatalogoFornitoreFactory;
@@ -80,15 +81,15 @@ public class GestisciFornitoreHandler {
 	 * @param fornitore:String
 	 * @return pd:ProductDescription
 	 */
-	public ProductDescription getProductDescription(String essenza, String geometria, String fornitore) {
+	public MProductDescription getMProductDescription(String essenza, String geometria, String fornitore) {
 		MCatalogoFornitore cf = GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore);
 		@SuppressWarnings("rawtypes")
 		List l = cf.getPersistentModel().productDescription.getCollection();
-		ProductDescription pd = null;
+		MProductDescription mpd = null;
 		for ( int i=0 ; i<l.size() ; i++  ){
-			pd = (ProductDescription) l.get(i);
-			if( pd.getEssenza().toString().equalsIgnoreCase(essenza)  && new MGeometria(pd.getGeometria().getID()).toString().equalsIgnoreCase(geometria)){
-				return pd;
+			mpd = (MProductDescription) l.get(i);
+			if( mpd.getPersistentModel().getEssenza().toString().equalsIgnoreCase(essenza)  && new MGeometria(mpd.getPersistentModel().getGeometria().getID()).toString().equalsIgnoreCase(geometria)){
+				return mpd;
 			}
 		}
 		return null;
