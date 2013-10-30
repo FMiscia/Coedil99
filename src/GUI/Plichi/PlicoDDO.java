@@ -8,6 +8,8 @@ import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
 import GUI.Riquadri.RiquadroOttimizzazione;
 import coedil99.controller.GestisciCommessaHandler;
+import coedil99.model.MCommessa;
+import coedil99.model.MDocumentoOttimizzazione;
 import coedil99.persistentModel.Commessa;
 import coedil99.persistentModel.DocumentoOttimizzazione;
 
@@ -57,16 +59,16 @@ public class PlicoDDO extends APlico{
 	 */
 	public void load(int id) {
 		// TODO Auto-generated method stub
-		Commessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
-		DocumentoOttimizzazione docott = GestisciCommessaHandler.getInstance().getCommessaById(id).getDistinta().getDdo();
+		MCommessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
+		MDocumentoOttimizzazione docott = GestisciCommessaHandler.getInstance().getCommessaById(id).getDistinta().getDdo();
 		this.panel.removeAll();
 		this.panel.setPreferredSize(new Dimension ( 600, docott.items.size()*250 ));
-		this.panel.setSize(new Dimension ( 600, docott.items.size()*250 ));
+		this.panel.setSize(new Dimension ( 600, docott.getPersistentModel().items.size()*250 ));
 		this.setPreferredSize(new Dimension ( 600, this.panel.getHeight()));
 		this.setSize(new Dimension ( 600, this.panel.getHeight()));
-		for (int i = 0; i < docott.items.size(); i++){
+		for (int i = 0; i < docott.getPersistentModel().items.size(); i++){
 			ro = new RiquadroOttimizzazione("Ottimizzazione");
-			ro.load( c.getDistinta().getDdo().items.toArray()[i] );
+			ro.load( c.getPersistentModel().getDistinta().getDdo().items.toArray()[i] );
 			this.panel.add(ro);
 		}
 	}

@@ -12,6 +12,8 @@ import GUI.Abstract.AFormRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.MGeometria;
+import coedil99.model.MProductDescription;
+import coedil99.model.MRigaRDA;
 import coedil99.persistentModel.ProductDescription;
 import coedil99.persistentModel.RigaRDA;
 
@@ -28,7 +30,7 @@ public class ModificaFormRDA extends AFormRDA {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JButton btSalvaModifica;
-	private RigaRDA rigaRDA = null;
+	private MRigaRDA rigaRDA = null;
 
 	/**
 	 * Costruttore
@@ -42,11 +44,11 @@ public class ModificaFormRDA extends AFormRDA {
 	 * Carica la riga RDA selezionata sulla form per la modifica
 	 * @param rigaRDA
 	 */
-	public void modificaRDA(RigaRDA rigaRDA){
+	public void modificaRDA(MRigaRDA rigaRDA){
 		this.setRigaRDA(rigaRDA);
-		String fornitoreRDA = rigaRDA.getDescription().getCatalogoFornitore().getName();
-		String essenzaRDA = rigaRDA.getDescription().getEssenza();
-		String geometriaRDA = new MGeometria(rigaRDA.getDescription().getGeometria().getID()).toString();
+		String fornitoreRDA = rigaRDA.getPersistentModel().getDescription().getCatalogoFornitore().getName();
+		String essenzaRDA = rigaRDA.getPersistentModel().getDescription().getEssenza();
+		String geometriaRDA = new MGeometria(rigaRDA.getPersistentModel().getDescription().getGeometria().getID()).toString();
 		this.load();
 		for(int i=0; i<this.getCbFornitore().getItemCount(); ++i){
 			if(this.getCbFornitore().getItemAt(i).equals(fornitoreRDA))
@@ -63,16 +65,16 @@ public class ModificaFormRDA extends AFormRDA {
 				this.getCbGeometria().setSelectedIndex(i);
 		}
 		this.getCbGeometria().setEnabled(true);
-		this.setQuantity(rigaRDA.getQuantity());
+		this.setQuantity(rigaRDA.getPersistentModel().getQuantity());
 	}
 
 
-	public RigaRDA getRigaRDA() {
+	public MRigaRDA getRigaRDA() {
 		return rigaRDA;
 	}
 
 
-	public void setRigaRDA(RigaRDA rigaRDA) {
+	public void setRigaRDA(MRigaRDA rigaRDA) {
 		this.rigaRDA = rigaRDA;
 	}
 
@@ -114,9 +116,9 @@ public class ModificaFormRDA extends AFormRDA {
 					String fornitore = ModificaFormRDA.this.getCbFornitore().getSelectedItem().toString();
 					String essenza = ModificaFormRDA.this.getCbEssenza().getSelectedItem().toString();
 					String geometria = ModificaFormRDA.this.getCbGeometria().getSelectedItem().toString();
-					ProductDescription pd = GestisciFornitoreHandler.getInstance().getProductDescription(essenza, geometria, fornitore);
-					ModificaFormRDA.this.getRigaRDA().setQuantity(ModificaFormRDA.this.getQuantity());
-					ModificaFormRDA.this.getRigaRDA().setDescription(pd);
+					MProductDescription pd = GestisciFornitoreHandler.getInstance().getProductDescription(essenza, geometria, fornitore);
+					ModificaFormRDA.this.getRigaRDA().getPersistentModel().setQuantity(ModificaFormRDA.this.getQuantity());
+					ModificaFormRDA.this.getRigaRDA().getPersistentModel().setDescription(pd.getPersistentModel());
 					try {
 						ModificaFormRDA.this.getRigaRDA().save();
 					} catch (PersistentException e1) {

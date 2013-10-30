@@ -76,9 +76,9 @@ public class RaccoglitorePlichi extends JScrollPane {
 	 * @param commessaSelezionata
 	 *            : la commessa da caricare
 	 */
-	public void caricaPrimaCommessa(MCommessa commessaSelezionata) {
+	public void caricaPrimaCommessa(MCommessa c) {
 		PlicoCommessa plico = PlicoCommessa.getInstance();
-		plico.load(commessaSelezionata.getPersistentModel().getID());
+		plico.load(c.getPersistentModel().getID());
 		this.getPlico_container().add(plico,BorderLayout.CENTER);
 		this.getPlico_container().validate();
 		this.getPlico_container().repaint();

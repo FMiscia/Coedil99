@@ -21,6 +21,7 @@ import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
+import coedil99.model.MRDA;
 import coedil99.persistentModel.RDA;
 
 /**
@@ -126,20 +127,20 @@ public class CardRDA extends ACard {
 	 */
 	public void load(Object o) {
 		// TODO Auto-generated method stub
-		final RDA rda = (RDA) o;
-		this.RDAId = rda.getID();
-		if(!rda.righeRDA.isEmpty()){
-			this.id.setText(rda.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());			
+		final MRDA rda = (MRDA) o;
+		this.RDAId = rda.getPersistentModel().getID();
+		if(!rda.getPersistentModel().righeRDA.isEmpty()){
+			this.id.setText(rda.getPersistentModel().righeRDA.get(0).getDescription().getCatalogoFornitore().getName());			
 		}else{
 			this.id.setText("da settare");
 		}
-		this.stato.setText(rda.getState());
-		this.icona.setIcon(CardRDA.state_map.get(rda.getState()));
+		this.stato.setText(rda.getPersistentModel().getState());
+		this.icona.setIcon(CardRDA.state_map.get(rda.getPersistentModel().getState()));
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		dateFormat.format(rda.getDate());
+		dateFormat.format(rda.getPersistentModel().getDate());
 		
-		this.data.setText(		dateFormat.format(rda.getDate()));
+		this.data.setText(		dateFormat.format(rda.getPersistentModel().getDate()));
 		this.setBackground(new Color(30, 144, 255));
 		this.validate();
 		this.repaint();
@@ -157,7 +158,7 @@ public class CardRDA extends ACard {
 				ListaRigheRDA lista_righe_rda = plico_rda.getListaRigheRDA();
 				plico_rda.resetFormRDA();
 				lista_righe_rda.getPanel().removeAll();
-				lista_righe_rda.load(new ArrayList<Object>(rda.righeRDA.getCollection()));
+				lista_righe_rda.load(new ArrayList<Object>(rda.getPersistentModel().righeRDA.getCollection()));
 				CardRDA.this.setBackground(new Color(30,44,255));
 				CardRDA.this.validate();
 				CardRDA.this.repaint();

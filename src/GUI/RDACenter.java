@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import coedil99.controller.GestisciRDAHandler;
+import coedil99.model.MRDA;
 import coedil99.persistentModel.RDA;
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
@@ -16,7 +17,7 @@ public class RDACenter extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static RDACenter instance = null;
-	private RDA rdaSelezionata = null;
+	private MRDA rdaSelezionata = null;
 	private ListaRDA lista = null;
 
 	private ClipPanelRDA clipPanel = (ClipPanelRDA) ClipPanelRDAFactory
@@ -68,7 +69,7 @@ public class RDACenter extends JPanel {
 	 * 
 	 * @return RDA
 	 */
-	public RDA getRDASelezionata() {
+	public MRDA getRDASelezionata() {
 		return rdaSelezionata;
 	}
 
@@ -76,7 +77,7 @@ public class RDACenter extends JPanel {
 	 * 
 	 * @param rdaSelezionata
 	 */
-	public void setRDASelezionata(RDA rdaSelezionata) {
+	public void setRDASelezionata(MRDA rdaSelezionata) {
 		this.rdaSelezionata = rdaSelezionata;
 	}
 

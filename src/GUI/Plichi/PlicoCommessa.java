@@ -68,9 +68,11 @@ public class PlicoCommessa extends APlico {
 	 */
 	public void load(int id) {
 		this.reset();
-		MCommessa c = new MCommessa(id);
-		MOrdine o = new MOrdine(c.getPersistentModel().getOrdineId());
-		MCliente cl = new MCliente(o.getPersistentModel().getCliente().getID());
+		MCommessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
+		MOrdine o = GestisciOrdineHandler.getInstance().getOrdineById(
+				c.getPersistentModel().getOrdineId());
+		MCliente cl = GestisciClienteHandler.getInstance().getClienteById(
+				o.getPersistentModel().getCliente().getID());
 		rda.load(c);
 		rdcc.load(cl);
 		rdc.load(c);

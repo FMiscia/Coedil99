@@ -26,6 +26,7 @@ import GUI.Utilities.JHorizontalSpinner;
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MGeometria;
+import coedil99.model.MProductDescription;
 import coedil99.persistentModel.CatalogoFornitore;
 import coedil99.persistentModel.Geometria;
 import coedil99.persistentModel.ProductDescription;
@@ -184,11 +185,11 @@ public abstract class AFormRDA extends JPanel {
 					.getItemListeners()[0]);
 		this.cbGeometria.removeAllItems();
 		@SuppressWarnings("unchecked")
-		ArrayList<ProductDescription> pd = new ArrayList<ProductDescription>(
+		ArrayList<MProductDescription> pd = new ArrayList<MProductDescription>(
 				fornitore.getPersistentModel().productDescription.getCollection());
 		for (int i = 0; i < pd.size(); ++i) {
-			if (pd.get(i).getEssenza().equals(essenza)) {
-				this.cbGeometria.addItem(new MGeometria(pd.get(i).getGeometria().getID()).toString());
+			if (pd.get(i).getPersistentModel().getEssenza().equals(essenza)) {
+				this.cbGeometria.addItem(new MGeometria(pd.get(i).getPersistentModel().getGeometria().getID()).toString());
 			}
 		}
 		this.cbGeometria.addItemListener(new ItemListener() {
@@ -226,13 +227,13 @@ public abstract class AFormRDA extends JPanel {
 	 */
 	public void aggiornaSpesa() {
 		if(this.spinner.isEnabled()){
-			ProductDescription pd = GestisciFornitoreHandler.getInstance()
+			MProductDescription pd = GestisciFornitoreHandler.getInstance()
 					.getProductDescription(
 							this.cbEssenza.getSelectedItem().toString(),
 							this.cbGeometria.getSelectedItem().toString(),
 							this.cbFornitore.getSelectedItem().toString());
 			this.tfSpesa.setText(String.valueOf((Integer) this.spinner.getValue()
-					* pd.getPrezzo()));
+					* pd.getPersistentModel().getPrezzo()));
 			this.tfSpesa.validate();
 			this.tfSpesa.repaint();
 		}
