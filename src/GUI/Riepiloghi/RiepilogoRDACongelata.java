@@ -87,13 +87,13 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 							JOptionPane.QUESTION_MESSAGE, null, options,
 							options[1]);
 					if (n == JOptionPane.YES_OPTION) {
-						GestisciRDAHandler.getInstance().deleteAndRemoveRDA(
+						GestisciRDAHandler.getInstance().deleteAndRemoveMRDA(
 								RDACenter.getInstance().getRDASelezionata());
 						PlicoRDA prda = PlicoRDA.getInstance();
 						ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
 							RDACenter.getInstance().refreshCongelate();
 							lista_righe_rda.load(new ArrayList<Object>(RDACenter
-									.getInstance().getRDASelezionata().righeRDA
+									.getInstance().getRDASelezionata().getPersistentModel().righeRDA
 									.getCollection()));
 						JOptionPane.showMessageDialog(null,
 								"RDA eliminata con successo!\n",

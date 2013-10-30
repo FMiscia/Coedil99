@@ -48,7 +48,7 @@ public class RDACenter extends JPanel {
 		this.add(this.lista, BorderLayout.WEST);
 		PlicoRDA.getInstance()
 				.getListaRigheRDA()
-				.load(new ArrayList<Object>(this.getRDASelezionata().righeRDA
+				.load(new ArrayList<Object>(this.getRDASelezionata().getPersistentModel().righeRDA
 						.getCollection()));
 		this.validate();
 		this.repaint();
@@ -151,12 +151,12 @@ public class RDACenter extends JPanel {
 		this.lista.svuota();
 		this.lista.load(GestisciRDAHandler.CONGELATA);
 		this.setRDASelezionata(GestisciRDAHandler.getInstance()
-				.getRDAById(this.lista.getPrimaRDA()));
+				.getMRDAById(this.lista.getPrimaRDA()));
 		PlicoRDA prda = PlicoRDA.getInstance();
 		ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
 		prda.reset();
 		lista_righe_rda.load(new ArrayList<Object>(this
-				.getRDASelezionata().righeRDA.getCollection()));
+				.getRDASelezionata().getPersistentModel().righeRDA.getCollection()));
 		lista_righe_rda.validate();
 		lista_righe_rda.repaint();
 	}

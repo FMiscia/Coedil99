@@ -154,11 +154,11 @@ public class GestisciRDAHandler extends coedil99.model.Observer {
 	 *            :RDA
 	 * 
 	 */
-	public void deleteAndRemoveRDA(RDA r) {
+	public void deleteAndRemoveMRDA(MRDA r) {
 		try {
 			@SuppressWarnings("unchecked")
 			ArrayList<RigaRDA> listarighe = new ArrayList<RigaRDA>(
-					r.righeRDA.getCollection());
+					r.getPersistentModel().righeRDA.getCollection());
 			for (RigaRDA temp : listarighe) {
 				this.arrayMRDA.remove(temp);
 				temp.deleteAndDissociate();

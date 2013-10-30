@@ -224,7 +224,7 @@ public class CardRigaRDA extends ACard {
 				CardRigaRDA.this.setBackground(new Color(130,130,130));
 				ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory
 						.getInstance().makeFormRDA();
-				form.modificaRDA(riga.getPersistentModel());
+				form.modificaRDA(riga);
 				PlicoRDA.getInstance().addFormRDA(form);
 			}
 		});
@@ -256,14 +256,10 @@ public class CardRigaRDA extends ACard {
 							JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 				}
 				if (n == JOptionPane.YES_OPTION) {
-					try {
-						riga.deleteAndDissociate();
+						riga.delete();
 						CardRigaRDA.this.listaRigheRDA
 								.removeRiquadro(CardRigaRDA.this);
 						PlicoRDA.getInstance().controllaListaRighe();
-					} catch (PersistentException e1) {
-						e1.printStackTrace();
-					}
 				}
 			}
 

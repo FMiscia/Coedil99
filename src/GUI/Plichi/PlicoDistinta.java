@@ -72,8 +72,8 @@ public class PlicoDistinta extends APlico {
 		int bounds = (CoedilFrame.getInstance().getBounds().width/6);
 		this.removeAll();
 		RiquadroDatiDistinta temp = null;
-		MDistinta d = (MDistinta) GestisciCommessaHandler.getInstance()
-				.getCommessaById(id).getDistinta();
+		MDistinta d = new MDistinta(GestisciCommessaHandler.getInstance()
+				.getCommessaById(id).getPersistentModel().getDistinta().getID());
 		if (d != null && d.getPersistentModel().lavori.size() != 0) {
 			for (int i = 0; i < d.getPersistentModel().lavori.size(); i++) {
 				temp = new RiquadroDatiDistinta("Riga Lavoro");
