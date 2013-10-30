@@ -1,14 +1,25 @@
 package coedil99.model;
 
+import org.orm.PersistentException;
+
 import coedil99.persistentModel.IPersistentModel;
 import coedil99.persistentModel.Item;
+import coedil99.persistentModel.ItemFactory;
 
 public class MItem implements IModel{
 
 public Item item;
+
+	public MItem(){
+		this.item = new ItemFactory().createItem();
+	}
 	
-	public MItem(Item i){
-		this.item = i;
+	public MItem(int ID){
+		try {
+			this.item = ItemFactory.getItemByORMID(ID);
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -34,15 +45,23 @@ public Item item;
 		return this.item.getGeometria().getLunghezza();
 	}
 
-	@Override
-	public IPersistentModel getModel() {
+	public Item getPersistentModel() {
 		return this.item;
 	}
 
 	@Override
-	public void setModel(IPersistentModel m) {
-		// TODO Auto-generated method stub
-		
+	public void setPersistentModel(IPersistentModel m) {
+		this.item = (Item) m;
 	}
+
+	@Override
+	public void save() {
+		try {
+			this.item.save();
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 }

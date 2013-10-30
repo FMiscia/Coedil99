@@ -187,8 +187,7 @@ public abstract class AFormRDA extends JPanel {
 				fornitore.productDescription.getCollection());
 		for (int i = 0; i < pd.size(); ++i) {
 			if (pd.get(i).getEssenza().equals(essenza)) {
-				Geometria g = pd.get(i).getGeometria();
-				this.cbGeometria.addItem(new MGeometria(g).toString());
+				this.cbGeometria.addItem(new MGeometria(pd.get(i).getGeometria().getID()).toString());
 			}
 		}
 		this.cbGeometria.addItemListener(new ItemListener() {

@@ -46,7 +46,7 @@ public class ModificaFormRDA extends AFormRDA {
 		this.setRigaRDA(rigaRDA);
 		String fornitoreRDA = rigaRDA.getDescription().getCatalogoFornitore().getName();
 		String essenzaRDA = rigaRDA.getDescription().getEssenza();
-		String geometriaRDA = new MGeometria(rigaRDA.getDescription().getGeometria()).toString();
+		String geometriaRDA = new MGeometria(rigaRDA.getDescription().getGeometria().getID()).toString();
 		this.load();
 		for(int i=0; i<this.getCbFornitore().getItemCount(); ++i){
 			if(this.getCbFornitore().getItemAt(i).equals(fornitoreRDA))

@@ -81,7 +81,7 @@ public class GestisciFornitoreHandler {
 		ProductDescription pd = null;
 		for ( int i=0 ; i<l.size() ; i++  ){
 			pd = (ProductDescription) l.get(i);
-			if( pd.getEssenza().toString().equalsIgnoreCase(essenza)  && new MGeometria(pd.getGeometria()).toString().equalsIgnoreCase(geometria)){
+			if( pd.getEssenza().toString().equalsIgnoreCase(essenza)  && new MGeometria(pd.getGeometria().getID()).toString().equalsIgnoreCase(geometria)){
 				return pd;
 			}
 		}
