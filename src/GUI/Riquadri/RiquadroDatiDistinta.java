@@ -359,7 +359,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 					if (RiquadroDatiDistinta.this.oggetto != null) 
 						r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
 					MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance()
-							.getCommessaSelezionata().getDistinta());
+							.getCommessaSelezionata().getDistinta().getID());
 					odistinta.eliminaRigaLavoro(r);
 					RiquadroDatiDistinta.this.removeAll();
 					PlicoDistinta.getInstance().removeRiquadro(
@@ -456,7 +456,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		r.setProfiloCapitello(this.tftipocapitello.getText());
 		r.setNumero(Integer.parseInt(this.tfnumero.getText()));
 		r.setNote(this.tfnote.getText());
-		MRigaLavoro origalavoro = new MRigaLavoro(r);
+		MRigaLavoro origalavoro = new MRigaLavoro(r.getID());
 		origalavoro.save();
 		this.oggetto = r;
 		JOptionPane.showMessageDialog(null,
