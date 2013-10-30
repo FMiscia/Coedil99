@@ -47,11 +47,6 @@ public class MCatalogoFornitore implements IModel {
 	}
 
 	@Override
-	public IPersistentModel getPersistentModel() {
-		return this.catalogoFornitore;
-	}
-
-	@Override
 	public void setPersistentModel(IPersistentModel m) {
 		this.catalogoFornitore = (CatalogoFornitore) m;
 	}
