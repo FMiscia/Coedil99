@@ -155,7 +155,7 @@ public class GestisciCommessaHandler {
 	 * @param rg:RigaLavoro
 	 */
 	public void modificaRigaLavoro(int id_commessa, RigaLavoro rg){
-		MDistinta odistinta = new MDistinta(this.getCommessaById(id_commessa).getDistinta());
+		MDistinta odistinta = new MDistinta(this.getCommessaById(id_commessa).getDistinta().getID());
 		odistinta.modificaRigaLavoro(rg);
 	}
 	
