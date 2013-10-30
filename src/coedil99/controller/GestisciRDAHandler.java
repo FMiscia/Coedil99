@@ -6,32 +6,31 @@ import org.orm.PersistentException;
 
 import GUI.RDACenter;
 
+import coedil99.model.MRDA;
+import coedil99.model.Subject;
 import coedil99.persistentModel.RDA;
 import coedil99.persistentModel.RDAFactory;
 import coedil99.persistentModel.RigaRDA;
-import coedil99.persistentModel.Subject;
 
+public class GestisciRDAHandler extends coedil99.model.Observer {
 
-
-
-public class GestisciRDAHandler extends coedil99.persistentModel.Observer{
-
-	private ArrayList<RDA> arrayRDA = null;
+	private ArrayList<MRDA> arrayMRDA = null;
 	private static GestisciRDAHandler instance;
-	
+
 	public static String CONGELATA = "CONGELATA";
 	public static String RIFIUTATA = "RIFIUTATA";
 	public static String ATTESA_CONFERMA = "ATTESA_CONFERMA";
 	public static String CONFERMATA = "CONFERMATA";
-	
+
 	/**
 	 * Costruttore
 	 */
 	private GestisciRDAHandler() {
-		
+
 		try {
-			this.arrayRDA = new ArrayList<RDA>(Arrays.asList(RDAFactory.listRDAByQuery(null, "ID")));
-			this.setSubject(new ArrayList<Subject>(arrayRDA));
+			this.arrayMRDA = this.changeToMRDA(new ArrayList<RDA>(Arrays.asList(RDAFactory
+					.listRDAByQuery(null, "ID"))));
+			this.setSubject(new ArrayList<Subject>(arrayMRDA));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,60 +38,76 @@ public class GestisciRDAHandler extends coedil99.persistentModel.Observer{
 
 	}
 
-	/**
-	 * Aggiunge un RDA alla lista RDA
-	 * nella posizione richiesta
-	 * 
-	 * @param pos:int
-	 * @param rda:RDA
-	 */
-	public void addRDA(int pos,RDA rda) {
-		this.arrayRDA.add(pos,rda);
-		rda.Attach(this);
+	private ArrayList<MRDA> changeToMRDA(ArrayList<RDA> aRDA) {
+		ArrayList<MRDA> aMRDA = new ArrayList<MRDA>();
+		for (RDA rda : aRDA) {
+			MRDA mrda = new MRDA(rda.getID());
+			aMRDA.add(mrda);
+		}
+		return aMRDA;
 	}
 
 	/**
-	 * Fornisce tutte le RDA
+	 * Aggiunge un MRDA alla lista MRDA nella posizione richiesta
 	 * 
-	 * @return arrayRDA:ArrayList<RDA>
+	 * @param pos
+	 *            :int
+	 * @param mrda
+	 *            :MRDA
 	 */
-	public ArrayList<RDA> getArrayRDA(){
-		return this.arrayRDA;
+	public void addMRDA(int pos, MRDA mrda) {
+		this.arrayMRDA.add(pos, mrda);
+		mrda.Attach(this);
 	}
-	
+
 	/**
-	 * Fornisce le RDA in base allo stato
+	 * Fornisce tutte le MRDA
 	 * 
-	 * @param state:String
-	 * @return filteredArrayRDA:ArrayList<RDA>
+	 * @return arrayMRDA:ArrayList<MRDA>
 	 */
-	public ArrayList<RDA> getArrayRDA(String state) {
+	public ArrayList<MRDA> getArrayMRDA() {
+		return this.arrayMRDA;
+	}
+
+	/**
+	 * Fornisce le MRDA in base allo stato
+	 * 
+	 * @param state
+	 *            :String
+	 * @return filteredArrayMRDA:ArrayList<MRDA>
+	 */
+	public ArrayList<MRDA> getArrayMRDA(String state) {
+		ArrayList<MRDA> filteredArrayMRDA = null;
 		ArrayList<RDA> filteredArrayRDA = null;
 		try {
-			filteredArrayRDA = new ArrayList<RDA>(Arrays.asList(RDAFactory.listRDAByQuery("State =  '"+state+"' ", "Date desc, ID desc")));
+			filteredArrayRDA = new ArrayList<RDA>(Arrays.asList(RDAFactory
+					.listRDAByQuery("State =  '" + state + "' ",
+							"Date desc, ID desc")));
+			filteredArrayMRDA = this.changeToMRDA(filteredArrayRDA);
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return filteredArrayRDA;
+		return filteredArrayMRDA;
 	}
-	
+
 	/**
-	 * Fornisce la RDA da un id
+	 * Fornisce la MRDA da un id
 	 * 
-	 * @param id:int
-	 * @return rda:RDA
+	 * @param id
+	 *            :int
+	 * @return mrda:MRDA
 	 */
-	public RDA getRDAById(int id){
+	public MRDA getMRDAById(int id) {
 		try {
-			return RDAFactory.getRDAByORMID(id);
+			return new MRDA(RDAFactory.getRDAByORMID(id).getID());
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Singleton
 	 * 
@@ -111,45 +126,45 @@ public class GestisciRDAHandler extends coedil99.persistentModel.Observer{
 	 * 
 	 * @return size:int
 	 */
-	public int getNumOfRDA() {
+	public int getNumOfMRDA() {
 		// TODO Auto-generated method stub
-		return this.arrayRDA.size();
+		return this.arrayMRDA.size();
 	}
-	
+
 	/**
 	 * Salva un RDA nel DB e lo aggiunge alla lista delle RDA in ram
 	 * 
-	 * @param r:RDA
+	 * @param r
+	 *            :RDA
 	 * 
 	 */
-	public void saveAndAddRDA(RDA r){
-		try {
-			r.save();
-			if(!this.arrayRDA.contains(r))
-				this.addRDA(0, r);
-			r.Notify();
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void saveAndAddRDA(MRDA r) {
+
+		r.save();
+		if (!this.arrayMRDA.contains(r))
+			this.addMRDA(0, r);
+		r.Notify();
+
 	}
-	
+
 	/**
 	 * Elimina un RDA nel DB e lo rimuove dalla lista delle RDA in ram
 	 * 
-	 * @param r:RDA
+	 * @param r
+	 *            :RDA
 	 * 
 	 */
-	public void deleteAndRemoveRDA(RDA r){
+	public void deleteAndRemoveRDA(RDA r) {
 		try {
 			@SuppressWarnings("unchecked")
-			ArrayList<RigaRDA> listarighe = new ArrayList<RigaRDA>( r.righeRDA.getCollection() );
-			for (RigaRDA temp : listarighe){
-				this.arrayRDA.remove(temp);
+			ArrayList<RigaRDA> listarighe = new ArrayList<RigaRDA>(
+					r.righeRDA.getCollection());
+			for (RigaRDA temp : listarighe) {
+				this.arrayMRDA.remove(temp);
 				temp.deleteAndDissociate();
 			}
 			r.delete();
-			this.arrayRDA.remove(r);
+			this.arrayMRDA.remove(r);
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -157,12 +172,12 @@ public class GestisciRDAHandler extends coedil99.persistentModel.Observer{
 	}
 
 	/**
-	 * metodo Observer 
+	 * metodo Observer
 	 */
 	@Override
 	public ArrayList<Subject> getSubject() {
 		// TODO Auto-generated method stub
-		return new ArrayList<Subject>(this.arrayRDA);
+		return new ArrayList<Subject>(this.arrayMRDA);
 	}
 
 	/**
@@ -171,7 +186,7 @@ public class GestisciRDAHandler extends coedil99.persistentModel.Observer{
 	@Override
 	public void setSubject(ArrayList<Subject> s) {
 		this.subjects = s;
-		
+
 	}
 
 	/**
@@ -180,8 +195,7 @@ public class GestisciRDAHandler extends coedil99.persistentModel.Observer{
 	@Override
 	public void Update() {
 		RDACenter.getInstance().getClipPanel().updateNotifiche();
-		
+
 	}
-	
 
 }

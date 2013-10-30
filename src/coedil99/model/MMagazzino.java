@@ -1,58 +1,99 @@
 package coedil99.model;
 
-import coedil99.persistentModel.IPersistentModel;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import coedil99.controller.GestisciMagazzinoHandler;
+import coedil99.controller.GestisciRDAHandler;
+import coedil99.model.Observer;
+import coedil99.model.Subject;
+import coedil99.persistentModel.Geometria;
+import coedil99.persistentModel.History;
 import coedil99.persistentModel.Item;
-import coedil99.persistentModel.Magazzino;
+import coedil99.persistentModel.RigaRDA;
 
-public class MMagazzino implements IModel{
+public class MMagazzino extends Observer {
 
-private Magazzino magazzino;
-	
+	private static MMagazzino instance = null;
+
+	private java.util.HashMap<Item, Integer> items = new HashMap<Item, Integer>();
+	private String name;
+
+	public java.util.HashMap<Item, Integer> getItems() {
+		return this.items;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	/**
-	 * Costruttore senza parametri
+	 * Costruttore privato: inseriamo alcuni item, per consentire un minimo 
+	 * di ottimizzazione
 	 */
-	public MMagazzino(){
-		this.magazzino = new Magazzino();
+	public MMagazzino() {
+        /*Startup*/
+        Item item1 = new Item(new Geometria(23,50,400),"Listelli Abete");
+        item1.setHistory(new History());
+        Item item2 = new Item(new Geometria(23,50,300),"Listelli Scemi");
+        item2.setHistory(new History());
+        Item item3 = new Item(new Geometria(23,50,200),"Pannelli Stupidi");
+        item3.setHistory(new History());
+        Item item4 = new Item(new Geometria(23,50,100),"Pannelli Biricchini");
+        item4.setHistory(new History());
+        
+        this.items.put(item1,4);
+        this.items.put(item2,3);
+        this.items.put(item3,2);
+        this.items.put(item4,1);
 	}
-	
+
+	@Override
+	public ArrayList<Subject> getSubject() {
+		return this.subjects;
+	}
+
+	@Override
+	public void setSubject(ArrayList<Subject> s) {
+		this.subjects = s;
+
+	}
+
 	/**
-	 * Costruttore con parametri
-	 * @param m
-	 */
-	public MMagazzino(Magazzino m){
-		this.magazzino = m;
-	}
-	
-	public void addItem(Item item){
-		Integer oldValue = this.magazzino.getItems().get(item);
-		this.magazzino.getItems().put(item, ++oldValue);
-	}
-	
-	public void removeItem(Item item){
-		if(this.magazzino.getItems().containsKey(item) && this.magazzino.getItems().get(item) > 0)
-			this.magazzino.getItems().put(item, this.magazzino.getItems().get(item)-1);
-	}
-	
-	@Override
-	public void setPersistentModel(IPersistentModel m) {
-		this.magazzino = (Magazzino) m;
-	}
-	
-	public Magazzino getPersistentModel(){
-		return this.magazzino;
-	}
-	
-	/**
-	 * Non Implementato poichè il magazzino non è persistente
+	 * Da controllare nell'iterazione per caso d'uso gestisci magazzino e invia RDA
 	 */
 	@Override
-	public void save() {
-		// TODO Auto-generated method stub
+	public void Update() {
+//		ArrayList<RigaRDA> righe = null;
+//		if (this.getSubject() == null
+//				|| (this.getSubject() != null && !(this.getSubject()
+//						.equals(GestisciRDAHandler.getInstance().getArrayRDA())))) {
+//			this.setSubject(new ArrayList<Subject>(GestisciRDAHandler.getInstance().getArrayRDA()));
+//			for (Subject rda : this.getSubject()) {
+//				if (((RDA) rda).getState() == GestisciRDAHandler.ATTESA_CONFERMA) {
+//					righe = new ArrayList<RigaRDA>(
+//							((RDA) rda).righeRDA.getCollection());
+//					for (RigaRDA temp : righe) {
+//						Item i = ItemFactory.createItem();
+//						i.setGeometria(temp.getDescription().getGeometria());
+//						i.setProductDescription(temp.getDescription());
+//						i.setDescrizione(temp.getDescription().getEssenza());
+//						i.setState(GestisciMagazzinoHandler.RICHIESTO);
+//					}
+//				}
+//			}
+//		}
+
 	}
-	
-	@Override
-	public void delete(){
+
+	public static MMagazzino getInstance() {
+		if (instance == null)
+			instance = new MMagazzino();
+		return instance;
 	}
-	
 
 }

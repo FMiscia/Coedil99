@@ -5,15 +5,18 @@ import java.util.Arrays;
 
 import org.orm.PersistentException;
 
+import coedil99.model.MOrdine;
+import coedil99.model.MRDA;
 import coedil99.persistentModel.Ordine;
 import coedil99.persistentModel.OrdineFactory;
+import coedil99.persistentModel.RDA;
 
 
 
 
 public class GestisciOrdineHandler {
 
-	private ArrayList<Ordine> ordini = null;
+	private ArrayList<MOrdine> ordini = null;
 	private static GestisciOrdineHandler instance;
 
 	/**
@@ -21,28 +24,44 @@ public class GestisciOrdineHandler {
 	 */
 	private GestisciOrdineHandler() {
 		try {
-			this.ordini = new ArrayList<Ordine>(Arrays.asList(OrdineFactory.listOrdineByQuery(null, "ID")));
+			this.ordini = this.changeToMOrdini(new ArrayList<Ordine>(Arrays.asList(OrdineFactory.listOrdineByQuery(null, "ID"))));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Elabora e ritorna una lista di MOrdine partendo da una lista di Ordine
+	 * @param aOrdini
+	 * @return ArrayList<MOrdine>
+	 */
+	private ArrayList<MOrdine> changeToMOrdini(ArrayList<Ordine> aOrdini) {
+
+			ArrayList<MOrdine> aMOrdine = new ArrayList<MOrdine>();
+			for (Ordine o : aOrdini) {
+				MOrdine mOrdine = new MOrdine(o.getID());
+				aMOrdine.add(mOrdine);
+			}
+			return aMOrdine;
+
+	}
 
 	/**
 	 * Aggiunge un ordine al programma lavori
 	 * 
-	 * @param o:Ordine
+	 * @param o:MOrdine
 	 */
-	public void addOrdine(Ordine o) {
+	public void addMOrdine(MOrdine o) {
 		this.ordini.add(o);
 	}
 
 	/**
 	 * Fornisce tutti gli ordini
 	 * 
-	 * @return ordini:ArrayList<Ordine>
+	 * @return ordini:ArrayList<MOrdine>
 	 */
-	public ArrayList<Ordine> getOrdini(){
+	public ArrayList<MOrdine> getMOrdini(){
 		return this.ordini;
 	}
 	
