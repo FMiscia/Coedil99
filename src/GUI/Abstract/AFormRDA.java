@@ -24,6 +24,7 @@ import javax.swing.event.ChangeListener;
 import GUI.Utilities.JHorizontalSpinner;
 
 import coedil99.controller.GestisciFornitoreHandler;
+import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MGeometria;
 import coedil99.persistentModel.CatalogoFornitore;
 import coedil99.persistentModel.Geometria;
@@ -40,7 +41,7 @@ public abstract class AFormRDA extends JPanel {
 	protected JComboBox<Object> cbFornitore;
 	protected JComboBox<Object> cbEssenza;
 	protected JComboBox<Object> cbGeometria;
-	private ArrayList<CatalogoFornitore> fornitori;
+	private ArrayList<MCatalogoFornitore> fornitori;
 	private JLabel lblFornitore;
 	private JLabel lblEssenza;
 	private JLabel lblGeometria;
@@ -88,11 +89,11 @@ public abstract class AFormRDA extends JPanel {
 		return cbEssenza;
 	}
 
-	public ArrayList<CatalogoFornitore> getFornitori() {
+	public ArrayList<MCatalogoFornitore> getFornitori() {
 		return fornitori;
 	}
 
-	public void setFornitori(ArrayList<CatalogoFornitore> fornitori) {
+	public void setFornitori(ArrayList<MCatalogoFornitore> fornitori) {
 		this.fornitori = fornitori;
 	}
 
@@ -109,7 +110,7 @@ public abstract class AFormRDA extends JPanel {
 		this.cbFornitore.removeAllItems();
 		this.cbFornitore.setEnabled(true);
 		for (int i = 0; i < this.fornitori.size(); ++i) {
-			this.cbFornitore.addItem(this.fornitori.get(i).getName());
+			this.cbFornitore.addItem(this.fornitori.get(i).getPersistentModel().getName());
 		}
 		this.cbFornitore.addItemListener(new ItemListener() {
 
@@ -136,15 +137,15 @@ public abstract class AFormRDA extends JPanel {
 	 * @param fornitore
 	 *            : Catalogo Fornitore selezionato
 	 */
-	protected void loadEssenze(final CatalogoFornitore fornitore) {
+	protected void loadEssenze(final MCatalogoFornitore fornitore) {
 		AFormRDA.this.cbEssenza.setEnabled(true);
 		if (this.cbEssenza.getItemListeners().length != 0)
 			this.cbEssenza
 					.removeItemListener(this.cbEssenza.getItemListeners()[0]);
 		this.cbEssenza.removeAllItems();
 		TreeSet<String> essenze = new TreeSet<String>();
-		for (int i = 0; i < fornitore.productDescription.size(); ++i) {
-			essenze.add(fornitore.productDescription.get(i).getEssenza());
+		for (int i = 0; i < fornitore.getPersistentModel().productDescription.size(); ++i) {
+			essenze.add(fornitore.getPersistentModel().productDescription.get(i).getEssenza());
 		}
 		for (int i = 0; i < essenze.size(); ++i) {
 			this.cbEssenza.addItem(essenze.toArray()[i]);
@@ -176,7 +177,7 @@ public abstract class AFormRDA extends JPanel {
 	 *            : Essenza selezionata
 	 * 
 	 */
-	protected void loadGeometria(CatalogoFornitore fornitore, String essenza) {
+	protected void loadGeometria(MCatalogoFornitore fornitore, String essenza) {
 		AFormRDA.this.cbGeometria.setEnabled(true);
 		if (this.cbGeometria.getItemListeners().length != 0)
 			this.cbGeometria.removeItemListener(this.cbGeometria
@@ -184,7 +185,7 @@ public abstract class AFormRDA extends JPanel {
 		this.cbGeometria.removeAllItems();
 		@SuppressWarnings("unchecked")
 		ArrayList<ProductDescription> pd = new ArrayList<ProductDescription>(
-				fornitore.productDescription.getCollection());
+				fornitore.getPersistentModel().productDescription.getCollection());
 		for (int i = 0; i < pd.size(); ++i) {
 			if (pd.get(i).getEssenza().equals(essenza)) {
 				this.cbGeometria.addItem(new MGeometria(pd.get(i).getGeometria().getID()).toString());
