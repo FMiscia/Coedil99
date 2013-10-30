@@ -28,7 +28,7 @@ public class MCatalogoFornitore implements IModel {
 	 * @param ID
 	 * 
 	 */
-	public MCatalogoFornitore(Integer ID) {
+	public MCatalogoFornitore(int ID) {
 		try {
 			this.catalogoFornitore = CatalogoFornitoreFactory
 					.getCatalogoFornitoreByORMID(ID);
@@ -44,6 +44,11 @@ public class MCatalogoFornitore implements IModel {
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	public CatalogoFornitore getPersistentModel() {
+		return this.catalogoFornitore;
 	}
 
 	@Override

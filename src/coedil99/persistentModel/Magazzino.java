@@ -29,7 +29,7 @@ public class Magazzino extends Observer implements IPersistentModel{
 	 * Costruttore privato: inseriamo alcuni item, per consentire un minimo 
 	 * di ottimizzazione
 	 */
-	private Magazzino() {
+	public Magazzino() {
         /*Startup*/
         Item item1 = new Item(new Geometria(23,50,400),"Listelli Abete");
         item1.setHistory(new History());

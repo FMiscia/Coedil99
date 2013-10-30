@@ -8,6 +8,17 @@ public class MMagazzino implements IModel{
 
 private Magazzino magazzino;
 	
+	/**
+	 * Costruttore senza parametri
+	 */
+	public MMagazzino(){
+		this.magazzino = new Magazzino();
+	}
+	
+	/**
+	 * Costruttore con parametri
+	 * @param m
+	 */
 	public MMagazzino(Magazzino m){
 		this.magazzino = m;
 	}
@@ -21,15 +32,22 @@ private Magazzino magazzino;
 		if(this.magazzino.getItems().containsKey(item) && this.magazzino.getItems().get(item) > 0)
 			this.magazzino.getItems().put(item, this.magazzino.getItems().get(item)-1);
 	}
-
+	
 	@Override
-	public IPersistentModel getModel() {
+	public void setPersistentModel(IPersistentModel m) {
+		this.magazzino = (Magazzino) m;
+	}
+	
+	public Magazzino getPersistentModel(){
 		return this.magazzino;
 	}
-
+	
+	/**
+	 * Non Implementato poichè il magazzino non è persistente
+	 */
 	@Override
-	public void setModel(IPersistentModel m) {
+	public void save() {
 		// TODO Auto-generated method stub
-		
 	}
+
 }
