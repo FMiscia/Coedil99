@@ -7,4 +7,6 @@ public interface IModel {
 	void setPersistentModel(IPersistentModel m);
 	
 	void save();
+	
+	void delete();
 }
