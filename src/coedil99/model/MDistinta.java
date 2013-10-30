@@ -6,6 +6,7 @@ import org.orm.PersistentException;
 
 import coedil99.controller.OttimizzatoreHandler;
 import coedil99.persistentModel.Distinta;
+import coedil99.persistentModel.DistintaFactory;
 import coedil99.persistentModel.IPersistentModel;
 import coedil99.persistentModel.RigaLavoro;
 import coedil99.persistentModel.StandardOttimizzatoreStrategy;
@@ -16,12 +17,23 @@ public class MDistinta implements IModel{
 
 
 	/**
-	 * 
-	 * @param d
-	 * @return 
+	 * Costruttore
 	 */
-	public MDistinta(Distinta d) {
-		this.distinta = d;
+	public MDistinta() {
+		this.distinta = DistintaFactory.createDistinta();
+	}
+	
+	/**
+	 * Costruttore
+	 * @param ID
+	 */
+	public MDistinta(int ID){
+		try {
+			this.distinta = DistintaFactory.loadDistintaByORMID(ID);
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -55,7 +67,7 @@ public class MDistinta implements IModel{
 	 */
 	public void eliminaRigaLavoro(RigaLavoro rg) {
 		this.distinta.getLavori().remove(rg);
-		MRigaLavoro origalavoro = new MRigaLavoro(rg);
+		MRigaLavoro origalavoro = new MRigaLavoro(rg.getID());
 		if(origalavoro.isSaved()){
 			try {
 				rg.delete();
@@ -89,16 +101,38 @@ public class MDistinta implements IModel{
 		// TODO Auto-generated method stub
 		return (this.distinta.getDdo() != null);
 	}
-
-	@Override
-	public IPersistentModel getModel() {
+	
+	public Distinta getPersistentModel(){
 		return this.distinta;
 	}
 
 	@Override
-	public void setModel(IPersistentModel m) {
-		// TODO Auto-generated method stub
+	public void setPersistentModel(IPersistentModel m) {
+		this.distinta = (Distinta)m;
 		
 	}
+
+	@Override
+	public void save() {
+		try {
+			this.distinta.save();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void delete() {
+		try {
+			this.distinta.delete();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 
 }
