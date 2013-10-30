@@ -21,7 +21,7 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 	public DocumentoOttimizzazione elaboraOttimizzazione(Distinta distinta) {
 		
 		
-		MMagazzino m = new MMagazzino(Magazzino.getInstance());
+		MMagazzino m = MMagazzino.getInstance();
 		//Geometrie presenti nella distinta
 		ArrayList<Geometria> distitems = new ArrayList<Geometria>();
 		//Item da aggiungere al DDO
@@ -29,7 +29,7 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 		//Residui dei tagli
 		ArrayList<Item> sfridi = new ArrayList<Item>();
 		//Item presenti nel magazzino
-		ArrayList<Item> itm = new ArrayList<Item>(Magazzino.getInstance().getItems().keySet());
+		ArrayList<Item> itm = new ArrayList<Item>(MMagazzino.getInstance().getItems().keySet());
 		//Item da cancellare
 		//ArrayList<Item> rem = new ArrayList<Item>();
 

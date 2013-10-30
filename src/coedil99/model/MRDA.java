@@ -5,11 +5,9 @@ import org.orm.PersistentException;
 import coedil99.persistentModel.IPersistentModel;
 import coedil99.persistentModel.RDA;
 import coedil99.persistentModel.RDAFactory;
-import coedil99.persistentModel.RigaLavoro;
-import coedil99.persistentModel.RigaLavoroFactory;
 
 
-public class MRDA implements IModel{
+public class MRDA extends coedil99.model.Subject implements IModel{
 	
 	private RDA rda;
 
@@ -19,6 +17,7 @@ public class MRDA implements IModel{
 	 */
 	public MRDA() {
 		this.rda = RDAFactory.createRDA();
+		this.Attach(MMagazzino.getInstance());
 	}
 
 	/**
@@ -30,12 +29,18 @@ public class MRDA implements IModel{
 		try {
 			this.rda = RDAFactory
 					.getRDAByORMID(ID);
+			this.Attach(MMagazzino.getInstance());
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
 	}
 
 		
+	public void setState(String value) {
+		this.getPersistentModel().setState(value);
+		this.Notify();
+	}
+	
 	@Override
 	public void setPersistentModel(IPersistentModel m) {
 		// TODO Auto-generated method stub
@@ -61,10 +66,36 @@ public class MRDA implements IModel{
 		// TODO Auto-generated method stub
 		try {
 			this.rda.deleteAndDissociate();
+			this.rda=null;
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void Attach(Observer obj) {
+		// TODO Auto-generated method stub
+		this.observers.add(obj);
+	}
+
+	@Override
+	public void Detach(Observer obj) {
+		// TODO Auto-generated method stub
+		this.observers.remove(obj);
+		
+	}
+
+	@Override
+	public void Notify() {
+		// TODO Auto-generated method stub
+		for(Observer temp : this.observers){
+			temp.Update();
+		}
+		/*
+		 * Risolvere problema GestisciRDAHandler observer
+		 */
+		//GestisciRDAHandler.getInstance().Update();
 	}
 
 
