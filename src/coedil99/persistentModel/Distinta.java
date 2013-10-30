@@ -118,11 +118,6 @@ public class Distinta implements IPersistentModel{
 	
 	private static int count;
 		
-	public MDocumentoOttimizzazione getOddo() {
-		//TODO: Implement Method
-		return new MDocumentoOttimizzazione(this.getDdo());
-	}
-	
 	public String toString() {
 		return String.valueOf(getID());
 	}
