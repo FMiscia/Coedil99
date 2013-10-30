@@ -17,20 +17,20 @@ License Type: Purchased
 		<property name="show_sql">false</property>
 		<property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
 		<!-- mapping files -->
-		<mapping resource="ormmapping/coedil99/model/Cantiere.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/CatalogoFornitore.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/Cliente.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/Commessa.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/Distinta.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/DocumentoOttimizzazione.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/Geometria.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/History.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/Item.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/ListaRintracciabilita.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/Ordine.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/ProductDescription.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/RDA.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/RigaLavoro.hbm.xml" />
-		<mapping resource="ormmapping/coedil99/model/RigaRDA.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/Cantiere.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/CatalogoFornitore.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/Cliente.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/Commessa.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/Distinta.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/DocumentoOttimizzazione.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/Geometria.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/History.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/Item.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/ListaRintracciabilita.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/Ordine.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/ProductDescription.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/RDA.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/RigaLavoro.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentModel/RigaRDA.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

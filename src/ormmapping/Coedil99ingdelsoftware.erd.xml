@@ -98,7 +98,7 @@
     <Column name="RDAID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.model.RDA.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.persistentModel.RDA.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>false</Nullable>
@@ -110,7 +110,7 @@
     <Column name="ProductDescriptionID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.model.ProductDescription.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.persistentModel.ProductDescription.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>false</Nullable>
@@ -733,7 +733,7 @@
     <Column name="ProductDescriptionID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.model.ProductDescription.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.persistentModel.ProductDescription.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>true</Nullable>

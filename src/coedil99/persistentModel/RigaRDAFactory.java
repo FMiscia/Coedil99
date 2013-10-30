@@ -125,7 +125,7 @@ public class RigaRDAFactory {
 	}
 	
 	public static RigaRDA[] listRigaRDAByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RigaRDA as RigaRDA");
+		StringBuffer sb = new StringBuffer("From coedil99.coedil99.persistentModel.RigaRDA as RigaRDA");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -142,7 +142,7 @@ public class RigaRDAFactory {
 	}
 	
 	public static RigaRDA[] listRigaRDAByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RigaRDA as RigaRDA");
+		StringBuffer sb = new StringBuffer("From coedil99.persistentModel.RigaRDA as RigaRDA");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -220,7 +220,7 @@ public class RigaRDAFactory {
 	}
 	
 	public static java.util.Iterator iterateRigaRDAByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RigaRDA as RigaRDA");
+		StringBuffer sb = new StringBuffer("From coedil99.persistentModel.RigaRDA as RigaRDA");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -236,7 +236,7 @@ public class RigaRDAFactory {
 	}
 	
 	public static java.util.Iterator iterateRigaRDAByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RigaRDA as RigaRDA");
+		StringBuffer sb = new StringBuffer("From coedil99.persistentModel.RigaRDA as RigaRDA");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
