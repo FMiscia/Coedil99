@@ -32,7 +32,7 @@ public class CatalogoCSVBuilder extends CatalogoFornitoreBuilder {
 		String[] fornitore = reader.readNext();
 		String[] nome_fornitore = reader.readNext();
 		String[] intestazione = reader.readNext();
-		this.catalogo.setName(nome_fornitore[0]);
+		this.catalogo.getPersistentModel().setName(nome_fornitore[0]);
 		System.out.println(nome_fornitore[0]);
 		String[] row = null;
 		while ((row = reader.readNext()) != null) {
@@ -49,7 +49,7 @@ public class CatalogoCSVBuilder extends CatalogoFornitoreBuilder {
 			new_geometria.setLunghezza(Float.parseFloat(row[5]));
 			
 			new_productDescription.setGeometria(new_geometria);
-			this.catalogo.productDescription.add(new_productDescription);
+			this.catalogo.getPersistentModel().productDescription.add(new_productDescription);
 			
 			try {
 				this.catalogo.save();
