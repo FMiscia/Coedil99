@@ -125,7 +125,7 @@ public class HistoryFactory {
 	}
 	
 	public static History[] listHistoryByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.History as History");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.History as History");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -142,7 +142,7 @@ public class HistoryFactory {
 	}
 	
 	public static History[] listHistoryByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.History as History");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.History as History");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -220,7 +220,7 @@ public class HistoryFactory {
 	}
 	
 	public static java.util.Iterator iterateHistoryByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.History as History");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.History as History");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -236,7 +236,7 @@ public class HistoryFactory {
 	}
 	
 	public static java.util.Iterator iterateHistoryByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.History as History");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.History as History");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)

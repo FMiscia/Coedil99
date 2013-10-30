@@ -125,7 +125,7 @@ public class RDAFactory {
 	}
 	
 	public static RDA[] listRDAByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RDA as RDA");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.RDA as RDA");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -142,7 +142,7 @@ public class RDAFactory {
 	}
 	
 	public static RDA[] listRDAByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RDA as RDA");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.RDA as RDA");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -220,7 +220,7 @@ public class RDAFactory {
 	}
 	
 	public static java.util.Iterator iterateRDAByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RDA as RDA");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.RDA as RDA");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -236,7 +236,7 @@ public class RDAFactory {
 	}
 	
 	public static java.util.Iterator iterateRDAByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.RDA as RDA");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.RDA as RDA");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)

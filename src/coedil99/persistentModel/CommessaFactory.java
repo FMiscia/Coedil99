@@ -125,7 +125,7 @@ public class CommessaFactory {
 	}
 	
 	public static Commessa[] listCommessaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Commessa as Commessa");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Commessa as Commessa");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -142,7 +142,7 @@ public class CommessaFactory {
 	}
 	
 	public static Commessa[] listCommessaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Commessa as Commessa");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Commessa as Commessa");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -220,7 +220,7 @@ public class CommessaFactory {
 	}
 	
 	public static java.util.Iterator iterateCommessaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Commessa as Commessa");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Commessa as Commessa");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -236,7 +236,7 @@ public class CommessaFactory {
 	}
 	
 	public static java.util.Iterator iterateCommessaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Commessa as Commessa");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Commessa as Commessa");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)

@@ -125,7 +125,7 @@ public class CantiereFactory {
 	}
 	
 	public static Cantiere[] listCantiereByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Cantiere as Cantiere");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Cantiere as Cantiere");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -142,7 +142,7 @@ public class CantiereFactory {
 	}
 	
 	public static Cantiere[] listCantiereByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Cantiere as Cantiere");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Cantiere as Cantiere");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -220,7 +220,7 @@ public class CantiereFactory {
 	}
 	
 	public static java.util.Iterator iterateCantiereByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Cantiere as Cantiere");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Cantiere as Cantiere");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -236,7 +236,7 @@ public class CantiereFactory {
 	}
 	
 	public static java.util.Iterator iterateCantiereByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Cantiere as Cantiere");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Cantiere as Cantiere");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)

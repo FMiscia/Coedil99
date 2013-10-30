@@ -125,7 +125,7 @@ public class GeometriaFactory {
 	}
 	
 	public static Geometria[] listGeometriaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Geometria as Geometria");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Geometria as Geometria");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -142,7 +142,7 @@ public class GeometriaFactory {
 	}
 	
 	public static Geometria[] listGeometriaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Geometria as Geometria");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Geometria as Geometria");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -220,7 +220,7 @@ public class GeometriaFactory {
 	}
 	
 	public static java.util.Iterator iterateGeometriaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Geometria as Geometria");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Geometria as Geometria");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -236,7 +236,7 @@ public class GeometriaFactory {
 	}
 	
 	public static java.util.Iterator iterateGeometriaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From coedil99.model.Geometria as Geometria");
+		StringBuffer sb = new StringBuffer("From Coedil99.persistentModel.Geometria as Geometria");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
