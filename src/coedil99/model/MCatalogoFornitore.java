@@ -46,6 +46,7 @@ public class MCatalogoFornitore implements IModel {
 		}
 	}
 
+
 	public CatalogoFornitore getPersistentModel() {
 		return this.catalogoFornitore;
 	}

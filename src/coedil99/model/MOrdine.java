@@ -1,15 +1,38 @@
 package coedil99.model;
 
+import org.orm.PersistentException;
+
 import coedil99.persistentModel.Commessa;
 import coedil99.persistentModel.IPersistentModel;
 import coedil99.persistentModel.Ordine;
+import coedil99.persistentModel.OrdineFactory;
+import coedil99.persistentModel.RDA;
+import coedil99.persistentModel.RDAFactory;
 
 public class MOrdine implements IModel{
 
 	private Ordine ordine;
 
-	public MOrdine(Ordine o) {
-		this.ordine = o;
+	/**
+	 * Costruttore senza parametro
+	 * 
+	 */
+	public MOrdine() {
+		this.ordine = OrdineFactory.createOrdine();
+	}
+
+	/**
+	 * Costruttore
+	 * @param ID
+	 * 
+	 */
+	public MOrdine(int ID) {
+		try {
+			this.ordine = OrdineFactory
+					.getOrdineByORMID(ID);
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private Boolean isDateNull(){
@@ -37,14 +60,23 @@ public class MOrdine implements IModel{
 	}
 
 	@Override
-	public IPersistentModel getModel() {
-		return ordine;
+	public void setPersistentModel(IPersistentModel m) {
+		// TODO Auto-generated method stub
+		this.ordine = (Ordine) m;
 	}
 
+	public Ordine getPersistentModel(){
+		return this.ordine;
+	}
+	
 	@Override
-	public void setModel(IPersistentModel m) {
+	public void save() {
 		// TODO Auto-generated method stub
-		
+		try {
+			this.ordine.save();
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
