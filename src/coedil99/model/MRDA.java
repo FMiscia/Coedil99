@@ -56,5 +56,16 @@ public class MRDA implements IModel{
 		}
 	}
 
+	@Override
+	public void delete() {
+		// TODO Auto-generated method stub
+		try {
+			this.rda.deleteAndDissociate();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 }

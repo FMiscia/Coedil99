@@ -53,6 +53,6 @@ private Magazzino magazzino;
 	@Override
 	public void delete(){
 	}
-	}
+	
 
 }

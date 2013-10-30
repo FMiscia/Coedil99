@@ -65,7 +65,12 @@ public Item item;
 	
 	@Override
 	public void delete(){
-		this.item.delete();
+		try {
+			this.item.delete();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

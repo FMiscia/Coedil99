@@ -58,5 +58,16 @@ public class MRigaLavoro implements IModel{
 	public RigaLavoro getPersistentModel(){
 		return this.rigalavoro;
 	}
+
+	@Override
+	public void delete() {
+		// TODO Auto-generated method stub
+		try {
+			this.rigalavoro.delete();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 }

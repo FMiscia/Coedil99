@@ -58,7 +58,12 @@ public class MCatalogoFornitore implements IModel {
 	
 	@Override
 	public void delete(){
-		this.catalogoFornitore.deleteAndDissociate();
+		try {
+			this.catalogoFornitore.deleteAndDissociate();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

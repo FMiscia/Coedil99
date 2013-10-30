@@ -54,7 +54,12 @@ public class MGeometria implements IModel{
 	
 	@Override
 	public void delete(){
-		this.geometria.delete();
+		try {
+			this.geometria.delete();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

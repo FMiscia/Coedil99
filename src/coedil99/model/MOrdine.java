@@ -79,4 +79,15 @@ public class MOrdine implements IModel{
 		}
 	}
 
+	@Override
+	public void delete() {
+		// TODO Auto-generated method stub
+		try {
+			this.ordine.deleteAndDissociate();
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }
