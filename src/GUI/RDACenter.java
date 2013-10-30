@@ -48,7 +48,7 @@ public class RDACenter extends JPanel {
 		this.add(this.lista, BorderLayout.WEST);
 		PlicoRDA.getInstance()
 				.getListaRigheRDA()
-				.load(new ArrayList<Object>(this.getRDASelezionata().righeRDA
+				.load(new ArrayList<Object>(this.getRDASelezionata().getPersistentModel().righeRDA
 						.getCollection()));
 		this.validate();
 		this.repaint();
