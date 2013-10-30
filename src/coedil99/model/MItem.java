@@ -62,6 +62,11 @@ public Item item;
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void delete(){
+		this.item.delete();
+	}
 
 
 }

@@ -54,6 +54,11 @@ public class MCatalogoFornitore implements IModel {
 	public void setPersistentModel(IPersistentModel m) {
 		this.catalogoFornitore = (CatalogoFornitore) m;
 	}
+	
+	@Override
+	public void delete(){
+		this.catalogoFornitore.deleteAndDissociate();
+	}
 
 
 }

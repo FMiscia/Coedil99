@@ -50,7 +50,11 @@ public class MGeometria implements IModel{
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
-		
+	}
+	
+	@Override
+	public void delete(){
+		this.geometria.delete();
 	}
 
 }

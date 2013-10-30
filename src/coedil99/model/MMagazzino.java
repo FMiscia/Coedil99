@@ -49,5 +49,10 @@ private Magazzino magazzino;
 	public void save() {
 		// TODO Auto-generated method stub
 	}
+	
+	@Override
+	public void delete(){
+	}
+	}
 
 }
