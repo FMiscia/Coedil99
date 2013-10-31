@@ -5,7 +5,7 @@ import javax.swing.JTextField;
 
 import GUI.Abstract.ARiquadro;
 import coedil99.model.MItem;
-import coedil99.persistentModel.Item;
+import coedil99.persistentmodel.Item;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;

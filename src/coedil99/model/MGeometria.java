@@ -2,9 +2,9 @@ package coedil99.model;
 
 import org.orm.PersistentException;
 
-import coedil99.persistentModel.Geometria;
-import coedil99.persistentModel.GeometriaFactory;
-import coedil99.persistentModel.IPersistentModel;
+import coedil99.persistentmodel.Geometria;
+import coedil99.persistentmodel.GeometriaFactory;
+import coedil99.persistentmodel.IPersistentModel;
 
 public class MGeometria implements IModel{
 

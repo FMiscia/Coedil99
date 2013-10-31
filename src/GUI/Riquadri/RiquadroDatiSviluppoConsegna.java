@@ -21,7 +21,7 @@ import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
 import coedil99.model.MCommessa;
-import coedil99.persistentModel.Commessa;
+import coedil99.persistentmodel.Commessa;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;

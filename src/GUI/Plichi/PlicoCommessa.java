@@ -24,9 +24,9 @@ import coedil99.controller.GestisciOrdineHandler;
 import coedil99.model.MCliente;
 import coedil99.model.MCommessa;
 import coedil99.model.MOrdine;
-import coedil99.persistentModel.Cliente;
-import coedil99.persistentModel.Commessa;
-import coedil99.persistentModel.Ordine;
+import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.Commessa;
+import coedil99.persistentmodel.Ordine;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -70,7 +70,7 @@ public class PlicoCommessa extends APlico {
 		this.reset();
 		MCommessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
 		MOrdine o = GestisciOrdineHandler.getInstance().getMOrdineById(
-				c.getPersistentModel().getOrdineId());
+				c.getPersistentModel().getOrdine().getID());
 		MCliente cl = GestisciClienteHandler.getInstance().getClienteById(
 				o.getPersistentModel().getCliente().getID());
 		rda.load(c);

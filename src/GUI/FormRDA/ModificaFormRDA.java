@@ -14,8 +14,8 @@ import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.MGeometria;
 import coedil99.model.MProductDescription;
 import coedil99.model.MRigaRDA;
-import coedil99.persistentModel.ProductDescription;
-import coedil99.persistentModel.RigaRDA;
+import coedil99.persistentmodel.ProductDescription;
+import coedil99.persistentmodel.RigaRDA;
 
 
 /**

@@ -22,7 +22,7 @@ import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MRDA;
-import coedil99.persistentModel.RDA;
+import coedil99.persistentmodel.RDA;
 
 /**
  * 

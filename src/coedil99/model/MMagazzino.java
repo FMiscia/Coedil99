@@ -7,19 +7,15 @@ import coedil99.controller.GestisciMagazzinoHandler;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.Observer;
 import coedil99.model.Subject;
-import coedil99.persistentModel.Geometria;
-import coedil99.persistentModel.History;
-import coedil99.persistentModel.Item;
-import coedil99.persistentModel.RigaRDA;
 
 public class MMagazzino extends Observer {
 
 	private static MMagazzino instance = null;
 
-	private java.util.HashMap<Item, Integer> items = new HashMap<Item, Integer>();
+	private java.util.HashMap<MItem, Integer> items = new HashMap<MItem, Integer>();
 	private String name;
 
-	public java.util.HashMap<Item, Integer> getItems() {
+	public java.util.HashMap<MItem, Integer> getItems() {
 		return this.items;
 	}
 
@@ -36,20 +32,21 @@ public class MMagazzino extends Observer {
 	 * di ottimizzazione
 	 */
 	public MMagazzino() {
-        /*Startup*/
-        Item item1 = new Item(new Geometria(23,50,400),"Listelli Abete");
+        /*Startup
+        MItem item1 = new MItem();
+        item1.getPersistentModel().setGeometria(new Geometria(23,50,400),"Listelli Abete");
         item1.setHistory(new History());
-        Item item2 = new Item(new Geometria(23,50,300),"Listelli Scemi");
+        MItem item2 = new Item(new Geometria(23,50,300),"Listelli Scemi");
         item2.setHistory(new History());
-        Item item3 = new Item(new Geometria(23,50,200),"Pannelli Stupidi");
+        MItem item3 = new Item(new Geometria(23,50,200),"Pannelli Stupidi");
         item3.setHistory(new History());
-        Item item4 = new Item(new Geometria(23,50,100),"Pannelli Biricchini");
+        MItem item4 = new Item(new Geometria(23,50,100),"Pannelli Biricchini");
         item4.setHistory(new History());
         
         this.items.put(item1,4);
         this.items.put(item2,3);
         this.items.put(item3,2);
-        this.items.put(item4,1);
+        this.items.put(item4,1);*/
 	}
 
 	@Override

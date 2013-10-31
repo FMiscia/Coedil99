@@ -27,9 +27,9 @@ import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MGeometria;
 import coedil99.model.MProductDescription;
-import coedil99.persistentModel.CatalogoFornitore;
-import coedil99.persistentModel.Geometria;
-import coedil99.persistentModel.ProductDescription;
+import coedil99.persistentmodel.CatalogoFornitore;
+import coedil99.persistentmodel.Geometria;
+import coedil99.persistentmodel.ProductDescription;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -185,11 +185,11 @@ public abstract class AFormRDA extends JPanel {
 					.getItemListeners()[0]);
 		this.cbGeometria.removeAllItems();
 		@SuppressWarnings("unchecked")
-		ArrayList<MProductDescription> pd = new ArrayList<MProductDescription>(
+		ArrayList<ProductDescription> pd = new ArrayList<ProductDescription>(
 				fornitore.getPersistentModel().productDescription.getCollection());
 		for (int i = 0; i < pd.size(); ++i) {
-			if (pd.get(i).getPersistentModel().getEssenza().equals(essenza)) {
-				this.cbGeometria.addItem(new MGeometria(pd.get(i).getPersistentModel().getGeometria().getID()).toString());
+			if (pd.get(i).getEssenza().equals(essenza)) {
+				this.cbGeometria.addItem(new MGeometria(pd.get(i).getGeometria().getID()).toString());
 			}
 		}
 		this.cbGeometria.addItemListener(new ItemListener() {

@@ -2,7 +2,7 @@ package coedil99.model;
 
 import org.orm.PersistentException;
 
-import coedil99.persistentModel.*;
+import coedil99.persistentmodel.*;
 
 public interface IModel {
 

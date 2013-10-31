@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MRDA;
-import coedil99.persistentModel.RDA;
+import coedil99.persistentmodel.RDA;
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
 import GUI.Liste.ListaRDA;

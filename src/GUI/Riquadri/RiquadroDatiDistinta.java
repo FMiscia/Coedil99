@@ -26,11 +26,11 @@ import GUI.Plichi.PlicoDistinta;
 import coedil99.model.MDistinta;
 import coedil99.model.MGeometria;
 import coedil99.model.MRigaLavoro;
-import coedil99.persistentModel.Distinta;
-import coedil99.persistentModel.Geometria;
-import coedil99.persistentModel.GeometriaFactory;
-import coedil99.persistentModel.RigaLavoro;
-import coedil99.persistentModel.RigaLavoroFactory;
+import coedil99.persistentmodel.Distinta;
+import coedil99.persistentmodel.Geometria;
+import coedil99.persistentmodel.GeometriaFactory;
+import coedil99.persistentmodel.RigaLavoro;
+import coedil99.persistentmodel.RigaLavoroFactory;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -381,7 +381,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	 */
 	@Override
 	public void load(Object o) {
-		MRigaLavoro d = (MRigaLavoro) o;
+		MRigaLavoro d = new MRigaLavoro(((RigaLavoro)o).getID());
 		if (d != null) {
 			this.tflunghezza.setText(String.valueOf(d.getPersistentModel().getGeometria()
 					.getLunghezza()));
@@ -445,7 +445,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		} else {
 			MDistinta d = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata()
 					.getPersistentModel().getDistinta().getID());
-			d.getPersistentModel().getLavori().add(r.getPersistentModel());
+			d.getPersistentModel().lavori.add(r.getPersistentModel());
 		}
 		PlicoDistinta.getInstance().addRiquadroinLista(this);
 		MGeometria g = new MGeometria();

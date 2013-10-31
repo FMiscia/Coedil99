@@ -8,10 +8,10 @@ import org.orm.PersistentException;
 
 import coedil99.model.MCommessa;
 import coedil99.model.MDistinta;
-import coedil99.persistentModel.Commessa;
-import coedil99.persistentModel.CommessaFactory;
-import coedil99.persistentModel.Distinta;
-import coedil99.persistentModel.RigaLavoro;
+import coedil99.persistentmodel.Commessa;
+import coedil99.persistentmodel.CommessaFactory;
+import coedil99.persistentmodel.Distinta;
+import coedil99.persistentmodel.RigaLavoro;
 
 
 

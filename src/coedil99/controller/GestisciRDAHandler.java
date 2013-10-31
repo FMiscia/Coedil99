@@ -8,9 +8,9 @@ import GUI.RDACenter;
 
 import coedil99.model.MRDA;
 import coedil99.model.Subject;
-import coedil99.persistentModel.RDA;
-import coedil99.persistentModel.RDAFactory;
-import coedil99.persistentModel.RigaRDA;
+import coedil99.persistentmodel.RDA;
+import coedil99.persistentmodel.RDAFactory;
+import coedil99.persistentmodel.RigaRDA;
 
 public class GestisciRDAHandler extends coedil99.model.Observer {
 

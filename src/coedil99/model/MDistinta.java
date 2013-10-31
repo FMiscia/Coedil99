@@ -5,11 +5,11 @@ import java.util.ListIterator;
 import org.orm.PersistentException;
 
 import coedil99.controller.OttimizzatoreHandler;
-import coedil99.persistentModel.Distinta;
-import coedil99.persistentModel.DistintaFactory;
-import coedil99.persistentModel.IPersistentModel;
-import coedil99.persistentModel.RigaLavoro;
-import coedil99.persistentModel.StandardOttimizzatoreStrategy;
+import coedil99.persistentmodel.Distinta;
+import coedil99.persistentmodel.DistintaFactory;
+import coedil99.persistentmodel.IPersistentModel;
+import coedil99.persistentmodel.RigaLavoro;
+import coedil99.persistentmodel.StandardOttimizzatoreStrategy;
 
 public class MDistinta implements IModel{
 
@@ -42,7 +42,7 @@ public class MDistinta implements IModel{
 	 * @return 
 	 */
 	public void addRigaLavoro(RigaLavoro rg) {
-		this.distinta.getLavori().add(rg);
+		this.distinta.lavori.add(rg);
 	}
 
 	/**
@@ -52,10 +52,10 @@ public class MDistinta implements IModel{
 	 */
 	public void modificaRigaLavoro(RigaLavoro rg) {
 		@SuppressWarnings("unchecked")
-		ListIterator<RigaLavoro> righeIterator = (ListIterator<RigaLavoro>) this.distinta.getLavori().getIterator();;
+		ListIterator<RigaLavoro> righeIterator = (ListIterator<RigaLavoro>) this.distinta.lavori.getIterator();;
 		while (righeIterator.hasNext()) {
 			if (righeIterator.next().getID() == rg.getID()) {
-				this.distinta.getLavori().set(righeIterator.previousIndex(), rg);
+				this.distinta.lavori.set(righeIterator.previousIndex(), rg);
 			}
 		}
 	}
@@ -66,7 +66,7 @@ public class MDistinta implements IModel{
 	 * @return 
 	 */
 	public void eliminaRigaLavoro(RigaLavoro rg) {
-		this.distinta.getLavori().remove(rg);
+		this.distinta.lavori.remove(rg);
 		MRigaLavoro origalavoro = new MRigaLavoro(rg.getID());
 		if(origalavoro.isSaved()){
 			try {

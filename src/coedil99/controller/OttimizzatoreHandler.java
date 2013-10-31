@@ -1,8 +1,8 @@
 package coedil99.controller;
 
-import coedil99.persistentModel.AOttimizzatoreStrategy;
-import coedil99.persistentModel.Distinta;
-import coedil99.persistentModel.DocumentoOttimizzazione;
+import coedil99.persistentmodel.AOttimizzatoreStrategy;
+import coedil99.persistentmodel.Distinta;
+import coedil99.persistentmodel.DocumentoOttimizzazione;
 
 
 

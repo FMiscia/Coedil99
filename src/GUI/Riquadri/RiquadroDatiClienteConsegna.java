@@ -18,7 +18,7 @@ import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
 import coedil99.model.MCliente;
-import coedil99.persistentModel.Cliente;
+import coedil99.persistentmodel.Cliente;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;

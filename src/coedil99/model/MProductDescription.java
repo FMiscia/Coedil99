@@ -2,9 +2,9 @@ package coedil99.model;
 
 import org.orm.PersistentException;
 
-import coedil99.persistentModel.IPersistentModel;
-import coedil99.persistentModel.ProductDescription;
-import coedil99.persistentModel.ProductDescriptionFactory;
+import coedil99.persistentmodel.IPersistentModel;
+import coedil99.persistentmodel.ProductDescription;
+import coedil99.persistentmodel.ProductDescriptionFactory;
 
 public class MProductDescription implements IModel {
 

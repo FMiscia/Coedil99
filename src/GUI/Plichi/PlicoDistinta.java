@@ -21,7 +21,7 @@ import GUI.Riquadri.RiquadroDatiDistintaFactory;
 import GUI.Utilities.WrapLayout;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MDistinta;
-import coedil99.persistentModel.Distinta;
+import coedil99.persistentmodel.Distinta;
 
 /**
  * 

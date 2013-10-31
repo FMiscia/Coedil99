@@ -2,12 +2,12 @@ package coedil99.model;
 
 import org.orm.PersistentException;
 
-import coedil99.persistentModel.Commessa;
-import coedil99.persistentModel.IPersistentModel;
-import coedil99.persistentModel.Ordine;
-import coedil99.persistentModel.OrdineFactory;
-import coedil99.persistentModel.RDA;
-import coedil99.persistentModel.RDAFactory;
+import coedil99.persistentmodel.Commessa;
+import coedil99.persistentmodel.IPersistentModel;
+import coedil99.persistentmodel.Ordine;
+import coedil99.persistentmodel.OrdineFactory;
+import coedil99.persistentmodel.RDA;
+import coedil99.persistentmodel.RDAFactory;
 
 public class MOrdine implements IModel{
 

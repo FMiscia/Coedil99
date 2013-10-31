@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ListIterator;
 
 import coedil99.model.MMagazzino;
-import coedil99.persistentModel.DocumentoOttimizzazione;
-import coedil99.persistentModel.Item;
+import coedil99.persistentmodel.DocumentoOttimizzazione;
+import coedil99.persistentmodel.Item;
 
 
 public class GestisciMagazzinoHandler {

@@ -2,9 +2,9 @@ package coedil99.model;
 
 import org.orm.PersistentException;
 
-import coedil99.persistentModel.IPersistentModel;
-import coedil99.persistentModel.Item;
-import coedil99.persistentModel.ItemFactory;
+import coedil99.persistentmodel.IPersistentModel;
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.ItemFactory;
 
 public class MItem implements IModel{
 

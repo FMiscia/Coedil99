@@ -11,8 +11,8 @@ import GUI.Riquadri.RiquadroOttimizzazione;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MCommessa;
 import coedil99.model.MDocumentoOttimizzazione;
-import coedil99.persistentModel.Commessa;
-import coedil99.persistentModel.DocumentoOttimizzazione;
+import coedil99.persistentmodel.Commessa;
+import coedil99.persistentmodel.DocumentoOttimizzazione;
 
 @SuppressWarnings("serial")
 /**

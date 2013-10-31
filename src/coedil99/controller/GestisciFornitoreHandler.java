@@ -10,10 +10,10 @@ import org.orm.PersistentException;
 import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MGeometria;
 import coedil99.model.MProductDescription;
-import coedil99.persistentModel.CatalogoFornitore;
-import coedil99.persistentModel.CatalogoFornitoreBuilder;
-import coedil99.persistentModel.CatalogoFornitoreFactory;
-import coedil99.persistentModel.ProductDescription;
+import coedil99.persistentmodel.CatalogoFornitore;
+import coedil99.persistentmodel.CatalogoFornitoreBuilder;
+import coedil99.persistentmodel.CatalogoFornitoreFactory;
+import coedil99.persistentmodel.ProductDescription;
 
 public class GestisciFornitoreHandler {
 
@@ -61,16 +61,16 @@ public class GestisciFornitoreHandler {
 	 * @return catalogo:CatalogoFornitore
 	 */
 	public MCatalogoFornitore getFornitoreByName(String nome){
-		this.cataloghi = new ArrayList<MCatalogoFornitore>();
-		try {
-			ArrayList<CatalogoFornitore> persistent_cataloghi = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.loadCatalogoFornitoreByQuery(" Name = " + "'" + nome + "'", null)));
-			for(CatalogoFornitore c: persistent_cataloghi){
-				this.cataloghi.add(new MCatalogoFornitore(c.getID()));
+		
+		
+			try {
+				return new MCatalogoFornitore(CatalogoFornitoreFactory.loadCatalogoFornitoreByQuery(" Name = " + "'" + nome + "'", null).getID());
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (PersistentException e) {
-			e.printStackTrace();
-		}
-		return null;
+			return null;
+			
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class GestisciFornitoreHandler {
 		List l = cf.getPersistentModel().productDescription.getCollection();
 		MProductDescription mpd = null;
 		for ( int i=0 ; i<l.size() ; i++  ){
-			mpd = (MProductDescription) l.get(i);
+			mpd = new MProductDescription(((ProductDescription)l.get(i)).getID());
 			if( mpd.getPersistentModel().getEssenza().toString().equalsIgnoreCase(essenza)  && new MGeometria(mpd.getPersistentModel().getGeometria().getID()).toString().equalsIgnoreCase(geometria)){
 				return mpd;
 			}

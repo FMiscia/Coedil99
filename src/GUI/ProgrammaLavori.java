@@ -10,7 +10,7 @@ import GUI.Liste.ListaCommesse;
 import GUI.Liste.ListaCommesseFactory;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MCommessa;
-import coedil99.persistentModel.Commessa;
+import coedil99.persistentmodel.Commessa;
 
 public class ProgrammaLavori extends JPanel {
 

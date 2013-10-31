@@ -2,9 +2,9 @@ package coedil99.model;
 
 import org.orm.PersistentException;
 
-import coedil99.persistentModel.IPersistentModel;
-import coedil99.persistentModel.RigaRDA;
-import coedil99.persistentModel.RigaRDAFactory;
+import coedil99.persistentmodel.IPersistentModel;
+import coedil99.persistentmodel.RigaRDA;
+import coedil99.persistentmodel.RigaRDAFactory;
 
 public class MRigaRDA implements IModel {
 

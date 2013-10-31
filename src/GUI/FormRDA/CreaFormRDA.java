@@ -11,12 +11,12 @@ import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MProductDescription;
 import coedil99.model.MRDA;
 import coedil99.model.MRigaRDA;
-import coedil99.persistentModel.CatalogoFornitore;
-import coedil99.persistentModel.ProductDescription;
-import coedil99.persistentModel.RDA;
-import coedil99.persistentModel.RDAFactory;
-import coedil99.persistentModel.RigaRDA;
-import coedil99.persistentModel.RigaRDAFactory;
+import coedil99.persistentmodel.CatalogoFornitore;
+import coedil99.persistentmodel.ProductDescription;
+import coedil99.persistentmodel.RDA;
+import coedil99.persistentmodel.RDAFactory;
+import coedil99.persistentmodel.RigaRDA;
+import coedil99.persistentmodel.RigaRDAFactory;
 
 import GUI.RDACenter;
 import GUI.Abstract.AFormRDA;

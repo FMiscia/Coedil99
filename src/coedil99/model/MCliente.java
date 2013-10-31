@@ -2,9 +2,9 @@ package coedil99.model;
 
 import org.orm.PersistentException;
 
-import coedil99.persistentModel.Cliente;
-import coedil99.persistentModel.ClienteFactory;
-import coedil99.persistentModel.IPersistentModel;
+import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.ClienteFactory;
+import coedil99.persistentmodel.IPersistentModel;
 
 public class MCliente implements IModel {
 	

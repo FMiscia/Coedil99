@@ -5,7 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import coedil99.model.MRDA;
-import coedil99.persistentModel.RDA;
+import coedil99.persistentmodel.RDA;
 import GUI.RDACenter;
 import GUI.Abstract.ARiepilogoRDA;
 

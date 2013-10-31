@@ -1,5 +1,6 @@
 package GUI.Card;
 
+import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -22,9 +23,9 @@ import GUI.Plichi.PlicoCommessa;
 import coedil99.model.MCliente;
 import coedil99.model.MCommessa;
 import coedil99.model.MOrdine;
-import coedil99.persistentModel.Cliente;
-import coedil99.persistentModel.Commessa;
-import coedil99.persistentModel.Ordine;
+import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.Commessa;
+import coedil99.persistentmodel.Ordine;
 
 /**
  * 
@@ -63,13 +64,13 @@ public class CardCodiceInterno extends ACard {
 		@SuppressWarnings("unchecked")
 		ArrayList<Object> param = (ArrayList<Object>) obj;
 		MCliente c = (MCliente) param.get(0);
-		MOrdine o = (MOrdine) param.get(1);
-		final MCommessa cc = (MCommessa) param.get(2);
+		MOrdine o = new MOrdine(((Ordine) param.get(1)).getID());
+		final MCommessa cc = new MCommessa(((Commessa) param.get(2)).getID());
 		cliente.setText(c.getPersistentModel().getName());
-		if (cc.getPersistentModel().getScadenza() == null)
+		if (cc.getPersistentModel().getScadenzaCommessa() == null)
 			scadenza.setText("--/--/----");
 		else
-			scadenza.setText(cc.getPersistentModel().getScadenza().toString());
+			scadenza.setText(cc.getPersistentModel().getScadenzaCommessa().toString());
 		codiceInterno.setText(cc.getPersistentModel().getCodiceInterno());
 		this.commessaId = cc.getPersistentModel().getID();
 

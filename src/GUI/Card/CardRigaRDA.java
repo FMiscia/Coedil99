@@ -21,7 +21,7 @@ import GUI.FormRDA.ModificaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.model.MRigaRDA;
-import coedil99.persistentModel.RigaRDA;
+import coedil99.persistentmodel.RigaRDA;
 
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
