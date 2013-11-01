@@ -12,6 +12,7 @@ import GUI.Abstract.ALista;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Riepiloghi.RiepilogoRDAFactory;
+import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MRigaRDA;
 import coedil99.persistentmodel.RigaRDA;
 
@@ -47,20 +48,19 @@ public class ListaRigheRDA extends ALista {
 		this.updatePanel();
 		int row = t.size();
 		// this.getViewport().setPreferredSize(new Dimension(300, row * 70));
-		CardRigaRDA riquadroRigaRDA;
-		for (int k = 0; k < row; ++k) {
+		CardRigaRDA riquadroRigaRDA = null;
+		for (int k = 0; k < row; k++) {
 			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance()
 					.makeCard(this);
-			final MRigaRDA riga = new MRigaRDA(((RigaRDA) t.get(k)).getID());
-			riquadroRigaRDA.load(riga);
+			riquadroRigaRDA.load( t.get(k) );
 			this.panel.add(riquadroRigaRDA);
 			this.panel.validate();
 			this.panel.repaint();
 		}
-		this.panel.setPreferredSize(new Dimension(this.panel.getWidth(), this.riepilogoRDA
-				.getHeight()
-				+ t.size()
-				* (this.panel.getComponent(1).getHeight() + 10)));
+		if (riquadroRigaRDA != null)
+			this.panel.setPreferredSize(new Dimension(this.panel.getWidth(),
+					this.riepilogoRDA.getHeight() + row
+							* (this.panel.getComponent(1).getHeight() + 10)));
 		this.validate();
 		this.repaint();
 	}
@@ -98,20 +98,23 @@ public class ListaRigheRDA extends ALista {
 	 */
 	public void updatePanel() {
 		this.panel.removeAll();
-		String stato = RDACenter.getInstance().getRDASelezionata().getPersistentModel().getState();
+		String stato = RDACenter.getInstance().getRDASelezionata()
+				.getPersistentModel().getState();
 		this.riepilogoRDA = RiepilogoRDAFactory.getInstance().makeRiepilogo(
-				stato);
-		this.riepilogoRDA.refresh();
-		this.panel.add(this.riepilogoRDA, 0);
-		this.validate();
-		this.repaint();
+				(stato!=null)?stato:GestisciRDAHandler.CONGELATA);
+		if (this.riepilogoRDA != null) {
+			this.riepilogoRDA.refresh();
+			this.panel.add(this.riepilogoRDA, 0);
+			this.validate();
+			this.repaint();
+		}
 	}
-	
+
 	/**
 	 * Aggiorna il riepilogo
 	 */
-	public void updateRiepilogo(){
-		if(this.riepilogoRDA != null)
+	public void updateRiepilogo() {
+		if (this.riepilogoRDA != null)
 			this.riepilogoRDA.refresh();
 	}
 
@@ -131,15 +134,14 @@ public class ListaRigheRDA extends ALista {
 	public int getNumRigheRDA() {
 		return this.panel.getComponentCount() - 1;
 	}
-	
+
 	/**
 	 * Metodo che ricalcola l'altezza della lista
 	 */
-	public void updateAltezza(){
-		this.panel.setPreferredSize(new Dimension(this.panel.getWidth(), this.riepilogoRDA
-				.getHeight()
-				+ this.getNumRigheRDA()
-				* (this.panel.getComponent(1).getHeight() + 10)));
+	public void updateAltezza() {
+		this.panel.setPreferredSize(new Dimension(this.panel.getWidth(),
+				this.riepilogoRDA.getHeight() + this.getNumRigheRDA()
+						* (this.panel.getComponent(1).getHeight() + 10)));
 		this.validate();
 		this.repaint();
 	}

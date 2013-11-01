@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import GUI.ProgrammaLavori;
@@ -98,6 +99,7 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 						JOptionPane.showMessageDialog(null,
 								"RDA eliminata con successo!\n",
 								"Conferma operazione", JOptionPane.INFORMATION_MESSAGE);
+						RDACenter.getInstance().getClipPanel().getButtons().get(1).doClick();
 						
 					}
 				}

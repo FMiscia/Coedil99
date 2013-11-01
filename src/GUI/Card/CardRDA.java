@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -138,9 +139,8 @@ public class CardRDA extends ACard {
 		this.icona.setIcon(CardRDA.state_map.get(rda.getPersistentModel().getState()));
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		dateFormat.format(rda.getPersistentModel().getDate());
 		
-		this.data.setText(		dateFormat.format(rda.getPersistentModel().getDate()));
+		this.data.setText(dateFormat.format((rda.getPersistentModel().getDate()==null)?new java.util.Date():rda.getPersistentModel().getDate()));
 		this.setBackground(new Color(30, 144, 255));
 		this.validate();
 		this.repaint();

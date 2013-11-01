@@ -137,7 +137,7 @@ public class CreaFormRDA extends AFormRDA {
 						CardRigaRDA cardRigaRDA = (CardRigaRDA) CardRigaRDAFactory
 								.getInstance()
 								.makeCard(prda.getListaRigheRDA());
-						cardRigaRDA.load(rrda);
+						cardRigaRDA.load(rrda.getPersistentModel());
 						ListaRDA lista = rdac.getLista();
 						prda.getListaRigheRDA().getPanel().removeAll();
 						prda.getListaRigheRDA().load(

@@ -21,6 +21,7 @@ import GUI.FormRDA.ModificaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.model.MRigaRDA;
+import coedil99.persistentmodel.IPersistentModel;
 import coedil99.persistentmodel.RigaRDA;
 
 import com.jgoodies.forms.layout.FormLayout;
@@ -195,7 +196,8 @@ public class CardRigaRDA extends ACard {
 	 * @param o:Object
 	 */
 	public void load(Object o) {
-		final MRigaRDA riga = (MRigaRDA) o;
+		final MRigaRDA riga = new MRigaRDA();
+		riga.setPersistentModel((RigaRDA) o);
 		this.txtEssenza.setText(riga.getPersistentModel().getDescription().getEssenza());
 		this.txtQuantita.setText(String.valueOf(riga.getPersistentModel().getQuantity()));
 		this.txtAltezza.setText(String.valueOf(riga.getPersistentModel().getDescription()
