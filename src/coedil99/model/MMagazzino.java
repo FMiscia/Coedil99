@@ -1,12 +1,19 @@
 package coedil99.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
+
+import org.orm.PersistentException;
 
 import coedil99.controller.GestisciMagazzinoHandler;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.Observer;
 import coedil99.model.Subject;
+import coedil99.persistentmodel.CommessaFactory;
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.ItemFactory;
 
 public class MMagazzino extends Observer {
 
@@ -32,21 +39,18 @@ public class MMagazzino extends Observer {
 	 * di ottimizzazione
 	 */
 	public MMagazzino() {
-        /*Startup
-        MItem item1 = new MItem();
-        item1.getPersistentModel().setGeometria(new Geometria(23,50,400),"Listelli Abete");
-        item1.setHistory(new History());
-        MItem item2 = new Item(new Geometria(23,50,300),"Listelli Scemi");
-        item2.setHistory(new History());
-        MItem item3 = new Item(new Geometria(23,50,200),"Pannelli Stupidi");
-        item3.setHistory(new History());
-        MItem item4 = new Item(new Geometria(23,50,100),"Pannelli Biricchini");
-        item4.setHistory(new History());
+		Random rand = new Random();
+		ArrayList<Item> items = new ArrayList<Item>();
+		try {
+			items = new ArrayList<Item>(Arrays.asList(ItemFactory.listItemByQuery(null, "ID")));
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(Item t: items){
+			this.items.put(new MItem(t.getID()), rand.nextInt(20));
+		}
         
-        this.items.put(item1,4);
-        this.items.put(item2,3);
-        this.items.put(item3,2);
-        this.items.put(item4,1);*/
 	}
 
 	@Override

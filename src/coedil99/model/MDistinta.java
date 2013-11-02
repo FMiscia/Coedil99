@@ -9,7 +9,6 @@ import coedil99.persistentmodel.Distinta;
 import coedil99.persistentmodel.DistintaFactory;
 import coedil99.persistentmodel.IPersistentModel;
 import coedil99.persistentmodel.RigaLavoro;
-import coedil99.persistentmodel.StandardOttimizzatoreStrategy;
 
 public class MDistinta implements IModel{
 
@@ -83,14 +82,9 @@ public class MDistinta implements IModel{
 	 * @return 
 	 */
 	public void creaDDO() {
-		OttimizzatoreHandler standardOtt = new OttimizzatoreHandler(new StandardOttimizzatoreStrategy(),this.distinta);
-		this.distinta.setDdo(standardOtt.Ottimizza());
-		try {
-			this.distinta.save();
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			OttimizzatoreHandler ott = new OttimizzatoreHandler(new StandardOttimizzatoreStrategy(), this);
+			this.distinta.setDdo(ott.Ottimizza().getPersistentModel());
+			this.save();
 	}
 
 	/**

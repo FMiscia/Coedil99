@@ -7,14 +7,13 @@ import coedil99.persistentmodel.IPersistentModel;
  * 
  * @author francesco
  */
-public abstract class AOttimizzatoreStrategy implements IPersistentModel {
+public abstract class AOttimizzatoreStrategy {
 
 	/**
 	 * 
 	 * @return 
 	 */
 	protected AOttimizzatoreStrategy() {
-		throw new UnsupportedOperationException();
 	}
 
 	/**

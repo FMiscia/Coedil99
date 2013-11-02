@@ -77,6 +77,7 @@ public class MDocumentoOttimizzazione implements IModel {
 		}
 
 	}
+	
 
 	public DocumentoOttimizzazione getPersistentModel() {
 		// TODO Auto-generated method stub
