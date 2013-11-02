@@ -4,9 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+
+import coedil99.controller.GestisciCommessaHandler;
 import coedil99.controller.GestisciFornitoreHandler;
+import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MProductDescription;
 import coedil99.model.MRDA;
@@ -33,7 +38,7 @@ import java.beans.PropertyChangeEvent;
  * 
  * @author francesco
  * 
- * Gestisce La form per la creazione di una nuova RDA
+ *         Gestisce La form per la creazione di una nuova RDA
  */
 public class CreaFormRDA extends AFormRDA {
 
@@ -49,12 +54,13 @@ public class CreaFormRDA extends AFormRDA {
 		 * Imposta lo spinner per la selezione della quantità
 		 */
 		this.JBAddRiga.setEnabled(false);
-		this.getSpinner().addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
-				if(evt.getPropertyName().equals("enabled"))
-					CreaFormRDA.this.JBAddRiga.setEnabled(true);
-			}
-		});
+		this.getSpinner().addPropertyChangeListener(
+				new PropertyChangeListener() {
+					public void propertyChange(PropertyChangeEvent evt) {
+						if (evt.getPropertyName().equals("enabled"))
+							CreaFormRDA.this.JBAddRiga.setEnabled(true);
+					}
+				});
 		this.initialize();
 	}
 
@@ -73,7 +79,8 @@ public class CreaFormRDA extends AFormRDA {
 	}
 
 	/**
-	 * Metodo che resetta la form fissando il fornitore e rendendolo non modificabile
+	 * Metodo che resetta la form fissando il fornitore e rendendolo non
+	 * modificabile
 	 * 
 	 * @param fornitore
 	 */
@@ -88,11 +95,11 @@ public class CreaFormRDA extends AFormRDA {
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
 	 * Imposta la grafica e i bottoni con relativi listener
 	 */
-	private void initialize(){
+	private void initialize() {
 		MouseListener[] arrML = this.JBAddRiga.getMouseListeners();
 		if (arrML.length == 1) {
 			this.JBAddRiga.addActionListener(new ActionListener() {
@@ -101,7 +108,7 @@ public class CreaFormRDA extends AFormRDA {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					// TODO Auto-generated method stub
-					
+
 					int indiceCbFornitore = CreaFormRDA.this.getCbFornitore()
 							.getSelectedIndex();
 					int indiceCbEssenza = CreaFormRDA.this.getCbEssenza()
@@ -130,8 +137,10 @@ public class CreaFormRDA extends AFormRDA {
 										geometria, fornitore);
 						MRigaRDA rrda = new MRigaRDA();
 						RDACenter rdac = RDACenter.getInstance();
-						rrda.getPersistentModel().setRDA(rdac.getRDASelezionata().getPersistentModel());
-						rrda.getPersistentModel().setDescription(pd.getPersistentModel());
+						rrda.getPersistentModel().setRDA(
+								rdac.getRDASelezionata().getPersistentModel());
+						rrda.getPersistentModel().setDescription(
+								pd.getPersistentModel());
 						rrda.getPersistentModel().setQuantity(numero);
 						PlicoRDA prda = PlicoRDA.getInstance();
 						CardRigaRDA cardRigaRDA = (CardRigaRDA) CardRigaRDAFactory
@@ -141,11 +150,12 @@ public class CreaFormRDA extends AFormRDA {
 						ListaRDA lista = rdac.getLista();
 						prda.getListaRigheRDA().getPanel().removeAll();
 						prda.getListaRigheRDA().load(
-								new ArrayList<Object>(
-										rdac.getRDASelezionata().getPersistentModel().righeRDA
-												.getCollection()));
+								new ArrayList<Object>(rdac.getRDASelezionata()
+										.getPersistentModel().righeRDA
+										.getCollection()));
 						lista.getPrimaCard().setNomeFornitore(fornitore);
-						CreaFormRDA.this.resetConFornitoreSelezionato(fornitore);
+						CreaFormRDA.this
+								.resetConFornitoreSelezionato(fornitore);
 						lista.getPrimaCard().validate();
 						lista.getPrimaCard().repaint();
 					} else {
@@ -163,6 +173,7 @@ public class CreaFormRDA extends AFormRDA {
 		CardRDA rdaCard = (CardRDA) CardRDAFactory.getInstance().makeCard(
 				rdac.getLista());
 		MRDA rda = new MRDA();
+		rda.getPersistentModel().setDate(new Date());
 		rdaCard.load(rda);
 		rdac.getLista().svuota();
 		rdac.getLista().addCard(rdaCard);
