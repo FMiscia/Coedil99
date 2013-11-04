@@ -21,6 +21,7 @@ License Type: Purchased
 		<mapping resource="ormmapping/coedil99/persistentmodel/CatalogoFornitore.hbm.xml" />
 		<mapping resource="ormmapping/coedil99/persistentmodel/Cliente.hbm.xml" />
 		<mapping resource="ormmapping/coedil99/persistentmodel/Commessa.hbm.xml" />
+		<mapping resource="ormmapping/coedil99/persistentmodel/Dipendente.hbm.xml" />
 		<mapping resource="ormmapping/coedil99/persistentmodel/Distinta.hbm.xml" />
 		<mapping resource="ormmapping/coedil99/persistentmodel/DocumentoOttimizzazione.hbm.xml" />
 		<mapping resource="ormmapping/coedil99/persistentmodel/Geometria.hbm.xml" />
