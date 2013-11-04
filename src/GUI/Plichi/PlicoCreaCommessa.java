@@ -1,0 +1,285 @@
+package GUI.Plichi;
+
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+
+import GUI.CoedilFrame;
+import GUI.Abstract.APlico;
+import GUI.Abstract.ARiquadro;
+import GUI.Riquadri.RiquadroDatiAziendali;
+import GUI.Riquadri.RiquadroDatiAziendaliFactory;
+import GUI.Riquadri.RiquadroDatiClienteConsegna;
+import GUI.Riquadri.RiquadroDatiClienteConsegnaFactory;
+import GUI.Riquadri.RiquadroDatiConsegna;
+import GUI.Riquadri.RiquadroDatiConsegnaFactory;
+import GUI.Riquadri.RiquadroDatiProduzioneConsegna;
+import GUI.Riquadri.RiquadroDatiProduzioneConsegnaFactory;
+import GUI.Riquadri.RiquadroDatiSviluppoConsegna;
+import GUI.Riquadri.RiquadroDatiSviluppoConsegnaFactory;
+
+import coedil99.controller.GestisciCommessaHandler;
+import coedil99.controller.GestisciOrdineHandler;
+import coedil99.model.MCommessa;
+import coedil99.model.MOrdine;
+
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
+
+public class PlicoCreaCommessa extends APlico {
+
+	private RiquadroDatiClienteConsegna rdcc;
+	private RiquadroDatiAziendali rda;
+	private RiquadroDatiConsegna rdc;
+	private RiquadroDatiProduzioneConsegna rdpc;
+	private RiquadroDatiSviluppoConsegna rsc;
+	private JComboBox<Object> cbordini;
+	private JLabel ordini_label;
+	private JButton salva;
+	private JLabel error_mex;
+	private ArrayList<ARiquadro> container;
+	private int selected_ordine;
+	private static PlicoCreaCommessa instance = null;
+
+	private PlicoCreaCommessa() {
+		this.initialize();
+
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void load(int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	/**
+	 * Metodo che controlla se è in corso una modifica dei riquadri
+	 * 
+	 * @return modifica: array list contenente i riquadri in modifica
+	 */
+	public ArrayList<ARiquadro> isModifying() {
+		ArrayList<ARiquadro> modifica = new ArrayList<ARiquadro>();
+		for (ARiquadro a : this.container) {
+			if (!a.modify())
+				modifica.add(a);
+		}
+		return modifica;
+	}
+
+	/**
+	 * Posiziona i riquadri nel plico
+	 */
+	private void posizionaRiquadri() {
+		int bounds = CoedilFrame.getInstance().getBounds().width / 6;
+		salva.setBounds(bounds + (rda.getWidth() / 2) - (salva.getWidth() / 2),
+				20, salva.getWidth(), salva.getHeight());
+		error_mex.setBounds(bounds, salva.getY() + salva.getHeight() + 20,
+				error_mex.getWidth(), error_mex.getHeight());
+		ordini_label.setBounds(bounds, error_mex.getY() + error_mex.getHeight()
+				+ 20, ordini_label.getWidth(), ordini_label.getHeight());
+		cbordini.setBounds(bounds + ordini_label.getWidth(), error_mex.getY()
+				+ error_mex.getHeight() + 20, cbordini.getWidth(),
+				cbordini.getHeight());
+		rda.setBounds(bounds, cbordini.getY() + cbordini.getHeight() + 20,
+				rda.getWidth(), rda.getHeight());
+		rdcc.setBounds(bounds, rda.getY() + rda.getHeight() + 20,
+				rdcc.getWidth(), rdcc.getHeight());
+		rdc.setBounds(bounds, rdcc.getY() + rdcc.getHeight() + 20,
+				rdc.getWidth(), rdc.getHeight());
+		rdpc.setBounds(bounds, rdc.getY() + rdc.getHeight() + 20,
+				rdpc.getWidth(), rdpc.getHeight());
+		rsc.setBounds(bounds, rdpc.getY() + rdpc.getHeight() + 20,
+				rsc.getWidth(), rsc.getHeight());
+		validate();
+		repaint();
+
+	}
+
+	/**
+	 * Rende ogni riquadro editabile
+	 */
+	private void makeAllEditable() {
+		this.rda.makeEditable(true);
+		this.rdc.makeEditable(true);
+		this.rdcc.makeEditable(true);
+		this.rdpc.makeEditable(true);
+		this.rsc.makeEditable(true);
+	}
+
+	/**
+	 * Elimina il bottone di di salva/modifica da tutti i riquadri
+	 */
+	private void deleteAllButtons() {
+		this.rda.deleteButtons();
+		this.rdc.deleteButtons();
+		this.rdcc.deleteButtons();
+		this.rdpc.deleteButtons();
+		this.rsc.deleteButtons();
+	}
+
+	/**
+	 * Metodo che carica nella combo box tutti gli ordini presenti nel sistema
+	 * Quando un ordine viene selezionato viene associato alla commessa
+	 */
+	private void loadOrdini() {
+		if (this.cbordini.getItemListeners().length != 0)
+			this.cbordini
+					.removeItemListener(this.cbordini.getItemListeners()[0]);
+		this.cbordini.removeAllItems();
+		this.cbordini.setEnabled(true);
+		ArrayList<MOrdine> ordini = GestisciOrdineHandler.getInstance()
+				.getMOrdini();
+		for (int i = 0; i < ordini.size(); ++i) {
+			this.cbordini.addItem(ordini.get(i).getPersistentModel().getID());
+		}
+		this.cbordini.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					PlicoCreaCommessa.this.selected_ordine = Integer
+							.parseInt(PlicoCreaCommessa.this.cbordini
+									.getSelectedItem().toString());
+				}
+			}
+		});
+		this.cbordini.setSelectedItem(null);
+	}
+
+	/**
+	 * Imposta la grafica
+	 */
+	private void initialize() {
+		setBorder(null);
+		setLayout(null);
+		this.salva = new JButton("Salva");
+		this.salva.setSize(new Dimension(150, 30));
+		this.error_mex = new JLabel("");
+		this.error_mex.setSize(new Dimension(600, 30));
+		this.cbordini = new JComboBox<Object>();
+		this.cbordini.setSize(new Dimension(300, 30));
+		this.ordini_label = new JLabel();
+		this.ordini_label.setText("Seleziona l'ordine associato: ");
+		ordini_label.setSize(new Dimension(300, 30));
+		container = new ArrayList<ARiquadro>();
+		this.loadOrdini();
+		rda = (RiquadroDatiAziendali) RiquadroDatiAziendaliFactory
+				.getInstance().makeRiquadro();
+
+		rda.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				posizionaRiquadri();
+			}
+		});
+		rdcc = (RiquadroDatiClienteConsegna) RiquadroDatiClienteConsegnaFactory
+				.getInstance().makeRiquadro();
+		rdc = (RiquadroDatiConsegna) RiquadroDatiConsegnaFactory.getInstance()
+				.makeRiquadro();
+		rdpc = (RiquadroDatiProduzioneConsegna) RiquadroDatiProduzioneConsegnaFactory
+				.getInstance().makeRiquadro();
+		rsc = (RiquadroDatiSviluppoConsegna) RiquadroDatiSviluppoConsegnaFactory
+				.getInstance().makeRiquadro();
+		setPreferredSize(new Dimension(745, 1110));
+		setSize(745, 950);
+		posizionaRiquadri();
+		add(this.error_mex);
+		add(this.salva);
+		add(this.ordini_label);
+		add(cbordini);
+		add(rda);
+		this.container.add(rda);
+		add(rdcc);
+		this.container.add(rdcc);
+		rdcc.setLayout(new FormLayout(new ColumnSpec[] {}, new RowSpec[] {}));
+		add(rdc);
+		this.container.add(rdc);
+		add(rdpc);
+		this.container.add(rdpc);
+		add(rsc);
+		this.container.add(rsc);
+
+		this.deleteAllButtons();
+		this.makeAllEditable();
+
+		this.salva.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (PlicoCreaCommessa.this.rda.controlloErrori()
+						&& PlicoCreaCommessa.this.rdc.controlloErrori()
+						&& PlicoCreaCommessa.this.rdcc.controlloErrori()
+						&& PlicoCreaCommessa.this.rdpc.controlloErrori()
+						&& PlicoCreaCommessa.this.rsc.controlloErrori()
+						&& PlicoCreaCommessa.this.selected_ordine > 0) {
+					PlicoCreaCommessa.this.error_mex.setText("");
+					MCommessa commessa = new MCommessa();
+					GestisciCommessaHandler.getInstance().add(commessa);
+					commessa.getPersistentModel()
+							.setOrdine(
+									GestisciOrdineHandler
+											.getInstance()
+											.getMOrdineById(
+													PlicoCreaCommessa.this.selected_ordine)
+											.getPersistentModel());
+					commessa.save();
+					PlicoCreaCommessa.this.rda.setOggetto(commessa);
+					PlicoCreaCommessa.this.rda.salva();
+					PlicoCreaCommessa.this.rdc.setOggetto(commessa);
+					PlicoCreaCommessa.this.rdc.salva();
+					PlicoCreaCommessa.this.rdcc.setOggetto(commessa);
+					PlicoCreaCommessa.this.rdcc.salva();
+					PlicoCreaCommessa.this.rdpc.setOggetto(commessa);
+					PlicoCreaCommessa.this.rdpc.salva();
+					PlicoCreaCommessa.this.rsc.setOggetto(commessa);
+					PlicoCreaCommessa.this.rsc.salva();
+				} else {
+					PlicoCreaCommessa.this.error_mex.setIcon(new ImageIcon(
+							PlicoCreaCommessa.class
+									.getResource("/GUI/image/cancel.png")));
+					PlicoCreaCommessa.this.error_mex
+							.setText("Errore: controlla di aver inserito i dati corretti");
+				}
+			}
+
+		});
+	}
+	
+	public void resetAll(){
+		this.removeAll();
+		this.initialize();
+	}
+
+	/**
+	 * Singleton
+	 * 
+	 * @return instance:PlicoCommessa
+	 */
+	public static PlicoCreaCommessa getInstance() {
+		if (PlicoCreaCommessa.instance == null)
+			PlicoCreaCommessa.instance = new PlicoCreaCommessa();
+		return PlicoCreaCommessa.instance;
+	}
+
+}

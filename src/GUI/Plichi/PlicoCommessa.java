@@ -81,7 +81,7 @@ public class PlicoCommessa extends APlico {
 	}
 
 	/**
-	 * Posiziona i riquadri nel pannello
+	 * Posiziona i riquadri nel plico
 	 */
 	private void posizionaRiquadri() {
 		int bounds = (CoedilFrame.getInstance().getBounds().width/6);
@@ -149,7 +149,7 @@ public class PlicoCommessa extends APlico {
 		return PlicoCommessa.instance;
 	}
 	
-	
+	@Override
 	/**
 	 * Metodo che controlla se è in corso una modifica dei riquadri
 	 * 

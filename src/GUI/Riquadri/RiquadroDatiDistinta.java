@@ -437,7 +437,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	 * Salva le modifiche sul db
 	 */
 	@Override
-	protected void salva() {
+	public void salva() {
 		MRigaLavoro r = new MRigaLavoro();
 		
 		if (this.oggetto != null) {

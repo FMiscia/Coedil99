@@ -87,7 +87,7 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 	 * Salva le modifiche sul db
 	 */
 	@Override
-	protected void salva() {
+	public void salva() {
 		if (this.oggetto != null) {
 			MCommessa c = (MCommessa) oggetto;
 			c.getPersistentModel().setResponsabile(

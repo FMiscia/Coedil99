@@ -37,7 +37,17 @@ public abstract class AClipPanel extends JPanel {
 		RDAButtonState = new HashMap<String, Integer>();
 		RDAButtonState.put(GestisciRDAHandler.CONFERMATA, 3);
 		RDAButtonState.put(GestisciRDAHandler.ATTESA_CONFERMA, 2);
-		RDAButtonState.put(GestisciRDAHandler.CONGELATA, 1);		
+		RDAButtonState.put(GestisciRDAHandler.CONGELATA, 1);	
+		RDAButtonState.put("NUOVA", 4);
+	}
+	
+	public static HashMap<String, Integer> PLButtonState;
+	{
+		PLButtonState = new HashMap<String, Integer>();
+		PLButtonState.put("COMMESSA", 1);
+		PLButtonState.put("DISTINTA", 2);
+		PLButtonState.put("DDO", 3);	
+		PLButtonState.put("NUOVA", 4);
 	}
 	
 	private static final long serialVersionUID = 1L;
