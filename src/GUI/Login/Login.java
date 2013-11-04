@@ -5,7 +5,6 @@ public class Login {
 	private static boolean logged = false;
 	
     public static boolean authenticate(String username, String password) {
-        // hardcoded username and password
         if (username.equals("admin") && password.equals("admin")) {
         	logged = true;
             return true;
