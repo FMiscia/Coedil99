@@ -88,7 +88,7 @@ public class CoedilFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(new BorderLayout());
 
-		PanelStart pl = new PanelStart();
+		PanelStart pl = PanelStart.getInstance();
 		pl.setBounds(0, 0, this.getWidth(), this.getHeight());
 		this.getContentPane().add(pl, BorderLayout.CENTER);
 

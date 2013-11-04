@@ -1,20 +1,19 @@
 package coedil99.model;
 
+import java.io.File;
+
 /**
- * @author francesco
  * 
+ * @author francesco
+ *
  * Pattern Builder
  */
+
 public class CatalogoXMLBuilder extends CatalogoFornitoreBuilder {
 
-	/**
-	 * 
-	 * @param catalogo
-	 * @return 
-	 */
 	@Override
 	public void Parse(String catalogo) {
-		throw new UnsupportedOperationException();
+		// TODO Auto-generated method stub
+		
 	}
-
 }

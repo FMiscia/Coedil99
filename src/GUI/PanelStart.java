@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -20,6 +21,8 @@ import GUI.ClipPanels.ClipPanelMenu;
 import GUI.ClipPanels.ClipPanelMenuFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
+import GUI.Login.Login;
+import GUI.Login.LoginDialog;
 
 public class PanelStart extends JPanel {
 
@@ -28,6 +31,9 @@ public class PanelStart extends JPanel {
 	private ClipPanelMenu clipPanel = (ClipPanelMenu) ClipPanelMenuFactory
 			.getInstance().makeClipPanel();
 
+
+	private static PanelStart myInstance;
+    
 	/**
 	 * Costruttore
 	 */
@@ -38,15 +44,17 @@ public class PanelStart extends JPanel {
 	/**
 	 * Inizializza il panel con un ClipPanel e il Pannello di selezione attività
 	 */
-	private void initUI() {
-
-		this.setLayout(new BorderLayout());
+	public void initUI() {
+	    this.setLayout(new BorderLayout());
 		this.addPannelloUseCases();
 		this.addPLButton();
 		this.addRDAButton();
 		this.addOTHERButton();
 		this.addClipPanel();
+		this.setButtonsAttivi(Login.getLogged());
 	}
+
+
 
 	/**
 	 * Aggiunge il ClipPanel, pannello dei button in alto
@@ -143,5 +151,31 @@ public class PanelStart extends JPanel {
 			}
 		});
 
+	}
+	
+	public void setButtonsAttivi(boolean p){
+		int nb = this.pannelloUseCases.getComponentCount();
+		for (int i=0 ; i<nb; i++){
+			JButton b = (JButton) this.pannelloUseCases.getComponent(i);
+			b.setEnabled(p);
+			if (b.getActionListeners().length > 0 )
+				b.removeActionListener(b.getActionListeners()[0]);
+		}
+	}
+	
+	/**
+	 * Singleton
+	 * 
+	 * @return PanelStart
+	 */
+	public static PanelStart getInstance() {
+		if (myInstance == null) {
+			myInstance = new PanelStart();
+		}
+		return myInstance;
+	}
+	
+	public ClipPanelMenu getClipPanel() {
+		return clipPanel;
 	}
 }
