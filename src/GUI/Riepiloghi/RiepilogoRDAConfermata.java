@@ -3,7 +3,9 @@ package GUI.Riepiloghi;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import coedil99.model.RDA;
+
+import coedil99.model.MRDA;
+import coedil99.persistentmodel.RDA;
 import GUI.RDACenter;
 import GUI.Abstract.ARiepilogoRDA;
 
@@ -35,14 +37,14 @@ public class RiepilogoRDAConfermata extends ARiepilogoRDA {
 	 * Aggiorna il pannello di riepilogo
 	 */
 	public void refresh() {
-		RDA r = RDACenter.getInstance().getRDASelezionata(); 
-		this.lblFornitoreSelezionato.setText(r.righeRDA.get(0).getDescription().getCatalogoFornitore().getName());
+		MRDA r = RDACenter.getInstance().getRDASelezionata(); 
+		this.lblFornitoreSelezionato.setText(r.getPersistentModel().righeRDA.get(0).getDescription().getCatalogoFornitore().getName());
 		float prezzo_totale = 0;
 		int quantita_totale = 0;
-		for (int i = 0; i < r.righeRDA.size(); ++i) {
-			prezzo_totale += (r.righeRDA.get(i).getQuantity() * r.righeRDA
+		for (int i = 0; i < r.getPersistentModel().righeRDA.size(); ++i) {
+			prezzo_totale += (r.getPersistentModel().righeRDA.get(i).getQuantity() * r.getPersistentModel().righeRDA
 					.get(i).getDescription().getPrezzo());
-			quantita_totale += r.righeRDA.get(i).getQuantity();
+			quantita_totale += r.getPersistentModel().righeRDA.get(i).getQuantity();
 		}
 		this.lblTotale.setText(String.valueOf(prezzo_totale));
 		this.lblQuantita.setText(String.valueOf(quantita_totale));

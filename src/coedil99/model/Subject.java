@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import coedil99.controller.GestisciRDAHandler;
+import coedil99.model.Observer;
 
 /**
  * 

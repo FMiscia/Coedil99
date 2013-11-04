@@ -9,7 +9,8 @@ import GUI.ClipPanels.ClipPanelProgrammaLavoriFactory;
 import GUI.Liste.ListaCommesse;
 import GUI.Liste.ListaCommesseFactory;
 import coedil99.controller.GestisciCommessaHandler;
-import coedil99.model.Commessa;
+import coedil99.model.MCommessa;
+import coedil99.persistentmodel.Commessa;
 
 public class ProgrammaLavori extends JPanel {
 
@@ -19,7 +20,7 @@ public class ProgrammaLavori extends JPanel {
 	private ALista lista;
 	private RaccoglitorePlichi raccoglitoreplichi;
 	private ClipPanelProgrammaLavori clip;
-	private Commessa commessaSelezionata = null;
+	private MCommessa commessaSelezionata = null;
 	JPanel proglavoripanel = new JPanel();
 	
 	/**
@@ -113,7 +114,7 @@ public class ProgrammaLavori extends JPanel {
 	 * 
 	 * @return Commessa
 	 */
-	public Commessa getCommessaSelezionata() {
+	public MCommessa getCommessaSelezionata() {
 		return commessaSelezionata;
 	}
 
@@ -121,7 +122,7 @@ public class ProgrammaLavori extends JPanel {
 	 * 
 	 * @param selectedComm: la commessa da selezionare
 	 */
-	public void setCommessaSelezionata(Commessa selectedComm) {
+	public void setCommessaSelezionata(MCommessa selectedComm) {
 		// TODO Auto-generated method stub
 		this.commessaSelezionata = selectedComm;
 	}

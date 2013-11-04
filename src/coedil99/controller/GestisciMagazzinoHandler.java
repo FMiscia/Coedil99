@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-import coedil99.model.DocumentoOttimizzazione;
-import coedil99.model.Item;
-import coedil99.model.Magazzino;
-
+import coedil99.model.MMagazzino;
+import coedil99.persistentmodel.DocumentoOttimizzazione;
+import coedil99.persistentmodel.Item;
 
 
 public class GestisciMagazzinoHandler {
 
-	List<Magazzino> magazzino;
+	List<MMagazzino> magazzino;
 	private static GestisciMagazzinoHandler instance = null;
 	public static String IN_ARRIVO = "IN_ARRIVO";
 	public static String RICHIESTO = "RICHIESTO";
@@ -23,16 +22,16 @@ public class GestisciMagazzinoHandler {
 	 * Costruttore
 	 */
 	private GestisciMagazzinoHandler(){
-		this.magazzino = new ArrayList<Magazzino>();
+		this.magazzino = new ArrayList<MMagazzino>();
 	}
 	
 	/**
 	 * Fornisce un magazzino dal nome
 	 * @param name
-	 * @return magazzino:Magazzino
+	 * @return magazzino:MMagazzino
 	 */
-	public Magazzino getMagazzinoByName(String name){
-		ListIterator<Magazzino> iteratorMagazzino = this.magazzino.listIterator();
+	public MMagazzino getMagazzinoByName(String name){
+		ListIterator<MMagazzino> iteratorMagazzino = this.magazzino.listIterator();
 		while(iteratorMagazzino.hasNext())
 			if(iteratorMagazzino.next().getName() == name)
 				return iteratorMagazzino.previous();

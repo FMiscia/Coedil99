@@ -7,15 +7,17 @@ import java.util.List;
 
 import org.orm.PersistentException;
 
-import coedil99.model.CatalogoFornitore;
-import coedil99.model.CatalogoFornitoreBuilder;
-import coedil99.model.CatalogoFornitoreFactory;
-import coedil99.model.ProductDescription;
-import coedil99.operation.OGeometria;
+import coedil99.model.MCatalogoFornitore;
+import coedil99.model.MGeometria;
+import coedil99.model.MProductDescription;
+import coedil99.persistentmodel.CatalogoFornitore;
+import coedil99.persistentmodel.CatalogoFornitoreBuilder;
+import coedil99.persistentmodel.CatalogoFornitoreFactory;
+import coedil99.persistentmodel.ProductDescription;
 
 public class GestisciFornitoreHandler {
 
-	private ArrayList<CatalogoFornitore> arrayFornitori = null;
+	private ArrayList<MCatalogoFornitore> cataloghi = null;
 	private CatalogoFornitoreBuilder builder;
 	private static GestisciFornitoreHandler instance;
 	
@@ -23,10 +25,13 @@ public class GestisciFornitoreHandler {
 	 * Costruttore
 	 */
 	private GestisciFornitoreHandler() {
+		this.cataloghi = new ArrayList<MCatalogoFornitore>();
 		try {
-			this.arrayFornitori = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.listCatalogoFornitoreByQuery(null, "ID")));
+			ArrayList<CatalogoFornitore> persistent_cataloghi = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.listCatalogoFornitoreByQuery(null, "ID")));
+			for(CatalogoFornitore c: persistent_cataloghi){
+				this.cataloghi.add(new MCatalogoFornitore(c.getID()));
+			}
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -46,8 +51,8 @@ public class GestisciFornitoreHandler {
 	 * Fornisce i fornitori dell'azienda
 	 * @return arrayFornitori:ArrayList<CatalogoFornitore>
 	 */
-	public ArrayList<CatalogoFornitore> getArrayFornitori() {
-		return arrayFornitori;
+	public ArrayList<MCatalogoFornitore> getArrayFornitori() {
+		return cataloghi;
 	}
 	
 	/**
@@ -55,14 +60,17 @@ public class GestisciFornitoreHandler {
 	 * @param nome:String
 	 * @return catalogo:CatalogoFornitore
 	 */
-	public CatalogoFornitore getFornitoreByName(String nome){
-		try {
-			return CatalogoFornitoreFactory.loadCatalogoFornitoreByQuery(" Name = " + "'" + nome + "'", null);
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public MCatalogoFornitore getFornitoreByName(String nome){
+		
+		
+			try {
+				return new MCatalogoFornitore(CatalogoFornitoreFactory.loadCatalogoFornitoreByQuery(" Name = " + "'" + nome + "'", null).getID());
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+			
 	}
 
 	/**
@@ -73,16 +81,15 @@ public class GestisciFornitoreHandler {
 	 * @param fornitore:String
 	 * @return pd:ProductDescription
 	 */
-	public ProductDescription getProductDescription(String essenza, String geometria, String fornitore) {
-		// TODO Auto-generated method stub
-		CatalogoFornitore cf = GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore);
+	public MProductDescription getMProductDescription(String essenza, String geometria, String fornitore) {
+		MCatalogoFornitore cf = GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore);
 		@SuppressWarnings("rawtypes")
-		List l = cf.productDescription.getCollection();
-		ProductDescription pd = null;
+		List l = cf.getPersistentModel().productDescription.getCollection();
+		MProductDescription mpd = null;
 		for ( int i=0 ; i<l.size() ; i++  ){
-			pd = (ProductDescription) l.get(i);
-			if( pd.getEssenza().toString().equalsIgnoreCase(essenza)  && new OGeometria(pd.getGeometria()).toString().equalsIgnoreCase(geometria)){
-				return pd;
+			mpd = new MProductDescription(((ProductDescription)l.get(i)).getID());
+			if( mpd.getPersistentModel().getEssenza().toString().equalsIgnoreCase(essenza)  && new MGeometria(mpd.getPersistentModel().getGeometria().getID()).toString().equalsIgnoreCase(geometria)){
+				return mpd;
 			}
 		}
 		return null;
@@ -101,7 +108,7 @@ public class GestisciFornitoreHandler {
 	 * Get
 	 * @return catalogo fornitore
 	 */
-	public CatalogoFornitore getCatalogo(){
+	public MCatalogoFornitore getCatalogo(){
 		return this.builder.getCatalogo();
 	}
 	
@@ -120,22 +127,6 @@ public class GestisciFornitoreHandler {
 	}
 	
 	/**
-	 * Metodo che crea uno nuovo catalogo fornitore tramite la sua factory
-	 *  
-	 * @return catalogo fornitore
-	 */
-	public CatalogoFornitore creaCatalogoFornitore(){
-		CatalogoFornitore new_catalogo = CatalogoFornitoreFactory.createCatalogoFornitore();
-		try {
-			new_catalogo.save();
-		} catch (PersistentException e) {
-			e.printStackTrace();
-		}
-		
-		return new_catalogo;
-	}
-	
-	/**
 	 * Metodo che controlla se il controllore e' stato precedentemente instanziato
 	 * 
 	 * @return boolean
@@ -149,8 +140,12 @@ public class GestisciFornitoreHandler {
 	 * 
 	 */
 	public void reloadFornitori(){
+		this.cataloghi = new ArrayList<MCatalogoFornitore>();
 		try {
-			this.arrayFornitori = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.listCatalogoFornitoreByQuery(null, "ID")));
+			ArrayList<CatalogoFornitore> persistent_cataloghi = new ArrayList<CatalogoFornitore>(Arrays.asList(CatalogoFornitoreFactory.listCatalogoFornitoreByQuery(null, "ID")));
+			for(CatalogoFornitore c: persistent_cataloghi){
+				this.cataloghi.add(new MCatalogoFornitore(c.getID()));
+			}
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}

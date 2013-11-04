@@ -23,13 +23,14 @@ import javax.swing.border.LineBorder;
 import GUI.ProgrammaLavori;
 import GUI.Abstract.ARiquadro;
 import GUI.Plichi.PlicoDistinta;
-import coedil99.model.Distinta;
-import coedil99.model.Geometria;
-import coedil99.model.GeometriaFactory;
-import coedil99.model.RigaLavoro;
-import coedil99.model.RigaLavoroFactory;
-import coedil99.operation.ODistinta;
-import coedil99.operation.ORigaLavoro;
+import coedil99.model.MDistinta;
+import coedil99.model.MGeometria;
+import coedil99.model.MRigaLavoro;
+import coedil99.persistentmodel.Distinta;
+import coedil99.persistentmodel.Geometria;
+import coedil99.persistentmodel.GeometriaFactory;
+import coedil99.persistentmodel.RigaLavoro;
+import coedil99.persistentmodel.RigaLavoroFactory;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -355,12 +356,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 			btnElimina.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					RigaLavoro r = RigaLavoroFactory.createRigaLavoro();
+					MRigaLavoro r = new MRigaLavoro();
 					if (RiquadroDatiDistinta.this.oggetto != null) 
-						r = (RigaLavoro) RiquadroDatiDistinta.this.oggetto;
-					ODistinta odistinta = new ODistinta(ProgrammaLavori.getInstance()
-							.getCommessaSelezionata().getDistinta());
-					odistinta.eliminaRigaLavoro(r);
+						r = (MRigaLavoro) RiquadroDatiDistinta.this.oggetto;
+					MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance()
+							.getCommessaSelezionata().getPersistentModel().getDistinta().getID());
+					odistinta.eliminaRigaLavoro(r.getPersistentModel());
 					RiquadroDatiDistinta.this.removeAll();
 					PlicoDistinta.getInstance().removeRiquadro(
 							RiquadroDatiDistinta.this);
@@ -380,17 +381,17 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	 */
 	@Override
 	public void load(Object o) {
-		RigaLavoro d = (RigaLavoro) o;
+		MRigaLavoro d = new MRigaLavoro(((RigaLavoro)o).getID());
 		if (d != null) {
-			this.tflunghezza.setText(String.valueOf(d.getGeometria()
+			this.tflunghezza.setText(String.valueOf(d.getPersistentModel().getGeometria()
 					.getLunghezza()));
 			this.tfaltezza.setText(String
-					.valueOf(d.getGeometria().getAltezza()));
-			this.tfbase.setText(String.valueOf(d.getGeometria().getBase()));
-			this.tfnumero.setText(String.valueOf(d.getNumero()));
-			this.cbcapitello.setSelectedIndex((d.getCapitello()) ? 0 : 1);
-			this.tftipocapitello.setText(d.getProfiloCapitello());
-			this.tfnote.setText(d.getNote());
+					.valueOf(d.getPersistentModel().getGeometria().getAltezza()));
+			this.tfbase.setText(String.valueOf(d.getPersistentModel().getGeometria().getBase()));
+			this.tfnumero.setText(String.valueOf(d.getPersistentModel().getNumero()));
+			this.cbcapitello.setSelectedIndex((d.getPersistentModel().getCapitello()) ? 0 : 1);
+			this.tftipocapitello.setText(d.getPersistentModel().getProfiloCapitello());
+			this.tfnote.setText(d.getPersistentModel().getNote());
 			this.makeEditable(false);
 			this.oggetto = d;
 		}
@@ -437,26 +438,26 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	 */
 	@Override
 	protected void salva() {
-		RigaLavoro r = RigaLavoroFactory.createRigaLavoro();
+		MRigaLavoro r = new MRigaLavoro();
 		
 		if (this.oggetto != null) {
-			r = (RigaLavoro) this.oggetto;
+			r = (MRigaLavoro) this.oggetto;
 		} else {
-			Distinta d = ProgrammaLavori.getInstance().getCommessaSelezionata()
-					.getDistinta();
-			d.getLavori().add(r);
+			MDistinta d = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata()
+					.getPersistentModel().getDistinta().getID());
+			d.getPersistentModel().lavori.add(r.getPersistentModel());
 		}
 		PlicoDistinta.getInstance().addRiquadroinLista(this);
-		Geometria g = GeometriaFactory.createGeometria();
-		g.setBase(Float.parseFloat(this.tfbase.getText()));
-		g.setAltezza(Float.parseFloat(this.tfaltezza.getText()));
-		g.setLunghezza(Float.parseFloat(this.tflunghezza.getText()));
-		r.setGeometria(g);
-		r.setCapitello(this.cbcapitello.getSelectedIndex() == 0 ? true : false);
-		r.setProfiloCapitello(this.tftipocapitello.getText());
-		r.setNumero(Integer.parseInt(this.tfnumero.getText()));
-		r.setNote(this.tfnote.getText());
-		ORigaLavoro origalavoro = new ORigaLavoro(r);
+		MGeometria g = new MGeometria();
+		g.getPersistentModel().setBase(Float.parseFloat(this.tfbase.getText()));
+		g.getPersistentModel().setAltezza(Float.parseFloat(this.tfaltezza.getText()));
+		g.getPersistentModel().setLunghezza(Float.parseFloat(this.tflunghezza.getText()));
+		r.getPersistentModel().setGeometria(g.getPersistentModel());
+		r.getPersistentModel().setCapitello(this.cbcapitello.getSelectedIndex() == 0 ? true : false);
+		r.getPersistentModel().setProfiloCapitello(this.tftipocapitello.getText());
+		r.getPersistentModel().setNumero(Integer.parseInt(this.tfnumero.getText()));
+		r.getPersistentModel().setNote(this.tfnote.getText());
+		MRigaLavoro origalavoro = new MRigaLavoro(r.getPersistentModel().getID());
 		origalavoro.save();
 		this.oggetto = r;
 		JOptionPane.showMessageDialog(null,

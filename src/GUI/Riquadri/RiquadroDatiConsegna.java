@@ -19,7 +19,8 @@ import org.jdesktop.swingx.JXDatePicker;
 import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
-import coedil99.model.Commessa;
+import coedil99.model.MCommessa;
+import coedil99.persistentmodel.Commessa;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -57,13 +58,15 @@ public class RiquadroDatiConsegna extends ARiquadro {
 	public void load(Object o) {
 		this.oggetto = o;
 		this.resetRiquadro();
-		Commessa c = (Commessa) o;
-		if (c.getPrimaConsegna() != null)
-			this.dateDataPrimaConsegna.setDate(c.getPrimaConsegna());
+		MCommessa c = (MCommessa) o;
+		if (c.getPersistentModel().getPrimaConsegna() != null)
+			this.dateDataPrimaConsegna.setDate(c.getPersistentModel()
+					.getPrimaConsegna());
 		else
 			this.dateDataPrimaConsegna.setDate(null);
-		if (c.getRitardoConsegna() != null)
-			this.txtRirardoConsegna.setText(c.getRitardoConsegna().toString());
+		if (c.getPersistentModel().getRitardoConsegna() != null)
+			this.txtRirardoConsegna.setText(c.getPersistentModel()
+					.getRitardoConsegna().toString());
 
 	}
 
@@ -73,15 +76,12 @@ public class RiquadroDatiConsegna extends ARiquadro {
 	@Override
 	protected void salva() {
 		if (this.oggetto != null) {
-			Commessa c = (Commessa) this.oggetto;
-			c.setPrimaConsegna(this.dateDataPrimaConsegna.getDate());
-			c.setRitardoConsegna(Integer.valueOf(this.txtRirardoConsegna
-					.getText()));
-			try {
-				c.save();
-			} catch (PersistentException e) {
-				e.printStackTrace();
-			}
+			MCommessa c = (MCommessa) this.oggetto;
+			c.getPersistentModel().setPrimaConsegna(
+					this.dateDataPrimaConsegna.getDate());
+			c.getPersistentModel().setRitardoConsegna(
+					Integer.valueOf(this.txtRirardoConsegna.getText()));
+			c.save();
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);

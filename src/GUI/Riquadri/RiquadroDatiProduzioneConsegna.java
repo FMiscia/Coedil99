@@ -12,7 +12,8 @@ import org.jdesktop.swingx.JXDatePicker;
 import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
-import coedil99.model.Ordine;
+import coedil99.model.MOrdine;
+import coedil99.persistentmodel.Ordine;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -217,19 +218,21 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	public void load(Object o) {
 		this.oggetto = o;
 		this.resetRiquadro();
-		Ordine ord = (Ordine) o;
-		if (ord.getDataInizio() != null)
-			this.dateDataInizio.setDate(ord.getDataInizio());
+		MOrdine ord = (MOrdine) o;
+		if (ord.getPersistentModel().getDataInizio() != null)
+			this.dateDataInizio.setDate(ord.getPersistentModel()
+					.getDataInizio());
 		else
 			this.dateDataInizio.setDate(null);
 
-		if (ord.getDataFine() != null)
-			this.dateDataFine.setDate(ord.getDataFine());
+		if (ord.getPersistentModel().getDataFine() != null)
+			this.dateDataFine.setDate(ord.getPersistentModel().getDataFine());
 		else
 			this.dateDataFine.setDate(null);
 
-		if (ord.getDataScadenza() != null)
-			this.dateScadenzaSviluppo.setDate(ord.getDataScadenza());
+		if (ord.getPersistentModel().getDataScadenza() != null)
+			this.dateScadenzaSviluppo.setDate(ord.getPersistentModel()
+					.getDataScadenza());
 		else
 			this.dateScadenzaSviluppo.setDate(null);
 	}
@@ -240,15 +243,13 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	@Override
 	protected void salva() {
 		if (this.oggetto != null) {
-			Ordine ord = (Ordine) this.oggetto;
-			ord.setDataInizio(this.dateDataInizio.getDate());
-			ord.setDataFine(this.dateDataFine.getDate());
-			ord.setDataScadenza(this.dateScadenzaSviluppo.getDate());
-			try {
-				ord.save();
-			} catch (PersistentException e) {
-				e.printStackTrace();
-			}
+			MOrdine ord = (MOrdine) this.oggetto;
+			ord.getPersistentModel().setDataInizio(
+					this.dateDataInizio.getDate());
+			ord.getPersistentModel().setDataFine(this.dateDataFine.getDate());
+			ord.getPersistentModel().setDataScadenza(
+					this.dateScadenzaSviluppo.getDate());
+			ord.save();
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);

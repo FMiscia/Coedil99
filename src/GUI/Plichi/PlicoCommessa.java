@@ -21,9 +21,12 @@ import GUI.Riquadri.RiquadroDatiSviluppoConsegnaFactory;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.controller.GestisciOrdineHandler;
-import coedil99.model.Cliente;
-import coedil99.model.Commessa;
-import coedil99.model.Ordine;
+import coedil99.model.MCliente;
+import coedil99.model.MCommessa;
+import coedil99.model.MOrdine;
+import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.Commessa;
+import coedil99.persistentmodel.Ordine;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -65,11 +68,11 @@ public class PlicoCommessa extends APlico {
 	 */
 	public void load(int id) {
 		this.reset();
-		Commessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
-		Ordine o = GestisciOrdineHandler.getInstance().getOrdineById(
-				c.getOrdineId());
-		Cliente cl = GestisciClienteHandler.getInstance().getClienteById(
-				o.getCliente().getID());
+		MCommessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
+		MOrdine o = GestisciOrdineHandler.getInstance().getMOrdineById(
+				c.getPersistentModel().getOrdine().getID());
+		MCliente cl = GestisciClienteHandler.getInstance().getClienteById(
+				o.getPersistentModel().getCliente().getID());
 		rda.load(c);
 		rdcc.load(cl);
 		rdc.load(c);

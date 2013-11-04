@@ -7,7 +7,8 @@ import javax.swing.JScrollPane;
 import GUI.ProgrammaLavori;
 import GUI.Abstract.APlico;
 import GUI.Plichi.PlicoCommessa;
-import coedil99.model.Commessa;
+import coedil99.model.MCommessa;
+import coedil99.persistentmodel.Commessa;
 
 @SuppressWarnings("serial")
 public class RaccoglitorePlichi extends JScrollPane {
@@ -58,7 +59,7 @@ public class RaccoglitorePlichi extends JScrollPane {
 	 */
 	public void changePlico(APlico p) {
 		ProgrammaLavori pl = ProgrammaLavori.getInstance();
-		p.load(pl.getCommessaSelezionata().getID());
+		p.load(pl.getCommessaSelezionata().getPersistentModel().getID());
 		this.getPlico_container().removeAll();
 		this.getPlico_container().add(p,BorderLayout.CENTER);
 		this.validate();
@@ -72,12 +73,12 @@ public class RaccoglitorePlichi extends JScrollPane {
 
 	/**
 	 * 
-	 * @param c
+	 * @param commessaSelezionata
 	 *            : la commessa da caricare
 	 */
-	public void caricaPrimaCommessa(Commessa c) {
+	public void caricaPrimaCommessa(MCommessa c) {
 		PlicoCommessa plico = PlicoCommessa.getInstance();
-		plico.load(c.getID());
+		plico.load(c.getPersistentModel().getID());
 		this.getPlico_container().add(plico,BorderLayout.CENTER);
 		this.getPlico_container().validate();
 		this.getPlico_container().repaint();

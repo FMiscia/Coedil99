@@ -1,44 +1,31 @@
 package coedil99.model;
 
-import java.io.File;
-import java.io.IOException;
-
-import coedil99.controller.GestisciFornitoreHandler;
-
 /**
- * Pattern Builder: un catalogo può essere caricato da vari
+ * Pattern Builder: un catalogo puÃ² essere caricato da vari
  * formati di testo (cvs, excel, ecc...)
  * 
  * @author francesco
- *
  */
 public abstract class CatalogoFornitoreBuilder {
 
-	protected CatalogoFornitore catalogo;
-	/**
-	 * Questo metodo e' resposabile del parsing del file.
-	 * 
-	 * @param catalogo: nome del file da parsare. Deve essere caricato nella cartella relativa [TestFile].
-	 * @throws IOException 
-	 */
-	public abstract void Parse(String filePath) throws IOException;
-	
-	
-	/**
-	 * Get
-	 * 
-	 * @return catalogo fornitore
-	 */
-	public CatalogoFornitore getCatalogo(){
-		return catalogo;
+	protected MCatalogoFornitore catalogo;
+
+	public MCatalogoFornitore getCatalogo() {
+		return this.catalogo;
 	}
 
 	/**
-	 * Metodo che crea un nuovo catalogo fornitore
+	 * Questo metodo e' resposabile del parsing del file.
+	 * @param filePath
 	 */
-    public void createNewCatalogo()
-    { 
-    	this.catalogo = GestisciFornitoreHandler.getInstance().creaCatalogoFornitore();
-    }
+	public abstract void Parse(String filePath) throws java.io.IOException;
+
+	/**
+	 * Metodo che crea un nuovo catalogo fornitore
+	 * @return 
+	 */
+	public void createNewCatalogo() {
+		throw new UnsupportedOperationException();
+	}
 
 }

@@ -20,7 +20,8 @@ import org.jdesktop.swingx.JXDatePicker;
 import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
-import coedil99.model.Commessa;
+import coedil99.model.MCommessa;
+import coedil99.persistentmodel.Commessa;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -65,17 +66,21 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 	public void load(Object o) {
 		this.oggetto = o;
 		this.resetRiquadro();
-		Commessa c = (Commessa) o;
-		if (c.getResponsabile() != null)
-			this.txtResponsabile.setText(c.getResponsabile());
-		if (c.getEmissioneCommessa() != null)
-			this.dateEmissioneCommessa.setDate(c.getEmissioneCommessa());
-		if (c.getScadenzaCommessa() != null)
-			this.dateScadenzaCommessa.setDate(c.getScadenzaCommessa());
-		if (c.getFineCommessa() != null)
-			this.dateDataFine.setDate(c.getFineCommessa());
-		if (c.getRitardoProduzione() != null)
-			this.txtRitardo.setText(c.getRitardoProduzione().toString());
+		MCommessa c = (MCommessa) o;
+		if (c.getPersistentModel().getResponsabile() != null)
+			this.txtResponsabile.setText(c.getPersistentModel()
+					.getResponsabile());
+		if (c.getPersistentModel().getEmissioneCommessa() != null)
+			this.dateEmissioneCommessa.setDate(c.getPersistentModel()
+					.getEmissioneCommessa());
+		if (c.getPersistentModel().getScadenzaCommessa() != null)
+			this.dateScadenzaCommessa.setDate(c.getPersistentModel()
+					.getScadenzaCommessa());
+		if (c.getPersistentModel().getFineCommessa() != null)
+			this.dateDataFine.setDate(c.getPersistentModel().getFineCommessa());
+		if (c.getPersistentModel().getRitardoProduzione() != null)
+			this.txtRitardo.setText(c.getPersistentModel()
+					.getRitardoProduzione().toString());
 	}
 
 	/**
@@ -84,17 +89,17 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 	@Override
 	protected void salva() {
 		if (this.oggetto != null) {
-			Commessa c = (Commessa) oggetto;
-			c.setResponsabile(this.txtResponsabile.getText());
-			c.setEmissioneCommessa(this.dateEmissioneCommessa.getDate());
-			c.setScadenzaCommessa(this.dateScadenzaCommessa.getDate());
-			c.setFineCommessa(this.dateDataFine.getDate());
-			c.setRitardoProduzione(Integer.getInteger(this.txtRitardo.getText()));
-			try {
-				c.save();
-			} catch (PersistentException e) {
-				e.printStackTrace();
-			}
+			MCommessa c = (MCommessa) oggetto;
+			c.getPersistentModel().setResponsabile(
+					this.txtResponsabile.getText());
+			c.getPersistentModel().setEmissioneCommessa(
+					this.dateEmissioneCommessa.getDate());
+			c.getPersistentModel().setScadenzaCommessa(
+					this.dateScadenzaCommessa.getDate());
+			c.getPersistentModel().setFineCommessa(this.dateDataFine.getDate());
+			c.getPersistentModel().setRitardoProduzione(
+					Integer.getInteger(this.txtRitardo.getText()));
+			c.save();
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);

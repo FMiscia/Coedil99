@@ -43,14 +43,14 @@ public class ListaRDA extends ALista {
 	public void load(String tipo) {
 		this.panel.removeAll();
 		ArrayList<Object> t = null;
-		t = new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayRDA(
+		t = new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayMRDA(
 				tipo));
 		// this.getViewport().setPreferredSize(new Dimension(300, t.size() *
 		// 70));
 		for (int k = 0; k < t.size(); ++k) {
 			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
 					this);
-			r.load(GestisciRDAHandler.getInstance().getArrayRDA(tipo).get(k));
+			r.load(GestisciRDAHandler.getInstance().getArrayMRDA(tipo).get(k));
 			this.panel.add(r);
 			this.panel.validate();
 			this.panel.repaint();

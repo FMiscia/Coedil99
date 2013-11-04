@@ -1,5 +1,6 @@
 package GUI.Card;
 
+import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -19,9 +20,12 @@ import GUI.ClipPanels.ClipPanelProgrammaLavori;
 import GUI.Liste.ListaCommesse;
 import GUI.Plichi.PlicoCommessa;
 
-import coedil99.model.Cliente;
-import coedil99.model.Commessa;
-import coedil99.model.Ordine;
+import coedil99.model.MCliente;
+import coedil99.model.MCommessa;
+import coedil99.model.MOrdine;
+import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.Commessa;
+import coedil99.persistentmodel.Ordine;
 
 /**
  * 
@@ -59,16 +63,16 @@ public class CardCodiceInterno extends ACard {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
 		ArrayList<Object> param = (ArrayList<Object>) obj;
-		Cliente c = (Cliente) param.get(0);
-		Ordine o = (Ordine) param.get(1);
-		final Commessa cc = (Commessa) param.get(2);
-		cliente.setText(c.getName());
-		if (cc.getScadenza() == null)
+		MCliente c = (MCliente) param.get(0);
+		MOrdine o = new MOrdine(((Ordine) param.get(1)).getID());
+		final MCommessa cc = new MCommessa(((Commessa) param.get(2)).getID());
+		cliente.setText(c.getPersistentModel().getName());
+		if (cc.getPersistentModel().getScadenzaCommessa() == null)
 			scadenza.setText("--/--/----");
 		else
-			scadenza.setText(cc.getScadenza().toString());
-		codiceInterno.setText(cc.getCodiceInterno());
-		this.commessaId = cc.getID();
+			scadenza.setText(cc.getPersistentModel().getScadenzaCommessa().toString());
+		codiceInterno.setText(cc.getPersistentModel().getCodiceInterno());
+		this.commessaId = cc.getPersistentModel().getID();
 
 		this.addMouseListener(new MouseAdapter() {
 

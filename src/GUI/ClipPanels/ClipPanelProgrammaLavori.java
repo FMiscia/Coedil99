@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import coedil99.operation.ODistinta;
+import coedil99.model.MDistinta;
 
 import GUI.CoedilFrame;
 import GUI.PanelStart;
@@ -98,7 +98,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
 					return;
 				}
-				ODistinta odistinta = new ODistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getDistinta());
+				MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getPersistentModel().getDistinta().getID());
 				if (odistinta.hasDdo()) {
 					ClipPanelProgrammaLavori.this.focusOut();
 					JButton b = (JButton) e.getSource();

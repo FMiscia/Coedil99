@@ -20,8 +20,10 @@ import org.jdesktop.swingx.JXDatePicker;
 import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
-import coedil99.model.Commessa;
-import coedil99.model.Ordine;
+import coedil99.model.MCommessa;
+import coedil99.model.MOrdine;
+import coedil99.persistentmodel.Commessa;
+import coedil99.persistentmodel.Ordine;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -537,30 +539,35 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	public void load(Object o) {
 		this.oggetto = o;
 		this.resetRiquadro();
-		Commessa c = (Commessa) this.oggetto;
+		MCommessa c = (MCommessa) this.oggetto;
 		if (c != null)
-			this.txtCommessaCoedil.setText(Integer.toString(c.getID()));
-		Ordine ord = c.getOrdine();
+			this.txtCommessaCoedil.setText(Integer.toString(c
+					.getPersistentModel().getID()));
+		MOrdine ord = new MOrdine(c.getPersistentModel().getOrdine().getID());
 		if (ord != null)
-			this.txtOrdineContratto.setText(Integer.toString(ord.getID()));
-		if (ord.getOC() != null)
-			this.txtOC.setText(ord.getOC());
-		if (ord.getAnno() != null)
-			this.txtAnno.setText(ord.getAnno().toString());
-		if (ord.getOrdineGestionale() != null)
-			this.txtOrdineGestionale.setText(ord.getOrdineGestionale());
-		if (ord.getDataInizio() != null)
-			this.dateDataInizio.setDate(ord.getDataInizio());
+			this.txtOrdineContratto.setText(Integer.toString(ord
+					.getPersistentModel().getID()));
+		if (ord.getPersistentModel().getOC() != null)
+			this.txtOC.setText(ord.getPersistentModel().getOC());
+		if (ord.getPersistentModel().getAnno() != null)
+			this.txtAnno.setText(ord.getPersistentModel().getAnno().toString());
+		if (ord.getPersistentModel().getOrdineGestionale() != null)
+			this.txtOrdineGestionale.setText(ord.getPersistentModel()
+					.getOrdineGestionale());
+		if (ord.getPersistentModel().getDataInizio() != null)
+			this.dateDataInizio.setDate(ord.getPersistentModel()
+					.getDataInizio());
 		else
 			this.dateDataInizio.setDate(null);
-		if (ord.getDataFine() != null)
-			this.dateDataFine.setDate(ord.getDataFine());
+		if (ord.getPersistentModel().getDataFine() != null)
+			this.dateDataFine.setDate(ord.getPersistentModel().getDataFine());
 		else
 			this.dateDataFine.setDate(null);
-		if (c.getOrario() != null)
-			this.txtOrario.setText(c.getOrario());
-		if (c.getDescrizione() != null)
-			this.txtDescrizione.setText(c.getDescrizione());
+		if (c.getPersistentModel().getOrario() != null)
+			this.txtOrario.setText(c.getPersistentModel().getOrario());
+		if (c.getPersistentModel().getDescrizione() != null)
+			this.txtDescrizione
+					.setText(c.getPersistentModel().getDescrizione());
 	}
 
 	/**
@@ -569,25 +576,23 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	@Override
 	protected void salva() {
 		if (this.oggetto != null) {
-			Commessa c = (Commessa) this.oggetto;
-			Ordine ord = c.getOrdine();
-			ord.setOC(this.txtOC.getText());
-			ord.setAnno(Integer.valueOf(this.txtAnno.getText()));
-			ord.setOrdineGestionale(this.txtOrdineGestionale.getText());
-			ord.setDataInizio(this.dateDataInizio.getDate());
-			ord.setDataFine(this.dateDataFine.getDate());
-			try {
-				ord.save();
-			} catch (PersistentException e) {
-				e.printStackTrace();
-			}
-			c.setOrario(this.txtOrario.getText());
-			c.setDescrizione(this.txtDescrizione.getText());
-			try {
-				c.save();
-			} catch (PersistentException e) {
-				e.printStackTrace();
-			}
+			MCommessa c = (MCommessa) this.oggetto;
+			MOrdine ord = new MOrdine(c.getPersistentModel().getOrdine()
+					.getID());
+			ord.getPersistentModel().setOC(this.txtOC.getText());
+			ord.getPersistentModel().setAnno(
+					Integer.valueOf(this.txtAnno.getText()));
+			ord.getPersistentModel().setOrdineGestionale(
+					this.txtOrdineGestionale.getText());
+			ord.getPersistentModel().setDataInizio(
+					this.dateDataInizio.getDate());
+			ord.getPersistentModel().setDataFine(this.dateDataFine.getDate());
+			ord.save();
+			c.getPersistentModel().setOrario(this.txtOrario.getText());
+			c.getPersistentModel()
+					.setDescrizione(this.txtDescrizione.getText());
+
+			c.save();
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
@@ -605,6 +610,5 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		super.makeEditable(editable);
 
 	}
-	
 
 }

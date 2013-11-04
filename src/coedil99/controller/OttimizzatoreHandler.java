@@ -1,15 +1,17 @@
 package coedil99.controller;
 
-import coedil99.model.AOttimizzatoreStrategy;
-import coedil99.model.Distinta;
-import coedil99.model.DocumentoOttimizzazione;
+import coedil99.model.MDistinta;
+import coedil99.model.MDocumentoOttimizzazione;
+import coedil99.persistentmodel.*;
+
 
 
 
 public class OttimizzatoreHandler {
 
-	private AOttimizzatoreStrategy strategia;
-	private Distinta distinta;
+	private coedil99.model.AOttimizzatoreStrategy strategia;
+	private MDistinta distinta;
+	private Distinta attribute;
 
 	/**
 	 * Costruttore
@@ -17,7 +19,7 @@ public class OttimizzatoreHandler {
 	 * @param strategy
 	 * @param d
 	 */
-	public OttimizzatoreHandler(AOttimizzatoreStrategy strategy,Distinta d) {
+	public OttimizzatoreHandler(coedil99.model.AOttimizzatoreStrategy strategy,MDistinta d) {
 		
 		this.strategia = strategy;
 		this.distinta = d;
@@ -29,7 +31,7 @@ public class OttimizzatoreHandler {
 	 * 
 	 * @return ddo:DocumentoOttimizzazione
 	 */
-	public DocumentoOttimizzazione Ottimizza() {
+	public MDocumentoOttimizzazione Ottimizza() {
 		return this.strategia.elaboraOttimizzazione(this.distinta);
 	}
 

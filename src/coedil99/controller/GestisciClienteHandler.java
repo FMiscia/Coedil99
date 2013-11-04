@@ -5,8 +5,9 @@ import java.util.Arrays;
 
 import org.orm.PersistentException;
 
-import coedil99.model.Cliente;
-import coedil99.model.ClienteFactory;
+import coedil99.model.MCliente;
+import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.ClienteFactory;
 
 /**
  * @author francesco
@@ -14,7 +15,7 @@ import coedil99.model.ClienteFactory;
  */
 public class GestisciClienteHandler {
 	
-	private ArrayList<Cliente> clienti = null;
+	private ArrayList<MCliente> clienti = null;
 	private static GestisciClienteHandler instance;
 	
 	
@@ -24,10 +25,13 @@ public class GestisciClienteHandler {
 	 * Carica la lista dei clienti
 	 */
 	private GestisciClienteHandler() {
+		this.clienti = new ArrayList<MCliente>();
 		try {
-			this.clienti = new ArrayList<Cliente>(Arrays.asList(ClienteFactory.listClienteByQuery(null, "ID")));
+			ArrayList<Cliente> persistent_clienti = new ArrayList<Cliente>(Arrays.asList(ClienteFactory.listClienteByQuery(null, "ID")));
+			for(Cliente c: persistent_clienti){
+				this.clienti.add(new MCliente(c.getID()));
+			}
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -36,7 +40,7 @@ public class GestisciClienteHandler {
 	 * Aggiunge un Ordine effettuato da un cliente
 	 * @param c:Cliente
 	 */
-	public void addOrdine(Cliente c) {
+	public void addOrdine(MCliente c) {
 		this.clienti.add(c);
 	}
 
@@ -44,7 +48,7 @@ public class GestisciClienteHandler {
 	 * Fornisce i clienti
 	 * @return clienti:ArrayList<Cliente>
 	 */
-	public ArrayList<Cliente> getClienti(){
+	public ArrayList<MCliente> getClienti(){
 		return this.clienti;
 	}
 	
@@ -53,14 +57,8 @@ public class GestisciClienteHandler {
 	 * @param id
 	 * @return clienteID:int
 	 */
-	public Cliente getClienteById(int id){
-		try {
-			return ClienteFactory.getClienteByORMID(id);
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public MCliente getClienteById(int id){
+		return new MCliente(id);
 	}
 	
 	/**

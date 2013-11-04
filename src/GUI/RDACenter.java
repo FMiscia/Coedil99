@@ -4,7 +4,8 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.RDA;
+import coedil99.model.MRDA;
+import coedil99.persistentmodel.RDA;
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
 import GUI.Liste.ListaRDA;
@@ -16,7 +17,7 @@ public class RDACenter extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static RDACenter instance = null;
-	private RDA rdaSelezionata = null;
+	private MRDA rdaSelezionata = null;
 	private ListaRDA lista = null;
 
 	private ClipPanelRDA clipPanel = (ClipPanelRDA) ClipPanelRDAFactory
@@ -47,7 +48,7 @@ public class RDACenter extends JPanel {
 		this.add(this.lista, BorderLayout.WEST);
 		PlicoRDA.getInstance()
 				.getListaRigheRDA()
-				.load(new ArrayList<Object>(this.getRDASelezionata().righeRDA
+				.load(new ArrayList<Object>(this.getRDASelezionata().getPersistentModel().righeRDA
 						.getCollection()));
 		this.validate();
 		this.repaint();
@@ -68,7 +69,7 @@ public class RDACenter extends JPanel {
 	 * 
 	 * @return RDA
 	 */
-	public RDA getRDASelezionata() {
+	public MRDA getRDASelezionata() {
 		return rdaSelezionata;
 	}
 
@@ -76,7 +77,7 @@ public class RDACenter extends JPanel {
 	 * 
 	 * @param rdaSelezionata
 	 */
-	public void setRDASelezionata(RDA rdaSelezionata) {
+	public void setRDASelezionata(MRDA rdaSelezionata) {
 		this.rdaSelezionata = rdaSelezionata;
 	}
 
@@ -150,12 +151,12 @@ public class RDACenter extends JPanel {
 		this.lista.svuota();
 		this.lista.load(GestisciRDAHandler.CONGELATA);
 		this.setRDASelezionata(GestisciRDAHandler.getInstance()
-				.getRDAById(this.lista.getPrimaRDA()));
+				.getMRDAById(this.lista.getPrimaRDA()));
 		PlicoRDA prda = PlicoRDA.getInstance();
 		ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
 		prda.reset();
 		lista_righe_rda.load(new ArrayList<Object>(this
-				.getRDASelezionata().righeRDA.getCollection()));
+				.getRDASelezionata().getPersistentModel().righeRDA.getCollection()));
 		lista_righe_rda.validate();
 		lista_righe_rda.repaint();
 	}
