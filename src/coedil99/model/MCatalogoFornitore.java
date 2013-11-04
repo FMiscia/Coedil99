@@ -28,7 +28,7 @@ public class MCatalogoFornitore implements IModel {
 	 * @param ID
 	 * 
 	 */
-	public MCatalogoFornitore(Integer ID) {
+	public MCatalogoFornitore(int ID) {
 		try {
 			this.catalogoFornitore = CatalogoFornitoreFactory
 					.getCatalogoFornitoreByORMID(ID);

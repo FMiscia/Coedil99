@@ -62,7 +62,6 @@ public class GestisciFornitoreHandler {
 	 */
 	public MCatalogoFornitore getFornitoreByName(String nome){
 		
-		
 			try {
 				return new MCatalogoFornitore(CatalogoFornitoreFactory.loadCatalogoFornitoreByQuery(" Name = " + "'" + nome + "'", null).getID());
 			} catch (PersistentException e) {
@@ -71,6 +70,10 @@ public class GestisciFornitoreHandler {
 			}
 			return null;
 			
+	}
+	
+	public MCatalogoFornitore getFornitoreByID(int ID){
+		return new MCatalogoFornitore(ID);
 	}
 
 	/**
@@ -150,4 +153,19 @@ public class GestisciFornitoreHandler {
 			e.printStackTrace();
 		}
 	}
+	
+	public MCatalogoFornitore creaCatalogoFornitore(){
+		this.builder.createNewCatalogo();
+		return this.builder.getCatalogo();
+	}
+
+	public void aggiungiProductDescription(String pathFile){
+		try {
+			this.builder.Parse(pathFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }
