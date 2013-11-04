@@ -2,6 +2,7 @@ package coedil99.controller;
 
 import coedil99.model.MDistinta;
 import coedil99.model.MDocumentoOttimizzazione;
+import coedil99.persistentmodel.*;
 
 
 
@@ -10,6 +11,7 @@ public class OttimizzatoreHandler {
 
 	private coedil99.model.AOttimizzatoreStrategy strategia;
 	private MDistinta distinta;
+	private Distinta attribute;
 
 	/**
 	 * Costruttore
