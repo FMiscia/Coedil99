@@ -53,7 +53,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 							return;
 						}
 						CoedilFrame cf = CoedilFrame.getInstance();
-						PanelStart pl = new PanelStart();
+						PanelStart pl = PanelStart.getInstance();
 						pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
 						CoedilFrame.getInstance().montaPanel(pl);
 					}
