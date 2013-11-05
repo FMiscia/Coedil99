@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Model quotesql="1" tablecharset="">
+<Model quotesql="1" tablecharset="UTF8">
   <Entity name="CatalogoFornitore">
     <Column name="ID">
       <PrimaryKey>true</PrimaryKey>
@@ -223,7 +223,7 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="Username">
+    <Column name="Pwd">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
@@ -234,7 +234,7 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="Password">
+    <Column name="Usr">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
@@ -251,6 +251,28 @@
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Name">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Familyname">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>

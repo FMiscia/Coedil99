@@ -256,15 +256,4 @@ public class ProductDescriptionFactory {
 		return new coedil99.persistentmodel.ProductDescription();
 	}
 	
-	public static ProductDescription loadProductDescriptionByCriteria(ProductDescriptionCriteria productDescriptionCriteria) {
-		ProductDescription[] productDescriptions = listProductDescriptionByCriteria(productDescriptionCriteria);
-		if(productDescriptions == null || productDescriptions.length == 0) {
-			return null;
-		}
-		return productDescriptions[0];
-	}
-	
-	public static ProductDescription[] listProductDescriptionByCriteria(ProductDescriptionCriteria productDescriptionCriteria) {
-		return productDescriptionCriteria.listProductDescription();
-	}
 }
