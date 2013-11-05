@@ -81,6 +81,7 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	 * Metodo che modifica i campi del model e lo salva sul db 
 	 * 
 	 * CORREGGERE
+	 * 
 	 */
 	@Override
 	public void salva() {
