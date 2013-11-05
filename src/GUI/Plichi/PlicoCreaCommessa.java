@@ -16,10 +16,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import GUI.CoedilFrame;
+import GUI.ProgrammaLavori;
+import GUI.Abstract.AClipPanel;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
+import GUI.ClipPanels.ClipPanelFactory;
+import GUI.ClipPanels.ClipPanelProgrammaLavori;
 import GUI.Riquadri.RiquadroDatiAziendali;
 import GUI.Riquadri.RiquadroDatiAziendaliFactory;
 import GUI.Riquadri.RiquadroDatiClienteConsegna;
@@ -161,6 +166,10 @@ public class PlicoCreaCommessa extends APlico {
 					PlicoCreaCommessa.this.selected_ordine = Integer
 							.parseInt(PlicoCreaCommessa.this.cbordini
 									.getSelectedItem().toString());
+					MOrdine temp = GestisciOrdineHandler.getInstance().getMOrdineById(selected_ordine);
+					PlicoCreaCommessa.this.rdcc.setSelectedCantiere(temp.getPersistentModel().getCliente().getCantiere().getNome());
+					PlicoCreaCommessa.this.rdcc.setSelectedCliente(temp.getPersistentModel().getCliente().getName());
+					PlicoCreaCommessa.this.rdcc.makeEditable(false);
 				}
 			}
 		});
@@ -232,6 +241,10 @@ public class PlicoCreaCommessa extends APlico {
 						&& PlicoCreaCommessa.this.rdcc.controlloErrori()
 						&& PlicoCreaCommessa.this.rdpc.controlloErrori()
 						&& PlicoCreaCommessa.this.rsc.controlloErrori()
+						&& PlicoCreaCommessa.this.rdc.checkEmpty()
+						&& PlicoCreaCommessa.this.rdcc.checkEmpty()
+						&& PlicoCreaCommessa.this.rdpc.checkEmpty()
+						&& PlicoCreaCommessa.this.rsc.checkEmpty()
 						&& PlicoCreaCommessa.this.selected_ordine > 0) {
 					PlicoCreaCommessa.this.error_mex.setText("");
 					MCommessa commessa = new MCommessa();
@@ -243,7 +256,6 @@ public class PlicoCreaCommessa extends APlico {
 											.getMOrdineById(
 													PlicoCreaCommessa.this.selected_ordine)
 											.getPersistentModel());
-					commessa.save();
 					PlicoCreaCommessa.this.rda.setOggetto(commessa);
 					PlicoCreaCommessa.this.rda.salva();
 					PlicoCreaCommessa.this.rdc.setOggetto(commessa);
@@ -254,6 +266,14 @@ public class PlicoCreaCommessa extends APlico {
 					PlicoCreaCommessa.this.rdpc.salva();
 					PlicoCreaCommessa.this.rsc.setOggetto(commessa);
 					PlicoCreaCommessa.this.rsc.salva();
+					commessa.setCodiceInterno();
+					commessa.save();
+					JOptionPane.showMessageDialog(null,
+							"Commessa salvata con successo",
+							"Operazione eseguita", JOptionPane.PLAIN_MESSAGE);
+					ProgrammaLavori.getInstance().getClipPanel().getButtons()
+							.get(AClipPanel.PLButtonState.get("COMMESSA"))
+							.doClick();
 				} else {
 					PlicoCreaCommessa.this.error_mex.setIcon(new ImageIcon(
 							PlicoCreaCommessa.class
@@ -265,8 +285,8 @@ public class PlicoCreaCommessa extends APlico {
 
 		});
 	}
-	
-	public void resetAll(){
+
+	public void resetAll() {
 		this.removeAll();
 		this.initialize();
 	}
