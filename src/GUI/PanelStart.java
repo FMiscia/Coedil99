@@ -7,7 +7,6 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -15,14 +14,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import coedil99.controller.GestisciRDAHandler;
 import GUI.ClipPanels.ClipPanelMenu;
 import GUI.ClipPanels.ClipPanelMenuFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
-import GUI.Login.Login;
-import GUI.Login.LoginDialog;
+import GUI.PLogin.Login;
 
 public class PanelStart extends JPanel {
 
@@ -49,12 +46,33 @@ public class PanelStart extends JPanel {
 		this.addPannelloUseCases();
 		this.addPLButton();
 		this.addRDAButton();
+		this.addCOMMERCIALEButton();
 		this.addOTHERButton();
 		this.addClipPanel();
 		this.setButtonsAttivi(Login.getLogged());
 	}
 
 
+
+	private void addCOMMERCIALEButton() {
+		// TODO Auto-generated method stub
+		JButton commercialebutton = new JButton();
+		commercialebutton.setToolTipText("Ufficio Commerciale");
+		commercialebutton.setSize(100, 100);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"/GUI/image/wip.png"));
+			commercialebutton.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		commercialebutton.setFocusable(false);
+		pannelloUseCases.add(commercialebutton);
+		commercialebutton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				CoedilFrame.getInstance().montaPanel(CommercialePanel.getInstance());
+			}
+		});
+	}
 
 	/**
 	 * Aggiunge il ClipPanel, pannello dei button in alto
