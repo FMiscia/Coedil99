@@ -256,15 +256,4 @@ public class CommessaFactory {
 		return new coedil99.persistentmodel.Commessa();
 	}
 	
-	public static Commessa loadCommessaByCriteria(CommessaCriteria commessaCriteria) {
-		Commessa[] commessas = listCommessaByCriteria(commessaCriteria);
-		if(commessas == null || commessas.length == 0) {
-			return null;
-		}
-		return commessas[0];
-	}
-	
-	public static Commessa[] listCommessaByCriteria(CommessaCriteria commessaCriteria) {
-		return commessaCriteria.listCommessa();
-	}
 }

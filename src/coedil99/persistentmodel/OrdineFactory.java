@@ -256,15 +256,4 @@ public class OrdineFactory {
 		return new coedil99.persistentmodel.Ordine();
 	}
 	
-	public static Ordine loadOrdineByCriteria(OrdineCriteria ordineCriteria) {
-		Ordine[] ordines = listOrdineByCriteria(ordineCriteria);
-		if(ordines == null || ordines.length == 0) {
-			return null;
-		}
-		return ordines[0];
-	}
-	
-	public static Ordine[] listOrdineByCriteria(OrdineCriteria ordineCriteria) {
-		return ordineCriteria.listOrdine();
-	}
 }

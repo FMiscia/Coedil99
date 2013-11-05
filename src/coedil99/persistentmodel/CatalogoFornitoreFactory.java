@@ -256,15 +256,4 @@ public class CatalogoFornitoreFactory {
 		return new coedil99.persistentmodel.CatalogoFornitore();
 	}
 	
-	public static CatalogoFornitore loadCatalogoFornitoreByCriteria(CatalogoFornitoreCriteria catalogoFornitoreCriteria) {
-		CatalogoFornitore[] catalogoFornitores = listCatalogoFornitoreByCriteria(catalogoFornitoreCriteria);
-		if(catalogoFornitores == null || catalogoFornitores.length == 0) {
-			return null;
-		}
-		return catalogoFornitores[0];
-	}
-	
-	public static CatalogoFornitore[] listCatalogoFornitoreByCriteria(CatalogoFornitoreCriteria catalogoFornitoreCriteria) {
-		return catalogoFornitoreCriteria.listCatalogoFornitore();
-	}
 }
