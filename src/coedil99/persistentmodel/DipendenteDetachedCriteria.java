@@ -21,14 +21,14 @@ import org.orm.criteria.*;
 public class DipendenteDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression username;
-	public final StringExpression pwd;
+	public final StringExpression password;
 	public final IntegerExpression level;
 	
 	public DipendenteDetachedCriteria() {
 		super(coedil99.persistentmodel.Dipendente.class, coedil99.persistentmodel.DipendenteCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		username = new StringExpression("username", this.getDetachedCriteria());
-		pwd = new StringExpression("pwd", this.getDetachedCriteria());
+		password = new StringExpression("password", this.getDetachedCriteria());
 		level = new IntegerExpression("level", this.getDetachedCriteria());
 	}
 	
@@ -36,7 +36,7 @@ public class DipendenteDetachedCriteria extends AbstractORMDetachedCriteria {
 		super(aDetachedCriteria, coedil99.persistentmodel.DipendenteCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		username = new StringExpression("username", this.getDetachedCriteria());
-		pwd = new StringExpression("pwd", this.getDetachedCriteria());
+		password = new StringExpression("password", this.getDetachedCriteria());
 		level = new IntegerExpression("level", this.getDetachedCriteria());
 	}
 	

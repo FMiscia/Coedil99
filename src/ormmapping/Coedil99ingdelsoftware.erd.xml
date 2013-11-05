@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Model quotesql="1" tablecharset="UTF8">
+<Model quotesql="1" tablecharset="">
   <Entity name="CatalogoFornitore">
     <Column name="ID">
       <PrimaryKey>true</PrimaryKey>
@@ -234,7 +234,7 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="Pwd">
+    <Column name="Password">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
@@ -369,8 +369,8 @@
       <ReferencedColumn>ListaRintracciabilita.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>assigned</IDGenerator>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
       <UserTypes/>

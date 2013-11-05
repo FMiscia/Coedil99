@@ -11,7 +11,7 @@ License Type: Purchased
 			</generator>
 		</id>
 		<property name="username" column="Username" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="pwd" column="Pwd" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="password" column="Password" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="level" column="Level" type="integer" length="11" not-null="true" lazy="false"/>
 	</class>
 </hibernate-mapping>

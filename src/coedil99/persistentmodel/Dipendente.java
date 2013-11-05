@@ -14,7 +14,7 @@
 package coedil99.persistentmodel;
 
 import org.orm.*;
-public abstract class Dipendente implements coedil99.persistentmodel.IPersistentModel {
+public class Dipendente {
 	public Dipendente() {
 	}
 	
@@ -66,9 +66,13 @@ public abstract class Dipendente implements coedil99.persistentmodel.IPersistent
 	
 	private String username;
 	
-	private String pwd;
+	private String password;
 	
 	private int level;
+	
+	private void setID(int value) {
+		this.ID = value;
+	}
 	
 	public int getID() {
 		return ID;
@@ -86,12 +90,12 @@ public abstract class Dipendente implements coedil99.persistentmodel.IPersistent
 		return username;
 	}
 	
-	public void setPwd(String value) {
-		this.pwd = value;
+	public void setPassword(String value) {
+		this.password = value;
 	}
 	
-	public String getPwd() {
-		return pwd;
+	public String getPassword() {
+		return password;
 	}
 	
 	public void setLevel(int value) {

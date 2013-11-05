@@ -252,6 +252,10 @@ public class DipendenteFactory {
 		}
 	}
 	
+	public static Dipendente createDipendente() {
+		return new coedil99.persistentmodel.Dipendente();
+	}
+	
 	public static Dipendente loadDipendenteByCriteria(DipendenteCriteria dipendenteCriteria) {
 		Dipendente[] dipendentes = listDipendenteByCriteria(dipendenteCriteria);
 		if(dipendentes == null || dipendentes.length == 0) {

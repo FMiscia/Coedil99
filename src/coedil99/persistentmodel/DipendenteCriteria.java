@@ -21,14 +21,14 @@ import org.orm.criteria.*;
 public class DipendenteCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression username;
-	public final StringExpression pwd;
+	public final StringExpression password;
 	public final IntegerExpression level;
 	
 	public DipendenteCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		username = new StringExpression("username", this);
-		pwd = new StringExpression("pwd", this);
+		password = new StringExpression("password", this);
 		level = new IntegerExpression("level", this);
 	}
 	
