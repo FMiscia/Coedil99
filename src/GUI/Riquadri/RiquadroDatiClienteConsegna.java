@@ -86,10 +86,10 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	@Override
 	public void salva() {
 		if (this.oggetto != null) {
-			MCliente c = (MCliente) this.oggetto;
-			c.getPersistentModel().getCantiere()
+			MCommessa c = (MCommessa) this.oggetto;
+			c.getPersistentModel().getOrdine().getCliente().getCantiere()
 					.setNome(this.cbCantiere.getSelectedItem().toString());
-			c.getPersistentModel().setName(
+			c.getPersistentModel().getOrdine().getCliente().setName(
 					this.cbClienti.getSelectedItem().toString());
 			c.save();
 			JOptionPane.showMessageDialog(null,
