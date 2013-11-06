@@ -30,6 +30,9 @@ import coedil99.controller.GestisciOrdineHandler;
 import coedil99.model.MCliente;
 import coedil99.model.MCommessa;
 import coedil99.model.MOrdine;
+import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.Commessa;
+import coedil99.persistentmodel.Ordine;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
