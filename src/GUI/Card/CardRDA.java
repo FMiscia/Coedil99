@@ -3,10 +3,8 @@ package GUI.Card;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +21,6 @@ import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MRDA;
-import coedil99.persistentmodel.RDA;
 
 /**
  * 

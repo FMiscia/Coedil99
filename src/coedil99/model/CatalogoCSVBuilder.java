@@ -22,9 +22,7 @@ public class CatalogoCSVBuilder extends CatalogoFornitoreBuilder {
 	public void Parse(String catalogo) throws IOException {
 		URL url = CatalogoCSVBuilder.class.getResource("/GUI/TestFile/"+catalogo);
 		CSVReader reader = new CSVReader(new FileReader(url.getPath()), '#');
-		String[] fornitore = reader.readNext();
 		String[] nome_fornitore = reader.readNext();
-		String[] intestazione = reader.readNext();
 		this.catalogo.getPersistentModel().setName(nome_fornitore[0]);
 		System.out.println(nome_fornitore[0]);
 		String[] row = null;

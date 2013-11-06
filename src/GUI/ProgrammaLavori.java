@@ -2,7 +2,9 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+
 import javax.swing.JPanel;
+
 import GUI.Abstract.ALista;
 import GUI.ClipPanels.ClipPanelProgrammaLavori;
 import GUI.ClipPanels.ClipPanelProgrammaLavoriFactory;
@@ -10,7 +12,6 @@ import GUI.Liste.ListaCommesse;
 import GUI.Liste.ListaCommesseFactory;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MCommessa;
-import coedil99.persistentmodel.Commessa;
 
 public class ProgrammaLavori extends JPanel {
 

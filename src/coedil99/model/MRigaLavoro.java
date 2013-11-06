@@ -2,8 +2,6 @@ package coedil99.model;
 
 import org.orm.PersistentException;
 
-import coedil99.persistentmodel.CatalogoFornitore;
-import coedil99.persistentmodel.CatalogoFornitoreFactory;
 import coedil99.persistentmodel.IPersistentModel;
 import coedil99.persistentmodel.RigaLavoro;
 import coedil99.persistentmodel.RigaLavoroFactory;

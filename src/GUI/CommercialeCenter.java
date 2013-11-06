@@ -7,8 +7,6 @@ import javax.swing.JPanel;
 
 import GUI.ClipPanels.ClipPanelComm;
 import GUI.ClipPanels.ClipPanelCommFactory;
-import GUI.ClipPanels.ClipPanelProgrammaLavoriFactory;
-import GUI.Plichi.PlicoRDA;
 
 public class CommercialeCenter extends JPanel {
 	

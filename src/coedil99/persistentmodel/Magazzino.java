@@ -1,6 +1,7 @@
 package coedil99.persistentmodel;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Magazzino {
 

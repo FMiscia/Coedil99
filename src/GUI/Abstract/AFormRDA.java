@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
@@ -21,14 +20,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import GUI.Utilities.JHorizontalSpinner;
 
+import GUI.Utilities.JHorizontalSpinner;
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MGeometria;
 import coedil99.model.MProductDescription;
-import coedil99.persistentmodel.CatalogoFornitore;
-import coedil99.persistentmodel.Geometria;
 import coedil99.persistentmodel.ProductDescription;
 
 import com.jgoodies.forms.factories.FormFactory;

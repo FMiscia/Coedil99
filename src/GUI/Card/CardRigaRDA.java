@@ -3,7 +3,6 @@ package GUI.Card;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -12,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
-import org.orm.PersistentException;
 
 import GUI.RDACenter;
 import GUI.Abstract.ACard;
@@ -21,13 +19,12 @@ import GUI.FormRDA.ModificaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.model.MRigaRDA;
-import coedil99.persistentmodel.IPersistentModel;
 import coedil99.persistentmodel.RigaRDA;
 
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
 
 /**
  * 

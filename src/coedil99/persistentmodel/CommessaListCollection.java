@@ -13,7 +13,8 @@
  */
 package coedil99.persistentmodel;
 
-import org.orm.*;
+import org.orm.PersistentException;
+import org.orm.PersistentManager;
 
 public class CommessaListCollection extends org.orm.util.ORMList {
 	public CommessaListCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {

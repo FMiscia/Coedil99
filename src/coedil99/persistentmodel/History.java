@@ -13,7 +13,7 @@
  */
 package coedil99.persistentmodel;
 
-import org.orm.*;
+import org.orm.PersistentException;
 public class History implements coedil99.persistentmodel.IPersistentModel {
 	public History() {
 	}

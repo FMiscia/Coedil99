@@ -2,7 +2,6 @@ package coedil99.model;
 
 import org.orm.PersistentException;
 
-import coedil99.persistentmodel.DistintaFactory;
 import coedil99.persistentmodel.DocumentoOttimizzazione;
 import coedil99.persistentmodel.DocumentoOttimizzazioneFactory;
 import coedil99.persistentmodel.IPersistentModel;

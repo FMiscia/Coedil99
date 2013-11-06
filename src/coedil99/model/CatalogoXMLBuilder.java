@@ -1,6 +1,5 @@
 package coedil99.model;
 
-import java.io.File;
 
 /**
  * 

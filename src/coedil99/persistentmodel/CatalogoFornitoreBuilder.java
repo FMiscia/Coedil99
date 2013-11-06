@@ -1,9 +1,7 @@
 package coedil99.persistentmodel;
 
-import java.io.File;
 import java.io.IOException;
 
-import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.MCatalogoFornitore;
 
 /**

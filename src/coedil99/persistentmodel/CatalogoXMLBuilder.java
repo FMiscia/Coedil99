@@ -1,6 +1,5 @@
 package coedil99.persistentmodel;
 
-import java.io.File;
 
 /**
  * 

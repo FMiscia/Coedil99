@@ -11,7 +11,8 @@ public class MItem implements IModel{
 public Item item;
 
 	public MItem(){
-		this.item = new ItemFactory().createItem();
+		new ItemFactory();
+		this.item = ItemFactory.createItem();
 	}
 	
 	public MItem(int ID){

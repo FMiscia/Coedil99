@@ -2,9 +2,6 @@ package coedil99.model;
 
 import java.util.ArrayList;
 
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.Subject;
-
 
 /**
  * 

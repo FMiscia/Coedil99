@@ -7,11 +7,6 @@ import java.util.Random;
 
 import org.orm.PersistentException;
 
-import coedil99.controller.GestisciMagazzinoHandler;
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.Observer;
-import coedil99.model.Subject;
-import coedil99.persistentmodel.CommessaFactory;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemFactory;
 

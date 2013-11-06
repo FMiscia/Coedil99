@@ -4,7 +4,6 @@ import org.orm.PersistentException;
 
 import coedil99.persistentmodel.Cantiere;
 import coedil99.persistentmodel.CantiereFactory;
-import coedil99.persistentmodel.GeometriaFactory;
 import coedil99.persistentmodel.IPersistentModel;
 
 /**

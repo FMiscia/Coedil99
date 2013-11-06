@@ -1,7 +1,6 @@
 package GUI.Riquadri;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
@@ -11,19 +10,15 @@ import java.util.regex.Pattern;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
-import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
 import coedil99.model.MCommessa;
 import coedil99.model.MOrdine;
-import coedil99.persistentmodel.Commessa;
-import coedil99.persistentmodel.Ordine;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;

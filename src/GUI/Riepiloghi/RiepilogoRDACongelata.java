@@ -5,7 +5,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import GUI.ProgrammaLavori;
@@ -17,7 +16,6 @@ import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MRDA;
-import coedil99.persistentmodel.RDA;
 
 /**
  * 

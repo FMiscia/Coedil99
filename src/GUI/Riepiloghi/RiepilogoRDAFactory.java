@@ -2,9 +2,8 @@ package GUI.Riepiloghi;
 
 import java.util.HashMap;
 
-import coedil99.controller.GestisciRDAHandler;
-
 import GUI.Abstract.ARiepilogoRDA;
+import coedil99.controller.GestisciRDAHandler;
 
 /**
  * 

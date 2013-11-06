@@ -16,7 +16,8 @@ package coedil99.persistentmodel;
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import org.orm.criteria.*;
+import org.orm.criteria.AbstractORMCriteria;
+import org.orm.criteria.IntegerExpression;
 
 public class DistintaCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;

@@ -1,6 +1,5 @@
 package GUI.ClipPanels;
 
-import GUI.Plichi.PlicoCommessa;
 
 public class PlicoCreaCommessa {
 	private static PlicoCreaCommessa instance = null;

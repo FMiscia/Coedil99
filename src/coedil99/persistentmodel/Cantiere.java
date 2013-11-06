@@ -13,7 +13,7 @@
  */
 package coedil99.persistentmodel;
 
-import org.orm.*;
+import org.orm.PersistentException;
 public class Cantiere implements coedil99.persistentmodel.IPersistentModel {
 	public Cantiere() {
 	}
@@ -67,10 +67,6 @@ public class Cantiere implements coedil99.persistentmodel.IPersistentModel {
 	private String nome;
 	
 	private String indirizzo;
-	
-	private void setID(int value) {
-		this.ID = value;
-	}
 	
 	public int getID() {
 		return ID;

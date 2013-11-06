@@ -4,12 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import GUI.Abstract.ALista;
 import GUI.Card.CardRDA;
 import GUI.Card.CardRDAFactory;
-import GUI.Utilities.WrapLayout;
 import coedil99.controller.GestisciRDAHandler;
 
 @SuppressWarnings("serial")

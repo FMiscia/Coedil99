@@ -13,7 +13,8 @@
  */
 package coedil99.persistentmodel;
 
-import org.orm.*;
+import org.orm.PersistentException;
+import org.orm.PersistentManager;
 
 public class OrdineListCollection extends org.orm.util.ORMList {
 	public OrdineListCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {

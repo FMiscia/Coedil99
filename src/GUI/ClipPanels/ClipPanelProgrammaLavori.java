@@ -6,8 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import coedil99.model.MDistinta;
-
 import GUI.CoedilFrame;
 import GUI.PanelStart;
 import GUI.ProgrammaLavori;
@@ -17,6 +15,7 @@ import GUI.Abstract.APlico;
 import GUI.Plichi.PlicoCommessa;
 import GUI.Plichi.PlicoDDO;
 import GUI.Plichi.PlicoDistinta;
+import coedil99.model.MDistinta;
 
 /**
  * 
