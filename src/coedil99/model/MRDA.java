@@ -40,6 +40,7 @@ public class MRDA extends coedil99.model.Subject implements IModel{
 		this.getPersistentModel().setState(value);
 		this.Notify();
 	}
+
 	
 	@Override
 	public void setPersistentModel(IPersistentModel m) {

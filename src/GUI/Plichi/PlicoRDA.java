@@ -17,6 +17,7 @@ import coedil99.controller.GestisciRDAHandler;
  *
  * Gestisce il pannello della RDA
  */
+
 public class PlicoRDA extends APlico {
 
 	/**
@@ -43,6 +44,7 @@ public class PlicoRDA extends APlico {
 		// TODO Auto-generated method stub
 		this.listaRigheRDA = new ListaRigheRDA();
 		this.add(listaRigheRDA,BorderLayout.WEST);
+
 	}
 	
 	/**
@@ -122,7 +124,6 @@ public class PlicoRDA extends APlico {
 		ListaRigheRDA lrrda = this.getListaRigheRDA();
 		if(RDACenter.getInstance().getClipPanel().isSelectedCongelate() && lrrda.getNumRigheRDA() == 0){
 			GestisciRDAHandler.getInstance().deleteAndRemoveMRDA(RDACenter.getInstance().getRDASelezionata());
-			//RDACenter.getInstance().getClipPanel().getButtons().get(1).doClick();
 			PlicoRDA prda = PlicoRDA.getInstance();
 			ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
 				RDACenter.getInstance().refreshCongelate();

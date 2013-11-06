@@ -116,7 +116,7 @@ public class ListaRDA extends ALista {
 	/**
 	 * Aggiorna la lista RDA se necessario
 	 */
-	public void updatePanel() {
+	public void updatePanelRDA() {
 	}
 
 	@Override

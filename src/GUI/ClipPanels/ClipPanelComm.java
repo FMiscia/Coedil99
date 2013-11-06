@@ -7,7 +7,7 @@ import GUI.CoedilFrame;
 import GUI.LoginPanel;
 import GUI.PanelStart;
 import GUI.Abstract.AClipPanel;
-import GUI.PLogin.Login;
+import GUI.Login.Login;
 
 /**
  * 

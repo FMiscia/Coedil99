@@ -67,7 +67,7 @@ public class RDACenter extends JPanel {
 
 	/**
 	 * 
-	 * @return RDA
+	 * @return MRDA
 	 */
 	public MRDA getRDASelezionata() {
 		return rdaSelezionata;

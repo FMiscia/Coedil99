@@ -64,7 +64,7 @@ public class ListaCommesse extends ALista {
 	/**
 	 * Aggiorna il pannello contenente la lista se necessario (caso d'uso gestisci commessa)
 	 */
-	public void updatePanel() {
+	public void updatePanelRDA() {
 		// TODO Auto-generated method stub
 		this.panel.removeAll();
 		this.load();
