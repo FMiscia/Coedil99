@@ -10,6 +10,7 @@ import GUI.Abstract.AFormRDA;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
 import GUI.Liste.ListaRigheRDA;
+import GUI.Liste.ListaRigheRDAFactory;
 
 
 /**
@@ -41,7 +42,7 @@ public class PlicoRDA extends APlico {
 	 * Aggiunge la lista delle righe RDA
 	 */
 	private void addListaRigheRDA() {
-		this.listaRigheRDA = new ListaRigheRDA();
+		this.listaRigheRDA = (ListaRigheRDA) ListaRigheRDAFactory.getInstance().makeLista();
 		this.add(listaRigheRDA,BorderLayout.WEST);
 	}
 	

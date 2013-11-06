@@ -74,7 +74,7 @@ public class RiquadroDatiConsegna extends ARiquadro {
 	 * Modifica i campi del model e lo salva sul db
 	 */
 	@Override
-	public void salva() {
+	protected void salva() {
 		if (this.oggetto != null) {
 			MCommessa c = (MCommessa) this.oggetto;
 			c.getPersistentModel().setPrimaConsegna(

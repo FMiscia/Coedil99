@@ -256,4 +256,15 @@ public class ListaRintracciabilitaFactory {
 		return new coedil99.persistentmodel.ListaRintracciabilita();
 	}
 	
+	public static ListaRintracciabilita loadListaRintracciabilitaByCriteria(ListaRintracciabilitaCriteria listaRintracciabilitaCriteria) {
+		ListaRintracciabilita[] listaRintracciabilitas = listListaRintracciabilitaByCriteria(listaRintracciabilitaCriteria);
+		if(listaRintracciabilitas == null || listaRintracciabilitas.length == 0) {
+			return null;
+		}
+		return listaRintracciabilitas[0];
+	}
+	
+	public static ListaRintracciabilita[] listListaRintracciabilitaByCriteria(ListaRintracciabilitaCriteria listaRintracciabilitaCriteria) {
+		return listaRintracciabilitaCriteria.listListaRintracciabilita();
+	}
 }

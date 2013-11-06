@@ -87,15 +87,6 @@ public abstract class ARiquadro extends JPanel {
 		this.validate();
 		this.repaint();
 	}
-	
-	/**
-	 * Elimina dal riquadro il bottone di modifica
-	 */
-	public void deleteButtons(){
-		this.remove(this.modifica);
-		this.validate();
-		this.repaint();
-	}
 
 	/**
 	 * Riabilita i listener dai bottoni dei riquadri
@@ -143,12 +134,12 @@ public abstract class ARiquadro extends JPanel {
 	/**
 	 * Salva il riquadro
 	 */
-	public abstract void salva();
+	protected abstract void salva();
 
 	/**
 	 * Controllo deigli errori di input
 	 */
-	public boolean controlloErrori() {
+	public void controlloErrori() {
 		boolean test = true;
 		for (JLabel j : this.Label) {
 			if (j.getIcon() != null && j.getIcon().equals(IcoErrore))
@@ -159,7 +150,6 @@ public abstract class ARiquadro extends JPanel {
 		} else {
 			avoidEditing(false);
 		}
-		return test;
 	}
 
 	/**
@@ -209,37 +199,11 @@ public abstract class ARiquadro extends JPanel {
 		this.modifica.setLocation(469, 0);
 		add(this.modifica);
 	}
-	
-	/**
-	 * Controlla se almeno un campo del riquadro è vuoto
-	 * @return
-	 */
-	public boolean checkEmpty(){
-		boolean test=true;
-		/**
-		 * DEVELOPMENT IGNORE
-		 */
-		/*for(JTextField temp : this.Container){
-			if(temp.getText().equals("")){
-				test=false;
-				break;
-			}
-		}*/
-		return test;
-	}
 
 	protected abstract void initialize();
 	
 	public boolean modify(){
 		return aperto;
-	}
-
-	public Object getOggetto() {
-		return oggetto;
-	}
-
-	public void setOggetto(Object oggetto) {
-		this.oggetto = oggetto;
 	}
 
 }

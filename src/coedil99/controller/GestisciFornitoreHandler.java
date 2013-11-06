@@ -98,6 +98,18 @@ public class GestisciFornitoreHandler {
 		return null;
 	}
 	
+	public ArrayList<MProductDescription> getMProductDescriptions(String fornitore){
+		ArrayList<MProductDescription> prodotti = new ArrayList<MProductDescription>();
+		MCatalogoFornitore cf = GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore);
+		List l = cf.getPersistentModel().productDescription.getCollection();
+		MProductDescription mpd = null;
+		for ( int i=0 ; i<l.size() ; i++  ){
+			mpd = new MProductDescription(((ProductDescription)l.get(i)).getID());
+			prodotti.add(mpd);
+		}
+		return prodotti;
+	}
+	
 	/**
 	 * Set
 	 * 

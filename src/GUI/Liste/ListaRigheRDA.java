@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import GUI.RDACenter;
 import GUI.Abstract.ALista;
+import GUI.Abstract.ARiepilogoRDA;
 import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Riepiloghi.RiepilogoRDAFactory;
@@ -28,7 +29,8 @@ public class ListaRigheRDA extends ALista {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	protected ARiepilogoRDA riepilogoRDA;
+	
 	/**
 	 * Costruttore
 	 */

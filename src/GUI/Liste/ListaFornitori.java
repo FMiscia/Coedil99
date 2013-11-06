@@ -4,14 +4,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import GUI.Abstract.ALista;
 import GUI.Card.CardFornitore;
 import GUI.Card.CardFornitoreFactory;
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.MCatalogoFornitore;
 
+@SuppressWarnings("serial")
 public class ListaFornitori extends ALista {
 
 	/**
@@ -61,10 +60,17 @@ public class ListaFornitori extends ALista {
 	 * 
 	 * @return id:int
 	 */
-	public int getPrimaRDA() {
+	public int getPrimoCatalogo() {
 		this.getPrimaCard().setBackground(new Color(30, 44, 255));
 		return this.getPrimaCard().getCatalogoFornitoreId();
 
+	}
+	
+	/**
+	 * Metodo che seleziona il primo catalogo della lista
+	 */
+	public void setPrimoCatalogo(){
+		this.getPrimaCard().setBackground(new Color(30, 44, 255));
 	}
 
 	/**

@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 
 import GUI.ProgrammaLavori;
 import GUI.RDACenter;
-import GUI.Abstract.AClipPanel;
 import GUI.Abstract.ARiepilogoRDA;
 import GUI.Card.CardRDA;
 import GUI.Liste.ListaRigheRDA;
@@ -116,13 +115,8 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 									"RDA eliminata con successo!\n",
 									"Conferma operazione",
 									JOptionPane.INFORMATION_MESSAGE);
-						} else {
-							RDACenter
-									.getInstance()
-									.getClipPanel()
-									.getButtons()
-									.get(AClipPanel.RDAButtonState.get("NUOVA"))
-									.doClick();
+						}else{
+							RDACenter.getInstance().getClipPanel().getButtons().get(4).doClick();
 						}
 					}
 				}

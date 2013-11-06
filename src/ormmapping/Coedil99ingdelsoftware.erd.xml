@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Model quotesql="1" tablecharset="UTF8">
+<Model quotesql="1" tablecharset="">
   <Entity name="CatalogoFornitore">
     <Column name="ID">
       <PrimaryKey>true</PrimaryKey>
@@ -13,11 +13,69 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="Name">
+  </Entity>
+  <Entity name="ProductDescription">
+    <Column name="ID">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="CatalogoFornitoreID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>coedil99.persistentmodel.CatalogoFornitore.ID</ReferencedColumn>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="CatalogoFornitoreIndex">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Essenza">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
       <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Prezzo">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>4</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Pezzi_per_pacco">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
       <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -84,87 +142,6 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="ProductDescription">
-    <Column name="ID">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="GeometriaID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>Geometria.ID</ReferencedColumn>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="CatalogoFornitoreID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.persistentmodel.CatalogoFornitore.ID</ReferencedColumn>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="CatalogoFornitoreIndex">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Essenza">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Prezzo">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>4</Type>
-      <Length>0</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Pezzi_per_pacco">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-  </Entity>
   <Entity name="RDA">
     <Column name="ID">
       <PrimaryKey>true</PrimaryKey>
@@ -178,96 +155,6 @@
       <UserTypes/>
     </Column>
     <Column name="State">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Date">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>17</Type>
-      <Length>0</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Descrizione">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-  </Entity>
-  <Entity name="Dipendente">
-    <Column name="ID">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Pwd">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Usr">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Level">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Name">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Familyname">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
@@ -391,7 +278,7 @@
       <ReferencedColumn>ListaRintracciabilita.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
-      <Nullable>true</Nullable>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -924,17 +811,6 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="State">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
   </Entity>
   <Entity name="History">
     <Column name="ID">
@@ -1122,8 +998,6 @@
   <ForeignKey name="FKRigaRDA397912">
     <ReferenceTable>RigaRDA</ReferenceTable>
     <ReferencedTable>ProductDescription</ReferencedTable>
-    <OnUpdate>Cascade</OnUpdate>
-    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>ProductDescriptionID</Column>
     </Columns>
@@ -1134,8 +1008,6 @@
   <ForeignKey name="FKRigaRDA54006">
     <ReferenceTable>RigaRDA</ReferenceTable>
     <ReferencedTable>RDA</ReferencedTable>
-    <OnUpdate>Cascade</OnUpdate>
-    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>RDAID</Column>
     </Columns>
@@ -1148,16 +1020,6 @@
     <ReferencedTable>CatalogoFornitore</ReferencedTable>
     <Columns>
       <Column>CatalogoFornitoreID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="FKProductDes822910">
-    <ReferenceTable>ProductDescription</ReferenceTable>
-    <ReferencedTable>Geometria</ReferencedTable>
-    <Columns>
-      <Column>GeometriaID</Column>
     </Columns>
     <RefColumns>
       <Column>ID</Column>

@@ -59,6 +59,7 @@ public class CardFornitore extends ACard{
 				CardFornitore.this.riquadro.deselectAll();				
 				FornitoriCenter contenitore = FornitoriCenter.getInstance();
 				contenitore.setFornitoreSelezionato(catalogo);
+				contenitore.loadListaProdotti();
 				CardFornitore.this.setBackground(new Color(30,44,255));
 				CardFornitore.this.validate();
 				CardFornitore.this.repaint();

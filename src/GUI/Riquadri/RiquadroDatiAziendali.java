@@ -574,7 +574,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * Metodo che modifica i campi degli oggetti interessati e li salva sul db
 	 */
 	@Override
-	public void salva() {
+	protected void salva() {
 		if (this.oggetto != null) {
 			MCommessa c = (MCommessa) this.oggetto;
 			MOrdine ord = new MOrdine(c.getPersistentModel().getOrdine()

@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 import org.orm.PersistentException;
 
-import coedil99.model.MCantiere;
 import coedil99.model.MCliente;
 import coedil99.persistentmodel.Cliente;
 import coedil99.persistentmodel.ClienteFactory;
@@ -60,19 +59,6 @@ public class GestisciClienteHandler {
 	 */
 	public MCliente getClienteById(int id){
 		return new MCliente(id);
-	}
-	
-	/**
-	 * Fornisce un cliente dal nome
-	 */
-	public MCliente getClienteByName(String name){
-		MCliente result = null;
-		for(MCliente temp : this.clienti)
-			if(temp.getPersistentModel().getName().equals(name)){
-				result = temp;
-				break;
-			}
-		return result;
 	}
 	
 	/**

@@ -256,4 +256,15 @@ public class DocumentoOttimizzazioneFactory {
 		return new coedil99.persistentmodel.DocumentoOttimizzazione();
 	}
 	
+	public static DocumentoOttimizzazione loadDocumentoOttimizzazioneByCriteria(DocumentoOttimizzazioneCriteria documentoOttimizzazioneCriteria) {
+		DocumentoOttimizzazione[] documentoOttimizzaziones = listDocumentoOttimizzazioneByCriteria(documentoOttimizzazioneCriteria);
+		if(documentoOttimizzaziones == null || documentoOttimizzaziones.length == 0) {
+			return null;
+		}
+		return documentoOttimizzaziones[0];
+	}
+	
+	public static DocumentoOttimizzazione[] listDocumentoOttimizzazioneByCriteria(DocumentoOttimizzazioneCriteria documentoOttimizzazioneCriteria) {
+		return documentoOttimizzazioneCriteria.listDocumentoOttimizzazione();
+	}
 }

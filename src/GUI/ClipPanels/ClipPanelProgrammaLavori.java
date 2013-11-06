@@ -15,16 +15,15 @@ import GUI.RaccoglitorePlichi;
 import GUI.Abstract.AClipPanel;
 import GUI.Abstract.APlico;
 import GUI.Plichi.PlicoCommessa;
-import GUI.Plichi.PlicoCreaCommessa;
 import GUI.Plichi.PlicoDDO;
 import GUI.Plichi.PlicoDistinta;
 
 /**
  * 
- * @author francesco
+ * @author francesco 
  * 
- *         Implementazione di ACLipPanel per il menù in alto del programma
- *         lavori
+ * Implementazione di ACLipPanel per il menù in alto del
+ * programma lavori
  */
 public class ClipPanelProgrammaLavori extends AClipPanel {
 
@@ -99,9 +98,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
 					return;
 				}
-				MDistinta odistinta = new MDistinta(ProgrammaLavori
-						.getInstance().getCommessaSelezionata()
-						.getPersistentModel().getDistinta().getID());
+				MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getPersistentModel().getDistinta().getID());
 				if (odistinta.hasDdo()) {
 					ClipPanelProgrammaLavori.this.focusOut();
 					JButton b = (JButton) e.getSource();
@@ -122,45 +119,35 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 						odistinta.creaDDO();
 						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 								.changePlico(PlicoDDO.getInstance());
-						((JButton) e.getSource()).doClick();
+						((JButton)e.getSource()).doClick();
 					}
 				}
 				RaccoglitorePlichi.getInstance().validate();
 				RaccoglitorePlichi.getInstance().repaint();
 			}
 		});
-		this.addButton("Nuova Commessa", "Crea una nuova Commessa",
-				new ActionListener() {
+		this.addButton("LDR", "Vai alla LDR", new ActionListener() {
 
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
-							return;
-						}
-						PlicoCreaCommessa.getInstance().resetAll();
-						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
-								.changePlico(PlicoCreaCommessa.getInstance());
-						ClipPanelProgrammaLavori.this.focusOut();
-						ProgrammaLavori.getInstance().getListaCommesse().deselectAll();
-						JButton b = (JButton) e.getSource();
-						b.setBackground(AClipPanel.getColoreSelezionato());
-						RaccoglitorePlichi.getInstance().validate();
-						RaccoglitorePlichi.getInstance().repaint();
-					}
-				});
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
+					return;
+				}
+
+			}
+		});
 		this.fill();
 		this.resetInitialState();
 	}
-
+	
 	/**
-	 * Fornisce true o false a seconda se, durante la modifica di un plico,
-	 * stiamo andando in focus su altri bottoni
+	 * Fornisce true o false a seconda se, durante la modifica di un plico, stiamo 
+	 * andando in focus su altri bottoni 
 	 * 
 	 * @return bool:boolean
 	 */
 	public boolean clickDuringModify() {
-		if (((APlico) RaccoglitorePlichi.getInstance().getPlico_container()
-				.getComponent(0)).isModifying().size() != 0) {
+		if( ((APlico)RaccoglitorePlichi.getInstance().getPlico_container().getComponent(0)).isModifying().size() != 0 ) {
 			Object[] options = { "Si", "No" };
 			int n = JOptionPane.showOptionDialog(null,
 					"Sicuro di voler abbandonare la modifica?\n"

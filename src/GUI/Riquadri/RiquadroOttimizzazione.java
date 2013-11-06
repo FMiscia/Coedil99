@@ -106,7 +106,7 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	}
 
 	@Override
-	public void salva() {
+	protected void salva() {
 		// TODO Auto-generated method stub
 
 	}

@@ -84,14 +84,14 @@ public class ProgrammaLavori extends JPanel {
 	 * 
 	 * @return ListaCommesse
 	 */
-	public ListaCommesse getListaCommesse() {
+	public ListaCommesse getRiquadrocodici() {
 		return (ListaCommesse) lista;
 	}
 	/**
 	 * 
 	 * @param listaCommesse
 	 */
-	public void setListaCommesse(ListaCommesse listaCommesse) {
+	public void setRiquadrocodici(ListaCommesse listaCommesse) {
 		this.lista = listaCommesse;
 	}
 	/**
