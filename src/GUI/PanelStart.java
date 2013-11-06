@@ -49,7 +49,6 @@ public class PanelStart extends JPanel {
 		this.addCOMMERCIALEButton();
 		this.addOTHERButton();
 		this.addClipPanel();
-		this.setButtonsAttivi(Login.getLogged());
 	}
 
 
@@ -171,15 +170,6 @@ public class PanelStart extends JPanel {
 
 	}
 	
-	public void setButtonsAttivi(boolean p){
-		int nb = this.pannelloUseCases.getComponentCount();
-		for (int i=0 ; i<nb; i++){
-			JButton b = (JButton) this.pannelloUseCases.getComponent(i);
-			b.setEnabled(p);
-			if (b.getActionListeners().length > 0 )
-				b.removeActionListener(b.getActionListeners()[0]);
-		}
-	}
 	
 	/**
 	 * Singleton
