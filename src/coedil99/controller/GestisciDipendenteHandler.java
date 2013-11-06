@@ -43,8 +43,6 @@ public class GestisciDipendenteHandler {
 		}
 	}
 
-
-
 	/**
 	 * Fornisce i clienti
 	 * @return clienti:ArrayList<Cliente>
@@ -74,7 +72,7 @@ public class GestisciDipendenteHandler {
 		return GestisciDipendenteHandler.instance;
 	}
 
-	public Dipendente foo(String username, String password){
+	public Dipendente checkPass(String username, String password){
 		
 		List<Dipendente> dip = null;
 		try {
