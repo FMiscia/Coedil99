@@ -46,32 +46,10 @@ public class PanelStart extends JPanel {
 		this.addPannelloUseCases();
 		this.addPLButton();
 		this.addRDAButton();
-		this.addCOMMERCIALEButton();
 		this.addOTHERButton();
 		this.addClipPanel();
 	}
 
-
-
-	private void addCOMMERCIALEButton() {
-		// TODO Auto-generated method stub
-		JButton commercialebutton = new JButton();
-		commercialebutton.setToolTipText("Ufficio Commerciale");
-		commercialebutton.setSize(100, 100);
-		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"/GUI/image/wip.png"));
-			commercialebutton.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		commercialebutton.setFocusable(false);
-		pannelloUseCases.add(commercialebutton);
-		commercialebutton.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				CoedilFrame.getInstance().montaPanel(CommercialePanel.getInstance());
-			}
-		});
-	}
 
 	/**
 	 * Aggiunge il ClipPanel, pannello dei button in alto
