@@ -75,10 +75,8 @@ public class PlicoCommessa extends APlico {
 		MCommessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
 		MOrdine o = GestisciOrdineHandler.getInstance().getMOrdineById(
 				c.getPersistentModel().getOrdine().getID());
-		MCliente cl = GestisciClienteHandler.getInstance().getClienteById(
-				o.getPersistentModel().getCliente().getID());
 		rda.load(c);
-		rdcc.load(cl);
+		rdcc.load(c);
 		rdc.load(c);
 		rdpc.load(o);
 		rsc.load(c);
@@ -160,7 +158,7 @@ public class PlicoCommessa extends APlico {
 				.getInstance().makeRiquadro();
 		rsc = (RiquadroDatiSviluppoConsegna) RiquadroDatiSviluppoConsegnaFactory
 				.getInstance().makeRiquadro();
-		setPreferredSize(new Dimension(745, 1110));
+		setPreferredSize(new Dimension(745, 1150));
 		setSize(745, 950);
 		posizionaRiquadri();
 		add(elimina);
@@ -203,6 +201,9 @@ public class PlicoCommessa extends APlico {
 		return modifica;
 	}
 
+	/**
+	 * Riporta tutti i TextField del plico non editabili
+	 */
 	public void reset() {
 		this.rda.makeEditable(false);
 		this.rdc.makeEditable(false);

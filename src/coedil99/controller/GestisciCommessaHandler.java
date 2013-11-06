@@ -101,6 +101,7 @@ public class GestisciCommessaHandler {
 		return this.commesse;
 	}
 	
+	
 	/**
 	 * Fornisce il numero di commesse esistenti
 	 * @return numeroCommesse:int

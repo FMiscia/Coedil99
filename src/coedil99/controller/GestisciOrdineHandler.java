@@ -74,6 +74,10 @@ public class GestisciOrdineHandler {
 			return new MOrdine(id);
 	}
 	
+	public int getNextOrdineContratto(){
+		return this.ordini.size()+1;
+	}
+	
 	/**
 	 * Singleton
 	 * 

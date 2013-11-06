@@ -7,6 +7,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -400,6 +401,15 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 		this.lblIcoRitardo.setVisible(false);
 		this.form.add(lblIcoRitardo, "8, 10, center, top");
 		this.Label.add(lblIcoRitardo);
+	}
+	
+	/**
+	 * Set della data di emissione commessa
+	 */
+	public void setDataEmissioneCommmessa(Date d){
+		this.dateEmissioneCommessa.setDate(d);
+		this.validate();
+		this.repaint();
 	}
 
 }

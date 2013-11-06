@@ -7,6 +7,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -163,6 +164,10 @@ public class PlicoCreaCommessa extends APlico {
 					MOrdine temp = GestisciOrdineHandler.getInstance().getMOrdineById(selected_ordine);
 					PlicoCreaCommessa.this.rdcc.setSelectedCantiere(temp.getPersistentModel().getCliente().getCantiere().getNome());
 					PlicoCreaCommessa.this.rdcc.setSelectedCliente(temp.getPersistentModel().getCliente().getName());
+					PlicoCreaCommessa.this.rdpc.setDataInizio(temp.getPersistentModel().getDataInizio());
+					PlicoCreaCommessa.this.rdpc.setDataFine(temp.getPersistentModel().getDataFine());
+					PlicoCreaCommessa.this.rda.setOrdineContratto(GestisciOrdineHandler.getInstance().getNextOrdineContratto());
+					PlicoCreaCommessa.this.rda.setAnno(temp.getPersistentModel().getAnno());
 					PlicoCreaCommessa.this.rdcc.makeEditable(false);
 				}
 			}
@@ -198,13 +203,16 @@ public class PlicoCreaCommessa extends APlico {
 		});
 		rdcc = (RiquadroDatiClienteConsegna) RiquadroDatiClienteConsegnaFactory
 				.getInstance().makeRiquadro();
+		rda.showNumeroCommessaCoedilMessage();
+		rda.showOrdineGestionaleMessage();
 		rdc = (RiquadroDatiConsegna) RiquadroDatiConsegnaFactory.getInstance()
 				.makeRiquadro();
 		rdpc = (RiquadroDatiProduzioneConsegna) RiquadroDatiProduzioneConsegnaFactory
 				.getInstance().makeRiquadro();
 		rsc = (RiquadroDatiSviluppoConsegna) RiquadroDatiSviluppoConsegnaFactory
 				.getInstance().makeRiquadro();
-		setPreferredSize(new Dimension(745, 1110));
+		PlicoCreaCommessa.this.rsc.setDataEmissioneCommmessa(new java.util.Date());
+		setPreferredSize(new Dimension(745, 1250));
 		setSize(745, 950);
 		posizionaRiquadri();
 		add(this.error_mex);

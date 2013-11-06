@@ -62,19 +62,22 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	public void load(Object o) {
 		this.oggetto = o;
 		this.resetRiquadro();
-		MCliente c = (MCliente) o;
-		if (c.getPersistentModel().getCantiere().getNome() != null)
-			this.cbCantiere.setSelectedItem(c.getPersistentModel()
-					.getCantiere().getNome());
-		if (c.getPersistentModel().getName() != null)
-			this.cbClienti.setSelectedItem(c.getPersistentModel().getName());
-		if (c.getPersistentModel().getNumeroCommessaCliente() != null)
-			this.txtCommessa.setText(c.getPersistentModel()
-					.getNumeroCommessaCliente().toString());
+		MCommessa c = (MCommessa) o;
+		if (c.getPersistentModel().getOrdine().getCliente().getCantiere()
+				.getNome() != null)
+			this.cbCantiere.setSelectedItem(c.getPersistentModel().getOrdine()
+					.getCliente().getCantiere().getNome());
+		if (c.getPersistentModel().getOrdine().getCliente().getName() != null)
+			this.cbClienti.setSelectedItem(c.getPersistentModel().getOrdine()
+					.getCliente().getName());
+		if (c.getPersistentModel().getOrdine().getCliente()
+				.getNumeroCommessaCliente() != null)
+			this.txtCommessa.setText(c.getPersistentModel().getOrdine()
+					.getCliente().getNumeroCommessaCliente().toString());
 	}
 
 	/**
-	 * Metodo che modifica i campi del model e lo salva sul db 
+	 * Metodo che modifica i campi del model e lo salva sul db
 	 * 
 	 * CORREGGERE
 	 * 
@@ -85,8 +88,8 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 			MCommessa c = (MCommessa) this.oggetto;
 			c.getPersistentModel().getOrdine().getCliente().getCantiere()
 					.setNome(this.cbCantiere.getSelectedItem().toString());
-			c.getPersistentModel().getOrdine().getCliente().setName(
-					this.cbClienti.getSelectedItem().toString());
+			c.getPersistentModel().getOrdine().getCliente()
+					.setName(this.cbClienti.getSelectedItem().toString());
 			c.save();
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
@@ -173,8 +176,8 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		this.cbClienti = new JComboBox<Object>();
 		this.cbClienti.setAlignmentX(SwingConstants.CENTER);
 		if (this.cbClienti.getItemListeners().length != 0)
-			this.cbClienti.removeItemListener(this.cbClienti
-					.getItemListeners()[0]);
+			this.cbClienti
+					.removeItemListener(this.cbClienti.getItemListeners()[0]);
 		this.cbClienti.removeAllItems();
 		this.cbClienti.setEnabled(true);
 		ArrayList<MCliente> cantieri = GestisciClienteHandler.getInstance()
@@ -196,7 +199,8 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 									.getClienteByName(selected_cliente)
 									.getPersistentModel().getCantiere()
 									.getNome());
-					RiquadroDatiClienteConsegna.this.cbCantiere.setEnabled(false);
+					RiquadroDatiClienteConsegna.this.cbCantiere
+							.setEnabled(false);
 					RiquadroDatiClienteConsegna.this.txtCommessa.setText(String
 							.valueOf(GestisciClienteHandler.getInstance()
 									.getClienteByName(selected_cliente)
@@ -260,18 +264,26 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		this.form.add(lblIcoCommessa, "8, 6, center, top");
 		this.Label.add(lblIcoCommessa);
 	}
-
+	
+	/**
+	 * Mette in focus nella combo box il cantiere 
+	 * @param name: cantiere desiderato
+	 */
 	public void setSelectedCantiere(String name) {
 		this.cbCantiere.setSelectedItem(name);
 	}
 
+	/**
+	 * Mette in focus nella combo box il cliente
+	 * @param name: cliente desiderato
+	 */
 	public void setSelectedCliente(String name) {
 		this.cbClienti.setSelectedItem(name);
 	}
 
 	@Override
 	public void makeEditable(boolean editable) {
-		//this.cbCantiere.setEnabled(editable);
+		// this.cbCantiere.setEnabled(editable);
 		this.cbClienti.setEnabled(editable);
 
 	}

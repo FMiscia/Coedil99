@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -95,6 +96,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 					});
 		}
 		this.dateDataInizio.setFormats("yyyy-MM-dd");
+		this.dateDataInizio.setEnabled(false);
 		this.form.add(this.dateDataInizio, "6, 2, fill, fill");
 
 		this.lblIcoDataInizio = new JLabel("");
@@ -152,6 +154,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 			});
 		}
 		this.dateDataFine.setFormats("yyyy-MM-dd");
+		this.dateDataFine.setEnabled(false);
 		this.form.add(this.dateDataFine, "6, 4, fill, fill");
 
 		this.lblIcoDataFine = new JLabel("");
@@ -260,11 +263,29 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	 */
 	@Override
 	public void makeEditable(boolean editable) {
-		this.dateDataInizio.setEnabled(editable);
-		this.dateDataFine.setEnabled(editable);
 		this.dateScadenzaSviluppo.setEnabled(editable);
 		super.makeEditable(editable);
 
+	}
+	
+	/**
+	 * Set della data di inizio ordine nel data picker del Riquadro dati aziendali
+	 * @param t:data
+	 */
+	public void setDataInizio(Date t){
+		this.dateDataInizio.setDate(t);
+		this.validate();
+		this.repaint();
+	}
+	
+	/**
+	 * Set della data di fine ordine nel data picker del Riquadro dati aziendali
+	 * @param t:data
+	 */
+	public void setDataFine(Date t){
+		this.dateDataFine.setDate(t);
+		this.validate();
+		this.repaint();
 	}
 
 	/**

@@ -5,6 +5,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -281,7 +282,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.form.add(this.lblOrdineGestionale, "2, 10");
 		this.txtOrdineGestionale = new JTextField();
 		this.txtOrdineGestionale.setHorizontalAlignment(SwingConstants.CENTER);
-		if (this.txtOrdineGestionale.getKeyListeners().length == 0)
+		/*if (this.txtOrdineGestionale.getKeyListeners().length == 0)
 			this.txtOrdineGestionale.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
@@ -309,8 +310,8 @@ public class RiquadroDatiAziendali extends ARiquadro {
 					}
 					controlloErrori();
 				}
-			});
-		this.Container.add(this.txtOrdineGestionale);
+			});*/
+		this.txtOrdineGestionale.setEnabled(false);
 		this.form.add(this.txtOrdineGestionale, "6, 10, fill, fill");
 		this.lblIcoOrdineGestionale = new JLabel("");
 		this.lblIcoOrdineGestionale.setVisible(false);
@@ -326,7 +327,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.form.add(this.lblCommessaCoedil, "2, 8");
 		this.txtCommessaCoedil = new JTextField();
 		this.txtCommessaCoedil.setHorizontalAlignment(SwingConstants.CENTER);
-		if (this.txtCommessaCoedil.getKeyListeners().length == 0)
+		/*if (this.txtCommessaCoedil.getKeyListeners().length == 0)
 			this.txtCommessaCoedil.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
@@ -352,8 +353,9 @@ public class RiquadroDatiAziendali extends ARiquadro {
 					}
 					controlloErrori();
 				}
-			});
-		this.Container.add(this.txtCommessaCoedil);
+			});*/
+		//this.Container.add(this.txtCommessaCoedil);
+		this.txtCommessaCoedil.setEnabled(false);
 		this.form.add(this.txtCommessaCoedil, "6, 8, fill, fill");
 		this.lblIcoCommessaCoedil = new JLabel("");
 		this.lblIcoCommessaCoedil.setVisible(false);
@@ -369,7 +371,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.form.add(this.lblOrdineContratto, "2, 6");
 		this.txtOrdineContratto = new JTextField();
 		this.txtOrdineContratto.setHorizontalAlignment(SwingConstants.CENTER);
-		if (this.txtOrdineContratto.getKeyListeners().length == 0)
+		/*if (this.txtOrdineContratto.getKeyListeners().length == 0)
 			this.txtOrdineContratto.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
@@ -395,9 +397,9 @@ public class RiquadroDatiAziendali extends ARiquadro {
 					}
 					controlloErrori();
 				}
-			});
+			});*/
 
-		this.Container.add(this.txtOrdineContratto);
+		this.txtOrdineContratto.setEnabled(false);
 		this.form.add(this.txtOrdineContratto, "6, 6, fill, fill");
 
 		this.lblIcoOrdineContratto = new JLabel("");
@@ -414,7 +416,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.form.add(this.lblAnno, "2, 4");
 		this.txtAnno = new JTextField();
 		this.txtAnno.setHorizontalAlignment(SwingConstants.CENTER);
-		if (this.txtAnno.getKeyListeners().length == 0)
+		/*if (this.txtAnno.getKeyListeners().length == 0)
 			this.txtAnno.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
@@ -439,9 +441,9 @@ public class RiquadroDatiAziendali extends ARiquadro {
 					}
 					controlloErrori();
 				}
-			});
+			});*/
 
-		this.Container.add(this.txtAnno);
+		this.txtAnno.setEnabled(false);
 		this.form.add(this.txtAnno, "6, 4, fill, fill");
 
 		this.lblIcoAnno = new JLabel("");
@@ -575,10 +577,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 			MOrdine ord = new MOrdine(c.getPersistentModel().getOrdine()
 					.getID());
 			ord.getPersistentModel().setOC(this.txtOC.getText());
-			ord.getPersistentModel().setAnno(
-					Integer.valueOf(this.txtAnno.getText()));
-			ord.getPersistentModel().setOrdineGestionale(
-					this.txtOrdineGestionale.getText());
 			ord.getPersistentModel().setDataInizio(
 					this.dateDataInizio.getDate());
 			ord.getPersistentModel().setDataFine(this.dateDataFine.getDate());
@@ -593,6 +591,67 @@ public class RiquadroDatiAziendali extends ARiquadro {
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
 			this.load(this.oggetto);
 		}
+	}
+	
+	/**
+	 * Mostra un messaggio utile nella fase di creazione
+	 * che comunica che il numero commessa Coedil verrà inserito
+	 * automaticamente dal sistema una volta che la Commessa verrà salvata
+	 */
+	public void showNumeroCommessaCoedilMessage(){
+		this.txtCommessaCoedil.setText("Automatico dopo il salvataggio");
+		this.validate();
+		this.repaint();
+	}
+	
+	/**
+	 * Set della data di inizio commessa nel data picker del Riquadro dati aziendali
+	 * @param t:data
+	 */
+	public void setDataInizioCommessa(Date t){
+		this.dateDataInizio.setDate(t);
+		this.validate();
+		this.repaint();
+	}
+	
+	/**
+	 * Set della data di fine commessa nel data picker del Riquadro dati aziendali
+	 * @param t:data
+	 */
+	public void setDataFineCommessa(Date t){
+		this.dateDataFine.setDate(t);
+		this.validate();
+		this.repaint();
+	}
+	
+	/**
+	 * Mostra un messaggio informativo sulla label ad indicare che il
+	 * campo verrà automaticamente riempito dopo il salvataggio
+	 */
+	public void showOrdineGestionaleMessage(){
+		this.txtOrdineGestionale.setText("Automatico dopo il salvataggio");
+		this.validate();
+		this.repaint();
+	}
+	
+	/**
+	 * Set del numero d'ordine
+	 * @param n:valore
+	 */
+	public void setOrdineContratto(int n){
+		this.txtOrdineContratto.setText(String.valueOf(n));
+		this.validate();
+		this.repaint();
+	}
+	
+	/**
+	 * Set dell'anno dell'ordine 
+	 * @param year
+	 */
+	public void setAnno(int year){
+		this.txtAnno.setText(String.valueOf(year));
+		this.validate();
+		this.repaint();
 	}
 
 	@Override
