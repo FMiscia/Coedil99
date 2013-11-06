@@ -241,7 +241,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	 * Salva le modifiche sul db
 	 */
 	@Override
-	protected void salva() {
+	public void salva() {
 		if (this.oggetto != null) {
 			MOrdine ord = (MOrdine) this.oggetto;
 			ord.getPersistentModel().setDataInizio(

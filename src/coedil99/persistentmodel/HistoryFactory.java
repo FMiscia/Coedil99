@@ -256,15 +256,4 @@ public class HistoryFactory {
 		return new coedil99.persistentmodel.History();
 	}
 	
-	public static History loadHistoryByCriteria(HistoryCriteria historyCriteria) {
-		History[] historys = listHistoryByCriteria(historyCriteria);
-		if(historys == null || historys.length == 0) {
-			return null;
-		}
-		return historys[0];
-	}
-	
-	public static History[] listHistoryByCriteria(HistoryCriteria historyCriteria) {
-		return historyCriteria.listHistory();
-	}
 }

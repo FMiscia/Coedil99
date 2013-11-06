@@ -256,15 +256,4 @@ public class DistintaFactory {
 		return new coedil99.persistentmodel.Distinta();
 	}
 	
-	public static Distinta loadDistintaByCriteria(DistintaCriteria distintaCriteria) {
-		Distinta[] distintas = listDistintaByCriteria(distintaCriteria);
-		if(distintas == null || distintas.length == 0) {
-			return null;
-		}
-		return distintas[0];
-	}
-	
-	public static Distinta[] listDistintaByCriteria(DistintaCriteria distintaCriteria) {
-		return distintaCriteria.listDistinta();
-	}
 }

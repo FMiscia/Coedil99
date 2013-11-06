@@ -256,15 +256,4 @@ public class CantiereFactory {
 		return new coedil99.persistentmodel.Cantiere();
 	}
 	
-	public static Cantiere loadCantiereByCriteria(CantiereCriteria cantiereCriteria) {
-		Cantiere[] cantieres = listCantiereByCriteria(cantiereCriteria);
-		if(cantieres == null || cantieres.length == 0) {
-			return null;
-		}
-		return cantieres[0];
-	}
-	
-	public static Cantiere[] listCantiereByCriteria(CantiereCriteria cantiereCriteria) {
-		return cantiereCriteria.listCantiere();
-	}
 }
