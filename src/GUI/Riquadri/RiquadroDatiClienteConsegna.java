@@ -71,7 +71,7 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	 * Metodo che modifica i campi del model e lo salva sul db
 	 */
 	@Override
-	public void salva() {
+	protected void salva() {
 		if (this.oggetto != null) {
 			MCliente c = (MCliente) this.oggetto;
 			c.getPersistentModel().getCantiere()

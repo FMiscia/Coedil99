@@ -141,6 +141,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 								.changePlico(PlicoCreaCommessa.getInstance());
 						ClipPanelProgrammaLavori.this.focusOut();
+						ProgrammaLavori.getInstance().getListaCommesse().deselectAll();
 						JButton b = (JButton) e.getSource();
 						b.setBackground(AClipPanel.getColoreSelezionato());
 						RaccoglitorePlichi.getInstance().validate();

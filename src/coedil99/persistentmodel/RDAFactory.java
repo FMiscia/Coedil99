@@ -256,4 +256,15 @@ public class RDAFactory {
 		return new coedil99.persistentmodel.RDA();
 	}
 	
+	public static RDA loadRDAByCriteria(RDACriteria rDACriteria) {
+		RDA[] rDAs = listRDAByCriteria(rDACriteria);
+		if(rDAs == null || rDAs.length == 0) {
+			return null;
+		}
+		return rDAs[0];
+	}
+	
+	public static RDA[] listRDAByCriteria(RDACriteria rDACriteria) {
+		return rDACriteria.listRDA();
+	}
 }

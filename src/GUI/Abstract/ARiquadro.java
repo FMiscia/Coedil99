@@ -209,6 +209,24 @@ public abstract class ARiquadro extends JPanel {
 		this.modifica.setLocation(469, 0);
 		add(this.modifica);
 	}
+	
+	/**
+	 * Controlla se almeno un campo del riquadro è vuoto
+	 * @return
+	 */
+	public boolean checkEmpty(){
+		boolean test=true;
+		/**
+		 * DEVELOPMENT IGNORE
+		 */
+		/*for(JTextField temp : this.Container){
+			if(temp.getText().equals("")){
+				test=false;
+				break;
+			}
+		}*/
+		return test;
+	}
 
 	protected abstract void initialize();
 	

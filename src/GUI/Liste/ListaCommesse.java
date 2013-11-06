@@ -28,7 +28,6 @@ public class ListaCommesse extends ALista {
 	public ListaCommesse(){
 		super();
 		this.load();
-		
 	}
 	
 	@Override
@@ -68,7 +67,10 @@ public class ListaCommesse extends ALista {
 	 */
 	public void updatePanel() {
 		// TODO Auto-generated method stub
-		
+		this.panel.removeAll();
+		this.load();
+		this.panel.validate();
+		this.panel.repaint();
 	}
 
 	@Override

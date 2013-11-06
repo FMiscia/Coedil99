@@ -256,4 +256,15 @@ public class ItemFactory {
 		return new coedil99.persistentmodel.Item();
 	}
 	
+	public static Item loadItemByCriteria(ItemCriteria itemCriteria) {
+		Item[] items = listItemByCriteria(itemCriteria);
+		if(items == null || items.length == 0) {
+			return null;
+		}
+		return items[0];
+	}
+	
+	public static Item[] listItemByCriteria(ItemCriteria itemCriteria) {
+		return itemCriteria.listItem();
+	}
 }

@@ -17,6 +17,8 @@ import javax.swing.border.EmptyBorder;
 import coedil99.controller.GestisciRDAHandler;
 import GUI.ClipPanels.ClipPanelMenu;
 import GUI.ClipPanels.ClipPanelMenuFactory;
+import GUI.Liste.ListaFornitori;
+import GUI.Liste.ListaFornitoriFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
 import GUI.PLogin.Login;
@@ -84,6 +86,18 @@ public class PanelStart extends JPanel {
 		}
 		otherbutton.setFocusable(false);
 		pannelloUseCases.add(otherbutton);
+		otherbutton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				ListaFornitori listaf = (ListaFornitori) ListaFornitoriFactory.getInstance().makeLista();
+				FornitoriCenter.getInstance().setLista(listaf);
+				ArrayList<JButton> b = FornitoriCenter.getInstance().getClipPanel()
+						.getButtons();
+				CoedilFrame.getInstance().montaPanel(FornitoriCenter.getInstance());
+				//b.get(1).doClick();
+				
+				
+			}
+		});
 
 	}
 
