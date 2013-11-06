@@ -256,4 +256,5 @@ public class DipendenteFactory {
 		return new coedil99.persistentmodel.Dipendente();
 	}
 	
+
 }
