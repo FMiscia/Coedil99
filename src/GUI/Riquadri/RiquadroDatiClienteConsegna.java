@@ -22,6 +22,7 @@ import coedil99.controller.GestisciCantiereHandler;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.model.MCantiere;
 import coedil99.model.MCliente;
+import coedil99.model.MCommessa;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;

@@ -68,6 +68,10 @@ public class Cantiere implements coedil99.persistentmodel.IPersistentModel {
 	
 	private String indirizzo;
 	
+	private void setID(int value) {
+		this.ID = value;
+	}
+	
 	public int getID() {
 		return ID;
 	}
