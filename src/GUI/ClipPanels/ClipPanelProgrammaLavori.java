@@ -15,7 +15,6 @@ import GUI.RaccoglitorePlichi;
 import GUI.Abstract.AClipPanel;
 import GUI.Abstract.APlico;
 import GUI.Plichi.PlicoCommessa;
-import GUI.Plichi.PlicoCreaCommessa;
 import GUI.Plichi.PlicoDDO;
 import GUI.Plichi.PlicoDistinta;
 
@@ -134,18 +133,18 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
-							return;
-						}
-						PlicoCreaCommessa.getInstance().resetAll();
-						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
-								.changePlico(PlicoCreaCommessa.getInstance());
-						ClipPanelProgrammaLavori.this.focusOut();
-						ProgrammaLavori.getInstance().getListaCommesse().deselectAll();
-						JButton b = (JButton) e.getSource();
-						b.setBackground(AClipPanel.getColoreSelezionato());
-						RaccoglitorePlichi.getInstance().validate();
-						RaccoglitorePlichi.getInstance().repaint();
+//						if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
+//							return;
+//						}
+//						PlicoCreaCommessa.getInstance().resetAll();
+//						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
+//								.changePlico(PlicoCreaCommessa.getInstance());
+//						ClipPanelProgrammaLavori.this.focusOut();
+//						ProgrammaLavori.getInstance().getListaCommesse().deselectAll();
+//						JButton b = (JButton) e.getSource();
+//						b.setBackground(AClipPanel.getColoreSelezionato());
+//						RaccoglitorePlichi.getInstance().validate();
+//						RaccoglitorePlichi.getInstance().repaint();
 					}
 				});
 		this.fill();

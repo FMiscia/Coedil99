@@ -256,4 +256,15 @@ public class ClienteFactory {
 		return new coedil99.persistentmodel.Cliente();
 	}
 	
+	public static Cliente loadClienteByCriteria(ClienteCriteria clienteCriteria) {
+		Cliente[] clientes = listClienteByCriteria(clienteCriteria);
+		if(clientes == null || clientes.length == 0) {
+			return null;
+		}
+		return clientes[0];
+	}
+	
+	public static Cliente[] listClienteByCriteria(ClienteCriteria clienteCriteria) {
+		return clienteCriteria.listCliente();
+	}
 }

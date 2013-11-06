@@ -256,4 +256,15 @@ public class GeometriaFactory {
 		return new coedil99.persistentmodel.Geometria();
 	}
 	
+	public static Geometria loadGeometriaByCriteria(GeometriaCriteria geometriaCriteria) {
+		Geometria[] geometrias = listGeometriaByCriteria(geometriaCriteria);
+		if(geometrias == null || geometrias.length == 0) {
+			return null;
+		}
+		return geometrias[0];
+	}
+	
+	public static Geometria[] listGeometriaByCriteria(GeometriaCriteria geometriaCriteria) {
+		return geometriaCriteria.listGeometria();
+	}
 }
