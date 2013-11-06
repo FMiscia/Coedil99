@@ -8,11 +8,12 @@ import javax.swing.JPanel;
 import GUI.ClipPanels.ClipPanelComm;
 import GUI.ClipPanels.ClipPanelCommFactory;
 import GUI.ClipPanels.ClipPanelProgrammaLavoriFactory;
+import GUI.Plichi.PlicoRDA;
 
-public class CommercialePanel extends JPanel {
+public class CommercialeCenter extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	private static CommercialePanel instance = null;
+	private static CommercialeCenter instance = null;
 	private ClipPanelComm clip;
 	JPanel commPanel = new JPanel();
 	
@@ -20,14 +21,21 @@ public class CommercialePanel extends JPanel {
 	/**
 	 * Costruttore del pannello Programma Lavori 
 	 */
-	private CommercialePanel() {
+	private CommercialeCenter() {
+		this.initialize();
+	}
+	
+	
+	/**
+	 * Inizializza le componenti grafiche
+	 */
+	private void initialize() {
 		setMinimumSize(new Dimension(500, 600));
 		setLayout(new BorderLayout());
 		this.addMenuBar();
 		this.addCommPanel();
-
 	}
-	
+
 	private void addCommPanel() {
 		// TODO Auto-generated method stub
 		
@@ -49,10 +57,10 @@ public class CommercialePanel extends JPanel {
 	 * 
 	 * @return CommercialePanel
 	 */
-	public static CommercialePanel getInstance() {
-		if (CommercialePanel.instance == null)
-			CommercialePanel.instance = new CommercialePanel();
-		return CommercialePanel.instance;
+	public static CommercialeCenter getInstance() {
+		if (CommercialeCenter.instance == null)
+			CommercialeCenter.instance = new CommercialeCenter();
+		return CommercialeCenter.instance;
 	}
 	
 }

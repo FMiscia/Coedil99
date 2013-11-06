@@ -22,7 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import GUI.CoedilFrame;
-import GUI.CommercialePanel;
+import GUI.CommercialeCenter;
 import GUI.PanelStart;
 
 public class LoginDialog extends JPanel {
@@ -135,10 +135,10 @@ public class LoginDialog extends JPanel {
 
 					// ufficio commerciale
 					if (Login.getLevel() == 1) {
-						CommercialePanel cp = CommercialePanel.getInstance();
+						CommercialeCenter cc = CommercialeCenter.getInstance();
 						CoedilFrame cf = CoedilFrame.getInstance();
-						cp.setBounds(0, 0, cf.getWidth(), cf.getHeight());
-						cf.montaPanel(cp);
+						cc.setBounds(0, 0, cf.getWidth(), cf.getHeight());
+						cf.montaPanel(cc);
 					}
 
 				} else {
