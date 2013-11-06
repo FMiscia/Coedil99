@@ -14,9 +14,11 @@
 package coedil99.persistentmodel;
 
 import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
-import org.orm.criteria.*;
+import org.orm.criteria.AbstractORMDetachedCriteria;
+import org.orm.criteria.IntegerExpression;
 
 public class RigaRDADetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;

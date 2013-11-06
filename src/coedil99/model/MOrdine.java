@@ -6,8 +6,6 @@ import coedil99.persistentmodel.Commessa;
 import coedil99.persistentmodel.IPersistentModel;
 import coedil99.persistentmodel.Ordine;
 import coedil99.persistentmodel.OrdineFactory;
-import coedil99.persistentmodel.RDA;
-import coedil99.persistentmodel.RDAFactory;
 
 public class MOrdine implements IModel{
 

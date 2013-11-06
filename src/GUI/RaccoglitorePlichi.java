@@ -2,13 +2,13 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import GUI.ProgrammaLavori;
+
 import GUI.Abstract.APlico;
 import GUI.Plichi.PlicoCommessa;
 import coedil99.model.MCommessa;
-import coedil99.persistentmodel.Commessa;
 
 @SuppressWarnings("serial")
 public class RaccoglitorePlichi extends JScrollPane {

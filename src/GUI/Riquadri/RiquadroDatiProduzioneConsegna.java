@@ -9,11 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import org.jdesktop.swingx.JXDatePicker;
-import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
 import coedil99.model.MOrdine;
-import coedil99.persistentmodel.Ordine;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;

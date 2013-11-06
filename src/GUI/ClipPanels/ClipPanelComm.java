@@ -2,6 +2,7 @@ package GUI.ClipPanels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import GUI.CoedilFrame;
 import GUI.LoginPanel;
 import GUI.PanelStart;

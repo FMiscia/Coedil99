@@ -1,7 +1,5 @@
 package coedil99.model;
 
-import coedil99.persistentmodel.IPersistentModel;
-
 /**
  * Pattern Strategy
  * 

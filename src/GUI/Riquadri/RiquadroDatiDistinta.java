@@ -26,11 +26,7 @@ import GUI.Plichi.PlicoDistinta;
 import coedil99.model.MDistinta;
 import coedil99.model.MGeometria;
 import coedil99.model.MRigaLavoro;
-import coedil99.persistentmodel.Distinta;
-import coedil99.persistentmodel.Geometria;
-import coedil99.persistentmodel.GeometriaFactory;
 import coedil99.persistentmodel.RigaLavoro;
-import coedil99.persistentmodel.RigaLavoroFactory;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;

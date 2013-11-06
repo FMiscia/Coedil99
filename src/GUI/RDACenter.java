@@ -2,16 +2,16 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+
 import javax.swing.JPanel;
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.MRDA;
-import coedil99.persistentmodel.RDA;
+
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
 import GUI.Liste.ListaRDA;
-import GUI.Liste.ListaRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
+import coedil99.controller.GestisciRDAHandler;
+import coedil99.model.MRDA;
 
 public class RDACenter extends JPanel {
 

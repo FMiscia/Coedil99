@@ -17,11 +17,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
-import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
 import coedil99.model.MCommessa;
-import coedil99.persistentmodel.Commessa;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;

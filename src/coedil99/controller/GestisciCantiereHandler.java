@@ -6,11 +6,8 @@ import java.util.Arrays;
 import org.orm.PersistentException;
 
 import coedil99.model.MCantiere;
-import coedil99.model.MCliente;
 import coedil99.persistentmodel.Cantiere;
 import coedil99.persistentmodel.CantiereFactory;
-import coedil99.persistentmodel.Cliente;
-import coedil99.persistentmodel.ClienteFactory;
 
 public class GestisciCantiereHandler {
 	private ArrayList<MCantiere> cantieri = null;
@@ -62,6 +59,7 @@ public class GestisciCantiereHandler {
 	/**
 	 * Fornisce un cantiere dal nome
 	 */
+	@SuppressWarnings("null")
 	public MCantiere getCantiereByName(String name){
 		MCantiere result = null;
 		for(MCantiere temp : this.cantieri)

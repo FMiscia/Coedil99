@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
-import GUI.Liste.ListaFornitori;
 
 /**
  * Gestisce il pannello dei fornitori

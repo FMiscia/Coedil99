@@ -12,7 +12,6 @@ import GUI.Card.CardCodiceInternoFactory;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MCliente;
-import coedil99.persistentmodel.Cliente;
 
 @SuppressWarnings("serial")
 /**

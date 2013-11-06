@@ -3,13 +3,12 @@ package GUI.Plichi;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
-import coedil99.controller.GestisciRDAHandler;
-
 import GUI.RDACenter;
 import GUI.Abstract.AFormRDA;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
 import GUI.Liste.ListaRigheRDA;
+import coedil99.controller.GestisciRDAHandler;
 
 
 /**

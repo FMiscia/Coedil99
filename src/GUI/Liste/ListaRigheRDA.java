@@ -13,8 +13,6 @@ import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Riepiloghi.RiepilogoRDAFactory;
 import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.MRigaRDA;
-import coedil99.persistentmodel.RigaRDA;
 
 /**
  * 

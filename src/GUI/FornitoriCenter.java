@@ -2,7 +2,6 @@ package GUI;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import GUI.ClipPanels.ClipPanelFornitori;

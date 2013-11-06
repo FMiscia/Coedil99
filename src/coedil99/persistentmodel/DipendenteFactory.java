@@ -13,9 +13,11 @@
  */
 package coedil99.persistentmodel;
 
-import org.orm.*;
-import org.hibernate.Query;
 import java.util.List;
+
+import org.hibernate.Query;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
 
 public class DipendenteFactory {
 	public static Dipendente loadDipendenteByORMID(int ID) throws PersistentException {

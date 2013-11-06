@@ -2,6 +2,7 @@ package GUI.Plichi;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 import GUI.CoedilFrame;
@@ -11,8 +12,6 @@ import GUI.Riquadri.RiquadroOttimizzazione;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MCommessa;
 import coedil99.model.MDocumentoOttimizzazione;
-import coedil99.persistentmodel.Commessa;
-import coedil99.persistentmodel.DocumentoOttimizzazione;
 
 @SuppressWarnings("serial")
 /**

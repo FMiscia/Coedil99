@@ -2,7 +2,6 @@ package GUI.Card;
 
 import GUI.Abstract.ACard;
 import GUI.Abstract.ALista;
-import GUI.Liste.ListaCommesse;
 import GUI.Liste.ListaFornitori;
 
 public class CardFornitoreFactory extends CardFactory {

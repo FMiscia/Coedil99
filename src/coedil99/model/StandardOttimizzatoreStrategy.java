@@ -20,8 +20,7 @@ public class StandardOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 		ArrayList<Geometria> distitems = new ArrayList<Geometria>();
 		// Item da aggiungere al DDO
 		ArrayList<MItem> ddoitem = new ArrayList<MItem>();
-		// Residui dei tagli
-		ArrayList<MItem> sfridi = new ArrayList<MItem>();
+
 		// Item presenti nel magazzino
 		ArrayList<MItem> itm = new ArrayList<MItem>(MMagazzino.getInstance()
 				.getItems().keySet());

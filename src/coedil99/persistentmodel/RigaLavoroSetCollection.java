@@ -13,7 +13,8 @@
  */
 package coedil99.persistentmodel;
 
-import org.orm.*;
+import org.orm.PersistentException;
+import org.orm.PersistentManager;
 
 public class RigaLavoroSetCollection extends org.orm.util.ORMSet {
 	public RigaLavoroSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {

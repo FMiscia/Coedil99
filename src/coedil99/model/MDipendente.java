@@ -1,13 +1,7 @@
 package coedil99.model;
 
-import java.util.List;
-
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
 import org.orm.PersistentException;
+
 import coedil99.persistentmodel.Dipendente;
 import coedil99.persistentmodel.DipendenteFactory;
 import coedil99.persistentmodel.IPersistentModel;

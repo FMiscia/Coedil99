@@ -13,20 +13,15 @@ import java.util.regex.Pattern;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
-import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
 import coedil99.controller.GestisciCantiereHandler;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.model.MCantiere;
 import coedil99.model.MCliente;
-import coedil99.model.MCommessa;
-import coedil99.persistentmodel.Cliente;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;

@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import GUI.Abstract.ALista;
 import GUI.Card.CardFornitore;
 import GUI.Card.CardFornitoreFactory;

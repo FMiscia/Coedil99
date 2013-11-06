@@ -5,19 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
 import org.orm.PersistentException;
-import org.orm.PersistentSession;
-import org.orm.PersistentTransaction;
 
-import coedil99.model.MCliente;
 import coedil99.model.MDipendente;
-import coedil99.persistentmodel.Cliente;
-import coedil99.persistentmodel.ClienteFactory;
 import coedil99.persistentmodel.Dipendente;
 import coedil99.persistentmodel.DipendenteFactory;
 
@@ -72,6 +63,7 @@ public class GestisciDipendenteHandler {
 		return GestisciDipendenteHandler.instance;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Dipendente checkPass(String username, String password){
 		
 		List<Dipendente> dip = null;

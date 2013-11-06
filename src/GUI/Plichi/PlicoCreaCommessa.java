@@ -1,15 +1,12 @@
 package GUI.Plichi;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -23,8 +20,6 @@ import GUI.ProgrammaLavori;
 import GUI.Abstract.AClipPanel;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
-import GUI.ClipPanels.ClipPanelFactory;
-import GUI.ClipPanels.ClipPanelProgrammaLavori;
 import GUI.Riquadri.RiquadroDatiAziendali;
 import GUI.Riquadri.RiquadroDatiAziendaliFactory;
 import GUI.Riquadri.RiquadroDatiClienteConsegna;
@@ -35,7 +30,6 @@ import GUI.Riquadri.RiquadroDatiProduzioneConsegna;
 import GUI.Riquadri.RiquadroDatiProduzioneConsegnaFactory;
 import GUI.Riquadri.RiquadroDatiSviluppoConsegna;
 import GUI.Riquadri.RiquadroDatiSviluppoConsegnaFactory;
-
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.controller.GestisciOrdineHandler;
 import coedil99.model.MCommessa;

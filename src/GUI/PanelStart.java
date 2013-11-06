@@ -9,19 +9,20 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import coedil99.controller.GestisciRDAHandler;
+
 import GUI.ClipPanels.ClipPanelMenu;
 import GUI.ClipPanels.ClipPanelMenuFactory;
 import GUI.Liste.ListaFornitori;
 import GUI.Liste.ListaFornitoriFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
-import GUI.PLogin.Login;
+import coedil99.controller.GestisciRDAHandler;
 
 public class PanelStart extends JPanel {
 
