@@ -7,7 +7,6 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -15,14 +14,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import coedil99.controller.GestisciRDAHandler;
 import GUI.ClipPanels.ClipPanelMenu;
 import GUI.ClipPanels.ClipPanelMenuFactory;
+import GUI.Liste.ListaFornitori;
+import GUI.Liste.ListaFornitoriFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
-import GUI.Login.Login;
-import GUI.Login.LoginDialog;
+import GUI.PLogin.Login;
 
 public class PanelStart extends JPanel {
 
@@ -51,9 +50,7 @@ public class PanelStart extends JPanel {
 		this.addRDAButton();
 		this.addOTHERButton();
 		this.addClipPanel();
-		this.setButtonsAttivi(Login.getLogged());
 	}
-
 
 
 	/**
@@ -89,6 +86,18 @@ public class PanelStart extends JPanel {
 		}
 		otherbutton.setFocusable(false);
 		pannelloUseCases.add(otherbutton);
+		otherbutton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				ListaFornitori listaf = (ListaFornitori) ListaFornitoriFactory.getInstance().makeLista();
+				FornitoriCenter.getInstance().setLista(listaf);
+				ArrayList<JButton> b = FornitoriCenter.getInstance().getClipPanel()
+						.getButtons();
+				CoedilFrame.getInstance().montaPanel(FornitoriCenter.getInstance());
+				//b.get(1).doClick();
+				
+				
+			}
+		});
 
 	}
 
@@ -153,15 +162,6 @@ public class PanelStart extends JPanel {
 
 	}
 	
-	public void setButtonsAttivi(boolean p){
-		int nb = this.pannelloUseCases.getComponentCount();
-		for (int i=0 ; i<nb; i++){
-			JButton b = (JButton) this.pannelloUseCases.getComponent(i);
-			b.setEnabled(p);
-			if (b.getActionListeners().length > 0 )
-				b.removeActionListener(b.getActionListeners()[0]);
-		}
-	}
 	
 	/**
 	 * Singleton

@@ -3,10 +3,7 @@ package GUI.Abstract;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -91,5 +88,7 @@ public abstract class ALista extends JScrollPane {
 		this.panel = new JPanel(new WrapLayout());
 		this.setViewportView(this.panel);
 	}
+	
+	
 
 }

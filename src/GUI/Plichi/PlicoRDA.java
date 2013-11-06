@@ -41,7 +41,6 @@ public class PlicoRDA extends APlico {
 	 * Aggiunge la lista delle righe RDA
 	 */
 	private void addListaRigheRDA() {
-		// TODO Auto-generated method stub
 		this.listaRigheRDA = new ListaRigheRDA();
 		this.add(listaRigheRDA,BorderLayout.WEST);
 	}

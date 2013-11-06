@@ -256,4 +256,15 @@ public class RigaLavoroFactory {
 		return new coedil99.persistentmodel.RigaLavoro();
 	}
 	
+	public static RigaLavoro loadRigaLavoroByCriteria(RigaLavoroCriteria rigaLavoroCriteria) {
+		RigaLavoro[] rigaLavoros = listRigaLavoroByCriteria(rigaLavoroCriteria);
+		if(rigaLavoros == null || rigaLavoros.length == 0) {
+			return null;
+		}
+		return rigaLavoros[0];
+	}
+	
+	public static RigaLavoro[] listRigaLavoroByCriteria(RigaLavoroCriteria rigaLavoroCriteria) {
+		return rigaLavoroCriteria.listRigaLavoro();
+	}
 }
