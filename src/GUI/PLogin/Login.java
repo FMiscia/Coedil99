@@ -9,6 +9,7 @@ public class Login {
 	private static int level = 0;
 	
     public static boolean authenticate(String username, String password) {
+
     	Dipendente d = GestisciDipendenteHandler.getInstance().checkPass(username,password);
         if (d != null) {
         	logged = true;
