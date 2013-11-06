@@ -64,15 +64,11 @@ public class Dipendente implements coedil99.persistentmodel.IPersistentModel {
 	
 	private int ID;
 	
-	private String pwd;
+	private String username;
 	
-	private String usr;
+	private String password;
 	
 	private int level;
-	
-	private String name;
-	
-	private String familyname;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -86,20 +82,20 @@ public class Dipendente implements coedil99.persistentmodel.IPersistentModel {
 		return getID();
 	}
 	
-	public void setPwd(String value) {
-		this.pwd = value;
+	public void setUsername(String value) {
+		this.username = value;
 	}
 	
-	public String getPwd() {
-		return pwd;
+	public String getUsername() {
+		return username;
 	}
 	
-	public void setUsr(String value) {
-		this.usr = value;
+	public void setPassword(String value) {
+		this.password = value;
 	}
 	
-	public String getUsr() {
-		return usr;
+	public String getPassword() {
+		return password;
 	}
 	
 	public void setLevel(int value) {
@@ -108,22 +104,6 @@ public class Dipendente implements coedil99.persistentmodel.IPersistentModel {
 	
 	public int getLevel() {
 		return level;
-	}
-	
-	public void setName(String value) {
-		this.name = value;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setFamilyname(String value) {
-		this.familyname = value;
-	}
-	
-	public String getFamilyname() {
-		return familyname;
 	}
 	
 	public String toString() {
