@@ -256,4 +256,15 @@ public class RigaRDAFactory {
 		return new coedil99.persistentmodel.RigaRDA();
 	}
 	
+	public static RigaRDA loadRigaRDAByCriteria(RigaRDACriteria rigaRDACriteria) {
+		RigaRDA[] rigaRDAs = listRigaRDAByCriteria(rigaRDACriteria);
+		if(rigaRDAs == null || rigaRDAs.length == 0) {
+			return null;
+		}
+		return rigaRDAs[0];
+	}
+	
+	public static RigaRDA[] listRigaRDAByCriteria(RigaRDACriteria rigaRDACriteria) {
+		return rigaRDACriteria.listRigaRDA();
+	}
 }
