@@ -29,10 +29,8 @@ public class ListaRDA extends ALista {
 	 */
 	public ListaRDA(String tipo) {
 		super();
-		this.setPreferredSize(new Dimension(300, 0));
-		//this.getViewport().setPreferredSize(new Dimension(300,0));
+		this.initialize();
 		this.load(tipo);
-		this.deselectAll();
 	}
 
 	@Override
@@ -48,8 +46,7 @@ public class ListaRDA extends ALista {
 		// this.getViewport().setPreferredSize(new Dimension(300, t.size() *
 		// 70));
 		for (int k = 0; k < t.size(); ++k) {
-			final CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
-					this);
+			CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(this);
 			r.load(GestisciRDAHandler.getInstance().getArrayMRDA(tipo).get(k));
 			this.panel.add(r);
 			this.panel.validate();
@@ -131,6 +128,15 @@ public class ListaRDA extends ALista {
 	 */
 	public void load() {
 
+	}
+	
+	/**
+	 * Inizializza la grafica
+	 */
+	private void initialize(){
+		this.setPreferredSize(new Dimension(300, 0));
+		//this.getViewport().setPreferredSize(new Dimension(300,0));
+		this.deselectAll();
 	}
 
 }

@@ -28,7 +28,6 @@ public class ListaCommesse extends ALista {
 	public ListaCommesse(){
 		super();
 		this.load();
-		
 	}
 	
 	@Override
