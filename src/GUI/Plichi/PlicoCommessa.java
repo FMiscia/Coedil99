@@ -139,6 +139,7 @@ public class PlicoCommessa extends APlico {
 					ProgrammaLavori.getInstance().setCommessaSelezionata(
 							new MCommessa(ProgrammaLavori.getInstance()
 									.getListaCommesse().getPrimaCommessa()));
+
 				}
 
 			}

@@ -26,6 +26,11 @@ public class ListaRDAFactory extends ListaFactory {
 		return new ListaRDA(tipo);
 	}
 	
+	public ALista makeListaComm(String tipo)  {
+		// TODO Auto-generated method stub
+		return new ListaRDA(tipo,"comm");
+	}
+	
 	public static ListaRDAFactory getInstance(){
 		if(instance == null)
 			instance = new ListaRDAFactory();

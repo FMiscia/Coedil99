@@ -71,13 +71,6 @@ public abstract class ALista extends JScrollPane {
 		this.panel.repaint();
 	}
 
-	/**
-	 * @author francesco
-	 * 
-	 *         Aggiorna posizione e valore del Titolo e info aggiutivi del
-	 *         panelTitle
-	 */
-	public abstract void updatePanel();
 
 	/**
 	 * Imposta la grafica

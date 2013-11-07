@@ -45,7 +45,6 @@ public class RDACenter extends JPanel {
 	 */
 	@SuppressWarnings("unchecked")
 	public void loadListaRigheRDA() {
-		this.add(this.lista, BorderLayout.WEST);
 		PlicoRDA.getInstance()
 				.getListaRigheRDA()
 				.load(new ArrayList<Object>(this.getRDASelezionata().getPersistentModel().righeRDA
@@ -67,7 +66,7 @@ public class RDACenter extends JPanel {
 
 	/**
 	 * 
-	 * @return RDA
+	 * @return MRDA
 	 */
 	public MRDA getRDASelezionata() {
 		return rdaSelezionata;
