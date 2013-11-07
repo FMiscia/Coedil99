@@ -111,7 +111,7 @@ public abstract class ARiquadro extends JPanel {
 						aperto = false;
 						ARiquadro.this.makeEditable(true);
 					} else {
-						ARiquadro.this.salva();
+						ARiquadro.this.salva(true);
 						ARiquadro.this.modifica.setText("modifica");
 						aperto = true;
 						ARiquadro.this.makeEditable(false);
@@ -142,8 +142,10 @@ public abstract class ARiquadro extends JPanel {
 
 	/**
 	 * Salva il riquadro
+	 * @param showmex: se si vuole mostrare il messaggio di avvenuto 
+	 * salvataggio
 	 */
-	public abstract void salva();
+	public abstract void salva(boolean showmex);
 
 	/**
 	 * Controllo deigli errori di input
@@ -160,6 +162,17 @@ public abstract class ARiquadro extends JPanel {
 			avoidEditing(false);
 		}
 		return test;
+	}
+	
+	
+	/**
+	 * Cambia il colore del testo nei campi non abilitati
+	 * mettendolo più scuro
+	 */
+	public void changeUnableColor(JTextField x){
+		x.setDisabledTextColor(Color.BLACK);
+		x.validate();
+		x.repaint();
 	}
 
 	/**
@@ -196,7 +209,7 @@ public abstract class ARiquadro extends JPanel {
 					aperto = false;
 					ARiquadro.this.makeEditable(true);
 				} else {
-					ARiquadro.this.salva();
+					ARiquadro.this.salva(true);
 					ARiquadro.this.modifica.setText("modifica");
 					aperto = true;
 					ARiquadro.this.makeEditable(false);
@@ -216,15 +229,11 @@ public abstract class ARiquadro extends JPanel {
 	 */
 	public boolean checkEmpty(){
 		boolean test=true;
-		/**
-		 * DEVELOPMENT IGNORE
-		 */
-		/*for(JTextField temp : this.Container){
-			if(temp.getText().equals("")){
+		for(JTextField temp : this.Container){
+			if(temp.getText().length()<=0){
 				test=false;
-				break;
 			}
-		}*/
+		}
 		return test;
 	}
 

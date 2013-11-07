@@ -48,9 +48,9 @@ public class PlicoFornitore extends APlico {
 	}
 
 	@Override
-	public ArrayList<ARiquadro> isModifying() {
+	public boolean isModifying() {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

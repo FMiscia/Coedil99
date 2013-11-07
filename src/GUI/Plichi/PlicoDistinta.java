@@ -180,12 +180,13 @@ public class PlicoDistinta extends APlico {
 		
 	}
 
-	public ArrayList<ARiquadro> isModifying() {
+	public boolean isModifying() {
 		ArrayList<ARiquadro> modifica = new ArrayList<ARiquadro>(); 
 		for(ARiquadro a :this.riquadri){
 			if(!a.modify())
 				modifica.add(a);
 		}
-		return modifica;
+		boolean result = modifica.size()>0?true:false;
+		return result;
 	}
 }

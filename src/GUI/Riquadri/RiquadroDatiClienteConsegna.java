@@ -79,21 +79,23 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	/**
 	 * Metodo che modifica i campi del model e lo salva sul db
 	 * 
-	 * CORREGGERE
-	 * 
 	 */
 	@Override
-	public void salva() {
+	public void salva(boolean showmex) {
 		if (this.oggetto != null) {
 			MCommessa c = (MCommessa) this.oggetto;
 			c.getPersistentModel().getOrdine().getCliente().getCantiere()
 					.setNome(this.cbCantiere.getSelectedItem().toString());
 			c.getPersistentModel().getOrdine().getCliente()
 					.setName(this.cbClienti.getSelectedItem().toString());
+			c.getPersistentModel().getOrdine().getCliente().setNumeroCommessaCliente(Integer.parseInt(this.txtCommessa.getText()));
 			c.save();
-			JOptionPane.showMessageDialog(null,
-					"Salvataggio avvenuto correttamente",
-					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+			if (showmex)
+				JOptionPane
+						.showMessageDialog(null,
+								"Salvataggio avvenuto correttamente",
+								"Messaggio di Sistema",
+								JOptionPane.INFORMATION_MESSAGE);
 			this.load(this.oggetto);
 		}
 	}
@@ -157,8 +159,6 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		});
 		this.cbCantiere.setSelectedItem(null);
 		this.cbCantiere.setEnabled(false);
-		this.Container.add(new JTextField((this.selected_cantiere == null) ? ""
-				: this.selected_cantiere));
 		this.form.add(this.cbCantiere, "6, 4, fill, fill");
 		this.lblIcoCantiere = new JLabel("");
 		this.lblIcoCantiere.setVisible(false);
@@ -213,7 +213,6 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		});
 		this.cbClienti.setSelectedItem(null);
 		this.cbClienti.setEnabled(false);
-		this.Container.add(new JTextField(this.selected_cliente));
 		this.form.add(this.cbClienti, "6, 2, fill, fill");
 		this.lblIcoCliente = new JLabel("");
 		this.lblIcoCliente.setVisible(false);
@@ -230,44 +229,19 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 
 		this.txtCommessa = new JTextField();
 		this.txtCommessa.setHorizontalAlignment(SwingConstants.CENTER);
-		this.txtCommessa.setEditable(false);
-		if (this.txtCommessa.getKeyListeners().length == 0)
-			this.txtCommessa.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyReleased(KeyEvent e) {
-					String line = txtCommessa.getText();
-					String pattern = "[\\D]+";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoCommessa.setIcon(IcoErrore);
-						lblIcoCommessa
-								.setToolTipText("Il campo Commessa deve contenere solo numeri!");
-						txtCommessa.setBorder(new LineBorder(Color.red));
-					} else if (m.find()) {
-						lblIcoCommessa.setIcon(IcoErrore);
-						lblIcoCommessa
-								.setToolTipText("Il campo Commessa deve contenere solo numeri!");
-						txtCommessa.setBorder(new LineBorder(Color.red));
-					} else {
-						lblIcoCommessa.setIcon(IcoOk);
-						lblIcoCommessa.setToolTipText("");
-						txtCommessa.setBorder(new LineBorder(Color.green));
-					}
-					controlloErrori();
-				}
-			});
-		this.Container.add(this.txtCommessa);
+		this.txtCommessa.setEnabled(false);
 		this.form.add(this.txtCommessa, "6, 6, fill, fill");
 		this.lblIcoCommessa = new JLabel("");
 		this.lblIcoCommessa.setVisible(false);
 		this.form.add(lblIcoCommessa, "8, 6, center, top");
 		this.Label.add(lblIcoCommessa);
 	}
-	
+
 	/**
-	 * Mette in focus nella combo box il cantiere 
-	 * @param name: cantiere desiderato
+	 * Mette in focus nella combo box il cantiere
+	 * 
+	 * @param name
+	 *            : cantiere desiderato
 	 */
 	public void setSelectedCantiere(String name) {
 		this.cbCantiere.setSelectedItem(name);
@@ -275,10 +249,16 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 
 	/**
 	 * Mette in focus nella combo box il cliente
-	 * @param name: cliente desiderato
+	 * 
+	 * @param name
+	 *            : cliente desiderato
 	 */
 	public void setSelectedCliente(String name) {
 		this.cbClienti.setSelectedItem(name);
+	}
+
+	public void setNumeroCommessaCliente(int n) {
+		this.txtCommessa.setText(String.valueOf(n));
 	}
 
 	@Override

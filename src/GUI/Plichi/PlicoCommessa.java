@@ -73,12 +73,10 @@ public class PlicoCommessa extends APlico {
 	public void load(int id) {
 		this.reset();
 		MCommessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
-		MOrdine o = GestisciOrdineHandler.getInstance().getMOrdineById(
-				c.getPersistentModel().getOrdine().getID());
 		rda.load(c);
 		rdcc.load(c);
 		rdc.load(c);
-		rdpc.load(o);
+		rdpc.load(c);
 		rsc.load(c);
 	}
 
@@ -129,14 +127,18 @@ public class PlicoCommessa extends APlico {
 								JOptionPane.QUESTION_MESSAGE, null, options,
 								options[1]);
 				if (n == JOptionPane.YES_OPTION) {
-					ProgrammaLavori.getInstance().getCommessaSelezionata()
-							.delete();
 					GestisciCommessaHandler
 							.getInstance()
 							.getCommesse()
 							.remove(ProgrammaLavori.getInstance()
 									.getCommessaSelezionata());
-					ProgrammaLavori.getInstance().getListaCommesse().updatePanel();
+					ProgrammaLavori.getInstance().getCommessaSelezionata()
+							.delete();
+					ProgrammaLavori.getInstance().getListaCommesse()
+							.updatePanel();
+					ProgrammaLavori.getInstance().setCommessaSelezionata(
+							new MCommessa(ProgrammaLavori.getInstance()
+									.getListaCommesse().getPrimaCommessa()));
 				}
 
 			}
@@ -192,13 +194,14 @@ public class PlicoCommessa extends APlico {
 	 * 
 	 * @return modifica: array list contenente i riquadri in modifica
 	 */
-	public ArrayList<ARiquadro> isModifying() {
+	public boolean isModifying() {
 		ArrayList<ARiquadro> modifica = new ArrayList<ARiquadro>();
 		for (ARiquadro a : this.container) {
 			if (!a.modify())
 				modifica.add(a);
 		}
-		return modifica;
+		boolean result = modifica.size()>0?true:false;
+		return result;
 	}
 
 	/**

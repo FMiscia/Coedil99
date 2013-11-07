@@ -59,6 +59,13 @@ public class MCommessa implements IModel {
 	@Override
 	public void delete() {
 		try {
+			this.commessa
+					.getOrdine()
+					.getCliente()
+					.setNumeroCommessaCliente(
+							this.commessa.getOrdine().getCliente()
+									.getNumeroCommessaCliente() - 1);
+			this.commessa.getOrdine().getCliente().save();
 			this.commessa.deleteAndDissociate();
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
