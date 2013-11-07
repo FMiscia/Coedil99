@@ -91,6 +91,7 @@ public class FornitoriCenter extends JPanel{
 	public void refreshFornitori(){
 		this.lista.svuota();
 		this.lista.load();
+		this.lista.deselectAll();
 	}
 
 	/**
@@ -124,5 +125,24 @@ public class FornitoriCenter extends JPanel{
 		this.setFornitoreSelezionato(new MCatalogoFornitore(this.lista.getPrimoCatalogo()));
 	}
 	
+	/**
+	 * Metodo che seleziona il primo catalogo fornitore
+	 */
+	public void selectPrimoCatalogo(){
+		this.lista.setPrimoCatalogo();
+		this.setPrimoCatalogoFornitore();
+		this.loadListaProdotti();
+	}
+	
+	/**
+	 * Metodo che prepara la schermata per l'inserimento di un nuovo catalogo fornitore
+	 */
+	public void newCatalogo(){
+		this.lista.svuota();
+		PlicoFornitore.getInstance().newCatalogo();
+		
+		
+		
+	}
 	
 }

@@ -64,6 +64,9 @@ public class PlicoFornitore extends APlico {
 	 * Metodo che aggiunge la lista dei prodotti nel plico fornitore
 	 */
 	public void addListaProdotti(){
+		if(this.listaProdotti != null){
+			this.remove(listaProdotti);
+		}
 		this.listaProdotti = (ListaProdotti) ListaProdottiFactory.getInstance().makeLista();
 		this.add(listaProdotti,BorderLayout.WEST);
 	}
@@ -77,6 +80,15 @@ public class PlicoFornitore extends APlico {
 		this.listaProdotti.svuota();
 		ArrayList<MProductDescription> prodotti = GestisciFornitoreHandler.getInstance().getMProductDescriptions(catalogo);
 		this.listaProdotti.load(prodotti);
+	}
+	
+	/**
+	 * Metodo che prepara la grafica per l'inserimento di un nuovo catalogo fornitore
+	 */
+	public void newCatalogo(){
+		this.addListaProdotti();
+		this.validate();
+		this.repaint();
 	}
 	
 }

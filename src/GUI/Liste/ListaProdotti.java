@@ -98,15 +98,16 @@ public class ListaProdotti extends ALista {
 	 */
 	public void updatePanel() {
 		this.panel.removeAll();
-		this.riepilogoFornitore = (RiepilogoFornitore) RiepilogoFornitoreFactory
-				.getInstance().makeRiepilogo();
 		if (this.riepilogoFornitore != null) {
 			this.riepilogoFornitore.refresh();
-			this.panel.add(this.riepilogoFornitore, 0);
-			//this.panel.add(intestazione,1);
-			this.validate();
-			this.repaint();
 		}
+		else{
+			this.riepilogoFornitore = (RiepilogoFornitore) RiepilogoFornitoreFactory
+					.getInstance().makeRiepilogo();
+		}
+		this.panel.add(this.riepilogoFornitore, 0);
+		this.validate();
+		this.repaint();
 	}
 
 	@Override
@@ -132,40 +133,9 @@ public class ListaProdotti extends ALista {
 	 * Inizializza la grafica
 	 */
 	private void initialize() {
-		this.intestazione = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) intestazione.getLayout();
-		flowLayout.setVgap(0);
-		intestazione.setPreferredSize(new Dimension(530, 30));
-		
-		JLabel lblEssenza = new JLabel("Essenza");
-		lblEssenza.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEssenza.setPreferredSize(new Dimension(80, 30));
-		intestazione.add(lblEssenza);
-		
-		JLabel lblLunghezza = new JLabel("Lunghezza");
-		lblLunghezza.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLunghezza.setPreferredSize(new Dimension(80, 30));
-		intestazione.add(lblLunghezza);
-		
-		JLabel lblAltezza = new JLabel("Altezza");
-		lblAltezza.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAltezza.setPreferredSize(new Dimension(60, 30));
-		intestazione.add(lblAltezza);
-		
-		JLabel lblBase = new JLabel("Base");
-		lblBase.setPreferredSize(new Dimension(60, 30));
-		lblBase.setHorizontalAlignment(SwingConstants.CENTER);
-		intestazione.add(lblBase);
-		
-		JLabel lblPezziPerPacco = new JLabel("Pezzi per Pacco");
-		lblPezziPerPacco.setPreferredSize(new Dimension(100, 30));
-		lblPezziPerPacco.setHorizontalAlignment(SwingConstants.CENTER);
-		intestazione.add(lblPezziPerPacco);
-		
-		JLabel lblPrezzo = new JLabel("Prezzo");
-		lblPrezzo.setPreferredSize(new Dimension(50, 30));
-		lblPrezzo.setHorizontalAlignment(SwingConstants.CENTER);
-		intestazione.add(lblPrezzo);
+		this.riepilogoFornitore = (RiepilogoFornitore) RiepilogoFornitoreFactory
+				.getInstance().makeRiepilogo();
+		this.panel.add(this.riepilogoFornitore, 0);
 	}
 
 }

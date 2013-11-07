@@ -34,8 +34,6 @@ public class RiepilogoFornitore extends ARiepilogoFornitore {
 	 * Inizializza la grafica
 	 */
 	private void initialize(){
-		this.btn.validate();
-		this.btn.repaint();
 	}
 
 }

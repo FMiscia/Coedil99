@@ -3,15 +3,20 @@ package coedil99.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import org.orm.PersistentException;
 
+import GUI.Utilities.CataloghiFilter;
+
+import coedil99.model.CatalogoCSVBuilder;
+import coedil99.model.CatalogoXMLBuilder;
 import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MGeometria;
 import coedil99.model.MProductDescription;
 import coedil99.persistentmodel.CatalogoFornitore;
-import coedil99.persistentmodel.CatalogoFornitoreBuilder;
+import coedil99.model.CatalogoFornitoreBuilder;
 import coedil99.persistentmodel.CatalogoFornitoreFactory;
 import coedil99.persistentmodel.ProductDescription;
 
@@ -47,6 +52,14 @@ public class GestisciFornitoreHandler {
 		return GestisciFornitoreHandler.instance;
 	}
 
+	
+	public static HashMap<String, CatalogoFornitoreBuilder> cataloghiBuilders;
+	{
+		cataloghiBuilders = new HashMap<String, CatalogoFornitoreBuilder>();
+		cataloghiBuilders.put(CataloghiFilter.csv, new CatalogoCSVBuilder());
+		cataloghiBuilders.put(CataloghiFilter.xml,  new CatalogoXMLBuilder());
+	}
+	
 	/**
 	 * Fornisce i fornitori dell'azienda
 	 * @return arrayFornitori:ArrayList<CatalogoFornitore>
@@ -65,7 +78,6 @@ public class GestisciFornitoreHandler {
 			try {
 				return new MCatalogoFornitore(CatalogoFornitoreFactory.loadCatalogoFornitoreByQuery(" Name = " + "'" + nome + "'", null).getID());
 			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;

@@ -123,5 +123,4 @@ public class ListaFornitori extends ALista {
 	private void initialize(){
 		this.setPreferredSize(new Dimension(230, 0));
 	}
-	
 }

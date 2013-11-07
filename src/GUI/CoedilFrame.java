@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 import coedil99.controller.GestisciFornitoreHandler;
-import coedil99.persistentmodel.CatalogoCSVBuilder;
 
 import com.alee.laf.scroll.WebScrollBarUI;
 import com.thehowtotutorial.splashscreen.JSplash;

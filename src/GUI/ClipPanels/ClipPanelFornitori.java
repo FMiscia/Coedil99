@@ -11,6 +11,7 @@ import GUI.FornitoriCenter;
 import GUI.PanelStart;
 import GUI.RDACenter;
 import GUI.Abstract.AClipPanel;
+import GUI.Plichi.PlicoFornitore;
 
 /**
  * Implementazione di ACLipPanel per il menù in alto del FornitoreCenter
@@ -49,11 +50,17 @@ public class ClipPanelFornitori extends AClipPanel {
 				b.setBackground(new Color(180, 180, 180));
 				FornitoriCenter fc = FornitoriCenter.getInstance();
 				fc.refreshFornitori();
+				fc.selectPrimoCatalogo();
 			}
 		});
 		
 		this.addButton("Nuovo Catalogo Fornitore", "Crea un nuovo Catalogo Fornitore", new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				JButton b = (JButton) arg0.getSource();
+				ClipPanelFornitori.this.focusOut();
+				b.setBackground(new Color(180, 180, 180));
+				FornitoriCenter fc = FornitoriCenter.getInstance();
+				fc.newCatalogo();
 			}
 		});
 
