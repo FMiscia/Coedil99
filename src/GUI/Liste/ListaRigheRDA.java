@@ -116,7 +116,6 @@ public class ListaRigheRDA extends ALista {
 		}
 	}
 
-	@Override
 	/**
 	 * Aggiorna la lista e il riepilogo subito dopo una modifica
 	 */

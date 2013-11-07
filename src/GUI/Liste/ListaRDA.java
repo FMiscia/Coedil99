@@ -138,12 +138,6 @@ public class ListaRDA extends ALista {
 		return true;
 	}
 
-	@Override
-	/**
-	 * Aggiorna la lista RDA se necessario
-	 */
-	public void updatePanelRDA() {
-	}
 
 	@Override
 	/**
