@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import coedil99.controller.GestisciRDAHandler;
 
+import GUI.Abstract.ARiepilogo;
 import GUI.Abstract.ARiepilogoRDA;
 
 /**
@@ -12,7 +13,7 @@ import GUI.Abstract.ARiepilogoRDA;
  *
  * Factory dei riepiloghi
  */
-public class RiepilogoRDAFactory {
+public class RiepilogoRDAFactory extends RiepilogoFactory{
 
 	private static RiepilogoRDAFactory instance = null;
 	
@@ -33,17 +34,27 @@ public class RiepilogoRDAFactory {
 	}
 	
 
-	
+	@Override
 	public ARiepilogoRDA makeRiepilogo(String tipo) {
 		
 		return className.get(tipo);
 		
 	}
 	
+	/**
+	 * Singleton
+	 * @return instance
+	 */
 	public static RiepilogoRDAFactory getInstance(){
 		if(instance == null)
 			instance = new RiepilogoRDAFactory();
 		return instance;
+	}
+
+	@Override
+	public ARiepilogo makeRiepilogo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

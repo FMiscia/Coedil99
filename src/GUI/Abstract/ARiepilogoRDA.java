@@ -21,7 +21,7 @@ import com.jgoodies.forms.layout.RowSpec;
  * @author francesco Mostra un pannello di riepilogo della RDA in focus
  */
 
-public abstract class ARiepilogoRDA extends JPanel {
+public abstract class ARiepilogoRDA extends ARiepilogo {
 
 	/**
 	 * 
@@ -48,13 +48,9 @@ public abstract class ARiepilogoRDA extends JPanel {
 	 * Costruttore
 	 */
 	public ARiepilogoRDA() {
+		super();
 		this.initialize();
 	}
-
-	/**
-	 * Aggiorna il pannello
-	 */
-	public abstract void refresh();
 
 	/**
 	 * imposta la grafica
