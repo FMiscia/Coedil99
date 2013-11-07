@@ -136,7 +136,7 @@ public class PlicoCommessa extends APlico {
 							.getCommesse()
 							.remove(ProgrammaLavori.getInstance()
 									.getCommessaSelezionata());
-					ProgrammaLavori.getInstance().getListaCommesse().updatePanel();
+					ProgrammaLavori.getInstance().getListaCommesse().updatePanelRDA();
 				}
 
 			}

@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
+import org.hibernate.transaction.BTMTransactionManagerLookup;
+
 import GUI.RDACenter;
 import GUI.Abstract.ACard;
 import GUI.FormRDA.ModificaFormRDA;
@@ -185,6 +187,14 @@ public class CardRigaRDA extends ACard {
 			btnModifica.setBackground(Color.LIGHT_GRAY);
 			add(btnModifica, "2, 2");
 		}
+	}
+	/**
+	 * Gestisce i pulsanti da utilizzare per la riga RDA, ovvero 
+	 * a seconda dello stato permetterà la modifica di quella riga
+	 */
+	public void setCardWithNoOptions() {
+		this.remove(btnElimina);
+		this.remove(btnModifica);
 	}
 
 	@Override

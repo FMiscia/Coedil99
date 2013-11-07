@@ -1,4 +1,4 @@
-package GUI.PLogin;
+package GUI.Login;
 
 import coedil99.controller.GestisciDipendenteHandler;
 import coedil99.persistentmodel.Dipendente;

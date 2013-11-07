@@ -77,7 +77,7 @@ public abstract class ALista extends JScrollPane {
 	 *         Aggiorna posizione e valore del Titolo e info aggiutivi del
 	 *         panelTitle
 	 */
-	public abstract void updatePanel();
+	public abstract void updatePanelRDA();
 
 	/**
 	 * Imposta la grafica

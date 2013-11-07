@@ -1,4 +1,4 @@
-package GUI.PLogin;
+package GUI.Login;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -19,9 +19,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import coedil99.controller.GestisciRDAHandler;
+import coedil99.persistentmodel.RDAFactory;
+
 import GUI.CoedilFrame;
 import GUI.CommercialeCenter;
 import GUI.PanelStart;
+import GUI.RDACenter;
+import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDAFactory;
+import GUI.Plichi.PlicoCommerciale;
 
 public class LoginDialog extends JPanel {
 	private static final String LOGIN = "Log in";
@@ -133,9 +140,17 @@ public class LoginDialog extends JPanel {
 
 					// ufficio commerciale
 					if (Login.getLevel() == 1) {
+
 						CommercialeCenter cc = CommercialeCenter.getInstance();
 						CoedilFrame cf = CoedilFrame.getInstance();
 						cc.setBounds(0, 0, cf.getWidth(), cf.getHeight());
+						ListaRDA listarda = (ListaRDA) ListaRDAFactory
+								.getInstance().makeListaComm(GestisciRDAHandler.ATTESA_CONFERMA);
+						cc.setLista(listarda);
+						cc.setRDASelezionata( GestisciRDAHandler.getInstance().getMRDAById(listarda.getPrimaRDA()));
+						cc.loadListaRigheRDA();
+						PlicoCommerciale plico_com = PlicoCommerciale.getInstance();
+						plico_com.refreshFormRDA();
 						cf.montaPanel(cc);
 					}
 

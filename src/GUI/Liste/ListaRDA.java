@@ -29,6 +29,32 @@ public class ListaRDA extends ALista {
 		this.initialize();
 		this.load(tipo);
 	}
+	
+	public ListaRDA(String tipo,String contesto) {
+		super();
+		this.initialize();
+		this.loadComm(tipo);
+	}
+
+	public void loadComm(String tipo) {
+		// TODO Auto-generated method stub
+		this.panel.removeAll();
+		ArrayList<Object> t = null;
+		t = new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayMRDA(
+				tipo));
+		for (int k = 0; k < t.size(); ++k) {
+			CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(this);
+			r.loadComm(GestisciRDAHandler.getInstance().getArrayMRDA(tipo).get(k));
+			this.panel.add(r);
+			this.panel.validate();
+			this.panel.repaint();
+
+		}
+		this.panel.setPreferredSize(new Dimension(this.panel.getWidth(), t
+				.size() * (this.panel.getComponent(0).getHeight() + 6)));
+		this.validate();
+		this.repaint();
+	}
 
 	@Override
 	/**
@@ -116,7 +142,7 @@ public class ListaRDA extends ALista {
 	/**
 	 * Aggiorna la lista RDA se necessario
 	 */
-	public void updatePanel() {
+	public void updatePanelRDA() {
 	}
 
 	@Override
