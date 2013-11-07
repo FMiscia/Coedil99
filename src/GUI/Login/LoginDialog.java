@@ -144,12 +144,13 @@ public class LoginDialog extends JPanel {
 						CommercialeCenter cc = CommercialeCenter.getInstance();
 						CoedilFrame cf = CoedilFrame.getInstance();
 						cc.setBounds(0, 0, cf.getWidth(), cf.getHeight());
-						
 						ListaRDA listarda = (ListaRDA) ListaRDAFactory
-								.getInstance().makeLista(GestisciRDAHandler.ATTESA_CONFERMA);
+								.getInstance().makeListaComm(GestisciRDAHandler.ATTESA_CONFERMA);
 						cc.setLista(listarda);
 						cc.setRDASelezionata( GestisciRDAHandler.getInstance().getMRDAById(listarda.getPrimaRDA()));
 						cc.loadListaRigheRDA();
+						PlicoCommerciale plico_com = PlicoCommerciale.getInstance();
+						plico_com.refreshFormRDA();
 						cf.montaPanel(cc);
 					}
 

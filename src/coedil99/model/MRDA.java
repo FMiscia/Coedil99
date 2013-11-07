@@ -98,6 +98,10 @@ public class MRDA extends coedil99.model.Subject implements IModel{
 		 */
 		//GestisciRDAHandler.getInstance().Update();
 	}
+	
+	public void setDescrizione(String s){
+		this.rda.setDescrizione(s);
+	}
 
 
 }

@@ -14,10 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import GUI.CommercialeCenter;
 import GUI.RDACenter;
 import GUI.Abstract.ACard;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRigheRDA;
+import GUI.Plichi.PlicoCommerciale;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MRDA;
@@ -132,6 +134,58 @@ public class CardRDA extends ACard {
 		});
 	}
 
+
+	/**
+	 * Carica una RDA
+	 * @param o:Object
+	 */
+	public void loadComm(Object o) {
+		final MRDA rda = (MRDA) o;
+		this.RDAId = rda.getPersistentModel().getID();
+		if (!rda.getPersistentModel().righeRDA.isEmpty()) {
+			this.id.setText(rda.getPersistentModel().righeRDA.get(0)
+					.getDescription().getCatalogoFornitore().getName());
+		} else {
+			this.id.setText("da settare");
+		}
+		this.stato.setText(rda.getPersistentModel().getState());
+		this.icona.setIcon(CardRDA.state_map.get(rda.getPersistentModel()
+				.getState()));
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+		this.data
+				.setText(dateFormat
+						.format((rda.getPersistentModel().getDate() == null) ? new java.util.Date()
+								: rda.getPersistentModel().getDate()));
+		this.setBackground(new Color(30, 144, 255));
+		this.validate();
+		this.repaint();
+
+		this.addMouseListener(new MouseAdapter() {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				PlicoCommerciale plico_com = PlicoCommerciale.getInstance();
+				CardRDA.this.riquadro.deselectAll();
+				CommercialeCenter contenitore = CommercialeCenter.getInstance();
+				contenitore.setRDASelezionata(rda);
+				ListaRigheRDA lista_righe_rda = plico_com.getListaRigheRDA();
+				plico_com.refreshFormRDA();
+				lista_righe_rda.getPanel().removeAll();
+				contenitore.loadListaRigheRDA();
+				CardRDA.this.setBackground(new Color(30, 44, 255));
+				CardRDA.this.validate();
+				CardRDA.this.repaint();
+				lista_righe_rda.validate();
+				lista_righe_rda.repaint();
+			}
+		});
+	}
+
+	
 	public boolean isSaved() {
 		return saved;
 	}
@@ -187,6 +241,10 @@ public class CardRDA extends ACard {
 		this.add(stato);
 		this.add(icona);
 		this.add(data);
+	}
+
+	public ListaRDA getRiquadro() {
+		return riquadro;
 	}
 
 }

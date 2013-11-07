@@ -3,12 +3,10 @@ package GUI.Plichi;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
-import coedil99.controller.GestisciRDAHandler;
-
 import GUI.RDACenter;
-import GUI.Abstract.AFormRDA;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
+import GUI.FormRDA.PanelRDAComm;
 import GUI.Liste.ListaRigheRDA;
 
 public class PlicoCommerciale extends APlico {
@@ -19,6 +17,7 @@ public class PlicoCommerciale extends APlico {
 	private static final long serialVersionUID = 1L;
 	private static PlicoCommerciale instance = null;
 	private ListaRigheRDA listaRigheRDA;
+	private PanelRDAComm panelrdacomm = null;
 
 	
 	/**
@@ -101,6 +100,16 @@ public class PlicoCommerciale extends APlico {
 	public ArrayList<ARiquadro> isModifying() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void refreshFormRDA() {
+		// TODO Auto-generated method stub
+		if(this.panelrdacomm != null)
+			this.remove(this.panelrdacomm);
+		this.panelrdacomm = new PanelRDAComm();
+		this.add(panelrdacomm, BorderLayout.CENTER);
+		this.validate();
+		this.repaint();	
 	}
 
 
