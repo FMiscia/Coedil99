@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.orm.PersistentException;
 
 import GUI.Utilities.CataloghiFilter;

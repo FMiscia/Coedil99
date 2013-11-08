@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import GUI.FornitoriCenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardFornitore;
@@ -34,7 +36,7 @@ public class ListaFornitori extends ALista {
 	 */
 	public void load() {
 		this.panel.removeAll();
-		if(GestisciFornitoreHandler.isInstanciated()){
+		if(!GestisciFornitoreHandler.isInstanciated()){
 			GestisciFornitoreHandler.getInstance().reloadFornitori();
 		}
 		ArrayList<MCatalogoFornitore> cataloghi = GestisciFornitoreHandler.getInstance().getArrayFornitori();

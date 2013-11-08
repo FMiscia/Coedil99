@@ -202,13 +202,9 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		mcf.save();
 		JOptionPane.showMessageDialog(null,
 				"Catalogo Fornitore salvato correttamente");
-		//
-		// FornitoriCenter.getInstance().getClipPanel().getButtons().get(1)
-		// .doClick();
 		FornitoriCenter.getInstance().setFornitoreSelezionato(mcf);
 		FornitoriCenter.getInstance().refreshFornitori();
-		// GestisciFornitoreHandler.getInstance().reloadFornitori();
-
+		FornitoriCenter.getInstance().getClipPanel().focusToListaCataloghi();
 	}
 
 	/**

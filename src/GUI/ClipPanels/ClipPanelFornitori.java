@@ -66,4 +66,13 @@ public class ClipPanelFornitori extends AClipPanel {
 		this.fill();
 		this.resetInitialState();
 	}
+	
+	/**
+	 * Imposta il focus sul bottone delle RDA congelate
+	 */
+	public void focusToListaCataloghi() {
+		this.focusOut();
+		JButton b = (JButton) ClipPanelFornitori.this.getComponent(1);
+		b.setBackground(new Color(180, 180, 180));
+	}
 }
