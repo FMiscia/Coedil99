@@ -10,8 +10,9 @@ import org.orm.PersistentException;
 import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MGeometria;
 import coedil99.model.MProductDescription;
+import coedil99.model.MCatalogoFornitore;
 import coedil99.persistentmodel.CatalogoFornitore;
-import coedil99.persistentmodel.CatalogoFornitoreBuilder;
+import coedil99.model.CatalogoFornitoreBuilder;
 import coedil99.persistentmodel.CatalogoFornitoreFactory;
 import coedil99.persistentmodel.ProductDescription;
 
