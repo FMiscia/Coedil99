@@ -121,4 +121,11 @@ public class CardFornitore extends ACard{
 	public void setRiquadro(ListaFornitori riquadro) {
 		this.riquadro = riquadro;
 	}
+	
+	/**
+	 * Cambia il colore di sfondo della card settandolo come selezionato
+	 */
+	public void selectCard(){
+		this.setBackground(new Color(30, 44, 255));
+	}
 }

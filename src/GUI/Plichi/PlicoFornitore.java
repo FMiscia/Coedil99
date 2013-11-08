@@ -8,6 +8,7 @@ import GUI.Abstract.ARiquadro;
 import GUI.Liste.ListaProdotti;
 import GUI.Liste.ListaProdottiFactory;
 import coedil99.controller.GestisciFornitoreHandler;
+import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MProductDescription;
 
 /**
@@ -91,4 +92,11 @@ public class PlicoFornitore extends APlico {
 		this.repaint();
 	}
 	
+	/**
+	 * Getter
+	 * @return ListaProdottti
+	 */
+	public ListaProdotti getListaProdotti(){
+		return this.listaProdotti;
+	}
 }

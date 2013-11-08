@@ -1,15 +1,11 @@
 package GUI.Liste;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import GUI.FornitoriCenter;
 import GUI.Abstract.ALista;
@@ -21,7 +17,6 @@ import coedil99.model.MProductDescription;
 
 public class ListaProdotti extends ALista {
 
-	private JPanel intestazione;
 	protected RiepilogoFornitore riepilogoFornitore;
 
 	/**
@@ -76,8 +71,7 @@ public class ListaProdotti extends ALista {
 	}
 
 	public int getNumProdotti() {
-		return FornitoriCenter.getInstance().getFornitoreSelezionato()
-				.getPersistentModel().productDescription.size();
+		return this.panel.getComponentCount() - 1;
 	}
 
 	@Override
@@ -136,6 +130,14 @@ public class ListaProdotti extends ALista {
 		this.riepilogoFornitore = (RiepilogoFornitore) RiepilogoFornitoreFactory
 				.getInstance().makeRiepilogo();
 		this.panel.add(this.riepilogoFornitore, 0);
+	}
+	
+	/**
+	 * Metodo che ritorna true o false se la lista è vuota o piena
+	 * @return boolean
+	 */
+	public boolean isEmpty(){
+		return this.getNumProdotti() == 0;
 	}
 
 }

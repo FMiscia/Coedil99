@@ -41,7 +41,7 @@ public class CatalogoCSVBuilder extends CatalogoFornitoreBuilder {
 			
 			new_productDescription.getPersistentModel().setGeometria(new_geometria.getPersistentModel());
 			this.catalogo.getPersistentModel().productDescription.add(new_productDescription.getPersistentModel());
-			//this.catalogo.save();
+			this.catalogo.save();
 			//new_productDescription.save();
 			//new_geometria.save();
 		}

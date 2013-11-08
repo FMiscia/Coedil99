@@ -1,10 +1,15 @@
 package coedil99.model;
 
+import java.util.ArrayList;
+
 import org.orm.PersistentException;
 
+import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.persistentmodel.CatalogoFornitore;
 import coedil99.persistentmodel.CatalogoFornitoreFactory;
 import coedil99.persistentmodel.IPersistentModel;
+import coedil99.persistentmodel.ProductDescription;
+import coedil99.persistentmodel.ProductDescriptionListCollection;
 
 /**
  * 
@@ -53,6 +58,9 @@ public class MCatalogoFornitore implements IModel {
 	
 	@Override
 	public void delete(){
+		ArrayList<MProductDescription> prodotti = GestisciFornitoreHandler.getInstance().getMProductDescriptions(this.catalogoFornitore.getName());
+		for(MProductDescription p : prodotti)
+			p.delete();
 		try {
 			this.catalogoFornitore.deleteAndDissociate();
 		} catch (PersistentException e) {
@@ -63,11 +71,6 @@ public class MCatalogoFornitore implements IModel {
 	@Override
 	public void setPersistentModel(IPersistentModel m) {
 		this.catalogoFornitore = (CatalogoFornitore)m;
-		
 	}
 	
-
-
-
-
 }

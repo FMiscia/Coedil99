@@ -26,14 +26,25 @@ public class RiepilogoFornitore extends ARiepilogoFornitore {
 	public void refresh() {
 		MCatalogoFornitore mcf = FornitoriCenter.getInstance().getFornitoreSelezionato();
 		this.lblNome.setText(mcf.getPersistentModel().getName());
-		this.validate();
-		this.repaint();
+		this.setModify(false);
+		this.importing = false;
+		this.btnElimina.setVisible(false);
 	}
 	
 	/**
 	 * Inizializza la grafica
 	 */
 	private void initialize(){
+		this.setModify(true);
+		this.btnElimina.setVisible(true);
 	}
-
+	
+	/**
+	 * Metodo che setta la visione di alcuni bottoni se si sta creando un nuovo catalogo oppure no
+	 * @param nuovo: booleano
+	 */
+	private void newRiepilogo(boolean nuovo){
+		this.btnElimina.setVisible(nuovo);
+		this.importing = true;
+	}
 }

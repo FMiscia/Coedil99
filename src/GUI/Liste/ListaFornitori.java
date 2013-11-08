@@ -1,9 +1,11 @@
 package GUI.Liste;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import GUI.FornitoriCenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardFornitore;
 import GUI.Card.CardFornitoreFactory;
@@ -47,6 +49,9 @@ public class ListaFornitori extends ALista {
 			this.panel.repaint();
 		}
 		this.panel.setPreferredSize(new Dimension(this.panel.getWidth(), row * (this.panel.getComponent(0).getHeight() + 6)));
+		if(FornitoriCenter.getInstance().getFornitoreSelezionato() != null){
+			this.selectFornitoreSelezionato(FornitoriCenter.getInstance().getFornitoreSelezionato());
+		}
 		this.validate();
 		this.repaint();
 	}
@@ -105,6 +110,18 @@ public class ListaFornitori extends ALista {
 
 	}
 
+	/**
+	 * Metodo che seleziona la card relativa al fornitore selezionato
+	 */
+	public void selectFornitoreSelezionato(MCatalogoFornitore mcf){
+		if(this.panelHasFornitori()){
+			Component[] c = panel.getComponents();
+			for(int i=0; i<c.length; ++i)
+				if(((CardFornitore) c[i]).getCatalogoFornitoreId() ==  mcf.getPersistentModel().getID())
+					((CardFornitore) c[i]).selectCard();
+		}
+	}
+	
 	/**
 	 * Fornisce true se il pannello ha almeno un Catalogo Fornitore false altrimenti
 	 * 

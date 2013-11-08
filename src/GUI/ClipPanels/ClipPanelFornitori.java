@@ -59,8 +59,7 @@ public class ClipPanelFornitori extends AClipPanel {
 				JButton b = (JButton) arg0.getSource();
 				ClipPanelFornitori.this.focusOut();
 				b.setBackground(new Color(180, 180, 180));
-				FornitoriCenter fc = FornitoriCenter.getInstance();
-				fc.newCatalogo();
+				FornitoriCenter.getInstance().newCatalogo();
 			}
 		});
 
