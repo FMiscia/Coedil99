@@ -16,24 +16,28 @@ package coedil99.persistentmodel;
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import org.orm.criteria.AbstractORMCriteria;
-import org.orm.criteria.IntegerExpression;
-import org.orm.criteria.StringExpression;
+import org.orm.criteria.*;
 
 public class DipendenteCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression pwd;
 	public final StringExpression usr;
+	public final StringExpression pwd;
 	public final IntegerExpression level;
+	public final IntegerExpression rdacongelate_visualizzate;
+	public final IntegerExpression rdaattesa_visualizzate;
+	public final IntegerExpression rdarifiutate_visualizzate;
 	public final StringExpression name;
 	public final StringExpression familyname;
 	
 	public DipendenteCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		pwd = new StringExpression("pwd", this);
 		usr = new StringExpression("usr", this);
+		pwd = new StringExpression("pwd", this);
 		level = new IntegerExpression("level", this);
+		rdacongelate_visualizzate = new IntegerExpression("rdacongelate_visualizzate", this);
+		rdaattesa_visualizzate = new IntegerExpression("rdaattesa_visualizzate", this);
+		rdarifiutate_visualizzate = new IntegerExpression("rdarifiutate_visualizzate", this);
 		name = new StringExpression("name", this);
 		familyname = new StringExpression("familyname", this);
 	}

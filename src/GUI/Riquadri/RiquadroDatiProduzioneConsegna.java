@@ -246,6 +246,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	public void salva(boolean showmex) {
 		if (this.oggetto != null) {
 			MCommessa c = (MCommessa) this.oggetto;
+			this.dateScadenzaSviluppo.setFormats("yyyy-MM-dd");
 			c.getPersistentModel().getOrdine().setDataInizio(
 					this.dateDataInizio.getDate());
 			c.getPersistentModel().getOrdine().setDataFine(this.dateDataFine.getDate());

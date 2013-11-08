@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import GUI.CoedilFrame;
 import GUI.ProgrammaLavori;
@@ -35,7 +36,9 @@ import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.controller.GestisciOrdineHandler;
 import coedil99.model.MCommessa;
+import coedil99.model.MDistinta;
 import coedil99.model.MOrdine;
+import coedil99.persistentmodel.DistintaFactory;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -70,13 +73,16 @@ public class PlicoCreaCommessa extends APlico {
 	public boolean isModifying() {
 		if(this.container==null)
 			return false;
-		ArrayList<ARiquadro> modifica = new ArrayList<ARiquadro>();
-		for (ARiquadro a : this.container) {
-			if (!a.modify())
-				modifica.add(a);
-		}
-		boolean result =  (modifica.size()>0)?true:false;
-		return result;
+			boolean result = false;
+			for(ARiquadro temp: this.container){
+				for (JLabel j : temp.getLabel()) {
+					if (j.getIcon()!=null)
+						result = true;
+					temp.svuotaIconeLAbel();
+				}
+			}
+			
+			return result;
 	}
 
 	/**
@@ -251,6 +257,9 @@ public class PlicoCreaCommessa extends APlico {
 											.getMOrdineById(
 													PlicoCreaCommessa.this.selected_ordine)
 											.getPersistentModel());
+					commessa.setCodiceInterno();
+					MDistinta d = new MDistinta();
+					commessa.getPersistentModel().setDistinta(d.getPersistentModel());
 					PlicoCreaCommessa.this.rda.setOggetto(commessa);
 					PlicoCreaCommessa.this.rda.salva(false);
 					PlicoCreaCommessa.this.rdc.setOggetto(commessa);
@@ -260,13 +269,13 @@ public class PlicoCreaCommessa extends APlico {
 					PlicoCreaCommessa.this.rdpc.setOggetto(commessa);
 					PlicoCreaCommessa.this.rdpc.salva(false);
 					PlicoCreaCommessa.this.rsc.setOggetto(commessa);
-					PlicoCreaCommessa.this.rsc.salva(false);
-					commessa.setCodiceInterno();
+					PlicoCreaCommessa.this.rsc.salva(false);		
 					commessa.save();
 					JOptionPane.showMessageDialog(null,
 							"Commessa salvata con successo",
 							"Operazione eseguita", JOptionPane.PLAIN_MESSAGE);
 					PlicoCreaCommessa.this.container=null;
+					ProgrammaLavori.getInstance().getListaCommesse().updatePanel();
 					ProgrammaLavori.getInstance().getClipPanel().getButtons()
 							.get(AClipPanel.PLButtonState.get("COMMESSA"))
 							.doClick();

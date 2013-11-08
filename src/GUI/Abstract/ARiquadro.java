@@ -251,4 +251,13 @@ public abstract class ARiquadro extends JPanel {
 		this.oggetto = oggetto;
 	}
 
+	public ArrayList<JLabel> getLabel() {
+		return Label;
+	}
+	
+	public void svuotaIconeLAbel(){
+		for (JLabel j : this.Label) {
+			j.setIcon(null);
+		}
+	}
 }
