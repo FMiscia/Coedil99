@@ -46,19 +46,16 @@ public class RDACenter extends JPanel {
 	 */
 	@SuppressWarnings("unchecked")
 	public void loadListaRigheRDA() {
-		ListaRDA listarda = (ListaRDA) ListaRDAFactory
-				.getInstance().makeListaComm(GestisciRDAHandler.CONGELATA);
+		ListaRDA listarda = (ListaRDA) ListaRDAFactory.getInstance()
+				.makeListaComm(GestisciRDAHandler.CONGELATA);
 		RDACenter.getInstance().setLista(listarda);
-		RDACenter.getInstance().setRDASelezionata( GestisciRDAHandler.getInstance().getMRDAById(listarda.getPrimaRDA()));
-		System.out.println("48"+this.getRDASelezionata());
-		System.out.println("49"+this.getRDASelezionata().getPersistentModel());
-		System.out.println("50"+this.getRDASelezionata().getPersistentModel().righeRDA);
-		System.out.println("51"+this.getRDASelezionata().getPersistentModel().righeRDA
-				.getCollection());
+		RDACenter.getInstance().setRDASelezionata(
+				GestisciRDAHandler.getInstance().getMRDAById(
+						listarda.getPrimaRDA()));
 		PlicoRDA.getInstance()
 				.getListaRigheRDA()
-				.load(new ArrayList<Object>(this.getRDASelezionata().getPersistentModel().righeRDA
-						.getCollection()));
+				.load(new ArrayList<Object>(this.getRDASelezionata()
+						.getPersistentModel().righeRDA.getCollection()));
 		this.validate();
 		this.repaint();
 	}
@@ -100,10 +97,11 @@ public class RDACenter extends JPanel {
 
 	/**
 	 * 
-	 * @param r: la listaRDA da impostare
+	 * @param r
+	 *            : la listaRDA da impostare
 	 */
 	public void setLista(ListaRDA r) {
-		if(this.lista != null)
+		if (this.lista != null)
 			this.remove(this.lista);
 		this.validate();
 		this.repaint();
@@ -152,20 +150,20 @@ public class RDACenter extends JPanel {
 	public static boolean isInstanciated() {
 		return instance == null;
 	}
-	
+
 	/**
 	 * Metodo che ricarica la lista rda congelate e seleziona la prima rda
 	 */
-	public void refreshCongelate(){
+	public void refreshCongelate() {
 		this.lista.svuota();
 		this.lista.load(GestisciRDAHandler.CONGELATA);
-		this.setRDASelezionata(GestisciRDAHandler.getInstance()
-				.getMRDAById(this.lista.getPrimaRDA()));
+		this.setRDASelezionata(GestisciRDAHandler.getInstance().getMRDAById(
+				this.lista.getPrimaRDA()));
 		PlicoRDA prda = PlicoRDA.getInstance();
 		ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
 		prda.reset();
-		lista_righe_rda.load(new ArrayList<Object>(this
-				.getRDASelezionata().getPersistentModel().righeRDA.getCollection()));
+		lista_righe_rda.load(new ArrayList<Object>(this.getRDASelezionata()
+				.getPersistentModel().righeRDA.getCollection()));
 		lista_righe_rda.validate();
 		lista_righe_rda.repaint();
 	}

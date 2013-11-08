@@ -130,6 +130,7 @@ public class CardRDA extends ACard {
 				CardRDA.this.repaint();
 				lista_righe_rda.validate();
 				lista_righe_rda.repaint();
+				plico_rda.refreshNotaChange();
 			}
 		});
 	}

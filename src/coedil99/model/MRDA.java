@@ -103,5 +103,10 @@ public class MRDA extends coedil99.model.Subject implements IModel{
 		this.rda.setDescrizione(s);
 	}
 
+	public String getDescrizione() {
+		// TODO Auto-generated method stub
+		return this.rda.getDescrizione();
+	}
+
 
 }

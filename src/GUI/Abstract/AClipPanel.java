@@ -35,10 +35,11 @@ public abstract class AClipPanel extends JPanel {
 	public static HashMap<String, Integer> RDAButtonState;
 	{
 		RDAButtonState = new HashMap<String, Integer>();
-		RDAButtonState.put(GestisciRDAHandler.CONFERMATA, 3);
+		RDAButtonState.put(GestisciRDAHandler.CONFERMATA, 4);
 		RDAButtonState.put(GestisciRDAHandler.ATTESA_CONFERMA, 2);
 		RDAButtonState.put(GestisciRDAHandler.CONGELATA, 1);	
-		RDAButtonState.put("NUOVA", 4);
+		RDAButtonState.put("NUOVA", 5);
+		RDAButtonState.put("RIFIUTATA", 3);
 	}
 	
 	public static HashMap<String, Integer> PLButtonState;

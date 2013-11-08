@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import GUI.RDACenter;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
-import GUI.FormRDA.PanelRDAComm;
 import GUI.Liste.ListaRigheRDA;
+import Panels.PanelRDAComm;
+import Panels.PanelRDACommFactory;
 
 public class PlicoCommerciale extends APlico {
 
@@ -106,7 +107,7 @@ public class PlicoCommerciale extends APlico {
 		// TODO Auto-generated method stub
 		if(this.panelrdacomm != null)
 			this.remove(this.panelrdacomm);
-		this.panelrdacomm = new PanelRDAComm();
+		this.panelrdacomm = PanelRDACommFactory.getInstance().makePanelRDAComm();
 		this.add(panelrdacomm, BorderLayout.CENTER);
 		this.validate();
 		this.repaint();	

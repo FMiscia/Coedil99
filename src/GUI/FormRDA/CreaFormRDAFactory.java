@@ -5,7 +5,6 @@ import GUI.Abstract.AFormRDA;
 /**
  * 
  * @author francesco
- *
  * implementazione factory abstract factory
  */
 public class CreaFormRDAFactory extends FormRDAFactory {

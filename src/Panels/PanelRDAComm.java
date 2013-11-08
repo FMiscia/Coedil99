@@ -1,4 +1,4 @@
-package GUI.FormRDA;
+package Panels;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -86,26 +86,7 @@ public class PanelRDAComm extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CommercialeCenter c = CommercialeCenter.getInstance();
-				c.getRDASelezionata().setDescrizione(area.getText());
-				c.getRDASelezionata().setState(GestisciRDAHandler.CONFERMATA);
-				c.getRDASelezionata().save();
-				c.getLista().loadComm(GestisciRDAHandler.ATTESA_CONFERMA);
-				PlicoCommerciale plico_com = PlicoCommerciale.getInstance();
-				c.getLista().getPrimaCard().getRiquadro().deselectAll();
-				CommercialeCenter contenitore = CommercialeCenter.getInstance();
-				contenitore.setRDASelezionata(GestisciRDAHandler.getInstance().getMRDAById(c.getLista().getPrimaRDA()));
-				ListaRigheRDA lista_righe_rda = plico_com.getListaRigheRDA();
-				plico_com.refreshFormRDA();
-				lista_righe_rda.getPanel().removeAll();
-				contenitore.loadListaRigheRDA();
-				c.getLista().getPrimaCard().setBackground(new Color(30, 44, 255));
-				c.getLista().getPrimaCard().validate();
-				c.getLista().getPrimaCard().repaint();
-				lista_righe_rda.validate();
-				lista_righe_rda.repaint();
-				
-				
+				PanelRDAComm.this.actionSuRDA(GestisciRDAHandler.CONFERMATA);
 			}
 		});
 		ml.setConstraints(btConferma, mlc);
@@ -120,14 +101,36 @@ public class PanelRDAComm extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				PanelRDAComm.this.actionSuRDA(GestisciRDAHandler.RIFIUTATA);
 			}
 		});
 		ml.setConstraints(btRifiuta, mlc);
 		add(btRifiuta);
-		
+				
+	}
 
-		
+	protected void actionSuRDA(String stato) {
+		// TODO Auto-generated method stub
+		CommercialeCenter c = CommercialeCenter.getInstance();
+		if(area.getText().length() > 250)
+			area.setText(area.getText().substring(0,200));
+		c.getRDASelezionata().setDescrizione(area.getText());
+		c.getRDASelezionata().setState(stato);
+		c.getRDASelezionata().save();
+		c.getLista().loadComm(GestisciRDAHandler.ATTESA_CONFERMA);
+		PlicoCommerciale plico_com = PlicoCommerciale.getInstance();
+		c.getLista().getPrimaCard().getRiquadro().deselectAll();
+		CommercialeCenter contenitore = CommercialeCenter.getInstance();
+		contenitore.setRDASelezionata(GestisciRDAHandler.getInstance().getMRDAById(c.getLista().getPrimaRDA()));
+		ListaRigheRDA lista_righe_rda = plico_com.getListaRigheRDA();
+		plico_com.refreshFormRDA();
+		lista_righe_rda.getPanel().removeAll();
+		contenitore.loadListaRigheRDA();
+		c.getLista().getPrimaCard().setBackground(new Color(30, 44, 255));
+		c.getLista().getPrimaCard().validate();
+		c.getLista().getPrimaCard().repaint();
+		lista_righe_rda.validate();
+		lista_righe_rda.repaint();
 	}
 
 

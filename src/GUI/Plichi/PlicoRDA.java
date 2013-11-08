@@ -8,6 +8,7 @@ import GUI.Abstract.AFormRDA;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
 import GUI.Liste.ListaRigheRDA;
+import Panels.NotaRDA;
 import coedil99.controller.GestisciRDAHandler;
 
 
@@ -27,6 +28,7 @@ public class PlicoRDA extends APlico {
 	private static PlicoRDA instance = null;
 	private ListaRigheRDA listaRigheRDA;
 	private AFormRDA formRDA = null;
+	private NotaRDA notaRDA = null;
 
 	/**
 	 * Costruttore
@@ -61,6 +63,24 @@ public class PlicoRDA extends APlico {
 		
 	}
 
+
+	public void addNotaRDA(NotaRDA n){
+		if(this.notaRDA != null)
+			this.remove(this.notaRDA);
+		this.notaRDA = n;
+		this.add(notaRDA, BorderLayout.CENTER);
+		this.validate();
+		this.repaint();	
+	}
+	
+	public void refreshNotaChange(){
+		if(this.notaRDA != null)
+			this.notaRDA.setNotaTxt();
+		this.validate();
+		this.repaint();
+	}
+	
+	
 	/**
 	 * Singleton
 	 * @return instance:PlicoRDA
@@ -106,6 +126,16 @@ public class PlicoRDA extends APlico {
 	}
 	
 	/**
+	 * Rimuove gli elementi dalla nota RDA
+	 */
+	public void resetNotaRDA(){
+		if(this.notaRDA != null)
+			this.remove(this.notaRDA);
+		this.validate();
+		this.repaint();
+	}
+	
+	/**
 	 * Aggiorna il plico
 	 */
 	@SuppressWarnings("unchecked")
@@ -122,7 +152,7 @@ public class PlicoRDA extends APlico {
 	 */
 	public void controllaListaRighe(){
 		ListaRigheRDA lrrda = this.getListaRigheRDA();
-		if(RDACenter.getInstance().getClipPanel().isSelectedCongelate() && lrrda.getNumRigheRDA() == 0){
+		if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.CONGELATA) && lrrda.getNumRigheRDA() == 0){
 			GestisciRDAHandler.getInstance().deleteAndRemoveMRDA(RDACenter.getInstance().getRDASelezionata());
 			PlicoRDA prda = PlicoRDA.getInstance();
 			ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
@@ -133,7 +163,7 @@ public class PlicoRDA extends APlico {
 			this.validate();
 			this.repaint();
 		}
-		else if(RDACenter.getInstance().getClipPanel().isSelectedNuova() && lrrda.getNumRigheRDA() == 0){
+		else if(RDACenter.getInstance().getClipPanel().isSelected("NUOVA") && lrrda.getNumRigheRDA() == 0){
 			RDACenter.getInstance().getClipPanel().getButtons().get(4).doClick();
 			this.validate();
 			this.repaint();

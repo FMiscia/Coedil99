@@ -20,6 +20,7 @@ import GUI.FormRDA.ModificaFormRDA;
 import GUI.FormRDA.ModificaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
+import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MRigaRDA;
 import coedil99.persistentmodel.RigaRDA;
 
@@ -147,7 +148,7 @@ public class CardRigaRDA extends ACard {
 	 * a seconda dello stato permetterà la modifica di quella riga
 	 */
 	private void setCardOptions() {
-		if (RDACenter.getInstance().getClipPanel().isSelectedNuova()){
+		if (RDACenter.getInstance().getClipPanel().isSelected("NUOVA")){
 			btnElimina = new JButton("Elimina");
 			btnElimina.setBackground(Color.LIGHT_GRAY);
 			add(btnElimina, "2, 2");
@@ -157,7 +158,7 @@ public class CardRigaRDA extends ACard {
 			btnModifica.setVisible(false);
 			add(btnModifica, "4, 2");
 		}
-		else if(RDACenter.getInstance().getClipPanel().isSelectedAttesa()){
+		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.ATTESA_CONFERMA)){
 			btnElimina = new JButton("Elimina");
 			btnElimina.setBackground(Color.LIGHT_GRAY);
 			btnElimina.setVisible(false);
@@ -168,7 +169,19 @@ public class CardRigaRDA extends ACard {
 			add(btnModifica, "4, 2");
 			this.setPreferredSize(new Dimension(269, 190));
 		}
-		else if(RDACenter.getInstance().getClipPanel().isSelectedConfermate()){
+		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.CONGELATA)){
+			btnElimina = new JButton("Elimina");
+			btnElimina.setBackground(Color.LIGHT_GRAY);
+			btnElimina.setVisible(true);
+			add(btnElimina, "2, 2");
+			
+			btnModifica = new JButton("Modifica");
+			btnModifica.setBackground(Color.LIGHT_GRAY);
+			btnModifica.setVisible(true);
+			add(btnModifica, "4, 2");
+			this.setPreferredSize(new Dimension(269, 190));
+		}
+		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.RIFIUTATA)){
 			btnElimina = new JButton("Elimina");
 			btnElimina.setBackground(Color.LIGHT_GRAY);
 			btnElimina.setVisible(false);
@@ -178,12 +191,15 @@ public class CardRigaRDA extends ACard {
 			btnModifica.setVisible(false);
 			add(btnModifica, "4, 2");
 			this.setPreferredSize(new Dimension(269, 190));
-		} else{
+		}
+		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.CONFERMATA)){
 			btnElimina = new JButton("Elimina");
+			btnElimina.setVisible(false);
 			btnElimina.setBackground(Color.LIGHT_GRAY);
 			add(btnElimina, "4, 2");
 			
 			btnModifica = new JButton("Modifica");
+			btnModifica.setVisible(false);
 			btnModifica.setBackground(Color.LIGHT_GRAY);
 			add(btnModifica, "2, 2");
 		}
