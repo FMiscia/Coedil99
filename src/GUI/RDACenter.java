@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
 import GUI.Liste.ListaRDA;
+import GUI.Liste.ListaRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
@@ -45,6 +46,15 @@ public class RDACenter extends JPanel {
 	 */
 	@SuppressWarnings("unchecked")
 	public void loadListaRigheRDA() {
+		ListaRDA listarda = (ListaRDA) ListaRDAFactory
+				.getInstance().makeListaComm(GestisciRDAHandler.CONGELATA);
+		RDACenter.getInstance().setLista(listarda);
+		RDACenter.getInstance().setRDASelezionata( GestisciRDAHandler.getInstance().getMRDAById(listarda.getPrimaRDA()));
+		System.out.println("48"+this.getRDASelezionata());
+		System.out.println("49"+this.getRDASelezionata().getPersistentModel());
+		System.out.println("50"+this.getRDASelezionata().getPersistentModel().righeRDA);
+		System.out.println("51"+this.getRDASelezionata().getPersistentModel().righeRDA
+				.getCollection());
 		PlicoRDA.getInstance()
 				.getListaRigheRDA()
 				.load(new ArrayList<Object>(this.getRDASelezionata().getPersistentModel().righeRDA
