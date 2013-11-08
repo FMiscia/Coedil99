@@ -13,12 +13,10 @@
  */
 package coedil99.persistentmodel;
 
-import java.util.Properties;
-
-import org.hibernate.FlushMode;
-import org.orm.PersistentException;
-import org.orm.PersistentManager;
+import org.orm.*;
 import org.orm.cfg.JDBCConnectionSetting;
+import org.hibernate.*;
+import java.util.Properties;
 
 public class Coedil99ingdelsoftwarePersistentManager extends PersistentManager {
 	private static final String PROJECT_NAME = "Coedil99ingdelsoftware";

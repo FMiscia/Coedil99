@@ -159,7 +159,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 	 */
 	public boolean clickDuringModify() {
 		if (((APlico) RaccoglitorePlichi.getInstance().getPlico_container()
-				.getComponent(0)).isModifying().size() != 0) {
+				.getComponent(0)).isModifying()) {
 			Object[] options = { "Si", "No" };
 			int n = JOptionPane.showOptionDialog(null,
 					"Sicuro di voler abbandonare la modifica?\n"

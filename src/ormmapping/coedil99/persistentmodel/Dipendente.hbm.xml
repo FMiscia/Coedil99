@@ -10,9 +10,12 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
-		<property name="pwd" column="Pwd" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="usr" column="Usr" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="usr" column="Usr" type="string" length="255" not-null="true" lazy="false"/>
+		<property name="pwd" column="Pwd" type="string" length="255" not-null="true" lazy="false"/>
 		<property name="level" column="Level" type="integer" length="11" not-null="true" lazy="false"/>
+		<property name="rdacongelate_visualizzate" column="Rdacongelate_visualizzate" type="integer" length="11" not-null="false" lazy="false"/>
+		<property name="rdaattesa_visualizzate" column="Rdaattesa_visualizzate" type="integer" length="11" not-null="false" lazy="false"/>
+		<property name="rdarifiutate_visualizzate" column="Rdarifiutate_visualizzate" type="integer" length="11" not-null="false" lazy="false"/>
 		<property name="name" column="Name" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="familyname" column="Familyname" type="string" length="255" not-null="false" lazy="false"/>
 	</class>

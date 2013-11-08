@@ -24,5 +24,5 @@ public abstract class APlico extends JPanel {
 	 */
 	abstract public void load(int id);
 	
-	abstract public ArrayList<ARiquadro> isModifying();
+	abstract public boolean isModifying();
 }

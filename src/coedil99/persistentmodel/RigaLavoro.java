@@ -13,7 +13,7 @@
  */
 package coedil99.persistentmodel;
 
-import org.orm.PersistentException;
+import org.orm.*;
 public class RigaLavoro implements coedil99.persistentmodel.IPersistentModel {
 	public RigaLavoro() {
 	}

@@ -13,11 +13,9 @@
  */
 package coedil99.persistentmodel;
 
-import java.util.List;
-
+import org.orm.*;
 import org.hibernate.Query;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
+import java.util.List;
 
 public class RigaRDAFactory {
 	public static RigaRDA loadRigaRDAByORMID(int ID) throws PersistentException {

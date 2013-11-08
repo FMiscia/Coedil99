@@ -13,14 +13,10 @@
  */
 package coedil99.persistentmodel;
 
-import java.util.List;
-
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import org.orm.criteria.AbstractORMCriteria;
-import org.orm.criteria.IntegerExpression;
-import org.orm.criteria.StringExpression;
+import org.orm.criteria.*;
 
 public class CantiereCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
@@ -46,9 +42,8 @@ public class CantiereCriteria extends AbstractORMCriteria {
 		return (Cantiere) super.uniqueResult();
 	}
 	
-
 	public Cantiere[] listCantiere() {
-		List list = super.list();
+		java.util.List list = super.list();
 		return (Cantiere[]) list.toArray(new Cantiere[list.size()]);
 	}
 }

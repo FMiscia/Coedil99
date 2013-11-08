@@ -12,9 +12,9 @@ License Type: Purchased
 		</id>
 		<many-to-one name="geometria" column="GeometriaID" class="coedil99.persistentmodel.Geometria" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
-		<property name="capitello" column="Capitello" type="boolean" length="1" not-null="true" lazy="false"/>
+		<property name="capitello" column="Capitello" type="boolean" length="1" not-null="false" lazy="false"/>
 		<property name="profiloCapitello" column="ProfiloCapitello" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="note" column="Note" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="numero" column="Numero" type="integer" length="11" not-null="true" lazy="false"/>
+		<property name="numero" column="Numero" type="integer" length="11" not-null="false" lazy="false"/>
 	</class>
 </hibernate-mapping>

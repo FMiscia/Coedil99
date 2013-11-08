@@ -60,11 +60,10 @@ public class ListaCommesse extends ALista {
 	}
 
 	
-	@Override
 	/**
 	 * Aggiorna il pannello contenente la lista se necessario (caso d'uso gestisci commessa)
 	 */
-	public void updatePanelRDA() {
+	public void updatePanel() {
 		// TODO Auto-generated method stub
 		this.panel.removeAll();
 		this.load();
@@ -101,6 +100,8 @@ public class ListaCommesse extends ALista {
 		this.setPreferredSize(new Dimension(154,panel.getHeight()));
 		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
 	}
+
+
 
 
 

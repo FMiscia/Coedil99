@@ -2,6 +2,7 @@ package coedil99.model;
 
 import org.orm.PersistentException;
 
+import coedil99.controller.GestisciCommessaHandler;
 import coedil99.persistentmodel.Commessa;
 import coedil99.persistentmodel.CommessaFactory;
 import coedil99.persistentmodel.IPersistentModel;
@@ -44,6 +45,7 @@ public class MCommessa implements IModel {
 		// TODO Auto-generated method stub
 		try {
 			this.commessa.save();
+			GestisciCommessaHandler.getInstance().add(this);
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
@@ -59,6 +61,13 @@ public class MCommessa implements IModel {
 	@Override
 	public void delete() {
 		try {
+			this.commessa
+					.getOrdine()
+					.getCliente()
+					.setNumeroCommessaCliente(
+							this.commessa.getOrdine().getCliente()
+									.getNumeroCommessaCliente() - 1);
+			this.commessa.getOrdine().getCliente().save();
 			this.commessa.deleteAndDissociate();
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block

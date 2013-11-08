@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import GUI.CoedilFrame;
 import GUI.ProgrammaLavori;
@@ -31,10 +32,13 @@ import GUI.Riquadri.RiquadroDatiProduzioneConsegna;
 import GUI.Riquadri.RiquadroDatiProduzioneConsegnaFactory;
 import GUI.Riquadri.RiquadroDatiSviluppoConsegna;
 import GUI.Riquadri.RiquadroDatiSviluppoConsegnaFactory;
+import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.controller.GestisciOrdineHandler;
 import coedil99.model.MCommessa;
+import coedil99.model.MDistinta;
 import coedil99.model.MOrdine;
+import coedil99.persistentmodel.DistintaFactory;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -61,30 +65,24 @@ public class PlicoCreaCommessa extends APlico {
 	}
 
 	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void load(int id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	/**
 	 * Metodo che controlla se è in corso una modifica dei riquadri
 	 * 
 	 * @return modifica: array list contenente i riquadri in modifica
 	 */
-	public ArrayList<ARiquadro> isModifying() {
-		ArrayList<ARiquadro> modifica = new ArrayList<ARiquadro>();
-		for (ARiquadro a : this.container) {
-			if (!a.modify())
-				modifica.add(a);
-		}
-		return modifica;
+	public boolean isModifying() {
+		if(this.container==null)
+			return false;
+			boolean result = false;
+			for(ARiquadro temp: this.container){
+				for (JLabel j : temp.getLabel()) {
+					if (j.getIcon()!=null)
+						result = true;
+					temp.svuotaIconeLAbel();
+				}
+			}
+			
+			return result;
 	}
 
 	/**
@@ -164,6 +162,7 @@ public class PlicoCreaCommessa extends APlico {
 					MOrdine temp = GestisciOrdineHandler.getInstance().getMOrdineById(selected_ordine);
 					PlicoCreaCommessa.this.rdcc.setSelectedCantiere(temp.getPersistentModel().getCliente().getCantiere().getNome());
 					PlicoCreaCommessa.this.rdcc.setSelectedCliente(temp.getPersistentModel().getCliente().getName());
+					PlicoCreaCommessa.this.rdcc.setNumeroCommessaCliente(GestisciClienteHandler.getInstance().getNextCommessaCliente(temp.getPersistentModel().getCliente().getID()));
 					PlicoCreaCommessa.this.rdpc.setDataInizio(temp.getPersistentModel().getDataInizio());
 					PlicoCreaCommessa.this.rdpc.setDataFine(temp.getPersistentModel().getDataFine());
 					PlicoCreaCommessa.this.rda.setOrdineContratto(GestisciOrdineHandler.getInstance().getNextOrdineContratto());
@@ -201,10 +200,10 @@ public class PlicoCreaCommessa extends APlico {
 				posizionaRiquadri();
 			}
 		});
-		rdcc = (RiquadroDatiClienteConsegna) RiquadroDatiClienteConsegnaFactory
-				.getInstance().makeRiquadro();
 		rda.showNumeroCommessaCoedilMessage();
 		rda.showOrdineGestionaleMessage();
+		rdcc = (RiquadroDatiClienteConsegna) RiquadroDatiClienteConsegnaFactory
+				.getInstance().makeRiquadro();
 		rdc = (RiquadroDatiConsegna) RiquadroDatiConsegnaFactory.getInstance()
 				.makeRiquadro();
 		rdpc = (RiquadroDatiProduzioneConsegna) RiquadroDatiProduzioneConsegnaFactory
@@ -258,21 +257,25 @@ public class PlicoCreaCommessa extends APlico {
 											.getMOrdineById(
 													PlicoCreaCommessa.this.selected_ordine)
 											.getPersistentModel());
-					PlicoCreaCommessa.this.rda.setOggetto(commessa);
-					PlicoCreaCommessa.this.rda.salva();
-					PlicoCreaCommessa.this.rdc.setOggetto(commessa);
-					PlicoCreaCommessa.this.rdc.salva();
-					PlicoCreaCommessa.this.rdcc.setOggetto(commessa);
-					PlicoCreaCommessa.this.rdcc.salva();
-					PlicoCreaCommessa.this.rdpc.setOggetto(commessa);
-					PlicoCreaCommessa.this.rdpc.salva();
-					PlicoCreaCommessa.this.rsc.setOggetto(commessa);
-					PlicoCreaCommessa.this.rsc.salva();
 					commessa.setCodiceInterno();
+					MDistinta d = new MDistinta();
+					commessa.getPersistentModel().setDistinta(d.getPersistentModel());
+					PlicoCreaCommessa.this.rda.setOggetto(commessa);
+					PlicoCreaCommessa.this.rda.salva(false);
+					PlicoCreaCommessa.this.rdc.setOggetto(commessa);
+					PlicoCreaCommessa.this.rdc.salva(false);
+					PlicoCreaCommessa.this.rdcc.setOggetto(commessa);
+					PlicoCreaCommessa.this.rdcc.salva(false);
+					PlicoCreaCommessa.this.rdpc.setOggetto(commessa);
+					PlicoCreaCommessa.this.rdpc.salva(false);
+					PlicoCreaCommessa.this.rsc.setOggetto(commessa);
+					PlicoCreaCommessa.this.rsc.salva(false);		
 					commessa.save();
 					JOptionPane.showMessageDialog(null,
 							"Commessa salvata con successo",
 							"Operazione eseguita", JOptionPane.PLAIN_MESSAGE);
+					PlicoCreaCommessa.this.container=null;
+					ProgrammaLavori.getInstance().getListaCommesse().updatePanel();
 					ProgrammaLavori.getInstance().getClipPanel().getButtons()
 							.get(AClipPanel.PLButtonState.get("COMMESSA"))
 							.doClick();
@@ -291,6 +294,24 @@ public class PlicoCreaCommessa extends APlico {
 	public void resetAll() {
 		this.removeAll();
 		this.initialize();
+	}
+	
+	/**
+	 * Inutilizzato per PlicoCreaCommessa
+	 */
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * Inutilizzato per PlicoCreaCommessa
+	 */
+	@Override
+	public void load(int id) {
+		// TODO Auto-generated method stub
+
 	}
 
 	/**

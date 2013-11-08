@@ -13,7 +13,7 @@
  */
 package coedil99.persistentmodel;
 
-import org.orm.PersistentException;
+import org.orm.*;
 public class Ordine implements coedil99.persistentmodel.IPersistentModel {
 	public Ordine() {
 	}
@@ -259,21 +259,6 @@ public class Ordine implements coedil99.persistentmodel.IPersistentModel {
 	public final coedil99.persistentmodel.CommessaListCollection commesse = new coedil99.persistentmodel.CommessaListCollection(this, _ormAdapter, coedil99.persistentmodel.ORMConstants.KEY_ORDINE_COMMESSE, coedil99.persistentmodel.ORMConstants.KEY_COMMESSA_ORDINE, coedil99.persistentmodel.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private static int counter = 0;
-	
-	private Boolean isDateNull() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public Ordine(coedil99.persistentmodel.Cliente c, String og, Integer anno) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	private void checkDate(coedil99.persistentmodel.Commessa c) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
 	
 	public String toString() {
 		return String.valueOf(getID());

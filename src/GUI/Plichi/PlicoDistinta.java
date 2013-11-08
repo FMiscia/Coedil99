@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import GUI.CoedilFrame;
@@ -180,12 +181,16 @@ public class PlicoDistinta extends APlico {
 		
 	}
 
-	public ArrayList<ARiquadro> isModifying() {
-		ArrayList<ARiquadro> modifica = new ArrayList<ARiquadro>(); 
-		for(ARiquadro a :this.riquadri){
-			if(!a.modify())
-				modifica.add(a);
+	public boolean isModifying() {
+		boolean result = false;
+		for(RiquadroDatiDistinta temp: this.riquadri){
+			for (JLabel j : temp.getLabel()) {
+				if (j.getIcon()!=null)
+					result = true;
+				temp.svuotaIconeLAbel();
+			}
 		}
-		return modifica;
+		
+		return result;
 	}
 }

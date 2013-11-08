@@ -49,7 +49,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	private JLabel lblDataFine;
 	private JLabel lblOrario;
 	private JTextField txtOrario;
-	private JLabel lblDescrizione;
 	private JTextField txtDescrizione;
 	private JLabel lblIcoOC;
 	private JLabel lblIcoAnno;
@@ -57,7 +56,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	private JLabel lblIcoCommessaCoedil;
 	private JLabel lblIcoOrdineGestionale;
 	private JLabel lblIcoOrario;
-	private JLabel lblIcoDescrizione;
 	private JLabel lblIcoDataInizio;
 	private JLabel lblIcoDataFine;
 	private JXDatePicker dateDataFine;
@@ -71,48 +69,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	public RiquadroDatiAziendali(String title) {
 		super(title);
 		this.initialize();
-	}
-
-	/**
-	 * Aggiunge descrizione
-	 */
-	private void addDescrizione() {
-		this.lblDescrizione = new JLabel("Descrizione");
-		this.form.add(this.lblDescrizione, "2, 18");
-		this.txtDescrizione = new JTextField();
-		this.txtDescrizione.setHorizontalAlignment(SwingConstants.CENTER);
-		if (this.txtDescrizione.getKeyListeners().length == 0)
-			this.txtDescrizione.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyReleased(KeyEvent e) {
-					String line = txtDescrizione.getText();
-					String pattern = "[^a-zA-Z\'\\s]";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoDescrizione.setIcon(IcoErrore);
-						lblIcoDescrizione
-								.setToolTipText("Il campo Descrizione deve contenere solo lettere!");
-						txtDescrizione.setBorder(new LineBorder(Color.red));
-					} else if (m.find()) {
-						lblIcoDescrizione.setIcon(IcoErrore);
-						lblIcoDescrizione
-								.setToolTipText("Il campo Descrizione deve contenere solo lettere!");
-						txtDescrizione.setBorder(new LineBorder(Color.red));
-					} else {
-						lblIcoDescrizione.setIcon(IcoOk);
-						lblIcoDescrizione.setToolTipText("");
-						txtDescrizione.setBorder(new LineBorder(Color.green));
-					}
-					controlloErrori();
-				}
-			});
-		this.Container.add(this.txtDescrizione);
-		this.form.add(this.txtDescrizione, "6, 18, fill, fill");
-		this.lblIcoDescrizione = new JLabel("");
-		this.lblIcoDescrizione.setVisible(false);
-		this.form.add(lblIcoDescrizione, "8, 18, center, top");
-		this.Label.add(lblIcoDescrizione);
 	}
 
 	/**
@@ -282,35 +238,26 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.form.add(this.lblOrdineGestionale, "2, 10");
 		this.txtOrdineGestionale = new JTextField();
 		this.txtOrdineGestionale.setHorizontalAlignment(SwingConstants.CENTER);
-		/*if (this.txtOrdineGestionale.getKeyListeners().length == 0)
-			this.txtOrdineGestionale.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyReleased(KeyEvent e) {
-					String line = txtOrdineGestionale.getText();
-					String pattern = "\\D+";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoOrdineGestionale.setIcon(IcoErrore);
-						lblIcoOrdineGestionale
-								.setToolTipText("Il campo Ordine Gestionale deve contenere solo numeri!");
-						txtOrdineGestionale
-								.setBorder(new LineBorder(Color.red));
-					} else if (m.find()) {
-						lblIcoOrdineGestionale.setIcon(IcoErrore);
-						lblIcoOrdineGestionale
-								.setToolTipText("Il campo Ordine Gestionale deve contenere solo numeri!");
-						txtOrdineGestionale
-								.setBorder(new LineBorder(Color.red));
-					} else {
-						lblIcoOrdineGestionale.setIcon(IcoOk);
-						lblIcoOrdineGestionale.setToolTipText(null);
-						txtOrdineGestionale.setBorder(new LineBorder(
-								Color.green));
-					}
-					controlloErrori();
-				}
-			});*/
+		/*
+		 * if (this.txtOrdineGestionale.getKeyListeners().length == 0)
+		 * this.txtOrdineGestionale.addKeyListener(new KeyAdapter() {
+		 * 
+		 * @Override public void keyReleased(KeyEvent e) { String line =
+		 * txtOrdineGestionale.getText(); String pattern = "\\D+"; Pattern r =
+		 * Pattern.compile(pattern); Matcher m = r.matcher(line); if
+		 * (line.equals("")) { lblIcoOrdineGestionale.setIcon(IcoErrore);
+		 * lblIcoOrdineGestionale
+		 * .setToolTipText("Il campo Ordine Gestionale deve contenere solo numeri!"
+		 * ); txtOrdineGestionale .setBorder(new LineBorder(Color.red)); } else
+		 * if (m.find()) { lblIcoOrdineGestionale.setIcon(IcoErrore);
+		 * lblIcoOrdineGestionale
+		 * .setToolTipText("Il campo Ordine Gestionale deve contenere solo numeri!"
+		 * ); txtOrdineGestionale .setBorder(new LineBorder(Color.red)); } else
+		 * { lblIcoOrdineGestionale.setIcon(IcoOk);
+		 * lblIcoOrdineGestionale.setToolTipText(null);
+		 * txtOrdineGestionale.setBorder(new LineBorder( Color.green)); }
+		 * controlloErrori(); } });
+		 */
 		this.txtOrdineGestionale.setEnabled(false);
 		this.form.add(this.txtOrdineGestionale, "6, 10, fill, fill");
 		this.lblIcoOrdineGestionale = new JLabel("");
@@ -327,34 +274,26 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.form.add(this.lblCommessaCoedil, "2, 8");
 		this.txtCommessaCoedil = new JTextField();
 		this.txtCommessaCoedil.setHorizontalAlignment(SwingConstants.CENTER);
-		/*if (this.txtCommessaCoedil.getKeyListeners().length == 0)
-			this.txtCommessaCoedil.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyReleased(KeyEvent e) {
-					String line = txtCommessaCoedil.getText();
-					String pattern = "\\D+";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoCommessaCoedil.setIcon(IcoErrore);
-						lblIcoCommessaCoedil
-								.setToolTipText("Il campo Commessa Coedil deve contenere solo numeri!");
-						txtCommessaCoedil.setBorder(new LineBorder(Color.red));
-					} else if (m.find()) {
-						lblIcoCommessaCoedil.setIcon(IcoErrore);
-						lblIcoCommessaCoedil
-								.setToolTipText("Il campo Commessa Coedil deve contenere solo numeri!");
-						txtCommessaCoedil.setBorder(new LineBorder(Color.red));
-					} else {
-						lblIcoCommessaCoedil.setIcon(IcoOk);
-						lblIcoCommessaCoedil.setToolTipText(null);
-						txtCommessaCoedil
-								.setBorder(new LineBorder(Color.green));
-					}
-					controlloErrori();
-				}
-			});*/
-		//this.Container.add(this.txtCommessaCoedil);
+		/*
+		 * if (this.txtCommessaCoedil.getKeyListeners().length == 0)
+		 * this.txtCommessaCoedil.addKeyListener(new KeyAdapter() {
+		 * 
+		 * @Override public void keyReleased(KeyEvent e) { String line =
+		 * txtCommessaCoedil.getText(); String pattern = "\\D+"; Pattern r =
+		 * Pattern.compile(pattern); Matcher m = r.matcher(line); if
+		 * (line.equals("")) { lblIcoCommessaCoedil.setIcon(IcoErrore);
+		 * lblIcoCommessaCoedil
+		 * .setToolTipText("Il campo Commessa Coedil deve contenere solo numeri!"
+		 * ); txtCommessaCoedil.setBorder(new LineBorder(Color.red)); } else if
+		 * (m.find()) { lblIcoCommessaCoedil.setIcon(IcoErrore);
+		 * lblIcoCommessaCoedil
+		 * .setToolTipText("Il campo Commessa Coedil deve contenere solo numeri!"
+		 * ); txtCommessaCoedil.setBorder(new LineBorder(Color.red)); } else {
+		 * lblIcoCommessaCoedil.setIcon(IcoOk);
+		 * lblIcoCommessaCoedil.setToolTipText(null); txtCommessaCoedil
+		 * .setBorder(new LineBorder(Color.green)); } controlloErrori(); } });
+		 */
+		// this.Container.add(this.txtCommessaCoedil);
 		this.txtCommessaCoedil.setEnabled(false);
 		this.form.add(this.txtCommessaCoedil, "6, 8, fill, fill");
 		this.lblIcoCommessaCoedil = new JLabel("");
@@ -371,33 +310,25 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.form.add(this.lblOrdineContratto, "2, 6");
 		this.txtOrdineContratto = new JTextField();
 		this.txtOrdineContratto.setHorizontalAlignment(SwingConstants.CENTER);
-		/*if (this.txtOrdineContratto.getKeyListeners().length == 0)
-			this.txtOrdineContratto.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyReleased(KeyEvent e) {
-					String line = txtOrdineContratto.getText();
-					String pattern = "\\D+";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoOrdineContratto.setIcon(IcoErrore);
-						lblIcoOrdineContratto
-								.setToolTipText("Il campo Ordine/Contratto deve contenere solo numeri!");
-						txtOrdineContratto.setBorder(new LineBorder(Color.red));
-					} else if (m.find()) {
-						lblIcoOrdineContratto.setIcon(IcoErrore);
-						lblIcoOrdineContratto
-								.setToolTipText("Il campo Ordine/Contratto deve contenere solo numeri!");
-						txtOrdineContratto.setBorder(new LineBorder(Color.red));
-					} else {
-						lblIcoOrdineContratto.setIcon(IcoOk);
-						lblIcoOrdineContratto.setToolTipText(null);
-						txtOrdineContratto
-								.setBorder(new LineBorder(Color.green));
-					}
-					controlloErrori();
-				}
-			});*/
+		/*
+		 * if (this.txtOrdineContratto.getKeyListeners().length == 0)
+		 * this.txtOrdineContratto.addKeyListener(new KeyAdapter() {
+		 * 
+		 * @Override public void keyReleased(KeyEvent e) { String line =
+		 * txtOrdineContratto.getText(); String pattern = "\\D+"; Pattern r =
+		 * Pattern.compile(pattern); Matcher m = r.matcher(line); if
+		 * (line.equals("")) { lblIcoOrdineContratto.setIcon(IcoErrore);
+		 * lblIcoOrdineContratto
+		 * .setToolTipText("Il campo Ordine/Contratto deve contenere solo numeri!"
+		 * ); txtOrdineContratto.setBorder(new LineBorder(Color.red)); } else if
+		 * (m.find()) { lblIcoOrdineContratto.setIcon(IcoErrore);
+		 * lblIcoOrdineContratto
+		 * .setToolTipText("Il campo Ordine/Contratto deve contenere solo numeri!"
+		 * ); txtOrdineContratto.setBorder(new LineBorder(Color.red)); } else {
+		 * lblIcoOrdineContratto.setIcon(IcoOk);
+		 * lblIcoOrdineContratto.setToolTipText(null); txtOrdineContratto
+		 * .setBorder(new LineBorder(Color.green)); } controlloErrori(); } });
+		 */
 
 		this.txtOrdineContratto.setEnabled(false);
 		this.form.add(this.txtOrdineContratto, "6, 6, fill, fill");
@@ -416,32 +347,24 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.form.add(this.lblAnno, "2, 4");
 		this.txtAnno = new JTextField();
 		this.txtAnno.setHorizontalAlignment(SwingConstants.CENTER);
-		/*if (this.txtAnno.getKeyListeners().length == 0)
-			this.txtAnno.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyReleased(KeyEvent e) {
-					String line = txtAnno.getText();
-					String pattern = "\\D+";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoAnno
-								.setIcon(RiquadroDatiAziendali.this.IcoErrore);
-						lblAnno.setToolTipText("Il campo Anno deve contenere solo numeri!");
-						txtAnno.setBorder(new LineBorder(Color.red));
-					} else if (m.find()) {
-						lblIcoAnno
-								.setIcon(RiquadroDatiAziendali.this.IcoErrore);
-						lblAnno.setToolTipText("Il campo Anno deve contenere solo numeri!");
-						txtAnno.setBorder(new LineBorder(Color.red));
-					} else {
-						lblIcoAnno.setIcon(RiquadroDatiAziendali.this.IcoOk);
-						lblIcoOC.setToolTipText(null);
-						txtAnno.setBorder(new LineBorder(Color.green));
-					}
-					controlloErrori();
-				}
-			});*/
+		/*
+		 * if (this.txtAnno.getKeyListeners().length == 0)
+		 * this.txtAnno.addKeyListener(new KeyAdapter() {
+		 * 
+		 * @Override public void keyReleased(KeyEvent e) { String line =
+		 * txtAnno.getText(); String pattern = "\\D+"; Pattern r =
+		 * Pattern.compile(pattern); Matcher m = r.matcher(line); if
+		 * (line.equals("")) { lblIcoAnno
+		 * .setIcon(RiquadroDatiAziendali.this.IcoErrore);
+		 * lblAnno.setToolTipText("Il campo Anno deve contenere solo numeri!");
+		 * txtAnno.setBorder(new LineBorder(Color.red)); } else if (m.find()) {
+		 * lblIcoAnno .setIcon(RiquadroDatiAziendali.this.IcoErrore);
+		 * lblAnno.setToolTipText("Il campo Anno deve contenere solo numeri!");
+		 * txtAnno.setBorder(new LineBorder(Color.red)); } else {
+		 * lblIcoAnno.setIcon(RiquadroDatiAziendali.this.IcoOk);
+		 * lblIcoOC.setToolTipText(null); txtAnno.setBorder(new
+		 * LineBorder(Color.green)); } controlloErrori(); } });
+		 */
 
 		this.txtAnno.setEnabled(false);
 		this.form.add(this.txtAnno, "6, 4, fill, fill");
@@ -525,7 +448,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.addDataInizio();
 		this.addDataFine();
 		this.addOrario();
-		this.addDescrizione();
 		this.makeEditable(false);
 	}
 
@@ -562,16 +484,13 @@ public class RiquadroDatiAziendali extends ARiquadro {
 			this.dateDataFine.setDate(null);
 		if (c.getPersistentModel().getOrario() != null)
 			this.txtOrario.setText(c.getPersistentModel().getOrario());
-		if (c.getPersistentModel().getDescrizione() != null)
-			this.txtDescrizione
-					.setText(c.getPersistentModel().getDescrizione());
 	}
 
 	/**
 	 * Metodo che modifica i campi degli oggetti interessati e li salva sul db
 	 */
 	@Override
-	public void salva() {
+	public void salva(boolean showmex) {
 		if (this.oggetto != null) {
 			MCommessa c = (MCommessa) this.oggetto;
 			MOrdine ord = new MOrdine(c.getPersistentModel().getOrdine()
@@ -582,73 +501,82 @@ public class RiquadroDatiAziendali extends ARiquadro {
 			ord.getPersistentModel().setDataFine(this.dateDataFine.getDate());
 			ord.save();
 			c.getPersistentModel().setOrario(this.txtOrario.getText());
-			c.getPersistentModel()
-					.setDescrizione(this.txtDescrizione.getText());
-
 			c.save();
-			JOptionPane.showMessageDialog(null,
-					"Salvataggio avvenuto correttamente",
-					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+			if (showmex)
+				JOptionPane
+						.showMessageDialog(null,
+								"Salvataggio avvenuto correttamente",
+								"Messaggio di Sistema",
+								JOptionPane.INFORMATION_MESSAGE);
 			this.load(this.oggetto);
 		}
 	}
-	
+
 	/**
-	 * Mostra un messaggio utile nella fase di creazione
-	 * che comunica che il numero commessa Coedil verrà inserito
-	 * automaticamente dal sistema una volta che la Commessa verrà salvata
+	 * Mostra un messaggio utile nella fase di creazione che comunica che il
+	 * numero commessa Coedil verrà inserito automaticamente dal sistema una
+	 * volta che la Commessa verrà salvata
 	 */
-	public void showNumeroCommessaCoedilMessage(){
+	public void showNumeroCommessaCoedilMessage() {
 		this.txtCommessaCoedil.setText("Automatico dopo il salvataggio");
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
-	 * Set della data di inizio commessa nel data picker del Riquadro dati aziendali
-	 * @param t:data
+	 * Set della data di inizio commessa nel data picker del Riquadro dati
+	 * aziendali
+	 * 
+	 * @param t
+	 *            :data
 	 */
-	public void setDataInizioCommessa(Date t){
+	public void setDataInizioCommessa(Date t) {
 		this.dateDataInizio.setDate(t);
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
-	 * Set della data di fine commessa nel data picker del Riquadro dati aziendali
-	 * @param t:data
+	 * Set della data di fine commessa nel data picker del Riquadro dati
+	 * aziendali
+	 * 
+	 * @param t
+	 *            :data
 	 */
-	public void setDataFineCommessa(Date t){
+	public void setDataFineCommessa(Date t) {
 		this.dateDataFine.setDate(t);
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
-	 * Mostra un messaggio informativo sulla label ad indicare che il
-	 * campo verrà automaticamente riempito dopo il salvataggio
+	 * Mostra un messaggio informativo sulla label ad indicare che il campo
+	 * verrà automaticamente riempito dopo il salvataggio
 	 */
-	public void showOrdineGestionaleMessage(){
+	public void showOrdineGestionaleMessage() {
 		this.txtOrdineGestionale.setText("Automatico dopo il salvataggio");
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
 	 * Set del numero d'ordine
-	 * @param n:valore
+	 * 
+	 * @param n
+	 *            :valore
 	 */
-	public void setOrdineContratto(int n){
+	public void setOrdineContratto(int n) {
 		this.txtOrdineContratto.setText(String.valueOf(n));
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
-	 * Set dell'anno dell'ordine 
+	 * Set dell'anno dell'ordine
+	 * 
 	 * @param year
 	 */
-	public void setAnno(int year){
+	public void setAnno(int year) {
 		this.txtAnno.setText(String.valueOf(year));
 		this.validate();
 		this.repaint();

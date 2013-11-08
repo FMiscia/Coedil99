@@ -13,11 +13,9 @@
  */
 package coedil99.persistentmodel;
 
-import java.util.List;
-
+import org.orm.*;
 import org.hibernate.Query;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
+import java.util.List;
 
 public class ClienteFactory {
 	public static Cliente loadClienteByORMID(int ID) throws PersistentException {

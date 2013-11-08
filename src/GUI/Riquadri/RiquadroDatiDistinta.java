@@ -353,10 +353,11 @@ public class RiquadroDatiDistinta extends ARiquadro {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					MRigaLavoro r = new MRigaLavoro();
-					if (RiquadroDatiDistinta.this.oggetto != null) 
+					if (RiquadroDatiDistinta.this.oggetto != null)
 						r = (MRigaLavoro) RiquadroDatiDistinta.this.oggetto;
-					MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance()
-							.getCommessaSelezionata().getPersistentModel().getDistinta().getID());
+					MDistinta odistinta = new MDistinta(ProgrammaLavori
+							.getInstance().getCommessaSelezionata()
+							.getPersistentModel().getDistinta().getID());
 					odistinta.eliminaRigaLavoro(r.getPersistentModel());
 					RiquadroDatiDistinta.this.removeAll();
 					PlicoDistinta.getInstance().removeRiquadro(
@@ -377,16 +378,20 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	 */
 	@Override
 	public void load(Object o) {
-		MRigaLavoro d = new MRigaLavoro(((RigaLavoro)o).getID());
+		MRigaLavoro d = new MRigaLavoro(((RigaLavoro) o).getID());
 		if (d != null) {
-			this.tflunghezza.setText(String.valueOf(d.getPersistentModel().getGeometria()
-					.getLunghezza()));
-			this.tfaltezza.setText(String
-					.valueOf(d.getPersistentModel().getGeometria().getAltezza()));
-			this.tfbase.setText(String.valueOf(d.getPersistentModel().getGeometria().getBase()));
-			this.tfnumero.setText(String.valueOf(d.getPersistentModel().getNumero()));
-			this.cbcapitello.setSelectedIndex((d.getPersistentModel().getCapitello()) ? 0 : 1);
-			this.tftipocapitello.setText(d.getPersistentModel().getProfiloCapitello());
+			this.tflunghezza.setText(String.valueOf(d.getPersistentModel()
+					.getGeometria().getLunghezza()));
+			this.tfaltezza.setText(String.valueOf(d.getPersistentModel()
+					.getGeometria().getAltezza()));
+			this.tfbase.setText(String.valueOf(d.getPersistentModel()
+					.getGeometria().getBase()));
+			this.tfnumero.setText(String.valueOf(d.getPersistentModel()
+					.getNumero()));
+			this.cbcapitello.setSelectedIndex((d.getPersistentModel()
+					.getCapitello()) ? 0 : 1);
+			this.tftipocapitello.setText(d.getPersistentModel()
+					.getProfiloCapitello());
 			this.tfnote.setText(d.getPersistentModel().getNote());
 			this.makeEditable(false);
 			this.oggetto = d;
@@ -433,32 +438,40 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	 * Salva le modifiche sul db
 	 */
 	@Override
-	public void salva() {
+	public void salva(boolean showmex) {
 		MRigaLavoro r = new MRigaLavoro();
-		
+
 		if (this.oggetto != null) {
 			r = (MRigaLavoro) this.oggetto;
 		} else {
-			MDistinta d = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata()
-					.getPersistentModel().getDistinta().getID());
+			MDistinta d = new MDistinta(ProgrammaLavori.getInstance()
+					.getCommessaSelezionata().getPersistentModel()
+					.getDistinta().getID());
 			d.getPersistentModel().lavori.add(r.getPersistentModel());
 		}
 		PlicoDistinta.getInstance().addRiquadroinLista(this);
 		MGeometria g = new MGeometria();
 		g.getPersistentModel().setBase(Float.parseFloat(this.tfbase.getText()));
-		g.getPersistentModel().setAltezza(Float.parseFloat(this.tfaltezza.getText()));
-		g.getPersistentModel().setLunghezza(Float.parseFloat(this.tflunghezza.getText()));
+		g.getPersistentModel().setAltezza(
+				Float.parseFloat(this.tfaltezza.getText()));
+		g.getPersistentModel().setLunghezza(
+				Float.parseFloat(this.tflunghezza.getText()));
 		r.getPersistentModel().setGeometria(g.getPersistentModel());
-		r.getPersistentModel().setCapitello(this.cbcapitello.getSelectedIndex() == 0 ? true : false);
-		r.getPersistentModel().setProfiloCapitello(this.tftipocapitello.getText());
-		r.getPersistentModel().setNumero(Integer.parseInt(this.tfnumero.getText()));
+		r.getPersistentModel().setCapitello(
+				this.cbcapitello.getSelectedIndex() == 0 ? true : false);
+		r.getPersistentModel().setProfiloCapitello(
+				this.tftipocapitello.getText());
+		r.getPersistentModel().setNumero(
+				Integer.parseInt(this.tfnumero.getText()));
 		r.getPersistentModel().setNote(this.tfnote.getText());
-		MRigaLavoro origalavoro = new MRigaLavoro(r.getPersistentModel().getID());
+		MRigaLavoro origalavoro = new MRigaLavoro(r.getPersistentModel()
+				.getID());
 		origalavoro.save();
 		this.oggetto = r;
-		JOptionPane.showMessageDialog(null,
-				"Salvataggio avvenuto correttamente", "Messaggio di Sistema",
-				JOptionPane.INFORMATION_MESSAGE);
+		if (showmex)
+			JOptionPane.showMessageDialog(null,
+					"Salvataggio avvenuto correttamente",
+					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
 		this.load(this.oggetto);
 	}
 
@@ -503,5 +516,4 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.repaint();
 	}
 
-	
 }

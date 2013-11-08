@@ -20,6 +20,8 @@ public class MDistinta implements IModel{
 	 */
 	public MDistinta() {
 		this.distinta = DistintaFactory.createDistinta();
+		MRigaLavoro riga = new MRigaLavoro();
+		this.distinta.lavori.add(riga.getPersistentModel());
 	}
 	
 	/**

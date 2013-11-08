@@ -63,10 +63,10 @@ public class CardCodiceInterno extends ACard {
 		MOrdine o = new MOrdine(((Ordine) param.get(1)).getID());
 		final MCommessa cc = new MCommessa(((Commessa) param.get(2)).getID());
 		cliente.setText(c.getPersistentModel().getName());
-		if (cc.getPersistentModel().getScadenzaCommessa() == null)
+		if (cc.getPersistentModel().getOrdine().getDataScadenza() == null)
 			scadenza.setText("--/--/----");
 		else
-			scadenza.setText(cc.getPersistentModel().getScadenzaCommessa().toString());
+			scadenza.setText(cc.getPersistentModel().getOrdine().getDataScadenza().toString());
 		codiceInterno.setText(cc.getPersistentModel().getCodiceInterno());
 		this.commessaId = cc.getPersistentModel().getID();
 

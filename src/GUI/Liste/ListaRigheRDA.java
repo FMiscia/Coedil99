@@ -116,9 +116,8 @@ public class ListaRigheRDA extends ALista {
 		}
 	}
 
-	@Override
 	/**
-	 * Aggiorna la lista e il riepilogo subito dopo una modifica
+	 * Aggiorna la lista RDA e il riepilogo subito dopo una modifica
 	 */
 	public void updatePanelRDA() {
 		this.panel.removeAll();
@@ -134,6 +133,9 @@ public class ListaRigheRDA extends ALista {
 		}
 	}
 
+	/**
+	 *
+	 */
 	public void updatePanelComm() {
 		this.panel.removeAll();
 		String stato = CommercialeCenter.getInstance().getRDASelezionata()
@@ -147,9 +149,7 @@ public class ListaRigheRDA extends ALista {
 		}
 	}
 	
-	/**
-	 * Aggiorna il riepilogo
-	 */
+	
 	public void updateRiepilogo() {
 		if (this.riepilogoRDA != null)
 			this.riepilogoRDA.refresh();
