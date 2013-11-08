@@ -2,6 +2,7 @@ package coedil99.model;
 
 import org.orm.PersistentException;
 
+import coedil99.controller.GestisciRDAHandler;
 import coedil99.persistentmodel.IPersistentModel;
 import coedil99.persistentmodel.RDA;
 import coedil99.persistentmodel.RDAFactory;
