@@ -17,6 +17,8 @@ import javax.swing.border.LineBorder;
 import GUI.CommercialeCenter;
 import GUI.RDACenter;
 import GUI.Abstract.ACard;
+import GUI.FormRDA.CreaFormRDA;
+import GUI.FormRDA.CreaFormRDAFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoCommerciale;
@@ -122,6 +124,10 @@ public class CardRDA extends ACard {
 				contenitore.setRDASelezionata(rda);
 				ListaRigheRDA lista_righe_rda = plico_rda.getListaRigheRDA();
 				plico_rda.resetFormRDA();
+				if (RDACenter.getInstance().getClipPanel()
+						.isSelected(GestisciRDAHandler.CONGELATA))
+					plico_rda.addFormRDA(CreaFormRDAFactory.getInstance()
+							.makeFormRDA());
 				lista_righe_rda.getPanel().removeAll();
 				lista_righe_rda.load(new ArrayList<Object>(rda
 						.getPersistentModel().righeRDA.getCollection()));
@@ -135,10 +141,11 @@ public class CardRDA extends ACard {
 		});
 	}
 
-
 	/**
 	 * Carica una RDA
-	 * @param o:Object
+	 * 
+	 * @param o
+	 *            :Object
 	 */
 	public void loadComm(Object o) {
 		final MRDA rda = (MRDA) o;
@@ -186,7 +193,6 @@ public class CardRDA extends ACard {
 		});
 	}
 
-	
 	public boolean isSaved() {
 		return saved;
 	}

@@ -28,8 +28,8 @@ public class GestisciRDAHandler extends coedil99.model.Observer {
 	private GestisciRDAHandler() {
 
 		try {
-			this.arrayMRDA = this.changeToMRDA(new ArrayList<RDA>(Arrays.asList(RDAFactory
-					.listRDAByQuery(null, "ID"))));
+			this.arrayMRDA = this.changeToMRDA(new ArrayList<RDA>(Arrays
+					.asList(RDAFactory.listRDAByQuery(null, "ID"))));
 			this.setSubject(new ArrayList<Subject>(arrayMRDA));
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
@@ -43,6 +43,7 @@ public class GestisciRDAHandler extends coedil99.model.Observer {
 		for (RDA rda : aRDA) {
 			MRDA mrda = new MRDA(rda.getID());
 			aMRDA.add(mrda);
+			mrda.Attach(this);
 		}
 		return aMRDA;
 	}
@@ -58,6 +59,7 @@ public class GestisciRDAHandler extends coedil99.model.Observer {
 	public void addMRDA(int pos, MRDA mrda) {
 		this.arrayMRDA.add(pos, mrda);
 		mrda.Attach(this);
+		this.subjects.add(mrda);
 	}
 
 	/**
@@ -99,13 +101,16 @@ public class GestisciRDAHandler extends coedil99.model.Observer {
 	 * @return mrda:MRDA
 	 */
 	public MRDA getMRDAById(int id) {
+		MRDA temp = null;
 		try {
-			return new MRDA(RDAFactory.getRDAByORMID(id).getID());
+			temp = new MRDA(RDAFactory.getRDAByORMID(id).getID());
+			temp.Attach(this);
+			this.subjects.add(temp);
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return temp;
 	}
 
 	/**

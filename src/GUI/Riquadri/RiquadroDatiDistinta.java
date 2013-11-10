@@ -464,9 +464,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		r.getPersistentModel().setNumero(
 				Integer.parseInt(this.tfnumero.getText()));
 		r.getPersistentModel().setNote(this.tfnote.getText());
-		MRigaLavoro origalavoro = new MRigaLavoro(r.getPersistentModel()
-				.getID());
-		origalavoro.save();
+		r.save();
 		this.oggetto = r;
 		if (showmex)
 			JOptionPane.showMessageDialog(null,

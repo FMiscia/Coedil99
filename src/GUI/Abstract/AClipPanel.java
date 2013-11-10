@@ -39,7 +39,7 @@ public abstract class AClipPanel extends JPanel {
 		RDAButtonState.put(GestisciRDAHandler.ATTESA_CONFERMA, 2);
 		RDAButtonState.put(GestisciRDAHandler.CONGELATA, 1);	
 		RDAButtonState.put("NUOVA", 5);
-		RDAButtonState.put("RIFIUTATA", 3);
+		RDAButtonState.put(GestisciRDAHandler.RIFIUTATA, 3);
 	}
 	
 	public static HashMap<String, Integer> PLButtonState;

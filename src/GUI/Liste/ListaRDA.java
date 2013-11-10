@@ -29,8 +29,8 @@ public class ListaRDA extends ALista {
 		this.initialize();
 		this.load(tipo);
 	}
-	
-	public ListaRDA(String tipo,String contesto) {
+
+	public ListaRDA(String tipo, String contesto) {
 		super();
 		this.initialize();
 		this.loadComm(tipo);
@@ -40,11 +40,12 @@ public class ListaRDA extends ALista {
 		// TODO Auto-generated method stub
 		this.panel.removeAll();
 		ArrayList<Object> t = null;
-		t = new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayMRDA(
-				tipo));
+		t = new ArrayList<Object>(GestisciRDAHandler.getInstance()
+				.getArrayMRDA(tipo));
 		for (int k = 0; k < t.size(); ++k) {
 			CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(this);
-			r.loadComm(GestisciRDAHandler.getInstance().getArrayMRDA(tipo).get(k));
+			r.loadComm(GestisciRDAHandler.getInstance().getArrayMRDA(tipo)
+					.get(k));
 			this.panel.add(r);
 			this.panel.validate();
 			this.panel.repaint();
@@ -64,21 +65,25 @@ public class ListaRDA extends ALista {
 	public void load(String tipo) {
 		this.panel.removeAll();
 		ArrayList<Object> t = null;
-		t = new ArrayList<Object>(GestisciRDAHandler.getInstance().getArrayMRDA(
-				tipo));
-		for (int k = 0; k < t.size(); ++k) {
-			CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(this);
-			r.load(GestisciRDAHandler.getInstance().getArrayMRDA(tipo).get(k));
-			this.panel.add(r);
-			this.panel.validate();
-			this.panel.repaint();
+		t = new ArrayList<Object>(GestisciRDAHandler.getInstance()
+				.getArrayMRDA(tipo));
+		if (t.size() != 0) {
+			for (int k = 0; k < t.size(); ++k) {
+				CardRDA r = (CardRDA) CardRDAFactory.getInstance().makeCard(
+						this);
+				r.load(GestisciRDAHandler.getInstance().getArrayMRDA(tipo)
+						.get(k));
+				this.panel.add(r);
+				this.panel.validate();
+				this.panel.repaint();
 
+			}
+			// if (tipo != GestisciRDAHandler.RIFIUTATA)
+			this.panel.setPreferredSize(new Dimension(this.panel.getWidth(), t
+					.size() * (this.panel.getComponent(0).getHeight() + 6)));
+			this.validate();
+			this.repaint();
 		}
-//		if (tipo != GestisciRDAHandler.RIFIUTATA)
-		this.panel.setPreferredSize(new Dimension(this.panel.getWidth(), t
-				.size() * (this.panel.getComponent(0).getHeight() + 6)));
-		this.validate();
-		this.repaint();
 	}
 
 	/**
@@ -87,8 +92,11 @@ public class ListaRDA extends ALista {
 	 * @return id:int
 	 */
 	public int getPrimaRDA() {
-		this.getPrimaCard().setBackground(new Color(30, 44, 255));
-		return this.getPrimaCard().getRDAId();
+		if (this.getPrimaCard() != null) {
+			this.getPrimaCard().setBackground(new Color(30, 44, 255));
+			return this.getPrimaCard().getRDAId();
+		}
+		return 0;
 
 	}
 
@@ -99,8 +107,9 @@ public class ListaRDA extends ALista {
 	 * @return saved:boolean
 	 */
 	public boolean isPrimaRDASaved() {
-		return ((CardRDA) this.getPrimaCard()).isSaved();
-
+		if (((CardRDA) this.getPrimaCard()) != null)
+			return ((CardRDA) this.getPrimaCard()).isSaved();
+		return false;
 	}
 
 	/**
@@ -121,7 +130,9 @@ public class ListaRDA extends ALista {
 	 * @return component:Component
 	 */
 	public CardRDA getPrimaCard() {
-		return (CardRDA) panel.getComponent(0);
+		if (panel.getComponentCount() != 0)
+			return (CardRDA) panel.getComponent(0);
+		return null;
 
 	}
 
@@ -136,7 +147,6 @@ public class ListaRDA extends ALista {
 		return true;
 	}
 
-
 	@Override
 	/**
 	 * Carica la lista senza alcun tipo (not yet implemented)
@@ -144,13 +154,13 @@ public class ListaRDA extends ALista {
 	public void load() {
 
 	}
-	
+
 	/**
 	 * Inizializza la grafica
 	 */
-	private void initialize(){
+	private void initialize() {
 		this.setPreferredSize(new Dimension(300, 0));
-		//this.getViewport().setPreferredSize(new Dimension(300,0));
+		// this.getViewport().setPreferredSize(new Dimension(300,0));
 		this.deselectAll();
 	}
 

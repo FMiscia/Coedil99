@@ -39,7 +39,7 @@ public class MRDA extends coedil99.model.Subject implements IModel{
 		
 	public void setState(String value) {
 		this.getPersistentModel().setState(value);
-		this.Notify();
+		//this.Attach(GestisciRDAHandler.getInstance());
 	}
 
 	
@@ -58,6 +58,7 @@ public class MRDA extends coedil99.model.Subject implements IModel{
 		// TODO Auto-generated method stub
 		try {
 			this.rda.save();
+			this.Notify();
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
@@ -90,14 +91,9 @@ public class MRDA extends coedil99.model.Subject implements IModel{
 
 	@Override
 	public void Notify() {
-		// TODO Auto-generated method stub
 		for(Observer temp : this.observers){
 			temp.Update();
 		}
-		/*
-		 * Risolvere problema GestisciRDAHandler observer
-		 */
-		//GestisciRDAHandler.getInstance().Update();
 	}
 	
 	public void setDescrizione(String s){

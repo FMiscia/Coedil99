@@ -180,6 +180,7 @@ public class PlicoRDA extends APlico {
 	public void reset(){
 		this.listaRigheRDA.svuota();
 		this.resetFormRDA();
+		this.resetNotaRDA();
 	}
 
 	@Override
