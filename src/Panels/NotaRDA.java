@@ -8,18 +8,25 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
+import org.orm.PersistentException;
+
 import GUI.CommercialeCenter;
 import GUI.RDACenter;
+import GUI.Abstract.AClipPanel;
+import GUI.Card.CardRDA;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoCommerciale;
 import coedil99.controller.GestisciRDAHandler;
+import coedil99.model.MRDA;
 
 public class NotaRDA extends JPanel{
 
@@ -27,8 +34,8 @@ public class NotaRDA extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JButton btConferma;
-	private JButton btRifiuta;
+	private JButton btElimina;
+	private JButton btSposta;
 	JTextPane area;
 	String newline = "\n";
 
@@ -77,35 +84,56 @@ public class NotaRDA extends JPanel{
 		JScrollPane jsp = new JScrollPane(area);
 		ml.setConstraints(jsp, mlc);
 		add(jsp);
-//		mlc.gridwidth = 1;
-//		mlc.gridy = 3;
-//		mlc.gridx = 0;
-//		
-//		btConferma = new JButton("Corferma RDA");
-//		btConferma.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// TODO Auto-generated method stub
-//			}
-//		});
-//		ml.setConstraints(btConferma, mlc);
-//		add(btConferma);
-//		mlc.gridwidth = 1;
-//		mlc.gridy = 4;
-//		mlc.gridx = 0;
-//	
-//		btRifiuta = new JButton("Rifiuta RDA");
-//		btRifiuta.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// TODO Auto-generated method stub
-//
-//			}
-//		});
-//		ml.setConstraints(btRifiuta, mlc);
-//		add(btRifiuta);
+		
+		mlc.gridwidth = 1;
+		mlc.gridy = 3;
+		mlc.gridx = 0;
+		
+		btElimina = new JButton("Elimina RDA");
+		btElimina.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				MRDA temp = RDACenter.getInstance().getRDASelezionata();
+				GestisciRDAHandler.getInstance().deleteAndRemoveMRDA(temp);
+				JOptionPane.showMessageDialog(null,
+							"RDA eliminata con successo!\n",
+							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
+					RDACenter.getInstance().getClipPanel().getButtons().get(AClipPanel.RDAButtonState.get(GestisciRDAHandler.RIFIUTATA))
+							.doClick();
+
+				
+			}
+		});
+		ml.setConstraints(btElimina, mlc);
+		add(btElimina);
+		mlc.gridwidth = 1;
+		mlc.gridy = 4;
+		mlc.gridx = 0;
+	
+		btSposta = new JButton("Sposta RDA");
+		btSposta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				MRDA temp = RDACenter.getInstance().getRDASelezionata();
+				temp.getPersistentModel().setState(
+						GestisciRDAHandler.CONGELATA);
+				temp.getPersistentModel().setDate(new Date());
+				((CardRDA) RDACenter.getInstance().getLista()
+						.getPrimaCard()).setSaved(true);
+				GestisciRDAHandler.getInstance().saveAndAddRDA(temp);
+				JOptionPane.showMessageDialog(null,
+						"RDA spostata in RDA congelate!\n",
+						"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
+				RDACenter.getInstance().getClipPanel().getButtons().get(AClipPanel.RDAButtonState.get(GestisciRDAHandler.CONGELATA))
+						.doClick();
+			}
+		});
+		ml.setConstraints(btSposta, mlc);
+		add(btSposta);
 				
 	}
 
@@ -116,6 +144,13 @@ public class NotaRDA extends JPanel{
 		// TODO Auto-generated method stub
 		String desc = RDACenter.getInstance().getRDASelezionata().getDescrizione();
 		area.setText(desc);
+	}
+	
+	public void removeButtons(){
+		remove(this.btElimina);
+		remove(this.btSposta);
+		this.validate();
+		this.repaint();
 	}
 	
 

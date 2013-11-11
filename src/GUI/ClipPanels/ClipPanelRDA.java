@@ -270,6 +270,7 @@ public class ClipPanelRDA extends AClipPanel {
 							lista_righe_rda.getPanel().repaint();
 							NotaRDA nota = (NotaRDA) NotaRDAFactory
 									.getInstance().makeNotaRDA();
+							nota.removeButtons();
 							prda.addNotaRDA(nota);
 						}
 					}
