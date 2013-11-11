@@ -117,8 +117,8 @@ public class ModificaFormRDA extends AFormRDA {
 					ModificaFormRDA.this.getRigaRDA().getPersistentModel().setQuantity(ModificaFormRDA.this.getQuantity());
 					ModificaFormRDA.this.getRigaRDA().getPersistentModel().setDescription(pd.getPersistentModel());
 					ModificaFormRDA.this.getRigaRDA().save();
-
 					PlicoRDA.getInstance().refresh();
+					PlicoRDA.getInstance().addFormRDA(CreaFormRDAFactory.getInstance().makeFormRDA());
 				}
 				
 			}
