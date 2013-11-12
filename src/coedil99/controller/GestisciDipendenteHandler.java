@@ -20,7 +20,7 @@ public class GestisciDipendenteHandler {
 	private static boolean logged = false;
 	private static int level = 0;
 	
-    public static boolean authenticate(String username, String password) {
+    public boolean authenticate(String username, String password) {
 
     	Dipendente d = GestisciDipendenteHandler.getInstance().checkPass(username,password);
         if (d != null) {
@@ -31,15 +31,15 @@ public class GestisciDipendenteHandler {
         return false;
     }
     
-    public static boolean getLogged() {
+    public boolean getLogged() {
     	return logged;
     }
     
-    public static int getLevel() {
+    public int getLevel() {
     	return level;
     }
 
-	public static void logOut() {
+	public void logOut() {
 		// TODO Auto-generated method stub
 		logged = false;
 	}
