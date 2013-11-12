@@ -7,8 +7,8 @@ import GUI.RDACenter;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
 import GUI.Liste.ListaRigheRDA;
-import Panels.PanelRDAComm;
-import Panels.PanelRDACommFactory;
+import GUI.Panels.PanelRDAComm;
+import GUI.Panels.PanelRDACommFactory;
 
 public class PlicoCommerciale extends APlico {
 

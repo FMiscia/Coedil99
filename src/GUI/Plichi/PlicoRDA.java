@@ -8,7 +8,7 @@ import GUI.Abstract.AFormRDA;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
 import GUI.Liste.ListaRigheRDA;
-import Panels.NotaRDA;
+import GUI.Panels.NotaRDA;
 import coedil99.controller.GestisciRDAHandler;
 
 

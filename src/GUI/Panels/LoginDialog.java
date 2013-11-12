@@ -1,4 +1,4 @@
-package GUI.Login;
+package GUI.Panels;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import coedil99.controller.GestisciDipendenteHandler;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.persistentmodel.RDAFactory;
 
@@ -120,7 +121,7 @@ public class LoginDialog extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
+				GestisciDipendenteHandler Login =  GestisciDipendenteHandler.getInstance();
 				// TODO Auto-generated method stub
 				if (Login
 						.authenticate(getUserName(), new String(getPassword()))) {

@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
-import GUI.Login.LoginDialog;
+import GUI.Panels.LoginDialog;
 
 
 public class LoginPanel extends JPanel {
