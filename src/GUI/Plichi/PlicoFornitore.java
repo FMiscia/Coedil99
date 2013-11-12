@@ -99,4 +99,19 @@ public class PlicoFornitore extends APlico {
 	public ListaProdotti getListaProdotti(){
 		return this.listaProdotti;
 	}
+	
+	/**
+	 * Metodo che ritorna un booleano sullo stato di importing del catalogo
+	 * @return boolean
+	 */
+	public boolean isImporting(){
+		return this.listaProdotti.isImporting();
+	}
+	
+	/**
+	 * Metodo che annulla import di un nuovo catalogo fornitore
+	 */
+	public void abortImporting(){
+		this.listaProdotti.abortImporting();
+	}
 }

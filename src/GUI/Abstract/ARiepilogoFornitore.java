@@ -1,17 +1,14 @@
 package GUI.Abstract;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,10 +23,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import org.orm.PersistentException;
-
 import GUI.FornitoriCenter;
-import GUI.ClipPanels.ClipPanelFornitori;
+import GUI.Liste.ListaProdotti;
 import GUI.Plichi.PlicoFornitore;
 import GUI.Utilities.CataloghiFilter;
 import coedil99.controller.GestisciFornitoreHandler;
@@ -54,7 +49,7 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 	protected JButton btnModifica;
 	private JButton btnSalva;
 	private JLabel lblErrore;
-	private JButton btnCaricaCatalogo;
+	protected JButton btnCaricaCatalogo;
 	protected ImageIcon IcoErrore = new ImageIcon(
 			ARiepilogoFornitore.class.getResource("/GUI/image/cancel.png"));
 	protected ImageIcon IcoOk = new ImageIcon(
@@ -62,6 +57,8 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 	protected boolean importing;
 	private MCatalogoFornitore new_catalogo = null;
 	protected JButton btnElimina;
+	private JFileChooser fileChooser;
+	private CataloghiFilter filtro;
 
 	public ARiepilogoFornitore() {
 		super();
@@ -72,38 +69,24 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 	 * Imposta la grafica
 	 */
 	private void initialize() {
-		this.setPreferredSize(new Dimension(440, 190));
+		this.setPreferredSize(new Dimension(380, 120));
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
 		this.panel = new JPanel();
-		this.panel.setPreferredSize(new Dimension(440, 190));
+		this.panel.setPreferredSize(new Dimension(380, 120));
 		this.panel.setBackground(new Color(240, 240, 240));
 		this.add(panel);
-		this.panel
-				.setLayout(new FormLayout(new ColumnSpec[] {
-						FormFactory.RELATED_GAP_COLSPEC,
-						ColumnSpec.decode("30px"),
-						FormFactory.RELATED_GAP_COLSPEC,
-						ColumnSpec.decode("70px"),
-						FormFactory.RELATED_GAP_COLSPEC,
-						ColumnSpec.decode("60px"),
-						FormFactory.RELATED_GAP_COLSPEC,
-						ColumnSpec.decode("60px"),
-						FormFactory.RELATED_GAP_COLSPEC,
-						FormFactory.DEFAULT_COLSPEC,
-						FormFactory.RELATED_GAP_COLSPEC,
-						ColumnSpec.decode("80px"),
-						FormFactory.RELATED_GAP_COLSPEC, }, new RowSpec[] {
-						FormFactory.RELATED_GAP_ROWSPEC,
-						RowSpec.decode("30px"),
-						FormFactory.RELATED_GAP_ROWSPEC,
-						RowSpec.decode("30px"),
-						FormFactory.RELATED_GAP_ROWSPEC,
-						RowSpec.decode("30px"),
-						FormFactory.RELATED_GAP_ROWSPEC,
-						RowSpec.decode("30px"),
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC, }));
+		this.panel.setLayout(new FormLayout(new ColumnSpec[] {
+				FormFactory.RELATED_GAP_COLSPEC, ColumnSpec.decode("30px"),
+				FormFactory.RELATED_GAP_COLSPEC, ColumnSpec.decode("70px"),
+				FormFactory.RELATED_GAP_COLSPEC, ColumnSpec.decode("60px"),
+				FormFactory.RELATED_GAP_COLSPEC, ColumnSpec.decode("60px"),
+				FormFactory.RELATED_GAP_COLSPEC, FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC, ColumnSpec.decode("89px"),
+				FormFactory.RELATED_GAP_COLSPEC, }, new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("32px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("32px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"), }));
 
 		this.lblNome = new JTextField();
 		this.lblNome.setBorder(null);
@@ -113,17 +96,6 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		this.lblNome.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lblNome.setFont(new Font("Tahoma", Font.BOLD, 16));
 
-		// if(this.lblNome.getPropertyChangeListeners().length == 0){
-		// this.lblNome.addPropertyChangeListener(new PropertyChangeListener() {
-		//
-		// @Override
-		// public void propertyChange(PropertyChangeEvent evt) {
-		// System.out.print(evt.getPropertyName());
-		//
-		// }
-		// });
-		// }
-
 		if (this.lblNome.getKeyListeners().length == 0)
 			this.lblNome.addKeyListener(new KeyAdapter() {
 				@Override
@@ -132,21 +104,37 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 				}
 			});
 
-		this.btnModifica = new JButton("Modifica");
+		this.btnModifica = new JButton("");
+		this.btnModifica.setCursor(Cursor
+				.getPredefinedCursor(Cursor.HAND_CURSOR));
+		this.btnModifica.setOpaque(false);
+		this.btnModifica.setContentAreaFilled(false);
+		this.btnModifica.setBorderPainted(false);
+		this.btnModifica.setIcon(new ImageIcon(ARiepilogoFornitore.class
+				.getResource("/GUI/image/edit.png")));
+		this.btnModifica.setToolTipText("Modifica il nome del fornitore");
 		this.btnModifica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ARiepilogoFornitore.this.setModify(true);
-				controlloErrori();
+				checkNome();
 			}
 		});
 
-		this.btnSalva = new JButton("Salva");
+		this.btnSalva = new JButton("");
+		this.btnSalva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		this.btnSalva.setOpaque(false);
+		this.btnSalva.setContentAreaFilled(false);
+		this.btnSalva.setBorderPainted(false);
+		this.btnSalva.setIcon(new ImageIcon(ARiepilogoFornitore.class
+				.getResource("/GUI/image/save.png")));
 		this.btnSalva.setEnabled(false);
 		this.btnSalva.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (ARiepilogoFornitore.this.lblNome.getText().isEmpty()) {
+				if (!ARiepilogoFornitore.this.btnSalva.isEnabled())
+					return;
+				else if (ARiepilogoFornitore.this.lblNome.getText().isEmpty()) {
 					ARiepilogoFornitore.this.lblErrore.setVisible(true);
 				} else {
 					ARiepilogoFornitore.this.salvaModifica(new_catalogo);
@@ -168,10 +156,24 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		this.panel.add(this.separator, "4, 4, 5, 1");
 
 		btnElimina = new JButton("Annulla");
+		btnElimina.setToolTipText("Annulla l'inserimento del nuovo catalogo");
 		btnElimina.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				aborting();
+				Object[] options = { "Si", "No" };
+				int n = JOptionPane
+						.showOptionDialog(
+								null,
+								"Sicuro di voler abbandonare la creazione del Catalogo?\n"
+										+ "Nota: Le modifiche non salvate andranno perse",
+								"Conferma operazione",
+								JOptionPane.YES_NO_CANCEL_OPTION,
+								JOptionPane.QUESTION_MESSAGE, null, options,
+								options[1]);
+				if (n == JOptionPane.YES_OPTION) {
+					aborting();
+					reset();
+				}
 			}
 		});
 
@@ -202,15 +204,20 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		mcf.save();
 		JOptionPane.showMessageDialog(null,
 				"Catalogo Fornitore salvato correttamente");
+		this.setImporting(false);
+		this.refresh();
 		FornitoriCenter.getInstance().setFornitoreSelezionato(mcf);
 		FornitoriCenter.getInstance().refreshFornitori();
 		FornitoriCenter.getInstance().getClipPanel().focusToListaCataloghi();
 	}
 
 	/**
-	 * Metodo che importa la lista dei prodotti di per un nuovo catalogo
+	 * Metodo che importa la lista dei prodotti per un nuovo catalogo
 	 */
 	private void importaProdotti() {
+		fileChooser = new JFileChooser();
+		filtro = new CataloghiFilter();
+		fileChooser.setFileFilter(filtro);
 		if (!PlicoFornitore.getInstance().getListaProdotti().isEmpty()) {
 			Object[] options = { "Si", "No" };
 			int n = JOptionPane
@@ -223,36 +230,22 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 							JOptionPane.QUESTION_MESSAGE, null, options,
 							options[1]);
 			if (n == JOptionPane.YES_OPTION) {
-				new_catalogo = GestisciFornitoreHandler.getInstance()
-						.getCatalogo();
-				new_catalogo.delete();
+				int choose = fileChooser
+						.showOpenDialog(ARiepilogoFornitore.this);
+				if (choose == JFileChooser.APPROVE_OPTION) {
+					new_catalogo = GestisciFornitoreHandler.getInstance()
+							.getCatalogo();
+					new_catalogo.delete();
+					this.createNewCatalogo();
+				}
 			} else
 				return;
+		} else {
+			int choose = fileChooser.showOpenDialog(ARiepilogoFornitore.this);
+			if (choose == JFileChooser.APPROVE_OPTION)
+				createNewCatalogo();
 		}
-		JFileChooser fileChooser = new JFileChooser();
-		CataloghiFilter filtro = new CataloghiFilter();
-		fileChooser.setFileFilter(filtro);
-		int choose = fileChooser.showOpenDialog(ARiepilogoFornitore.this);
-		if (choose == JFileChooser.APPROVE_OPTION) {
-			GestisciFornitoreHandler.getInstance().setBuilder(
-					GestisciFornitoreHandler.cataloghiBuilders.get(filtro
-							.getExtension(fileChooser.getSelectedFile())));
-			GestisciFornitoreHandler.getInstance().ConstructCatalogo(
-					fileChooser.getSelectedFile().getPath());
-			new_catalogo = GestisciFornitoreHandler.getInstance().getCatalogo();
-			new_catalogo.getPersistentModel().setName(
-					ARiepilogoFornitore.this.lblNome.getText());
-			new_catalogo.save();
-			FornitoriCenter.getInstance().setFornitoreSelezionato(new_catalogo);
-			PlicoFornitore.getInstance().loadListaProdotti(
-					this.lblNome.getText());
-			this.setModify(true);
-			this.btnElimina.setVisible(true);
-			this.controlloErrori();
-			validate();
-			repaint();
-			JOptionPane.showMessageDialog(null, "Catalogo Caricato");
-		}
+		this.setImporting(true);
 	}
 
 	/**
@@ -263,7 +256,6 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 	 */
 	public void setModify(boolean mod) {
 		this.btnSalva.setVisible(mod);
-		// this.btnSalva.setEnabled(mod);
 		this.btnModifica.setVisible(!mod);
 		this.lblNome.setEnabled(mod);
 		this.lblErrore.setVisible(mod);
@@ -272,8 +264,8 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		else
 			lblNome.setBackground(new Color(240, 240, 240));
 		this.lblNome.setBorder(null);
-		if (this.btnElimina.isVisible()) {
-			this.btnElimina.setVisible(false);
+		if (this.btnCaricaCatalogo.isVisible()) {
+			this.btnElimina.setVisible(true);
 		}
 		this.validate();
 		this.repaint();
@@ -308,22 +300,20 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 	/**
 	 * Metodo che annulla l'inserimento di un nuovo catalogo fornitore
 	 */
-	protected void aborting() {
-
-		Object[] options = { "Si", "No" };
-		int n = JOptionPane
-				.showOptionDialog(
-						null,
-						"Sicuro di voler annullare l'inserimento del nuovo catalogo?\n",
-						"Conferma operazione",
-						JOptionPane.YES_NO_CANCEL_OPTION,
-						JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-		if (n == JOptionPane.YES_OPTION && new_catalogo != null) {
+	public void aborting() {
+		if (new_catalogo != null) {
 			new_catalogo = GestisciFornitoreHandler.getInstance().getCatalogo();
 			new_catalogo.delete();
 			new_catalogo = null;
 		}
-		FornitoriCenter.getInstance().getClipPanel().getButtons().get(1)
+	}
+
+	/**
+	 * Reset del riepilogo
+	 */
+	public void reset() {
+		this.importing = false;
+		FornitoriCenter.getInstance().getClipPanel().getButtons().get(2)
 				.doClick();
 	}
 
@@ -359,6 +349,45 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 			lblErrore.setToolTipText(null);
 			lblNome.setBorder(new LineBorder(Color.green));
 		}
-		controlloErrori();
+		this.controlloErrori();
+		if(this.btnCaricaCatalogo.isVisible())
+			this.setImporting(true);
+			
+	}
+
+	/**
+	 * Metodo che cambia la visibilità del pulsante per importare il catalogo in
+	 * base al booleano che prende in ingresso
+	 * 
+	 * @param importing
+	 *            :boolean
+	 */
+	public void setImporting(boolean importing) {
+		this.btnCaricaCatalogo.setVisible(importing ? true : false);
+		this.importing = importing;
+	}
+
+	/**
+	 * Metodo che salva un nuovo catalogo fornitore
+	 */
+	protected void createNewCatalogo() {
+		GestisciFornitoreHandler.getInstance().setBuilder(
+				GestisciFornitoreHandler.cataloghiBuilders.get(filtro
+						.getExtension(fileChooser.getSelectedFile())));
+		GestisciFornitoreHandler.getInstance().ConstructCatalogo(
+				fileChooser.getSelectedFile().getPath());
+		new_catalogo = GestisciFornitoreHandler.getInstance().getCatalogo();
+		new_catalogo.getPersistentModel().setName(
+				ARiepilogoFornitore.this.lblNome.getText());
+		new_catalogo.save();
+		FornitoriCenter.getInstance().setFornitoreSelezionato(new_catalogo);
+		PlicoFornitore.getInstance().loadListaProdotti(this.lblNome.getText());
+		this.setModify(true);
+		this.btnElimina.setVisible(true);
+		this.controlloErrori();
+		this.btnCaricaCatalogo.setVisible(true);
+		validate();
+		repaint();
+		JOptionPane.showMessageDialog(null, "Catalogo Caricato");
 	}
 }

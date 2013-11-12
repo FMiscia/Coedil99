@@ -53,11 +53,11 @@ public class MProductDescription implements IModel {
 
 	@Override
 	public void delete() {
-		// TODO Auto-generated method stub
+		MGeometria geometria = new MGeometria(this.productdescription.getGeometria().getID());
 		try {
 			this.productdescription.deleteAndDissociate();
+			geometria.delete();
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

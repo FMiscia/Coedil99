@@ -128,6 +128,7 @@ public class FornitoriCenter extends JPanel{
 	 * Metodo che seleziona il primo catalogo fornitore
 	 */
 	public void selectPrimoCatalogo(){
+		this.lista.deselectAll();
 		this.lista.setPrimoCatalogo();
 		this.setPrimoCatalogoFornitore();
 		this.loadListaProdotti();
@@ -140,9 +141,6 @@ public class FornitoriCenter extends JPanel{
 	public void newCatalogo(){
 		this.lista.svuota();
 		PlicoFornitore.getInstance().newCatalogo();
-		
-		
-		
 	}
 	
 }

@@ -1,7 +1,10 @@
 package GUI.Riepiloghi;
 
+import java.awt.Dimension;
+
 import GUI.FornitoriCenter;
 import GUI.Abstract.ARiepilogoFornitore;
+import GUI.Liste.ListaProdotti;
 import coedil99.model.MCatalogoFornitore;
 
 /**
@@ -24,11 +27,15 @@ public class RiepilogoFornitore extends ARiepilogoFornitore {
 	 */
 	@Override
 	public void refresh() {
+		if(!this.importing)
+			this.setPreferredSize(new Dimension(380,70));
 		MCatalogoFornitore mcf = FornitoriCenter.getInstance().getFornitoreSelezionato();
 		this.lblNome.setText(mcf.getPersistentModel().getName());
 		this.setModify(false);
-		this.importing = false;
+		this.setImporting(false);
 		this.btnElimina.setVisible(false);
+		this.validate();
+		this.repaint();
 	}
 	
 	/**
@@ -37,14 +44,7 @@ public class RiepilogoFornitore extends ARiepilogoFornitore {
 	private void initialize(){
 		this.setModify(true);
 		this.btnElimina.setVisible(true);
+		//this.setImporting(true);
 	}
 	
-	/**
-	 * Metodo che setta la visione di alcuni bottoni se si sta creando un nuovo catalogo oppure no
-	 * @param nuovo: booleano
-	 */
-	private void newRiepilogo(boolean nuovo){
-		this.btnElimina.setVisible(nuovo);
-		this.importing = true;
-	}
 }

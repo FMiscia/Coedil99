@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import GUI.FornitoriCenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardProdotto;
 import GUI.Card.CardProdottoFactory;
@@ -24,7 +23,6 @@ public class ListaProdotti extends ALista {
 	 */
 	public ListaProdotti() {
 		super();
-		this.setPreferredSize(new Dimension(550, 0));
 		this.initialize();
 		this.validate();
 		this.repaint();
@@ -127,6 +125,7 @@ public class ListaProdotti extends ALista {
 	 * Inizializza la grafica
 	 */
 	private void initialize() {
+		this.setPreferredSize(new Dimension(550, 0));
 		this.riepilogoFornitore = (RiepilogoFornitore) RiepilogoFornitoreFactory
 				.getInstance().makeRiepilogo();
 		this.panel.add(this.riepilogoFornitore, 0);
@@ -139,5 +138,20 @@ public class ListaProdotti extends ALista {
 	public boolean isEmpty(){
 		return this.getNumProdotti() == 0;
 	}
-
+	
+	/**
+	 * Metodo che ritorna un booleano sullo stato di importing del catalogo
+	 * @return boolean
+	 */
+	public boolean isImporting(){
+		return this.riepilogoFornitore.isImporting();
+	}
+	
+	/**
+	 * Metodo che annulla import di un nuovo catalogo fornitore
+	 */
+	public void abortImporting(){
+		this.riepilogoFornitore.aborting();
+	}
+	
 }

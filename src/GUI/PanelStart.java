@@ -95,14 +95,13 @@ public class PanelStart extends JPanel {
 			public void mouseClicked(MouseEvent arg0) {
 				ListaFornitori listaf = (ListaFornitori) ListaFornitoriFactory.getInstance().makeLista();
 				FornitoriCenter.getInstance().setLista(listaf);
+				listaf.deselectAll();
 				FornitoriCenter.getInstance().setPrimoCatalogoFornitore();
 				ArrayList<JButton> b = FornitoriCenter.getInstance().getClipPanel()
 						.getButtons();
 				FornitoriCenter.getInstance().loadListaProdotti();
+				FornitoriCenter.getInstance().getClipPanel().focusToListaCataloghi();
 				CoedilFrame.getInstance().montaPanel(FornitoriCenter.getInstance());
-				//b.get(1).doClick();
-				
-				
 			}
 		});
 
