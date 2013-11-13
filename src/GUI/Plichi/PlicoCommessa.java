@@ -81,15 +81,11 @@ public class PlicoCommessa extends APlico {
 	}
 
 	/**
-	 * Posiziona i riquadri nel plico
+	 * Posiziona i riquadri nel pannello
 	 */
 	private void posizionaRiquadri() {
 		int bounds = (CoedilFrame.getInstance().getBounds().width / 6);
-		elimina.setBounds(bounds + (rda.getWidth() / 2)
-				- (elimina.getWidth() / 2), 20, elimina.getWidth(),
-				elimina.getHeight());
-		rda.setBounds(bounds, elimina.getY() + elimina.getHeight() + 20,
-				rda.getWidth(), rda.getHeight());
+		rda.setBounds(bounds, 20, rda.getWidth(), rda.getHeight());
 		rdcc.setBounds(bounds, rda.getY() + rda.getHeight() + 20,
 				rdcc.getWidth(), rdcc.getHeight());
 		rdc.setBounds(bounds, rdcc.getY() + rdcc.getHeight() + 20,
@@ -134,11 +130,11 @@ public class PlicoCommessa extends APlico {
 									.getCommessaSelezionata());
 					ProgrammaLavori.getInstance().getCommessaSelezionata()
 							.delete();
-					ProgrammaLavori.getInstance().getListaCommesse()
+					ProgrammaLavori.getInstance().ListaCommesse()
 							.updatePanel();
 					ProgrammaLavori.getInstance().setCommessaSelezionata(
 							new MCommessa(ProgrammaLavori.getInstance()
-									.getListaCommesse().getPrimaCommessa()));
+									.ListaCommesse().getPrimaCommessa()));
 
 				}
 
@@ -161,10 +157,9 @@ public class PlicoCommessa extends APlico {
 				.getInstance().makeRiquadro();
 		rsc = (RiquadroDatiSviluppoConsegna) RiquadroDatiSviluppoConsegnaFactory
 				.getInstance().makeRiquadro();
+
 		setPreferredSize(new Dimension(745, 1150));
 		setSize(745, 950);
-		posizionaRiquadri();
-		add(elimina);
 		add(rda);
 		this.container.add(rda);
 		add(rdcc);
@@ -189,7 +184,6 @@ public class PlicoCommessa extends APlico {
 		return PlicoCommessa.instance;
 	}
 
-	@Override
 	/**
 	 * Metodo che controlla se è in corso una modifica dei riquadri
 	 * 
@@ -201,7 +195,7 @@ public class PlicoCommessa extends APlico {
 			if (!a.modify())
 				modifica.add(a);
 		}
-		boolean result = modifica.size()>0?true:false;
+		boolean result = modifica.size() > 0 ? true : false;
 		return result;
 	}
 
@@ -209,6 +203,7 @@ public class PlicoCommessa extends APlico {
 	 * Riporta tutti i TextField del plico non editabili
 	 */
 	public void reset() {
+
 		this.rda.makeEditable(false);
 		this.rdc.makeEditable(false);
 		this.rdcc.makeEditable(false);

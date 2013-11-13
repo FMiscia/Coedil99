@@ -12,6 +12,7 @@ public class Login {
 
     	Dipendente d = GestisciDipendenteHandler.getInstance().checkPass(username,password);
         if (d != null) {
+
         	logged = true;
         	level = d.getLevel();
             return true;

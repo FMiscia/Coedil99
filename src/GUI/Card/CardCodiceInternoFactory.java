@@ -3,6 +3,9 @@ package GUI.Card;
 import GUI.Abstract.ACard;
 import GUI.Abstract.ALista;
 import GUI.Liste.ListaCommesse;
+import javax.swing.JSeparator;
+import java.awt.Color;
+import java.awt.Dimension;
 
 /**
  * 

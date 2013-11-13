@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
@@ -34,6 +35,12 @@ public class FornitoriCenter extends JPanel{
 		this.add(PlicoFornitore.getInstance(), BorderLayout.CENTER);
 	}
 
+	/**
+	 * Metodo che fa caricare la lista dei prodotti in base al catalogo fornitore selezionato
+	 */
+	public void loadListaProdotti(){
+		PlicoFornitore.getInstance().loadListaProdotti(this.getFornitoreSelezionato().getPersistentModel().getName());
+	}
 
 	/**
 	 * Singleton
@@ -108,5 +115,13 @@ public class FornitoriCenter extends JPanel{
 	public void setClipPanel(ClipPanelFornitori clipPanel) {
 		this.clipPanel = clipPanel;
 	}
+	
+	/**
+	 * Metodo che setta come catalogo fornitore il primo elemento della lista
+	 */
+	public void setPrimoCatalogoFornitore(){
+		this.setFornitoreSelezionato(new MCatalogoFornitore(this.lista.getPrimoCatalogo()));
+	}
+	
 	
 }

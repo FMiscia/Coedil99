@@ -13,7 +13,6 @@ import GUI.RaccoglitorePlichi;
 import GUI.Abstract.AClipPanel;
 import GUI.Abstract.APlico;
 import GUI.Plichi.PlicoCommessa;
-import GUI.Plichi.PlicoCreaCommessa;
 import GUI.Plichi.PlicoDDO;
 import GUI.Plichi.PlicoDistinta;
 import coedil99.model.MDistinta;
@@ -128,25 +127,16 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 				RaccoglitorePlichi.getInstance().repaint();
 			}
 		});
-		this.addButton("Nuova Commessa", "Crea una nuova Commessa",
-				new ActionListener() {
+		this.addButton("LDR", "Vai alla LDR", new ActionListener() {
 
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
-							return;
-						}
-						PlicoCreaCommessa.getInstance().resetAll();
-						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
-								.changePlico(PlicoCreaCommessa.getInstance());
-						ClipPanelProgrammaLavori.this.focusOut();
-						ProgrammaLavori.getInstance().getListaCommesse().deselectAll();
-						JButton b = (JButton) e.getSource();
-						b.setBackground(AClipPanel.getColoreSelezionato());
-						RaccoglitorePlichi.getInstance().validate();
-						RaccoglitorePlichi.getInstance().repaint();
-					}
-				});
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
+					return;
+				}
+
+			}
+		});
 		this.fill();
 		this.resetInitialState();
 	}
@@ -160,6 +150,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 	public boolean clickDuringModify() {
 		if (((APlico) RaccoglitorePlichi.getInstance().getPlico_container()
 				.getComponent(0)).isModifying()) {
+
 			Object[] options = { "Si", "No" };
 			int n = JOptionPane.showOptionDialog(null,
 					"Sicuro di voler abbandonare la modifica?\n"

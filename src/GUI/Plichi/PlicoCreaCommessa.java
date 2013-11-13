@@ -275,7 +275,7 @@ public class PlicoCreaCommessa extends APlico {
 							"Commessa salvata con successo",
 							"Operazione eseguita", JOptionPane.PLAIN_MESSAGE);
 					PlicoCreaCommessa.this.container=null;
-					ProgrammaLavori.getInstance().getListaCommesse().updatePanel();
+					ProgrammaLavori.getInstance().ListaCommesse().updatePanel();
 					ProgrammaLavori.getInstance().getClipPanel().getButtons()
 							.get(AClipPanel.PLButtonState.get("COMMESSA"))
 							.doClick();

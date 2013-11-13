@@ -243,6 +243,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	 * Salva le modifiche sul db
 	 */
 	@Override
+
 	public void salva(boolean showmex) {
 		if (this.oggetto != null) {
 			MCommessa c = (MCommessa) this.oggetto;

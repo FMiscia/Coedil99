@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
 <Model quotesql="1" tablecharset="UTF8">
   <Entity name="Dipendente">
     <Column name="ID">
@@ -102,6 +103,9 @@
       <UserTypes/>
     </Column>
   </Entity>
+=======
+<Model quotesql="1" tablecharset="">
+>>>>>>> prima implementazione della lista dei prodotti
   <Entity name="CatalogoFornitore">
     <Column name="ID">
       <PrimaryKey>true</PrimaryKey>
@@ -114,93 +118,11 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="Name">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-  </Entity>
-  <Entity name="RigaRDA">
-    <Column name="ID">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="RDAID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.persistentmodel.RDA.ID</ReferencedColumn>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="ProductDescriptionID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.persistentmodel.ProductDescription.ID</ReferencedColumn>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Quantity">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="RDAIndex">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
   </Entity>
   <Entity name="ProductDescription">
     <Column name="ID">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="GeometriaID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>Geometria.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>false</Nullable>
@@ -266,6 +188,67 @@
       <UserTypes/>
     </Column>
   </Entity>
+  <Entity name="RigaRDA">
+    <Column name="ID">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="RDAID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>coedil99.persistentmodel.RDA.ID</ReferencedColumn>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="ProductDescriptionID">
+      <PrimaryKey>false</PrimaryKey>
+<<<<<<< HEAD
+=======
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>coedil99.persistentmodel.ProductDescription.ID</ReferencedColumn>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Quantity">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="RDAIndex">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
   <Entity name="RDA">
     <Column name="ID">
       <PrimaryKey>true</PrimaryKey>
@@ -280,28 +263,7 @@
     </Column>
     <Column name="State">
       <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Date">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>17</Type>
-      <Length>0</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Descrizione">
-      <PrimaryKey>false</PrimaryKey>
+>>>>>>> prima implementazione della lista dei prodotti
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
       <Length>255</Length>
@@ -424,7 +386,7 @@
       <ReferencedColumn>ListaRintracciabilita.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
-      <Nullable>true</Nullable>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -957,17 +919,6 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="State">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
   </Entity>
   <Entity name="History">
     <Column name="ID">
@@ -1155,8 +1106,6 @@
   <ForeignKey name="FKRigaRDA397912">
     <ReferenceTable>RigaRDA</ReferenceTable>
     <ReferencedTable>ProductDescription</ReferencedTable>
-    <OnUpdate>Cascade</OnUpdate>
-    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>ProductDescriptionID</Column>
     </Columns>
@@ -1167,8 +1116,6 @@
   <ForeignKey name="FKRigaRDA54006">
     <ReferenceTable>RigaRDA</ReferenceTable>
     <ReferencedTable>RDA</ReferencedTable>
-    <OnUpdate>Cascade</OnUpdate>
-    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>RDAID</Column>
     </Columns>
@@ -1181,16 +1128,6 @@
     <ReferencedTable>CatalogoFornitore</ReferencedTable>
     <Columns>
       <Column>CatalogoFornitoreID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="FKProductDes822910">
-    <ReferenceTable>ProductDescription</ReferenceTable>
-    <ReferencedTable>Geometria</ReferencedTable>
-    <Columns>
-      <Column>GeometriaID</Column>
     </Columns>
     <RefColumns>
       <Column>ID</Column>

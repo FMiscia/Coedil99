@@ -1,4 +1,4 @@
-package Panels;
+package GUI.Panels;
 
 public class PanelRDACommFactory {
 

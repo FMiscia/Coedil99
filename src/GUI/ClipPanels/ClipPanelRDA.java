@@ -17,9 +17,9 @@ import GUI.Abstract.APlico;
 import GUI.FormRDA.CreaFormRDA;
 import GUI.FormRDA.CreaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
+import GUI.Panels.NotaRDA;
+import GUI.Panels.NotaRDAFactory;
 import GUI.Plichi.PlicoRDA;
-import Panels.NotaRDA;
-import Panels.NotaRDAFactory;
 import coedil99.controller.GestisciRDAHandler;
 
 /**

@@ -20,7 +20,6 @@ public abstract class ALista extends JScrollPane {
 
 	protected static Color coloreDeselezionato = new Color(30, 144, 255);
 	protected JPanel panel;
-	protected ARiepilogoRDA riepilogoRDA;
 
 	/**
 	 * Abstract Factory
