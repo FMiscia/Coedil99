@@ -13,11 +13,9 @@
  */
 package coedil99.persistentmodel;
 
-import java.util.List;
-
+import org.orm.*;
 import org.hibernate.Query;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
+import java.util.List;
 
 public class DistintaFactory {
 	public static Distinta loadDistintaByORMID(int ID) throws PersistentException {

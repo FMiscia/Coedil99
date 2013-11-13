@@ -3,10 +3,12 @@ package GUI.Liste;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import GUI.FornitoriCenter;
 import GUI.Abstract.ALista;
 import GUI.Card.CardProdotto;
 import GUI.Card.CardProdottoFactory;
@@ -24,6 +26,7 @@ public class ListaProdotti extends ALista {
 	public ListaProdotti() {
 		super();
 		this.initialize();
+		this.setPreferredSize(new Dimension(500, 0));
 		this.validate();
 		this.repaint();
 	}
@@ -48,7 +51,7 @@ public class ListaProdotti extends ALista {
 		}
 		if (cardProdotto != null)
 			this.panel.setPreferredSize(new Dimension(this.panel.getWidth(),
-					row * this.panel.getComponent(1).getHeight()));
+					row * (this.panel.getComponent(1).getHeight() + 10)));
 		this.validate();
 		this.repaint();
 	}
@@ -69,7 +72,8 @@ public class ListaProdotti extends ALista {
 	}
 
 	public int getNumProdotti() {
-		return this.panel.getComponentCount() - 1;
+		return FornitoriCenter.getInstance().getFornitoreSelezionato()
+				.getPersistentModel().productDescription.size();
 	}
 
 	@Override
@@ -84,7 +88,6 @@ public class ListaProdotti extends ALista {
 		}
 	}
 
-	@Override
 	/**
 	 * Aggiorna la lista subito dopo una modifica
 	 */

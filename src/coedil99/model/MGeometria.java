@@ -16,6 +16,10 @@ public class MGeometria implements IModel{
 	 */
 	public MGeometria(){
 		this.geometria = GeometriaFactory.createGeometria();
+		this.geometria.setAltezza(0);
+		this.geometria.setBase(0);
+		this.geometria.setLunghezza(0);
+		
 	}
 	
 	/**

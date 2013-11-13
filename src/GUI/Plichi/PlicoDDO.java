@@ -96,8 +96,8 @@ public class PlicoDDO extends APlico {
 	}
 
 	@Override
-	public ArrayList<ARiquadro> isModifying() {
-		return new ArrayList<ARiquadro>();
+	public boolean isModifying() {
+		return false;
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import GUI.CommercialeCenter;
 import GUI.RDACenter;
 import GUI.Abstract.ALista;
 import GUI.Abstract.ARiepilogoRDA;
@@ -47,9 +48,9 @@ public class ListaRigheRDA extends ALista {
 	 * @param t
 	 */
 	public void load(ArrayList<Object> t) {
-		this.updatePanel();
+		
+		this.updatePanelRDA();
 		int row = t.size();
-		// this.getViewport().setPreferredSize(new Dimension(300, row * 70));
 		CardRigaRDA riquadroRigaRDA = null;
 		for (int k = 0; k < row; k++) {
 			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance()
@@ -67,6 +68,31 @@ public class ListaRigheRDA extends ALista {
 		this.repaint();
 	}
 
+	/**
+	 * Carica le righe RDA
+	 * 
+	 * @param t
+	 */
+	public void loadComm(ArrayList<Object> t) {
+		
+		int row = t.size();
+		CardRigaRDA cardRigaRDA = null;
+		for (int k = 0; k < row; k++) {
+			cardRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance()
+					.makeCard(this);
+
+			cardRigaRDA.load( t.get(k) );
+			cardRigaRDA.setCardWithNoOptions();
+			this.panel.add(cardRigaRDA);
+			this.panel.validate();
+			this.panel.repaint();
+			
+		}
+		
+		this.validate();
+		this.repaint();
+	}
+	
 	/**
 	 * Rimuove un riquadro contenente una riga RDA
 	 * 
@@ -94,11 +120,10 @@ public class ListaRigheRDA extends ALista {
 		}
 	}
 
-	@Override
 	/**
-	 * Aggiorna la lista e il riepilogo subito dopo una modifica
+	 * Aggiorna la lista RDA e il riepilogo subito dopo una modifica
 	 */
-	public void updatePanel() {
+	public void updatePanelRDA() {
 		this.panel.removeAll();
 		String stato = RDACenter.getInstance().getRDASelezionata()
 				.getPersistentModel().getState();
@@ -113,8 +138,22 @@ public class ListaRigheRDA extends ALista {
 	}
 
 	/**
-	 * Aggiorna il riepilogo
+	 *
 	 */
+	public void updatePanelComm() {
+		this.panel.removeAll();
+		String stato = CommercialeCenter.getInstance().getRDASelezionata()
+				.getPersistentModel().getState();
+		this.riepilogoRDA = RiepilogoRDAFactory.getInstance().makeRiepilogo(
+				(stato!=null)?stato:GestisciRDAHandler.ATTESA_CONFERMA);
+		if (this.riepilogoRDA != null) {
+			this.riepilogoRDA.refresh();
+			this.validate();
+			this.repaint();
+		}
+	}
+	
+	
 	public void updateRiepilogo() {
 		if (this.riepilogoRDA != null)
 			this.riepilogoRDA.refresh();
@@ -144,6 +183,27 @@ public class ListaRigheRDA extends ALista {
 		this.panel.setPreferredSize(new Dimension(this.panel.getWidth(),
 				this.riepilogoRDA.getHeight() + this.getNumRigheRDA()
 						* (this.panel.getComponent(1).getHeight() + 10)));
+		this.validate();
+		this.repaint();
+	}
+
+	public void loadNOUPDATE(ArrayList<Object> t) {
+		// TODO Auto-generated method stub
+		this.updatePanelComm();
+		int row = t.size();
+		CardRigaRDA riquadroRigaRDA = null;
+		for (int k = 0; k < row; k++) {
+			riquadroRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance()
+					.makeCard(this);
+			riquadroRigaRDA.load( t.get(k) );
+			this.panel.add(riquadroRigaRDA);
+			this.panel.validate();
+			this.panel.repaint();
+		}
+		if (riquadroRigaRDA != null)
+			this.panel.setPreferredSize(new Dimension(this.panel.getWidth(),
+					this.riepilogoRDA.getHeight() + row
+							* (this.panel.getComponent(1).getHeight() + 10)));
 		this.validate();
 		this.repaint();
 	}

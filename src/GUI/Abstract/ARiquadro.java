@@ -102,7 +102,7 @@ public abstract class ARiquadro extends JPanel {
 						aperto = false;
 						ARiquadro.this.makeEditable(true);
 					} else {
-						ARiquadro.this.salva();
+						ARiquadro.this.salva(true);
 						ARiquadro.this.modifica.setText("modifica");
 						aperto = true;
 						ARiquadro.this.makeEditable(false);
@@ -133,23 +133,37 @@ public abstract class ARiquadro extends JPanel {
 
 	/**
 	 * Salva il riquadro
+	 * @param showmex: se si vuole mostrare il messaggio di avvenuto 
+	 * salvataggio
 	 */
-	protected abstract void salva();
+	public abstract void salva(boolean showmex);
 
+	 /**
+     * Controllo deigli errori di input
+     */
+    public boolean controlloErrori() {
+            boolean test = true;
+            for (JLabel j : this.Label) {
+                    if (j.getIcon() != null && j.getIcon().equals(IcoErrore))
+                            test = false;
+            }
+            if (test) {
+                    enableEditing();
+            } else {
+                    avoidEditing(false);
+            }
+            return test;
+    }
+	
+	
 	/**
-	 * Controllo deigli errori di input
+	 * Cambia il colore del testo nei campi non abilitati
+	 * mettendolo più scuro
 	 */
-	public void controlloErrori() {
-		boolean test = true;
-		for (JLabel j : this.Label) {
-			if (j.getIcon() != null && j.getIcon().equals(IcoErrore))
-				test = false;
-		}
-		if (test) {
-			enableEditing();
-		} else {
-			avoidEditing(false);
-		}
+	public void changeUnableColor(JTextField x){
+		x.setDisabledTextColor(Color.BLACK);
+		x.validate();
+		x.repaint();
 	}
 
 	/**
@@ -186,7 +200,7 @@ public abstract class ARiquadro extends JPanel {
 					aperto = false;
 					ARiquadro.this.makeEditable(true);
 				} else {
-					ARiquadro.this.salva();
+					ARiquadro.this.salva(true);
 					ARiquadro.this.modifica.setText("modifica");
 					aperto = true;
 					ARiquadro.this.makeEditable(false);
@@ -199,11 +213,52 @@ public abstract class ARiquadro extends JPanel {
 		this.modifica.setLocation(469, 0);
 		add(this.modifica);
 	}
+	
+	/**
+	 * Controlla se almeno un campo del riquadro è vuoto
+	 * @return
+	 */
+	public boolean checkEmpty(){
+		boolean test=true;
+		for(JTextField temp : this.Container){
+			if(temp.getText().length()<=0){
+				test=false;
+			}
+		}
+		return test;
+	}
 
 	protected abstract void initialize();
 	
 	public boolean modify(){
 		return aperto;
 	}
+
+	public Object getOggetto() {
+		return oggetto;
+	}
+
+	public void setOggetto(Object oggetto) {
+		this.oggetto = oggetto;
+	}
+
+	public ArrayList<JLabel> getLabel() {
+		return Label;
+	}
+
+	public void svuotaIconeLAbel() {
+		for(JLabel temp: this.Label)
+			temp.setIcon(null);
+		
+	}
+	
+	 /**
+     * Elimina dal riquadro il bottone di modifica
+     */
+    public void deleteButtons(){
+            this.remove(this.modifica);
+            this.validate();
+            this.repaint();
+    }
 
 }

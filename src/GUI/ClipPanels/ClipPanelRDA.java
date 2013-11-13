@@ -13,9 +13,12 @@ import GUI.CoedilFrame;
 import GUI.PanelStart;
 import GUI.RDACenter;
 import GUI.Abstract.AClipPanel;
+import GUI.Abstract.APlico;
 import GUI.FormRDA.CreaFormRDA;
 import GUI.FormRDA.CreaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
+import GUI.Panels.NotaRDA;
+import GUI.Panels.NotaRDAFactory;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 
@@ -23,7 +26,7 @@ import coedil99.controller.GestisciRDAHandler;
  * 
  * @author francesco
  * 
- * Implementazione di ACLipPanel per il menù in alto dell'RDA Center
+ *         Implementazione di ACLipPanel per il menù in alto dell'RDA Center
  */
 public class ClipPanelRDA extends AClipPanel {
 
@@ -46,19 +49,21 @@ public class ClipPanelRDA extends AClipPanel {
 	 */
 	public void focusToRDACongelate() {
 		this.focusOut();
-		JButton b = (JButton) ClipPanelRDA.this.getComponent(1);
+		JButton b = (JButton) ClipPanelRDA.this
+				.getComponent(AClipPanel.RDAButtonState
+						.get(GestisciRDAHandler.CONGELATA));
 		b.setBackground(new Color(180, 180, 180));
 	}
 
 	/**
-	 * Fornisce true o false a seconda se, nel caso ci trovassimo su Crea RDA, stiamo 
-	 * andando in focus su altri bottoni (RDA Congelate,Confermate, Menù)
+	 * Fornisce true o false a seconda se, nel caso ci trovassimo su Crea RDA,
+	 * stiamo andando in focus su altri bottoni (RDA Congelate,Confermate, Menù)
 	 * 
 	 * @return bool:boolean
 	 */
 	private boolean clickFromNuovaRDA() {
 		if (ClipPanelRDA.this.isButtonFocused((JButton) ClipPanelRDA.this
-				.getButtons().get(4))) {
+				.getButtons().get(AClipPanel.RDAButtonState.get("NUOVA")))) {
 			Object[] options = { "Si", "No" };
 			int n = JOptionPane.showOptionDialog(null,
 					"Sicuro di voler abbandonare la creazione RDA?\n"
@@ -75,58 +80,24 @@ public class ClipPanelRDA extends AClipPanel {
 	}
 
 	/**
-	 * Fornisce true se siamo in focus sul bottone delle RDA Congelate
-	 * @return bool:boolean
-	 */
-	public boolean isSelectedCongelate() {
-		JButton b = (JButton) ClipPanelRDA.this.getButtons().get(1);
-		return this.isButtonFocused(b);
-	}
-
-	/**
-	 * Fornisce true se siamo in focus sul bottone delle RDA Attesa Conferma
-	 * @return bool:boolean
-	 */
-	public boolean isSelectedAttesa() {
-		JButton b = (JButton) ClipPanelRDA.this.getButtons().get(2);
-		return this.isButtonFocused(b);
-	}
-
-	/**
-	 * Aggiorna le notifiche: Il metodo viene chiamato dal controllore delle RDA quando 
-	 * nasce un notify() per il pattern Observer
+	 * Aggiorna le notifiche: Il metodo viene chiamato dal controllore delle RDA
+	 * quando nasce un notify() per il pattern Observer
 	 */
 	public void updateNotifiche() {
 		String AttesaSize = String.valueOf(GestisciRDAHandler.getInstance()
 				.getArrayMRDA(GestisciRDAHandler.ATTESA_CONFERMA).size());
 		String ConfermateSize = String.valueOf(GestisciRDAHandler.getInstance()
 				.getArrayMRDA(GestisciRDAHandler.CONFERMATA).size());
+		String RifiutateSize = String.valueOf(GestisciRDAHandler.getInstance()
+				.getArrayMRDA(GestisciRDAHandler.RIFIUTATA).size());
 		this.AddNotificaLabel(AttesaSize, GestisciRDAHandler.ATTESA_CONFERMA);
 		this.AddNotificaLabel(ConfermateSize, GestisciRDAHandler.CONFERMATA);
+		this.AddNotificaLabel(RifiutateSize, GestisciRDAHandler.RIFIUTATA);
 		this.validate();
 		this.repaint();
 
 	}
 
-	/**
-	 * Fornisce true se siamo in focus sul bottone delle RDA Confermate
-	 * @return bool:boolean
-	 */
-	public boolean isSelectedConfermate() {
-		JButton b = (JButton) ClipPanelRDA.this.getButtons().get(3);
-		return this.isButtonFocused(b);
-	}
-
-	/**
-	 * Fornisce true se siamo in focus sul bottone di Nuova RDA
-	 * @return bool:boolean
-	 */
-	public boolean isSelectedNuova() {
-		JButton b = (JButton) ClipPanelRDA.this.getButtons().get(4);
-		return this.isButtonFocused(b);
-
-	}
-	
 	/**
 	 * Imposta la grafica e i bottoni
 	 */
@@ -184,25 +155,79 @@ public class ClipPanelRDA extends AClipPanel {
 						rdac.getLista().svuota();
 						rdac.getLista()
 								.load(GestisciRDAHandler.ATTESA_CONFERMA);
-						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
-								.getMRDAById(rdac.getLista().getPrimaRDA()));
+						if (rdac.getLista().getPrimaCard() != null) {
+							rdac.setRDASelezionata(GestisciRDAHandler
+									.getInstance().getMRDAById(
+											rdac.getLista().getPrimaRDA()));
 
-						BorderLayout layout = (BorderLayout) prda.getLayout();
-						if (layout.getLayoutComponent(BorderLayout.CENTER) != null)
-							prda.remove(layout
-									.getLayoutComponent(BorderLayout.CENTER));
-						ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
-						prda.resetFormRDA();
-						lista_righe_rda.getPanel().removeAll();
-						lista_righe_rda.load(new ArrayList<Object>(rdac
-								.getRDASelezionata().getPersistentModel().righeRDA.getCollection()));
-						lista_righe_rda.getPanel().validate();
-						lista_righe_rda.getPanel().repaint();
+							BorderLayout layout = (BorderLayout) prda
+									.getLayout();
+							if (layout.getLayoutComponent(BorderLayout.CENTER) != null)
+								prda.remove(layout
+										.getLayoutComponent(BorderLayout.CENTER));
+							ListaRigheRDA lista_righe_rda = prda
+									.getListaRigheRDA();
+							prda.resetFormRDA();
+							lista_righe_rda.getPanel().removeAll();
+							lista_righe_rda.load(new ArrayList<Object>(
+									rdac.getRDASelezionata()
+											.getPersistentModel().righeRDA
+											.getCollection()));
+							lista_righe_rda.getPanel().validate();
+							lista_righe_rda.getPanel().repaint();
+						}
 					}
 				});
 
+		this.addButton("RDA Rifiutate",
+				"Visualizza le RDA confermate dall'ufficio commerciale",
+				new ActionListener() {
+					@SuppressWarnings("unchecked")
+					public void actionPerformed(ActionEvent arg0) {
+						JButton b = (JButton) arg0.getSource();
+						if (!RDACenter.getInstance().getLista()
+								.isPrimaRDASaved()
+								&& !ClipPanelRDA.this.clickFromNuovaRDA()) {
+							return;
+
+						}
+						ClipPanelRDA.this.focusOut();
+						b.setBackground(new Color(180, 180, 180));
+
+						PlicoRDA prda = PlicoRDA.getInstance();
+						prda.getListaRigheRDA().svuota();
+
+						RDACenter rdac = RDACenter.getInstance();
+						rdac.getLista().svuota();
+						rdac.getLista().load(GestisciRDAHandler.RIFIUTATA);
+						if (rdac.getLista().getPrimaCard() != null) {
+							rdac.setRDASelezionata(GestisciRDAHandler
+									.getInstance().getMRDAById(
+											rdac.getLista().getPrimaRDA()));
+
+							BorderLayout layout = (BorderLayout) prda
+									.getLayout();
+							if (layout.getLayoutComponent(BorderLayout.CENTER) != null)
+								prda.remove(layout
+										.getLayoutComponent(BorderLayout.CENTER));
+							ListaRigheRDA lista_righe_rda = prda
+									.getListaRigheRDA();
+							prda.resetFormRDA();
+							lista_righe_rda.getPanel().removeAll();
+							lista_righe_rda.load(new ArrayList<Object>(
+									rdac.getRDASelezionata()
+											.getPersistentModel().righeRDA
+											.getCollection()));
+							lista_righe_rda.getPanel().validate();
+							lista_righe_rda.getPanel().repaint();
+							NotaRDA nota = (NotaRDA) NotaRDAFactory
+									.getInstance().makeNotaRDA();
+							prda.addNotaRDA(nota);
+						}
+					}
+				});
 		this.addButton("RDA Confermate",
-				"Visualizza le RDA confermate dall'ufficio tecnico",
+				"Visualizza le RDA confermate dall'ufficio commerciale",
 				new ActionListener() {
 					@SuppressWarnings("unchecked")
 					public void actionPerformed(ActionEvent arg0) {
@@ -223,20 +248,31 @@ public class ClipPanelRDA extends AClipPanel {
 						RDACenter rdac = RDACenter.getInstance();
 						rdac.getLista().svuota();
 						rdac.getLista().load(GestisciRDAHandler.CONFERMATA);
-						rdac.setRDASelezionata(GestisciRDAHandler.getInstance()
-								.getMRDAById(rdac.getLista().getPrimaRDA()));
+						if (rdac.getLista().getPrimaCard() != null) {
+							rdac.setRDASelezionata(GestisciRDAHandler
+									.getInstance().getMRDAById(
+											rdac.getLista().getPrimaRDA()));
 
-						BorderLayout layout = (BorderLayout) prda.getLayout();
-						if (layout.getLayoutComponent(BorderLayout.CENTER) != null)
-							prda.remove(layout
-									.getLayoutComponent(BorderLayout.CENTER));
-						ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
-						prda.resetFormRDA();
-						lista_righe_rda.getPanel().removeAll();
-						lista_righe_rda.load(new ArrayList<Object>(rdac
-								.getRDASelezionata().getPersistentModel().righeRDA.getCollection()));
-						lista_righe_rda.getPanel().validate();
-						lista_righe_rda.getPanel().repaint();
+							BorderLayout layout = (BorderLayout) prda
+									.getLayout();
+							if (layout.getLayoutComponent(BorderLayout.CENTER) != null)
+								prda.remove(layout
+										.getLayoutComponent(BorderLayout.CENTER));
+							ListaRigheRDA lista_righe_rda = prda
+									.getListaRigheRDA();
+							prda.resetFormRDA();
+							lista_righe_rda.getPanel().removeAll();
+							lista_righe_rda.load(new ArrayList<Object>(
+									rdac.getRDASelezionata()
+											.getPersistentModel().righeRDA
+											.getCollection()));
+							lista_righe_rda.getPanel().validate();
+							lista_righe_rda.getPanel().repaint();
+							NotaRDA nota = (NotaRDA) NotaRDAFactory
+									.getInstance().makeNotaRDA();
+							nota.removeButtons();
+							prda.addNotaRDA(nota);
+						}
 					}
 				});
 		this.addButton("Nuova RDA", "Crea una nuova RDA", new ActionListener() {
@@ -249,10 +285,26 @@ public class ClipPanelRDA extends AClipPanel {
 				CreaFormRDA form = (CreaFormRDA) CreaFormRDAFactory
 						.getInstance().makeFormRDA();
 				prda.addFormRDA(form);
+				prda.resetNotaRDA();
 			}
 		});
 
 		this.fill();
 		this.resetInitialState();
 	}
+
+	/**
+	 * Fornisce true se siamo in focus sul bottone delle RDA passato come
+	 * parametro
+	 * 
+	 * @param s
+	 *            identifica il button da controllate
+	 * @return bool:boolean
+	 */
+	public boolean isSelected(String s) {
+		JButton b = (JButton) ClipPanelRDA.this.getButtons().get(
+				AClipPanel.RDAButtonState.get(s));
+		return this.isButtonFocused(b);
+	}
+
 }

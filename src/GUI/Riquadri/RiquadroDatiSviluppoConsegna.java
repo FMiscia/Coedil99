@@ -7,6 +7,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -87,7 +88,7 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 	 * Salva le modifiche sul db
 	 */
 	@Override
-	protected void salva() {
+	public void salva(boolean showmex) {
 		if (this.oggetto != null) {
 			MCommessa c = (MCommessa) oggetto;
 			c.getPersistentModel().setResponsabile(
@@ -100,9 +101,12 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 			c.getPersistentModel().setRitardoProduzione(
 					Integer.getInteger(this.txtRitardo.getText()));
 			c.save();
-			JOptionPane.showMessageDialog(null,
-					"Salvataggio avvenuto correttamente",
-					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+			if (showmex)
+				JOptionPane
+						.showMessageDialog(null,
+								"Salvataggio avvenuto correttamente",
+								"Messaggio di Sistema",
+								JOptionPane.INFORMATION_MESSAGE);
 			this.load(this.oggetto);
 		}
 	}
@@ -402,6 +406,15 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 		this.lblIcoRitardo.setVisible(false);
 		this.form.add(lblIcoRitardo, "8, 10, center, top");
 		this.Label.add(lblIcoRitardo);
+	}
+
+	/**
+	 * Set della data di emissione commessa
+	 */
+	public void setDataEmissioneCommmessa(Date d) {
+		this.dateEmissioneCommessa.setDate(d);
+		this.validate();
+		this.repaint();
 	}
 
 }

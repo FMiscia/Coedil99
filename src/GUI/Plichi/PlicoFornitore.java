@@ -3,6 +3,9 @@ package GUI.Plichi;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
 import GUI.Liste.ListaProdotti;
@@ -22,6 +25,7 @@ public class PlicoFornitore extends APlico {
 
 	private static PlicoFornitore instance = null;
 	private ListaProdotti listaProdotti;
+	private JPanel intestazione;
 	
 	/**
 	 * Costruttore
@@ -31,6 +35,7 @@ public class PlicoFornitore extends APlico {
 		this.addListaProdotti();
 	}
 	
+
 
 	/**
 	 * Singleton
@@ -56,9 +61,9 @@ public class PlicoFornitore extends APlico {
 	}
 
 	@Override
-	public ArrayList<ARiquadro> isModifying() {
+	public boolean isModifying() {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 	
 	/**

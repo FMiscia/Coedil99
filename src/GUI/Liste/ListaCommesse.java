@@ -61,7 +61,6 @@ public class ListaCommesse extends ALista {
 	}
 
 	
-	@Override
 	/**
 	 * Aggiorna il pannello contenente la lista se necessario (caso d'uso gestisci commessa)
 	 */
@@ -100,7 +99,5 @@ public class ListaCommesse extends ALista {
 		this.getVerticalScrollBar().setPreferredSize (new Dimension(0,0));
 	}
 
-
-
-
 }
+

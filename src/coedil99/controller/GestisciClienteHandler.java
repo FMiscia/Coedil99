@@ -62,6 +62,20 @@ public class GestisciClienteHandler {
 	}
 	
 	/**
+	 * Fornisce un cliente dal nome
+	 */
+	public MCliente getClienteByName(String name){
+		MCliente result = null;
+		for(MCliente temp : this.clienti)
+			if(temp.getPersistentModel().getName().equals(name)){
+				result = temp;
+				break;
+			}
+		return result;
+	}
+	
+	
+	/**
 	 * Singleton
 	 * @return instance:GestisciClienteHandler
 	 */
@@ -71,6 +85,16 @@ public class GestisciClienteHandler {
 		}
 
 		return GestisciClienteHandler.instance;
+	}
+
+	/**
+	 * Fornisce la presunta prossima commessa del cliente 
+	 * @param id:cliente
+	 * @return
+	 */
+	public int getNextCommessaCliente(int id) {
+		// TODO Auto-generated method stub
+		return this.getClienteById(id).getPersistentModel().getNumeroCommessaCliente()+1;
 	}
 
 }

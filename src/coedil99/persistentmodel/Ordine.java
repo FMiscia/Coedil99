@@ -260,21 +260,6 @@ public class Ordine implements coedil99.persistentmodel.IPersistentModel {
 	
 	private static int counter = 0;
 	
-	private Boolean isDateNull() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public Ordine(coedil99.persistentmodel.Cliente c, String og, Integer anno) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	private void checkDate(coedil99.persistentmodel.Commessa c) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
 	public String toString() {
 		return String.valueOf(getID());
 	}

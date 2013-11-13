@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -12,6 +13,7 @@ import org.jdesktop.swingx.JXDatePicker;
 import org.orm.PersistentException;
 
 import GUI.Abstract.ARiquadro;
+import coedil99.model.MCommessa;
 import coedil99.model.MOrdine;
 import coedil99.persistentmodel.Ordine;
 
@@ -97,6 +99,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 					});
 		}
 		this.dateDataInizio.setFormats("yyyy-MM-dd");
+		this.dateDataInizio.setEnabled(false);
 		this.form.add(this.dateDataInizio, "6, 2, fill, fill");
 
 		this.lblIcoDataInizio = new JLabel("");
@@ -154,6 +157,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 			});
 		}
 		this.dateDataFine.setFormats("yyyy-MM-dd");
+		this.dateDataFine.setEnabled(false);
 		this.form.add(this.dateDataFine, "6, 4, fill, fill");
 
 		this.lblIcoDataFine = new JLabel("");
@@ -218,20 +222,20 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	public void load(Object o) {
 		this.oggetto = o;
 		this.resetRiquadro();
-		MOrdine ord = (MOrdine) o;
-		if (ord.getPersistentModel().getDataInizio() != null)
-			this.dateDataInizio.setDate(ord.getPersistentModel()
+		MCommessa c = (MCommessa) o;
+		if (c.getPersistentModel().getOrdine().getDataInizio() != null)
+			this.dateDataInizio.setDate(c.getPersistentModel().getOrdine()
 					.getDataInizio());
 		else
 			this.dateDataInizio.setDate(null);
 
-		if (ord.getPersistentModel().getDataFine() != null)
-			this.dateDataFine.setDate(ord.getPersistentModel().getDataFine());
+		if (c.getPersistentModel().getOrdine().getDataFine() != null)
+			this.dateDataFine.setDate(c.getPersistentModel().getOrdine().getDataFine());
 		else
 			this.dateDataFine.setDate(null);
 
-		if (ord.getPersistentModel().getDataScadenza() != null)
-			this.dateScadenzaSviluppo.setDate(ord.getPersistentModel()
+		if (c.getPersistentModel().getOrdine().getDataScadenza() != null)
+			this.dateScadenzaSviluppo.setDate(c.getPersistentModel().getOrdine()
 					.getDataScadenza());
 		else
 			this.dateScadenzaSviluppo.setDate(null);
@@ -241,18 +245,22 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	 * Salva le modifiche sul db
 	 */
 	@Override
-	protected void salva() {
+	public void salva(boolean showmex) {
 		if (this.oggetto != null) {
-			MOrdine ord = (MOrdine) this.oggetto;
-			ord.getPersistentModel().setDataInizio(
+			MCommessa c = (MCommessa) this.oggetto;
+			this.dateScadenzaSviluppo.setFormats("yyyy-MM-dd");
+			c.getPersistentModel().getOrdine().setDataInizio(
 					this.dateDataInizio.getDate());
-			ord.getPersistentModel().setDataFine(this.dateDataFine.getDate());
-			ord.getPersistentModel().setDataScadenza(
+			c.getPersistentModel().getOrdine().setDataFine(this.dateDataFine.getDate());
+			c.getPersistentModel().getOrdine().setDataScadenza(
 					this.dateScadenzaSviluppo.getDate());
-			ord.save();
-			JOptionPane.showMessageDialog(null,
-					"Salvataggio avvenuto correttamente",
-					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+			c.save();
+			if (showmex)
+				JOptionPane
+						.showMessageDialog(null,
+								"Salvataggio avvenuto correttamente",
+								"Messaggio di Sistema",
+								JOptionPane.INFORMATION_MESSAGE);
 			this.load(this.oggetto);
 		}
 	}
@@ -262,11 +270,34 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	 */
 	@Override
 	public void makeEditable(boolean editable) {
-		this.dateDataInizio.setEnabled(editable);
-		this.dateDataFine.setEnabled(editable);
 		this.dateScadenzaSviluppo.setEnabled(editable);
 		super.makeEditable(editable);
 
+	}
+
+	/**
+	 * Set della data di inizio ordine nel data picker del Riquadro dati
+	 * aziendali
+	 * 
+	 * @param t
+	 *            :data
+	 */
+	public void setDataInizio(Date t) {
+		this.dateDataInizio.setDate(t);
+		this.validate();
+		this.repaint();
+	}
+
+	/**
+	 * Set della data di fine ordine nel data picker del Riquadro dati aziendali
+	 * 
+	 * @param t
+	 *            :data
+	 */
+	public void setDataFine(Date t) {
+		this.dateDataFine.setDate(t);
+		this.validate();
+		this.repaint();
 	}
 
 	/**

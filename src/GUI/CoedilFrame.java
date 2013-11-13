@@ -79,28 +79,32 @@ public class CoedilFrame extends JFrame {
 		initialize();
 	}
 
-	/**
-	 * Inizzializza il Frame
-	 */
-	private void initialize() {
-		this.setName("Coedil99");
-		this.setResizable(true);
-		this.setIconImage(new ImageIcon(CoedilFrame.class
-				.getResource("image/coedilIco.png")).getImage());
-		this.setVisible(true);
-		this.setMinimumSize(new Dimension(1300, 600));
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+	 /**
+     * Inizzializza il Frame
+     */
+    private void initialize() {
+            this.setName("Coedil99");
+            this.setResizable(true);
+            this.setIconImage(new ImageIcon(CoedilFrame.class
+                            .getResource("image/coedilIco.png")).getImage());
+            this.setVisible(true);
+            this.setMinimumSize(new Dimension(1300, 600));
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane().setLayout(new BorderLayout());
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.getContentPane().setLayout(new BorderLayout());
 
-		PanelStart pl = PanelStart.getInstance();
-		pl.setBounds(0, 0, this.getWidth(), this.getHeight());
-		this.getContentPane().add(pl, BorderLayout.CENTER);
+//            PanelStart pl = PanelStart.getInstance();
+//            pl.setBounds(0, 0, this.getWidth(), this.getHeight());
+//            this.getContentPane().add(pl, BorderLayout.CENTER);
+            
+            LoginPanel lp = LoginPanel.getInstance();
+            lp.setBounds(0, 0, this.getWidth(), this.getHeight());
+            this.getContentPane().add(lp, BorderLayout.CENTER);
 
-		this.validate();
-		this.repaint();
-	}
+            this.validate();
+            this.repaint();
+    }
 
 	/**
 	 * Singleton

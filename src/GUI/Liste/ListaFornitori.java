@@ -58,9 +58,6 @@ public class ListaFornitori extends ALista {
 		this.repaint();
 	}
 
-	@Override
-	public void updatePanel() {
-	}
 	
 	/**
 	 * Fornisce l'id del primo Catalogo Fornitore

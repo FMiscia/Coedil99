@@ -8,6 +8,7 @@ import coedil99.model.MRDA;
 import coedil99.persistentmodel.RDA;
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
+import GUI.FormRDA.CreaFormRDAFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
 import GUI.Liste.ListaRigheRDA;
@@ -45,11 +46,16 @@ public class RDACenter extends JPanel {
 	 */
 	@SuppressWarnings("unchecked")
 	public void loadListaRigheRDA() {
-		this.add(this.lista, BorderLayout.WEST);
+		ListaRDA listarda = (ListaRDA) ListaRDAFactory.getInstance()
+				.makeListaComm(GestisciRDAHandler.CONGELATA);
+		RDACenter.getInstance().setLista(listarda);
+		RDACenter.getInstance().setRDASelezionata(
+				GestisciRDAHandler.getInstance().getMRDAById(
+						listarda.getPrimaRDA()));
 		PlicoRDA.getInstance()
 				.getListaRigheRDA()
-				.load(new ArrayList<Object>(this.getRDASelezionata().getPersistentModel().righeRDA
-						.getCollection()));
+				.load(new ArrayList<Object>(this.getRDASelezionata()
+						.getPersistentModel().righeRDA.getCollection()));
 		this.validate();
 		this.repaint();
 	}
@@ -67,7 +73,7 @@ public class RDACenter extends JPanel {
 
 	/**
 	 * 
-	 * @return RDA
+	 * @return MRDA
 	 */
 	public MRDA getRDASelezionata() {
 		return rdaSelezionata;
@@ -91,10 +97,11 @@ public class RDACenter extends JPanel {
 
 	/**
 	 * 
-	 * @param r: la listaRDA da impostare
+	 * @param r
+	 *            : la listaRDA da impostare
 	 */
 	public void setLista(ListaRDA r) {
-		if(this.lista != null)
+		if (this.lista != null)
 			this.remove(this.lista);
 		this.validate();
 		this.repaint();
@@ -143,21 +150,24 @@ public class RDACenter extends JPanel {
 	public static boolean isInstanciated() {
 		return instance == null;
 	}
-	
+
 	/**
 	 * Metodo che ricarica la lista rda congelate e seleziona la prima rda
 	 */
-	public void refreshCongelate(){
+	public void refreshCongelate() {
 		this.lista.svuota();
 		this.lista.load(GestisciRDAHandler.CONGELATA);
-		this.setRDASelezionata(GestisciRDAHandler.getInstance()
-				.getMRDAById(this.lista.getPrimaRDA()));
-		PlicoRDA prda = PlicoRDA.getInstance();
-		ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
-		prda.reset();
-		lista_righe_rda.load(new ArrayList<Object>(this
-				.getRDASelezionata().getPersistentModel().righeRDA.getCollection()));
-		lista_righe_rda.validate();
-		lista_righe_rda.repaint();
+		if (this.getLista().getPrimaCard() != null) {
+			this.setRDASelezionata(GestisciRDAHandler.getInstance()
+					.getMRDAById(this.lista.getPrimaRDA()));
+			PlicoRDA prda = PlicoRDA.getInstance();
+			ListaRigheRDA lista_righe_rda = prda.getListaRigheRDA();
+			prda.reset();
+			prda.addFormRDA(CreaFormRDAFactory.getInstance().makeFormRDA());
+			lista_righe_rda.load(new ArrayList<Object>(this.getRDASelezionata()
+					.getPersistentModel().righeRDA.getCollection()));
+			lista_righe_rda.validate();
+			lista_righe_rda.repaint();
+		}
 	}
 }

@@ -52,8 +52,6 @@ public class ProgrammaLavori extends JPanel {
 				.getCommessaById(((ListaCommesse) this.lista).getPrimaCommessa());
 		this.raccoglitoreplichi.caricaPrimaCommessa(this.commessaSelezionata);
 
-		this.commessaSelezionata = GestisciCommessaHandler.getInstance()
-				.getCommessaById(((ListaCommesse) this.lista).getPrimaCommessa());
 	}
 
 	/**
@@ -84,7 +82,8 @@ public class ProgrammaLavori extends JPanel {
 	 * 
 	 * @return ListaCommesse
 	 */
-	public ListaCommesse getRiquadrocodici() {
+
+	public ListaCommesse ListaCommesse() {
 		return (ListaCommesse) lista;
 	}
 	/**

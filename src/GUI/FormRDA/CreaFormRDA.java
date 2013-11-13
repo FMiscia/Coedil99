@@ -169,17 +169,29 @@ public class CreaFormRDA extends AFormRDA {
 				}
 			});
 		}
-		RDACenter rdac = RDACenter.getInstance();
-		CardRDA rdaCard = (CardRDA) CardRDAFactory.getInstance().makeCard(
-				rdac.getLista());
-		MRDA rda = new MRDA();
-		rda.getPersistentModel().setDate(new Date());
-		rdaCard.load(rda);
-		rdac.getLista().svuota();
-		rdac.getLista().addCard(rdaCard);
-		rdac.setRDASelezionata(rda);
-		rdac.getLista().deselectAll();
-		rdac.getLista().getPrimaRDA();
+		if (RDACenter.getInstance().getClipPanel().isSelected("NUOVA")) {
+			RDACenter rdac = RDACenter.getInstance();
+			CardRDA rdaCard = (CardRDA) CardRDAFactory.getInstance().makeCard(
+					rdac.getLista());
+			MRDA rda = new MRDA();
+			rda.getPersistentModel().setDate(new Date());
+			rdaCard.load(rda);
+
+			rdac.getLista().svuota();
+			rdac.getLista().addCard(rdaCard);
+			rdac.setRDASelezionata(rda);
+			rdac.getLista().deselectAll();
+			rdac.getLista().getPrimaRDA();
+		}
+		if (RDACenter.getInstance().getClipPanel()
+				.isSelected(GestisciRDAHandler.CONGELATA)
+				&& RDACenter.getInstance().getRDASelezionata()
+						.getPersistentModel().righeRDA.get(0) != null) {
+			this.cbFornitore.setSelectedItem(RDACenter.getInstance()
+					.getRDASelezionata().getPersistentModel().righeRDA.get(0)
+					.getDescription().getCatalogoFornitore().getName());
+			this.cbFornitore.setEnabled(false);
+		}
 		this.add(JBAddRiga, "2, 22, 3, 1");
 	}
 

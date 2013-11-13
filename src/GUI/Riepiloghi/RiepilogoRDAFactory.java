@@ -31,6 +31,7 @@ public class RiepilogoRDAFactory extends RiepilogoFactory{
 		className.put(GestisciRDAHandler.CONGELATA, new RiepilogoRDACongelata());
 		className.put(GestisciRDAHandler.ATTESA_CONFERMA,  new RiepilogoRDAAttesaConferma());
 		className.put(GestisciRDAHandler.CONFERMATA,  new RiepilogoRDAConfermata());
+		className.put(GestisciRDAHandler.RIFIUTATA,  new RiepilogoRDAAttesaConferma());
 	}
 	
 

@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
 import GUI.CoedilFrame;
 import GUI.FornitoriCenter;
 import GUI.PanelStart;

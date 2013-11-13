@@ -41,7 +41,7 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 
 	@Override
 	/**
-	 * Aggiorna il pannello preoccupandosi dei lstener dei bottoni di invia, elimina e salva RDA
+	 * Aggiorna il pannello preoccupandosi dei listener dei bottoni di invia, elimina e salva RDA
 	 */
 	public void refresh() {
 		MRDA r = RDACenter.getInstance().getRDASelezionata();

@@ -19,6 +19,7 @@ public class MRigaLavoro implements IModel{
 	 */
 	public MRigaLavoro() {
 		this.rigalavoro = RigaLavoroFactory.createRigaLavoro();
+		this.setEmptyRigaLavoro();
 	}
 
 	/**
@@ -69,5 +70,15 @@ public class MRigaLavoro implements IModel{
 			e.printStackTrace();
 		}
 	}
+	
+	private void setEmptyRigaLavoro() {
+		this.rigalavoro.setCapitello(false);
+		MGeometria geometria = new MGeometria();
+		this.rigalavoro.setGeometria(geometria.getPersistentModel());
+		this.rigalavoro.setNote("");
+		this.rigalavoro.setNumero(0);
+		this.rigalavoro.setProfiloCapitello("");
+	}
+
 	
 }

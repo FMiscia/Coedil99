@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -38,7 +39,7 @@ public class RiquadroDatiConsegna extends ARiquadro {
 
 	private JLabel lblDataPrimaConsegna;
 	private JLabel lblRitardoConsegna;
-	private JFormattedTextField txtRirardoConsegna;
+	private JTextField txtRirardoConsegna;
 	private JXDatePicker dateDataPrimaConsegna;
 	private JLabel lblIcoDataPrimaConsegna;
 	private JLabel lblIcoRirardoConsegna;
@@ -74,7 +75,7 @@ public class RiquadroDatiConsegna extends ARiquadro {
 	 * Modifica i campi del model e lo salva sul db
 	 */
 	@Override
-	protected void salva() {
+	public void salva(boolean showmex) {
 		if (this.oggetto != null) {
 			MCommessa c = (MCommessa) this.oggetto;
 			c.getPersistentModel().setPrimaConsegna(
@@ -82,9 +83,12 @@ public class RiquadroDatiConsegna extends ARiquadro {
 			c.getPersistentModel().setRitardoConsegna(
 					Integer.valueOf(this.txtRirardoConsegna.getText()));
 			c.save();
-			JOptionPane.showMessageDialog(null,
-					"Salvataggio avvenuto correttamente",
-					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
+			if (showmex)
+				JOptionPane
+						.showMessageDialog(null,
+								"Salvataggio avvenuto correttamente",
+								"Messaggio di Sistema",
+								JOptionPane.INFORMATION_MESSAGE);
 			this.load(this.oggetto);
 		}
 	}
@@ -181,7 +185,7 @@ public class RiquadroDatiConsegna extends ARiquadro {
 		this.lblRitardoConsegna = new JLabel("Ritardo Consegna");
 		this.form.add(this.lblRitardoConsegna, "2, 4");
 
-		this.txtRirardoConsegna = new JFormattedTextField();
+		this.txtRirardoConsegna = new JTextField();
 		this.txtRirardoConsegna.setHorizontalAlignment(SwingConstants.CENTER);
 		if (this.txtRirardoConsegna.getKeyListeners().length == 0)
 			this.txtRirardoConsegna.addKeyListener(new KeyAdapter() {

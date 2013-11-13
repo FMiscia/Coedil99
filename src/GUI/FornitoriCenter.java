@@ -142,5 +142,6 @@ public class FornitoriCenter extends JPanel{
 		this.lista.svuota();
 		PlicoFornitore.getInstance().newCatalogo();
 	}
+
 	
 }

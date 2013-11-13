@@ -17,6 +17,7 @@ import coedil99.model.CatalogoXMLBuilder;
 import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MGeometria;
 import coedil99.model.MProductDescription;
+import coedil99.model.MCatalogoFornitore;
 import coedil99.persistentmodel.CatalogoFornitore;
 import coedil99.model.CatalogoFornitoreBuilder;
 import coedil99.persistentmodel.CatalogoFornitoreFactory;
@@ -129,17 +130,14 @@ public class GestisciFornitoreHandler {
 		}
 		return null;
 	}
-
-	public ArrayList<MProductDescription> getMProductDescriptions(
-			String fornitore) {
+	
+	public ArrayList<MProductDescription> getMProductDescriptions(String fornitore){
 		ArrayList<MProductDescription> prodotti = new ArrayList<MProductDescription>();
-		MCatalogoFornitore cf = GestisciFornitoreHandler.getInstance()
-				.getFornitoreByName(fornitore);
+		MCatalogoFornitore cf = GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore);
 		List l = cf.getPersistentModel().productDescription.getCollection();
 		MProductDescription mpd = null;
-		for (int i = 0; i < l.size(); i++) {
-			mpd = new MProductDescription(
-					((ProductDescription) l.get(i)).getID());
+		for ( int i=0 ; i<l.size() ; i++  ){
+			mpd = new MProductDescription(((ProductDescription)l.get(i)).getID());
 			prodotti.add(mpd);
 		}
 		return prodotti;
