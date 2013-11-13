@@ -1,6 +1,8 @@
 package GUI.Riepiloghi;
 
 import GUI.Abstract.ARiepilogo;
+import GUI.Liste.ListaFornitori;
+import GUI.Liste.ListaProdotti;
 
 /**
  * Factory per i Riepiloghi

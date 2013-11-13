@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="lib/orm.jar"/>
 	<classpathentry kind="lib" path="lib/weblaf-1.24.jar"/>
 	<classpathentry kind="lib" path="lib/opencsv-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/JTattoo-1.6.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

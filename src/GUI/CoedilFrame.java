@@ -8,11 +8,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-
-import coedil99.controller.GestisciFornitoreHandler;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import com.alee.laf.scroll.WebScrollBarUI;
 import com.thehowtotutorial.splashscreen.JSplash;
+
 
 public class CoedilFrame extends JFrame {
 
@@ -27,17 +27,24 @@ public class CoedilFrame extends JFrame {
 	 * Lancia l'applicazione
 	 */
 	public static void main(String[] args) {
-		UIManager.put("ScrollBarUI", WebScrollBarUI.class.getName());
-		//CatalogoCSVBuilder cvs = new CatalogoCSVBuilder();
-		//GestisciFornitoreHandler.getInstance().setBuilder(cvs);
-		//GestisciFornitoreHandler.getInstance().ConstructCatalogo("csv_test.csv");
+		try {
+			UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
+			UIManager.put("ScrollBarUI", WebScrollBarUI.class.getName());
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			e1.printStackTrace();
+		}
+		   
 		try {
 			int delay = 500;
 			boolean developmentMode = true;
 			if (developmentMode)
 				delay = 1;
-			
-
 			final JSplash splash = new JSplash(
 					CoedilFrame.class.getResource("image/coedil.png"), true,
 					true, false, "V0.1");
