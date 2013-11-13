@@ -4,7 +4,6 @@ import java.awt.Dimension;
 
 import GUI.FornitoriCenter;
 import GUI.Abstract.ARiepilogoFornitore;
-import GUI.Liste.ListaProdotti;
 import coedil99.model.MCatalogoFornitore;
 
 /**
