@@ -17,6 +17,32 @@ public class GestisciDipendenteHandler {
 	private ArrayList<MDipendente> dipendenti = null;
 	private static GestisciDipendenteHandler instance;
 	
+	private static boolean logged = false;
+	private static int level = 0;
+	
+    public boolean authenticate(String username, String password) {
+
+    	Dipendente d = GestisciDipendenteHandler.getInstance().checkPass(username,password);
+        if (d != null) {
+        	logged = true;
+        	level = d.getLevel();
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean getLogged() {
+    	return logged;
+    }
+    
+    public int getLevel() {
+    	return level;
+    }
+
+	public void logOut() {
+		// TODO Auto-generated method stub
+		logged = false;
+	}
 	/**
 	 * Costruttore
 	 * 

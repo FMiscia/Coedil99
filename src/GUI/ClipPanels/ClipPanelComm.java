@@ -3,11 +3,12 @@ package GUI.ClipPanels;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import coedil99.controller.GestisciDipendenteHandler;
+
 import GUI.CoedilFrame;
 import GUI.LoginPanel;
 import GUI.PanelStart;
 import GUI.Abstract.AClipPanel;
-import GUI.Login.Login;
 
 /**
  * 
@@ -42,7 +43,7 @@ public class ClipPanelComm extends AClipPanel {
 		this.addButton("Logout", "Logout", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Login.logOut();
+				GestisciDipendenteHandler.getInstance().logOut();
                 PanelStart.getInstance().getClipPanel().changeButtonLogState();
                 CoedilFrame.getInstance().montaPanel(LoginPanel.getInstance());
 			}
