@@ -11,12 +11,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
+import javax.swing.JToggleButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
+
+import GUI.ConfigGUI;
 
 import coedil99.controller.GestisciRDAHandler;
 
@@ -54,9 +56,7 @@ public abstract class AClipPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<JButton> buttons = new ArrayList<JButton>();
-	private static int numBottoniTotali = 8;
-	private static Color coloreSelezionato = new Color(180,180,180);
+	private ArrayList<JToggleButton> buttons = new ArrayList<JToggleButton>();
 	
 	/**
 	 * Costruttore: imposta i parametri standard dei clip panel
@@ -75,12 +75,13 @@ public abstract class AClipPanel extends JPanel {
 	 * @param click: ActionListener del bottone
 	 */
 	public void addButton(String label,String ToolTip,ActionListener click){
-		JButton temp = new JButton();
+		JToggleButton temp = new JToggleButton();
 		temp.setLayout(new BorderLayout());
 		temp.setToolTipText(ToolTip);
 		temp.setHorizontalTextPosition(SwingConstants.LEFT);
 		temp.addActionListener(click);
 		temp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		temp.setFocusPainted(false);
 		JLabel nome = new JLabel(label);
 		temp.add(nome,BorderLayout.WEST);
 		this.buttons.add(temp);
@@ -110,8 +111,8 @@ public abstract class AClipPanel extends JPanel {
 	 * @param ToolTip: Testo per il tooltip del bottone
 	 * @return bottone creato
 	 */
-	public JButton createButton(String label,String ToolTip){
-		JButton temp = new JButton(label);
+	public JToggleButton createButton(String label,String ToolTip){
+		JToggleButton temp = new JToggleButton(label);
 		temp.setToolTipText(ToolTip);
 		temp.setHorizontalTextPosition(SwingConstants.LEFT);
 		temp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -135,8 +136,8 @@ public abstract class AClipPanel extends JPanel {
 	 * 
 	 */
 	public void fill(){
-		for ( int n = AClipPanel.numBottoniTotali - this.getComponentCount(); n>0 ;n-- ){
-			if(n<= AClipPanel.numBottoniTotali && n!=2 && n!=1)
+		for ( int n = ConfigGUI.getNumBottoniClipPanel() - this.getComponentCount(); n>0 ;n-- ){
+			if(n<= ConfigGUI.getNumBottoniClipPanel() && n!=2 && n!=1)
 				this.addLabel();
 			if(n==2)
 				this.addButton("Help", "Help", null);
@@ -154,20 +155,20 @@ public abstract class AClipPanel extends JPanel {
 	 * 
 	 */
 	public void focusOut(){
-		for(JButton b: this.buttons){
-			b.setBackground(UIManager.getColor("Button.background"));
+		for(JToggleButton b: this.buttons){
+			b.setSelected(false);
 			b.setEnabled(true);
 		}
 	}
 	
 	/**
-	 * Metodo che controlla se un bottone � selezionato [test in base al suo colore di sfondo]
+	 * Metodo che controlla se un bottone è selezionato 
 	 * 
 	 * @param b: Bottone 
 	 * @return booleano
 	 */
-	public Boolean isButtonFocused(JButton b){
-		return b.getBackground().equals(AClipPanel.getColoreSelezionato());
+	public Boolean isButtonFocused(JToggleButton b){
+		return b.isSelected();
 	}
 	
 	
@@ -177,7 +178,7 @@ public abstract class AClipPanel extends JPanel {
 	 */
 	public void resetInitialState(){
 		this.focusOut();
-		this.getButtons().get(1).setBackground(AClipPanel.getColoreSelezionato());
+		this.getButtons().get(1).setSelected(true);
 	}
 
 	/**
@@ -185,20 +186,11 @@ public abstract class AClipPanel extends JPanel {
 	 * 
 	 * @return l'array bottoni
 	 */
-	public ArrayList<JButton> getButtons() {
+	public ArrayList<JToggleButton> getButtons() {
 		return buttons;
 	}
 
 
-	/**
-	 * Get per il coloreSelezionato
-	 * 
-	 * @return the coloreSelezionato
-	 */
-	public static Color getColoreSelezionato() {
-		return coloreSelezionato;
-	}
-	
 	/**
 	 * Imposta la grafica
 	 */

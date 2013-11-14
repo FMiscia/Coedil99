@@ -6,14 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
+import javax.swing.JToggleButton;
 import javax.swing.JOptionPane;
+import javax.swing.JToggleButton;
 
 import GUI.CoedilFrame;
 import GUI.PanelStart;
 import GUI.RDACenter;
 import GUI.Abstract.AClipPanel;
-import GUI.Abstract.APlico;
 import GUI.FormRDA.CreaFormRDA;
 import GUI.FormRDA.CreaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
@@ -31,8 +31,8 @@ import coedil99.controller.GestisciRDAHandler;
 public class ClipPanelRDA extends AClipPanel {
 
 	/**
-	 * 
-	 */
+         * 
+         */
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -49,7 +49,7 @@ public class ClipPanelRDA extends AClipPanel {
 	 */
 	public void focusToRDACongelate() {
 		this.focusOut();
-		JButton b = (JButton) ClipPanelRDA.this
+		JToggleButton b = (JToggleButton) ClipPanelRDA.this
 				.getComponent(AClipPanel.RDAButtonState
 						.get(GestisciRDAHandler.CONGELATA));
 		b.setBackground(new Color(180, 180, 180));
@@ -62,7 +62,7 @@ public class ClipPanelRDA extends AClipPanel {
 	 * @return bool:boolean
 	 */
 	private boolean clickFromNuovaRDA() {
-		if (ClipPanelRDA.this.isButtonFocused((JButton) ClipPanelRDA.this
+		if (ClipPanelRDA.this.isButtonFocused((JToggleButton) ClipPanelRDA.this
 				.getButtons().get(AClipPanel.RDAButtonState.get("NUOVA")))) {
 			Object[] options = { "Si", "No" };
 			int n = JOptionPane.showOptionDialog(null,
@@ -119,7 +119,7 @@ public class ClipPanelRDA extends AClipPanel {
 				new ActionListener() {
 					@SuppressWarnings("unchecked")
 					public void actionPerformed(ActionEvent arg0) {
-						JButton b = (JButton) arg0.getSource();
+						JToggleButton b = (JToggleButton) arg0.getSource();
 						if (!RDACenter.getInstance().getLista()
 								.isPrimaRDASaved()
 								&& !ClipPanelRDA.this.clickFromNuovaRDA()) {
@@ -127,7 +127,8 @@ public class ClipPanelRDA extends AClipPanel {
 
 						}
 						ClipPanelRDA.this.focusOut();
-						b.setBackground(new Color(180, 180, 180));
+						//b.setBackground(new Color(180, 180, 180));
+						b.setSelected(true);
 						RDACenter rdac = RDACenter.getInstance();
 						rdac.refreshCongelate();
 					}
@@ -138,7 +139,7 @@ public class ClipPanelRDA extends AClipPanel {
 					@SuppressWarnings("unchecked")
 					public void actionPerformed(ActionEvent arg0) {
 
-						JButton b = (JButton) arg0.getSource();
+						JToggleButton b = (JToggleButton) arg0.getSource();
 						if (!RDACenter.getInstance().getLista()
 								.isPrimaRDASaved()
 								&& !ClipPanelRDA.this.clickFromNuovaRDA()) {
@@ -146,11 +147,11 @@ public class ClipPanelRDA extends AClipPanel {
 
 						}
 						ClipPanelRDA.this.focusOut();
-						b.setBackground(new Color(180, 180, 180));
-
+						//b.setBackground(new Color(180, 180, 180));
+						b.setSelected(true);
 						PlicoRDA prda = PlicoRDA.getInstance();
 						prda.getListaRigheRDA().svuota();
-
+						prda.resetFormRDA();
 						RDACenter rdac = RDACenter.getInstance();
 						rdac.getLista().svuota();
 						rdac.getLista()
@@ -167,7 +168,7 @@ public class ClipPanelRDA extends AClipPanel {
 										.getLayoutComponent(BorderLayout.CENTER));
 							ListaRigheRDA lista_righe_rda = prda
 									.getListaRigheRDA();
-							prda.resetFormRDA();
+							
 							lista_righe_rda.getPanel().removeAll();
 							lista_righe_rda.load(new ArrayList<Object>(
 									rdac.getRDASelezionata()
@@ -184,7 +185,7 @@ public class ClipPanelRDA extends AClipPanel {
 				new ActionListener() {
 					@SuppressWarnings("unchecked")
 					public void actionPerformed(ActionEvent arg0) {
-						JButton b = (JButton) arg0.getSource();
+						JToggleButton b = (JToggleButton) arg0.getSource();
 						if (!RDACenter.getInstance().getLista()
 								.isPrimaRDASaved()
 								&& !ClipPanelRDA.this.clickFromNuovaRDA()) {
@@ -192,11 +193,11 @@ public class ClipPanelRDA extends AClipPanel {
 
 						}
 						ClipPanelRDA.this.focusOut();
-						b.setBackground(new Color(180, 180, 180));
-
+						//b.setBackground(new Color(180, 180, 180));
+						b.setSelected(true);
 						PlicoRDA prda = PlicoRDA.getInstance();
 						prda.getListaRigheRDA().svuota();
-
+						prda.resetFormRDA();
 						RDACenter rdac = RDACenter.getInstance();
 						rdac.getLista().svuota();
 						rdac.getLista().load(GestisciRDAHandler.RIFIUTATA);
@@ -212,7 +213,6 @@ public class ClipPanelRDA extends AClipPanel {
 										.getLayoutComponent(BorderLayout.CENTER));
 							ListaRigheRDA lista_righe_rda = prda
 									.getListaRigheRDA();
-							prda.resetFormRDA();
 							lista_righe_rda.getPanel().removeAll();
 							lista_righe_rda.load(new ArrayList<Object>(
 									rdac.getRDASelezionata()
@@ -232,7 +232,7 @@ public class ClipPanelRDA extends AClipPanel {
 					@SuppressWarnings("unchecked")
 					public void actionPerformed(ActionEvent arg0) {
 
-						JButton b = (JButton) arg0.getSource();
+						JToggleButton b = (JToggleButton) arg0.getSource();
 						if (!RDACenter.getInstance().getLista()
 								.isPrimaRDASaved()
 								&& !ClipPanelRDA.this.clickFromNuovaRDA()) {
@@ -240,11 +240,11 @@ public class ClipPanelRDA extends AClipPanel {
 
 						}
 						ClipPanelRDA.this.focusOut();
-						b.setBackground(new Color(180, 180, 180));
-
+						//b.setBackground(new Color(180, 180, 180));
+						b.setSelected(true);
 						PlicoRDA prda = PlicoRDA.getInstance();
 						prda.getListaRigheRDA().svuota();
-
+						prda.resetFormRDA();
 						RDACenter rdac = RDACenter.getInstance();
 						rdac.getLista().svuota();
 						rdac.getLista().load(GestisciRDAHandler.CONFERMATA);
@@ -260,7 +260,6 @@ public class ClipPanelRDA extends AClipPanel {
 										.getLayoutComponent(BorderLayout.CENTER));
 							ListaRigheRDA lista_righe_rda = prda
 									.getListaRigheRDA();
-							prda.resetFormRDA();
 							lista_righe_rda.getPanel().removeAll();
 							lista_righe_rda.load(new ArrayList<Object>(
 									rdac.getRDASelezionata()
@@ -278,8 +277,9 @@ public class ClipPanelRDA extends AClipPanel {
 		this.addButton("Nuova RDA", "Crea una nuova RDA", new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ClipPanelRDA.this.focusOut();
-				JButton b = (JButton) arg0.getSource();
-				b.setBackground(new Color(180, 180, 180));
+				JToggleButton b = (JToggleButton) arg0.getSource();
+				//b.setBackground(new Color(180, 180, 180));
+				b.setSelected(true);
 				PlicoRDA prda = PlicoRDA.getInstance();
 				prda.reset();
 				CreaFormRDA form = (CreaFormRDA) CreaFormRDAFactory
@@ -302,7 +302,7 @@ public class ClipPanelRDA extends AClipPanel {
 	 * @return bool:boolean
 	 */
 	public boolean isSelected(String s) {
-		JButton b = (JButton) ClipPanelRDA.this.getButtons().get(
+		JToggleButton b = (JToggleButton) ClipPanelRDA.this.getButtons().get(
 				AClipPanel.RDAButtonState.get(s));
 		return this.isButtonFocused(b);
 	}

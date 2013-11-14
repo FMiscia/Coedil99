@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+import javax.swing.JToggleButton;
 import javax.swing.JOptionPane;
+import javax.swing.JToggleButton;
+
 import GUI.CoedilFrame;
 import GUI.FornitoriCenter;
 import GUI.PanelStart;
@@ -49,9 +51,9 @@ public class ClipPanelFornitori extends AClipPanel {
 					return;
 				}
 				PlicoFornitore.getInstance().abortImporting();
-				JButton b = (JButton) arg0.getSource();
+				JToggleButton b = (JToggleButton) arg0.getSource();
 				ClipPanelFornitori.this.focusOut();
-				b.setBackground(new Color(180, 180, 180));
+				b.setSelected(true);
 				FornitoriCenter fc = FornitoriCenter.getInstance();
 				fc.refreshFornitori();
 				fc.selectPrimoCatalogo();
@@ -64,9 +66,9 @@ public class ClipPanelFornitori extends AClipPanel {
 					return;
 				}
 				PlicoFornitore.getInstance().abortImporting();
-				JButton b = (JButton) arg0.getSource();
+				JToggleButton b = (JToggleButton) arg0.getSource();
 				ClipPanelFornitori.this.focusOut();
-				b.setBackground(new Color(180, 180, 180));
+				b.setSelected(true);
 				FornitoriCenter.getInstance().newCatalogo();
 			}
 		});
@@ -80,8 +82,8 @@ public class ClipPanelFornitori extends AClipPanel {
 	 */
 	public void focusToListaCataloghi() {
 		this.focusOut();
-		JButton b = (JButton) ClipPanelFornitori.this.getComponent(1);
-		b.setBackground(new Color(180, 180, 180));
+		JToggleButton b = (JToggleButton) ClipPanelFornitori.this.getComponent(1);
+		b.setSelected(true);
 	}
 	
 	
@@ -99,7 +101,7 @@ public class ClipPanelFornitori extends AClipPanel {
 	 * @return bool:boolean
 	 */
 	public boolean isSelectedNuovoCatalogo() {
-		JButton b = (JButton) ClipPanelFornitori.this.getButtons().get(2);
+		JToggleButton b = (JToggleButton) ClipPanelFornitori.this.getButtons().get(2);
 		return this.isButtonFocused(b);
 	}
 	

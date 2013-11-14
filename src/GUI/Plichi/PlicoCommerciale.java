@@ -3,6 +3,7 @@ package GUI.Plichi;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
+import GUI.CommercialeCenter;
 import GUI.RDACenter;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
@@ -104,7 +105,13 @@ public class PlicoCommerciale extends APlico {
 	}
 
 	public void refreshFormRDA() {
-		// TODO Auto-generated method stub
+		if(!CommercialeCenter.getInstance().getLista().panelHasRDA()){
+			this.remove(panelrdacomm);
+			this.panelrdacomm = null;
+			this.validate();
+			this.repaint();
+			return;
+		}
 		if(this.panelrdacomm != null)
 			this.remove(this.panelrdacomm);
 		this.panelrdacomm = PanelRDACommFactory.getInstance().makePanelRDAComm();

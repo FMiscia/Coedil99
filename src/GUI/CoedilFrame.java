@@ -1,8 +1,17 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -11,6 +20,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.alee.laf.scroll.WebScrollBarUI;
+import com.jtattoo.plaf.AbstractTheme;
+import com.jtattoo.plaf.mint.MintDefaultTheme;
+import com.jtattoo.plaf.mint.MintLookAndFeel;
 import com.thehowtotutorial.splashscreen.JSplash;
 
 
@@ -27,6 +39,33 @@ public class CoedilFrame extends JFrame {
 	 * Lancia l'applicazione
 	 */
 	public static void main(String[] args) {
+//		
+//		
+//		
+		 Properties props = new Properties();
+//         
+////         props.put("logoString", "my company"); 
+////         props.put("licenseKey", "INSERT YOUR LICENSE KEY HERE");
+////         
+		 props.put("selectionBackgroundColor", "220 228 228"); 
+////         props.put("menuSelectionBackgroundColor", "184 207 229"); 
+         props.put("alterBackgroundColor", "220 228 228");
+         props.put("selectionBackgroundColor", "220 228 228");
+//         props.put("selectionForegroundColor", "255 0 0");
+         props.put("focusColor", "171 171 171");
+        props.put("focusCellColor", "171 171 171");
+         props.put("rolloverColor", "220 228 228"); 
+         props.put("rolloverColorLight", "220 228 228"); 
+         props.put("rolloverColorDark", "220 228 228"); 
+//         // set your theme
+         MintLookAndFeel.setCurrentTheme(props);
+         System.out.print(MintLookAndFeel.getSelectionBackgroundColor());
+//         for(Color c: MintLookAndFeel.getTheme().getSelectedColors())
+//        	 System.out.println( c.toString() );
+//         // select the Look and Feel
+
+         
+         
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
 			UIManager.put("ScrollBarUI", WebScrollBarUI.class.getName());
@@ -39,7 +78,7 @@ public class CoedilFrame extends JFrame {
 		} catch (UnsupportedLookAndFeelException e1) {
 			e1.printStackTrace();
 		}
-		   
+		
 		try {
 			int delay = 500;
 			boolean developmentMode = true;

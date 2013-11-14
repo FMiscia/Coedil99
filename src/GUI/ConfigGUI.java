@@ -1,5 +1,7 @@
 package GUI;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 
 /**
@@ -23,6 +25,8 @@ public class ConfigGUI {
 			ConfigGUI.class.getResource("/GUI/image/cancel.png"));
 	private static ImageIcon OkIcon = new ImageIcon(
 			ConfigGUI.class.getResource("/GUI/image/ok.png"));
+	private static Color coloreSelezionato = new Color(180,180,180);
+	private static int numBottoniClipPanel = 8;
 
 	/**
 	 * Costruttore
@@ -84,6 +88,22 @@ public class ConfigGUI {
 
 	public static void setOkIcon(ImageIcon okIcon) {
 		OkIcon = okIcon;
+	}
+
+	public static Color getColoreSelezionato() {
+		return coloreSelezionato;
+	}
+
+	public static void setColoreSelezionato(Color coloreSelezionato) {
+		ConfigGUI.coloreSelezionato = coloreSelezionato;
+	}
+
+	public static int getNumBottoniClipPanel() {
+		return numBottoniClipPanel;
+	}
+
+	public static void setNumBottoniClipPanel(int numBottoniClipPanel) {
+		ConfigGUI.numBottoniClipPanel = numBottoniClipPanel;
 	}
 
 }

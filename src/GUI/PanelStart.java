@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
 import GUI.ClipPanels.ClipPanelMenu;
@@ -93,7 +94,7 @@ public class PanelStart extends JPanel {
     				FornitoriCenter.getInstance().setLista(listaf);
     				listaf.deselectAll();
     				FornitoriCenter.getInstance().setPrimoCatalogoFornitore();
-    				ArrayList<JButton> b = FornitoriCenter.getInstance().getClipPanel()
+    				ArrayList<JToggleButton> b = FornitoriCenter.getInstance().getClipPanel()
     						.getButtons();
     				FornitoriCenter.getInstance().loadListaProdotti();
 
@@ -131,7 +132,7 @@ public class PanelStart extends JPanel {
                                 ListaRDA listarda = (ListaRDA) ListaRDAFactory
                                                 .getInstance().makeLista(GestisciRDAHandler.CONGELATA);
                                 RDACenter.getInstance().setLista(listarda);
-                                ArrayList<JButton> b = RDACenter.getInstance().getClipPanel()
+                                ArrayList<JToggleButton> b = RDACenter.getInstance().getClipPanel()
                                                 .getButtons();
                                 CoedilFrame.getInstance().montaPanel(RDACenter.getInstance());
                                 b.get(1).doClick();

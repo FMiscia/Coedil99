@@ -119,16 +119,18 @@ public class PanelRDAComm extends JPanel{
 		c.getRDASelezionata().save();
 		c.getLista().loadComm(GestisciRDAHandler.ATTESA_CONFERMA);
 		PlicoCommerciale plico_com = PlicoCommerciale.getInstance();
-		c.getLista().getPrimaCard().getRiquadro().deselectAll();
-		CommercialeCenter contenitore = CommercialeCenter.getInstance();
-		contenitore.setRDASelezionata(GestisciRDAHandler.getInstance().getMRDAById(c.getLista().getPrimaRDA()));
+		if(c.getLista().panelHasRDA()){
+			c.getLista().getPrimaCard().getRiquadro().deselectAll();
+			CommercialeCenter contenitore = CommercialeCenter.getInstance();
+			contenitore.setRDASelezionata(GestisciRDAHandler.getInstance().getMRDAById(c.getLista().getPrimaRDA()));
+			contenitore.loadListaRigheRDA();
+			c.getLista().getPrimaCard().setBackground(new Color(30, 44, 255));
+			c.getLista().getPrimaCard().validate();
+			c.getLista().getPrimaCard().repaint();
+		}
 		ListaRigheRDA lista_righe_rda = plico_com.getListaRigheRDA();
 		plico_com.refreshFormRDA();
 		lista_righe_rda.getPanel().removeAll();
-		contenitore.loadListaRigheRDA();
-		c.getLista().getPrimaCard().setBackground(new Color(30, 44, 255));
-		c.getLista().getPrimaCard().validate();
-		c.getLista().getPrimaCard().repaint();
 		lista_righe_rda.validate();
 		lista_righe_rda.repaint();
 	}
