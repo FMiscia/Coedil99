@@ -50,7 +50,7 @@ public class PanelStart extends JPanel {
                 this.addPannelloUseCases();
                 this.addPLButton();
                 this.addRDAButton();
-                this.addOTHERButton();
+                this.addFornitoriButton();
                 this.addClipPanel();
         }
 
@@ -76,19 +76,19 @@ public class PanelStart extends JPanel {
         /**
     	 * Aggiunge un button vuoto solo per motivi grafici, numero pari
     	 */
-    	private void addOTHERButton() {
-    		JButton otherbutton = new JButton();
-    		otherbutton.setToolTipText("Work in progress...");
-    		otherbutton.setSize(100, 100);
+    	private void addFornitoriButton() {
+    		JButton fornitoriButton = new JButton();
+    		fornitoriButton.setToolTipText("Gestisci Cataloghi");
+    		fornitoriButton.setSize(100, 100);
     		try {
     			Image img = ImageIO.read(getClass().getResource(
-    					"/GUI/image/wip.png"));
-    			otherbutton.setIcon(new ImageIcon(img));
+    					"/GUI/image/fornitori.png"));
+    			fornitoriButton.setIcon(new ImageIcon(img));
     		} catch (IOException ex) {
     		}
-    		otherbutton.setFocusable(false);
-    		pannelloUseCases.add(otherbutton);
-    		otherbutton.addMouseListener(new MouseAdapter() {
+    		fornitoriButton.setFocusable(false);
+    		pannelloUseCases.add(fornitoriButton);
+    		fornitoriButton.addMouseListener(new MouseAdapter() {
     			public void mouseClicked(MouseEvent arg0) {
     				ListaFornitori listaf = (ListaFornitori) ListaFornitoriFactory.getInstance().makeLista();
     				FornitoriCenter.getInstance().setLista(listaf);
