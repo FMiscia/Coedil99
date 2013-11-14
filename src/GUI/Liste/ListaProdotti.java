@@ -72,8 +72,7 @@ public class ListaProdotti extends ALista {
 	}
 
 	public int getNumProdotti() {
-		return FornitoriCenter.getInstance().getFornitoreSelezionato()
-				.getPersistentModel().productDescription.size();
+		return this.panel.getComponentCount() -1;
 	}
 
 	@Override

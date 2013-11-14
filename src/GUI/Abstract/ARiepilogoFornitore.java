@@ -25,6 +25,7 @@ import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
 import GUI.FornitoriCenter;
+import GUI.Liste.ListaProdotti;
 import GUI.Plichi.PlicoFornitore;
 import GUI.Utilities.CataloghiFilter;
 import coedil99.controller.GestisciFornitoreHandler;
@@ -50,6 +51,10 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 	private JButton btnSalva;
 	private JLabel lblErrore;
 	protected JButton btnCaricaCatalogo;
+	protected ImageIcon IcoErrore = new ImageIcon(
+			ARiepilogoFornitore.class.getResource("/GUI/image/cancel.png"));
+	protected ImageIcon IcoOk = new ImageIcon(
+			ARiepilogoFornitore.class.getResource("/GUI/image/ok.png"));
 	protected boolean importing;
 	private MCatalogoFornitore new_catalogo = null;
 	protected JButton btnElimina;
@@ -298,7 +303,7 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 	public void controlloErrori() {
 		boolean test = true;
 		if (this.lblErrore.getIcon() != null
-				&& this.lblErrore.getIcon().equals(ConfigGUI.getErrorIcon())
+				&& this.lblErrore.getIcon().equals(IcoErrore)
 				|| this.lblNome.getText().isEmpty())
 			test = false;
 		if (PlicoFornitore.getInstance().getListaProdotti().isEmpty())
@@ -347,12 +352,12 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		Pattern r = Pattern.compile(pattern);
 		Matcher m = r.matcher(line);
 		if (line.equals("")) {
-			lblErrore.setIcon(ConfigGUI.getErrorIcon());
+			lblErrore.setIcon(IcoErrore);
 			lblErrore
 					.setToolTipText("Il nome del catalogo fornitore non può essere vuoto!");
 			lblNome.setBorder(new LineBorder(Color.red));
 		} else if (m.find()) {
-			lblErrore.setIcon(ConfigGUI.getErrorIcon());
+			lblErrore.setIcon(IcoErrore);
 			lblErrore
 					.setToolTipText("Il nome del catalogo fornitore può essere solo alfa numerico");
 			lblNome.setBorder(new LineBorder(Color.red));
@@ -360,13 +365,13 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 				.getFornitoreSelezionato().getPersistentModel().getName())
 				&& GestisciFornitoreHandler.getInstance().getFornitoreByName(
 						line) != null) {
-			lblErrore.setIcon(ConfigGUI.getErrorIcon());
+			lblErrore.setIcon(IcoErrore);
 			lblErrore
 					.setToolTipText("Esiste già un catalogo fornitore con nome "
 							+ line);
 			lblNome.setBorder(new LineBorder(Color.red));
 		} else {
-			lblErrore.setIcon(ConfigGUI.getOkIcon());
+			lblErrore.setIcon(IcoOk);
 			lblErrore.setToolTipText(null);
 			lblNome.setBorder(new LineBorder(Color.green));
 		}

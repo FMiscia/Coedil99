@@ -70,6 +70,7 @@ public class MRDA extends coedil99.model.Subject implements IModel{
 		try {
 			this.rda.deleteAndDissociate();
 			this.rda=null;
+			this.Notify();
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
