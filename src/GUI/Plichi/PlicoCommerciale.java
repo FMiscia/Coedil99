@@ -28,6 +28,7 @@ public class PlicoCommerciale extends APlico {
 	private PlicoCommerciale() {
 		setLayout(new BorderLayout());
 		addListaRigheRDA();
+		addPanelRDAComm();
 	}
 
 	/**
@@ -40,7 +41,13 @@ public class PlicoCommerciale extends APlico {
 
 	}
 	
-
+	/**
+	 * Aggiunge il pannello per la descrizione dell'RDA
+	 */
+	private void addPanelRDAComm(){
+		this.panelrdacomm = PanelRDACommFactory.getInstance().makePanelRDAComm();
+		this.add(panelrdacomm, BorderLayout.CENTER);
+	}
 
 	/**
 	 * Singleton
