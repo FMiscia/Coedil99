@@ -105,8 +105,8 @@ public class PlicoCommerciale extends APlico {
 	}
 
 	public void refreshFormRDA() {
-		if(!CommercialeCenter.getInstance().getLista().panelHasRDA()){
-			this.remove(panelrdacomm);
+		if(CommercialeCenter.getInstance().getLista().panelHasRDA()){
+			//this.remove(panelrdacomm);
 			this.panelrdacomm = null;
 			this.validate();
 			this.repaint();
