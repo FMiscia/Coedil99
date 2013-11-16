@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.JToggleButton;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
@@ -77,7 +77,7 @@ public class PanelStart extends JPanel {
     	 * Aggiunge un button vuoto solo per motivi grafici, numero pari
     	 */
     	private void addOTHERButton() {
-    		JButton otherbutton = new JButton();
+    		JToggleButton otherbutton = new JToggleButton();
     		otherbutton.setToolTipText("Work in progress...");
     		otherbutton.setSize(100, 100);
     		try {
@@ -110,7 +110,7 @@ public class PanelStart extends JPanel {
          * Aggiunge un button di attività: Gestisci RDA
          */
         private void addRDAButton() {
-                JButton RDAButton = new JButton();
+                JToggleButton RDAButton = new JToggleButton();
                 RDAButton.setToolTipText("Gestisci RDA");
                 RDAButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 RDAButton.setSize(100, 100);
@@ -145,7 +145,7 @@ public class PanelStart extends JPanel {
          * Aggiunge un button di attività: Programma Lavori
          */
         private void addPLButton() {
-                JButton plButton = new JButton();
+                JToggleButton plButton = new JToggleButton();
                 plButton.setToolTipText("Programma Lavori");
                 plButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 plButton.setPreferredSize(new Dimension(100, 100));
