@@ -1,6 +1,5 @@
 package GUI.Card;
 
-import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -16,14 +15,11 @@ import javax.swing.border.LineBorder;
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.ACard;
-import GUI.ClipPanels.ClipPanelProgrammaLavori;
 import GUI.Liste.ListaCommesse;
 import GUI.Plichi.PlicoCommessa;
-
 import coedil99.model.MCliente;
 import coedil99.model.MCommessa;
 import coedil99.model.MOrdine;
-import coedil99.persistentmodel.Cliente;
 import coedil99.persistentmodel.Commessa;
 import coedil99.persistentmodel.Ordine;
 

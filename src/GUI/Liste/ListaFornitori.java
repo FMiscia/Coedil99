@@ -9,6 +9,10 @@ import javax.swing.JOptionPane;
 
 import GUI.FornitoriCenter;
 import GUI.Abstract.ALista;
+import GUI.Avvisi.AvvisoFornitore;
+import GUI.Avvisi.AvvisoFornitoreFactory;
+import GUI.Avvisi.AvvisoOrdine;
+import GUI.Avvisi.AvvisoOrdineFactory;
 import GUI.Card.CardFornitore;
 import GUI.Card.CardFornitoreFactory;
 import coedil99.controller.GestisciFornitoreHandler;
@@ -41,6 +45,10 @@ public class ListaFornitori extends ALista {
 		}
 		ArrayList<MCatalogoFornitore> cataloghi = GestisciFornitoreHandler.getInstance().getArrayFornitori();
 		int row = cataloghi.size();
+		if (row == 0) {
+			this.panel.add((AvvisoFornitore) AvvisoFornitoreFactory.getInstance().makeAvviso());
+			this.panel.setPreferredSize(new Dimension(150, 70));
+		} else {
 		this.panel.setPreferredSize(new Dimension(150,row*70));
 		for(int k=0; k<row; ++k){
 			CardFornitore r = (CardFornitore) CardFornitoreFactory.getInstance().makeCard(
@@ -54,6 +62,7 @@ public class ListaFornitori extends ALista {
 		if(FornitoriCenter.getInstance().getFornitoreSelezionato() != null){
 			this.selectFornitoreSelezionato(FornitoriCenter.getInstance().getFornitoreSelezionato());
 		}
+		}
 		this.validate();
 		this.repaint();
 	}
@@ -65,7 +74,8 @@ public class ListaFornitori extends ALista {
 	 * @return id:int
 	 */
 	public int getPrimoCatalogo() {
-		this.getPrimaCard().setBackground(new Color(30, 44, 255));
+		if(this.getPrimaCard() != null)
+			this.getPrimaCard().setBackground(new Color(30, 44, 255));
 		return this.getPrimaCard().getCatalogoFornitoreId();
 
 	}
@@ -74,7 +84,8 @@ public class ListaFornitori extends ALista {
 	 * Metodo che seleziona il primo catalogo della lista
 	 */
 	public void setPrimoCatalogo(){
-		this.getPrimaCard().setBackground(new Color(30, 44, 255));
+		if(this.getPrimaCard() != null)
+			this.getPrimaCard().setBackground(new Color(30, 44, 255));
 	}
 
 	/**
@@ -84,7 +95,10 @@ public class ListaFornitori extends ALista {
 	 * @return saved:boolean
 	 */
 	public boolean isPrimoCatalogoSaved() {
-		return ((CardFornitore) this.getPrimaCard()).isSaved();
+		if(this.getPrimaCard() != null)
+			return ((CardFornitore) this.getPrimaCard()).isSaved();
+		else
+			return false;
 
 	}
 
@@ -105,7 +119,9 @@ public class ListaFornitori extends ALista {
 	 * @return component:Component
 	 */
 	public CardFornitore getPrimaCard() {
-		return (CardFornitore) panel.getComponent(0);
+		if (panel.getComponentCount() != 0 && !panel.getComponent(0).getClass().getName().equals("GUI.Avvisi.AvvisoFornitore"))
+			return (CardFornitore) panel.getComponent(0);
+		return null;
 
 	}
 
