@@ -1,6 +1,7 @@
 package GUI.Riepiloghi;
 
 import GUI.Abstract.ARiepilogo;
+import GUI.Liste.ListaProdotti;
 
 /**
  * Factory per i riepiloghi dei cataloghi fornitore
@@ -25,15 +26,13 @@ private static RiepilogoFornitoreFactory instance = null;
 	}
 
 	@Override
-	public ARiepilogo makeRiepilogo() {
-		return new RiepilogoFornitore();
+	public ARiepilogo makeRiepilogo(String tipo) {
+		return null;
 	}
 
-
 	@Override
-	public ARiepilogo makeRiepilogo(String tipo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ARiepilogo makeRiepilogo() {
+		return new RiepilogoFornitore();
 	}
 	
 

@@ -19,7 +19,12 @@ import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
+import GUI.CoedilFrame;
 import GUI.ConfigGUI;
+import GUI.LoginPanel;
+import GUI.PanelStart;
+import GUI.Login.Login;
+
 import coedil99.controller.GestisciRDAHandler;
 
 /**
@@ -153,8 +158,22 @@ public abstract class AClipPanel extends JPanel {
 				- this.getComponentCount(); n > 0; n--) {
 			if (n <= ConfigGUI.getNumBottoniClipPanel() && n != 2 && n != 1)
 				this.addLabel();
-			if (n == 2)
+			if (n == 3)
 				this.addButton("Help", "Help", null);
+			if (n == 2)
+				this.addButton("Logout", "Logout", new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Login.logOut();
+						PanelStart.getInstance().getClipPanel()
+								.changeButtonLogState();
+						CoedilFrame.getInstance().montaPanel(
+								LoginPanel.getInstance());
+					}
+
+				});
+
 			if (n == 1)
 				this.addButton("Exit", "Close Coedil99", new ActionListener() {
 					public void actionPerformed(ActionEvent e) {

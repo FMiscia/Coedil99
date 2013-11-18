@@ -27,33 +27,20 @@ public class ClipPanelMenu extends AClipPanel {
          */
         public ClipPanelMenu(){
                 super();
-                this.addlogButton();
                 this.fill();
         }
-
-        protected void changeButtonLogState() {
-                // TODO Auto-generated method stub
+        
+        /**
+         * Elimina i bottoni del clip panel tranne quelli di 
+         * gestione dell'applicazione (help,logout,exit)
+         */
+        public void changeButtonLogState() {
                 this.removeAll();
-                this.addlogButton();
                 this.fill();
                 this.validate();
                 this.repaint();
         }
         
-        private void addlogButton(){
-
-                        this.addButton("Logout", "Logout", new ActionListener() {
-
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                        Login.logOut();
-                    PanelStart.getInstance().getClipPanel().changeButtonLogState();
-                    CoedilFrame.getInstance().montaPanel(LoginPanel.getInstance());
-                                }
-
-                        });
-
-        }
         
 
 }
