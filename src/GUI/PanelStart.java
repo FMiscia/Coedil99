@@ -27,160 +27,170 @@ import coedil99.controller.GestisciRDAHandler;
 
 public class PanelStart extends JPanel {
 
-        private static final long serialVersionUID = 1L;
-        private JPanel pannelloUseCases = new JPanel();
-        private ClipPanelMenu clipPanel = (ClipPanelMenu) ClipPanelMenuFactory
-                        .getInstance().makeClipPanel();
+	private static final long serialVersionUID = 1L;
+	private JPanel pannelloUseCases = new JPanel();
+	private ClipPanelMenu clipPanel = (ClipPanelMenu) ClipPanelMenuFactory
+			.getInstance().makeClipPanel();
+	private JToggleButton plButton;
+	private JToggleButton RDAButton;
+	private JToggleButton fornitoriButton;
 
+	private static PanelStart myInstance;
 
-        private static PanelStart myInstance;
-    
-        /**
-         * Costruttore
-         */
-        public PanelStart() {
-                this.initUI();
-        }
+	/**
+	 * Costruttore
+	 */
+	public PanelStart() {
+		this.initUI();
+	}
 
-        /**
-         * Inizializza il panel con un ClipPanel e il Pannello di selezione attività
-         */
-        public void initUI() {
-            this.setLayout(new BorderLayout());
-                this.addPannelloUseCases();
-                this.addPLButton();
-                this.addRDAButton();
-                this.addFornitoriButton();
-                this.addClipPanel();
-        }
+	/**
+	 * Inizializza il panel con un ClipPanel e il Pannello di selezione attività
+	 */
+	public void initUI() {
+		this.setLayout(new BorderLayout());
+		this.addPannelloUseCases();
+		this.addPLButton();
+		this.addRDAButton();
+		this.addFornitoriButton();
+		this.addClipPanel();
+		this.resetInitialState();
+	}
 
+	/**
+	 * Aggiunge il ClipPanel, pannello dei button in alto
+	 */
+	private void addClipPanel() {
+		this.add(clipPanel, BorderLayout.NORTH);
+	}
 
-        /**
-         * Aggiunge il ClipPanel, pannello dei button in alto
-         */
-        private void addClipPanel() {
-                this.add(clipPanel, BorderLayout.NORTH);
-        }
+	/**
+	 * Aggiunge il Pannello di selezione attività
+	 */
+	private void addPannelloUseCases() {
+		this.pannelloUseCases = new JPanel();
+		pannelloUseCases.setLayout(new GridLayout(2, 2));
+		pannelloUseCases.setBorder(new EmptyBorder(100, 300, 100, 300));
+		this.add(pannelloUseCases, BorderLayout.CENTER);
 
-        /**
-         * Aggiunge il Pannello di selezione attività
-         */
-        private void addPannelloUseCases() {
-                this.pannelloUseCases = new JPanel();
-                pannelloUseCases.setLayout(new GridLayout(2, 2));
-                pannelloUseCases.setBorder(new EmptyBorder(100, 300, 100, 300));
-                this.add(pannelloUseCases, BorderLayout.CENTER);
+	}
 
-        }
+	/**
+	 * Aggiunge un button vuoto solo per motivi grafici, numero pari
+	 */
+	private void addFornitoriButton() {
+		fornitoriButton = new JToggleButton();
+		fornitoriButton.setToolTipText("Gestisci Cataloghi");
+		fornitoriButton.setSize(100, 100);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"/GUI/image/fornitori.png"));
+			fornitoriButton.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		fornitoriButton.setFocusable(false);
+		pannelloUseCases.add(fornitoriButton);
+		fornitoriButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				ListaFornitori listaf = (ListaFornitori) ListaFornitoriFactory
+						.getInstance().makeLista();
+				FornitoriCenter.getInstance().setLista(listaf);
+				listaf.deselectAll();
+				FornitoriCenter.getInstance().setPrimoCatalogoFornitore();
+				ArrayList<JToggleButton> b = FornitoriCenter.getInstance()
+						.getClipPanel().getButtons();
+				FornitoriCenter.getInstance().loadListaProdotti();
 
-        /**
-    	 * Aggiunge un button vuoto solo per motivi grafici, numero pari
-    	 */
-    	private void addFornitoriButton() {
-    		JToggleButton fornitoriButton = new JToggleButton();
-    		fornitoriButton.setToolTipText("Gestisci Cataloghi");
-    		fornitoriButton.setSize(100, 100);
-    		try {
-    			Image img = ImageIO.read(getClass().getResource(
-    					"/GUI/image/fornitori.png"));
-    			fornitoriButton.setIcon(new ImageIcon(img));
-    		} catch (IOException ex) {
-    		}
-    		fornitoriButton.setFocusable(false);
-    		pannelloUseCases.add(fornitoriButton);
-    		fornitoriButton.addMouseListener(new MouseAdapter() {
-    			public void mouseClicked(MouseEvent arg0) {
-    				ListaFornitori listaf = (ListaFornitori) ListaFornitoriFactory.getInstance().makeLista();
-    				FornitoriCenter.getInstance().setLista(listaf);
-    				listaf.deselectAll();
-    				FornitoriCenter.getInstance().setPrimoCatalogoFornitore();
-    				ArrayList<JToggleButton> b = FornitoriCenter.getInstance().getClipPanel()
-    						.getButtons();
-    				FornitoriCenter.getInstance().loadListaProdotti();
+				FornitoriCenter.getInstance().getClipPanel()
+						.focusToListaCataloghi();
 
-    				FornitoriCenter.getInstance().getClipPanel().focusToListaCataloghi();
+				CoedilFrame.getInstance().montaPanel(
+						FornitoriCenter.getInstance());
+			}
+		});
 
-    				CoedilFrame.getInstance().montaPanel(FornitoriCenter.getInstance());
-    			}
-    		});
+	}
 
-    	}
+	/**
+	 * Aggiunge un button di attività: Gestisci RDA
+	 */
+	private void addRDAButton() {
+		RDAButton = new JToggleButton();
+		RDAButton.setToolTipText("Gestisci RDA");
+		RDAButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		RDAButton.setSize(100, 100);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"/GUI/image/rda.png"));
+			RDAButton.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		RDAButton.setFocusable(false);
+		pannelloUseCases.add(RDAButton);
 
-        /**
-         * Aggiunge un button di attività: Gestisci RDA
-         */
-        private void addRDAButton() {
-                JToggleButton RDAButton = new JToggleButton();
-                RDAButton.setToolTipText("Gestisci RDA");
-                RDAButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                RDAButton.setSize(100, 100);
-                try {
-                        Image img = ImageIO.read(getClass().getResource(
-                                        "/GUI/image/rda.png"));
-                        RDAButton.setIcon(new ImageIcon(img));
-                } catch (IOException ex) {
-                }
-                RDAButton.setFocusable(false);
-                pannelloUseCases.add(RDAButton);
+		RDAButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				if (!RDACenter.isInstanciated()) {
+					RDACenter rda = RDACenter.getInstance();
+					rda.loadListaRigheRDA();
+				}
+				ListaRDA listarda = (ListaRDA) ListaRDAFactory.getInstance()
+						.makeLista(GestisciRDAHandler.CONGELATA);
+				RDACenter.getInstance().setLista(listarda);
+				ArrayList<JToggleButton> b = RDACenter.getInstance()
+						.getClipPanel().getButtons();
+				CoedilFrame.getInstance().montaPanel(RDACenter.getInstance());
+				b.get(1).doClick();
+			}
+		});
 
-                RDAButton.addMouseListener(new MouseAdapter() {
-                        public void mouseClicked(MouseEvent arg0) {
-                                if (!RDACenter.isInstanciated()) {
-                                        RDACenter rda = RDACenter.getInstance();
-                                        rda.loadListaRigheRDA();
-                                }
-                                ListaRDA listarda = (ListaRDA) ListaRDAFactory
-                                                .getInstance().makeLista(GestisciRDAHandler.CONGELATA);
-                                RDACenter.getInstance().setLista(listarda);
-                                ArrayList<JToggleButton> b = RDACenter.getInstance().getClipPanel()
-                                                .getButtons();
-                                CoedilFrame.getInstance().montaPanel(RDACenter.getInstance());
-                                b.get(1).doClick();
-                        }
-                });
+	}
 
-        }
+	/**
+	 * Aggiunge un button di attività: Programma Lavori
+	 */
+	private void addPLButton() {
+		plButton = new JToggleButton();
+		plButton.setToolTipText("Programma Lavori");
+		plButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		plButton.setPreferredSize(new Dimension(100, 100));
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"/GUI/image/proglavori.png"));
+			plButton.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		plButton.setFocusable(false);
+		this.pannelloUseCases.add(plButton);
 
-        /**
-         * Aggiunge un button di attività: Programma Lavori
-         */
-        private void addPLButton() {
-                JToggleButton plButton = new JToggleButton();
-                plButton.setToolTipText("Programma Lavori");
-                plButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                plButton.setPreferredSize(new Dimension(100, 100));
-                try {
-                        Image img = ImageIO.read(getClass().getResource(
-                                        "/GUI/image/proglavori.png"));
-                        plButton.setIcon(new ImageIcon(img));
-                } catch (IOException ex) {
-                }
-                plButton.setFocusable(false);
-                this.pannelloUseCases.add(plButton);
+		plButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				ProgrammaLavori p = ProgrammaLavori.getInstance();
+				CoedilFrame.getInstance().montaPanel(p);
+			}
+		});
 
-                plButton.addMouseListener(new MouseAdapter() {
-                        public void mouseClicked(MouseEvent arg0) {
-                                ProgrammaLavori p = ProgrammaLavori.getInstance();
-                                CoedilFrame.getInstance().montaPanel(p);
-                        }
-                });
+	}
 
-        }
-        
-        
-        /**
-         * Singleton
-         * 
-         * @return PanelStart
-         */
-        public static PanelStart getInstance() {
-                if (myInstance == null) {
-                        myInstance = new PanelStart();
-                }
-                return myInstance;
-        }
-        
-        public ClipPanelMenu getClipPanel() {
-                return clipPanel;
-        }
+	/**
+	 * Singleton
+	 * 
+	 * @return PanelStart
+	 */
+	public static PanelStart getInstance() {
+		if (myInstance == null) {
+			myInstance = new PanelStart();
+		}
+		return myInstance;
+	}
+
+	public ClipPanelMenu getClipPanel() {
+		return clipPanel;
+	}
+	
+	public void resetInitialState(){
+		this.fornitoriButton.setSelected(false);
+		this.plButton.setSelected(false);
+		this.RDAButton.setSelected(false);
+	}
 }

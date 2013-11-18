@@ -90,6 +90,7 @@ public abstract class AClipPanel extends JPanel {
 		temp.addActionListener(click);
 		temp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		temp.setFocusPainted(false);
+		temp.setSelected(false);
 		JLabel nome = new JLabel(label);
 		temp.add(nome, BorderLayout.WEST);
 		this.buttons.add(temp);

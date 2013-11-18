@@ -40,6 +40,7 @@ public class ClipPanelFornitori extends AClipPanel {
 					public void actionPerformed(ActionEvent arg0) {
 						CoedilFrame cf = CoedilFrame.getInstance();
 						PanelStart pl = PanelStart.getInstance();
+						pl.resetInitialState();
 						pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
 						CoedilFrame.getInstance().montaPanel(pl);
 					}
@@ -53,7 +54,7 @@ public class ClipPanelFornitori extends AClipPanel {
 				PlicoFornitore.getInstance().abortImporting();
 				JToggleButton b = (JToggleButton) arg0.getSource();
 				ClipPanelFornitori.this.focusOut();
-				b.setSelected(true);
+				focusToListaCataloghi();
 				FornitoriCenter fc = FornitoriCenter.getInstance();
 				fc.refreshFornitori();
 				fc.selectPrimoCatalogo();
