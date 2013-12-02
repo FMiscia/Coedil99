@@ -33,13 +33,13 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 
 	private JLabel lblDataInizio;
 	private JLabel lblDataFine;
-	private JLabel lblScadenzaSviluppo;
+	private JLabel lblScadenza;
 	private JXDatePicker dateDataInizio;
 	private JLabel lblIcoDataInizio;
 	private JXDatePicker dateDataFine;
 	private JLabel lblIcoDataFine;
-	private JXDatePicker dateScadenzaSviluppo;
-	private JLabel lblIcoScadenzaSviluppo;
+	private JXDatePicker dateScadenza;
+	private JLabel lblIcoScadenza;
 
 	public RiquadroDatiProduzioneConsegna(String title) {
 		super(title);
@@ -99,9 +99,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 					});
 		}
 		this.dateDataInizio.setFormats("yyyy-MM-dd");
-		this.dateDataInizio.setEnabled(false);
 		this.form.add(this.dateDataInizio, "6, 2, fill, fill");
-
 		this.lblIcoDataInizio = new JLabel("");
 		this.lblIcoDataInizio.setVisible(false);
 		this.form.add(lblIcoDataInizio, "8, 2, center, top");
@@ -157,9 +155,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 			});
 		}
 		this.dateDataFine.setFormats("yyyy-MM-dd");
-		this.dateDataFine.setEnabled(false);
 		this.form.add(this.dateDataFine, "6, 4, fill, fill");
-
 		this.lblIcoDataFine = new JLabel("");
 		this.lblIcoDataFine.setVisible(false);
 		this.form.add(lblIcoDataFine, "8, 4, center, top");
@@ -169,50 +165,50 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	/**
 	 * Aggiunge il campo data scadenza sviluppo
 	 */
-	private void addDataScadenzaSviluppo() {
-		this.lblScadenzaSviluppo = new JLabel("Scadenza Sviluppo");
-		this.form.add(this.lblScadenzaSviluppo, "2, 6");
+	private void addDataScadenzaProduzione() {
+		this.lblScadenza = new JLabel("Scadenza Sviluppo");
+		this.form.add(this.lblScadenza, "2, 6");
 
-		this.dateScadenzaSviluppo = new JXDatePicker();
-		this.dateScadenzaSviluppo.getEditor().setEditable(false);
-		if (this.dateScadenzaSviluppo.getEditor().getFocusListeners().length == 0) {
-			this.dateScadenzaSviluppo.getEditor().addFocusListener(
+		this.dateScadenza = new JXDatePicker();
+		this.dateScadenza.getEditor().setEditable(false);
+		if (this.dateScadenza.getEditor().getFocusListeners().length == 0) {
+			this.dateScadenza.getEditor().addFocusListener(
 					new FocusListener() {
 
 						@Override
 						public void focusLost(FocusEvent e) {
-							if (dateScadenzaSviluppo.getDate() == null) {
-								lblIcoScadenzaSviluppo.setIcon(IcoErrore);
-								lblIcoScadenzaSviluppo
+							if (dateScadenza.getDate() == null) {
+								lblIcoScadenza.setIcon(IcoErrore);
+								lblIcoScadenza
 										.setToolTipText("La data di scadenza deve essere selezionata!");
 							} else {
-								lblIcoScadenzaSviluppo.setIcon(IcoOk);
-								lblIcoScadenzaSviluppo.setToolTipText(null);
+								lblIcoScadenza.setIcon(IcoOk);
+								lblIcoScadenza.setToolTipText(null);
 							}
 							controlloErrori();
 						}
 
 						@Override
 						public void focusGained(FocusEvent e) {
-							if (dateScadenzaSviluppo.getDate() == null) {
-								lblIcoScadenzaSviluppo.setIcon(IcoErrore);
-								lblIcoScadenzaSviluppo
+							if (dateScadenza.getDate() == null) {
+								lblIcoScadenza.setIcon(IcoErrore);
+								lblIcoScadenza
 										.setToolTipText("La data di scadenza deve essere selezionata!");
 							} else {
-								lblIcoScadenzaSviluppo.setIcon(IcoOk);
-								lblIcoScadenzaSviluppo.setToolTipText(null);
+								lblIcoScadenza.setIcon(IcoOk);
+								lblIcoScadenza.setToolTipText(null);
 							}
 							controlloErrori();
 						}
 					});
 		}
-		this.dateScadenzaSviluppo.setFormats("yyyy-MM-dd");
-		this.form.add(this.dateScadenzaSviluppo, "6, 6, fill, fill");
+		this.dateScadenza.setFormats("yyyy-MM-dd");
+		this.form.add(this.dateScadenza, "6, 6, fill, fill");
 
-		this.lblIcoScadenzaSviluppo = new JLabel("");
-		this.lblIcoScadenzaSviluppo.setVisible(false);
-		this.form.add(lblIcoScadenzaSviluppo, "8, 6, center, top");
-		this.Label.add(lblIcoScadenzaSviluppo);
+		this.lblIcoScadenza = new JLabel("");
+		this.lblIcoScadenza.setVisible(false);
+		this.form.add(lblIcoScadenza, "8, 6, center, top");
+		this.Label.add(lblIcoScadenza);
 	}
 
 	/**
@@ -223,22 +219,22 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 		this.oggetto = o;
 		this.resetRiquadro();
 		MCommessa c = (MCommessa) o;
-		if (c.getPersistentModel().getOrdine().getDataInizio() != null)
+		if (c.getPersistentModel().getInizioProduzione() != null)
 			this.dateDataInizio.setDate(c.getPersistentModel().getOrdine()
 					.getDataInizio());
 		else
 			this.dateDataInizio.setDate(null);
 
-		if (c.getPersistentModel().getOrdine().getDataFine() != null)
-			this.dateDataFine.setDate(c.getPersistentModel().getOrdine().getDataFine());
+		if (c.getPersistentModel().getFineProduzione() != null)
+			this.dateDataFine.setDate(c.getPersistentModel().getFineProduzione());
 		else
 			this.dateDataFine.setDate(null);
 
-		if (c.getPersistentModel().getOrdine().getDataScadenza() != null)
-			this.dateScadenzaSviluppo.setDate(c.getPersistentModel().getOrdine()
-					.getDataScadenza());
+		if (c.getPersistentModel().getScadenzaProduzione() != null)
+			this.dateScadenza.setDate(c.getPersistentModel()
+					.getScadenzaProduzione());
 		else
-			this.dateScadenzaSviluppo.setDate(null);
+			this.dateScadenza.setDate(null);
 	}
 
 	/**
@@ -248,12 +244,12 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	public void salva(boolean showmex) {
 		if (this.oggetto != null) {
 			MCommessa c = (MCommessa) this.oggetto;
-			this.dateScadenzaSviluppo.setFormats("yyyy-MM-dd");
-			c.getPersistentModel().getOrdine().setDataInizio(
+			this.dateScadenza.setFormats("yyyy-MM-dd");
+			c.getPersistentModel().setInizioProduzione(
 					this.dateDataInizio.getDate());
-			c.getPersistentModel().getOrdine().setDataFine(this.dateDataFine.getDate());
-			c.getPersistentModel().getOrdine().setDataScadenza(
-					this.dateScadenzaSviluppo.getDate());
+			c.getPersistentModel().setFineProduzione(this.dateDataFine.getDate());
+			c.getPersistentModel().setScadenzaProduzione(
+					this.dateScadenza.getDate());
 			c.save();
 			if (showmex)
 				JOptionPane
@@ -270,34 +266,11 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	 */
 	@Override
 	public void makeEditable(boolean editable) {
-		this.dateScadenzaSviluppo.setEnabled(editable);
+		this.dateScadenza.setEnabled(editable);
+		this.dateDataInizio.setEnabled(editable);
+		this.dateDataFine.setEnabled(editable);
 		super.makeEditable(editable);
 
-	}
-
-	/**
-	 * Set della data di inizio ordine nel data picker del Riquadro dati
-	 * aziendali
-	 * 
-	 * @param t
-	 *            :data
-	 */
-	public void setDataInizio(Date t) {
-		this.dateDataInizio.setDate(t);
-		this.validate();
-		this.repaint();
-	}
-
-	/**
-	 * Set della data di fine ordine nel data picker del Riquadro dati aziendali
-	 * 
-	 * @param t
-	 *            :data
-	 */
-	public void setDataFine(Date t) {
-		this.dateDataFine.setDate(t);
-		this.validate();
-		this.repaint();
 	}
 
 	/**
@@ -323,7 +296,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("30px"), }));
 		this.addDataInizio();
 		this.addDataFine();
-		this.addDataScadenzaSviluppo();
+		this.addDataScadenzaProduzione();
 	}
 
 }

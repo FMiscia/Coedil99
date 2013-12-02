@@ -134,12 +134,12 @@ public class PlicoCommessa extends APlico {
 									.getCommessaSelezionata());
 					ProgrammaLavori.getInstance().getCommessaSelezionata()
 							.delete();
-					ProgrammaLavori.getInstance().ListaCommesse().updatePanel();
-					if (ProgrammaLavori.getInstance().ListaCommesse()
+					ProgrammaLavori.getInstance().getListaCommesse().updatePanel();
+					if (ProgrammaLavori.getInstance().getListaCommesse()
 							.getPrimaCommessa() != 0)
 						ProgrammaLavori.getInstance().setCommessaSelezionata(
 								new MCommessa(ProgrammaLavori.getInstance()
-										.ListaCommesse().getPrimaCommessa()));
+										.getListaCommesse().getPrimaCommessa()));
 				}
 
 			}

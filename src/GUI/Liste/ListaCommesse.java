@@ -13,6 +13,7 @@ import GUI.Card.CardCodiceInternoFactory;
 import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MCliente;
+import coedil99.model.MCommessa;
 
 @SuppressWarnings("serial")
 /**
@@ -67,8 +68,22 @@ public class ListaCommesse extends ALista {
 	 * gestisci commessa)
 	 */
 	public void updatePanel() {
-		// TODO Auto-generated method stub
-
+		this.panel.removeAll();
+        this.load();
+        this.panel.validate();
+        this.panel.repaint();
+	}
+	
+	/**
+	 * Metodo che seleziona la card relativa alla commessa selezionata
+	 */
+	public void selectCommessaSelezionata(MCommessa mcf){
+		if(this.panel.getComponentCount()!=0){
+			Component[] c = panel.getComponents();
+			for(int i=0; i<c.length; ++i)
+				if(((CardCodiceInterno) c[i]).getCommessaId() ==  mcf.getPersistentModel().getID())
+					((CardCodiceInterno) c[i]).selectCard();
+		}
 	}
 
 	@Override

@@ -143,7 +143,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 								.changePlico(PlicoCreaCommessa.getInstance());
 						ClipPanelProgrammaLavori.this.focusOut();
-						ProgrammaLavori.getInstance().ListaCommesse()
+						ProgrammaLavori.getInstance().getListaCommesse()
 								.deselectAll();
 						JToggleButton b = (JToggleButton) e.getSource();
 						b.setSelected(true);

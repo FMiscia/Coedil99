@@ -163,8 +163,8 @@ public class PlicoCreaCommessa extends APlico {
 					PlicoCreaCommessa.this.rdcc.setSelectedCantiere(temp.getPersistentModel().getCliente().getCantiere().getNome());
 					PlicoCreaCommessa.this.rdcc.setSelectedCliente(temp.getPersistentModel().getCliente().getName());
 					PlicoCreaCommessa.this.rdcc.setNumeroCommessaCliente(GestisciClienteHandler.getInstance().getNextCommessaCliente(temp.getPersistentModel().getCliente().getID()));
-					PlicoCreaCommessa.this.rdpc.setDataInizio(temp.getPersistentModel().getDataInizio());
-					PlicoCreaCommessa.this.rdpc.setDataFine(temp.getPersistentModel().getDataFine());
+					PlicoCreaCommessa.this.rda.setDataInizio(temp.getPersistentModel().getDataInizio());
+					PlicoCreaCommessa.this.rda.setDataFine(temp.getPersistentModel().getDataFine());
 					PlicoCreaCommessa.this.rda.setOrdineContratto(GestisciOrdineHandler.getInstance().getNextOrdineContratto());
 					PlicoCreaCommessa.this.rda.setAnno(temp.getPersistentModel().getAnno());
 					PlicoCreaCommessa.this.rdcc.makeEditable(false);
@@ -242,7 +242,7 @@ public class PlicoCreaCommessa extends APlico {
 						&& PlicoCreaCommessa.this.rdpc.controlloErrori()
 						&& PlicoCreaCommessa.this.rsc.controlloErrori()
 						&& PlicoCreaCommessa.this.rdc.checkEmpty()
-						&& PlicoCreaCommessa.this.rdcc.checkEmpty()
+						&& PlicoCreaCommessa.this.rda.checkEmpty()
 						&& PlicoCreaCommessa.this.rdpc.checkEmpty()
 						&& PlicoCreaCommessa.this.rsc.checkEmpty()
 						&& PlicoCreaCommessa.this.selected_ordine > 0) {
@@ -274,7 +274,9 @@ public class PlicoCreaCommessa extends APlico {
 							"Commessa salvata con successo",
 							"Operazione eseguita", JOptionPane.PLAIN_MESSAGE);
 					PlicoCreaCommessa.this.container=null;
-					ProgrammaLavori.getInstance().ListaCommesse().updatePanel();
+					ProgrammaLavori.getInstance().setCommessaSelezionata(commessa);
+					ProgrammaLavori.getInstance().getListaCommesse().updatePanel();
+					ProgrammaLavori.getInstance().getListaCommesse().selectCommessaSelezionata(commessa);
 					ProgrammaLavori.getInstance().getClipPanel().getButtons()
 							.get(AClipPanel.PLButtonState.get("COMMESSA"))
 							.doClick();

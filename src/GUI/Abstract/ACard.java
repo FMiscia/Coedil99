@@ -52,5 +52,9 @@ public abstract class ACard extends JPanel {
 		separator.setPreferredSize(preferredSize);
 		return separator;
 	}
+	
+	public void selectCard(){
+		this.setBackground(new Color(30,44,255));
+	}
 
 }

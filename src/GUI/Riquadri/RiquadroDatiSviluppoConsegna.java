@@ -98,8 +98,9 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 			c.getPersistentModel().setScadenzaCommessa(
 					this.dateScadenzaCommessa.getDate());
 			c.getPersistentModel().setFineCommessa(this.dateDataFine.getDate());
+			System.out.print(this.txtRitardo.getText());
 			c.getPersistentModel().setRitardoProduzione(
-					Integer.getInteger(this.txtRitardo.getText()));
+					Integer.parseInt(this.txtRitardo.getText()));
 			c.save();
 			if (showmex)
 				JOptionPane
@@ -189,7 +190,6 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 			});
 		this.Container.add(this.txtResponsabile);
 		this.form.add(this.txtResponsabile, "6, 2, fill, fill");
-
 		this.lblIcoResponsabile = new JLabel("");
 		this.lblIcoResponsabile.setVisible(false);
 		this.form.add(lblIcoResponsabile, "8, 2, center, top");

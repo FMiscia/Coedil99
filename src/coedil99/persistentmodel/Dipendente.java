@@ -15,7 +15,6 @@ package coedil99.persistentmodel;
 
 import org.orm.*;
 public class Dipendente implements coedil99.persistentmodel.IPersistentModel {
-
 	public Dipendente() {
 	}
 	

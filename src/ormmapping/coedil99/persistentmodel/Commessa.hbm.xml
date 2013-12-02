@@ -12,7 +12,7 @@ License Type: Purchased
 		</id>
 		<many-to-one name="distinta" column="DistintaID" class="coedil99.persistentmodel.Distinta" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="ldr" column="ListaRintracciabilitaID" class="coedil99.persistentmodel.ListaRintracciabilita" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		<many-to-one name="ldr" column="ListaRintracciabilitaID" class="coedil99.persistentmodel.ListaRintracciabilita" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
 		<many-to-one name="ordine" cascade="lock" column="OrdineID" class="coedil99.persistentmodel.Ordine" not-null="true" update="false" insert="false" lazy="no-proxy" access="field">
 		</many-to-one>

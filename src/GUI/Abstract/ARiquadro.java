@@ -221,7 +221,7 @@ public abstract class ARiquadro extends JPanel {
 	public boolean checkEmpty(){
 		boolean test=true;
 		for(JTextField temp : this.Container){
-			if(temp.getText().length()<=0){
+			if(temp.getText().length()<=0){		
 				test=false;
 			}
 		}
