@@ -19,7 +19,7 @@ public class LoginPanel extends JPanel {
 	/**
 	 * Costruttore
 	 */
-	public LoginPanel() {
+	private LoginPanel() {
 		this.initUI();
 	}
 
