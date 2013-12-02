@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+import GUI.ConfigGUI;
+
 /**
  * Classe Astratta per la realizzazione delle card
  * 
@@ -51,6 +53,13 @@ public abstract class ACard extends JPanel {
 		separator.setBackground(background);
 		separator.setPreferredSize(preferredSize);
 		return separator;
+	}
+	
+	/**
+	 * Cambia il colore di sfondo della card settandolo come selezionato
+	 */
+	public void selectCard(){
+		this.setBackground(ConfigGUI.getColoreSelezionato());
 	}
 
 }

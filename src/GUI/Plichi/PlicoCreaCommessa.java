@@ -163,8 +163,8 @@ public class PlicoCreaCommessa extends APlico {
 					PlicoCreaCommessa.this.rdcc.setSelectedCantiere(temp.getPersistentModel().getCliente().getCantiere().getNome());
 					PlicoCreaCommessa.this.rdcc.setSelectedCliente(temp.getPersistentModel().getCliente().getName());
 					PlicoCreaCommessa.this.rdcc.setNumeroCommessaCliente(GestisciClienteHandler.getInstance().getNextCommessaCliente(temp.getPersistentModel().getCliente().getID()));
-					PlicoCreaCommessa.this.rdpc.setDataInizio(temp.getPersistentModel().getDataInizio());
-					PlicoCreaCommessa.this.rdpc.setDataFine(temp.getPersistentModel().getDataFine());
+					PlicoCreaCommessa.this.rda.setDataInizio(temp.getPersistentModel().getDataInizio());
+					PlicoCreaCommessa.this.rda.setDataFine(temp.getPersistentModel().getDataFine());
 					PlicoCreaCommessa.this.rda.setOrdineContratto(GestisciOrdineHandler.getInstance().getNextOrdineContratto());
 					PlicoCreaCommessa.this.rda.setAnno(temp.getPersistentModel().getAnno());
 					PlicoCreaCommessa.this.rdcc.makeEditable(false);
