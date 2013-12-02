@@ -55,6 +55,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 						}
 						CoedilFrame cf = CoedilFrame.getInstance();
 						PanelStart pl = PanelStart.getInstance();
+						pl.resetInitialState();
 						pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
 						CoedilFrame.getInstance().montaPanel(pl);
 					}
@@ -123,7 +124,8 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 								.changePlico(PlicoDDO.getInstance());
 						((JToggleButton) e.getSource()).doClick();
-					}
+					} else 
+						((JToggleButton) e.getSource()).setSelected(false);
 				}
 				RaccoglitorePlichi.getInstance().validate();
 				RaccoglitorePlichi.getInstance().repaint();

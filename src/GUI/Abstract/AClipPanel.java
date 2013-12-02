@@ -7,15 +7,16 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
-import javax.swing.JToggleButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 
 import GUI.CoedilFrame;
@@ -89,6 +90,7 @@ public abstract class AClipPanel extends JPanel {
 		temp.addActionListener(click);
 		temp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		temp.setFocusPainted(false);
+		temp.setSelected(false);
 		JLabel nome = new JLabel(label);
 		temp.add(nome, BorderLayout.WEST);
 		this.buttons.add(temp);

@@ -20,13 +20,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
 import GUI.FornitoriCenter;
-import GUI.Liste.ListaProdotti;
 import GUI.Plichi.PlicoFornitore;
 import GUI.Utilities.CataloghiFilter;
 import coedil99.controller.GestisciFornitoreHandler;
@@ -61,7 +59,6 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 	protected JButton btnElimina;
 	private JFileChooser fileChooser;
 	private CataloghiFilter filtro;
-	private JToggleButton btnNewButton;
 
 	public ARiepilogoFornitore() {
 		super();
@@ -216,11 +213,6 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 				});
 				panel.add(btnCaricaCatalogo, "6, 6");
 				
-				btnNewButton = new JToggleButton("New button");
-				btnNewButton.setFocusPainted(false);
-				btnNewButton.setBorderPainted(false);
-				btnNewButton.setSelected(true);
-				panel.add(btnNewButton, "8, 6");
 		this.btnSalva.setVisible(false);
 	}
 

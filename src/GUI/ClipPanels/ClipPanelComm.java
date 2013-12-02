@@ -25,14 +25,14 @@ public class ClipPanelComm extends AClipPanel {
 	 */
 	public ClipPanelComm(){
 		super();
-		this.addlogButton();
+		//this.addlogButton();
 		this.fill();
 	}
 
 	protected void changeButtonLogState() {
 		// TODO Auto-generated method stub
 		this.removeAll();
-		this.addlogButton();
+		//this.addlogButton();
 		this.fill();
 		this.validate();
 		this.repaint();

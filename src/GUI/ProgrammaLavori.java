@@ -48,7 +48,8 @@ public class ProgrammaLavori extends JPanel {
 		proglavoripanel.add(lista, BorderLayout.WEST);
 
 		proglavoripanel.add(this.raccoglitoreplichi, BorderLayout.CENTER);
-		this.commessaSelezionata = GestisciCommessaHandler.getInstance()
+		if(((ListaCommesse) this.lista).getPrimaCommessa() != 0)
+			this.commessaSelezionata = GestisciCommessaHandler.getInstance()
 				.getCommessaById(((ListaCommesse) this.lista).getPrimaCommessa());
 		this.raccoglitoreplichi.caricaPrimaCommessa(this.commessaSelezionata);
 
