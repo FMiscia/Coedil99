@@ -88,13 +88,13 @@ public class CoedilFrame extends JFrame {
 					CoedilFrame.class.getResource("image/coedil.png"), true,
 					true, false, "V0.1");
 			splash.splashOn();
-			splash.setProgress(20, "Coedil99: Loading...");
+			splash.setProgress(20, "Coedil99: Loading ...");
 			Thread.sleep(delay);
-			splash.setProgress(40, "Coedil99: Loading...");
+			splash.setProgress(40, "Coedil99: Loading ...");
 			Thread.sleep(delay);
-			splash.setProgress(60, "Coedil99: Loading...");
+			splash.setProgress(60, "Coedil99: Loading ...");
 			Thread.sleep(delay);
-			splash.setProgress(80, "Coedil99: Loading...");
+			splash.setProgress(80, "Coedil99: Loading ...");
 			Thread.sleep(delay);
 			splash.setProgress(100, "Coedil99: Starting");
 			Thread.sleep(delay);
