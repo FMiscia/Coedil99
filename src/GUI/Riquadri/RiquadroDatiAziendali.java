@@ -163,6 +163,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 			});
 		}
 		this.dateDataFine.setFormats("yyyy-MM-dd");
+		this.dateDataFine.setEnabled(false);
 		this.form.add(dateDataFine, "6, 14, fill, fill");
 		this.lblIcoDataFine = new JLabel("");
 		this.lblIcoDataFine.setVisible(false);
@@ -222,6 +223,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 					});
 		}
 		dateDataInizio.getEditor().setEditable(false);
+		this.dateDataInizio.setEnabled(false);
 		this.dateDataInizio.setFormats("yyyy-MM-dd");
 		this.form.add(dateDataInizio, "6, 12, fill, fill");
 		this.lblIcoDataInizio = new JLabel("");
@@ -523,6 +525,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.repaint();
 	}
 
+	
 	/**
 	 * Set della data di inizio commessa nel data picker del Riquadro dati
 	 * aziendali
@@ -530,7 +533,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * @param t
 	 *            :data
 	 */
-	public void setDataInizioCommessa(Date t) {
+	public void setDataInizio(Date t) {
 		this.dateDataInizio.setDate(t);
 		this.validate();
 		this.repaint();
@@ -543,7 +546,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * @param t
 	 *            :data
 	 */
-	public void setDataFineCommessa(Date t) {
+	public void setDataFine(Date t) {
 		this.dateDataFine.setDate(t);
 		this.validate();
 		this.repaint();
@@ -587,8 +590,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 * Rende editabili i campi data 
 	 */
 	public void makeEditable(boolean editable) {
-		this.dateDataInizio.setEnabled(editable);
-		this.dateDataFine.setEnabled(editable);
+
 		super.makeEditable(editable);
 
 	}

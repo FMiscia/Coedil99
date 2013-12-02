@@ -23,8 +23,9 @@ import GUI.CoedilFrame;
 import GUI.ConfigGUI;
 import GUI.LoginPanel;
 import GUI.PanelStart;
-import GUI.Login.Login;
+import GUI.Panels.LoginDialog;
 
+import coedil99.controller.GestisciDipendenteHandler;
 import coedil99.controller.GestisciRDAHandler;
 
 /**
@@ -166,7 +167,7 @@ public abstract class AClipPanel extends JPanel {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						Login.logOut();
+						GestisciDipendenteHandler.getInstance().logOut();
 						PanelStart.getInstance().getClipPanel()
 								.changeButtonLogState();
 						CoedilFrame.getInstance().montaPanel(
