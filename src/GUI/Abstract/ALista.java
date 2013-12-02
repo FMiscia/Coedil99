@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+import GUI.ConfigGUI;
 import GUI.Utilities.WrapLayout;
 
 /**
@@ -18,8 +19,6 @@ public abstract class ALista extends JScrollPane {
 
 	private static final long serialVersionUID = 1L;
 
-	protected static Color coloreDeselezionato = new Color(30, 144, 255);
-	protected static Color coloreSFondo = new Color(240,240,240);
 	protected JPanel panel;
 
 	/**
@@ -36,7 +35,7 @@ public abstract class ALista extends JScrollPane {
 	 */
 	public void deselectAll() {
 		for (Component c : panel.getComponents()) {
-			c.setBackground(ALista.coloreDeselezionato);
+			c.setBackground(ConfigGUI.getColoreDeselezionato());
 			c.validate();
 			c.repaint();
 		}
@@ -78,7 +77,7 @@ public abstract class ALista extends JScrollPane {
 	private void initialize() {
 		this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		this.getVerticalScrollBar().setUnitIncrement(20);
-		this.setBackground(ALista.coloreSFondo);
+		//this.setBackground(ALista.coloreSFondo);
 		this.panel = new JPanel(new WrapLayout());
 		this.setViewportView(this.panel);
 	}

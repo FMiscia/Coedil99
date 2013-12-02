@@ -44,16 +44,16 @@ public class ClipPanelRDA extends AClipPanel {
 
 	}
 
-	/**
-	 * Imposta il focus sul bottone delle RDA congelate
-	 */
-	public void focusToRDACongelate() {
-		this.focusOut();
-		JToggleButton b = (JToggleButton) ClipPanelRDA.this
-				.getComponent(AClipPanel.RDAButtonState
-						.get(GestisciRDAHandler.CONGELATA));
-		b.setBackground(new Color(180, 180, 180));
-	}
+//	/**
+//	 * Imposta il focus sul bottone delle RDA congelate
+//	 */
+//	public void focusToRDACongelate() {
+//		this.focusOut();
+//		JToggleButton b = (JToggleButton) ClipPanelRDA.this
+//				.getComponent(AClipPanel.RDAButtonState
+//						.get(GestisciRDAHandler.CONGELATA));
+//		b.setBackground(new Color(180, 180, 180));
+//	}
 
 	/**
 	 * Fornisce true o false a seconda se, nel caso ci trovassimo su Crea RDA,

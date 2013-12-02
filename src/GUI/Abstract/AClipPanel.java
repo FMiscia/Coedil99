@@ -230,7 +230,7 @@ public abstract class AClipPanel extends JPanel {
 	 */
 	private void initialize() {
 		this.setLayout(new GridLayout(1, 0));
-		this.setBackground(new Color(238, 238, 238));
+		//this.setBackground(new Color(238, 238, 238));
 		this.setPreferredSize(new Dimension(210, 40));
 		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 	}

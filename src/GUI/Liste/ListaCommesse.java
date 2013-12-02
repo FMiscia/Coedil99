@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import GUI.ConfigGUI;
 import GUI.Abstract.ALista;
 import GUI.Avvisi.AvvisoOrdine;
 import GUI.Avvisi.AvvisoOrdineFactory;
@@ -40,7 +41,7 @@ public class ListaCommesse extends ALista {
 	public void deselectAll() {
 		// TODO Auto-generated method stub
 		for (Component c : panel.getComponents()) {
-			c.setBackground(new Color(30, 144, 255));
+			c.setBackground(ConfigGUI.getColoreDeselezionato());
 			c.validate();
 			c.repaint();
 		}
@@ -55,7 +56,7 @@ public class ListaCommesse extends ALista {
 	public int getPrimaCommessa() {
 		if (panel.getComponentCount() != 0 && !panel.getComponent(0).getClass().getName().equals("GUI.Avvisi.AvvisoOrdine")){
 			((CardCodiceInterno) this.panel.getComponent(0))
-			.setBackground(new Color(30, 44, 255));
+			.setBackground(ConfigGUI.getColoreSelezionato());
 			return ((CardCodiceInterno) this.panel.getComponent(0)).getCommessaId();
 		}
 			
@@ -76,7 +77,6 @@ public class ListaCommesse extends ALista {
 	 * Carica la lista
 	 */
 	public void load() {
-		// TODO Auto-generated method stub
 		ArrayList<Object> t = new ArrayList<Object>(GestisciClienteHandler
 				.getInstance().getClienti());
 		int row = GestisciCommessaHandler.getInstance().getNumOfCommesse();

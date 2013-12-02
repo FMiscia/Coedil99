@@ -25,7 +25,10 @@ public class ConfigGUI {
 			ConfigGUI.class.getResource("/GUI/image/cancel.png"));
 	private static ImageIcon OkIcon = new ImageIcon(
 			ConfigGUI.class.getResource("/GUI/image/ok.png"));
-	private static Color coloreSelezionato = new Color(180,180,180);
+	private static Color coloreSelezionato = new Color(171,171,171);
+	private static Color coloreDeselezionato = new Color(240,240,240);
+	private static Color coloreBordoCard = Color.BLACK;
+	private static Color coloreRigaRDA = new Color(192, 192, 192);
 	private static int numBottoniClipPanel = 8;
 
 	/**
@@ -96,6 +99,30 @@ public class ConfigGUI {
 
 	public static void setColoreSelezionato(Color coloreSelezionato) {
 		ConfigGUI.coloreSelezionato = coloreSelezionato;
+	}
+
+	public static Color getColoreDeselezionato() {
+		return coloreDeselezionato;
+	}
+
+	public static void setColoreDeselezionato(Color coloreDeselezionato) {
+		ConfigGUI.coloreDeselezionato = coloreDeselezionato;
+	}
+
+	public static Color getColoreBordoCard() {
+		return coloreBordoCard;
+	}
+
+	public static void setColoreBordoCard(Color coloreBordoCard) {
+		ConfigGUI.coloreBordoCard = coloreBordoCard;
+	}
+
+	public static Color getColoreRigaRDA() {
+		return coloreRigaRDA;
+	}
+
+	public static void setColoreRigaRDA(Color coloreRigaRDA) {
+		ConfigGUI.coloreRigaRDA = coloreRigaRDA;
 	}
 
 	public static int getNumBottoniClipPanel() {

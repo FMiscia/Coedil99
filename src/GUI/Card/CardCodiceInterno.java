@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import GUI.ConfigGUI;
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.ACard;
@@ -56,7 +57,6 @@ public class CardCodiceInterno extends ACard {
 	 * @param obj:Object
 	 */
 	public void load(Object obj) {
-		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
 		ArrayList<Object> param = (ArrayList<Object>) obj;
 		MCliente c = (MCliente) param.get(0);
@@ -88,7 +88,7 @@ public class CardCodiceInterno extends ACard {
 				contenitore.getRaccoglitorePlichi().repaint();
 				
 				contenitore.getClipPanel().resetInitialState();
-				CardCodiceInterno.this.setBackground(new Color(30, 44, 255));
+				CardCodiceInterno.this.setBackground(ConfigGUI.getColoreSelezionato());
 				CardCodiceInterno.this.validate();
 				CardCodiceInterno.this.repaint();
 				RaccoglitorePlichi.getInstance().getScrollPaneWrapper()
@@ -108,8 +108,8 @@ public class CardCodiceInterno extends ACard {
 	private void initialize() {
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(200, 59));
-		this.setBackground(new Color(30, 144, 255));
-		this.setBorder(new LineBorder(Color.BLACK));
+		this.setBackground(ConfigGUI.getColoreDeselezionato());
+		this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(null);
 
@@ -117,17 +117,17 @@ public class CardCodiceInterno extends ACard {
 		scadenza.setHorizontalAlignment(SwingConstants.CENTER);
 		scadenza.setHorizontalTextPosition(SwingConstants.LEADING);
 		scadenza.setBounds(100, 30, 100, 30);
-		scadenza.setBorder(new LineBorder(Color.BLACK));
+		scadenza.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 
 		codiceInterno = new JLabel();
 		codiceInterno.setHorizontalAlignment(SwingConstants.CENTER);
 		codiceInterno.setBounds(0, 30, 100, 30);
-		codiceInterno.setBorder(new LineBorder(Color.BLACK));
+		codiceInterno.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 
 		cliente = new JLabel();
 		cliente.setHorizontalAlignment(SwingConstants.CENTER);
 		cliente.setHorizontalTextPosition(SwingConstants.CENTER);
-		cliente.setBorder(new LineBorder(new Color(0, 0, 0)));
+		cliente.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 		cliente.setBounds(0, 0, 200, 30);
 
 		add(cliente);

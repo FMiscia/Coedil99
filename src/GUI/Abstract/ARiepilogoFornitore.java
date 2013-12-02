@@ -74,7 +74,7 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 
 		this.panel = new JPanel();
 		this.panel.setPreferredSize(new Dimension(380, 120));
-		this.panel.setBackground(new Color(240, 240, 240));
+		//this.panel.setBackground(new Color(240, 240, 240));
 		this.add(panel);
 		this.panel.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -100,7 +100,7 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 
 		this.lblNome = new JTextField();
 		this.lblNome.setBorder(null);
-		this.lblNome.setBackground(new Color(240, 240, 240));
+		//this.lblNome.setBackground(new Color(240, 240, 240));
 		this.lblNome.setEnabled(false);
 		this.lblNome.setDisabledTextColor(Color.BLACK);
 		this.lblNome.setHorizontalAlignment(SwingConstants.CENTER);

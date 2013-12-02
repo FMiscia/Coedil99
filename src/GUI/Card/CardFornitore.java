@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import GUI.ConfigGUI;
 import GUI.FornitoriCenter;
 import GUI.Abstract.ACard;
 import GUI.Liste.ListaFornitori;
@@ -58,7 +59,7 @@ public class CardFornitore extends ACard{
 				FornitoriCenter contenitore = FornitoriCenter.getInstance();
 				contenitore.setFornitoreSelezionato(catalogo);
 				contenitore.loadListaProdotti();
-				CardFornitore.this.setBackground(new Color(30,44,255));
+				CardFornitore.this.setBackground(ConfigGUI.getColoreSelezionato());
 				CardFornitore.this.validate();
 				CardFornitore.this.repaint();
 			}
@@ -73,17 +74,17 @@ public class CardFornitore extends ACard{
 	private void initialize() {
 		this.setLayout(null);
 		this.setPreferredSize(new Dimension(200, 30));
-		this.setBackground(new Color(30, 144, 255));
-		this.setBorder(new LineBorder(Color.BLACK));
+		this.setBackground(ConfigGUI.getColoreDeselezionato());
+		this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		this.lblNomeFornitore = new JLabel();
 		this.lblNomeFornitore.setBounds(0, 0, 150, 30);
-		this.lblNomeFornitore.setBorder(new LineBorder(Color.BLACK));
+		this.lblNomeFornitore.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 		
 		this.lblProductCount = new JLabel();
 		this.lblProductCount.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lblProductCount.setBounds(150, 0, 50, 30);
-		this.lblProductCount.setBorder(new LineBorder(Color.BLACK));
+		this.lblProductCount.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 		
 		this.add(lblNomeFornitore);
 		this.add(lblProductCount);
@@ -126,6 +127,6 @@ public class CardFornitore extends ACard{
 	 * Cambia il colore di sfondo della card settandolo come selezionato
 	 */
 	public void selectCard(){
-		this.setBackground(new Color(30, 44, 255));
+		this.setBackground(ConfigGUI.getColoreSelezionato());
 	}
 }

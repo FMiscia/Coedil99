@@ -16,6 +16,7 @@ import org.orm.PersistentException;
 
 import org.hibernate.transaction.BTMTransactionManagerLookup;
 
+import GUI.ConfigGUI;
 import GUI.RDACenter;
 import GUI.Abstract.ACard;
 import GUI.FormRDA.ModificaFormRDA;
@@ -70,10 +71,9 @@ public class CardRigaRDA extends ACard {
 	public CardRigaRDA(ListaRigheRDA lrRDA) {
 		super(lrRDA);
 		this.listaRigheRDA = lrRDA;
-		//setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(269, 220));
-		this.setBackground(new Color(192, 192, 192));
-		this.setBorder(new LineBorder(Color.BLACK));
+		this.setBackground(ConfigGUI.getColoreRigaRDA());
+		this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -153,17 +153,14 @@ public class CardRigaRDA extends ACard {
 	private void setCardOptions() {
 		if (RDACenter.getInstance().getClipPanel().isSelected("NUOVA")){
 			btnElimina = new JButton("Elimina");
-			btnElimina.setBackground(Color.LIGHT_GRAY);
 			add(btnElimina, "2, 2");
 			
 			btnModifica = new JButton("Modifica");
-			btnModifica.setBackground(Color.LIGHT_GRAY);
 			btnModifica.setVisible(false);
 			add(btnModifica, "4, 2");
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.ATTESA_CONFERMA)){
 			btnElimina = new JButton("Elimina");
-			btnElimina.setBackground(Color.LIGHT_GRAY);
 			btnElimina.setVisible(false);
 			add(btnElimina, "2, 2");
 			
@@ -174,19 +171,16 @@ public class CardRigaRDA extends ACard {
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.CONGELATA)){
 			btnElimina = new JButton("Elimina");
-			btnElimina.setBackground(Color.LIGHT_GRAY);
 			btnElimina.setVisible(true);
 			add(btnElimina, "2, 2");
 			
 			btnModifica = new JButton("Modifica");
-			btnModifica.setBackground(Color.LIGHT_GRAY);
 			btnModifica.setVisible(true);
 			add(btnModifica, "4, 2");
 			this.setPreferredSize(new Dimension(269, 190));
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.RIFIUTATA)){
 			btnElimina = new JButton("Elimina");
-			btnElimina.setBackground(Color.LIGHT_GRAY);
 			btnElimina.setVisible(false);
 			add(btnElimina, "2, 2");
 			
@@ -198,12 +192,10 @@ public class CardRigaRDA extends ACard {
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.CONFERMATA)){
 			btnElimina = new JButton("Elimina");
 			btnElimina.setVisible(false);
-			btnElimina.setBackground(Color.LIGHT_GRAY);
 			add(btnElimina, "4, 2");
 			
 			btnModifica = new JButton("Modifica");
 			btnModifica.setVisible(false);
-			btnModifica.setBackground(Color.LIGHT_GRAY);
 			add(btnModifica, "2, 2");
 		}
 	}
@@ -249,7 +241,7 @@ public class CardRigaRDA extends ACard {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				CardRigaRDA.this.listaRigheRDA.deselectAll();
-				CardRigaRDA.this.setBackground(new Color(130,130,130));
+				CardRigaRDA.this.setBackground(ConfigGUI.getColoreRigaRDA());
 				ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory
 						.getInstance().makeFormRDA();
 				form.modificaRDA(riga);

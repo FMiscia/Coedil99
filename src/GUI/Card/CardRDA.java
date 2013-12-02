@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import GUI.CommercialeCenter;
+import GUI.ConfigGUI;
 import GUI.RDACenter;
 import GUI.Abstract.ACard;
 import GUI.FormRDA.CreaFormRDA;
@@ -111,7 +112,7 @@ public class CardRDA extends ACard {
 				.setText(dateFormat
 						.format((rda.getPersistentModel().getDate() == null) ? new java.util.Date()
 								: rda.getPersistentModel().getDate()));
-		this.setBackground(new Color(30, 144, 255));
+		this.setBackground(ConfigGUI.getColoreDeselezionato());
 		this.validate();
 		this.repaint();
 
@@ -120,7 +121,6 @@ public class CardRDA extends ACard {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				PlicoRDA plico_rda = PlicoRDA.getInstance();
 				CardRDA.this.riquadro.deselectAll();
 				RDACenter contenitore = RDACenter.getInstance();
@@ -134,7 +134,7 @@ public class CardRDA extends ACard {
 				lista_righe_rda.getPanel().removeAll();
 				lista_righe_rda.load(new ArrayList<Object>(rda
 						.getPersistentModel().righeRDA.getCollection()));
-				CardRDA.this.setBackground(new Color(30, 44, 255));
+				CardRDA.this.setBackground(ConfigGUI.getColoreSelezionato());
 				CardRDA.this.validate();
 				CardRDA.this.repaint();
 				lista_righe_rda.validate();
@@ -169,7 +169,7 @@ public class CardRDA extends ACard {
 				.setText(dateFormat
 						.format((rda.getPersistentModel().getDate() == null) ? new java.util.Date()
 								: rda.getPersistentModel().getDate()));
-		this.setBackground(new Color(30, 144, 255));
+		this.setBackground(ConfigGUI.getColoreDeselezionato());
 		this.validate();
 		this.repaint();
 
@@ -187,7 +187,7 @@ public class CardRDA extends ACard {
 				plico_com.refreshFormRDA();
 				lista_righe_rda.getPanel().removeAll();
 				contenitore.loadListaRigheRDA();
-				CardRDA.this.setBackground(new Color(30, 44, 255));
+				CardRDA.this.setBackground(ConfigGUI.getColoreSelezionato());
 				CardRDA.this.validate();
 				CardRDA.this.repaint();
 				lista_righe_rda.validate();
@@ -219,8 +219,8 @@ public class CardRDA extends ACard {
 	private void initialize() {
 		// setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(260, 60));
-		this.setBackground(new Color(30, 144, 255));
-		this.setBorder(new LineBorder(Color.BLACK));
+		this.setBackground(ConfigGUI.getColoreDeselezionato());
+		this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		this.setLayout(null);
 
@@ -228,23 +228,23 @@ public class CardRDA extends ACard {
 		this.icona.setHorizontalAlignment(SwingConstants.CENTER);
 		this.icona.setHorizontalTextPosition(SwingConstants.LEADING);
 		this.icona.setBounds(200, 0, 60, 60);
-		this.icona.setBorder(new LineBorder(Color.BLACK));
+		this.icona.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 
 		this.stato = new JLabel();
 		this.stato.setHorizontalAlignment(SwingConstants.CENTER);
 		this.stato.setBounds(100, 30, 100, 30);
-		this.stato.setBorder(new LineBorder(Color.BLACK));
+		this.stato.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 
 		this.id = new JLabel();
 		this.id.setHorizontalAlignment(SwingConstants.CENTER);
 		this.id.setHorizontalTextPosition(SwingConstants.CENTER);
-		this.id.setBorder(new LineBorder(new Color(0, 0, 0)));
+		this.id.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 		this.id.setBounds(0, 0, 200, 30);
 
 		this.data = new JLabel();
 		this.data.setHorizontalAlignment(SwingConstants.CENTER);
 		this.data.setHorizontalTextPosition(SwingConstants.CENTER);
-		this.data.setBorder(new LineBorder(new Color(0, 0, 0)));
+		this.data.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 		this.data.setBounds(0, 30, 100, 30);
 
 		this.add(id);
