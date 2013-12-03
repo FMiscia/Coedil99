@@ -14,7 +14,7 @@ public class ConfigGUI {
 
 	private static String LookAndFeel = "com.jtattoo.plaf.mint.MintLookAndFeel";
 	private static ImageIcon ImportIcon = new ImageIcon(
-			ConfigGUI.class.getResource("/GUI/image/import.png"));
+			ConfigGUI.class.getResource("/GUI/image/upload.png"));
 	private static ImageIcon EditIcon = new ImageIcon(
 			ConfigGUI.class.getResource("/GUI/image/edit.png"));
 	private static ImageIcon SaveIcon = new ImageIcon(
@@ -26,7 +26,7 @@ public class ConfigGUI {
 	private static ImageIcon OkIcon = new ImageIcon(
 			ConfigGUI.class.getResource("/GUI/image/ok.png"));
 	private static Color coloreSelezionato = new Color(171,171,171);
-	private static Color coloreDeselezionato = new Color(230,230,230);
+	private static Color coloreDeselezionato = new Color(248, 248, 255);
 	private static Color coloreProdottoPari = new Color(180,180,180);
 	private static Color coloreProdottoDispari = new Color(240,240,240);
 	private static Color coloreBordoCard = Color.BLACK;

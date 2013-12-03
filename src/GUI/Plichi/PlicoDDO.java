@@ -2,6 +2,8 @@ package GUI.Plichi;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import GUI.CoedilFrame;
@@ -11,8 +13,6 @@ import GUI.Riquadri.RiquadroOttimizzazione;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MCommessa;
 import coedil99.model.MDocumentoOttimizzazione;
-import coedil99.persistentmodel.Commessa;
-import coedil99.persistentmodel.DocumentoOttimizzazione;
 
 @SuppressWarnings("serial")
 /**
@@ -58,7 +58,6 @@ public class PlicoDDO extends APlico {
 	 *            :idCommessa
 	 */
 	public void load(int id) {
-		// TODO Auto-generated method stub
 		MCommessa c = GestisciCommessaHandler.getInstance().getCommessaById(id);
 		MDocumentoOttimizzazione docott = new MDocumentoOttimizzazione(
 				GestisciCommessaHandler.getInstance().getCommessaById(id)
@@ -76,6 +75,8 @@ public class PlicoDDO extends APlico {
 					.toArray()[i]);
 			this.panel.add(ro);
 		}
+		this.validate();
+		this.repaint();
 	}
 
 	/**

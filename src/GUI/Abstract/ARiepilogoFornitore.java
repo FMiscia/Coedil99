@@ -74,33 +74,27 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 
 		this.panel = new JPanel();
 		this.panel.setPreferredSize(new Dimension(380, 120));
-		//this.panel.setBackground(new Color(240, 240, 240));
+		// this.panel.setBackground(new Color(240, 240, 240));
 		this.add(panel);
 		this.panel.setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("30px"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("80px"),
+				FormFactory.RELATED_GAP_COLSPEC, ColumnSpec.decode("30px"),
+				FormFactory.RELATED_GAP_COLSPEC, ColumnSpec.decode("80px"),
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("center:30px"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("80px"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("28px"),
-				FormFactory.RELATED_GAP_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("25px"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("25px"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("30px"),}));
+				FormFactory.RELATED_GAP_COLSPEC, ColumnSpec.decode("80px"),
+				FormFactory.RELATED_GAP_COLSPEC, FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC, ColumnSpec.decode("28px"),
+				FormFactory.RELATED_GAP_COLSPEC, ColumnSpec.decode("28px"), },
+				new RowSpec[] { FormFactory.RELATED_GAP_ROWSPEC,
+						RowSpec.decode("25px"),
+						FormFactory.RELATED_GAP_ROWSPEC,
+						RowSpec.decode("25px"),
+						FormFactory.RELATED_GAP_ROWSPEC,
+						RowSpec.decode("42px"), }));
 
 		this.lblNome = new JTextField();
 		this.lblNome.setBorder(null);
-		//this.lblNome.setBackground(new Color(240, 240, 240));
+		// this.lblNome.setBackground(new Color(240, 240, 240));
 		this.lblNome.setEnabled(false);
 		this.lblNome.setDisabledTextColor(Color.BLACK);
 		this.lblNome.setHorizontalAlignment(SwingConstants.CENTER);
@@ -121,7 +115,8 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		this.btnModifica.setOpaque(false);
 		this.btnModifica.setContentAreaFilled(false);
 		this.btnModifica.setBorderPainted(false);
-		this.btnModifica.setIcon(new ImageIcon(ARiepilogoFornitore.class.getResource("/GUI/image/edit.png")));
+		this.btnModifica.setIcon(new ImageIcon(ARiepilogoFornitore.class
+				.getResource("/GUI/image/edit.png")));
 		this.btnModifica.setToolTipText("Modifica il nome del fornitore");
 		this.btnModifica.addMouseListener(new MouseAdapter() {
 			@Override
@@ -162,9 +157,6 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		this.panel.add(this.btnModifica, "12, 2");
 		this.panel.add(this.btnSalva, "12, 2");
 
-		this.separator = new JSeparator();
-		this.panel.add(this.separator, "4, 4, 5, 1");
-
 		this.btnElimina = new JButton();
 		btnElimina.setFocusPainted(false);
 		this.btnElimina.setCursor(Cursor
@@ -195,24 +187,27 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 			}
 		});
 
-		this.panel.add(btnElimina, "12, 4");
-		
-				this.btnCaricaCatalogo = new JButton();
-				btnCaricaCatalogo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				this.btnCaricaCatalogo.setOpaque(false);
-				this.btnCaricaCatalogo.setContentAreaFilled(false);
-				this.btnCaricaCatalogo.setIcon(ConfigGUI.getImportIcon());
-				this.btnCaricaCatalogo.setBorderPainted(false);
-				this.btnCaricaCatalogo.setFocusPainted(false);
-				this.btnCaricaCatalogo.setToolTipText("Importa Prodotti");
-				this.btnCaricaCatalogo.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						ARiepilogoFornitore.this.importaProdotti();
-					}
-				});
-				panel.add(btnCaricaCatalogo, "6, 6");
-				
+		this.panel.add(btnElimina, "14, 2");
+
+		this.separator = new JSeparator();
+		this.panel.add(this.separator, "2, 4, 13, 1");
+
+		this.btnCaricaCatalogo = new JButton();
+		btnCaricaCatalogo.setIconTextGap(30);
+		btnCaricaCatalogo.setHorizontalTextPosition(SwingConstants.LEADING);
+		btnCaricaCatalogo.setText("Importa Prodotti");
+		btnCaricaCatalogo.setCursor(Cursor
+				.getPredefinedCursor(Cursor.HAND_CURSOR));
+		this.btnCaricaCatalogo.setIcon(ConfigGUI.getImportIcon());
+		this.btnCaricaCatalogo.setToolTipText("Importa Prodotti");
+		this.btnCaricaCatalogo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ARiepilogoFornitore.this.importaProdotti();
+			}
+		});
+		panel.add(btnCaricaCatalogo, "4, 6, 5, 1");
+
 		this.btnSalva.setVisible(false);
 	}
 
@@ -339,7 +334,7 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 	 */
 	public void reset() {
 		this.importing = false;
-		FornitoriCenter.getInstance().getClipPanel().getButtons().get(2)
+		FornitoriCenter.getInstance().getClipPanel().getButtons().get(1)
 				.doClick();
 	}
 

@@ -1,6 +1,5 @@
 package GUI.Plichi;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
@@ -16,13 +15,11 @@ import GUI.CoedilFrame;
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.APlico;
-import GUI.Abstract.ARiquadro;
 import GUI.Riquadri.RiquadroDatiDistinta;
 import GUI.Riquadri.RiquadroDatiDistintaFactory;
 import GUI.Utilities.WrapLayout;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MDistinta;
-import coedil99.persistentmodel.Distinta;
 
 /**
  * 
@@ -82,14 +79,14 @@ public class PlicoDistinta extends APlico {
 				this.riquadri.add(temp);
 				temp.makeEditable(false);
 			}
-		} else {
+		}/* else {
 			temp =  (RiquadroDatiDistinta) RiquadroDatiDistintaFactory.getInstance().makeRiquadro();
 			temp.makeEditable(true);
 			this.add(temp);
 			this.riquadri.add(temp);
-		}
-		MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getPersistentModel().getDistinta().getID());
-		if (!odistinta.hasDdo()) {
+		}*/
+		//MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getPersistentModel().getDistinta().getID());
+		if (!d.hasDdo()) {
 			MouseListener[] arrML = addButton.getMouseListeners();
 			if (arrML.length == 1){
 				addButton.addMouseListener(new MouseAdapter() {
@@ -108,14 +105,14 @@ public class PlicoDistinta extends APlico {
 		panelAddButton.add(addButton);
 		this.add(panelAddButton);
 		this.aggiornaAltezze();
-		if (odistinta.hasDdo()){
+		if (d.hasDdo()){
 			for(RiquadroDatiDistinta r: riquadri){
 				r.avoidEditing(true);
 				addButton.setEnabled(false);
 			}
 		}
 		else {
-			for(@SuppressWarnings("unused") RiquadroDatiDistinta r: riquadri){
+			for(RiquadroDatiDistinta r: riquadri){
 				addButton.setEnabled(true);
 			}
 		}
@@ -176,7 +173,6 @@ public class PlicoDistinta extends APlico {
 		panelAddButton.add(addButton);
 		this.validate();
 		this.repaint();
-		
 	}
 
 	public boolean isModifying() {
@@ -188,7 +184,6 @@ public class PlicoDistinta extends APlico {
 				temp.svuotaIconeLAbel();
 			}
 		}
-		
 		return result;
 	}
 }

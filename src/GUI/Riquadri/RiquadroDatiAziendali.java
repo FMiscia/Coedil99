@@ -26,6 +26,7 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.border.MatteBorder;
 
 /**
  * Riquadro dati aziendali
@@ -422,7 +423,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	 */
 	@Override
 	protected void initialize() {
-		this.form.setBounds(0, 30, 600, 340);
+		this.form.setBounds(0, 30, 500, 340);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,

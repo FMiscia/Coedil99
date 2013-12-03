@@ -23,6 +23,7 @@ import coedil99.model.MCommessa;
 import coedil99.model.MOrdine;
 import coedil99.persistentmodel.Commessa;
 import coedil99.persistentmodel.Ordine;
+import javax.swing.border.MatteBorder;
 
 /**
  * 
@@ -109,7 +110,7 @@ public class CardCodiceInterno extends ACard {
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(200, 59));
 		this.setBackground(ConfigGUI.getColoreDeselezionato());
-		this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
+		this.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(null);
 
@@ -117,17 +118,17 @@ public class CardCodiceInterno extends ACard {
 		scadenza.setHorizontalAlignment(SwingConstants.CENTER);
 		scadenza.setHorizontalTextPosition(SwingConstants.LEADING);
 		scadenza.setBounds(100, 30, 100, 30);
-		scadenza.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
+		scadenza.setBorder(new MatteBorder(1, 0, 1, 1, (Color) new Color(0, 0, 0)));
 
 		codiceInterno = new JLabel();
 		codiceInterno.setHorizontalAlignment(SwingConstants.CENTER);
 		codiceInterno.setBounds(0, 30, 100, 30);
-		codiceInterno.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
+		codiceInterno.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 		cliente = new JLabel();
 		cliente.setHorizontalAlignment(SwingConstants.CENTER);
 		cliente.setHorizontalTextPosition(SwingConstants.CENTER);
-		cliente.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
+		cliente.setBorder(null);
 		cliente.setBounds(0, 0, 200, 30);
 
 		add(cliente);

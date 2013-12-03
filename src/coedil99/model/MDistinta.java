@@ -94,7 +94,6 @@ public class MDistinta implements IModel{
 	 * @return 
 	 */
 	public boolean hasDdo() {
-		// TODO Auto-generated method stub
 		return (this.distinta.getDdo() != null);
 	}
 	

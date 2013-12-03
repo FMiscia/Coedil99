@@ -18,6 +18,9 @@ import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
 import GUI.Riquadri.RiquadroDatiAziendali;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
 
 /**
  * 
@@ -176,14 +179,17 @@ public abstract class ARiquadro extends JPanel {
 		setSize(600, 330);
 		setPreferredSize(new Dimension(600, 280));
 		JSeparator separator = new JSeparator();
+		separator.setPreferredSize(new Dimension(0, 3));
+		separator.setBackground(new Color(0, 0, 0));
 		separator.setForeground(ConfigGUI.getColoreBordoCard());
 		separator.setBounds(0, 20, 600, 2);
 		add(separator);
 
 		lblTitolo = new JLabel(title);
+		lblTitolo.setPreferredSize(new Dimension(60, 20));
 		lblTitolo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitolo.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
-		lblTitolo.setBounds(0, 1, 143, 20);
+		lblTitolo.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblTitolo.setBounds(0, 1, 143, 21);
 		add(lblTitolo);
 
 		this.modifica = new JButton("modifica");
