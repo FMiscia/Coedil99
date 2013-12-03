@@ -26,9 +26,14 @@ public class ConfigGUI {
 	private static ImageIcon OkIcon = new ImageIcon(
 			ConfigGUI.class.getResource("/GUI/image/ok.png"));
 	private static Color coloreSelezionato = new Color(171,171,171);
-	private static Color coloreDeselezionato = new Color(240,240,240);
+	private static Color coloreDeselezionato = new Color(230,230,230);
+	private static Color coloreProdottoPari = new Color(180,180,180);
+	private static Color coloreProdottoDispari = new Color(240,240,240);
 	private static Color coloreBordoCard = Color.BLACK;
 	private static Color coloreRigaRDA = new Color(192, 192, 192);
+	private static Color coloreTextArea = Color.darkGray;
+	private static Color coloreBordoErrore = Color.RED;
+	private static Color coloreBordoOk = Color.GREEN;
 	private static int numBottoniClipPanel = 8;
 
 	/**
@@ -117,12 +122,52 @@ public class ConfigGUI {
 		ConfigGUI.coloreBordoCard = coloreBordoCard;
 	}
 
+	public static Color getColoreProdottoPari() {
+		return coloreProdottoPari;
+	}
+
+	public static void setColoreProdottoPari(Color coloreProdottoPari) {
+		ConfigGUI.coloreProdottoPari = coloreProdottoPari;
+	}
+
+	public static Color getColoreProdottoDispari() {
+		return coloreProdottoDispari;
+	}
+
+	public static void setColoreProdottoDispari(Color coloreProdottoDispari) {
+		ConfigGUI.coloreProdottoDispari = coloreProdottoDispari;
+	}
+
 	public static Color getColoreRigaRDA() {
 		return coloreRigaRDA;
 	}
 
+	public static Color getColoreTextArea() {
+		return coloreTextArea;
+	}
+
+	public static void setColoreTextArea(Color coloreTextArea) {
+		ConfigGUI.coloreTextArea = coloreTextArea;
+	}
+
 	public static void setColoreRigaRDA(Color coloreRigaRDA) {
 		ConfigGUI.coloreRigaRDA = coloreRigaRDA;
+	}
+
+	public static Color getColoreBordoErrore() {
+		return coloreBordoErrore;
+	}
+
+	public static Color getColoreBordoOk() {
+		return coloreBordoOk;
+	}
+
+	public static void setColoreBordoOk(Color coloreBordoOk) {
+		ConfigGUI.coloreBordoOk = coloreBordoOk;
+	}
+
+	public static void setColoreBordoErrore(Color coloreBordoErrore) {
+		ConfigGUI.coloreBordoErrore = coloreBordoErrore;
 	}
 
 	public static int getNumBottoniClipPanel() {

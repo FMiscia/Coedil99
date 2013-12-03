@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import GUI.ConfigGUI;
 import GUI.FornitoriCenter;
 import GUI.Abstract.ALista;
 import GUI.Avvisi.AvvisoFornitore;
@@ -75,7 +76,7 @@ public class ListaFornitori extends ALista {
 	 */
 	public int getPrimoCatalogo() {
 		if(this.getPrimaCard() != null)
-			this.getPrimaCard().setBackground(new Color(30, 44, 255));
+			this.getPrimaCard().setBackground(ConfigGUI.getColoreSelezionato());
 		return this.getPrimaCard().getCatalogoFornitoreId();
 
 	}
@@ -85,7 +86,7 @@ public class ListaFornitori extends ALista {
 	 */
 	public void setPrimoCatalogo(){
 		if(this.getPrimaCard() != null)
-			this.getPrimaCard().setBackground(new Color(30, 44, 255));
+			this.getPrimaCard().setBackground(ConfigGUI.getColoreSelezionato());
 	}
 
 	/**

@@ -20,17 +20,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import GUI.ConfigGUI;
 import GUI.ProgrammaLavori;
 import GUI.Abstract.ARiquadro;
 import GUI.Plichi.PlicoDistinta;
 import coedil99.model.MDistinta;
 import coedil99.model.MGeometria;
 import coedil99.model.MRigaLavoro;
-import coedil99.persistentmodel.Distinta;
-import coedil99.persistentmodel.Geometria;
-import coedil99.persistentmodel.GeometriaFactory;
 import coedil99.persistentmodel.RigaLavoro;
-import coedil99.persistentmodel.RigaLavoroFactory;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -91,19 +88,19 @@ public class RiquadroDatiDistinta extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoBase.setIcon(IcoErrore);
+						lblIcoBase.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoBase
 								.setToolTipText("Il campo Base deve essere un numero reale!");
-						tfbase.setBorder(new LineBorder(Color.red));
+						tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (!m.matches()) {
-						lblIcoBase.setIcon(IcoErrore);
+						lblIcoBase.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoBase
 								.setToolTipText("Il campo Base deve essere un numero reale!");
-						tfbase.setBorder(new LineBorder(Color.red));
+						tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoBase.setIcon(IcoOk);
+						lblIcoBase.setIcon(ConfigGUI.getOkIcon());
 						lblIcoBase.setToolTipText(null);
-						tfbase.setBorder(new LineBorder(Color.green));
+						tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}
@@ -132,19 +129,19 @@ public class RiquadroDatiDistinta extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoAltezza.setIcon(IcoErrore);
+						lblIcoAltezza.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoAltezza
 								.setToolTipText("Il campo Altezza deve essere un numero reale!");
-						tfaltezza.setBorder(new LineBorder(Color.red));
+						tfaltezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (!m.matches()) {
-						lblIcoAltezza.setIcon(IcoErrore);
+						lblIcoAltezza.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoAltezza
 								.setToolTipText("Il campo Altezza deve essere un numero reale!");
-						tfaltezza.setBorder(new LineBorder(Color.red));
+						tfaltezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoAltezza.setIcon(IcoOk);
+						lblIcoAltezza.setIcon(ConfigGUI.getOkIcon());
 						lblIcoAltezza.setToolTipText(null);
-						tfaltezza.setBorder(new LineBorder(Color.green));
+						tfaltezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}
@@ -173,19 +170,19 @@ public class RiquadroDatiDistinta extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoLunghezza.setIcon(IcoErrore);
+						lblIcoLunghezza.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoLunghezza
 								.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
-						tflunghezza.setBorder(new LineBorder(Color.red));
+						tflunghezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (!m.matches()) {
-						lblIcoLunghezza.setIcon(IcoErrore);
+						lblIcoLunghezza.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoLunghezza
 								.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
-						tflunghezza.setBorder(new LineBorder(Color.red));
+						tflunghezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoLunghezza.setIcon(IcoOk);
+						lblIcoLunghezza.setIcon(ConfigGUI.getOkIcon());
 						lblIcoLunghezza.setToolTipText(null);
-						tflunghezza.setBorder(new LineBorder(Color.green));
+						tflunghezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}
@@ -214,19 +211,19 @@ public class RiquadroDatiDistinta extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("") || line.equals("0")) {
-						lblIcoNumero.setIcon(IcoErrore);
+						lblIcoNumero.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoNumero
 								.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
-						tfnumero.setBorder(new LineBorder(Color.red));
+						tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (m.find()) {
-						lblIcoNumero.setIcon(IcoErrore);
+						lblIcoNumero.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoNumero
 								.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
-						tfnumero.setBorder(new LineBorder(Color.red));
+						tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoNumero.setIcon(IcoOk);
+						lblIcoNumero.setIcon(ConfigGUI.getOkIcon());
 						lblIcoNumero.setToolTipText(null);
-						tfnumero.setBorder(new LineBorder(Color.green));
+						tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}
@@ -267,19 +264,19 @@ public class RiquadroDatiDistinta extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoTipoCapitello.setIcon(IcoErrore);
+						lblIcoTipoCapitello.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoTipoCapitello
 								.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
-						tftipocapitello.setBorder(new LineBorder(Color.red));
+						tftipocapitello.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (m.find()) {
-						lblIcoTipoCapitello.setIcon(IcoErrore);
+						lblIcoTipoCapitello.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoTipoCapitello
 								.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
-						tftipocapitello.setBorder(new LineBorder(Color.red));
+						tftipocapitello.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoTipoCapitello.setIcon(IcoOk);
+						lblIcoTipoCapitello.setIcon(ConfigGUI.getOkIcon());
 						lblIcoTipoCapitello.setToolTipText(null);
-						tftipocapitello.setBorder(new LineBorder(Color.green));
+						tftipocapitello.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}
@@ -321,19 +318,19 @@ public class RiquadroDatiDistinta extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoNote.setIcon(IcoErrore);
+						lblIcoNote.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoNote
 								.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
-						tfnote.setBorder(new LineBorder(Color.red));
+						tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (m.find()) {
-						lblIcoNote.setIcon(IcoErrore);
+						lblIcoNote.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoNote
 								.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
-						tfnote.setBorder(new LineBorder(Color.red));
+						tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoNote.setIcon(IcoOk);
+						lblIcoNote.setIcon(ConfigGUI.getOkIcon());
 						lblIcoNote.setToolTipText(null);
-						tfnote.setBorder(new LineBorder(Color.green));
+						tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}

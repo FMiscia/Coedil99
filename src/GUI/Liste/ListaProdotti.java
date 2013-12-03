@@ -1,14 +1,12 @@
 package GUI.Liste;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import GUI.FornitoriCenter;
+import GUI.ConfigGUI;
 import GUI.Abstract.ALista;
 import GUI.Card.CardProdotto;
 import GUI.Card.CardProdottoFactory;
@@ -81,7 +79,7 @@ public class ListaProdotti extends ALista {
 	 */
 	public void deselectAll() {
 		for (Component c : this.panel.getComponents()) {
-			c.setBackground(new Color(209, 209, 209));
+			c.setBackground(ConfigGUI.getColoreDeselezionato());
 			c.validate();
 			c.repaint();
 		}

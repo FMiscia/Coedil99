@@ -50,8 +50,6 @@ public class PlicoDistinta extends APlico {
 
 	@Override
 	public void load() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -172,7 +170,6 @@ public class PlicoDistinta extends APlico {
 		this.setLayout(new WrapLayout(0, x, 20));
 		setBounds(0, 30,745,x);
 		this.panelAddButton = new JPanel();
-		this.panelAddButton.setBackground(new Color(240,240,240));
 		this.panelAddButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panelAddButton.setPreferredSize(new Dimension(600,50));
 		addButton = new JButton("aggiungi nuova");

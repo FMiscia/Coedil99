@@ -1,6 +1,5 @@
 package GUI.Riquadri;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -9,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -17,11 +15,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
-import org.orm.PersistentException;
 
+import GUI.ConfigGUI;
 import GUI.Abstract.ARiquadro;
 import coedil99.model.MCommessa;
-import coedil99.persistentmodel.Commessa;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -145,11 +142,11 @@ public class RiquadroDatiConsegna extends ARiquadro {
 						@Override
 						public void focusLost(FocusEvent e) {
 							if (dateDataPrimaConsegna.getDate() == null) {
-								lblIcoDataPrimaConsegna.setIcon(IcoErrore);
+								lblIcoDataPrimaConsegna.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataPrimaConsegna
 										.setToolTipText("La data di scadenza deve essere selezionata!");
 							} else {
-								lblIcoDataPrimaConsegna.setIcon(IcoOk);
+								lblIcoDataPrimaConsegna.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataPrimaConsegna.setToolTipText(null);
 							}
 							controlloErrori();
@@ -158,11 +155,11 @@ public class RiquadroDatiConsegna extends ARiquadro {
 						@Override
 						public void focusGained(FocusEvent e) {
 							if (dateDataPrimaConsegna.getDate() == null) {
-								lblIcoDataPrimaConsegna.setIcon(IcoErrore);
+								lblIcoDataPrimaConsegna.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataPrimaConsegna
 										.setToolTipText("La data di scadenza deve essere selezionata!");
 							} else {
-								lblIcoDataPrimaConsegna.setIcon(IcoOk);
+								lblIcoDataPrimaConsegna.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataPrimaConsegna.setToolTipText(null);
 							}
 							controlloErrori();
@@ -196,20 +193,20 @@ public class RiquadroDatiConsegna extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoRirardoConsegna.setIcon(IcoErrore);
+						lblIcoRirardoConsegna.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoRirardoConsegna
 								.setToolTipText("Il campo Ritardo deve contenere solo numeri!");
-						txtRirardoConsegna.setBorder(new LineBorder(Color.red));
+						txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (m.find()) {
-						lblIcoRirardoConsegna.setIcon(IcoErrore);
+						lblIcoRirardoConsegna.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoRirardoConsegna
 								.setToolTipText("Il campo Ritardo deve contenere solo numeri!");
-						txtRirardoConsegna.setBorder(new LineBorder(Color.red));
+						txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoRirardoConsegna.setIcon(IcoOk);
+						lblIcoRirardoConsegna.setIcon(ConfigGUI.getOkIcon());
 						lblIcoRirardoConsegna.setToolTipText("");
 						txtRirardoConsegna
-								.setBorder(new LineBorder(Color.green));
+								.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}

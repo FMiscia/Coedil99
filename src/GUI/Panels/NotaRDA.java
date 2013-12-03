@@ -20,6 +20,7 @@ import javax.swing.JTextPane;
 import org.orm.PersistentException;
 
 import GUI.CommercialeCenter;
+import GUI.ConfigGUI;
 import GUI.RDACenter;
 import GUI.Abstract.AClipPanel;
 import GUI.Card.CardRDA;
@@ -80,7 +81,7 @@ public class NotaRDA extends JPanel{
 		area.setPreferredSize(new Dimension(100,100));
 		this.setNotaTxt();
 		area.setEnabled(false);
-		area.setBackground(Color.darkGray);
+		area.setBackground(ConfigGUI.getColoreTextArea());
 		JScrollPane jsp = new JScrollPane(area);
 		ml.setConstraints(jsp, mlc);
 		add(jsp);
@@ -94,7 +95,6 @@ public class NotaRDA extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				MRDA temp = RDACenter.getInstance().getRDASelezionata();
 				GestisciRDAHandler.getInstance().deleteAndRemoveMRDA(temp);
 				JOptionPane.showMessageDialog(null,
@@ -117,7 +117,6 @@ public class NotaRDA extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				MRDA temp = RDACenter.getInstance().getRDASelezionata();
 				temp.getPersistentModel().setState(
 						GestisciRDAHandler.CONGELATA);
@@ -141,7 +140,6 @@ public class NotaRDA extends JPanel{
 
 
 	public void setNotaTxt() {
-		// TODO Auto-generated method stub
 		String desc = RDACenter.getInstance().getRDASelezionata().getDescrizione();
 		area.setText(desc);
 	}

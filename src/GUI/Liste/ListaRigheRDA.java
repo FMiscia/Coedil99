@@ -1,6 +1,5 @@
 package GUI.Liste;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -8,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import GUI.CommercialeCenter;
+import GUI.ConfigGUI;
 import GUI.RDACenter;
 import GUI.Abstract.ALista;
 import GUI.Abstract.ARiepilogoRDA;
@@ -15,8 +15,6 @@ import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Riepiloghi.RiepilogoRDAFactory;
 import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.MRigaRDA;
-import coedil99.persistentmodel.RigaRDA;
 
 /**
  * 
@@ -114,7 +112,7 @@ public class ListaRigheRDA extends ALista {
 	 */
 	public void deselectAll() {
 		for (Component c : this.panel.getComponents()) {
-			c.setBackground(new Color(209, 209, 209));
+			c.setBackground(ConfigGUI.getColoreDeselezionato());
 			c.validate();
 			c.repaint();
 		}
@@ -188,7 +186,6 @@ public class ListaRigheRDA extends ALista {
 	}
 
 	public void loadNOUPDATE(ArrayList<Object> t) {
-		// TODO Auto-generated method stub
 		this.updatePanelComm();
 		int row = t.size();
 		CardRigaRDA riquadroRigaRDA = null;

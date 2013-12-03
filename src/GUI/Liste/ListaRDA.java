@@ -1,10 +1,9 @@
 package GUI.Liste;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import GUI.Abstract.AAvviso;
+import GUI.ConfigGUI;
 import GUI.Abstract.ALista;
 import GUI.Avvisi.AvvisoRDA;
 import GUI.Avvisi.AvvisoRDAFactory;
@@ -40,7 +39,6 @@ public class ListaRDA extends ALista {
 	}
 
 	public void loadComm(String tipo) {
-		// TODO Auto-generated method stub
 		this.panel.removeAll();
 		ArrayList<Object> t = null;
 		t = new ArrayList<Object>(GestisciRDAHandler.getInstance()
@@ -109,7 +107,7 @@ public class ListaRDA extends ALista {
 	 */
 	public int getPrimaRDA() {
 		if (this.getPrimaCard() != null) {
-			this.getPrimaCard().setBackground(new Color(30, 44, 255));
+			this.getPrimaCard().setBackground(ConfigGUI.getColoreSelezionato());
 			return this.getPrimaCard().getRDAId();
 		}
 		return 0;

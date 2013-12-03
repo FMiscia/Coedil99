@@ -46,11 +46,11 @@ public abstract class ACard extends JPanel {
 	 * @param preferredSize: Dimensione
 	 * @return JSeparator
 	 */
-	public JSeparator createSeparator(int orientation, Color foreground, Color background, Dimension preferredSize) {
+	public JSeparator createSeparator(int orientation, Dimension preferredSize) {
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(orientation);
-		separator.setForeground(foreground);
-		separator.setBackground(background);
+		separator.setForeground(ConfigGUI.getColoreBordoCard());
+		separator.setBackground(ConfigGUI.getColoreBordoCard());
 		separator.setPreferredSize(preferredSize);
 		return separator;
 	}

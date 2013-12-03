@@ -47,7 +47,7 @@ public class LoginDialog extends JDialog {
        cs.gridy = 1;
        cs.gridwidth = 2;
        panel.add(pfPassword, cs);
-       panel.setBorder(new LineBorder(Color.GRAY));
+       //panel.setBorder(new LineBorder(Color.GRAY));
 
        btnLogin = new JButton("Login");
 

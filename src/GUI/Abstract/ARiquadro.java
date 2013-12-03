@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import GUI.ConfigGUI;
 import GUI.Riquadri.RiquadroDatiAziendali;
 
 /**
@@ -33,10 +34,6 @@ public abstract class ARiquadro extends JPanel {
 	protected boolean aperto;
 	protected Object oggetto;
 	protected ArrayList<JLabel> Label;
-	protected ImageIcon IcoErrore = new ImageIcon(
-			RiquadroDatiAziendali.class.getResource("/GUI/image/cancel.png"));
-	protected ImageIcon IcoOk = new ImageIcon(
-			RiquadroDatiAziendali.class.getResource("/GUI/image/ok.png"));
 	protected JLabel lblTitolo;
 	protected JPanel form;
 
@@ -144,7 +141,7 @@ public abstract class ARiquadro extends JPanel {
     public boolean controlloErrori() {
             boolean test = true;
             for (JLabel j : this.Label) {
-                    if (j.getIcon() != null && j.getIcon().equals(IcoErrore))
+                    if (j.getIcon() != null && j.getIcon().equals(ConfigGUI.getErrorIcon()))
                             test = false;
             }
             if (test) {
@@ -170,9 +167,7 @@ public abstract class ARiquadro extends JPanel {
 	 * Imposta la grafica
 	 */
 	private void initialize(String title) {
-		this.setBackground(new Color(240,240,240));
 		this.form = new JPanel();
-		this.form.setBackground(new Color(240,240,240));
 		this.aperto = true;
 		this.oggetto = null;
 		this.Container = new ArrayList<JTextField>();
@@ -181,13 +176,13 @@ public abstract class ARiquadro extends JPanel {
 		setSize(600, 330);
 		setPreferredSize(new Dimension(600, 280));
 		JSeparator separator = new JSeparator();
-		separator.setForeground(Color.BLACK);
+		separator.setForeground(ConfigGUI.getColoreBordoCard());
 		separator.setBounds(0, 20, 600, 2);
 		add(separator);
 
 		lblTitolo = new JLabel(title);
 		lblTitolo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitolo.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblTitolo.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 		lblTitolo.setBounds(0, 1, 143, 20);
 		add(lblTitolo);
 

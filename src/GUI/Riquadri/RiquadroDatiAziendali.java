@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
 
+import GUI.ConfigGUI;
 import GUI.Abstract.ARiquadro;
 import coedil99.model.MCommessa;
 import coedil99.model.MOrdine;
@@ -49,7 +50,6 @@ public class RiquadroDatiAziendali extends ARiquadro {
 	private JLabel lblDataFine;
 	private JLabel lblOrario;
 	private JTextField txtOrario;
-	private JTextField txtDescrizione;
 	private JLabel lblIcoOC;
 	private JLabel lblIcoAnno;
 	private JLabel lblIcoOrdineContratto;
@@ -88,19 +88,19 @@ public class RiquadroDatiAziendali extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoOrario.setIcon(IcoErrore);
+						lblIcoOrario.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoOrario
 								.setToolTipText("Il campo Orario deve contenere solo lettere!");
-						txtOrario.setBorder(new LineBorder(Color.red));
+						txtOrario.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (m.find()) {
-						lblIcoOrario.setIcon(IcoErrore);
+						lblIcoOrario.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoOrario
 								.setToolTipText("Il campo Orario deve contenere solo lettere!");
-						txtOrario.setBorder(new LineBorder(Color.red));
+						txtOrario.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoOrario.setIcon(IcoOk);
+						lblIcoOrario.setIcon(ConfigGUI.getOkIcon());
 						lblIcoOrario.setToolTipText("");
-						txtOrario.setBorder(new LineBorder(Color.green));
+						txtOrario.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}
@@ -126,17 +126,17 @@ public class RiquadroDatiAziendali extends ARiquadro {
 				@Override
 				public void focusGained(FocusEvent e) {
 					if (dateDataFine.getDate().before(dateDataInizio.getDate())) {
-						lblIcoDataInizio.setIcon(IcoErrore);
+						lblIcoDataInizio.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoDataInizio
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
-						lblIcoDataFine.setIcon(IcoErrore);
+						lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoDataFine
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
 
 					} else {
-						lblIcoDataFine.setIcon(IcoOk);
+						lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 						lblIcoDataFine.setToolTipText(null);
-						lblIcoDataInizio.setIcon(IcoOk);
+						lblIcoDataInizio.setIcon(ConfigGUI.getOkIcon());
 						lblIcoDataInizio.setToolTipText(null);
 					}
 					controlloErrori();
@@ -145,17 +145,17 @@ public class RiquadroDatiAziendali extends ARiquadro {
 				@Override
 				public void focusLost(FocusEvent e) {
 					if (dateDataFine.getDate().before(dateDataInizio.getDate())) {
-						lblIcoDataInizio.setIcon(IcoErrore);
+						lblIcoDataInizio.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoDataInizio
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
-						lblIcoDataFine.setIcon(IcoErrore);
+						lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoDataFine
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
 
 					} else {
-						lblIcoDataFine.setIcon(IcoOk);
+						lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 						lblIcoDataFine.setToolTipText(null);
-						lblIcoDataInizio.setIcon(IcoOk);
+						lblIcoDataInizio.setIcon(ConfigGUI.getOkIcon());
 						lblIcoDataInizio.setToolTipText(null);
 					}
 					controlloErrori();
@@ -185,17 +185,17 @@ public class RiquadroDatiAziendali extends ARiquadro {
 						public void focusGained(FocusEvent e) {
 							if (dateDataFine.getDate().before(
 									dateDataInizio.getDate())) {
-								lblIcoDataInizio.setIcon(IcoErrore);
+								lblIcoDataInizio.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataInizio
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
-								lblIcoDataFine.setIcon(IcoErrore);
+								lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataFine
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
 
 							} else {
-								lblIcoDataFine.setIcon(IcoOk);
+								lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataFine.setToolTipText(null);
-								lblIcoDataInizio.setIcon(IcoOk);
+								lblIcoDataInizio.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataInizio.setToolTipText(null);
 							}
 							controlloErrori();
@@ -205,17 +205,17 @@ public class RiquadroDatiAziendali extends ARiquadro {
 						public void focusLost(FocusEvent e) {
 							if (dateDataFine.getDate().before(
 									dateDataInizio.getDate())) {
-								lblIcoDataInizio.setIcon(IcoErrore);
+								lblIcoDataInizio.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataInizio
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
-								lblIcoDataFine.setIcon(IcoErrore);
+								lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataFine
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
 
 							} else {
-								lblIcoDataFine.setIcon(IcoOk);
+								lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataFine.setToolTipText(null);
-								lblIcoDataInizio.setIcon(IcoOk);
+								lblIcoDataInizio.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataInizio.setToolTipText(null);
 							}
 							controlloErrori();
@@ -247,15 +247,15 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		 * @Override public void keyReleased(KeyEvent e) { String line =
 		 * txtOrdineGestionale.getText(); String pattern = "\\D+"; Pattern r =
 		 * Pattern.compile(pattern); Matcher m = r.matcher(line); if
-		 * (line.equals("")) { lblIcoOrdineGestionale.setIcon(IcoErrore);
+		 * (line.equals("")) { lblIcoOrdineGestionale.setIcon(ConfigGUI.getErrorIcon());
 		 * lblIcoOrdineGestionale
 		 * .setToolTipText("Il campo Ordine Gestionale deve contenere solo numeri!"
 		 * ); txtOrdineGestionale .setBorder(new LineBorder(Color.red)); } else
-		 * if (m.find()) { lblIcoOrdineGestionale.setIcon(IcoErrore);
+		 * if (m.find()) { lblIcoOrdineGestionale.setIcon(ConfigGUI.getErrorIcon());
 		 * lblIcoOrdineGestionale
 		 * .setToolTipText("Il campo Ordine Gestionale deve contenere solo numeri!"
 		 * ); txtOrdineGestionale .setBorder(new LineBorder(Color.red)); } else
-		 * { lblIcoOrdineGestionale.setIcon(IcoOk);
+		 * { lblIcoOrdineGestionale.setIcon(ConfigGUI.getOkIcon());
 		 * lblIcoOrdineGestionale.setToolTipText(null);
 		 * txtOrdineGestionale.setBorder(new LineBorder( Color.green)); }
 		 * controlloErrori(); } });
@@ -283,15 +283,15 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		 * @Override public void keyReleased(KeyEvent e) { String line =
 		 * txtCommessaCoedil.getText(); String pattern = "\\D+"; Pattern r =
 		 * Pattern.compile(pattern); Matcher m = r.matcher(line); if
-		 * (line.equals("")) { lblIcoCommessaCoedil.setIcon(IcoErrore);
+		 * (line.equals("")) { lblIcoCommessaCoedil.setIcon(ConfigGUI.getErrorIcon());
 		 * lblIcoCommessaCoedil
 		 * .setToolTipText("Il campo Commessa Coedil deve contenere solo numeri!"
 		 * ); txtCommessaCoedil.setBorder(new LineBorder(Color.red)); } else if
-		 * (m.find()) { lblIcoCommessaCoedil.setIcon(IcoErrore);
+		 * (m.find()) { lblIcoCommessaCoedil.setIcon(ConfigGUI.getErrorIcon());
 		 * lblIcoCommessaCoedil
 		 * .setToolTipText("Il campo Commessa Coedil deve contenere solo numeri!"
 		 * ); txtCommessaCoedil.setBorder(new LineBorder(Color.red)); } else {
-		 * lblIcoCommessaCoedil.setIcon(IcoOk);
+		 * lblIcoCommessaCoedil.setIcon(ConfigGUI.getOkIcon());
 		 * lblIcoCommessaCoedil.setToolTipText(null); txtCommessaCoedil
 		 * .setBorder(new LineBorder(Color.green)); } controlloErrori(); } });
 		 */
@@ -319,15 +319,15 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		 * @Override public void keyReleased(KeyEvent e) { String line =
 		 * txtOrdineContratto.getText(); String pattern = "\\D+"; Pattern r =
 		 * Pattern.compile(pattern); Matcher m = r.matcher(line); if
-		 * (line.equals("")) { lblIcoOrdineContratto.setIcon(IcoErrore);
+		 * (line.equals("")) { lblIcoOrdineContratto.setIcon(ConfigGUI.getErrorIcon());
 		 * lblIcoOrdineContratto
 		 * .setToolTipText("Il campo Ordine/Contratto deve contenere solo numeri!"
 		 * ); txtOrdineContratto.setBorder(new LineBorder(Color.red)); } else if
-		 * (m.find()) { lblIcoOrdineContratto.setIcon(IcoErrore);
+		 * (m.find()) { lblIcoOrdineContratto.setIcon(ConfigGUI.getErrorIcon());
 		 * lblIcoOrdineContratto
 		 * .setToolTipText("Il campo Ordine/Contratto deve contenere solo numeri!"
 		 * ); txtOrdineContratto.setBorder(new LineBorder(Color.red)); } else {
-		 * lblIcoOrdineContratto.setIcon(IcoOk);
+		 * lblIcoOrdineContratto.setIcon(ConfigGUI.getOkIcon());
 		 * lblIcoOrdineContratto.setToolTipText(null); txtOrdineContratto
 		 * .setBorder(new LineBorder(Color.green)); } controlloErrori(); } });
 		 */
@@ -357,13 +357,13 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		 * txtAnno.getText(); String pattern = "\\D+"; Pattern r =
 		 * Pattern.compile(pattern); Matcher m = r.matcher(line); if
 		 * (line.equals("")) { lblIcoAnno
-		 * .setIcon(RiquadroDatiAziendali.this.IcoErrore);
+		 * .setIcon(RiquadroDatiAziendali.this.ConfigGUI.getErrorIcon());
 		 * lblAnno.setToolTipText("Il campo Anno deve contenere solo numeri!");
 		 * txtAnno.setBorder(new LineBorder(Color.red)); } else if (m.find()) {
-		 * lblIcoAnno .setIcon(RiquadroDatiAziendali.this.IcoErrore);
+		 * lblIcoAnno .setIcon(RiquadroDatiAziendali.this.ConfigGUI.getErrorIcon());
 		 * lblAnno.setToolTipText("Il campo Anno deve contenere solo numeri!");
 		 * txtAnno.setBorder(new LineBorder(Color.red)); } else {
-		 * lblIcoAnno.setIcon(RiquadroDatiAziendali.this.IcoOk);
+		 * lblIcoAnno.setIcon(RiquadroDatiAziendali.this.ConfigGUI.getOkIcon());
 		 * lblIcoOC.setToolTipText(null); txtAnno.setBorder(new
 		 * LineBorder(Color.green)); } controlloErrori(); } });
 		 */
@@ -393,17 +393,17 @@ public class RiquadroDatiAziendali extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoOC.setIcon(IcoErrore);
+						lblIcoOC.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoOC.setToolTipText("Il campo O/C deve contenere solo lettere e/o numeri!");
-						txtOC.setBorder(new LineBorder(Color.red));
+						txtOC.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (m.find()) {
-						lblIcoOC.setIcon(IcoErrore);
+						lblIcoOC.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoOC.setToolTipText("Il campo O/C deve contenere solo lettere e/o numeri!");
-						txtOC.setBorder(new LineBorder(Color.red));
+						txtOC.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoOC.setIcon(IcoOk);
+						lblIcoOC.setIcon(ConfigGUI.getOkIcon());
 						lblIcoOC.setToolTipText(null);
-						txtOC.setBorder(new LineBorder(Color.green));
+						txtOC.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}

@@ -4,18 +4,15 @@ import java.awt.Dimension;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import org.jdesktop.swingx.JXDatePicker;
-import org.orm.PersistentException;
 
+import GUI.ConfigGUI;
 import GUI.Abstract.ARiquadro;
 import coedil99.model.MCommessa;
-import coedil99.model.MOrdine;
-import coedil99.persistentmodel.Ordine;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -63,16 +60,16 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 						public void focusGained(FocusEvent e) {
 							if (dateDataFine.getDate().before(
 									dateDataInizio.getDate())) {
-								lblIcoDataInizio.setIcon(IcoErrore);
+								lblIcoDataInizio.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataInizio
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
-								lblIcoDataFine.setIcon(IcoErrore);
+								lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataFine
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
 							} else {
-								lblIcoDataFine.setIcon(IcoOk);
+								lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataFine.setToolTipText(null);
-								lblIcoDataInizio.setIcon(IcoOk);
+								lblIcoDataInizio.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataInizio.setToolTipText(null);
 							}
 							controlloErrori();
@@ -82,16 +79,16 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 						public void focusLost(FocusEvent e) {
 							if (dateDataFine.getDate().before(
 									dateDataInizio.getDate())) {
-								lblIcoDataInizio.setIcon(IcoErrore);
+								lblIcoDataInizio.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataInizio
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
-								lblIcoDataFine.setIcon(IcoErrore);
+								lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataFine
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
 							} else {
-								lblIcoDataFine.setIcon(IcoOk);
+								lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataFine.setToolTipText(null);
-								lblIcoDataInizio.setIcon(IcoOk);
+								lblIcoDataInizio.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataInizio.setToolTipText(null);
 							}
 							controlloErrori();
@@ -120,16 +117,16 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 				@Override
 				public void focusGained(FocusEvent e) {
 					if (dateDataFine.getDate().before(dateDataInizio.getDate())) {
-						lblIcoDataInizio.setIcon(IcoErrore);
+						lblIcoDataInizio.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoDataInizio
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
-						lblIcoDataFine.setIcon(IcoErrore);
+						lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoDataFine
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
 					} else {
-						lblIcoDataFine.setIcon(IcoOk);
+						lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 						lblIcoDataFine.setToolTipText(null);
-						lblIcoDataInizio.setIcon(IcoOk);
+						lblIcoDataInizio.setIcon(ConfigGUI.getOkIcon());
 						lblIcoDataInizio.setToolTipText(null);
 					}
 					controlloErrori();
@@ -138,16 +135,16 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 				@Override
 				public void focusLost(FocusEvent e) {
 					if (dateDataFine.getDate().before(dateDataInizio.getDate())) {
-						lblIcoDataInizio.setIcon(IcoErrore);
+						lblIcoDataInizio.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoDataInizio
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
-						lblIcoDataFine.setIcon(IcoErrore);
+						lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoDataFine
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
 					} else {
-						lblIcoDataFine.setIcon(IcoOk);
+						lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 						lblIcoDataFine.setToolTipText(null);
-						lblIcoDataInizio.setIcon(IcoOk);
+						lblIcoDataInizio.setIcon(ConfigGUI.getOkIcon());
 						lblIcoDataInizio.setToolTipText(null);
 					}
 					controlloErrori();
@@ -178,11 +175,11 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 						@Override
 						public void focusLost(FocusEvent e) {
 							if (dateScadenza.getDate() == null) {
-								lblIcoScadenza.setIcon(IcoErrore);
+								lblIcoScadenza.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoScadenza
 										.setToolTipText("La data di scadenza deve essere selezionata!");
 							} else {
-								lblIcoScadenza.setIcon(IcoOk);
+								lblIcoScadenza.setIcon(ConfigGUI.getOkIcon());
 								lblIcoScadenza.setToolTipText(null);
 							}
 							controlloErrori();
@@ -191,11 +188,11 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 						@Override
 						public void focusGained(FocusEvent e) {
 							if (dateScadenza.getDate() == null) {
-								lblIcoScadenza.setIcon(IcoErrore);
+								lblIcoScadenza.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoScadenza
 										.setToolTipText("La data di scadenza deve essere selezionata!");
 							} else {
-								lblIcoScadenza.setIcon(IcoOk);
+								lblIcoScadenza.setIcon(ConfigGUI.getOkIcon());
 								lblIcoScadenza.setToolTipText(null);
 							}
 							controlloErrori();

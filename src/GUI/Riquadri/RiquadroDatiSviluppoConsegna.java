@@ -18,11 +18,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
-import org.orm.PersistentException;
 
+import GUI.ConfigGUI;
 import GUI.Abstract.ARiquadro;
 import coedil99.model.MCommessa;
-import coedil99.persistentmodel.Commessa;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -170,19 +169,19 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoResponsabile.setIcon(IcoErrore);
+						lblIcoResponsabile.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoResponsabile
 								.setToolTipText("Il campo Responsabile deve contenere solo lettere!");
-						txtResponsabile.setBorder(new LineBorder(Color.red));
+						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (m.find()) {
-						lblIcoResponsabile.setIcon(IcoErrore);
+						lblIcoResponsabile.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoResponsabile
 								.setToolTipText("Il campo Responsabile deve contenere solo lettere!");
-						txtResponsabile.setBorder(new LineBorder(Color.red));
+						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoResponsabile.setIcon(IcoOk);
+						lblIcoResponsabile.setIcon(ConfigGUI.getOkIcon());
 						lblIcoResponsabile.setToolTipText("");
-						txtResponsabile.setBorder(new LineBorder(Color.green));
+						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}
@@ -213,16 +212,16 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 						public void focusGained(FocusEvent e) {
 							if (dateDataFine.getDate().before(
 									dateEmissioneCommessa.getDate())) {
-								lblIcoEmissioneCommessa.setIcon(IcoErrore);
+								lblIcoEmissioneCommessa.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoEmissioneCommessa
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
-								lblIcoDataFine.setIcon(IcoErrore);
+								lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataFine
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
 							} else {
-								lblIcoDataFine.setIcon(IcoOk);
+								lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataFine.setToolTipText(null);
-								lblIcoEmissioneCommessa.setIcon(IcoOk);
+								lblIcoEmissioneCommessa.setIcon(ConfigGUI.getOkIcon());
 								lblIcoEmissioneCommessa.setToolTipText(null);
 							}
 							controlloErrori();
@@ -232,16 +231,16 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 						public void focusLost(FocusEvent e) {
 							if (dateDataFine.getDate().before(
 									dateEmissioneCommessa.getDate())) {
-								lblIcoEmissioneCommessa.setIcon(IcoErrore);
+								lblIcoEmissioneCommessa.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoEmissioneCommessa
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
-								lblIcoDataFine.setIcon(IcoErrore);
+								lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoDataFine
 										.setToolTipText("La data di inizio deve precedere la data di fine!");
 							} else {
-								lblIcoDataFine.setIcon(IcoOk);
+								lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 								lblIcoDataFine.setToolTipText(null);
-								lblIcoEmissioneCommessa.setIcon(IcoOk);
+								lblIcoEmissioneCommessa.setIcon(ConfigGUI.getOkIcon());
 								lblIcoEmissioneCommessa.setToolTipText(null);
 							}
 							controlloErrori();
@@ -271,16 +270,16 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 				public void focusGained(FocusEvent e) {
 					if (dateDataFine.getDate().before(
 							dateEmissioneCommessa.getDate())) {
-						lblIcoEmissioneCommessa.setIcon(IcoErrore);
+						lblIcoEmissioneCommessa.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoEmissioneCommessa
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
-						lblIcoDataFine.setIcon(IcoErrore);
+						lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoDataFine
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
 					} else {
-						lblIcoDataFine.setIcon(IcoOk);
+						lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 						lblIcoDataFine.setToolTipText(null);
-						lblIcoEmissioneCommessa.setIcon(IcoOk);
+						lblIcoEmissioneCommessa.setIcon(ConfigGUI.getOkIcon());
 						lblIcoEmissioneCommessa.setToolTipText(null);
 					}
 					controlloErrori();
@@ -290,16 +289,16 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 				public void focusLost(FocusEvent e) {
 					if (dateDataFine.getDate().before(
 							dateEmissioneCommessa.getDate())) {
-						lblIcoEmissioneCommessa.setIcon(IcoErrore);
+						lblIcoEmissioneCommessa.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoEmissioneCommessa
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
-						lblIcoDataFine.setIcon(IcoErrore);
+						lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoDataFine
 								.setToolTipText("La data di inizio deve precedere la data di fine!");
 					} else {
-						lblIcoDataFine.setIcon(IcoOk);
+						lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
 						lblIcoDataFine.setToolTipText(null);
-						lblIcoEmissioneCommessa.setIcon(IcoOk);
+						lblIcoEmissioneCommessa.setIcon(ConfigGUI.getOkIcon());
 						lblIcoEmissioneCommessa.setToolTipText(null);
 					}
 					controlloErrori();
@@ -330,13 +329,13 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 						@Override
 						public void focusLost(FocusEvent e) {
 							if (dateScadenzaCommessa.getDate() == null) {
-								lblIcoScadenzaCommessa.setIcon(IcoErrore);
+								lblIcoScadenzaCommessa.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoScadenzaCommessa
 										.setToolTipText("La data di scadenza deve essere selezionata!");
 								dateScadenzaCommessa.setBorder(new LineBorder(
-										Color.red));
+										ConfigGUI.getColoreBordoErrore()));
 							} else {
-								lblIcoScadenzaCommessa.setIcon(IcoOk);
+								lblIcoScadenzaCommessa.setIcon(ConfigGUI.getOkIcon());
 								lblIcoScadenzaCommessa.setToolTipText(null);
 							}
 							controlloErrori();
@@ -345,13 +344,13 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 						@Override
 						public void focusGained(FocusEvent e) {
 							if (dateScadenzaCommessa.getDate() == null) {
-								lblIcoScadenzaCommessa.setIcon(IcoErrore);
+								lblIcoScadenzaCommessa.setIcon(ConfigGUI.getErrorIcon());
 								lblIcoScadenzaCommessa
 										.setToolTipText("La data di scadenza deve essere selezionata!");
 								dateScadenzaCommessa.setBorder(new LineBorder(
-										Color.red));
+										ConfigGUI.getColoreBordoErrore()));
 							} else {
-								lblIcoScadenzaCommessa.setIcon(IcoOk);
+								lblIcoScadenzaCommessa.setIcon(ConfigGUI.getOkIcon());
 								lblIcoScadenzaCommessa.setToolTipText(null);
 							}
 							controlloErrori();
@@ -383,19 +382,19 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoRitardo.setIcon(IcoErrore);
+						lblIcoRitardo.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoRitardo
 								.setToolTipText("Il campo Ritardo Produzione deve contenere solo numeri!");
-						txtRitardo.setBorder(new LineBorder(Color.red));
+						txtRitardo.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (m.find()) {
-						lblIcoRitardo.setIcon(IcoErrore);
+						lblIcoRitardo.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoRitardo
 								.setToolTipText("Il campo Ritardo Produzione deve contenere solo numeri!");
-						txtRitardo.setBorder(new LineBorder(Color.red));
+						txtRitardo.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoRitardo.setIcon(IcoOk);
+						lblIcoRitardo.setIcon(ConfigGUI.getOkIcon());
 						lblIcoRitardo.setToolTipText("");
-						txtRitardo.setBorder(new LineBorder(Color.green));
+						txtRitardo.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}

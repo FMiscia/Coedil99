@@ -85,7 +85,6 @@ public class PanelRDAComm extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				PanelRDAComm.this.actionSuRDA(GestisciRDAHandler.CONFERMATA);
 			}
 		});
@@ -100,7 +99,6 @@ public class PanelRDAComm extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				PanelRDAComm.this.actionSuRDA(GestisciRDAHandler.RIFIUTATA);
 			}
 		});
@@ -110,7 +108,6 @@ public class PanelRDAComm extends JPanel{
 	}
 
 	protected void actionSuRDA(String stato) {
-		// TODO Auto-generated method stub
 		CommercialeCenter c = CommercialeCenter.getInstance();
 		if(area.getText().length() > 250)
 			area.setText(area.getText().substring(0,200));
@@ -124,7 +121,7 @@ public class PanelRDAComm extends JPanel{
 			CommercialeCenter contenitore = CommercialeCenter.getInstance();
 			contenitore.setRDASelezionata(GestisciRDAHandler.getInstance().getMRDAById(c.getLista().getPrimaRDA()));
 			contenitore.loadListaRigheRDA();
-			c.getLista().getPrimaCard().setBackground(new Color(30, 44, 255));
+			c.getLista().getPrimaCard().selectCard();
 			c.getLista().getPrimaCard().validate();
 			c.getLista().getPrimaCard().repaint();
 		}

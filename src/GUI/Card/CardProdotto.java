@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import GUI.ConfigGUI;
 import GUI.Abstract.ACard;
 import GUI.Abstract.ALista;
 import coedil99.model.MProductDescription;
@@ -21,8 +22,6 @@ public class CardProdotto extends ACard {
 	private JLabel lblBase;
 	private JLabel lblPezzi;
 	private JLabel lblPrezzo;
-	private static Color pari = new Color(30, 144, 255);
-	private static Color dispari = new Color(30, 44, 255);
 	
 	public CardProdotto(ALista AbstractList) {
 		super(AbstractList);
@@ -47,7 +46,7 @@ public class CardProdotto extends ACard {
 	 */
 	public void initialize(){
 		this.setPreferredSize(new Dimension(530, 30));
-		this.setBackground(this.pari);
+		this.setBackground(ConfigGUI.getColoreProdottoPari());
 		this.setBorder(new LineBorder(Color.WHITE));
 		this.setForeground(Color.WHITE);
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -57,57 +56,51 @@ public class CardProdotto extends ACard {
 		
 		this.lblEssenza = new JLabel();
 		this.lblEssenza.setHorizontalAlignment(SwingConstants.CENTER);
-		this.lblEssenza.setForeground(new Color(255, 255, 255));
 		this.lblEssenza.setBorder(null);
 		this.lblEssenza.setToolTipText("Essenza");
 		this.lblEssenza.setPreferredSize(new Dimension(160, 30));
 		this.add(lblEssenza);
 		
-		add(this.createSeparator(SwingConstants.VERTICAL, Color.WHITE, Color.WHITE, new Dimension(2, 30)));
+		add(this.createSeparator(SwingConstants.VERTICAL, new Dimension(2, 30)));
 		
 		this.lblAltezza = new JLabel();
 		this.lblAltezza.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lblAltezza.setBorder(null);
-		this.lblAltezza.setForeground(new Color(255, 255, 255));
 		this.lblAltezza.setToolTipText("Altezza");
 		this.lblAltezza.setPreferredSize(new Dimension(80, 30));
 		this.add(lblAltezza);
 		
-		add(this.createSeparator(SwingConstants.VERTICAL, Color.WHITE, Color.WHITE, new Dimension(2, 30)));
+		add(this.createSeparator(SwingConstants.VERTICAL, new Dimension(2, 30)));
 		
 		this.lblLunghezza = new JLabel();
 		this.lblLunghezza.setHorizontalAlignment(SwingConstants.CENTER);
-		this.lblLunghezza.setForeground(new Color(255, 255, 255));
 		this.lblLunghezza.setBorder(null);
 		this.lblLunghezza.setToolTipText("Lunghezza");
 		this.lblLunghezza.setPreferredSize(new Dimension(80, 30));
 		this.add(lblLunghezza);
 		
-		add(this.createSeparator(SwingConstants.VERTICAL, Color.WHITE, Color.WHITE, new Dimension(2, 30)));
+		add(this.createSeparator(SwingConstants.VERTICAL, new Dimension(2, 30)));
 		
 		this.lblBase = new JLabel();
 		this.lblBase.setHorizontalAlignment(SwingConstants.CENTER);
-		this.lblBase.setForeground(new Color(255, 255, 255));
 		this.lblBase.setBorder(null);
 		this.lblBase.setToolTipText("Base");
 		this.lblBase.setPreferredSize(new Dimension(70, 30));
 		this.add(lblBase);
 		
-		add(this.createSeparator(SwingConstants.VERTICAL, Color.WHITE, Color.WHITE, new Dimension(2, 30)));
+		add(this.createSeparator(SwingConstants.VERTICAL, new Dimension(2, 30)));
 		
 		this.lblPezzi = new JLabel();
 		this.lblPezzi.setHorizontalAlignment(SwingConstants.CENTER);
-		this.lblPezzi.setForeground(new Color(255, 255, 255));
 		this.lblPezzi.setBorder(null);
 		this.lblPezzi.setToolTipText("Pezzi per pacco");
 		this.lblPezzi.setPreferredSize(new Dimension(50,30));
 		this.add(lblPezzi);
 		
-		add(this.createSeparator(SwingConstants.VERTICAL, Color.WHITE, Color.WHITE, new Dimension(2, 30)));
+		add(this.createSeparator(SwingConstants.VERTICAL, new Dimension(2, 30)));
 		
 		this.lblPrezzo = new JLabel();
 		this.lblPrezzo.setHorizontalAlignment(SwingConstants.CENTER);
-		this.lblPrezzo.setForeground(new Color(255, 255, 255));
 		this.lblPrezzo.setBorder(null);
 		this.lblPrezzo.setToolTipText("Prezzo");
 		this.lblPrezzo.setPreferredSize(new Dimension(70, 30));
@@ -118,7 +111,7 @@ public class CardProdotto extends ACard {
 	
 	public void setSfondoCard(int riga){
 		if((riga%2) != 0)
-			this.setBackground(this.dispari);
+			this.setBackground(ConfigGUI.getColoreProdottoDispari());
 	}
 
 }
