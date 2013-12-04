@@ -96,13 +96,9 @@ public class PanelStart extends JPanel {
 				FornitoriCenter.getInstance().setLista(listaf);
 				listaf.deselectAll();
 				FornitoriCenter.getInstance().setPrimoCatalogoFornitore();
-				ArrayList<JToggleButton> b = FornitoriCenter.getInstance()
-						.getClipPanel().getButtons();
 				FornitoriCenter.getInstance().loadListaProdotti();
-
 				FornitoriCenter.getInstance().getClipPanel()
 						.focusToListaCataloghi();
-
 				CoedilFrame.getInstance().montaPanel(
 						FornitoriCenter.getInstance());
 			}
@@ -165,6 +161,8 @@ public class PanelStart extends JPanel {
 		plButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				ProgrammaLavori p = ProgrammaLavori.getInstance();
+				p.getClipPanel().resetInitialState();
+				p.checkCommesse();
 				CoedilFrame.getInstance().montaPanel(p);
 			}
 		});

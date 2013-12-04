@@ -42,16 +42,17 @@ public class ListaCommesse extends ALista {
 	 * Toglie il focus a tutte le card Commessa
 	 */
 	public void deselectAll() {
-		for (Component c : panel.getComponents()) {
-			c.setBackground(ConfigGUI.getColoreDeselezionato());
-			c.validate();
-			c.repaint();
+		if(this.getPrimaCommessa() != 0){
+			for (Component c : panel.getComponents()) {
+				c.setBackground(ConfigGUI.getColoreDeselezionato());
+				c.validate();
+				c.repaint();
+			}
 		}
-
 	}
 
 	/**
-	 * Fornisce l'id della prima commessa della lista
+	 * Fornisce l'id della prima commessa della lista e la seleziona
 	 * 
 	 * @return id:int
 	 */
@@ -83,6 +84,7 @@ public class ListaCommesse extends ALista {
 	 */
 	public void selectCommessaSelezionata(MCommessa mcf) {
 		if (this.panel.getComponentCount() != 0) {
+			this.deselectAll();
 			Component[] c = panel.getComponents();
 			for (int i = 0; i < c.length; ++i)
 				if (((CardCodiceInterno) c[i]).getCommessaId() == mcf

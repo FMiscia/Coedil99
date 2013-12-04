@@ -145,6 +145,9 @@ public class PlicoCommessa extends APlico {
 						pl.ListaCommesse().selectCommessaSelezionata(
 								pl.getCommessaSelezionata());
 						pl.getRaccoglitorePlichi().caricaPrimaCommessa(pl.getCommessaSelezionata());
+					} else {
+						pl.getRaccoglitorePlichi().reset();
+						pl.checkCommesse();
 					}
 					
 				}

@@ -30,7 +30,6 @@ public class ClipPanelComm extends AClipPanel {
 	}
 
 	protected void changeButtonLogState() {
-		// TODO Auto-generated method stub
 		this.removeAll();
 		//this.addlogButton();
 		this.fill();

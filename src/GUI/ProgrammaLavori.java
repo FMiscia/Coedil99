@@ -17,7 +17,7 @@ public class ProgrammaLavori extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static ProgrammaLavori instance = null;
-	private ALista lista;
+	private ListaCommesse lista;
 	private RaccoglitorePlichi raccoglitoreplichi;
 	private ClipPanelProgrammaLavori clip;
 	private MCommessa commessaSelezionata = null;
@@ -38,6 +38,7 @@ public class ProgrammaLavori extends JPanel {
 		this.raccoglitoreplichi = RaccoglitorePlichi.getInstance();
 		this.addPanelLavori();
 		this.addMenuBar();
+		this.checkCommesse();
 	}
 
 	/**
@@ -51,12 +52,14 @@ public class ProgrammaLavori extends JPanel {
 				.makeLista();
 		proglavoripanel.add(lista, BorderLayout.WEST);
 		proglavoripanel.add(this.raccoglitoreplichi, BorderLayout.CENTER);
-		if (this.getCommessaSelezionata() == null && ((ListaCommesse) this.lista).getPrimaCommessa() != 0){
+		if (this.getCommessaSelezionata() == null && this.lista.getPrimaCommessa() != 0){
 			this.commessaSelezionata = GestisciCommessaHandler.getInstance()
 					.getCommessaById(
-							((ListaCommesse) this.lista).getPrimaCommessa());
-		} else {
+							this.lista.getPrimaCommessa());
+		} else if(this.getCommessaSelezionata() != null && ((ListaCommesse) this.lista).getPrimaCommessa() != 0) {
 			((ListaCommesse) this.lista).selectCommessaSelezionata(this.getCommessaSelezionata());
+		} else {
+			return;
 		}
 		this.raccoglitoreplichi.caricaPrimaCommessa(this.commessaSelezionata);
 	}
@@ -81,7 +84,6 @@ public class ProgrammaLavori extends JPanel {
 	public static ProgrammaLavori getInstance() {
 		if (ProgrammaLavori.instance == null)
 			ProgrammaLavori.instance = new ProgrammaLavori();
-
 		return ProgrammaLavori.instance;
 	}
 
@@ -91,7 +93,7 @@ public class ProgrammaLavori extends JPanel {
 	 */
 
 	public ListaCommesse ListaCommesse() {
-		return (ListaCommesse) lista;
+		return lista;
 	}
 
 	/**
@@ -141,6 +143,13 @@ public class ProgrammaLavori extends JPanel {
 	 */
 	public ClipPanelProgrammaLavori getClipPanel() {
 		return clip;
+	}
+	
+	/**
+	 * Metodo che abilita i bottoni del clip panel solo se ci sono delle commesse
+	 */
+	public void checkCommesse(){
+		this.clip.enableButtons(this.lista.getPrimaCard() != null);
 	}
 
 }

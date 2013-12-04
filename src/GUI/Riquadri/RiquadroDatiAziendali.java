@@ -85,18 +85,18 @@ public class RiquadroDatiAziendali extends ARiquadro {
 				@Override
 				public void keyReleased(KeyEvent e) {
 					String line = txtOrario.getText();
-					String pattern = "[^a-zA-Z\']";
+					String pattern = "[^a-zA-Z0-9\'\\s]";
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
 						lblIcoOrario.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoOrario
-								.setToolTipText("Il campo Orario deve contenere solo lettere!");
+								.setToolTipText("Il campo Orario deve contenere solo lettere e/o numeri!");
 						txtOrario.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (m.find()) {
 						lblIcoOrario.setIcon(ConfigGUI.getErrorIcon());
 						lblIcoOrario
-								.setToolTipText("Il campo Orario deve contenere solo lettere!");
+								.setToolTipText("Il campo Orario deve contenere solo lettere e/o numeri!");
 						txtOrario.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
 						lblIcoOrario.setIcon(ConfigGUI.getOkIcon());
