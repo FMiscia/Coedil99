@@ -3,11 +3,10 @@ package GUI.ClipPanels;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JToggleButton;
 import javax.swing.JOptionPane;
+import javax.swing.JToggleButton;
 
 import GUI.CoedilFrame;
-import GUI.ConfigGUI;
 import GUI.PanelStart;
 import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
@@ -17,6 +16,7 @@ import GUI.Plichi.PlicoCommessa;
 import GUI.Plichi.PlicoCreaCommessa;
 import GUI.Plichi.PlicoDDO;
 import GUI.Plichi.PlicoDistinta;
+import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MDistinta;
 
 /**
@@ -67,8 +67,11 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
 					return;
 				}
-				ProgrammaLavori.getInstance().getRaccoglitorePlichi()
+				ProgrammaLavori pl = ProgrammaLavori.getInstance();
+				pl.getRaccoglitorePlichi()
 						.changePlico(PlicoCommessa.getInstance());
+				pl.getRaccoglitorePlichi().caricaPrimaCommessa(pl.getCommessaSelezionata());
+				pl.ListaCommesse().selectCommessaSelezionata(pl.getCommessaSelezionata());
 				ClipPanelProgrammaLavori.this.focusOut();
 				JToggleButton b = (JToggleButton) e.getSource();
 				b.setSelected(true);
@@ -124,7 +127,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 								.changePlico(PlicoDDO.getInstance());
 						((JToggleButton) e.getSource()).doClick();
-					} else 
+					} else
 						((JToggleButton) e.getSource()).setSelected(false);
 				}
 				RaccoglitorePlichi.getInstance().validate();
@@ -162,8 +165,10 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 	 * @return bool:boolean
 	 */
 	public boolean clickDuringModify() {
-		if (((APlico) RaccoglitorePlichi.getInstance().getPlico_container()
-				.getComponent(0)).isModifying()) {
+		if (RaccoglitorePlichi.getInstance().getPlico_container()
+				.getComponentCount() != 0
+				&& ((APlico) RaccoglitorePlichi.getInstance()
+						.getPlico_container().getComponent(0)).isModifying()) {
 			Object[] options = { "Si", "No" };
 			int n = JOptionPane.showOptionDialog(null,
 					"Sicuro di voler abbandonare la modifica?\n"

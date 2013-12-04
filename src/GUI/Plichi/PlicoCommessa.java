@@ -132,14 +132,21 @@ public class PlicoCommessa extends APlico {
 							.getCommesse()
 							.remove(ProgrammaLavori.getInstance()
 									.getCommessaSelezionata());
-					ProgrammaLavori.getInstance().getCommessaSelezionata()
-							.delete();
-					ProgrammaLavori.getInstance().ListaCommesse().updatePanel();
-					if (ProgrammaLavori.getInstance().ListaCommesse()
-							.getPrimaCommessa() != 0)
-						ProgrammaLavori.getInstance().setCommessaSelezionata(
-								new MCommessa(ProgrammaLavori.getInstance()
-										.ListaCommesse().getPrimaCommessa()));
+					ProgrammaLavori pl = ProgrammaLavori.getInstance();
+					pl.getCommessaSelezionata().delete();
+					JOptionPane.showMessageDialog(null,
+							"Commessa eliminata con successo",
+							"Operazione eseguita", JOptionPane.PLAIN_MESSAGE);
+					pl.ListaCommesse().updatePanel();
+					if (pl.ListaCommesse().getPrimaCommessa() != 0) {
+						pl.setCommessaSelezionata(new MCommessa(ProgrammaLavori
+								.getInstance().ListaCommesse()
+								.getPrimaCommessa()));
+						pl.ListaCommesse().selectCommessaSelezionata(
+								pl.getCommessaSelezionata());
+						pl.getRaccoglitorePlichi().caricaPrimaCommessa(pl.getCommessaSelezionata());
+					}
+					
 				}
 
 			}

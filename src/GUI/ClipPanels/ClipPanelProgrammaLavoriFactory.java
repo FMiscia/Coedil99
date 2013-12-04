@@ -16,7 +16,6 @@ public class ClipPanelProgrammaLavoriFactory extends ClipPanelFactory {
 
 	@Override
 	public AClipPanel makeClipPanel() {
-		// TODO Auto-generated method stub
 		return new ClipPanelProgrammaLavori();
 	}
 

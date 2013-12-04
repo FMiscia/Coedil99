@@ -7,7 +7,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -15,7 +14,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 import GUI.CoedilFrame;
 import GUI.ProgrammaLavori;
@@ -38,7 +36,6 @@ import coedil99.controller.GestisciOrdineHandler;
 import coedil99.model.MCommessa;
 import coedil99.model.MDistinta;
 import coedil99.model.MOrdine;
-import coedil99.persistentmodel.DistintaFactory;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -242,7 +239,6 @@ public class PlicoCreaCommessa extends APlico {
 						&& PlicoCreaCommessa.this.rdpc.controlloErrori()
 						&& PlicoCreaCommessa.this.rsc.controlloErrori()
 						&& PlicoCreaCommessa.this.rdc.checkEmpty()
-						&& PlicoCreaCommessa.this.rdcc.checkEmpty()
 						&& PlicoCreaCommessa.this.rdpc.checkEmpty()
 						&& PlicoCreaCommessa.this.rsc.checkEmpty()
 						&& PlicoCreaCommessa.this.selected_ordine > 0) {
@@ -275,6 +271,7 @@ public class PlicoCreaCommessa extends APlico {
 							"Operazione eseguita", JOptionPane.PLAIN_MESSAGE);
 					PlicoCreaCommessa.this.container=null;
 					ProgrammaLavori.getInstance().ListaCommesse().updatePanel();
+					ProgrammaLavori.getInstance().setCommessaSelezionata(commessa);
 					ProgrammaLavori.getInstance().getClipPanel().getButtons()
 							.get(AClipPanel.PLButtonState.get("COMMESSA"))
 							.doClick();
@@ -300,8 +297,6 @@ public class PlicoCreaCommessa extends APlico {
 	 */
 	@Override
 	public void load() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -309,8 +304,6 @@ public class PlicoCreaCommessa extends APlico {
 	 */
 	@Override
 	public void load(int id) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**

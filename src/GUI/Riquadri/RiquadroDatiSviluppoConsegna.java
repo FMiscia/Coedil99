@@ -98,7 +98,7 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 					this.dateScadenzaCommessa.getDate());
 			c.getPersistentModel().setFineCommessa(this.dateDataFine.getDate());
 			c.getPersistentModel().setRitardoProduzione(
-					Integer.getInteger(this.txtRitardo.getText()));
+					Integer.parseInt(this.txtRitardo.getText()));
 			c.save();
 			if (showmex)
 				JOptionPane

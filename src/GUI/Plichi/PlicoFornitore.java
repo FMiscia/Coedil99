@@ -25,7 +25,6 @@ public class PlicoFornitore extends APlico {
 
 	private static PlicoFornitore instance = null;
 	private ListaProdotti listaProdotti;
-	private JPanel intestazione;
 	
 	/**
 	 * Costruttore

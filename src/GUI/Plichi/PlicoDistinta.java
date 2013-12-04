@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import GUI.CoedilFrame;
-import GUI.ProgrammaLavori;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.APlico;
 import GUI.Riquadri.RiquadroDatiDistinta;
@@ -108,12 +108,12 @@ public class PlicoDistinta extends APlico {
 		if (d.hasDdo()){
 			for(RiquadroDatiDistinta r: riquadri){
 				r.avoidEditing(true);
-				addButton.setEnabled(false);
+				addButton.setVisible(false);
 			}
 		}
 		else {
 			for(RiquadroDatiDistinta r: riquadri){
-				addButton.setEnabled(true);
+				addButton.setVisible(true);
 			}
 		}
 		this.validate();

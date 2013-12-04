@@ -353,13 +353,13 @@ public class RiquadroDatiDistinta extends ARiquadro {
 			btnElimina.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					MRigaLavoro r = new MRigaLavoro();
-					if (RiquadroDatiDistinta.this.oggetto != null)
-						r = (MRigaLavoro) RiquadroDatiDistinta.this.oggetto;
-					MDistinta odistinta = new MDistinta(ProgrammaLavori
-							.getInstance().getCommessaSelezionata()
-							.getPersistentModel().getDistinta().getID());
-					odistinta.eliminaRigaLavoro(r.getPersistentModel());
+					if (RiquadroDatiDistinta.this.oggetto != null){
+						MRigaLavoro r = (MRigaLavoro) RiquadroDatiDistinta.this.oggetto;
+						MDistinta odistinta = new MDistinta(ProgrammaLavori
+								.getInstance().getCommessaSelezionata()
+								.getPersistentModel().getDistinta().getID());
+						odistinta.eliminaRigaLavoro(r.getPersistentModel());
+					}
 					RiquadroDatiDistinta.this.removeAll();
 					PlicoDistinta.getInstance().removeRiquadro(
 							RiquadroDatiDistinta.this);
@@ -368,6 +368,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 							.validate();
 					ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 							.repaint();
+					JOptionPane.showMessageDialog(null, "");
 				}
 			});
 		add(btnElimina);

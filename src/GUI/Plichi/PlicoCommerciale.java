@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import GUI.CommercialeCenter;
 import GUI.RDACenter;
 import GUI.Abstract.APlico;
-import GUI.Abstract.ARiquadro;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Panels.PanelRDAComm;
 import GUI.Panels.PanelRDACommFactory;

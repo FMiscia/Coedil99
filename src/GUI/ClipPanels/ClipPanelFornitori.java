@@ -1,17 +1,14 @@
 package GUI.ClipPanels;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JToggleButton;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
 import GUI.CoedilFrame;
 import GUI.FornitoriCenter;
 import GUI.PanelStart;
-import GUI.RDACenter;
 import GUI.Abstract.AClipPanel;
 import GUI.Plichi.PlicoFornitore;
 
