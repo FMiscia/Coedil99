@@ -165,7 +165,7 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 				@Override
 				public void keyReleased(KeyEvent e) {
 					String line = txtResponsabile.getText();
-					String pattern = "[^a-zA-Z������']";
+					String pattern = "[^a-zA-Z\'\\è\\é\\ò\\à\\ù\\s]";
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {

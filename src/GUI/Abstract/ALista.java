@@ -77,7 +77,6 @@ public abstract class ALista extends JScrollPane {
 	private void initialize() {
 		this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		this.getVerticalScrollBar().setUnitIncrement(20);
-		//this.setBackground(ALista.coloreSFondo);
 		this.panel = new JPanel(new WrapLayout());
 		this.setViewportView(this.panel);
 	}

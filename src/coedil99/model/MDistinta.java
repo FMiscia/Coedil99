@@ -20,8 +20,8 @@ public class MDistinta implements IModel{
 	 */
 	public MDistinta() {
 		this.distinta = DistintaFactory.createDistinta();
-		MRigaLavoro riga = new MRigaLavoro();
-		this.distinta.lavori.add(riga.getPersistentModel());
+		//MRigaLavoro riga = new MRigaLavoro();
+		//this.distinta.lavori.add(riga.getPersistentModel());
 	}
 	
 	/**
@@ -32,7 +32,6 @@ public class MDistinta implements IModel{
 		try {
 			this.distinta = DistintaFactory.loadDistintaByORMID(ID);
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -1,8 +1,5 @@
 package GUI.Abstract;
 
-import java.awt.Color;
-import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")

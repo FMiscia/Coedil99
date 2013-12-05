@@ -128,7 +128,6 @@ public class ClipPanelRDA extends AClipPanel {
 
 						}
 						ClipPanelRDA.this.focusOut();
-						//b.setBackground(new Color(180, 180, 180));
 						b.setSelected(true);
 						RDACenter rdac = RDACenter.getInstance();
 						rdac.refreshCongelate();

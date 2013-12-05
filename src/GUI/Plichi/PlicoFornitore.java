@@ -3,15 +3,10 @@ package GUI.Plichi;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import GUI.Abstract.APlico;
-import GUI.Abstract.ARiquadro;
 import GUI.Liste.ListaProdotti;
 import GUI.Liste.ListaProdottiFactory;
 import coedil99.controller.GestisciFornitoreHandler;
-import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MProductDescription;
 
 /**
@@ -25,7 +20,6 @@ public class PlicoFornitore extends APlico {
 
 	private static PlicoFornitore instance = null;
 	private ListaProdotti listaProdotti;
-	private JPanel intestazione;
 	
 	/**
 	 * Costruttore
@@ -50,19 +44,14 @@ public class PlicoFornitore extends APlico {
 	
 	@Override
 	public void load() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void load(int id) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public boolean isModifying() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	

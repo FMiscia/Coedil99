@@ -4,10 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,10 +15,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
-import GUI.Riquadri.RiquadroDatiAziendali;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
 
 /**
  * 
@@ -60,8 +54,9 @@ public abstract class ARiquadro extends JPanel {
 				aperto = true;
 			} else {
 				ARiquadro.this.modifica.setText("salva");
-				// controlloErrori();
+				controlloErrori();
 				aperto = false;
+
 			}
 			i.setEditable(editable);
 		}
@@ -81,9 +76,8 @@ public abstract class ARiquadro extends JPanel {
 	 */
 	public void avoidEditing(boolean otherButtonstoo) {
 		this.modifica.setEnabled(false);
-		for (MouseListener al : ARiquadro.this.modifica.getMouseListeners()) {
-			ARiquadro.this.modifica.removeMouseListener(al);
-		}
+		if(modifica.getMouseListeners().length != 1)
+			ARiquadro.this.modifica.removeMouseListener(modifica.getMouseListeners()[1]);
 		this.validate();
 		this.repaint();
 	}
@@ -93,7 +87,7 @@ public abstract class ARiquadro extends JPanel {
 	 */
 	public void enableEditing() {
 		this.modifica.setEnabled(true);
-		if (this.modifica.getMouseListeners().length == 0)
+		if (this.modifica.getMouseListeners().length == 1)
 			this.modifica.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -133,34 +127,34 @@ public abstract class ARiquadro extends JPanel {
 
 	/**
 	 * Salva il riquadro
-	 * @param showmex: se si vuole mostrare il messaggio di avvenuto 
-	 * salvataggio
+	 * 
+	 * @param showmex
+	 *            : se si vuole mostrare il messaggio di avvenuto salvataggio
 	 */
 	public abstract void salva(boolean showmex);
 
-	 /**
-     * Controllo deigli errori di input
-     */
-    public boolean controlloErrori() {
-            boolean test = true;
-            for (JLabel j : this.Label) {
-                    if (j.getIcon() != null && j.getIcon().equals(ConfigGUI.getErrorIcon()))
-                            test = false;
-            }
-            if (test) {
-                    enableEditing();
-            } else {
-                    avoidEditing(false);
-            }
-            return test;
-    }
-	
-	
 	/**
-	 * Cambia il colore del testo nei campi non abilitati
-	 * mettendolo più scuro
+	 * Controllo degli errori di input
 	 */
-	public void changeUnableColor(JTextField x){
+	public boolean controlloErrori() {
+		boolean test = true;
+		for (JLabel j : this.Label) {
+			if (j.getIcon() != null
+					&& j.getIcon().equals(ConfigGUI.getErrorIcon()))
+				test = false;
+		}
+		if (test) {
+			enableEditing();
+		} else {
+			avoidEditing(false);
+		}
+		return test;
+	}
+
+	/**
+	 * Cambia il colore del testo nei campi non abilitati mettendolo più scuro
+	 */
+	public void changeUnableColor(JTextField x) {
 		x.setDisabledTextColor(Color.BLACK);
 		x.validate();
 		x.repaint();
@@ -214,24 +208,27 @@ public abstract class ARiquadro extends JPanel {
 		this.modifica.setLocation(469, 0);
 		add(this.modifica);
 	}
-	
+
 	/**
 	 * Controlla se almeno un campo del riquadro è vuoto
+	 * 
 	 * @return
 	 */
-	public boolean checkEmpty(){
-		boolean test=true;
-		for(JTextField temp : this.Container){
-			if(temp.getText().length()<=0){		
-				test=false;
+	public boolean checkEmpty() {
+		boolean test = true;
+		for (JTextField temp : this.Container) {
+			if (!temp.isEnabled())
+				break;
+			else if (temp.getText().length() <= 0) {
+				test = false;
 			}
 		}
 		return test;
 	}
 
 	protected abstract void initialize();
-	
-	public boolean modify(){
+
+	public boolean modify() {
 		return aperto;
 	}
 
@@ -248,18 +245,18 @@ public abstract class ARiquadro extends JPanel {
 	}
 
 	public void svuotaIconeLAbel() {
-		for(JLabel temp: this.Label)
+		for (JLabel temp : this.Label)
 			temp.setIcon(null);
-		
+
 	}
-	
-	 /**
-     * Elimina dal riquadro il bottone di modifica
-     */
-    public void deleteButtons(){
-            this.remove(this.modifica);
-            this.validate();
-            this.repaint();
-    }
+
+	/**
+	 * Elimina dal riquadro il bottone di modifica
+	 */
+	public void deleteButtons() {
+		this.remove(this.modifica);
+		this.validate();
+		this.repaint();
+	}
 
 }

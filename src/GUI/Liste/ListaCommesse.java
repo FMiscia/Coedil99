@@ -1,14 +1,15 @@
 package GUI.Liste;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import GUI.ConfigGUI;
 import GUI.Abstract.ALista;
-import GUI.Avvisi.AvvisoOrdine;
-import GUI.Avvisi.AvvisoOrdineFactory;
+import GUI.Avvisi.AvvisoCommessa;
+import GUI.Avvisi.AvvisoCommessaFactory;
 import GUI.Card.CardCodiceInterno;
 import GUI.Card.CardCodiceInternoFactory;
 import coedil99.controller.GestisciClienteHandler;
@@ -29,6 +30,7 @@ public class ListaCommesse extends ALista {
 	 */
 	public ListaCommesse() {
 		super();
+		this.initialize();
 		this.load();
 	}
 
@@ -40,27 +42,29 @@ public class ListaCommesse extends ALista {
 	 * Toglie il focus a tutte le card Commessa
 	 */
 	public void deselectAll() {
-		// TODO Auto-generated method stub
-		for (Component c : panel.getComponents()) {
-			c.setBackground(ConfigGUI.getColoreDeselezionato());
-			c.validate();
-			c.repaint();
+		if(this.getPrimaCommessa() != 0){
+			for (Component c : panel.getComponents()) {
+				c.setBackground(ConfigGUI.getColoreDeselezionato());
+				c.validate();
+				c.repaint();
+			}
 		}
-
 	}
 
 	/**
-	 * Fornisce l'id della prima commessa della lista
+	 * Fornisce l'id della prima commessa della lista e la seleziona
 	 * 
 	 * @return id:int
 	 */
 	public int getPrimaCommessa() {
-		if (panel.getComponentCount() != 0 && !panel.getComponent(0).getClass().getName().equals("GUI.Avvisi.AvvisoOrdine")){
+		if (panel.getComponentCount() != 0
+				&& !panel.getComponent(0).getClass().getName()
+						.equals("GUI.Avvisi.AvvisoCommessa")) {
 			((CardCodiceInterno) this.panel.getComponent(0))
-			.setBackground(ConfigGUI.getColoreSelezionato());
-			return ((CardCodiceInterno) this.panel.getComponent(0)).getCommessaId();
+					.setBackground(ConfigGUI.getColoreSelezionato());
+			return ((CardCodiceInterno) this.panel.getComponent(0))
+					.getCommessaId();
 		}
-			
 		return 0;
 	}
 
@@ -70,19 +74,21 @@ public class ListaCommesse extends ALista {
 	 */
 	public void updatePanel() {
 		this.panel.removeAll();
-        this.load();
-        this.panel.validate();
-        this.panel.repaint();
+		this.load();
+		this.panel.validate();
+		this.panel.repaint();
 	}
-	
+
 	/**
 	 * Metodo che seleziona la card relativa alla commessa selezionata
 	 */
-	public void selectCommessaSelezionata(MCommessa mcf){
-		if(this.panel.getComponentCount()!=0){
+	public void selectCommessaSelezionata(MCommessa mcf) {
+		if (this.panel.getComponentCount() != 0) {
+			this.deselectAll();
 			Component[] c = panel.getComponents();
-			for(int i=0; i<c.length; ++i)
-				if(((CardCodiceInterno) c[i]).getCommessaId() ==  mcf.getPersistentModel().getID())
+			for (int i = 0; i < c.length; ++i)
+				if (((CardCodiceInterno) c[i]).getCommessaId() == mcf
+						.getPersistentModel().getID())
 					((CardCodiceInterno) c[i]).selectCard();
 		}
 	}
@@ -96,10 +102,11 @@ public class ListaCommesse extends ALista {
 				.getInstance().getClienti());
 		int row = GestisciCommessaHandler.getInstance().getNumOfCommesse();
 		if (row == 0) {
-			this.panel.add((AvvisoOrdine) AvvisoOrdineFactory.getInstance().makeAvviso());
-			this.panel.setPreferredSize(new Dimension(150, 70));
+			this.panel.add((AvvisoCommessa) AvvisoCommessaFactory.getInstance()
+					.makeAvviso());
+			this.panel.setPreferredSize(new Dimension(180, 70));
 		} else {
-			this.panel.setPreferredSize(new Dimension(150, row * 70));
+			this.panel.setPreferredSize(new Dimension(180, row * 70));
 			for (int k = 0; k < t.size(); ++k) {
 				MCliente temp = (MCliente) t.get(k);
 				for (int j = 0; j < temp.getPersistentModel().ordini.size(); ++j) {
@@ -124,8 +131,39 @@ public class ListaCommesse extends ALista {
 				}
 			}
 		}
-			this.setPreferredSize(new Dimension(154, panel.getHeight()));
-			this.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+		this.setPreferredSize(new Dimension(this.getWidth(), panel.getHeight()));
+		this.validate();
+		this.repaint();
+	}
+
+	/**
+	 * Metodo che inizializza la grafica
+	 */
+	private void initialize() {
+		this.setPreferredSize(new Dimension(300, 70));
+		this.setSize(300, 70);
+		this.validate();
+		this.repaint();
+	}
+	
+	/**
+	 * Metodo che seleziona la prima commessa della lista
+	 */
+	public void setPrimaCommessa(){
+		if(this.getPrimaCard() != null)
+			this.getPrimaCard().setBackground(ConfigGUI.getColoreSelezionato());
+	}
+	
+	/**
+	 * Fornisce la prima Card della lista
+	 * 
+	 * @return component:Component
+	 */
+	public CardCodiceInterno getPrimaCard() {
+		if (panel.getComponentCount() != 0 && !panel.getComponent(0).getClass().getName().equals("GUI.Avvisi.AvvisoCommessa"))
+			return (CardCodiceInterno) panel.getComponent(0);
+		return null;
+
 	}
 
 }

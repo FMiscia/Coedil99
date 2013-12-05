@@ -1,19 +1,14 @@
 package GUI.Liste;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
 
 import GUI.ConfigGUI;
 import GUI.FornitoriCenter;
 import GUI.Abstract.ALista;
 import GUI.Avvisi.AvvisoFornitore;
 import GUI.Avvisi.AvvisoFornitoreFactory;
-import GUI.Avvisi.AvvisoOrdine;
-import GUI.Avvisi.AvvisoOrdineFactory;
 import GUI.Card.CardFornitore;
 import GUI.Card.CardFornitoreFactory;
 import coedil99.controller.GestisciFornitoreHandler;

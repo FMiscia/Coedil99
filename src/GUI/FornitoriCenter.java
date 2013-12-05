@@ -10,7 +10,6 @@ import GUI.ClipPanels.ClipPanelFornitoriFactory;
 import GUI.Liste.ListaFornitori;
 import GUI.Plichi.PlicoFornitore;
 import coedil99.model.MCatalogoFornitore;
-import javax.swing.JSplitPane;
 
 public class FornitoriCenter extends JPanel{
 	
