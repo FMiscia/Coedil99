@@ -6,8 +6,11 @@ import java.util.ListIterator;
 
 import org.orm.PersistentException;
 
+import coedil99.model.AOttimizzatoreStrategy;
 import coedil99.model.MCommessa;
 import coedil99.model.MDistinta;
+import coedil99.model.MRigaLavoro;
+import coedil99.model.MRigaRDA;
 import coedil99.persistentmodel.Commessa;
 import coedil99.persistentmodel.CommessaFactory;
 import coedil99.persistentmodel.Distinta;
@@ -165,6 +168,37 @@ public class GestisciCommessaHandler {
 	}
 	
 	/**
+	 * Salva la commessa 
+	 * 
+	 * @param tosave: commessa da salvare
+	 */
+	public void saveCommessa(MCommessa tosave){
+		tosave.save();
+	}
+	
+	/**
+	 * Salva la distinta 
+	 * 
+	 * @param tosave
+	 */
+	public void saveDistinta(MDistinta tosave){
+		tosave.save();
+	}
+	
+	/**
+	 * Salva la riga lavoro
+	 * 
+	 * @param to
+	 */
+	public void saveRigaLavoro(MRigaLavoro tosave){
+		tosave.save();
+	}
+	
+	public void OttimizzaDistinta(AOttimizzatoreStrategy s, MDistinta d){
+		d.creaDDO(s);
+	}
+	
+	/**
 	 * Singleton
 	 * @return instance:GestisciCommessaHandler
 	 */
@@ -174,6 +208,13 @@ public class GestisciCommessaHandler {
 		}
 
 		return GestisciCommessaHandler.instance;
+	}
+
+
+
+	public MRigaRDA makeRDA() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

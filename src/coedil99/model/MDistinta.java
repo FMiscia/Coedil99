@@ -80,11 +80,12 @@ public class MDistinta implements IModel{
 	}
 
 	/**
-	 * 
+	 * Elabora un ddo data una strategia di ottimizzazione
+	 * @param s: strategia
 	 * @return 
 	 */
-	public void creaDDO() {
-			OttimizzatoreHandler ott = new OttimizzatoreHandler(new StandardOttimizzatoreStrategy(), this);
+	public void creaDDO(AOttimizzatoreStrategy s) {
+			OttimizzatoreHandler ott = new OttimizzatoreHandler(s, this);
 			this.distinta.setDdo(ott.Ottimizza().getPersistentModel());
 			this.save();
 	}

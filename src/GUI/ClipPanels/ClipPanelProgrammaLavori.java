@@ -17,7 +17,10 @@ import GUI.Plichi.PlicoCommessa;
 import GUI.Plichi.PlicoCreaCommessa;
 import GUI.Plichi.PlicoDDO;
 import GUI.Plichi.PlicoDistinta;
+import coedil99.controller.GestisciCommessaHandler;
+import coedil99.controller.OttimizzatoreHandler;
 import coedil99.model.MDistinta;
+import coedil99.model.StandardOttimizzatoreStrategy;
 
 /**
  * 
@@ -120,7 +123,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 							JOptionPane.QUESTION_MESSAGE, null, options,
 							options[1]);
 					if (n == JOptionPane.YES_OPTION) {
-						odistinta.creaDDO();
+						GestisciCommessaHandler.getInstance().OttimizzaDistinta(new StandardOttimizzatoreStrategy(), odistinta);
 						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 								.changePlico(PlicoDDO.getInstance());
 						((JToggleButton) e.getSource()).doClick();

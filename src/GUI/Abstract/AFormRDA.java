@@ -23,6 +23,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import GUI.Utilities.JHorizontalSpinner;
 
+import coedil99.controller.GestisciCommessaHandler;
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.MCatalogoFornitore;
 import coedil99.model.MGeometria;
@@ -67,8 +68,9 @@ public abstract class AFormRDA extends JPanel {
 	 * 
 	 */
 	public void load() {
-		if(!GestisciFornitoreHandler.isInstanciated()){
-			GestisciFornitoreHandler.getInstance().reloadFornitori();}
+		if (!GestisciFornitoreHandler.isInstanciated()) {
+			GestisciFornitoreHandler.getInstance().reloadFornitori();
+		}
 		this.setFornitori(GestisciFornitoreHandler.getInstance()
 				.getArrayFornitori());
 		this.cbEssenza.setEnabled(false);
@@ -111,7 +113,8 @@ public abstract class AFormRDA extends JPanel {
 		this.cbFornitore.removeAllItems();
 		this.cbFornitore.setEnabled(true);
 		for (int i = 0; i < this.fornitori.size(); ++i) {
-			this.cbFornitore.addItem(this.fornitori.get(i).getPersistentModel().getName());
+			this.cbFornitore.addItem(this.fornitori.get(i).getPersistentModel()
+					.getName());
 		}
 		this.cbFornitore.addItemListener(new ItemListener() {
 
@@ -122,9 +125,13 @@ public abstract class AFormRDA extends JPanel {
 					AFormRDA.this.resetGeometria();
 					AFormRDA.this.disableSpinner();
 					AFormRDA.this.loadEssenze(GestisciFornitoreHandler
-							.getInstance().getFornitoreByName(
-									cbFornitore.getSelectedItem().toString()));
-					
+							.getInstance().getEssenze(
+									GestisciFornitoreHandler.getInstance()
+											.getFornitoreByName(
+													cbFornitore
+															.getSelectedItem()
+															.toString())));
+
 				}
 			}
 		});
@@ -138,16 +145,12 @@ public abstract class AFormRDA extends JPanel {
 	 * @param fornitore
 	 *            : Catalogo Fornitore selezionato
 	 */
-	protected void loadEssenze(final MCatalogoFornitore fornitore) {
+	protected void loadEssenze(final TreeSet<String> essenze) {
 		AFormRDA.this.cbEssenza.setEnabled(true);
 		if (this.cbEssenza.getItemListeners().length != 0)
 			this.cbEssenza
 					.removeItemListener(this.cbEssenza.getItemListeners()[0]);
 		this.cbEssenza.removeAllItems();
-		TreeSet<String> essenze = new TreeSet<String>();
-		for (int i = 0; i < fornitore.getPersistentModel().productDescription.size(); ++i) {
-			essenze.add(fornitore.getPersistentModel().productDescription.get(i).getEssenza());
-		}
 		for (int i = 0; i < essenze.size(); ++i) {
 			this.cbEssenza.addItem(essenze.toArray()[i]);
 		}
@@ -158,8 +161,18 @@ public abstract class AFormRDA extends JPanel {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					AFormRDA.this.resetGeometria();
 					AFormRDA.this.disableSpinner();
-					AFormRDA.this.loadGeometria(fornitore, cbEssenza
-							.getSelectedItem().toString());
+					AFormRDA.this
+							.loadGeometria(
+									GestisciFornitoreHandler
+											.getInstance()
+											.getProductDescription(
+													GestisciFornitoreHandler
+															.getInstance()
+															.getFornitoreByName(
+																	cbFornitore
+																			.getSelectedItem()
+																			.toString())),
+									cbEssenza.getSelectedItem().toString());
 				}
 			}
 		});
@@ -178,18 +191,17 @@ public abstract class AFormRDA extends JPanel {
 	 *            : Essenza selezionata
 	 * 
 	 */
-	protected void loadGeometria(MCatalogoFornitore fornitore, String essenza) {
+	protected void loadGeometria(ArrayList<ProductDescription> pd,
+			String essenza) {
 		AFormRDA.this.cbGeometria.setEnabled(true);
 		if (this.cbGeometria.getItemListeners().length != 0)
 			this.cbGeometria.removeItemListener(this.cbGeometria
 					.getItemListeners()[0]);
 		this.cbGeometria.removeAllItems();
-		@SuppressWarnings("unchecked")
-		ArrayList<ProductDescription> pd = new ArrayList<ProductDescription>(
-				fornitore.getPersistentModel().productDescription.getCollection());
 		for (int i = 0; i < pd.size(); ++i) {
 			if (pd.get(i).getEssenza().equals(essenza)) {
-				this.cbGeometria.addItem(new MGeometria(pd.get(i).getGeometria().getID()).toString());
+				this.cbGeometria.addItem(new MGeometria(pd.get(i)
+						.getGeometria().getID()).toString());
 			}
 		}
 		this.cbGeometria.addItemListener(new ItemListener() {
@@ -226,14 +238,14 @@ public abstract class AFormRDA extends JPanel {
 	 * 
 	 */
 	public void aggiornaSpesa() {
-		if(this.spinner.isEnabled()){
+		if (this.spinner.isEnabled()) {
 			MProductDescription pd = GestisciFornitoreHandler.getInstance()
 					.getMProductDescription(
 							this.cbEssenza.getSelectedItem().toString(),
 							this.cbGeometria.getSelectedItem().toString(),
 							this.cbFornitore.getSelectedItem().toString());
-			this.tfSpesa.setText(String.valueOf((Integer) this.spinner.getValue()
-					* pd.getPersistentModel().getPrezzo()));
+			this.tfSpesa.setText(String.valueOf((Integer) this.spinner
+					.getValue() * pd.getPersistentModel().getPrezzo()));
 			this.tfSpesa.validate();
 			this.tfSpesa.repaint();
 		}
@@ -242,7 +254,8 @@ public abstract class AFormRDA extends JPanel {
 	/**
 	 * Set
 	 * 
-	 * @param i: quantità intera da settare
+	 * @param i
+	 *            : quantità intera da settare
 	 */
 	public void setQuantity(int i) {
 		this.spinner.setValue(i);
@@ -257,7 +270,7 @@ public abstract class AFormRDA extends JPanel {
 	public JHorizontalSpinner getSpinner() {
 		return spinner;
 	}
-	
+
 	/**
 	 * Imposta la grafica
 	 */
@@ -376,11 +389,11 @@ public abstract class AFormRDA extends JPanel {
 		add(lblValuta, "3, 20, right, default");
 
 	}
-	
+
 	/**
 	 * Metodo che disabilita lo spinner resettando il valore a 1
 	 */
-	protected void disableSpinner(){
+	protected void disableSpinner() {
 		this.spinner.setEnabled(false);
 		this.spinner.setValue(1);
 		this.tfSpesa.setText(null);
@@ -389,27 +402,25 @@ public abstract class AFormRDA extends JPanel {
 		this.tfSpesa.validate();
 		this.tfSpesa.repaint();
 	}
-	
+
 	/**
 	 * Metodo che resetta la combo box essenza
 	 */
-	protected void resetEssenza(){
+	protected void resetEssenza() {
 		this.cbEssenza.setEnabled(false);
 		this.cbEssenza.removeAllItems();
 		this.cbEssenza.validate();
 		this.cbEssenza.repaint();
 	}
-	
+
 	/**
 	 * Metodo che resetta la combo box geometria
 	 */
-	protected void resetGeometria(){
+	protected void resetGeometria() {
 		this.cbGeometria.setEnabled(false);
 		this.cbGeometria.removeAllItems();
 		this.cbGeometria.validate();
 		this.cbGeometria.repaint();
 	}
-	
-	
 
 }

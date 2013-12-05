@@ -7,6 +7,7 @@ import org.orm.PersistentException;
 
 import GUI.RDACenter;
 import coedil99.model.MRDA;
+import coedil99.model.MRigaRDA;
 import coedil99.model.Subject;
 import coedil99.persistentmodel.RDA;
 import coedil99.persistentmodel.RDAFactory;
@@ -144,13 +145,12 @@ public class GestisciRDAHandler extends coedil99.model.Observer {
 	 * 
 	 */
 	public void saveAndAddRDA(MRDA r) {
-
 		r.save();
 		if (!this.arrayMRDA.contains(r))
 			this.addMRDA(0, r);
-		r.Notify();
 
 	}
+	
 
 	/**
 	 * Elimina un RDA nel DB e lo rimuove dalla lista delle RDA in ram
@@ -177,6 +177,14 @@ public class GestisciRDAHandler extends coedil99.model.Observer {
 	}
 
 	/**
+	 * Elimina la riga RDA
+	 * @param riga: rigaRDA da eliminare
+	 */
+	public void deleteRigaRDA(MRigaRDA riga){
+		riga.delete();
+	}
+	
+	/**
 	 * metodo Observer
 	 */
 	@Override
@@ -201,6 +209,23 @@ public class GestisciRDAHandler extends coedil99.model.Observer {
 	public void Update() {
 		RDACenter.getInstance().getClipPanel().updateNotifiche();
 
+	}
+	
+	/**
+	 * Factory della MRDA
+	 * @return
+	 */
+	public MRDA makeMRDA(){
+		return new MRDA();
+	}
+
+	/**
+	 * Factory della MRigaRDA
+	 * @return
+	 */
+	public MRigaRDA makeMRigaRDA() {
+		// TODO Auto-generated method stub
+		return new MRigaRDA();
 	}
 
 }

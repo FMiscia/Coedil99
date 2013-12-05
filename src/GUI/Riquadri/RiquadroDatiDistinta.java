@@ -24,6 +24,7 @@ import GUI.ConfigGUI;
 import GUI.ProgrammaLavori;
 import GUI.Abstract.ARiquadro;
 import GUI.Plichi.PlicoDistinta;
+import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MDistinta;
 import coedil99.model.MGeometria;
 import coedil99.model.MRigaLavoro;
@@ -441,13 +442,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	@Override
 	public void salva(boolean showmex) {
 		MRigaLavoro r = new MRigaLavoro();
-
+		MDistinta d = new MDistinta(ProgrammaLavori.getInstance()
+				.getCommessaSelezionata().getPersistentModel()
+				.getDistinta().getID());
 		if (this.oggetto != null) {
 			r = (MRigaLavoro) this.oggetto;
 		} else {
-			MDistinta d = new MDistinta(ProgrammaLavori.getInstance()
-					.getCommessaSelezionata().getPersistentModel()
-					.getDistinta().getID());
 			d.getPersistentModel().lavori.add(r.getPersistentModel());
 		}
 		PlicoDistinta.getInstance().addRiquadroinLista(this);
@@ -465,13 +465,13 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		r.getPersistentModel().setNumero(
 				Integer.parseInt(this.tfnumero.getText()));
 		r.getPersistentModel().setNote(this.tfnote.getText());
-		r.save();
+		GestisciCommessaHandler.getInstance().saveDistinta(d);
 		this.oggetto = r;
 		if (showmex)
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
-		this.load(this.oggetto);
+		this.load(((MRigaLavoro)this.oggetto).getPersistentModel());
 	}
 
 	public static Dimension getFormDimension() {

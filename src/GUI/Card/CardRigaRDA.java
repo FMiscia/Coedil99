@@ -63,6 +63,7 @@ public class CardRigaRDA extends ACard {
 	private JLabel txtPrezzo;
 	ListaRigheRDA listaRigheRDA;
 	private JButton btnModifica;
+	private MRigaRDA riga;
 
 	/**
 	 * Costruttore (prende il padre come parametro)
@@ -214,7 +215,7 @@ public class CardRigaRDA extends ACard {
 	 * @param o:Object
 	 */
 	public void load(Object o) {
-		final MRigaRDA riga = new MRigaRDA();
+		this.riga = GestisciRDAHandler.getInstance().makeMRigaRDA();
 		riga.setPersistentModel((RigaRDA) o);
 		this.txtEssenza.setText(riga.getPersistentModel().getDescription().getEssenza());
 		this.txtQuantita.setText(String.valueOf(riga.getPersistentModel().getQuantity()));
@@ -276,7 +277,7 @@ public class CardRigaRDA extends ACard {
 							JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 				}
 				if (n == JOptionPane.YES_OPTION) {
-						riga.delete();
+						GestisciRDAHandler.getInstance().deleteRigaRDA(riga);
 						CardRigaRDA.this.listaRigheRDA
 								.removeRiquadro(CardRigaRDA.this);
 						PlicoRDA.getInstance().controllaListaRighe();

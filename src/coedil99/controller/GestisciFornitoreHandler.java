@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.swing.JOptionPane;
 
@@ -216,6 +217,24 @@ public class GestisciFornitoreHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public TreeSet<String> getEssenze(MCatalogoFornitore fornitore){
+		TreeSet<String> essenze = new TreeSet<String>();
+		for (int i = 0; i < fornitore.getPersistentModel().productDescription.size(); ++i) {
+			essenze.add(fornitore.getPersistentModel().productDescription.get(i).getEssenza());
+		}
+		
+		return essenze;
+	}
+	
+	public ArrayList<ProductDescription> getProductDescription(MCatalogoFornitore fornitore) {
+		@SuppressWarnings("unchecked")
+		ArrayList<ProductDescription> pd = new ArrayList<ProductDescription>(
+				fornitore.getPersistentModel().productDescription
+						.getCollection());
+		
+		return pd;
 	}
 
 }
