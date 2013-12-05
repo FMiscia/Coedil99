@@ -18,6 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
@@ -78,31 +79,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	private void addBase() {
 		this.lbbase = new JLabel("Base");
 		this.form.add(this.lbbase, "2, 2");
-		this.tfbase = new JTextField("0.0");
+		this.tfbase = new JTextField();
 		if (this.tfbase.getKeyListeners().length == 0)
 			this.tfbase.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					String line = tfbase.getText();
-					String pattern = "^[0-9]*\\.?[0-9]";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoBase.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoBase
-								.setToolTipText("Il campo Base deve essere un numero reale!");
-						tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else if (!m.matches()) {
-						lblIcoBase.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoBase
-								.setToolTipText("Il campo Base deve essere un numero reale!");
-						tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else {
-						lblIcoBase.setIcon(ConfigGUI.getOkIcon());
-						lblIcoBase.setToolTipText(null);
-						tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
-					}
-					controlloErrori();
+					checkBase();
 				}
 			});
 		this.Container.add(tfbase);
@@ -119,31 +101,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	private void addAltezza() {
 		this.lbaltezza = new JLabel("Altezza");
 		form.add(this.lbaltezza, "2, 4");
-		this.tfaltezza = new JTextField("0.0");
+		this.tfaltezza = new JTextField();
 		if (this.tfaltezza.getKeyListeners().length == 0)
 			this.tfaltezza.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					String line = tfaltezza.getText();
-					String pattern = "^[0-9]*\\.?[0-9]";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoAltezza.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoAltezza
-								.setToolTipText("Il campo Altezza deve essere un numero reale!");
-						tfaltezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else if (!m.matches()) {
-						lblIcoAltezza.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoAltezza
-								.setToolTipText("Il campo Altezza deve essere un numero reale!");
-						tfaltezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else {
-						lblIcoAltezza.setIcon(ConfigGUI.getOkIcon());
-						lblIcoAltezza.setToolTipText(null);
-						tfaltezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
-					}
-					controlloErrori();
+					checkAltezza();
 				}
 			});
 		this.Container.add(tfaltezza);
@@ -160,31 +123,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	private void addLunghezza() {
 		this.lblunghezza = new JLabel("Lunghezza");
 		form.add(this.lblunghezza, "2, 6");
-		this.tflunghezza = new JTextField("0.0");
+		this.tflunghezza = new JTextField();
 		if (this.tflunghezza.getKeyListeners().length == 0)
 			this.tflunghezza.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					String line = tflunghezza.getText();
-					String pattern = "^[0-9]*\\.?[0-9]";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoLunghezza.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoLunghezza
-								.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
-						tflunghezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else if (!m.matches()) {
-						lblIcoLunghezza.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoLunghezza
-								.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
-						tflunghezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else {
-						lblIcoLunghezza.setIcon(ConfigGUI.getOkIcon());
-						lblIcoLunghezza.setToolTipText(null);
-						tflunghezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
-					}
-					controlloErrori();
+					checkLunghezza();
 				}
 			});
 		this.Container.add(tflunghezza);
@@ -201,31 +145,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	private void addNumero() {
 		this.lbnumero = new JLabel("Numero");
 		form.add(this.lbnumero, "2, 8");
-		this.tfnumero = new JTextField("0");
+		this.tfnumero = new JTextField();
 		if (this.tfnumero.getKeyListeners().length == 0)
 			this.tfnumero.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					String line = tfnumero.getText();
-					String pattern = "\\D+";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("") || line.equals("0")) {
-						lblIcoNumero.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoNumero
-								.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
-						tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else if (m.find()) {
-						lblIcoNumero.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoNumero
-								.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
-						tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else {
-						lblIcoNumero.setIcon(ConfigGUI.getOkIcon());
-						lblIcoNumero.setToolTipText(null);
-						tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
-					}
-					controlloErrori();
+					checkNumero();
 				}
 			});
 		this.Container.add(tfnumero);
@@ -246,6 +171,28 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		form.add(this.cbcapitello, "6, 10, fill, fill");
 		this.cbcapitello.addItem(new String("Si"));
 		this.cbcapitello.addItem(new String("No"));
+		this.cbcapitello.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (cbcapitello.getSelectedItem().toString().equals("No")) {
+					tftipocapitello.setEnabled(false);
+					tftipocapitello.setText(null);
+					lblIcoTipoCapitello.setIcon(null);
+					lblIcoTipoCapitello.setToolTipText(null);
+					tftipocapitello.setBorder(new LineBorder(Color.GRAY));
+					if(checkEmpty())
+						enableEditing();
+					else
+						avoidEditing(false);
+				} else{
+					tftipocapitello.setEnabled(true);
+					checkTipoCapitello();
+				}
+				RiquadroDatiDistinta.this.validate();
+				RiquadroDatiDistinta.this.repaint();
+			}
+		});
 	}
 
 	/**
@@ -254,31 +201,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	private void addTipoCapitello() {
 		this.lbtipocapitello = new JLabel("Tipo Capitello");
 		form.add(this.lbtipocapitello, "2, 12");
-		this.tftipocapitello = new JTextField("null");
+		this.tftipocapitello = new JTextField();
 		if (this.tftipocapitello.getKeyListeners().length == 0)
 			this.tftipocapitello.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					String line = tftipocapitello.getText();
-					String pattern = "[^a-zA-Z0-9\'\\s]";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoTipoCapitello.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoTipoCapitello
-								.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
-						tftipocapitello.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else if (m.find()) {
-						lblIcoTipoCapitello.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoTipoCapitello
-								.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
-						tftipocapitello.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else {
-						lblIcoTipoCapitello.setIcon(ConfigGUI.getOkIcon());
-						lblIcoTipoCapitello.setToolTipText(null);
-						tftipocapitello.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
-					}
-					controlloErrori();
+					checkTipoCapitello();
 				}
 			});
 		this.Container.add(tftipocapitello);
@@ -287,19 +215,6 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.lblIcoTipoCapitello.setVisible(false);
 		this.form.add(lblIcoTipoCapitello, "8, 12, center, top");
 		this.Label.add(lblIcoTipoCapitello);
-		this.cbcapitello.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (cbcapitello.getSelectedItem().toString().equals("No")) {
-					tftipocapitello.setEditable(false);
-					tftipocapitello.setText(null);
-				} else
-					tftipocapitello.setEditable(true);
-				RiquadroDatiDistinta.this.validate();
-				RiquadroDatiDistinta.this.repaint();
-			}
-		});
 	}
 
 	/**
@@ -308,31 +223,12 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	private void addNote() {
 		this.lbnote = new JLabel("Note");
 		form.add(this.lbnote, "2, 14");
-		this.tfnote = new JTextField("null");
+		this.tfnote = new JTextField();
 		if (this.tfnote.getKeyListeners().length == 0)
 			this.tfnote.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					String line = tfnote.getText();
-					String pattern = "[^a-zA-Z0-9\',;:.\\s]";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoNote.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoNote
-								.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
-						tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else if (m.find()) {
-						lblIcoNote.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoNote
-								.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
-						tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
-					} else {
-						lblIcoNote.setIcon(ConfigGUI.getOkIcon());
-						lblIcoNote.setToolTipText(null);
-						tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
-					}
-					controlloErrori();
+					checkNote();
 				}
 			});
 		this.Container.add(tfnote);
@@ -368,7 +264,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 							.validate();
 					ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 							.repaint();
-					JOptionPane.showMessageDialog(null, "");
+					JOptionPane.showMessageDialog(null, "Riga Lavoro eliminata!");
 				}
 			});
 		add(btnElimina);
@@ -394,6 +290,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 					.getCapitello()) ? 0 : 1);
 			this.tftipocapitello.setText(d.getPersistentModel()
 					.getProfiloCapitello());
+			this.lblIcoTipoCapitello.setIcon(null);
 			this.tfnote.setText(d.getPersistentModel().getNote());
 			this.makeEditable(false);
 			this.oggetto = d;
@@ -401,13 +298,18 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	}
 
 	/**
-	 * Rende editabile il campo data
+	 * Rende editabile il campo
 	 */
 	@Override
 	public void makeEditable(boolean editable) {
 		this.cbcapitello.setEnabled(editable);
 		super.makeEditable(editable);
-
+		if(this.cbcapitello.getSelectedItem().equals("No"))
+			this.tftipocapitello.setEnabled(false);
+		if(!this.checkEmpty())
+			this.avoidEditing(false);
+		else
+			enableEditing();
 	}
 
 	@Override
@@ -472,7 +374,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
-		this.load(this.oggetto);
+		this.load(((MRigaLavoro)this.oggetto).getPersistentModel());
 	}
 
 	public static Dimension getFormDimension() {
@@ -515,5 +417,193 @@ public class RiquadroDatiDistinta extends ARiquadro {
 		this.validate();
 		this.repaint();
 	}
-
+	
+	/**
+	 * Metodo che controlla lo stato del campo Base
+	 */
+	private void checkBase(){
+		String line = tfbase.getText();
+		String pattern = "^[0-9]*\\.?[0-9]";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(line);
+		if (line.equals("")) {
+			lblIcoBase.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoBase
+					.setToolTipText("Il campo Base deve essere un numero reale!");
+			tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else if (!m.matches()) {
+			lblIcoBase.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoBase
+					.setToolTipText("Il campo Base deve essere un numero reale!");
+			tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else {
+			lblIcoBase.setIcon(ConfigGUI.getOkIcon());
+			lblIcoBase.setToolTipText(null);
+			tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+		}
+		if(!checkEmpty())
+			avoidEditing(false);
+		else{
+			enableEditing();
+			controlloErrori();
+		}
+	}
+	
+	/**
+	 * Metodo che controlla lo stato del campo altezza
+	 */
+	private void checkAltezza(){
+		String line = tfaltezza.getText();
+		String pattern = "^[0-9]*\\.?[0-9]";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(line);
+		if (line.equals("")) {
+			lblIcoAltezza.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoAltezza
+					.setToolTipText("Il campo Altezza deve essere un numero reale!");
+			tfaltezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else if (!m.matches()) {
+			lblIcoAltezza.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoAltezza
+					.setToolTipText("Il campo Altezza deve essere un numero reale!");
+			tfaltezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else {
+			lblIcoAltezza.setIcon(ConfigGUI.getOkIcon());
+			lblIcoAltezza.setToolTipText(null);
+			tfaltezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+		}
+		if(!checkEmpty())
+			avoidEditing(false);
+		else{
+			enableEditing();
+			controlloErrori();
+		}
+	}
+	
+	/**
+	 * Metodo che controlla lo stato del campo Lunghezza
+	 */
+	private void checkLunghezza(){
+		String line = tflunghezza.getText();
+		String pattern = "^[0-9]*\\.?[0-9]";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(line);
+		if (line.equals("")) {
+			lblIcoLunghezza.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoLunghezza
+					.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
+			tflunghezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else if (!m.matches()) {
+			lblIcoLunghezza.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoLunghezza
+					.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
+			tflunghezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else {
+			lblIcoLunghezza.setIcon(ConfigGUI.getOkIcon());
+			lblIcoLunghezza.setToolTipText(null);
+			tflunghezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+		}
+		if(!checkEmpty())
+			avoidEditing(false);
+		else{
+			enableEditing();
+			controlloErrori();
+		}
+	}
+	
+	/**
+	 * Metodo che controlla lo stato del campo Numero
+	 */
+	private void checkNumero(){
+		String line = tfnumero.getText();
+		String pattern = "\\D+";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(line);
+		if (line.equals("") || line.equals("0")) {
+			lblIcoNumero.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoNumero
+					.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
+			tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else if (m.find()) {
+			lblIcoNumero.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoNumero
+					.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
+			tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else {
+			lblIcoNumero.setIcon(ConfigGUI.getOkIcon());
+			lblIcoNumero.setToolTipText(null);
+			tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+		}
+		if(!checkEmpty())
+			avoidEditing(false);
+		else{
+			enableEditing();
+			controlloErrori();
+		}
+	}
+	
+	/**
+	 * Metodo che controlla lo stato del campo Tipo Capitello
+	 */
+	private void checkTipoCapitello(){
+		if(!tftipocapitello.isEnabled())
+			return;
+		String line = tftipocapitello.getText();
+		String pattern = "[^a-zA-Z0-9\'\\s]";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(line);
+		if (line.equals("")) {
+			lblIcoTipoCapitello.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoTipoCapitello
+					.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
+			tftipocapitello.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else if (m.find()) {
+			lblIcoTipoCapitello.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoTipoCapitello
+					.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
+			tftipocapitello.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else {
+			lblIcoTipoCapitello.setIcon(ConfigGUI.getOkIcon());
+			lblIcoTipoCapitello.setToolTipText(null);
+			tftipocapitello.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+		}
+		if(!checkEmpty())
+			avoidEditing(false);
+		else{
+			enableEditing();
+			controlloErrori();
+		}
+	}
+	
+	/**
+	 * Metodo che controlla lo stato del campo Note
+	 */
+	private void checkNote(){
+		String line = tfnote.getText();
+		String pattern = "[^a-zA-Z0-9\',;:.\\s]";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(line);
+		if (line.equals("")) {
+			lblIcoNote.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoNote
+					.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
+			tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else if (m.find()) {
+			lblIcoNote.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoNote
+					.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
+			tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else {
+			lblIcoNote.setIcon(ConfigGUI.getOkIcon());
+			lblIcoNote.setToolTipText(null);
+			tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+		}
+		if(!checkEmpty())
+			avoidEditing(false);
+		else{
+			enableEditing();
+			controlloErrori();
+		}
+	}
+	
 }

@@ -77,16 +77,9 @@ public class PlicoDistinta extends APlico {
 				temp.setLocation(bounds, 20 * (i + 1));
 				this.add(temp);
 				this.riquadri.add(temp);
-				temp.makeEditable(false);
+				//temp.makeEditable(false);
 			}
-		}/* else {
-			temp =  (RiquadroDatiDistinta) RiquadroDatiDistintaFactory.getInstance().makeRiquadro();
-			temp.makeEditable(true);
-			this.add(temp);
-			this.riquadri.add(temp);
-		}*/
-		//MDistinta odistinta = new MDistinta(ProgrammaLavori.getInstance().getCommessaSelezionata().getPersistentModel().getDistinta().getID());
-		if (!d.hasDdo()) {
+		}if (!d.hasDdo()) {
 			MouseListener[] arrML = addButton.getMouseListeners();
 			if (arrML.length == 1){
 				addButton.addMouseListener(new MouseAdapter() {
