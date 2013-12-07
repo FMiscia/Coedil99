@@ -8,7 +8,7 @@ import coedil99.model.MRDA;
 import coedil99.persistentmodel.RDA;
 import GUI.ClipPanels.ClipPanelRDA;
 import GUI.ClipPanels.ClipPanelRDAFactory;
-import GUI.FormRDA.CreaFormRDAFactory;
+import GUI.Form.CreaFormRDAFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
 import GUI.Liste.ListaRigheRDA;

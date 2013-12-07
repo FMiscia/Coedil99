@@ -11,6 +11,7 @@ import coedil99.model.MCatalogoFornitore;
  * @author Simone
  *
  */
+@SuppressWarnings("serial")
 public class RiepilogoFornitore extends ARiepilogoFornitore {
 
 	/**

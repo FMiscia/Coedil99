@@ -45,6 +45,7 @@ public class MRigaLavoro implements IModel{
 	public void save() {
 		try {
 			this.rigalavoro.save();
+			this.isSaved = true;
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}

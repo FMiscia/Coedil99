@@ -4,8 +4,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import GUI.ConfigGUI;
 import GUI.Abstract.ALista;
 import GUI.Avvisi.AvvisoCommessa;

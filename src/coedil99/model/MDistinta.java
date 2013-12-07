@@ -72,7 +72,6 @@ public class MDistinta implements IModel{
 			try {
 				rg.delete();
 			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

@@ -1,25 +1,20 @@
 package GUI.Plichi;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import GUI.CoedilFrame;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.APlico;
+import GUI.Liste.ListaRigheLavoro;
+import GUI.Liste.ListaRigheLavoroFactory;
 import GUI.Riquadri.RiquadroDatiDistinta;
-import GUI.Riquadri.RiquadroDatiDistintaFactory;
-import GUI.Utilities.WrapLayout;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MDistinta;
+import coedil99.model.MRigaLavoro;
 
 /**
  * 
@@ -34,9 +29,9 @@ public class PlicoDistinta extends APlico {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static PlicoDistinta instance = null;
-	private JButton addButton ;
-	private JPanel panelAddButton;
+	private RiquadroDatiDistinta riquadroRigaLavoro;
 	private ArrayList<RiquadroDatiDistinta> riquadri = new ArrayList<RiquadroDatiDistinta>();
+	private ListaRigheLavoro listaRigheLavoro;
 
 	/**
 	 * Costruttore
@@ -66,49 +61,49 @@ public class PlicoDistinta extends APlico {
 	 */
 	public void load(int id) {
 		int bounds = (CoedilFrame.getInstance().getBounds().width/6);
-		this.removeAll();
-		RiquadroDatiDistinta temp = null;
+		//this.panelAddButton.removeAll();
 		MDistinta d = new MDistinta(GestisciCommessaHandler.getInstance()
 				.getCommessaById(id).getPersistentModel().getDistinta().getID());
-		if (d != null && d.getPersistentModel().lavori.size() != 0) {
-			for (int i = 0; i < d.getPersistentModel().lavori.size(); i++) {
-				temp = new RiquadroDatiDistinta("Riga Lavoro");
-				temp.load(d.getPersistentModel().lavori.get(i));
-				temp.setLocation(bounds, 20 * (i + 1));
-				this.add(temp);
-				this.riquadri.add(temp);
-				//temp.makeEditable(false);
-			}
-		}if (!d.hasDdo()) {
-			MouseListener[] arrML = addButton.getMouseListeners();
-			if (arrML.length == 1){
-				addButton.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent arg0) {
-						RiquadroDatiDistinta temp = (RiquadroDatiDistinta) RiquadroDatiDistintaFactory.getInstance().makeRiquadro();
-						temp.makeEditable(true);
-						PlicoDistinta.this.add(temp);
-						PlicoDistinta.this.posizionaAddButton();
-						RaccoglitorePlichi.getInstance().validate();
-						RaccoglitorePlichi.getInstance().repaint();
-					}
-				});	
-			}
-		}
-		panelAddButton.add(addButton);
-		this.add(panelAddButton);
-		this.aggiornaAltezze();
-		if (d.hasDdo()){
-			for(RiquadroDatiDistinta r: riquadri){
-				r.avoidEditing(true);
-				addButton.setVisible(false);
-			}
-		}
-		else {
-			for(RiquadroDatiDistinta r: riquadri){
-				addButton.setVisible(true);
-			}
-		}
+		this.listaRigheLavoro.load(new ArrayList<Object>(d.getPersistentModel().lavori.getCollection()));
+//		if (d != null && d.getPersistentModel().lavori.size() != 0) {
+//			for (int i = 0; i < d.getPersistentModel().lavori.size(); i++) {
+//				temp = new RiquadroDatiDistinta("Riga Lavoro");
+//				temp.load(d.getPersistentModel().lavori.get(i));
+//				temp.setLocation(bounds, 20 * (i + 1));
+//				this.add(temp);
+//				this.riquadri.add(temp);
+//				//temp.makeEditable(false);
+//			}
+//		}if (!d.hasDdo()) {
+//			MouseListener[] arrML = addButton.getMouseListeners();
+//			if (arrML.length == 1){
+//				addButton.addMouseListener(new MouseAdapter() {
+//					@Override
+//					public void mouseClicked(MouseEvent arg0) {
+//						RiquadroDatiDistinta temp = (RiquadroDatiDistinta) RiquadroDatiDistintaFactory.getInstance().makeRiquadro();
+//						temp.makeEditable(true);
+//						PlicoDistinta.this.add(temp);
+//						PlicoDistinta.this.posizionaAddButton();
+//						RaccoglitorePlichi.getInstance().validate();
+//						RaccoglitorePlichi.getInstance().repaint();
+//					}
+//				});	
+//			}
+//		}
+//		panelAddButton.add(addButton);
+//		//this.add(panelAddButton);
+//		this.aggiornaAltezze();
+//		if (d.hasDdo()){
+//			for(RiquadroDatiDistinta r: riquadri){
+//				r.avoidEditing(true);
+//				addButton.setVisible(false);
+//			}
+//		}
+//		else {
+//			for(RiquadroDatiDistinta r: riquadri){
+//				addButton.setVisible(true);
+//			}
+//		}
 		this.validate();
 		this.repaint();
 	}
@@ -138,8 +133,8 @@ public class PlicoDistinta extends APlico {
 	 */
 	public void posizionaAddButton(){
 		this.aggiornaAltezze();
-		this.remove(panelAddButton);
-		this.add(panelAddButton);
+		//this.remove(panelAddButton);
+		//this.add(panelAddButton);
 		this.validate();
 		this.repaint();
 	}
@@ -156,16 +151,17 @@ public class PlicoDistinta extends APlico {
 	 * Imposta la grafica
 	 */
 	private void initialize(){
-		int x = (CoedilFrame.getInstance().getBounds().width/6);
+		this.setLayout(new BorderLayout());
+		this.addListaRigheLavoro();
+		/*int x = (CoedilFrame.getInstance().getBounds().width/6);
 		this.setLayout(new WrapLayout(0, x, 20));
-		setBounds(0, 30,745,x);
 		this.panelAddButton = new JPanel();
 		this.panelAddButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panelAddButton.setPreferredSize(new Dimension(600,50));
 		addButton = new JButton("aggiungi nuova");
 		panelAddButton.add(addButton);
 		this.validate();
-		this.repaint();
+		this.repaint();*/
 	}
 
 	public boolean isModifying() {
@@ -179,4 +175,25 @@ public class PlicoDistinta extends APlico {
 		}
 		return result;
 	}
+	
+	/**
+	 * Metodo che aggiunge la lista righe lavoro
+	 */
+	private void addListaRigheLavoro(){
+		this.listaRigheLavoro = (ListaRigheLavoro) ListaRigheLavoroFactory.getInstance().makeLista();
+		this.add(listaRigheLavoro,BorderLayout.WEST);
+	}
+	
+	/**
+	 * Metodo che aggiunge il riquadro contenente le informazioni circa la riga lavoro nel plico
+	 * @param r MRigaLavoro
+	 */
+	public void addRiquadroRigaLavoro(MRigaLavoro r){
+		this.riquadroRigaLavoro = new RiquadroDatiDistinta("Riga Lavoro");
+		this.riquadroRigaLavoro.load(r.getPersistentModel());
+		this.add(this.riquadroRigaLavoro,BorderLayout.EAST);
+		this.validate();
+		this.repaint();
+	}
+	
 }

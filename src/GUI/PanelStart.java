@@ -164,6 +164,7 @@ public class PanelStart extends JPanel {
 				p.getClipPanel().resetInitialState();
 				p.checkCommesse();
 				CoedilFrame.getInstance().montaPanel(p);
+				p.getClipPanel().getButtons().get(1).doClick();
 			}
 		});
 

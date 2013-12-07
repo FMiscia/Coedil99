@@ -123,13 +123,13 @@ public abstract class ARiepilogoRDA extends ARiepilogo {
 		this.panel.add(separator_1, "3, 12, 3, 1");
 
 		btnSalva = new JButton("Salva RDA");
-		this.panel.add(btnSalva, "3, 14, 3, 1");
+		//this.panel.add(btnSalva, "3, 14, 3, 1");
 
 		btnElimina = new JButton("Elimina RDA");
-		this.panel.add(btnElimina, "3, 16, 3, 1");
+		//this.panel.add(btnElimina, "3, 16, 3, 1");
 
 		btnInvia = new JButton("Invia RDA");
-		this.panel.add(btnInvia, "3, 18, 3, 1");
+		//this.panel.add(btnInvia, "3, 18, 3, 1");
 
 		btnArrivata = new JButton();
 		btnArrivata.setLayout(new BorderLayout());
@@ -139,6 +139,15 @@ public abstract class ARiepilogoRDA extends ARiepilogo {
 		label2.setHorizontalAlignment(SwingConstants.CENTER);
 		btnArrivata.add(BorderLayout.NORTH, label1);
 		btnArrivata.add(BorderLayout.SOUTH, label2);
-		this.panel.add(btnArrivata, "3, 20, 3, 1");
+		//this.panel.add(btnArrivata, "3, 20, 3, 1");
+	}
+	
+	/**
+	 * Metodo che posiziona il bottone nella riga indicata
+	 * @param bottone
+	 * @param row
+	 */
+	public void addButton(JButton bottone, int row){
+		this.panel.add(bottone,"3, "+row+", 3, 1");
 	}
 }

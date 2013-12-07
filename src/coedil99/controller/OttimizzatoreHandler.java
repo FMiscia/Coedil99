@@ -1,17 +1,22 @@
 package coedil99.controller;
 
+import java.util.HashMap;
+
+import coedil99.model.AOttimizzatoreStrategy;
 import coedil99.model.MDistinta;
 import coedil99.model.MDocumentoOttimizzazione;
-import coedil99.persistentmodel.*;
-
-
-
+import coedil99.model.StandardOttimizzatoreStrategy;
 
 public class OttimizzatoreHandler {
 
 	private coedil99.model.AOttimizzatoreStrategy strategia;
 	private MDistinta distinta;
-	private Distinta attribute;
+
+	public static HashMap<String, AOttimizzatoreStrategy> ottimizzatori;
+	static {
+		ottimizzatori = new HashMap<String, AOttimizzatoreStrategy>();
+		ottimizzatori.put("Standard", new StandardOttimizzatoreStrategy());
+	}
 
 	/**
 	 * Costruttore
@@ -19,8 +24,9 @@ public class OttimizzatoreHandler {
 	 * @param strategy
 	 * @param d
 	 */
-	public OttimizzatoreHandler(coedil99.model.AOttimizzatoreStrategy strategy,MDistinta d) {
-		
+	public OttimizzatoreHandler(coedil99.model.AOttimizzatoreStrategy strategy,
+			MDistinta d) {
+
 		this.strategia = strategy;
 		this.distinta = d;
 

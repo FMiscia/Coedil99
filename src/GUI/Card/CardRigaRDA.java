@@ -1,9 +1,7 @@
 package GUI.Card;
 
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -12,26 +10,22 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
-import org.orm.PersistentException;
-
-import org.hibernate.transaction.BTMTransactionManagerLookup;
 
 import GUI.ConfigGUI;
 import GUI.RDACenter;
 import GUI.Abstract.ACard;
-import GUI.FormRDA.ModificaFormRDA;
-import GUI.FormRDA.ModificaFormRDAFactory;
+import GUI.Form.ModificaFormRDA;
+import GUI.Form.ModificaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MRigaRDA;
-import coedil99.persistentmodel.IPersistentModel;
 import coedil99.persistentmodel.RigaRDA;
 
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
 
 /**
  * 
@@ -56,7 +50,7 @@ public class CardRigaRDA extends ACard {
 	private JLabel lblLunghezza;
 	private JLabel txtLunghezza;
 	private JLabel lblBase;
-	private JLabel txtLarghezza;
+	private JLabel txtBase;
 	private JLabel lblPezzi;
 	private JLabel txtPezzi;
 	private JLabel lblPrezzo;
@@ -71,67 +65,76 @@ public class CardRigaRDA extends ACard {
 	public CardRigaRDA(ListaRigheRDA lrRDA) {
 		super(lrRDA);
 		this.listaRigheRDA = lrRDA;
-		this.setPreferredSize(new Dimension(269, 220));
+		this.setPreferredSize(new Dimension(270, 220));
 		this.setBackground(ConfigGUI.getColoreRigaRDA());
 		this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(52dlu;default)"),
+				ColumnSpec.decode("max(85px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(52dlu;default)"),
+				ColumnSpec.decode("max(40px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(88dlu;default)"), }, new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, }));
+				ColumnSpec.decode("max(85px;default)"),},
+			new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,}));
 
 		lblEssenza = new JLabel("Essenza: ");
 		add(lblEssenza, "2, 4");
 
 		txtEssenza = new JLabel("");
-		add(txtEssenza, "4, 4");
+		add(txtEssenza, "4, 4, 3, 1, right, default");
 
 		lblQuantita = new JLabel("Quantità: ");
 		add(lblQuantita, "2, 6");
 
 		txtQuantita = new JLabel("");
-		add(txtQuantita, "4, 6");
+		add(txtQuantita, "4, 6, 3, 1, right, default");
 
 		lblAltezza = new JLabel("Altezza: ");
 		add(lblAltezza, "2, 8");
 
 		txtAltezza = new JLabel("");
-		add(txtAltezza, "4, 8");
+		add(txtAltezza, "4, 8, 3, 1, right, default");
 
 		lblLunghezza = new JLabel("Lunghezza: ");
 		add(lblLunghezza, "2, 10");
 
 		txtLunghezza = new JLabel("");
-		add(txtLunghezza, "4, 10");
+		add(txtLunghezza, "4, 10, 3, 1, right, default");
 
 		lblBase = new JLabel("Base: ");
 		add(lblBase, "2, 12");
 
-		txtLarghezza = new JLabel("");
-		add(txtLarghezza, "4, 12");
+		txtBase = new JLabel("");
+		add(txtBase, "4, 12, 3, 1, right, default");
 
 		lblPezzi = new JLabel("Pezzi per pacco: ");
 		add(lblPezzi, "2, 14");
 
 		txtPezzi = new JLabel("");
-		add(txtPezzi, "4, 14");
+		add(txtPezzi, "4, 14, 3, 1, right, default");
 
 		lblPrezzo = new JLabel("Prezzo: ");
 		add(lblPrezzo, "2, 16");
 
 		txtPrezzo = new JLabel("");
-		add(txtPrezzo, "4, 16");
+		add(txtPrezzo, "4, 16, 3, 1, right, default");
 
 		this.addMouseListener(new MouseAdapter() {
 			@Override
@@ -157,7 +160,7 @@ public class CardRigaRDA extends ACard {
 			
 			btnModifica = new JButton("Modifica");
 			btnModifica.setVisible(false);
-			add(btnModifica, "4, 2");
+			add(btnModifica, "6, 2");
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.ATTESA_CONFERMA)){
 			btnElimina = new JButton("Elimina");
@@ -166,7 +169,7 @@ public class CardRigaRDA extends ACard {
 			
 			btnModifica = new JButton("Modifica");
 			btnModifica.setVisible(false);
-			add(btnModifica, "4, 2");
+			add(btnModifica, "6, 2");
 			this.setPreferredSize(new Dimension(269, 190));
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.CONGELATA)){
@@ -176,7 +179,7 @@ public class CardRigaRDA extends ACard {
 			
 			btnModifica = new JButton("Modifica");
 			btnModifica.setVisible(true);
-			add(btnModifica, "4, 2");
+			add(btnModifica, "6, 2");
 			this.setPreferredSize(new Dimension(269, 190));
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.RIFIUTATA)){
@@ -186,7 +189,7 @@ public class CardRigaRDA extends ACard {
 			
 			btnModifica = new JButton("Modifica");
 			btnModifica.setVisible(false);
-			add(btnModifica, "4, 2");
+			add(btnModifica, "6, 2");
 			this.setPreferredSize(new Dimension(269, 190));
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.CONFERMATA)){
@@ -222,7 +225,7 @@ public class CardRigaRDA extends ACard {
 				.getGeometria().getAltezza()));
 		this.txtLunghezza.setText(String.valueOf(riga.getPersistentModel().getDescription()
 				.getGeometria().getLunghezza()));
-		this.txtLarghezza.setText(String.valueOf(riga.getPersistentModel().getDescription()
+		this.txtBase.setText(String.valueOf(riga.getPersistentModel().getDescription()
 				.getGeometria().getBase()));
 		this.txtPezzi.setText(String.valueOf(riga.getPersistentModel().getDescription()
 				.getPezzi_per_pacco()));

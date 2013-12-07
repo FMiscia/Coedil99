@@ -1,11 +1,10 @@
-package GUI.FormRDA;
+package GUI.Form;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
-import org.orm.PersistentException;
 
 import GUI.ProgrammaLavori;
 import GUI.Abstract.AFormRDA;
@@ -14,8 +13,6 @@ import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.MGeometria;
 import coedil99.model.MProductDescription;
 import coedil99.model.MRigaRDA;
-import coedil99.persistentmodel.ProductDescription;
-import coedil99.persistentmodel.RigaRDA;
 
 
 /**

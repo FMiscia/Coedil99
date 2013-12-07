@@ -2,16 +2,11 @@ package GUI.Abstract;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
@@ -24,19 +19,18 @@ import GUI.ConfigGUI;
  *         (distinta,commessa,ddo)
  */
 @SuppressWarnings("serial")
-public abstract class ARiquadro extends JPanel {
+public abstract class AFormDistinta extends JPanel {
 
 	protected ArrayList<JTextField> Container;
-	protected JButton modifica;
 	protected boolean aperto;
 	protected Object oggetto;
 	protected ArrayList<JLabel> Label;
 	protected JLabel lblTitolo;
 	protected JPanel form;
 
-	public ARiquadro(String title) {
+	public AFormDistinta() {
 		super();
-		this.initialize(title);
+		this.initialize();
 	}
 
 	/**
@@ -50,10 +44,8 @@ public abstract class ARiquadro extends JPanel {
 			if (!editable) {
 				i.setBackground(Color.getColor("textInactiveText"));
 				i.setBorder(new LineBorder(Color.gray));
-				ARiquadro.this.modifica.setText("modifica");
 				aperto = true;
 			} else {
-				ARiquadro.this.modifica.setText("salva");
 				controlloErrori();
 				aperto = false;
 
@@ -71,38 +63,19 @@ public abstract class ARiquadro extends JPanel {
 		this.repaint();
 	}
 
-	/**
-	 * Elimina i listener dai bottoni dei riquadri
-	 */
-	public void avoidEditing(boolean otherButtonstoo) {
-		this.modifica.setEnabled(false);
-		if(modifica.getMouseListeners().length != 1)
-			ARiquadro.this.modifica.removeMouseListener(modifica.getMouseListeners()[1]);
-		this.validate();
-		this.repaint();
-	}
 
 	/**
 	 * Riabilita i listener dai bottoni dei riquadri
 	 */
 	public void enableEditing() {
-		this.modifica.setEnabled(true);
-		if (this.modifica.getMouseListeners().length == 1)
-			this.modifica.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
 					if (aperto) {
-						ARiquadro.this.modifica.setText("salva");
 						aperto = false;
-						ARiquadro.this.makeEditable(true);
+						AFormDistinta.this.makeEditable(true);
 					} else {
-						ARiquadro.this.salva(true);
-						ARiquadro.this.modifica.setText("modifica");
+						AFormDistinta.this.salva(true);
 						aperto = true;
-						ARiquadro.this.makeEditable(false);
+						AFormDistinta.this.makeEditable(false);
 					}
-				}
-			});
 		validate();
 		repaint();
 	}
@@ -143,13 +116,11 @@ public abstract class ARiquadro extends JPanel {
 					&& j.getIcon().equals(ConfigGUI.getErrorIcon()))
 				test = false;
 		}
-		if (test) {
+		if (test) 
 			enableEditing();
-		} else {
-			avoidEditing(false);
-		}
 		return test;
 	}
+
 
 	/**
 	 * Cambia il colore del testo nei campi non abilitati mettendolo più scuro
@@ -163,7 +134,7 @@ public abstract class ARiquadro extends JPanel {
 	/**
 	 * Imposta la grafica
 	 */
-	private void initialize(String title) {
+	private void initialize() {
 		this.form = new JPanel();
 		this.aperto = true;
 		this.oggetto = null;
@@ -172,41 +143,6 @@ public abstract class ARiquadro extends JPanel {
 		setLayout(null);
 		setSize(600, 330);
 		setPreferredSize(new Dimension(600, 280));
-		JSeparator separator = new JSeparator();
-		separator.setPreferredSize(new Dimension(0, 3));
-		separator.setBackground(new Color(0, 0, 0));
-		separator.setForeground(ConfigGUI.getColoreBordoCard());
-		separator.setBounds(0, 20, 600, 2);
-		add(separator);
-
-		lblTitolo = new JLabel(title);
-		lblTitolo.setPreferredSize(new Dimension(60, 20));
-		lblTitolo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitolo.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
-		lblTitolo.setBounds(0, 1, 143, 21);
-		add(lblTitolo);
-
-		this.modifica = new JButton("modifica");
-		this.modifica.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (aperto) {
-					ARiquadro.this.modifica.setText("salva");
-					aperto = false;
-					ARiquadro.this.makeEditable(true);
-				} else {
-					ARiquadro.this.salva(true);
-					ARiquadro.this.modifica.setText("modifica");
-					aperto = true;
-					ARiquadro.this.makeEditable(false);
-				}
-				validate();
-				repaint();
-			}
-		});
-		this.modifica.setSize(131, 20);
-		this.modifica.setLocation(469, 0);
-		add(this.modifica);
 	}
 
 	/**
@@ -224,8 +160,6 @@ public abstract class ARiquadro extends JPanel {
 		}
 		return test;
 	}
-
-	protected abstract void initialize();
 
 	public boolean modify() {
 		return aperto;
@@ -247,15 +181,6 @@ public abstract class ARiquadro extends JPanel {
 		for (JLabel temp : this.Label)
 			temp.setIcon(null);
 
-	}
-
-	/**
-	 * Elimina dal riquadro il bottone di modifica
-	 */
-	public void deleteButtons() {
-		this.remove(this.modifica);
-		this.validate();
-		this.repaint();
 	}
 
 }

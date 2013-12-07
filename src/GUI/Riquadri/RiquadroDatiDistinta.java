@@ -18,7 +18,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
@@ -255,6 +254,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 								.getInstance().getCommessaSelezionata()
 								.getPersistentModel().getDistinta().getID());
 						odistinta.eliminaRigaLavoro(r.getPersistentModel());
+						odistinta.save();
 					}
 					RiquadroDatiDistinta.this.removeAll();
 					PlicoDistinta.getInstance().removeRiquadro(
@@ -276,7 +276,8 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	 */
 	@Override
 	public void load(Object o) {
-		MRigaLavoro d = new MRigaLavoro(((RigaLavoro) o).getID());
+		MRigaLavoro d = new MRigaLavoro();
+		d.setPersistentModel((RigaLavoro) o);
 		if (d != null) {
 			this.tflunghezza.setText(String.valueOf(d.getPersistentModel()
 					.getGeometria().getLunghezza()));
@@ -387,7 +388,7 @@ public class RiquadroDatiDistinta extends ARiquadro {
 	@Override
 	protected void initialize() {
 		this.Container = new ArrayList<JTextField>();
-		this.setPreferredSize(new Dimension(600, 300));
+		this.setPreferredSize(new Dimension(700, 300));
 		this.add(form);
 		this.form.setBounds(0, 30, 600, 270);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {
