@@ -9,9 +9,9 @@ import javax.swing.JLabel;
 import GUI.CoedilFrame;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.APlico;
+import GUI.Form.FormDistinta;
 import GUI.Liste.ListaRigheLavoro;
 import GUI.Liste.ListaRigheLavoroFactory;
-import GUI.Riquadri.RiquadroDatiDistinta;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MDistinta;
 import coedil99.model.MRigaLavoro;
@@ -29,8 +29,8 @@ public class PlicoDistinta extends APlico {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static PlicoDistinta instance = null;
-	private RiquadroDatiDistinta riquadroRigaLavoro;
-	private ArrayList<RiquadroDatiDistinta> riquadri = new ArrayList<RiquadroDatiDistinta>();
+	private FormDistinta riquadroRigaLavoro;
+	private ArrayList<FormDistinta> riquadri = new ArrayList<FormDistinta>();
 	private ListaRigheLavoro listaRigheLavoro;
 
 	/**
@@ -113,17 +113,17 @@ public class PlicoDistinta extends APlico {
 	 */
 	private void aggiornaAltezze() {
 		this.setPreferredSize(new Dimension(this.getWidth(),
-				RiquadroDatiDistinta.getFormDimension().height
+				FormDistinta.getFormDimension().height
 						* (this.getComponentCount())));
 		this.setSize(
 				this.getWidth(),
-				RiquadroDatiDistinta.getFormDimension().height
+				FormDistinta.getFormDimension().height
 						* (this.getComponentCount()));
 		RaccoglitorePlichi.getInstance().getScrollPaneWrapper().validate();
 		RaccoglitorePlichi.getInstance().getScrollPaneWrapper().repaint();
 	}
 	
-	public void removeRiquadro(RiquadroDatiDistinta r){
+	public void removeRiquadro(FormDistinta r){
 		this.remove(r);
 		this.riquadri.remove(r);
 	}
@@ -139,11 +139,11 @@ public class PlicoDistinta extends APlico {
 		this.repaint();
 	}
 	
-	public void addRiquadroinLista(RiquadroDatiDistinta r){
+	public void addRiquadroinLista(FormDistinta r){
 		this.riquadri.add(r);
 	}
 	
-	public ArrayList<RiquadroDatiDistinta> getRiquadri() {
+	public ArrayList<FormDistinta> getRiquadri() {
 		return riquadri;
 	}
 	
@@ -166,7 +166,7 @@ public class PlicoDistinta extends APlico {
 
 	public boolean isModifying() {
 		boolean result = false;
-		for(RiquadroDatiDistinta temp: this.riquadri){
+		for(FormDistinta temp: this.riquadri){
 			for (JLabel j : temp.getLabel()) {
 				if (j.getIcon()!=null)
 					result = true;
@@ -189,7 +189,7 @@ public class PlicoDistinta extends APlico {
 	 * @param r MRigaLavoro
 	 */
 	public void addRiquadroRigaLavoro(MRigaLavoro r){
-		this.riquadroRigaLavoro = new RiquadroDatiDistinta("Riga Lavoro");
+		this.riquadroRigaLavoro = new FormDistinta();
 		this.riquadroRigaLavoro.load(r.getPersistentModel());
 		this.add(this.riquadroRigaLavoro,BorderLayout.EAST);
 		this.validate();
