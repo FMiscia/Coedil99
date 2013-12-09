@@ -15,12 +15,14 @@ import java.util.regex.Pattern;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
 import GUI.Form.FormDistinta;
+import GUI.Plichi.PlicoDistinta;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -85,7 +87,6 @@ public abstract class AFormDistinta extends JPanel {
 			} else {
 				controlloErrori();
 				aperto = false;
-
 			}
 			i.setEditable(editable);
 		}
@@ -108,9 +109,9 @@ public abstract class AFormDistinta extends JPanel {
 			this.salva.setEnabled(true);
 		} else {
 			this.salva.setEnabled(false);
-			if (salva.getMouseListeners().length != 1)
-				AFormDistinta.this.salva.removeMouseListener(salva
-						.getMouseListeners()[1]);
+//			if (salva.getMouseListeners().length != 1)
+//				AFormDistinta.this.salva.removeMouseListener(salva
+//						.getMouseListeners()[1]);
 		}
 		this.validate();
 		this.repaint();
@@ -154,6 +155,19 @@ public abstract class AFormDistinta extends JPanel {
 		if (this.Container.size() != 0) {
 			for (JTextField txt : Container)
 				txt.setText("");
+		}
+	}
+	
+	/**
+	 * Metodo che resetta gli errori nella form
+	 */
+	protected void resetErroriForm(){
+		if (this.Container.size() != 0) {
+			for (JTextField txt : Container)
+				txt.setBorder(new LineBorder(Color.GRAY));
+		}
+		for (JLabel j : this.Label) {
+			j.setVisible(false);
 		}
 	}
 
@@ -225,6 +239,22 @@ public abstract class AFormDistinta extends JPanel {
 		this.repaint();
 
 		this.salva = new JButton("Salva");
+		this.salva.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (aperto) {
+					aperto = false;
+					AFormDistinta.this.makeEditable(true);
+				} else {
+					AFormDistinta.this.salva(true);
+					aperto = true;
+					AFormDistinta.this.makeEditable(false);
+					PlicoDistinta.getInstance().refresh();
+				}
+				validate();
+				repaint();
+			}
+		});
 		this.add(this.salva, "6, 16");
 	}
 
@@ -236,8 +266,7 @@ public abstract class AFormDistinta extends JPanel {
 	public boolean checkEmpty() {
 		boolean test = true;
 		for (JTextField temp : this.Container) {
-			if (!temp.isEnabled())
-				;
+			if (!temp.isEnabled());
 			else if (temp.getText().length() <= 0) {
 				test = false;
 			}
@@ -381,7 +410,7 @@ public abstract class AFormDistinta extends JPanel {
 				if (cbcapitello.getSelectedItem().toString().equals("No")) {
 					tftipocapitello.setEnabled(false);
 					tftipocapitello.setText(null);
-					lblIcoTipoCapitello.setIcon(null);
+					lblIcoTipoCapitello.setVisible(false);
 					lblIcoTipoCapitello.setToolTipText(null);
 					tftipocapitello.setBorder(new LineBorder(Color.GRAY));
 					setEditing(checkEmpty());
@@ -462,6 +491,7 @@ public abstract class AFormDistinta extends JPanel {
 			lblIcoBase.setToolTipText(null);
 			tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 		}
+		lblIcoBase.setVisible(true);
 		if (!checkEmpty())
 			setEditing(false);
 		else {
@@ -495,6 +525,7 @@ public abstract class AFormDistinta extends JPanel {
 			lblIcoAltezza.setToolTipText(null);
 			tfaltezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 		}
+		lblIcoAltezza.setVisible(true);
 		if (!checkEmpty())
 			setEditing(false);
 		else {
@@ -528,6 +559,7 @@ public abstract class AFormDistinta extends JPanel {
 			lblIcoLunghezza.setToolTipText(null);
 			tflunghezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 		}
+		lblIcoLunghezza.setVisible(true);
 		if (!checkEmpty())
 			setEditing(false);
 		else {
@@ -559,6 +591,7 @@ public abstract class AFormDistinta extends JPanel {
 			lblIcoNumero.setToolTipText(null);
 			tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 		}
+		lblIcoNumero.setVisible(true);
 		if (!checkEmpty())
 			setEditing(false);
 		else {
@@ -595,6 +628,7 @@ public abstract class AFormDistinta extends JPanel {
 			tftipocapitello.setBorder(new LineBorder(ConfigGUI
 					.getColoreBordoOk()));
 		}
+		lblIcoTipoCapitello.setVisible(true);
 		if (!checkEmpty())
 			setEditing(false);
 		else {
@@ -626,6 +660,7 @@ public abstract class AFormDistinta extends JPanel {
 			lblIcoNote.setToolTipText(null);
 			tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 		}
+		lblIcoNote.setVisible(true);
 		if (!checkEmpty())
 			setEditing(false);
 		else {

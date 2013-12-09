@@ -1,13 +1,11 @@
 package GUI.Plichi;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
-import GUI.CoedilFrame;
-import GUI.RaccoglitorePlichi;
+import GUI.ProgrammaLavori;
 import GUI.Abstract.APlico;
 import GUI.Form.FormDistinta;
 import GUI.Liste.ListaRigheLavoro;
@@ -60,83 +58,24 @@ public class PlicoDistinta extends APlico {
 	 * @param id:commessaId
 	 */
 	public void load(int id) {
-		int bounds = (CoedilFrame.getInstance().getBounds().width/6);
-		//this.panelAddButton.removeAll();
+		//int bounds = (CoedilFrame.getInstance().getBounds().width/6);
+		this.listaRigheLavoro.updatePanel();
 		MDistinta d = new MDistinta(GestisciCommessaHandler.getInstance()
 				.getCommessaById(id).getPersistentModel().getDistinta().getID());
 		this.listaRigheLavoro.load(new ArrayList<Object>(d.getPersistentModel().lavori.getCollection()));
-//		if (d != null && d.getPersistentModel().lavori.size() != 0) {
-//			for (int i = 0; i < d.getPersistentModel().lavori.size(); i++) {
-//				temp = new RiquadroDatiDistinta("Riga Lavoro");
-//				temp.load(d.getPersistentModel().lavori.get(i));
-//				temp.setLocation(bounds, 20 * (i + 1));
-//				this.add(temp);
-//				this.riquadri.add(temp);
-//				//temp.makeEditable(false);
-//			}
-//		}if (!d.hasDdo()) {
-//			MouseListener[] arrML = addButton.getMouseListeners();
-//			if (arrML.length == 1){
-//				addButton.addMouseListener(new MouseAdapter() {
-//					@Override
-//					public void mouseClicked(MouseEvent arg0) {
-//						RiquadroDatiDistinta temp = (RiquadroDatiDistinta) RiquadroDatiDistintaFactory.getInstance().makeRiquadro();
-//						temp.makeEditable(true);
-//						PlicoDistinta.this.add(temp);
-//						PlicoDistinta.this.posizionaAddButton();
-//						RaccoglitorePlichi.getInstance().validate();
-//						RaccoglitorePlichi.getInstance().repaint();
-//					}
-//				});	
-//			}
-//		}
-//		panelAddButton.add(addButton);
-//		//this.add(panelAddButton);
-//		this.aggiornaAltezze();
-//		if (d.hasDdo()){
-//			for(RiquadroDatiDistinta r: riquadri){
-//				r.avoidEditing(true);
-//				addButton.setVisible(false);
-//			}
-//		}
-//		else {
-//			for(RiquadroDatiDistinta r: riquadri){
-//				addButton.setVisible(true);
-//			}
-//		}
+		if(d.hasDdo())
+			this.setEdit(false);
+		this.listaRigheLavoro.updateAltezza();
 		this.validate();
 		this.repaint();
 	}
 
 	/**
-	 * Aggiorna l'altezza del pannello
+	 * Metodo che rimuove, se presente, il riquadro delle righe lavoro
 	 */
-	private void aggiornaAltezze() {
-		this.setPreferredSize(new Dimension(this.getWidth(),
-				FormDistinta.getFormDimension().height
-						* (this.getComponentCount())));
-		this.setSize(
-				this.getWidth(),
-				FormDistinta.getFormDimension().height
-						* (this.getComponentCount()));
-		RaccoglitorePlichi.getInstance().getScrollPaneWrapper().validate();
-		RaccoglitorePlichi.getInstance().getScrollPaneWrapper().repaint();
-	}
-	
-	public void removeRiquadro(FormDistinta r){
-		this.remove(r);
-		this.riquadri.remove(r);
-	}
-	
-	/**
-	 * Posiziona il bottone per aggiungere un nuovo riquadro distinta
-	 */
-	public void posizionaAddButton(){
-		this.aggiornaAltezze();
-		//this.remove(panelAddButton);
-		//this.add(panelAddButton);
-		this.validate();
-		this.repaint();
+	public void removeRiquadro(){
+		if(this.riquadroRigaLavoro != null)
+			this.remove(this.riquadroRigaLavoro);
 	}
 	
 	public void addRiquadroinLista(FormDistinta r){
@@ -153,15 +92,6 @@ public class PlicoDistinta extends APlico {
 	private void initialize(){
 		this.setLayout(new BorderLayout());
 		this.addListaRigheLavoro();
-		/*int x = (CoedilFrame.getInstance().getBounds().width/6);
-		this.setLayout(new WrapLayout(0, x, 20));
-		this.panelAddButton = new JPanel();
-		this.panelAddButton.setLayout(new FlowLayout(FlowLayout.CENTER));
-		panelAddButton.setPreferredSize(new Dimension(600,50));
-		addButton = new JButton("aggiungi nuova");
-		panelAddButton.add(addButton);
-		this.validate();
-		this.repaint();*/
 	}
 
 	public boolean isModifying() {
@@ -189,11 +119,31 @@ public class PlicoDistinta extends APlico {
 	 * @param r MRigaLavoro
 	 */
 	public void addRiquadroRigaLavoro(MRigaLavoro r){
+		if(this.riquadroRigaLavoro != null)
+			this.remove(this.riquadroRigaLavoro);
 		this.riquadroRigaLavoro = new FormDistinta();
-		this.riquadroRigaLavoro.load(r.getPersistentModel());
+		this.riquadroRigaLavoro.load(r);
 		this.add(this.riquadroRigaLavoro,BorderLayout.EAST);
 		this.validate();
 		this.repaint();
 	}
 	
+	/**
+	 * Metodo che refresha il contenuto del plico, rimuovendo la form della distinta se è visibile
+	 */
+	public void refresh(){
+		this.removeRiquadro();
+		this.load(ProgrammaLavori.getInstance().getCommessaSelezionata().getPersistentModel().getID());
+	}
+	
+	/**
+	 * Metodo che disabilita i pulsanti per modificare/eliminare delle card
+	 * @param b
+	 */
+	public void setEdit(boolean b) {
+		this.listaRigheLavoro.setEdit(b);
+		this.validate();
+		this.repaint();
+	}
+
 }

@@ -1,8 +1,10 @@
 package GUI.Form;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 
 import GUI.ProgrammaLavori;
 import GUI.Abstract.AFormDistinta;
@@ -10,7 +12,6 @@ import GUI.Plichi.PlicoDistinta;
 import coedil99.model.MDistinta;
 import coedil99.model.MGeometria;
 import coedil99.model.MRigaLavoro;
-import coedil99.persistentmodel.RigaLavoro;
 
 /**
  * Riquadro dati distinta
@@ -25,7 +26,6 @@ public class FormDistinta extends AFormDistinta {
 
 	public FormDistinta() {
 		super();
-		this.makeEditable(false);
 	}
 
 	/**
@@ -33,9 +33,8 @@ public class FormDistinta extends AFormDistinta {
 	 */
 	@Override
 	public void load(Object o) {
-		MRigaLavoro d = new MRigaLavoro();
-		d.setPersistentModel((RigaLavoro) o);
-		if (d != null) {
+		if (o != null) {
+			MRigaLavoro d = (MRigaLavoro) o;
 			this.tflunghezza.setText(String.valueOf(d.getPersistentModel()
 					.getGeometria().getLunghezza()));
 			this.tfaltezza.setText(String.valueOf(d.getPersistentModel()
@@ -44,15 +43,15 @@ public class FormDistinta extends AFormDistinta {
 					.getGeometria().getBase()));
 			this.tfnumero.setText(String.valueOf(d.getPersistentModel()
 					.getNumero()));
-			this.cbcapitello.setSelectedIndex((d.getPersistentModel()
-					.getCapitello()) ? 0 : 1);
 			this.tftipocapitello.setText(d.getPersistentModel()
 					.getProfiloCapitello());
-			this.lblIcoTipoCapitello.setIcon(null);
+			this.cbcapitello.setSelectedIndex((d.getPersistentModel()
+					.getCapitello()) ? 0 : 1);
 			this.tfnote.setText(d.getPersistentModel().getNote());
-			this.makeEditable(false);
 			this.oggetto = d;
 		}
+		this.makeEditable(true);			
+		this.resetErroriForm();
 	}
 
 	/**
@@ -62,7 +61,7 @@ public class FormDistinta extends AFormDistinta {
 	public void makeEditable(boolean editable) {
 		this.cbcapitello.setEnabled(editable);
 		super.makeEditable(editable);
-		if(this.cbcapitello.getSelectedItem().equals("No"))
+		if (this.cbcapitello.getSelectedItem().equals("No"))
 			this.tftipocapitello.setEnabled(false);
 		setEditing(checkEmpty());
 	}
@@ -85,7 +84,6 @@ public class FormDistinta extends AFormDistinta {
 	@Override
 	public void salva(boolean showmex) {
 		MRigaLavoro r = new MRigaLavoro();
-
 		if (this.oggetto != null) {
 			r = (MRigaLavoro) this.oggetto;
 		} else {
@@ -115,11 +113,12 @@ public class FormDistinta extends AFormDistinta {
 			JOptionPane.showMessageDialog(null,
 					"Salvataggio avvenuto correttamente",
 					"Messaggio di Sistema", JOptionPane.INFORMATION_MESSAGE);
-		this.load(((MRigaLavoro)this.oggetto).getPersistentModel());
+		this.load((MRigaLavoro) this.oggetto);
 	}
 
 	public static Dimension getFormDimension() {
 		return FormDistinta.dimension;
 	}
 	
+
 }

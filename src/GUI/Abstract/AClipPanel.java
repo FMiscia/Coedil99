@@ -1,14 +1,11 @@
 package GUI.Abstract;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,8 +20,6 @@ import GUI.CoedilFrame;
 import GUI.ConfigGUI;
 import GUI.LoginPanel;
 import GUI.PanelStart;
-import GUI.Panels.LoginDialog;
-
 import coedil99.controller.GestisciDipendenteHandler;
 import coedil99.controller.GestisciRDAHandler;
 

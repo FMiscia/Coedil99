@@ -8,8 +8,6 @@ import javax.swing.JPanel;
 
 import GUI.Abstract.ALista;
 import GUI.Abstract.ARiepilogoDistinta;
-import GUI.Avvisi.AvvisoCommessa;
-import GUI.Avvisi.AvvisoCommessaFactory;
 import GUI.Avvisi.AvvisoRigaLavoro;
 import GUI.Avvisi.AvvisoRigaLavoroFactory;
 import GUI.Card.CardRigaLavoro;
@@ -72,32 +70,7 @@ public class ListaRigheLavoro extends ALista {
 	}
 
 	/**
-	 * Carica le righe RDA
-	 * 
-	 * @param t
-	 */
-//	public void loadComm(ArrayList<Object> t) {
-//		
-//		int row = t.size();
-//		CardRigaRDA cardRigaRDA = null;
-//		for (int k = 0; k < row; k++) {
-//			cardRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance()
-//					.makeCard(this);
-//
-//			cardRigaRDA.load( t.get(k) );
-//			cardRigaRDA.setCardWithNoOptions();
-//			this.panel.add(cardRigaRDA);
-//			this.panel.validate();
-//			this.panel.repaint();
-//			
-//		}
-//		
-//		this.validate();
-//		this.repaint();
-//	}
-	
-	/**
-	 * Rimuove un riquadro contenente una riga RDA
+	 * Rimuove un riquadro contenente una riga lavoro
 	 * 
 	 * @param cardRigaLavoro
 	 */
@@ -157,6 +130,22 @@ public class ListaRigheLavoro extends ALista {
 						* (this.panel.getComponent(1).getHeight() + 10)));
 		this.validate();
 		this.repaint();
+	}
+	
+	/**
+	 * Metodo che abilita/disabilita i pulsanti per la modifica della distinta
+	 * @param edit
+	 */
+	public void setEdit(boolean edit){
+		if(this.getNumRigheLavoro() != 0){
+			this.riepilogoDistinta.setEdit(edit);
+			CardRigaLavoro riquadroRigaLavoro = null;
+			for(int i=1; i<this.getNumRigheLavoro()+1; ++i){
+				riquadroRigaLavoro = (CardRigaLavoro) this.panel.getComponent(i);
+				riquadroRigaLavoro.setEdit(edit);
+			}
+			this.updateAltezza();
+		}
 	}
 
 }

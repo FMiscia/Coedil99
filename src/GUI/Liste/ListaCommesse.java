@@ -163,5 +163,4 @@ public class ListaCommesse extends ALista {
 		return null;
 
 	}
-
 }

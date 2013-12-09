@@ -31,6 +31,7 @@ public class MRigaLavoro implements IModel{
 		try {
 			this.rigalavoro = RigaLavoroFactory
 					.getRigaLavoroByORMID(ID);
+			this.isSaved = true;
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}

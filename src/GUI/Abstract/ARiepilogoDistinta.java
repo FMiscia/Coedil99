@@ -39,6 +39,8 @@ public abstract class ARiepilogoDistinta extends ARiepilogo {
 	protected JComboBox<Object> cbOttimizzatore;
 	protected JButton btnAdd;
 	protected JButton btnOttimizza;
+	private JLabel lblOttimizzata;
+	private JLabel lblDistinta;
 
 	/**
 	 * Costruttore
@@ -60,34 +62,31 @@ public abstract class ARiepilogoDistinta extends ARiepilogo {
 		this.panel.setBackground(SystemColor.controlHighlight);
 		this.panel.setPreferredSize(new Dimension(280, 230));
 		this.panel.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("40px"),
-				ColumnSpec.decode("10px"),
+				ColumnSpec.decode("40px"), ColumnSpec.decode("10px"),
 				ColumnSpec.decode("max(80px;default)"),
 				ColumnSpec.decode("10px"),
 				ColumnSpec.decode("max(80px;default)"),
-				ColumnSpec.decode("10px"),
-				ColumnSpec.decode("40px"),},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+				ColumnSpec.decode("10px"), ColumnSpec.decode("40px"), },
+				new RowSpec[] { FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.RELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC, }));
 
 		this.lblTitolo = new JLabel("Lista Righe Lavoro");
 		this.lblTitolo.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -101,30 +100,52 @@ public abstract class ARiepilogoDistinta extends ARiepilogo {
 		this.lblOttimizzatore.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lblOttimizzatore.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		this.panel.add(lblOttimizzatore, "3, 6, 3, 1");
-		
+
 		this.cbOttimizzatore = new JComboBox<Object>();
 		this.panel.add(this.cbOttimizzatore, "3, 10, 3 ,1");
-		
 
 		separator_1 = new JSeparator();
 		this.panel.add(separator_1, "3, 12, 3, 1");
 
 		btnSalva = new JButton("Salva Distinta");
 
-		//btnElimina = new JButton("Elimina Distinta");
-		
+		// btnElimina = new JButton("Elimina Distinta");
+
 		btnAdd = new JButton("Aggiungi Riga Lavoro");
-		
+
 		btnOttimizza = new JButton("Ottimizza");
+		
+		lblDistinta = new JLabel("Distinta");
+		lblOttimizzata = new JLabel("Ottimizzata");
+		lblDistinta.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOttimizzata.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDistinta.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblOttimizzata.setFont(new Font("Tahoma", Font.BOLD, 24));
 
 	}
-	
+
 	/**
 	 * Metodo che posiziona il bottone nella riga indicata
+	 * 
 	 * @param bottone
 	 * @param row
 	 */
-	public void addButton(JButton bottone, int row){
-		this.panel.add(bottone,"3, "+row+", 3, 1");
+	public void addButton(JButton bottone, int row) {
+		this.panel.add(bottone, "3, " + row + ", 3, 1");
 	}
+	
+	public void addOttimizzata(){
+		this.panel.add(lblDistinta,"3, 16 ,3 ,1");
+		this.panel.add(lblOttimizzata,"3, 18 ,3 ,1");
+		this.validate();
+		this.repaint();
+	}
+
+	/**
+	 * Metodo che controlla se la distinta è ottimizzata
+	 * 
+	 * @param d
+	 *            {@link MDistinta}
+	 */
+	public abstract void setEdit(boolean edit);
 }
