@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
 import GUI.ProgrammaLavori;
+import GUI.Abstract.AClipPanel;
 import GUI.Abstract.ARiepilogoDistinta;
 import GUI.Plichi.PlicoDDO;
 import GUI.Plichi.PlicoDistinta;
@@ -135,13 +136,8 @@ public class RiepilogoDistinta extends ARiepilogoDistinta {
 									options, options[1]);
 					if (n == JOptionPane.YES_OPTION) {
 						d.creaDDO((String) cbOttimizzatore.getSelectedItem());
-						pl.getRaccoglitorePlichi().changePlico(
-								PlicoDDO.getInstance());
-						pl.getClipPanel()
-								.getButtons()
-								.get(pl.getClipPanel().PLButtonState.get("DDO"))
-								.doClick();
 						pl.checkDDO();
+						pl.getClipPanel().getButtons().get(AClipPanel.PLButtonState.get("DDO")).doClick();
 					}
 				}
 			});

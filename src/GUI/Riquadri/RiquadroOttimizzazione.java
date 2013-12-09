@@ -187,7 +187,7 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	 */
 	private void addQual() {
 		// TODO Auto-generated method stub
-		lblQual = new JLabel("Qual");
+		lblQual = new JLabel("Descrizione");
 		form.add(lblQual, "2, 2");
 
 		txtQual = new JTextField();

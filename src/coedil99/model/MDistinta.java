@@ -113,7 +113,6 @@ public class MDistinta implements IModel {
 		try {
 			this.distinta.save();
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

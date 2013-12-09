@@ -101,6 +101,7 @@ public class MinimizerOttimizzatoreStrategy extends AOttimizzatoreStrategy {
 
 		o.save();
 		distinta.getPersistentModel().setDdo(o.getPersistentModel());
+		distinta.save();
 
 		return o;
 

@@ -123,25 +123,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 					b.setSelected(true);
 					ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 							.changePlico(PlicoDDO.getInstance());
-				} else {
-					
-//					Object[] options = { "Si", "No" };
-//					int n = JOptionPane.showOptionDialog(
-//							ProgrammaLavori.getInstance(),
-//							"Il DDO non esiste.\nVuoi elaborare l'ottimizzazione?\n"
-//									+ "Nota: questa operazione non è reversibile",
-//							"Conferma operazione",
-//							JOptionPane.YES_NO_CANCEL_OPTION,
-//							JOptionPane.QUESTION_MESSAGE, null, options,
-//							options[1]);
-//					if (n == JOptionPane.YES_OPTION) {
-//						odistinta.creaDDO();
-//						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
-//								.changePlico(PlicoDDO.getInstance());
-//						((JToggleButton) e.getSource()).doClick();
-//					} else
-//						((JToggleButton) e.getSource()).setSelected(false);
-				}
+				} 					
 				RaccoglitorePlichi.getInstance().validate();
 				RaccoglitorePlichi.getInstance().repaint();
 			}
