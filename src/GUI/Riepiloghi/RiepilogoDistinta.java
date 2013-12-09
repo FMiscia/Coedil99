@@ -73,14 +73,20 @@ public class RiepilogoDistinta extends ARiepilogoDistinta {
 				});
 			}
 
-			if (this.btnOttimizza.getMouseListeners().length == 1) {
-				this.btnOttimizza.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						ottimizzaDistinta(d);
-					}
+			if (d.getPersistentModel().lavori.isEmpty())
+				this.btnOttimizza.setEnabled(false);
+			else {
+				this.btnOttimizza.setEnabled(true);
+				if (this.btnOttimizza.getMouseListeners().length == 1) {
+					this.btnOttimizza.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							ottimizzaDistinta(d);
+						}
 
-				});
+					});
+
+				}
 			}
 
 			this.validate();
@@ -128,15 +134,15 @@ public class RiepilogoDistinta extends ARiepilogoDistinta {
 									JOptionPane.QUESTION_MESSAGE, null,
 									options, options[1]);
 					if (n == JOptionPane.YES_OPTION) {
-						d.creaDDO();
+						d.creaDDO((String) cbOttimizzatore.getSelectedItem());
 						pl.getRaccoglitorePlichi().changePlico(
 								PlicoDDO.getInstance());
 						pl.getClipPanel()
 								.getButtons()
 								.get(pl.getClipPanel().PLButtonState.get("DDO"))
 								.doClick();
-					} else
-						((JToggleButton) e.getSource()).setSelected(false);
+						pl.checkDDO();
+					}
 				}
 			});
 		}
@@ -151,5 +157,5 @@ public class RiepilogoDistinta extends ARiepilogoDistinta {
 		this.addOttimizzata();
 		this.cbOttimizzatore.setEnabled(edit);
 	}
-	
+
 }

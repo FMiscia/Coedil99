@@ -98,7 +98,7 @@ public class PlicoDistinta extends APlico {
 		boolean result = false;
 		for(FormDistinta temp: this.riquadri){
 			for (JLabel j : temp.getLabel()) {
-				if (j.getIcon()!=null)
+				if (j.isVisible())
 					result = true;
 				temp.svuotaIconeLAbel();
 			}

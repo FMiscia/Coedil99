@@ -1,10 +1,13 @@
 package GUI.Riquadri;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import GUI.Abstract.ARiquadro;
+import coedil99.model.MDistinta;
 import coedil99.model.MItem;
+import coedil99.persistentmodel.Distinta;
 import coedil99.persistentmodel.Item;
 
 import com.jgoodies.forms.factories.FormFactory;
@@ -23,8 +26,8 @@ public class RiquadroOttimizzazione extends ARiquadro {
 
 	private JLabel lblQual;
 	private JTextField txtQual;
-	private JLabel lblLarg;
-	private JTextField txtLarg;
+	private JLabel lblBase;
+	private JTextField txtBase;
 	private JLabel lblAltezza;
 	private JTextField txtAltezza;
 	private JLabel lblCommessaLung;
@@ -61,16 +64,16 @@ public class RiquadroOttimizzazione extends ARiquadro {
 				ColumnSpec.decode("max(50px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("default:grow"), }, new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC }));
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("25px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("25px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("25px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("25px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("25px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("25px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("25px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("25px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("25px"),
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("25px") }));
 
 		this.addQual();
 		this.addLarg();
@@ -88,11 +91,11 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	@Override
 	public void load(Object o) {
 		MItem oi = new MItem(((Item) o).getID());
-		this.txtLarg.setText(oi.getBase() + " cm");
+		this.txtBase.setText(oi.getBase() + " cm");
 		this.txtAltezza.setText(oi.getAltezza() + " cm");
 		this.txtCommessaLung.setText(oi.getLunghezza() / 100 + " m");
-		this.txtQual.setText("prova");
-		this.txtOrdineQuantita.setText("prova");
+		this.txtQual.setText(oi.getPersistentModel().getDescrizione());
+		this.txtOrdineQuantita.setText(String.valueOf((int) (Math.random()*100)));
 		this.txtVolume.setText(oi.getBase() * oi.getAltezza()
 				* oi.getLunghezza() / 1000000 + " m^3");
 		this.validate();
@@ -170,12 +173,12 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	 */
 	private void addLarg() {
 		// TODO Auto-generated method stub
-		lblLarg = new JLabel("Larghezza");
-		form.add(lblLarg, "2, 4");
+		lblBase = new JLabel("Larghezza");
+		form.add(lblBase, "2, 4");
 
-		txtLarg = new JTextField();
-		form.add(txtLarg, "6, 4, fill, default");
-		this.Container.add(txtLarg);
+		txtBase = new JTextField();
+		form.add(txtBase, "6, 4, fill, default");
+		this.Container.add(txtBase);
 
 	}
 

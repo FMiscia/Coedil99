@@ -12,6 +12,7 @@ import GUI.Liste.ListaCommesse;
 import GUI.Liste.ListaCommesseFactory;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MCommessa;
+import coedil99.model.MDistinta;
 
 public class ProgrammaLavori extends JPanel {
 
@@ -39,6 +40,7 @@ public class ProgrammaLavori extends JPanel {
 		this.addPanelLavori();
 		this.addMenuBar();
 		this.checkCommesse();
+		this.checkDDO();
 	}
 
 	/**
@@ -150,6 +152,18 @@ public class ProgrammaLavori extends JPanel {
 	 */
 	public void checkCommesse(){
 		this.clip.enableButtons(this.lista.getPrimaCard() != null);
+	}
+	
+	/**
+	 * Metodo che abilita/disabilita il pulsante DDO se la distinta è già ottimizzata
+	 * @param odistinta
+	 */
+	public void checkDDO(){
+		MDistinta odistinta = new MDistinta(this.commessaSelezionata.getPersistentModel().getDistinta().getID());
+		if(odistinta.hasDdo())
+			this.clip.getButtons().get(this.clip.PLButtonState.get("DDO")).setEnabled(true);
+		else
+			this.clip.getButtons().get(this.clip.PLButtonState.get("DDO")).setEnabled(false);
 	}
 
 }

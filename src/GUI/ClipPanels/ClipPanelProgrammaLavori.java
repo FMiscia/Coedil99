@@ -78,6 +78,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 					pl.ListaCommesse().selectCommessaSelezionata(pl.getCommessaSelezionata());
 				}
 				pl.checkCommesse();
+				pl.checkDDO();
 				JToggleButton b = (JToggleButton) e.getSource();
 				b.setSelected(true);
 				RaccoglitorePlichi.getInstance().validate();
@@ -99,6 +100,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 						.changePlico(PlicoDistinta.getInstance());
 				JToggleButton b = (JToggleButton) e.getSource();
 				b.setSelected(true);
+				ProgrammaLavori.getInstance().checkDDO();
 				RaccoglitorePlichi.getInstance().validate();
 				RaccoglitorePlichi.getInstance().repaint();
 			}
@@ -122,22 +124,23 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 					ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 							.changePlico(PlicoDDO.getInstance());
 				} else {
-					Object[] options = { "Si", "No" };
-					int n = JOptionPane.showOptionDialog(
-							ProgrammaLavori.getInstance(),
-							"Il DDO non esiste.\nVuoi elaborare l'ottimizzazione?\n"
-									+ "Nota: questa operazione non è reversibile",
-							"Conferma operazione",
-							JOptionPane.YES_NO_CANCEL_OPTION,
-							JOptionPane.QUESTION_MESSAGE, null, options,
-							options[1]);
-					if (n == JOptionPane.YES_OPTION) {
-						odistinta.creaDDO();
-						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
-								.changePlico(PlicoDDO.getInstance());
-						((JToggleButton) e.getSource()).doClick();
-					} else
-						((JToggleButton) e.getSource()).setSelected(false);
+					
+//					Object[] options = { "Si", "No" };
+//					int n = JOptionPane.showOptionDialog(
+//							ProgrammaLavori.getInstance(),
+//							"Il DDO non esiste.\nVuoi elaborare l'ottimizzazione?\n"
+//									+ "Nota: questa operazione non è reversibile",
+//							"Conferma operazione",
+//							JOptionPane.YES_NO_CANCEL_OPTION,
+//							JOptionPane.QUESTION_MESSAGE, null, options,
+//							options[1]);
+//					if (n == JOptionPane.YES_OPTION) {
+//						odistinta.creaDDO();
+//						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
+//								.changePlico(PlicoDDO.getInstance());
+//						((JToggleButton) e.getSource()).doClick();
+//					} else
+//						((JToggleButton) e.getSource()).setSelected(false);
 				}
 				RaccoglitorePlichi.getInstance().validate();
 				RaccoglitorePlichi.getInstance().repaint();
@@ -239,5 +242,6 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 		JToggleButton b = (JToggleButton) ClipPanelProgrammaLavori.this.getButtons().get(4);
 		return this.isButtonFocused(b);
 	}
+	
 
 }

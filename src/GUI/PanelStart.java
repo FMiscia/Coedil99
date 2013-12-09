@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import GUI.ClipPanels.ClipPanelMenu;
 import GUI.ClipPanels.ClipPanelMenuFactory;
+import GUI.ClipPanels.ClipPanelProgrammaLavori;
 import GUI.Liste.ListaFornitori;
 import GUI.Liste.ListaFornitoriFactory;
 import GUI.Liste.ListaRDA;
@@ -163,6 +164,7 @@ public class PanelStart extends JPanel {
 				ProgrammaLavori p = ProgrammaLavori.getInstance();
 				p.getClipPanel().resetInitialState();
 				p.checkCommesse();
+				p.checkDDO();
 				CoedilFrame.getInstance().montaPanel(p);
 				p.getClipPanel().getButtons().get(1).doClick();
 			}

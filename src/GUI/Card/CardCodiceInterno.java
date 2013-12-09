@@ -89,6 +89,7 @@ public class CardCodiceInterno extends ACard {
 				contenitore.getRaccoglitorePlichi().repaint();
 				
 				contenitore.getClipPanel().resetInitialState();
+				contenitore.checkDDO();
 				CardCodiceInterno.this.setBackground(ConfigGUI.getColoreSelezionato());
 				CardCodiceInterno.this.validate();
 				CardCodiceInterno.this.repaint();

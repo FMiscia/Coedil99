@@ -5,6 +5,7 @@ import java.util.HashMap;
 import coedil99.model.AOttimizzatoreStrategy;
 import coedil99.model.MDistinta;
 import coedil99.model.MDocumentoOttimizzazione;
+import coedil99.model.MinimizerOttimizzatoreStrategy;
 import coedil99.model.StandardOttimizzatoreStrategy;
 
 public class OttimizzatoreHandler {
@@ -16,6 +17,7 @@ public class OttimizzatoreHandler {
 	static {
 		ottimizzatori = new HashMap<String, AOttimizzatoreStrategy>();
 		ottimizzatori.put("Standard", new StandardOttimizzatoreStrategy());
+		ottimizzatori.put("Minimizer", new MinimizerOttimizzatoreStrategy());
 	}
 
 	/**

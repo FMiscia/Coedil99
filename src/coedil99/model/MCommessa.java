@@ -66,7 +66,9 @@ public class MCommessa implements IModel {
 							this.commessa.getOrdine().getCliente()
 									.getNumeroCommessaCliente() - 1);
 			this.commessa.getOrdine().getCliente().save();
+			MDistinta d = new MDistinta(this.commessa.getDistinta().getID());
 			this.commessa.deleteAndDissociate();
+			d.delete();
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
