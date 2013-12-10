@@ -101,6 +101,7 @@ public class CardRigaLavoro extends ACard {
 		btnModifica = new JButton("Modifica");
 		btnModifica.setPreferredSize(new Dimension(110, 40));
 		btnModifica.setIconTextGap(10);
+		btnModifica.setIcon(ConfigGUI.getEditIcon());
 		add(btnModifica, "6, 2");
 
 		lblBase = new JLabel("Base: ");
@@ -187,7 +188,6 @@ public class CardRigaLavoro extends ACard {
 		this.txtNumero.setText(String.valueOf(riga.getPersistentModel()
 				.getNumero()));
 		this.txtNote.setText(riga.getPersistentModel().getNote());
-		this.btnModifica.setIcon(ConfigGUI.getEditIcon());
 		if(this.btnModifica.getMouseListeners().length <=1 )
 			this.btnModifica.addMouseListener(new MouseAdapter() {
 	

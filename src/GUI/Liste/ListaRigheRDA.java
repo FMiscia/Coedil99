@@ -35,7 +35,7 @@ public class ListaRigheRDA extends ALista {
 	 */
 	public ListaRigheRDA() {
 		super();
-		this.setPreferredSize(new Dimension(300, 0));
+		this.setPreferredSize(new Dimension(330, 0));
 		this.validate();
 		this.repaint();
 	}

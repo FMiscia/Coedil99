@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import GUI.ConfigGUI;
@@ -38,6 +39,8 @@ public class ListaProdotti extends ALista {
 		this.updatePanel();
 		int row = prodotti.size();
 		CardProdotto cardProdotto = null;
+		this.panel.add((CardProdotto) CardProdottoFactory.getInstance()
+				.makeIntestazione(this));
 		for (int k = 0; k < row; k++) {
 			cardProdotto = (CardProdotto) CardProdottoFactory.getInstance()
 					.makeCard(this);
@@ -70,7 +73,7 @@ public class ListaProdotti extends ALista {
 	}
 
 	public int getNumProdotti() {
-		return this.panel.getComponentCount() -1;
+		return this.panel.getComponentCount() -2;
 	}
 
 	@Override
@@ -136,7 +139,7 @@ public class ListaProdotti extends ALista {
 	 * @return boolean
 	 */
 	public boolean isEmpty(){
-		return this.getNumProdotti() == 0;
+		return this.getNumProdotti() <= 0;
 	}
 	
 	/**

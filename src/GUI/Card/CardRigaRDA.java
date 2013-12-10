@@ -73,9 +73,10 @@ public class CardRigaRDA extends ACard {
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("max(85px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(40px;default)"),
+				ColumnSpec.decode("max(35px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(85px;default)"),},
+				ColumnSpec.decode("max(85px;default)"),
+				FormFactory.RELATED_GAP_COLSPEC,},
 			new RowSpec[] {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
@@ -135,6 +136,18 @@ public class CardRigaRDA extends ACard {
 
 		txtPrezzo = new JLabel("");
 		add(txtPrezzo, "4, 16, 3, 1, right, default");
+		
+		btnModifica = new JButton("Modifica");
+		btnModifica.setPreferredSize(new Dimension(110, 40));
+		btnModifica.setIconTextGap(10);
+		btnModifica.setIcon(ConfigGUI.getEditIcon());
+		add(btnModifica, "6, 2");
+		
+		btnElimina = new JButton("Elimina");
+		btnElimina.setPreferredSize(new Dimension(110, 40));
+		btnElimina.setIconTextGap(10);
+		this.btnElimina.setIcon(ConfigGUI.getAbortIcon());
+		add(btnElimina, "2, 2");
 
 		this.addMouseListener(new MouseAdapter() {
 			@Override
@@ -155,51 +168,27 @@ public class CardRigaRDA extends ACard {
 	 */
 	private void setCardOptions() {
 		if (RDACenter.getInstance().getClipPanel().isSelected("NUOVA")){
-			btnElimina = new JButton("Elimina");
-			add(btnElimina, "2, 2");
-			
-			btnModifica = new JButton("Modifica");
 			btnModifica.setVisible(false);
-			add(btnModifica, "6, 2");
+			btnElimina.setVisible(true);
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.ATTESA_CONFERMA)){
-			btnElimina = new JButton("Elimina");
 			btnElimina.setVisible(false);
-			add(btnElimina, "2, 2");
-			
-			btnModifica = new JButton("Modifica");
 			btnModifica.setVisible(false);
-			add(btnModifica, "6, 2");
-			this.setPreferredSize(new Dimension(269, 190));
+			this.setPreferredSize(new Dimension(270, 220));
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.CONGELATA)){
-			btnElimina = new JButton("Elimina");
 			btnElimina.setVisible(true);
-			add(btnElimina, "2, 2");
-			
-			btnModifica = new JButton("Modifica");
 			btnModifica.setVisible(true);
-			add(btnModifica, "6, 2");
-			this.setPreferredSize(new Dimension(269, 190));
+			this.setPreferredSize(new Dimension(270, 220));
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.RIFIUTATA)){
-			btnElimina = new JButton("Elimina");
 			btnElimina.setVisible(false);
-			add(btnElimina, "2, 2");
-			
-			btnModifica = new JButton("Modifica");
 			btnModifica.setVisible(false);
-			add(btnModifica, "6, 2");
-			this.setPreferredSize(new Dimension(269, 190));
+			this.setPreferredSize(new Dimension(270, 220));
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.CONFERMATA)){
-			btnElimina = new JButton("Elimina");
 			btnElimina.setVisible(false);
-			add(btnElimina, "4, 2");
-			
-			btnModifica = new JButton("Modifica");
 			btnModifica.setVisible(false);
-			add(btnModifica, "2, 2");
 		}
 	}
 	/**
@@ -231,8 +220,6 @@ public class CardRigaRDA extends ACard {
 				.getPezzi_per_pacco()));
 		this.txtPrezzo.setText(String
 				.valueOf(riga.getPersistentModel().getDescription().getPrezzo()));
-		this.btnModifica.setIcon(new ImageIcon(CardRigaRDA.class
-				.getResource("/GUI/image/congelata.png")));
 		this.btnModifica.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -251,8 +238,6 @@ public class CardRigaRDA extends ACard {
 				PlicoRDA.getInstance().addFormRDA(form);
 			}
 		});
-		this.btnElimina.setIcon(new ImageIcon(CardRigaRDA.class
-				.getResource("/GUI/image/cancella.png")));
 		this.btnElimina.addMouseListener(new MouseAdapter() {
 
 			@Override

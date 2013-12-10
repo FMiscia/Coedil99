@@ -26,9 +26,14 @@ public class CardProdottoFactory extends CardFactory {
 			instance = new CardProdottoFactory();
 		return instance;
 	}
+	
 	@Override
 	public ACard makeCard(ALista lista) {
 		return new CardProdotto(lista);
+	}
+	
+	public ACard makeIntestazione(ALista lista){
+		return new CardProdotto(lista, true);
 	}
 
 }
