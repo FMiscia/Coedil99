@@ -119,7 +119,7 @@ public class CardCodiceInterno extends ACard {
 		scadenza.setHorizontalAlignment(SwingConstants.CENTER);
 		scadenza.setHorizontalTextPosition(SwingConstants.LEADING);
 		scadenza.setBounds(100, 30, 100, 30);
-		scadenza.setBorder(new MatteBorder(1, 0, 1, 1, (Color) new Color(0, 0, 0)));
+		scadenza.setBorder(new MatteBorder(1, 0, 1, 1, ConfigGUI.getColoreBordoCard()));
 
 		codiceInterno = new JLabel();
 		codiceInterno.setHorizontalAlignment(SwingConstants.CENTER);

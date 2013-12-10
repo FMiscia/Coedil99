@@ -24,7 +24,7 @@ public class ListaProdotti extends ALista {
 	public ListaProdotti() {
 		super();
 		this.initialize();
-		this.setPreferredSize(new Dimension(500, 0));
+		this.setPreferredSize(new Dimension(600, 0));
 		this.validate();
 		this.repaint();
 	}

@@ -109,8 +109,6 @@ public abstract class ARiepilogoDistinta extends ARiepilogo {
 
 		btnSalva = new JButton("Salva Distinta");
 
-		// btnElimina = new JButton("Elimina Distinta");
-
 		btnAdd = new JButton("Aggiungi Riga Lavoro");
 
 		btnOttimizza = new JButton("Ottimizza");

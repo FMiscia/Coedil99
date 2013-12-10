@@ -24,6 +24,7 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
+import java.awt.Insets;
 
 /**
  * 
@@ -73,20 +74,33 @@ public class CardRigaLavoro extends ACard {
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("max(85px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(40px;default)"),
+				ColumnSpec.decode("max(35px;default)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(85px;default)"), }, new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, }));
+				ColumnSpec.decode("max(85px;default)"),
+				FormFactory.RELATED_GAP_COLSPEC,},
+			new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,}));
 
 		btnModifica = new JButton("Modifica");
+		btnModifica.setPreferredSize(new Dimension(110, 40));
+		btnModifica.setIconTextGap(10);
 		add(btnModifica, "6, 2");
 
 		lblBase = new JLabel("Base: ");
@@ -132,6 +146,9 @@ public class CardRigaLavoro extends ACard {
 		add(txtNote, "4, 16, 3, 1, right, default");
 
 		btnElimina = new JButton("Elimina");
+		btnElimina.setPreferredSize(new Dimension(110, 40));
+		btnElimina.setIconTextGap(10);
+		this.btnElimina.setIcon(ConfigGUI.getAbortIcon());
 		add(btnElimina, "2, 2");
 
 		this.addMouseListener(new MouseAdapter() {
@@ -170,8 +187,7 @@ public class CardRigaLavoro extends ACard {
 		this.txtNumero.setText(String.valueOf(riga.getPersistentModel()
 				.getNumero()));
 		this.txtNote.setText(riga.getPersistentModel().getNote());
-		this.btnModifica.setIcon(new ImageIcon(CardRigaLavoro.class
-				.getResource("/GUI/image/congelata.png")));
+		this.btnModifica.setIcon(ConfigGUI.getEditIcon());
 		if(this.btnModifica.getMouseListeners().length <=1 )
 			this.btnModifica.addMouseListener(new MouseAdapter() {
 	
@@ -187,8 +203,7 @@ public class CardRigaLavoro extends ACard {
 					PlicoDistinta.getInstance().addRiquadroRigaLavoro(riga);
 				}
 			});
-		this.btnElimina.setIcon(new ImageIcon(CardRigaLavoro.class
-				.getResource("/GUI/image/cancella.png")));
+		this.btnElimina.setIcon(ConfigGUI.getAbortIcon());
 		if(this.btnElimina.getMouseListeners().length <=1 )
 			this.btnElimina.addMouseListener(new MouseAdapter() {
 	

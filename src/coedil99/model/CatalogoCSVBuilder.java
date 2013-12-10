@@ -20,13 +20,8 @@ public class CatalogoCSVBuilder extends CatalogoFornitoreBuilder {
 	 */
 	@Override
 	public void Parse(String catalogo) throws IOException {
-		//URL url = CatalogoCSVBuilder.class.getResource("/GUI/TestFile/"+catalogo);
 		CSVReader reader = new CSVReader(new FileReader(catalogo), '#');
-		//String[] fornitore = reader.readNext();
-		//String[] nome_fornitore = reader.readNext();
 		String[] intestazione = reader.readNext();
-		//this.catalogo.getPersistentModel().setName(nome_fornitore[0]);
-		//System.out.println(nome_fornitore[0]);
 		String[] row = null;
 		while ((row = reader.readNext()) != null) {
 			MProductDescription new_productDescription = new MProductDescription();
@@ -42,8 +37,6 @@ public class CatalogoCSVBuilder extends CatalogoFornitoreBuilder {
 			new_productDescription.getPersistentModel().setGeometria(new_geometria.getPersistentModel());
 			this.catalogo.getPersistentModel().productDescription.add(new_productDescription.getPersistentModel());
 			this.catalogo.save();
-			//new_productDescription.save();
-			//new_geometria.save();
 		}
 		reader.close();
 

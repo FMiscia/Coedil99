@@ -1,9 +1,6 @@
 package coedil99.model;
 
-import java.io.File;
 import java.io.IOException;
-
-import coedil99.controller.GestisciFornitoreHandler;
 
 /**
  * Pattern Builder: un catalogo può essere caricato da vari
