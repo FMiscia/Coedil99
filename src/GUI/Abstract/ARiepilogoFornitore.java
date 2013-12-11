@@ -395,20 +395,22 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		GestisciFornitoreHandler.getInstance().setBuilder(
 				GestisciFornitoreHandler.cataloghiBuilders.get(filtro
 						.getExtension(fileChooser.getSelectedFile())));
-		GestisciFornitoreHandler.getInstance().ConstructCatalogo(
-				fileChooser.getSelectedFile().getPath());
-		new_catalogo = GestisciFornitoreHandler.getInstance().getCatalogo();
-		new_catalogo.getPersistentModel().setName(
-				ARiepilogoFornitore.this.lblNome.getText());
-		new_catalogo.save();
-		FornitoriCenter.getInstance().setFornitoreSelezionato(new_catalogo);
-		PlicoFornitore.getInstance().loadListaProdotti(this.lblNome.getText());
-		this.setModify(true);
-		this.btnElimina.setVisible(true);
-		this.controlloErrori();
-		this.btnCaricaCatalogo.setVisible(true);
-		validate();
-		repaint();
-		JOptionPane.showMessageDialog(null, "Catalogo Caricato");
+		if (GestisciFornitoreHandler.getInstance().ConstructCatalogo(
+				fileChooser.getSelectedFile().getPath())) {
+			new_catalogo = GestisciFornitoreHandler.getInstance().getCatalogo();
+			new_catalogo.getPersistentModel().setName(
+					ARiepilogoFornitore.this.lblNome.getText());
+			new_catalogo.save();
+			FornitoriCenter.getInstance().setFornitoreSelezionato(new_catalogo);
+			PlicoFornitore.getInstance().loadListaProdotti(
+					this.lblNome.getText());
+			this.setModify(true);
+			this.btnElimina.setVisible(true);
+			this.controlloErrori();
+			this.btnCaricaCatalogo.setVisible(true);
+			validate();
+			repaint();
+			JOptionPane.showMessageDialog(null, "Catalogo Caricato");
+		}
 	}
 }

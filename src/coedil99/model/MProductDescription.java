@@ -25,7 +25,6 @@ public class MProductDescription implements IModel {
 		try {
 			this.productdescription = ProductDescriptionFactory.loadProductDescriptionByORMID(ID);
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -42,11 +41,9 @@ public class MProductDescription implements IModel {
 
 	@Override
 	public void save() {
-		// TODO Auto-generated method stub
 		try {
 			this.productdescription.save();
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

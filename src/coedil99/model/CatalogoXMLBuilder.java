@@ -29,7 +29,7 @@ import org.xml.sax.SAXException;
 public class CatalogoXMLBuilder extends CatalogoFornitoreBuilder {
 
 	@Override
-	public void Parse(String catalogo) {
+	public void Parse(String catalogo) throws IOException{
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
 		DocumentBuilder builder;
@@ -39,11 +39,15 @@ public class CatalogoXMLBuilder extends CatalogoFornitoreBuilder {
 			doc = builder.parse(catalogo);
 			XPathFactory xpathFactory = XPathFactory.newInstance();
 			XPath xpath = xpathFactory.newXPath();
-			salvaProdotti(getProdotti(doc, xpath), getGeometrie(doc, xpath));
+			if(this.salvaProdotti(getProdotti(doc, xpath), getGeometrie(doc, xpath)));
+			else
+				throw new IOException();
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			JOptionPane.showMessageDialog(null,
 					"Errore nella lettura del catalogo: \n" + e.getMessage());
+			throw new IOException();
 		}
+		
 
 	}
 
@@ -123,15 +127,11 @@ public class CatalogoXMLBuilder extends CatalogoFornitoreBuilder {
 		return geometrie;
 	}
 
-	private void salvaProdotti(ArrayList<MProductDescription> prodotti,
+	private boolean salvaProdotti(ArrayList<MProductDescription> prodotti,
 			ArrayList<MGeometria> geometrie) {
 		if (prodotti.isEmpty() || geometrie.isEmpty()
 				|| prodotti.size() != geometrie.size()) {
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Ci sono stati errori nella lettura del catalogo fornitore;\n Controllare tutti i prodotti sono completi!");
-			return;
+			return false;
 		} else if (prodotti.size() == geometrie.size()) {
 			for (int i = 0; i < prodotti.size(); ++i) {
 				prodotti.get(i).getPersistentModel()
@@ -141,6 +141,7 @@ public class CatalogoXMLBuilder extends CatalogoFornitoreBuilder {
 				this.catalogo.save();
 			}
 		}
+		return true;
 	}
 
 }
