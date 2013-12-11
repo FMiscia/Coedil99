@@ -7,9 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import GUI.CommercialeCenter;
-import GUI.RDACenter;
 import GUI.Abstract.ARiepilogoRDA;
-import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoCommerciale;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MRDA;
@@ -107,6 +105,9 @@ public class RiepilogoRDACommerciale extends ARiepilogoRDA {
 			c.getLista().getPrimaCard().getRiquadro().deselectAll();
 			c.setRDASelezionata(GestisciRDAHandler.getInstance().getMRDAById(c.getLista().getPrimaRDA()));
 			c.loadListaRigheRDA();
+			plico_com.refreshNotaRDA();
+		} else {
+			plico_com.reset();
 			plico_com.refreshNotaRDA();
 		}
 	}
