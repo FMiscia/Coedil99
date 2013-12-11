@@ -140,6 +140,7 @@ public class LoginDialog extends JPanel {
 					if (Login.getLevel() == 1) {
 
 						CommercialeCenter cc = CommercialeCenter.getInstance();
+						cc.getClip().focusOut();
 						CoedilFrame cf = CoedilFrame.getInstance();
 						cc.setBounds(0, 0, cf.getWidth(), cf.getHeight());
 						ListaRDA listarda = (ListaRDA) ListaRDAFactory

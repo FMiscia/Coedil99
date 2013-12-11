@@ -15,7 +15,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
-import javax.swing.ImageIcon;
 
 /**
  * 

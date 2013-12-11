@@ -1,12 +1,9 @@
 package GUI.Abstract;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
 
 import GUI.ConfigGUI;
 

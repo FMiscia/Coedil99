@@ -27,6 +27,7 @@ public class ClipPanelComm extends AClipPanel {
 		super();
 		//this.addlogButton();
 		this.fill();
+		this.resetInitialState();
 	}
 
 	protected void changeButtonLogState() {

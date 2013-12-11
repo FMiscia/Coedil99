@@ -1,24 +1,15 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JPanel;
-
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.MRDA;
-import coedil99.persistentmodel.RigaRDA;
 
 import GUI.ClipPanels.ClipPanelComm;
 import GUI.ClipPanels.ClipPanelCommFactory;
 import GUI.Liste.ListaRDA;
-import GUI.Liste.ListaRDAFactory;
-import GUI.Liste.ListaRigheRDA;
-import GUI.Liste.ListaRigheRDAFactory;
 import GUI.Plichi.PlicoCommerciale;
-import GUI.Plichi.PlicoRDA;
+import coedil99.model.MRDA;
 
 public class CommercialeCenter extends JPanel {
 
@@ -40,22 +31,6 @@ public class CommercialeCenter extends JPanel {
 	 * Inizializza le componenti grafiche
 	 */
 	private void initialize() {
-		// setMinimumSize(new Dimension(500, 600));
-		// setLayout(new BorderLayout());
-		// this.lista = (ListaRDA) ListaRDAFactory.getInstance().makeLista(
-		// GestisciRDAHandler.ATTESA_CONFERMA);
-		// // this.lista.load(GestisciRDAHandler.ATTESA_CONFERMA);
-		// this.setRDASelezionata(GestisciRDAHandler.getInstance().getMRDAById(
-		// this.lista.getPrimaRDA()));
-		// ArrayList<Object> l = new
-		// ArrayList<Object>(this.getRDASelezionata().getPersistentModel().righeRDA.getCollection());
-		// ListaRigheRDA lrr = (ListaRigheRDA)
-		// ListaRigheRDAFactory.getInstance().makeLista();
-		// lrr.load(l);
-		// System.out.println("PORCAMADONNA");
-		// PlicoCommerciale.getInstance().setListaRigheRDA(lrr);
-		// this.add(PlicoCommerciale.getInstance(), BorderLayout.CENTER);
-
 		this.addMenuBar();
 		this.validate();
 		this.repaint();
@@ -142,6 +117,14 @@ public class CommercialeCenter extends JPanel {
 	 */
 	public static boolean isInstanciated() {
 		return instance == null;
+	}
+
+	public ClipPanelComm getClip() {
+		return clip;
+	}
+
+	public void setClip(ClipPanelComm clip) {
+		this.clip = clip;
 	}
 
 }

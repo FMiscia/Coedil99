@@ -8,14 +8,13 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 import GUI.ConfigGUI;
 import GUI.FornitoriCenter;
 import GUI.Abstract.ACard;
 import GUI.Liste.ListaFornitori;
 import coedil99.model.MCatalogoFornitore;
-import javax.swing.border.MatteBorder;
-import java.awt.Color;
 /**
  * Pannello che mostra le informazioni principali del Catalogo Fornitore
  * 
@@ -79,7 +78,7 @@ public class CardFornitore extends ACard{
 		this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard(),2));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		this.lblNomeFornitore = new JLabel();
-		this.lblNomeFornitore.setBounds(0, 0, 150, 30);
+		this.lblNomeFornitore.setBounds(3, 0, 150, 30);
 		
 		this.lblProductCount = new JLabel();
 		this.lblProductCount.setHorizontalAlignment(SwingConstants.CENTER);
