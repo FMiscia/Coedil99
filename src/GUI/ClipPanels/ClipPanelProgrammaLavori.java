@@ -63,20 +63,25 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ClipPanelProgrammaLavori.this.focusOut();
 				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
 					return;
-				} else if (!ClipPanelProgrammaLavori.this.clickDuringNewCommessa()) {
+				} else if (!ClipPanelProgrammaLavori.this
+						.clickDuringNewCommessa()) {
 					return;
-				}
+				}				
+				ClipPanelProgrammaLavori.this.focusOut();
 				ProgrammaLavori pl = ProgrammaLavori.getInstance();
 				pl.getRaccoglitorePlichi().reset();
-				if(pl.getCommessaSelezionata() != null){
+				if (pl.getCommessaSelezionata() != null)
 					pl.ListaCommesse().deselectAll();
-					pl.getRaccoglitorePlichi().changePlico(PlicoCommessa.getInstance());
-					pl.getRaccoglitorePlichi().caricaPrimaCommessa(pl.getCommessaSelezionata());
-					pl.ListaCommesse().selectCommessaSelezionata(pl.getCommessaSelezionata());
-				}
+				else
+					pl.setPrimaCommessa();
+				pl.getRaccoglitorePlichi().changePlico(
+						PlicoCommessa.getInstance());
+				pl.getRaccoglitorePlichi().caricaPrimaCommessa(
+						pl.getCommessaSelezionata());
+				pl.ListaCommesse().selectCommessaSelezionata(
+						pl.getCommessaSelezionata());
 				pl.checkCommesse();
 				pl.checkDDO();
 				JToggleButton b = (JToggleButton) e.getSource();
@@ -93,7 +98,8 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 				ClipPanelProgrammaLavori.this.focusOut();
 				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
 					return;
-				} else if (!ClipPanelProgrammaLavori.this.clickDuringNewCommessa()) {
+				} else if (!ClipPanelProgrammaLavori.this
+						.clickDuringNewCommessa()) {
 					return;
 				}
 				ProgrammaLavori.getInstance().getRaccoglitorePlichi()
@@ -111,7 +117,8 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
 					return;
-				} else if (!ClipPanelProgrammaLavori.this.clickDuringNewCommessa()) {
+				} else if (!ClipPanelProgrammaLavori.this
+						.clickDuringNewCommessa()) {
 					return;
 				}
 				MDistinta odistinta = new MDistinta(ProgrammaLavori
@@ -123,7 +130,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 					b.setSelected(true);
 					ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 							.changePlico(PlicoDDO.getInstance());
-				} 					
+				}
 				RaccoglitorePlichi.getInstance().validate();
 				RaccoglitorePlichi.getInstance().repaint();
 			}
@@ -135,13 +142,15 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 					public void actionPerformed(ActionEvent e) {
 						if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
 							return;
-						} 
+						}
 						PlicoCreaCommessa.getInstance().resetAll();
 						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
 								.changePlico(PlicoCreaCommessa.getInstance());
 						ClipPanelProgrammaLavori.this.focusOut();
 						ProgrammaLavori.getInstance().ListaCommesse()
 								.deselectAll();
+						ProgrammaLavori.getInstance().setCommessaSelezionata(
+								null);
 						ProgrammaLavori.getInstance().checkCommesse();
 						JToggleButton b = (JToggleButton) e.getSource();
 						b.setSelected(true);
@@ -178,14 +187,14 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 		}
 		return true;
 	}
-	
+
 	/**
-	 * Fornisce true o false a seconda se, durante l'inserimento di una nuova commessa,
-	 * stiamo andando in focus su altri bottoni
+	 * Fornisce true o false a seconda se, durante l'inserimento di una nuova
+	 * commessa, stiamo andando in focus su altri bottoni
 	 * 
 	 * @return bool:boolean
 	 */
-	public boolean clickDuringNewCommessa(){
+	public boolean clickDuringNewCommessa() {
 		if (isSelectedNuovaCommessa()) {
 			Object[] options = { "Si", "No" };
 			int n = JOptionPane.showOptionDialog(null,
@@ -201,17 +210,19 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 		}
 		return true;
 	}
-	
-	
+
 	/**
-	 * Metodo che blocca/attiva i bottoni del clip panel 
+	 * Metodo che blocca/attiva i bottoni del clip panel
 	 */
-	public void enableButtons(boolean test){
-		if(!test){
-			((JToggleButton) this.getComponent(2)).setToolTipText("Non ci sono commesse!");
-			((JToggleButton) this.getComponent(3)).setToolTipText("Non ci sono commesse!");
+	public void enableButtons(boolean test) {
+		if (!test) {
+			((JToggleButton) this.getComponent(2))
+					.setToolTipText("Non ci sono commesse!");
+			((JToggleButton) this.getComponent(3))
+					.setToolTipText("Non ci sono commesse!");
 		} else {
-			((JToggleButton) this.getComponent(2)).setToolTipText("Vai alla distinta");
+			((JToggleButton) this.getComponent(2))
+					.setToolTipText("Vai alla distinta");
 			((JToggleButton) this.getComponent(3)).setToolTipText("Vai al DDO");
 		}
 		this.getComponent(2).setEnabled(test);
@@ -219,11 +230,11 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 		this.validate();
 		this.repaint();
 	}
-	
-	private boolean isSelectedNuovaCommessa(){
-		JToggleButton b = (JToggleButton) ClipPanelProgrammaLavori.this.getButtons().get(4);
+
+	private boolean isSelectedNuovaCommessa() {
+		JToggleButton b = (JToggleButton) ClipPanelProgrammaLavori.this
+				.getButtons().get(4);
 		return this.isButtonFocused(b);
 	}
-	
 
 }

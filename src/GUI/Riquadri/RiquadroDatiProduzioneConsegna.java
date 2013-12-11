@@ -275,9 +275,8 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 	 */
 	@Override
 	protected void initialize() {
-		lblTitolo.setBounds(0, 1, 170, 20);
-		this.setSize(new Dimension(600, 150));
-		this.form.setBounds(0, 30, 600, 120);
+		this.setSize(new Dimension(600, 160));
+		this.form.setBounds(0, 40, 600, 130);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,

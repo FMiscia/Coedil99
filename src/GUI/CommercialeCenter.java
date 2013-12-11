@@ -125,7 +125,6 @@ public class CommercialeCenter extends JPanel {
 	}
 
 	public void loadListaRigheRDA() {
-		// TODO Auto-generated method stub
 		PlicoCommerciale
 				.getInstance()
 				.getListaRigheRDA()

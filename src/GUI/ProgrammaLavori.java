@@ -54,15 +54,7 @@ public class ProgrammaLavori extends JPanel {
 				.makeLista();
 		proglavoripanel.add(lista, BorderLayout.WEST);
 		proglavoripanel.add(this.raccoglitoreplichi, BorderLayout.CENTER);
-		if (this.getCommessaSelezionata() == null && this.lista.getPrimaCommessa() != 0){
-			this.commessaSelezionata = GestisciCommessaHandler.getInstance()
-					.getCommessaById(
-							this.lista.getPrimaCommessa());
-		} else if(this.getCommessaSelezionata() != null && ((ListaCommesse) this.lista).getPrimaCommessa() != 0) {
-			((ListaCommesse) this.lista).selectCommessaSelezionata(this.getCommessaSelezionata());
-		} else {
-			return;
-		}
+		this.setPrimaCommessa();
 		this.raccoglitoreplichi.caricaPrimaCommessa(this.commessaSelezionata);
 	}
 
@@ -151,7 +143,7 @@ public class ProgrammaLavori extends JPanel {
 	 * Metodo che abilita i bottoni del clip panel solo se ci sono delle commesse
 	 */
 	public void checkCommesse(){
-		this.clip.enableButtons(this.lista.getPrimaCard() != null);
+		this.clip.enableButtons(this.getCommessaSelezionata() != null);
 	}
 	
 	/**
@@ -164,6 +156,21 @@ public class ProgrammaLavori extends JPanel {
 			this.clip.getButtons().get(this.clip.PLButtonState.get("DDO")).setEnabled(true);
 		else
 			this.clip.getButtons().get(this.clip.PLButtonState.get("DDO")).setEnabled(false);
+	}
+	
+	/**
+	 * Metodo che seleziona la prima commessa dell'elenco
+	 */
+	public void setPrimaCommessa(){
+		if (this.getCommessaSelezionata() == null && this.lista.getPrimaCommessa() != 0){
+			this.commessaSelezionata = GestisciCommessaHandler.getInstance()
+					.getCommessaById(
+							this.lista.getPrimaCommessa());
+		} else if(this.getCommessaSelezionata() != null && ((ListaCommesse) this.lista).getPrimaCommessa() != 0) {
+			((ListaCommesse) this.lista).selectCommessaSelezionata(this.getCommessaSelezionata());
+		} else {
+			return;
+		}
 	}
 
 }

@@ -172,7 +172,6 @@ public class ListaRDA extends ALista {
 	 */
 	private void initialize() {
 		this.setPreferredSize(new Dimension(300, 0));
-		// this.getViewport().setPreferredSize(new Dimension(300,0));
 		this.deselectAll();
 	}
 

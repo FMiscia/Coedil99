@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -170,11 +169,12 @@ public class CardRigaRDA extends ACard {
 		if (RDACenter.getInstance().getClipPanel().isSelected("NUOVA")){
 			btnModifica.setVisible(false);
 			btnElimina.setVisible(true);
+			this.setPreferredSize(new Dimension(270, 220));
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.ATTESA_CONFERMA)){
 			btnElimina.setVisible(false);
 			btnModifica.setVisible(false);
-			this.setPreferredSize(new Dimension(270, 220));
+			this.setPreferredSize(new Dimension(270, 180));
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.CONGELATA)){
 			btnElimina.setVisible(true);
@@ -184,11 +184,12 @@ public class CardRigaRDA extends ACard {
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.RIFIUTATA)){
 			btnElimina.setVisible(false);
 			btnModifica.setVisible(false);
-			this.setPreferredSize(new Dimension(270, 220));
+			this.setPreferredSize(new Dimension(270, 180));
 		}
 		else if(RDACenter.getInstance().getClipPanel().isSelected(GestisciRDAHandler.CONFERMATA)){
 			btnElimina.setVisible(false);
 			btnModifica.setVisible(false);
+			this.setPreferredSize(new Dimension(270, 180));
 		}
 	}
 	/**
@@ -196,8 +197,9 @@ public class CardRigaRDA extends ACard {
 	 * a seconda dello stato permetterà la modifica di quella riga
 	 */
 	public void setCardWithNoOptions() {
-		this.remove(btnElimina);
-		this.remove(btnModifica);
+		btnElimina.setVisible(false);
+		btnModifica.setVisible(false);
+		this.setPreferredSize(new Dimension(270, 180));
 	}
 
 	@Override

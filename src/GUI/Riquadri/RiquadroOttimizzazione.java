@@ -104,25 +104,18 @@ public class RiquadroOttimizzazione extends ARiquadro {
 
 	@Override
 	protected void resetRiquadro() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void salva(boolean showmex) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
 	 * Aggiunge Label e Testo Volume
 	 */
 	private void addVol() {
-		// TODO Auto-generated method stub
-
 		lblVolume = new JLabel("Volume");
 		form.add(lblVolume, "2, 12");
-
 		txtVolume = new JTextField();
 		form.add(txtVolume, "6, 12, fill, default");
 		this.Container.add(txtVolume);
@@ -132,10 +125,8 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	 * Aggiunge Label e Testo Quantità
 	 */
 	private void addQuant() {
-		// TODO Auto-generated method stub
 		lblQuantita = new JLabel("Quantità");
 		form.add(lblQuantita, "2, 10");
-
 		txtOrdineQuantita = new JTextField();
 		form.add(txtOrdineQuantita, "6, 10, fill, default");
 		this.Container.add(txtOrdineQuantita);
@@ -145,11 +136,8 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	 * Aggiunge Label e Testo Lunghezza
 	 */
 	private void addLung() {
-		// TODO Auto-generated method stub
-
 		lblCommessaLung = new JLabel("Lunghezza");
 		form.add(lblCommessaLung, "2, 8");
-
 		txtCommessaLung = new JTextField();
 		form.add(txtCommessaLung, "6, 8, fill, default");
 		this.Container.add(txtCommessaLung);
@@ -159,10 +147,8 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	 * Aggiunge Label e Testo Altezza
 	 */
 	private void addAlt() {
-		// TODO Auto-generated method stub
 		lblAltezza = new JLabel("Altezza");
 		form.add(lblAltezza, "2, 6");
-
 		txtAltezza = new JTextField();
 		form.add(txtAltezza, "6, 6, fill, default");
 		this.Container.add(txtAltezza);
@@ -172,10 +158,8 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	 * Aggiunge Label e Testo Larghezza
 	 */
 	private void addLarg() {
-		// TODO Auto-generated method stub
 		lblBase = new JLabel("Larghezza");
 		form.add(lblBase, "2, 4");
-
 		txtBase = new JTextField();
 		form.add(txtBase, "6, 4, fill, default");
 		this.Container.add(txtBase);
@@ -186,10 +170,8 @@ public class RiquadroOttimizzazione extends ARiquadro {
 	 * Aggiunge Label e Testo Qualità
 	 */
 	private void addQual() {
-		// TODO Auto-generated method stub
 		lblQual = new JLabel("Descrizione");
 		form.add(lblQual, "2, 2");
-
 		txtQual = new JTextField();
 		form.add(txtQual, "6, 2, fill, default");
 		this.Container.add(txtQual);

@@ -108,8 +108,8 @@ public class RiquadroDatiConsegna extends ARiquadro {
 	 */
 	@Override
 	protected void initialize() {
-		this.setSize(new Dimension(600, 120));
-		this.form.setBounds(0, 30, 600, 80);
+		this.setSize(new Dimension(600, 130));
+		this.form.setBounds(0, 40, 600, 90);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,

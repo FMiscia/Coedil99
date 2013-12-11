@@ -9,7 +9,6 @@ public class NotaRDAFactory {
 	
 
 	public NotaRDA makeNotaRDA() {
-		// TODO Auto-generated method stub
 		return new NotaRDA();
 	}
 	

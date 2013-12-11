@@ -167,8 +167,8 @@ public class PlicoCommessa extends APlico {
 				.getInstance().makeRiquadro();
 		rsc = (RiquadroDatiSviluppoConsegna) RiquadroDatiSviluppoConsegnaFactory
 				.getInstance().makeRiquadro();
-		setPreferredSize(new Dimension(745, 1150));
-		setSize(745, 950);
+		setPreferredSize(new Dimension(745, 1250));
+		setSize(745, 1250);
 		posizionaRiquadri();
 		add(elimina);
 		add(rda);

@@ -37,12 +37,15 @@ public abstract class ARiepilogoRDA extends ARiepilogo {
 	protected JButton btnElimina;
 	protected JButton btnInvia;
 	protected JButton btnArrivata;
+	protected JButton btnSposta;
 	protected JSeparator separator;
 	protected JSeparator separator_1;
 	protected JLabel lblFornitore;
 	protected JLabel lblFornitoreSelezionato;
 	protected JLabel lblNumeroPacchi;
 	protected JLabel lblQuantita;
+	protected JButton btnConferma;
+	protected JButton btnRifiuta;
 
 	/**
 	 * Costruttore
@@ -123,15 +126,20 @@ public abstract class ARiepilogoRDA extends ARiepilogo {
 		this.panel.add(separator_1, "3, 12, 3, 1");
 
 		btnSalva = new JButton("Salva RDA");
-		//this.panel.add(btnSalva, "3, 14, 3, 1");
 
 		btnElimina = new JButton("Elimina RDA");
-		//this.panel.add(btnElimina, "3, 16, 3, 1");
 
 		btnInvia = new JButton("Invia RDA");
-		//this.panel.add(btnInvia, "3, 18, 3, 1");
+		
+		btnSposta = new JButton("Sposta RDA");
 
+		btnConferma = new JButton("Conferma RDA");
+		
+		btnRifiuta = new JButton("Rifiuta RDA");
+		
 		btnArrivata = new JButton();
+		
+		
 		btnArrivata.setLayout(new BorderLayout());
 		JLabel label1 = new JLabel("Conferma Arrivo");
 		label1.setHorizontalAlignment(SwingConstants.CENTER);

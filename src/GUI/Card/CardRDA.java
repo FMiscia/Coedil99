@@ -184,7 +184,7 @@ public class CardRDA extends ACard {
 				CommercialeCenter contenitore = CommercialeCenter.getInstance();
 				contenitore.setRDASelezionata(rda);
 				ListaRigheRDA lista_righe_rda = plico_com.getListaRigheRDA();
-				plico_com.refreshFormRDA();
+				plico_com.refreshNotaRDA();
 				lista_righe_rda.getPanel().removeAll();
 				contenitore.loadListaRigheRDA();
 				CardRDA.this.setBackground(ConfigGUI.getColoreSelezionato());

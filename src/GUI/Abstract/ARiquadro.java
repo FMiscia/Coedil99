@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
+import javax.swing.ImageIcon;
 
 /**
  * 
@@ -50,10 +51,12 @@ public abstract class ARiquadro extends JPanel {
 			if (!editable) {
 				i.setBackground(Color.getColor("textInactiveText"));
 				i.setBorder(new LineBorder(Color.gray));
-				ARiquadro.this.modifica.setText("modifica");
+				//ARiquadro.this.modifica.setText("modifica");
+				modifica.setIcon(ConfigGUI.getEditIcon());
 				aperto = true;
 			} else {
-				ARiquadro.this.modifica.setText("salva");
+				//ARiquadro.this.modifica.setText("salva");
+				modifica.setIcon(ConfigGUI.getSaveIcon());
 				controlloErrori();
 				aperto = false;
 
@@ -92,12 +95,14 @@ public abstract class ARiquadro extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if (aperto) {
-						ARiquadro.this.modifica.setText("salva");
+						//ARiquadro.this.modifica.setText("salva");
+						modifica.setIcon(ConfigGUI.getSaveIcon());
 						aperto = false;
 						ARiquadro.this.makeEditable(true);
 					} else {
 						ARiquadro.this.salva(true);
-						ARiquadro.this.modifica.setText("modifica");
+						//ARiquadro.this.modifica.setText("modifica");
+						modifica.setIcon(ConfigGUI.getEditIcon());
 						aperto = true;
 						ARiquadro.this.makeEditable(false);
 					}
@@ -176,27 +181,35 @@ public abstract class ARiquadro extends JPanel {
 		separator.setPreferredSize(new Dimension(0, 3));
 		separator.setBackground(new Color(0, 0, 0));
 		separator.setForeground(ConfigGUI.getColoreBordoCard());
-		separator.setBounds(0, 20, 600, 2);
+		separator.setBounds(0, 31, 600, 2);
 		add(separator);
 
 		lblTitolo = new JLabel(title);
-		lblTitolo.setPreferredSize(new Dimension(60, 20));
+		lblTitolo.setPreferredSize(new Dimension(60, 32));
 		lblTitolo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitolo.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
-		lblTitolo.setBounds(0, 1, 143, 21);
+		lblTitolo.setBounds(0, 1, 143, 31);
 		add(lblTitolo);
 
-		this.modifica = new JButton("modifica");
+		this.modifica = new JButton();
+		modifica.setOpaque(false);
+		modifica.setFocusPainted(false);
+		modifica.setBorderPainted(false);
+		this.modifica.setContentAreaFilled(false);
+		modifica.setPreferredSize(new Dimension(32, 32));
+		modifica.setIcon(ConfigGUI.getEditIcon());
 		this.modifica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (aperto) {
-					ARiquadro.this.modifica.setText("salva");
+					//ARiquadro.this.modifica.setText("salva");
+					modifica.setIcon(ConfigGUI.getSaveIcon());
 					aperto = false;
 					ARiquadro.this.makeEditable(true);
 				} else {
 					ARiquadro.this.salva(true);
-					ARiquadro.this.modifica.setText("modifica");
+					//ARiquadro.this.modifica.setText("modifica");
+					modifica.setIcon(ConfigGUI.getEditIcon());
 					aperto = true;
 					ARiquadro.this.makeEditable(false);
 				}
@@ -204,8 +217,8 @@ public abstract class ARiquadro extends JPanel {
 				repaint();
 			}
 		});
-		this.modifica.setSize(131, 20);
-		this.modifica.setLocation(469, 0);
+		this.modifica.setSize(32, 32);
+		this.modifica.setLocation(500, 0);
 		add(this.modifica);
 	}
 

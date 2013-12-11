@@ -31,7 +31,8 @@ public class ConfigGUI {
 	private static Color coloreProdottoDispari = new Color(240,240,240);
 	private static Color coloreBordoCard = Color.BLACK;
 	private static Color coloreRigaRDA = new Color(192, 192, 192);
-	private static Color coloreTextArea = Color.darkGray;
+	private static Color coloreTextAreaDisable = Color.darkGray;
+	private static Color coloreTextAreaEnable = Color.WHITE;
 	private static Color coloreBordoErrore = Color.RED;
 	private static Color coloreBordoOk = Color.GREEN;
 	private static int numBottoniClipPanel = 8;
@@ -142,12 +143,20 @@ public class ConfigGUI {
 		return coloreRigaRDA;
 	}
 
-	public static Color getColoreTextArea() {
-		return coloreTextArea;
+	public static Color getColoreTextAreaDisable() {
+		return coloreTextAreaDisable;
 	}
 
-	public static void setColoreTextArea(Color coloreTextArea) {
-		ConfigGUI.coloreTextArea = coloreTextArea;
+	public static void setColoreTextAreaDisable(Color coloreTextAreaDisable) {
+		ConfigGUI.coloreTextAreaDisable = coloreTextAreaDisable;
+	}
+
+	public static Color getColoreTextAreaEnable() {
+		return coloreTextAreaEnable;
+	}
+
+	public static void setColoreTextAreaEnable(Color coloreTextAreaEnable) {
+		ConfigGUI.coloreTextAreaEnable = coloreTextAreaEnable;
 	}
 
 	public static void setColoreRigaRDA(Color coloreRigaRDA) {

@@ -1,6 +1,5 @@
 package GUI.Riquadri;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -127,8 +126,8 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 	 */
 	@Override
 	protected void initialize() {
-		this.setSize(new Dimension(600, 220));
-		this.form.setBounds(0, 30, 600, 190);
+		this.setSize(new Dimension(600, 230));
+		this.form.setBounds(0, 40, 600, 200);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,

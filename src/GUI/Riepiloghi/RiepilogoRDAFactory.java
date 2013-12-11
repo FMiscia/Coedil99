@@ -31,7 +31,7 @@ public class RiepilogoRDAFactory extends RiepilogoFactory{
 		className.put(GestisciRDAHandler.CONGELATA, new RiepilogoRDACongelata());
 		className.put(GestisciRDAHandler.ATTESA_CONFERMA,  new RiepilogoRDAAttesaConferma());
 		className.put(GestisciRDAHandler.CONFERMATA,  new RiepilogoRDAConfermata());
-		className.put(GestisciRDAHandler.RIFIUTATA,  new RiepilogoRDAAttesaConferma());
+		className.put(GestisciRDAHandler.RIFIUTATA,  new RiepilogoRDARifiutate());
 	}
 	
 
@@ -54,8 +54,7 @@ public class RiepilogoRDAFactory extends RiepilogoFactory{
 
 	@Override
 	public ARiepilogo makeRiepilogo() {
-		// TODO Auto-generated method stub
-		return null;
+		return new RiepilogoRDACommerciale();
 	}
 	
 

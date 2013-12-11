@@ -1,21 +1,15 @@
 package GUI.Riquadri;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
 
 import GUI.Abstract.ARiquadro;
 import coedil99.controller.GestisciCantiereHandler;
@@ -105,8 +99,8 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	 */
 	@Override
 	protected void initialize() {
-		this.setSize(new Dimension(600, 150));
-		this.form.setBounds(0, 30, 600, 120);
+		this.setSize(new Dimension(600, 160));
+		this.form.setBounds(0, 40, 600, 130);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -264,7 +258,6 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 
 	@Override
 	public void makeEditable(boolean editable) {
-		// this.cbCantiere.setEnabled(editable);
 		this.cbClienti.setEnabled(editable);
 
 	}

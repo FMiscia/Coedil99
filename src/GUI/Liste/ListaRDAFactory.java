@@ -27,7 +27,6 @@ public class ListaRDAFactory extends ListaFactory {
 	}
 	
 	public ALista makeListaComm(String tipo)  {
-		// TODO Auto-generated method stub
 		return new ListaRDA(tipo,"comm");
 	}
 	

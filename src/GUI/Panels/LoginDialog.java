@@ -19,17 +19,14 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import coedil99.controller.GestisciDipendenteHandler;
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.persistentmodel.RDAFactory;
-
 import GUI.CoedilFrame;
 import GUI.CommercialeCenter;
 import GUI.PanelStart;
-import GUI.RDACenter;
 import GUI.Liste.ListaRDA;
 import GUI.Liste.ListaRDAFactory;
 import GUI.Plichi.PlicoCommerciale;
+import coedil99.controller.GestisciDipendenteHandler;
+import coedil99.controller.GestisciRDAHandler;
 
 public class LoginDialog extends JPanel {
 	private static final String LOGIN = "Log in";
@@ -89,7 +86,7 @@ public class LoginDialog extends JPanel {
 		gbc.gridy = 1;
 		gbc.gridx = 0;
 		gbc.insets = new Insets(10, 10, 10, 10);
-		labUserName = new JLabel("User name");
+		labUserName = new JLabel("Username");
 		gbl.setConstraints(labUserName, gbc);
 		gbc.gridy = 1;
 		gbc.gridx = 1;
@@ -148,12 +145,12 @@ public class LoginDialog extends JPanel {
 						ListaRDA listarda = (ListaRDA) ListaRDAFactory
 								.getInstance().makeListaComm(GestisciRDAHandler.ATTESA_CONFERMA);
 						cc.setLista(listarda);
+						PlicoCommerciale plico_com = PlicoCommerciale.getInstance();
 						if(listarda.panelHasRDA()){
 							cc.setRDASelezionata( GestisciRDAHandler.getInstance().getMRDAById(listarda.getPrimaRDA()));
 							cc.loadListaRigheRDA();
+							plico_com.refreshNotaRDA();
 						}
-						PlicoCommerciale plico_com = PlicoCommerciale.getInstance();
-						plico_com.refreshFormRDA();
 						cf.montaPanel(cc);
 					}
 
