@@ -1,21 +1,13 @@
 package GUI.Riquadri;
 
 import java.awt.Dimension;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.ArrayList;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import GUI.Abstract.ARiquadro;
-import coedil99.controller.GestisciCantiereHandler;
-import coedil99.controller.GestisciClienteHandler;
-import coedil99.model.MCantiere;
-import coedil99.model.MCliente;
 import coedil99.model.MCommessa;
 
 import com.jgoodies.forms.factories.FormFactory;
@@ -33,15 +25,14 @@ import com.jgoodies.forms.layout.RowSpec;
 public class RiquadroDatiClienteConsegna extends ARiquadro {
 
 	private JLabel lblCantiere;
-	private JComboBox<Object> cbCantiere;
+	private JTextField txtCantiere;
 	private JLabel lblCliente;
-	private JComboBox<Object> cbClienti;
+	private JTextField txtClienti;
 	private JLabel lblCommessa;
 	private JTextField txtCommessa;
 	private JLabel lblIcoCantiere;
 	private JLabel lblIcoCliente;
 	private JLabel lblIcoCommessa;
-	private String selected_cantiere;
 	private String selected_cliente;
 
 	public RiquadroDatiClienteConsegna(String title) {
@@ -59,10 +50,10 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		MCommessa c = (MCommessa) o;
 		if (c.getPersistentModel().getOrdine().getCliente().getCantiere()
 				.getNome() != null)
-			this.cbCantiere.setSelectedItem(c.getPersistentModel().getOrdine()
+			this.txtCantiere.setText(c.getPersistentModel().getOrdine()
 					.getCliente().getCantiere().getNome());
 		if (c.getPersistentModel().getOrdine().getCliente().getName() != null)
-			this.cbClienti.setSelectedItem(c.getPersistentModel().getOrdine()
+			this.txtClienti.setText(c.getPersistentModel().getOrdine()
 					.getCliente().getName());
 		if (c.getPersistentModel().getOrdine().getCliente()
 				.getNumeroCommessaCliente() != null)
@@ -79,9 +70,9 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		if (this.oggetto != null) {
 			MCommessa c = (MCommessa) this.oggetto;
 			c.getPersistentModel().getOrdine().getCliente().getCantiere()
-					.setNome(this.cbCantiere.getSelectedItem().toString());
+					.setNome(this.txtCantiere.getText());
 			c.getPersistentModel().getOrdine().getCliente()
-					.setName(this.cbClienti.getSelectedItem().toString());
+					.setName(this.txtClienti.getText());
 			c.getPersistentModel().getOrdine().getCliente().setNumeroCommessaCliente(Integer.parseInt(this.txtCommessa.getText()));
 			c.save();
 			if (showmex)
@@ -127,22 +118,11 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	private void addCantiere() {
 		this.lblCantiere = new JLabel("Cantiere");
 		this.form.add(this.lblCantiere, "2, 4");
-		this.cbCantiere = new JComboBox<Object>();
-		this.cbCantiere.setAlignmentX(SwingConstants.CENTER);
-		if (this.cbCantiere.getItemListeners().length != 0)
-			this.cbCantiere.removeItemListener(this.cbCantiere
-					.getItemListeners()[0]);
-		this.cbCantiere.removeAllItems();
-		this.cbCantiere.setEnabled(true);
-		ArrayList<MCantiere> cantieri = GestisciCantiereHandler.getInstance()
-				.getCantieri();
-		for (int i = 0; i < cantieri.size(); ++i) {
-			this.cbCantiere.addItem(cantieri.get(i).getPersistentModel()
-					.getNome());
-		}
-		this.cbCantiere.setSelectedItem(null);
-		this.cbCantiere.setEnabled(false);
-		this.form.add(this.cbCantiere, "6, 4, fill, fill");
+		this.txtCantiere = new JTextField();
+		this.txtCantiere.setHorizontalAlignment(SwingConstants.CENTER);
+		this.txtCantiere.setText("Seleziona un ordine!");
+		this.txtCantiere.setEnabled(false);
+		this.form.add(this.txtCantiere, "6, 4, fill, fill");
 		this.lblIcoCantiere = new JLabel("");
 		this.lblIcoCantiere.setVisible(false);
 		this.form.add(lblIcoCantiere, "8, 4, center, top");
@@ -156,48 +136,13 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		this.lblCliente = new JLabel("Cliente");
 		this.form.add(this.lblCliente, "2, 2, left, center");
 
-		this.cbClienti = new JComboBox<Object>();
-		this.cbClienti.setAlignmentX(SwingConstants.CENTER);
-		if (this.cbClienti.getItemListeners().length != 0)
-			this.cbClienti
-					.removeItemListener(this.cbClienti.getItemListeners()[0]);
-		this.cbClienti.removeAllItems();
-		this.cbClienti.setEnabled(true);
-		ArrayList<MCliente> cantieri = GestisciClienteHandler.getInstance()
-				.getClienti();
-		for (int i = 0; i < cantieri.size(); ++i) {
-			this.cbClienti.addItem(cantieri.get(i).getPersistentModel()
-					.getName());
-		}
-		this.cbClienti.addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-					RiquadroDatiClienteConsegna.this.selected_cliente = RiquadroDatiClienteConsegna.this.cbClienti
-							.getSelectedItem().toString();
-					RiquadroDatiClienteConsegna.this.cbCantiere
-							.setSelectedItem(GestisciClienteHandler
-									.getInstance()
-									.getClienteByName(selected_cliente)
-									.getPersistentModel().getCantiere()
-									.getNome());
-					RiquadroDatiClienteConsegna.this.cbCantiere
-							.setEnabled(false);
-					RiquadroDatiClienteConsegna.this.txtCommessa.setText(String
-							.valueOf(GestisciClienteHandler.getInstance()
-									.getClienteByName(selected_cliente)
-									.getPersistentModel()
-									.getNumeroCommessaCliente()));
-					RiquadroDatiClienteConsegna.this.validate();
-					RiquadroDatiClienteConsegna.this.repaint();
-				}
-			}
-		});
-		this.cbClienti.setSelectedItem(null);
-		this.cbClienti.setEnabled(false);
+		this.txtClienti = new JTextField();
+		this.txtClienti.setAlignmentX(SwingConstants.CENTER);
+		this.txtClienti.setText("Seleziona un ordine!");
+		this.txtClienti.setHorizontalAlignment(SwingConstants.CENTER);
+		this.txtClienti.setEnabled(false);
 		this.Container.add(new JTextField(this.selected_cliente));
-		this.form.add(this.cbClienti, "6, 2, fill, fill");
+		this.form.add(this.txtClienti, "6, 2, fill, fill");
 		this.lblIcoCliente = new JLabel("");
 		this.lblIcoCliente.setVisible(false);
 		this.form.add(lblIcoCliente, "8, 2, center, top");
@@ -210,7 +155,7 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	private void addCommessa() {
 		this.lblCommessa = new JLabel("Commessa");
 		this.form.add(lblCommessa, "2, 6, left, center");
-		this.txtCommessa = new JTextField();
+		this.txtCommessa = new JTextField("Seleziona un ordine!");
 		this.txtCommessa.setHorizontalAlignment(SwingConstants.CENTER);
 		this.txtCommessa.setEnabled(false);
 		this.form.add(this.txtCommessa, "6, 6, fill, fill");
@@ -227,7 +172,7 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	 *            : cantiere desiderato
 	 */
 	public void setSelectedCantiere(String name) {
-		this.cbCantiere.setSelectedItem(name);
+		this.txtCantiere.setText(name);
 	}
 
 	/**
@@ -237,7 +182,7 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	 *            : cliente desiderato
 	 */
 	public void setSelectedCliente(String name) {
-		this.cbClienti.setSelectedItem(name);
+		this.txtClienti.setText(name);
 	}
 
 	public void setNumeroCommessaCliente(int n) {
@@ -247,8 +192,6 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	@Override
 	public void makeEditable(boolean editable) {
 		this.modifica.setVisible(false);
-		this.cbClienti.setEnabled(editable);
-
 	}
 
 }

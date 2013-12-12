@@ -204,10 +204,8 @@ public class RiquadroDatiConsegna extends ARiquadro {
 	public void chechDate(){
 		if (dateDataPrimaConsegna.getDate() == null) {
 			setErrore(lblIcoDataPrimaConsegna,false,"La data di scadenza deve essere selezionata!");
-			dateDataPrimaConsegna.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 		} else {
 			setErrore(lblIcoDataPrimaConsegna,true,null);
-			dateDataPrimaConsegna.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 		}
 		controlloErrori();
 	}
