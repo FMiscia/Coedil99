@@ -140,17 +140,6 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 			this.cbCantiere.addItem(cantieri.get(i).getPersistentModel()
 					.getNome());
 		}
-		this.cbCantiere.addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-					RiquadroDatiClienteConsegna.this.selected_cantiere = RiquadroDatiClienteConsegna.this.cbCantiere
-							.getSelectedItem().toString();
-
-				}
-			}
-		});
 		this.cbCantiere.setSelectedItem(null);
 		this.cbCantiere.setEnabled(false);
 		this.form.add(this.cbCantiere, "6, 4, fill, fill");
@@ -221,7 +210,6 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 	private void addCommessa() {
 		this.lblCommessa = new JLabel("Commessa");
 		this.form.add(lblCommessa, "2, 6, left, center");
-
 		this.txtCommessa = new JTextField();
 		this.txtCommessa.setHorizontalAlignment(SwingConstants.CENTER);
 		this.txtCommessa.setEnabled(false);
@@ -258,6 +246,7 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 
 	@Override
 	public void makeEditable(boolean editable) {
+		this.modifica.setVisible(false);
 		this.cbClienti.setEnabled(editable);
 
 	}

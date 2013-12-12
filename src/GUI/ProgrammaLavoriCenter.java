@@ -14,10 +14,10 @@ import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MCommessa;
 import coedil99.model.MDistinta;
 
-public class ProgrammaLavori extends JPanel {
+public class ProgrammaLavoriCenter extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private static ProgrammaLavori instance = null;
+	private static ProgrammaLavoriCenter instance = null;
 	private ListaCommesse lista;
 	private RaccoglitorePlichi raccoglitoreplichi;
 	private ClipPanelProgrammaLavori clip;
@@ -27,7 +27,7 @@ public class ProgrammaLavori extends JPanel {
 	/**
 	 * Costruttore del pannello Programma Lavori
 	 */
-	private ProgrammaLavori() {
+	private ProgrammaLavoriCenter() {
 		this.initialize();
 	}
 	
@@ -75,10 +75,10 @@ public class ProgrammaLavori extends JPanel {
 	 * 
 	 * @return ProgrammaLavori
 	 */
-	public static ProgrammaLavori getInstance() {
-		if (ProgrammaLavori.instance == null)
-			ProgrammaLavori.instance = new ProgrammaLavori();
-		return ProgrammaLavori.instance;
+	public static ProgrammaLavoriCenter getInstance() {
+		if (ProgrammaLavoriCenter.instance == null)
+			ProgrammaLavoriCenter.instance = new ProgrammaLavoriCenter();
+		return ProgrammaLavoriCenter.instance;
 	}
 
 	/**

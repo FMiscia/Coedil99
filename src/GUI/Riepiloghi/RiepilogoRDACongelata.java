@@ -7,7 +7,7 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.RDACenter;
 import GUI.Abstract.ARiepilogoRDA;
 import GUI.Card.CardRDA;
@@ -85,7 +85,7 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 				public void mouseClicked(MouseEvent e) {
 					Object[] options = { "Si", "No" };
 					int n = JOptionPane.showOptionDialog(
-							ProgrammaLavori.getInstance(),
+							ProgrammaLavoriCenter.getInstance(),
 							"Sicuro di voler eliminare la RDA?\n"
 									+ "Nota: Questa operazione non è reversibile",
 							"Conferma operazione",

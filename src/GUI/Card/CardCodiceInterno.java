@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.ACard;
 import GUI.Liste.ListaCommesse;
@@ -75,7 +75,7 @@ public class CardCodiceInterno extends ACard {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ProgrammaLavori contenitore = ProgrammaLavori.getInstance();
+				ProgrammaLavoriCenter contenitore = ProgrammaLavoriCenter.getInstance();
 				if (!contenitore.getClipPanel().clickDuringModify()) {
 					return;
 				}

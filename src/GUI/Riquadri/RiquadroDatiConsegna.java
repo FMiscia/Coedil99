@@ -135,34 +135,18 @@ public class RiquadroDatiConsegna extends ARiquadro {
 
 		this.dateDataPrimaConsegna = new JXDatePicker();
 		this.dateDataPrimaConsegna.getEditor().setEditable(false);
-		if (this.dateDataPrimaConsegna.getFocusListeners().length == 0) {
+		if (this.dateDataPrimaConsegna.getFocusListeners().length <= 3) {
 			this.dateDataPrimaConsegna.getEditor().addFocusListener(
 					new FocusListener() {
 
 						@Override
 						public void focusLost(FocusEvent e) {
-							if (dateDataPrimaConsegna.getDate() == null) {
-								lblIcoDataPrimaConsegna.setIcon(ConfigGUI.getErrorIcon());
-								lblIcoDataPrimaConsegna
-										.setToolTipText("La data di scadenza deve essere selezionata!");
-							} else {
-								lblIcoDataPrimaConsegna.setIcon(ConfigGUI.getOkIcon());
-								lblIcoDataPrimaConsegna.setToolTipText(null);
-							}
-							controlloErrori();
+							chechDate();
 						}
 
 						@Override
 						public void focusGained(FocusEvent e) {
-							if (dateDataPrimaConsegna.getDate() == null) {
-								lblIcoDataPrimaConsegna.setIcon(ConfigGUI.getErrorIcon());
-								lblIcoDataPrimaConsegna
-										.setToolTipText("La data di scadenza deve essere selezionata!");
-							} else {
-								lblIcoDataPrimaConsegna.setIcon(ConfigGUI.getOkIcon());
-								lblIcoDataPrimaConsegna.setToolTipText(null);
-							}
-							controlloErrori();
+							chechDate();
 						}
 					});
 		}
@@ -193,18 +177,13 @@ public class RiquadroDatiConsegna extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoRirardoConsegna.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoRirardoConsegna
-								.setToolTipText("Il campo Ritardo deve contenere solo numeri!");
+						setErrore(lblIcoRirardoConsegna,false,"Il campo Ritardo deve contenere solo numeri!");
 						txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else if (m.find()) {
-						lblIcoRirardoConsegna.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoRirardoConsegna
-								.setToolTipText("Il campo Ritardo deve contenere solo numeri!");
+						setErrore(lblIcoRirardoConsegna,false,"Il campo Ritardo deve contenere solo numeri!");
 						txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
 					} else {
-						lblIcoRirardoConsegna.setIcon(ConfigGUI.getOkIcon());
-						lblIcoRirardoConsegna.setToolTipText("");
+						setErrore(lblIcoRirardoConsegna,true,null);
 						txtRirardoConsegna
 								.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
 					}
@@ -217,6 +196,20 @@ public class RiquadroDatiConsegna extends ARiquadro {
 		this.lblIcoRirardoConsegna.setVisible(false);
 		this.form.add(lblIcoRirardoConsegna, "8, 4, center, top");
 		this.Label.add(lblIcoRirardoConsegna);
+	}
+	
+	/**
+	 * Metodo che controlla lo stato del campo data prima consegna
+	 */
+	public void chechDate(){
+		if (dateDataPrimaConsegna.getDate() == null) {
+			setErrore(lblIcoDataPrimaConsegna,false,"La data di scadenza deve essere selezionata!");
+			dateDataPrimaConsegna.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+		} else {
+			setErrore(lblIcoDataPrimaConsegna,true,null);
+			dateDataPrimaConsegna.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+		}
+		controlloErrori();
 	}
 
 }

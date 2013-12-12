@@ -269,5 +269,27 @@ public abstract class ARiquadro extends JPanel {
 		this.validate();
 		this.repaint();
 	}
+	
+	/**
+	 * Metodo che setta l'icona e il tooltiptext relativi alla label passata
+	 * come parametro
+	 * 
+	 * @param lbl
+	 *            JLabel
+	 * @param test
+	 *            boolean
+	 * @param errore
+	 *            String
+	 */
+	protected void setErrore(JLabel lbl, boolean test, String errore) {
+		if (test) {
+			lbl.setIcon(ConfigGUI.getOkIcon());
+			lbl.setToolTipText(null);
+		} else {
+			lbl.setIcon(ConfigGUI.getErrorIcon());
+			lbl.setToolTipText(errore);
+		}
+	}
+
 
 }

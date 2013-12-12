@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.Abstract.AFormDistinta;
 import GUI.Plichi.PlicoDistinta;
 import coedil99.model.MDistinta;
@@ -87,7 +87,7 @@ public class FormDistinta extends AFormDistinta {
 		if (this.oggetto != null) {
 			r = (MRigaLavoro) this.oggetto;
 		} else {
-			MDistinta d = new MDistinta(ProgrammaLavori.getInstance()
+			MDistinta d = new MDistinta(ProgrammaLavoriCenter.getInstance()
 					.getCommessaSelezionata().getPersistentModel()
 					.getDistinta().getID());
 			d.getPersistentModel().lavori.add(r.getPersistentModel());

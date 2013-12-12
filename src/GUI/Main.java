@@ -45,7 +45,7 @@ public class Main {
 		//UIManager.put("ScrollBarUI", WebScrollBarUI.class.getName());
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1000, 500);
-		frame.getContentPane().add(ProgrammaLavori.getInstance(),
+		frame.getContentPane().add(ProgrammaLavoriCenter.getInstance(),
 				BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

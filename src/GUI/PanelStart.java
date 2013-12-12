@@ -179,7 +179,7 @@ public class PanelStart extends JPanel {
 
 		plButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				ProgrammaLavori p = ProgrammaLavori.getInstance();
+				ProgrammaLavoriCenter p = ProgrammaLavoriCenter.getInstance();
 				p.getClipPanel().resetInitialState();
 				p.checkCommesse();
 				p.checkDDO();

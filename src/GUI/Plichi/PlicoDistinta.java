@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.Abstract.APlico;
 import GUI.Form.FormDistinta;
 import GUI.Liste.ListaRigheLavoro;
@@ -133,7 +133,7 @@ public class PlicoDistinta extends APlico {
 	 */
 	public void refresh(){
 		this.removeRiquadro();
-		this.load(ProgrammaLavori.getInstance().getCommessaSelezionata().getPersistentModel().getID());
+		this.load(ProgrammaLavoriCenter.getInstance().getCommessaSelezionata().getPersistentModel().getID());
 	}
 	
 	/**

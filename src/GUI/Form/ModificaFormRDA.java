@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.Abstract.AFormRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciFornitoreHandler;
@@ -103,7 +103,7 @@ public class ModificaFormRDA extends AFormRDA {
 			public void mouseClicked(MouseEvent e) {
 				Object[] options = { "Si", "No" };
 				int n = JOptionPane.showOptionDialog(
-						ProgrammaLavori.getInstance(),
+						ProgrammaLavoriCenter.getInstance(),
 						"Sicuro di voler salvare le modifiche della RDA?\n",
 						"Conferma operazione",
 						JOptionPane.YES_NO_CANCEL_OPTION,

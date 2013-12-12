@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.Abstract.ACard;
 import GUI.Liste.ListaRigheLavoro;
 import GUI.Plichi.PlicoDistinta;
@@ -213,7 +213,7 @@ public class CardRigaLavoro extends ACard {
 					int n;
 					if (CardRigaLavoro.this.listaRigheLavoro.getNumRigheLavoro() == 1) {
 						n = JOptionPane.showOptionDialog(
-								ProgrammaLavori.getInstance(),
+								ProgrammaLavoriCenter.getInstance(),
 								"Eliminando l'ultima riga cancellerai l'intera distinta.\n"
 										+ "Sei sicuro di voler eliminare questa riga lavoro?\n"
 										+ "Nota: questa operazione non è reversibile",
@@ -223,7 +223,7 @@ public class CardRigaLavoro extends ACard {
 								options[1]);
 					} else {
 						n = JOptionPane.showOptionDialog(
-								ProgrammaLavori.getInstance(),
+								ProgrammaLavoriCenter.getInstance(),
 								"Sei sicuro di voler eliminare questa riga lavoro?\n"
 										+ "Nota: questa operazione non è reversibile",
 								"Conferma operazione",
@@ -232,7 +232,7 @@ public class CardRigaLavoro extends ACard {
 								options[1]);
 					}
 					if (n == JOptionPane.YES_OPTION) {
-						MDistinta odistinta = new MDistinta(ProgrammaLavori
+						MDistinta odistinta = new MDistinta(ProgrammaLavoriCenter
 								.getInstance().getCommessaSelezionata()
 								.getPersistentModel().getDistinta().getID());
 						odistinta.eliminaRigaLavoro(riga.getPersistentModel());

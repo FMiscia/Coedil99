@@ -8,7 +8,7 @@ import javax.swing.JToggleButton;
 
 import GUI.CoedilFrame;
 import GUI.PanelStart;
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.AClipPanel;
 import GUI.Abstract.APlico;
@@ -70,7 +70,7 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 					return;
 				}				
 				ClipPanelProgrammaLavori.this.focusOut();
-				ProgrammaLavori pl = ProgrammaLavori.getInstance();
+				ProgrammaLavoriCenter pl = ProgrammaLavoriCenter.getInstance();
 				pl.getRaccoglitorePlichi().reset();
 				if (pl.getCommessaSelezionata() != null)
 					pl.ListaCommesse().deselectAll();
@@ -102,11 +102,11 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 						.clickDuringNewCommessa()) {
 					return;
 				}
-				ProgrammaLavori.getInstance().getRaccoglitorePlichi()
+				ProgrammaLavoriCenter.getInstance().getRaccoglitorePlichi()
 						.changePlico(PlicoDistinta.getInstance());
 				JToggleButton b = (JToggleButton) e.getSource();
 				b.setSelected(true);
-				ProgrammaLavori.getInstance().checkDDO();
+				ProgrammaLavoriCenter.getInstance().checkDDO();
 				RaccoglitorePlichi.getInstance().validate();
 				RaccoglitorePlichi.getInstance().repaint();
 			}
@@ -121,14 +121,14 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 						.clickDuringNewCommessa()) {
 					return;
 				}
-				MDistinta odistinta = new MDistinta(ProgrammaLavori
+				MDistinta odistinta = new MDistinta(ProgrammaLavoriCenter
 						.getInstance().getCommessaSelezionata()
 						.getPersistentModel().getDistinta().getID());
 				if (odistinta.hasDdo()) {
 					ClipPanelProgrammaLavori.this.focusOut();
 					JToggleButton b = (JToggleButton) e.getSource();
 					b.setSelected(true);
-					ProgrammaLavori.getInstance().getRaccoglitorePlichi()
+					ProgrammaLavoriCenter.getInstance().getRaccoglitorePlichi()
 							.changePlico(PlicoDDO.getInstance());
 				}
 				RaccoglitorePlichi.getInstance().validate();
@@ -144,14 +144,14 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 							return;
 						}
 						PlicoCreaCommessa.getInstance().resetAll();
-						ProgrammaLavori.getInstance().getRaccoglitorePlichi()
+						ProgrammaLavoriCenter.getInstance().getRaccoglitorePlichi()
 								.changePlico(PlicoCreaCommessa.getInstance());
 						ClipPanelProgrammaLavori.this.focusOut();
-						ProgrammaLavori.getInstance().ListaCommesse()
+						ProgrammaLavoriCenter.getInstance().ListaCommesse()
 								.deselectAll();
-						ProgrammaLavori.getInstance().setCommessaSelezionata(
+						ProgrammaLavoriCenter.getInstance().setCommessaSelezionata(
 								null);
-						ProgrammaLavori.getInstance().checkCommesse();
+						ProgrammaLavoriCenter.getInstance().checkCommesse();
 						JToggleButton b = (JToggleButton) e.getSource();
 						b.setSelected(true);
 						RaccoglitorePlichi.getInstance().validate();

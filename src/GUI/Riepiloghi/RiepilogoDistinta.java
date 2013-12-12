@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.Abstract.AClipPanel;
 import GUI.Abstract.ARiepilogoDistinta;
 import GUI.Plichi.PlicoDDO;
@@ -36,8 +36,8 @@ public class RiepilogoDistinta extends ARiepilogoDistinta {
 	 * Metodo che si occupa di aggiornare i dati relativi alla distinta
 	 */
 	public void refresh() {
-		if (ProgrammaLavori.getInstance().getCommessaSelezionata() != null) {
-			final MDistinta d = new MDistinta(ProgrammaLavori.getInstance()
+		if (ProgrammaLavoriCenter.getInstance().getCommessaSelezionata() != null) {
+			final MDistinta d = new MDistinta(ProgrammaLavoriCenter.getInstance()
 					.getCommessaSelezionata().getPersistentModel()
 					.getDistinta().getID());
 			this.cbOttimizzatore.removeAllItems();
@@ -49,7 +49,7 @@ public class RiepilogoDistinta extends ARiepilogoDistinta {
 				this.btnSalva.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						MDistinta d = new MDistinta(ProgrammaLavori
+						MDistinta d = new MDistinta(ProgrammaLavoriCenter
 								.getInstance().getCommessaSelezionata()
 								.getPersistentModel().getDistinta().getID());
 						d.save();
@@ -57,7 +57,7 @@ public class RiepilogoDistinta extends ARiepilogoDistinta {
 								"Distinta salvata con successo!\n",
 								"Conferma operazione",
 								JOptionPane.INFORMATION_MESSAGE);
-						ProgrammaLavori.getInstance().getClipPanel()
+						ProgrammaLavoriCenter.getInstance().getClipPanel()
 								.getButtons().get(2).doClick();
 					}
 
@@ -121,7 +121,7 @@ public class RiepilogoDistinta extends ARiepilogoDistinta {
 			this.btnOttimizza.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					ProgrammaLavori pl = ProgrammaLavori.getInstance();
+					ProgrammaLavoriCenter pl = ProgrammaLavoriCenter.getInstance();
 					Object[] options = { "Si", "No" };
 					int n = JOptionPane
 							.showOptionDialog(
