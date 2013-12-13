@@ -111,7 +111,7 @@ public class CardCodiceInterno extends ACard {
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(200, 59));
 		this.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
-		this.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		this.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard(), 2));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(null);
 
@@ -124,7 +124,7 @@ public class CardCodiceInterno extends ACard {
 		codiceInterno = new JLabel();
 		codiceInterno.setHorizontalAlignment(SwingConstants.CENTER);
 		codiceInterno.setBounds(0, 30, 100, 30);
-		codiceInterno.setBorder(new LineBorder(new Color(0, 0, 0)));
+		codiceInterno.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard()));
 
 		cliente = new JLabel();
 		cliente.setHorizontalAlignment(SwingConstants.CENTER);

@@ -96,7 +96,7 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		this.lblNome.setBorder(null);
 		// this.lblNome.setBackground(new Color(240, 240, 240));
 		this.lblNome.setEnabled(false);
-		this.lblNome.setDisabledTextColor(Color.BLACK);
+		this.lblNome.setDisabledTextColor(ConfigGUI.getInstance().getColoreBordoCard());
 		this.lblNome.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lblNome.setFont(new Font("Tahoma", Font.BOLD, 16));
 
@@ -281,9 +281,9 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		this.lblNome.setEnabled(mod);
 		this.lblErrore.setVisible(mod);
 		if (mod)
-			this.lblNome.setBackground(Color.white);
+			this.lblNome.setBackground(ConfigGUI.getInstance().getColoreTextAreaEnable());
 		else
-			lblNome.setBackground(new Color(240, 240, 240));
+			lblNome.setBackground(ConfigGUI.getInstance().getColoreProdottoPari());
 		this.lblNome.setBorder(null);
 		if (this.btnCaricaCatalogo.isVisible()) {
 			this.btnElimina.setVisible(true);
@@ -350,12 +350,12 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 			lblErrore.setIcon(IcoErrore);
 			lblErrore
 					.setToolTipText("Il nome del catalogo fornitore non può essere vuoto!");
-			lblNome.setBorder(new LineBorder(Color.red));
+			lblNome.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 		} else if (m.find()) {
 			lblErrore.setIcon(IcoErrore);
 			lblErrore
 					.setToolTipText("Il nome del catalogo fornitore può essere solo alfa numerico");
-			lblNome.setBorder(new LineBorder(Color.red));
+			lblNome.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 		} else if (!line.equals(FornitoriCenter.getInstance()
 				.getFornitoreSelezionato().getPersistentModel().getName())
 				&& GestisciFornitoreHandler.getInstance().getFornitoreByName(
@@ -364,11 +364,11 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 			lblErrore
 					.setToolTipText("Esiste già un catalogo fornitore con nome "
 							+ line);
-			lblNome.setBorder(new LineBorder(Color.red));
+			lblNome.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 		} else {
 			lblErrore.setIcon(IcoOk);
 			lblErrore.setToolTipText(null);
-			lblNome.setBorder(new LineBorder(Color.green));
+			lblNome.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
 		}
 		this.controlloErrori();
 		if (this.btnCaricaCatalogo.isVisible())

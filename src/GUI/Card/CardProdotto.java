@@ -58,7 +58,7 @@ public class CardProdotto extends ACard {
 		this.setPreferredSize(new Dimension(560, 30));
 		this.setBackground(ConfigGUI.getInstance().getColoreProdottoPari());
 		this.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard(),2));
-		this.setForeground(Color.WHITE);
+		this.setForeground(ConfigGUI.getInstance().getColoreTextAreaEnable());
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		
@@ -112,7 +112,7 @@ public class CardProdotto extends ACard {
 	
 	private void makeIntestazione(){
 		this.setPreferredSize(new Dimension(560, 30));
-		this.setForeground(Color.BLACK);
+		this.setForeground(ConfigGUI.getInstance().getColoreBordoCard());
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		
 		this.lblEssenza = new JLabel();

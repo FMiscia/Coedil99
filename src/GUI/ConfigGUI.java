@@ -55,6 +55,7 @@ public class ConfigGUI {
 	private static Color coloreTextAreaEnable = Color.WHITE;
 	private static Color coloreBordoErrore = Color.RED;
 	private static Color coloreBordoOk = Color.GREEN;
+	private static Color coloreBordoStandard = Color.GRAY;
 	private static int numBottoniClipPanel = 8;
 	private XPath xpath;
 	private Object doc;
@@ -115,7 +116,7 @@ public class ConfigGUI {
 	public boolean isParsed() {
 		return parsed;
 	}
-	
+
 	public static String getLookAndFeel() {
 		return LookAndFeel;
 	}
@@ -311,7 +312,9 @@ public class ConfigGUI {
 	}
 
 	/**
-	 * Metodo che parsa il file di configurazione presente nella cartella GUI/Configuration
+	 * Metodo che parsa il file di configurazione presente nella cartella
+	 * GUI/Configuration
+	 * 
 	 * @return boolean: indica l'esito del parsing
 	 */
 	public boolean parseConfig() throws SAXException, IOException {
@@ -321,10 +324,10 @@ public class ConfigGUI {
 		doc = null;
 		try {
 			builder = factory.newDocumentBuilder();
-			try{
-			doc = builder.parse(ConfigGUI.class.getResource(
-					"/GUI/Configuration/ConfigGUI.xml").toString());
-			} catch(Exception e){
+			try {
+				doc = builder.parse(ConfigGUI.class.getResource(
+						"/GUI/Configuration/ConfigGUI.xml").toString());
+			} catch (Exception e) {
 				return false;
 			}
 			XPathFactory xpathFactory = XPathFactory.newInstance();
@@ -356,6 +359,7 @@ public class ConfigGUI {
 
 	/**
 	 * Metodo che ritorna il colore associato all'emenento ricercato
+	 * 
 	 * @param elemento
 	 * @return Color
 	 */
@@ -391,6 +395,7 @@ public class ConfigGUI {
 
 	/**
 	 * Metodo che ritorna l'icona associata all'emenento ricercato
+	 * 
 	 * @param elemento
 	 * @return ImageIcon
 	 */
@@ -415,12 +420,14 @@ public class ConfigGUI {
 
 	/**
 	 * Meotodo che ritorna il numero di bottoni visualizzabili nel clip panel
+	 * 
 	 * @return int
 	 */
 	public int getNumBottoni() {
 		XPathExpression bottoni;
 		try {
-			bottoni = xpath.compile("/configuration/numBottoniClipPane/text()");
+			bottoni = xpath
+					.compile("/configuration/numBottoniClipPanel/text()");
 			NodeList nico = (NodeList) bottoni.evaluate(doc,
 					XPathConstants.NODESET);
 			if (nico.getLength() > 0)
@@ -435,6 +442,24 @@ public class ConfigGUI {
 			return 0;
 		}
 
+	}
+
+	/**
+	 * @return the coloreBordoStandard
+	 */
+	public Color getColoreBordoStandard() {
+		if (parsed)
+			return getColor("BordoStandard");
+		else
+			return coloreBordoStandard;
+	}
+
+	/**
+	 * @param coloreBordoStandard
+	 *            the coloreBordoStandard to set
+	 */
+	public static void setColoreBordoStandard(Color coloreBordoStandard) {
+		ConfigGUI.coloreBordoStandard = coloreBordoStandard;
 	}
 
 }

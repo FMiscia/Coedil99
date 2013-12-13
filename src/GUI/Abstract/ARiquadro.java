@@ -49,7 +49,7 @@ public abstract class ARiquadro extends JPanel {
 		for (JTextField i : this.Container) {
 			if (!editable) {
 				i.setBackground(Color.getColor("textInactiveText"));
-				i.setBorder(new LineBorder(Color.gray));
+				i.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoStandard()));
 				//ARiquadro.this.modifica.setText("modifica");
 				modifica.setIcon(ConfigGUI.getInstance().getEditIcon());
 				aperto = true;
@@ -159,7 +159,7 @@ public abstract class ARiquadro extends JPanel {
 	 * Cambia il colore del testo nei campi non abilitati mettendolo più scuro
 	 */
 	public void changeUnableColor(JTextField x) {
-		x.setDisabledTextColor(Color.BLACK);
+		x.setDisabledTextColor(ConfigGUI.getInstance().getColoreBordoCard());
 		x.validate();
 		x.repaint();
 	}
@@ -178,7 +178,6 @@ public abstract class ARiquadro extends JPanel {
 		setPreferredSize(new Dimension(600, 280));
 		JSeparator separator = new JSeparator();
 		separator.setPreferredSize(new Dimension(0, 3));
-		separator.setBackground(new Color(0, 0, 0));
 		separator.setForeground(ConfigGUI.getInstance().getColoreBordoCard());
 		separator.setBounds(0, 31, 600, 2);
 		add(separator);

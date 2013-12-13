@@ -82,7 +82,7 @@ public abstract class AFormDistinta extends JPanel {
 		for (JTextField i : this.Container) {
 			if (!editable) {
 				i.setBackground(Color.getColor("textInactiveText"));
-				i.setBorder(new LineBorder(Color.gray));
+				i.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoStandard()));
 				aperto = true;
 			} else {
 				controlloErrori();
@@ -109,9 +109,6 @@ public abstract class AFormDistinta extends JPanel {
 			this.salva.setEnabled(true);
 		} else {
 			this.salva.setEnabled(false);
-//			if (salva.getMouseListeners().length != 1)
-//				AFormDistinta.this.salva.removeMouseListener(salva
-//						.getMouseListeners()[1]);
 		}
 		this.validate();
 		this.repaint();
@@ -164,7 +161,7 @@ public abstract class AFormDistinta extends JPanel {
 	protected void resetErroriForm(){
 		if (this.Container.size() != 0) {
 			for (JTextField txt : Container)
-				txt.setBorder(new LineBorder(Color.GRAY));
+				txt.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoStandard()));
 		}
 		for (JLabel j : this.Label) {
 			j.setVisible(false);
@@ -197,7 +194,7 @@ public abstract class AFormDistinta extends JPanel {
 	 * Cambia il colore del testo nei campi non abilitati mettendolo più scuro
 	 */
 	public void changeUnableColor(JTextField x) {
-		x.setDisabledTextColor(Color.BLACK);
+		x.setDisabledTextColor(ConfigGUI.getInstance().getColoreBordoCard());
 		x.validate();
 		x.repaint();
 	}
@@ -412,7 +409,7 @@ public abstract class AFormDistinta extends JPanel {
 					tftipocapitello.setText(null);
 					lblIcoTipoCapitello.setVisible(false);
 					lblIcoTipoCapitello.setToolTipText(null);
-					tftipocapitello.setBorder(new LineBorder(Color.GRAY));
+					tftipocapitello.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoStandard()));
 					setEditing(checkEmpty());
 				} else {
 					tftipocapitello.setEnabled(true);
