@@ -5,10 +5,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.RDACenter;
 import GUI.Abstract.ARiepilogoRDA;
 import GUI.Card.CardRDA;
@@ -16,7 +15,6 @@ import GUI.Liste.ListaRigheRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MRDA;
-import coedil99.persistentmodel.RDA;
 
 /**
  * 
@@ -87,7 +85,7 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 				public void mouseClicked(MouseEvent e) {
 					Object[] options = { "Si", "No" };
 					int n = JOptionPane.showOptionDialog(
-							ProgrammaLavori.getInstance(),
+							ProgrammaLavoriCenter.getInstance(),
 							"Sicuro di voler eliminare la RDA?\n"
 									+ "Nota: Questa operazione non è reversibile",
 							"Conferma operazione",
@@ -150,7 +148,11 @@ public class RiepilogoRDACongelata extends ARiepilogoRDA {
 	 * Imposta la grafica
 	 */
 	private void initialize() {
-		this.panel.remove(this.btnArrivata);
+//		this.panel.remove(this.btnArrivata);
+		this.addButton(this.btnSalva, 14);
+		this.addButton(this.btnElimina,16 );
+		this.addButton(this.btnInvia, 18);
+
 		this.validate();
 		this.repaint();
 	}

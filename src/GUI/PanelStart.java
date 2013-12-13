@@ -3,6 +3,7 @@ package GUI;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -14,6 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import GUI.ClipPanels.ClipPanelMenu;
@@ -79,8 +81,15 @@ public class PanelStart extends JPanel {
 	 */
 	private void addFornitoriButton() {
 		fornitoriButton = new JToggleButton();
-		fornitoriButton.setToolTipText("Gestisci Cataloghi");
-		fornitoriButton.setSize(100, 100);
+		fornitoriButton.setIconTextGap(0);
+		fornitoriButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		fornitoriButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+		fornitoriButton.setFont(new Font("Tahoma", Font.BOLD, 20));
+		fornitoriButton.setText("Gestisci Fornitori");
+		fornitoriButton.setToolTipText("Gestisci Fornitori");
+		fornitoriButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		fornitoriButton.setPreferredSize(new Dimension(300, 380));
+		fornitoriButton.setSize(300,380);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"/GUI/image/fornitori.png"));
@@ -111,9 +120,14 @@ public class PanelStart extends JPanel {
 	 */
 	private void addRDAButton() {
 		RDAButton = new JToggleButton();
+		RDAButton.setFont(new Font("Tahoma", Font.BOLD, 20));
+		RDAButton.setText("Richieste di acquisto");
+		RDAButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+		RDAButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		RDAButton.setIconTextGap(0);
 		RDAButton.setToolTipText("Gestisci RDA");
 		RDAButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		RDAButton.setSize(100, 100);
+		RDAButton.setSize(400, 400);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"/GUI/image/rda.png"));
@@ -146,9 +160,14 @@ public class PanelStart extends JPanel {
 	 */
 	private void addPLButton() {
 		plButton = new JToggleButton();
+		plButton.setFont(new Font("Tahoma", Font.BOLD, 20));
+		plButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		plButton.setIconTextGap(0);
+		plButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+		plButton.setText("Programma lavori");
 		plButton.setToolTipText("Programma Lavori");
 		plButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		plButton.setPreferredSize(new Dimension(100, 100));
+		plButton.setPreferredSize(new Dimension(400, 400));
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"/GUI/image/proglavori.png"));
@@ -160,10 +179,12 @@ public class PanelStart extends JPanel {
 
 		plButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				ProgrammaLavori p = ProgrammaLavori.getInstance();
+				ProgrammaLavoriCenter p = ProgrammaLavoriCenter.getInstance();
 				p.getClipPanel().resetInitialState();
 				p.checkCommesse();
+				p.checkDDO();
 				CoedilFrame.getInstance().montaPanel(p);
+				p.getClipPanel().getButtons().get(1).doClick();
 			}
 		});
 

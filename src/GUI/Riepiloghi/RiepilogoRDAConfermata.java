@@ -4,10 +4,9 @@ import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import coedil99.model.MRDA;
-import coedil99.persistentmodel.RDA;
 import GUI.RDACenter;
 import GUI.Abstract.ARiepilogoRDA;
+import coedil99.model.MRDA;
 
 
 /**
@@ -68,9 +67,7 @@ public class RiepilogoRDAConfermata extends ARiepilogoRDA {
 	 * Imposta la grafica
 	 */
 	private void initialize(){
-		this.panel.remove(this.btnSalva);
-		this.panel.remove(this.btnElimina);
-		this.panel.remove(this.btnInvia);
+		this.addButton(this.btnArrivata, 14);
 		this.setPreferredSize(new Dimension(ARiepilogoRDA.width,180));
 		this.validate();
 		this.repaint();

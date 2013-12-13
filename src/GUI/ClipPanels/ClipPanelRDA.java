@@ -14,8 +14,8 @@ import GUI.CoedilFrame;
 import GUI.PanelStart;
 import GUI.RDACenter;
 import GUI.Abstract.AClipPanel;
-import GUI.FormRDA.CreaFormRDA;
-import GUI.FormRDA.CreaFormRDAFactory;
+import GUI.Form.CreaFormRDA;
+import GUI.Form.CreaFormRDAFactory;
 import GUI.Liste.ListaRigheRDA;
 import GUI.Panels.NotaRDA;
 import GUI.Panels.NotaRDAFactory;
@@ -222,6 +222,7 @@ public class ClipPanelRDA extends AClipPanel {
 							lista_righe_rda.getPanel().repaint();
 							NotaRDA nota = (NotaRDA) NotaRDAFactory
 									.getInstance().makeNotaRDA();
+							nota.setNotaTxt();
 							prda.addNotaRDA(nota);
 						}
 					}
@@ -269,7 +270,7 @@ public class ClipPanelRDA extends AClipPanel {
 							lista_righe_rda.getPanel().repaint();
 							NotaRDA nota = (NotaRDA) NotaRDAFactory
 									.getInstance().makeNotaRDA();
-							nota.removeButtons();
+							nota.setNotaTxt();
 							prda.addNotaRDA(nota);
 						}
 					}

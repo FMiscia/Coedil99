@@ -1,12 +1,13 @@
 package GUI.Riquadri;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -127,8 +128,8 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 	 */
 	@Override
 	protected void initialize() {
-		this.setSize(new Dimension(600, 220));
-		this.form.setBounds(0, 30, 600, 190);
+		this.setSize(new Dimension(600, 230));
+		this.form.setBounds(0, 40, 600, 200);
 		this.add(form);
 		this.form.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -149,6 +150,9 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 		this.addDataFineCommessa();
 		this.addScadenzaCommessa();
 		this.addRitardo();
+		this.checkEmissioneCommessa();
+		this.checkDataFine();
+		this.checkScadenzaCommessa();
 	}
 
 	/**
@@ -169,19 +173,19 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoResponsabile.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoResponsabile
-								.setToolTipText("Il campo Responsabile deve contenere solo lettere!");
-						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+						setErrore(lblIcoResponsabile, false,
+								"Il campo Responsabile deve contenere solo lettere!");
+						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
+								.getColoreBordoErrore()));
 					} else if (m.find()) {
-						lblIcoResponsabile.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoResponsabile
-								.setToolTipText("Il campo Responsabile deve contenere solo lettere!");
-						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+						setErrore(lblIcoResponsabile, false,
+								"Il campo Responsabile deve contenere solo lettere!");
+						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
+								.getColoreBordoErrore()));
 					} else {
-						lblIcoResponsabile.setIcon(ConfigGUI.getOkIcon());
-						lblIcoResponsabile.setToolTipText("");
-						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+						setErrore(lblIcoResponsabile, true, null);
+						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
+								.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}
@@ -205,48 +209,6 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 		this.dateEmissioneCommessa = new JXDatePicker();
 		this.dateEmissioneCommessa.setFormats("yyyy-MM-dd");
 		this.dateEmissioneCommessa.getEditor().setEditable(false);
-		if (this.dateEmissioneCommessa.getEditor().getFocusListeners().length == 0) {
-			this.dateEmissioneCommessa.getEditor().addFocusListener(
-					new FocusAdapter() {
-						@Override
-						public void focusGained(FocusEvent e) {
-							if (dateDataFine.getDate().before(
-									dateEmissioneCommessa.getDate())) {
-								lblIcoEmissioneCommessa.setIcon(ConfigGUI.getErrorIcon());
-								lblIcoEmissioneCommessa
-										.setToolTipText("La data di inizio deve precedere la data di fine!");
-								lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
-								lblIcoDataFine
-										.setToolTipText("La data di inizio deve precedere la data di fine!");
-							} else {
-								lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
-								lblIcoDataFine.setToolTipText(null);
-								lblIcoEmissioneCommessa.setIcon(ConfigGUI.getOkIcon());
-								lblIcoEmissioneCommessa.setToolTipText(null);
-							}
-							controlloErrori();
-						}
-
-						@Override
-						public void focusLost(FocusEvent e) {
-							if (dateDataFine.getDate().before(
-									dateEmissioneCommessa.getDate())) {
-								lblIcoEmissioneCommessa.setIcon(ConfigGUI.getErrorIcon());
-								lblIcoEmissioneCommessa
-										.setToolTipText("La data di inizio deve precedere la data di fine!");
-								lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
-								lblIcoDataFine
-										.setToolTipText("La data di inizio deve precedere la data di fine!");
-							} else {
-								lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
-								lblIcoDataFine.setToolTipText(null);
-								lblIcoEmissioneCommessa.setIcon(ConfigGUI.getOkIcon());
-								lblIcoEmissioneCommessa.setToolTipText(null);
-							}
-							controlloErrori();
-						}
-					});
-		}
 		this.form.add(this.dateEmissioneCommessa, "6, 4, fill, fill");
 		this.lblIcoEmissioneCommessa = new JLabel("");
 		this.lblIcoEmissioneCommessa.setVisible(false);
@@ -264,47 +226,6 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 		this.dateDataFine = new JXDatePicker();
 		this.dateDataFine.setFormats("yyyy-MM-dd");
 		this.dateDataFine.getEditor().setEditable(false);
-		if (this.dateDataFine.getEditor().getFocusListeners().length == 0) {
-			this.dateDataFine.getEditor().addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent e) {
-					if (dateDataFine.getDate().before(
-							dateEmissioneCommessa.getDate())) {
-						lblIcoEmissioneCommessa.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoEmissioneCommessa
-								.setToolTipText("La data di inizio deve precedere la data di fine!");
-						lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoDataFine
-								.setToolTipText("La data di inizio deve precedere la data di fine!");
-					} else {
-						lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
-						lblIcoDataFine.setToolTipText(null);
-						lblIcoEmissioneCommessa.setIcon(ConfigGUI.getOkIcon());
-						lblIcoEmissioneCommessa.setToolTipText(null);
-					}
-					controlloErrori();
-				}
-
-				@Override
-				public void focusLost(FocusEvent e) {
-					if (dateDataFine.getDate().before(
-							dateEmissioneCommessa.getDate())) {
-						lblIcoEmissioneCommessa.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoEmissioneCommessa
-								.setToolTipText("La data di inizio deve precedere la data di fine!");
-						lblIcoDataFine.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoDataFine
-								.setToolTipText("La data di inizio deve precedere la data di fine!");
-					} else {
-						lblIcoDataFine.setIcon(ConfigGUI.getOkIcon());
-						lblIcoDataFine.setToolTipText(null);
-						lblIcoEmissioneCommessa.setIcon(ConfigGUI.getOkIcon());
-						lblIcoEmissioneCommessa.setToolTipText(null);
-					}
-					controlloErrori();
-				}
-			});
-		}
 		this.lblIcoDataFine = new JLabel("");
 		this.lblIcoDataFine.setVisible(false);
 		this.form.add(lblIcoDataFine, "8, 6, center, top");
@@ -322,41 +243,6 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 		this.dateScadenzaCommessa = new JXDatePicker();
 		this.dateScadenzaCommessa.setFormats("yyyy-MM-dd");
 		this.dateScadenzaCommessa.getEditor().setEditable(false);
-		if (this.dateScadenzaCommessa.getEditor().getFocusListeners().length == 0) {
-			this.dateScadenzaCommessa.getEditor().addFocusListener(
-					new FocusListener() {
-
-						@Override
-						public void focusLost(FocusEvent e) {
-							if (dateScadenzaCommessa.getDate() == null) {
-								lblIcoScadenzaCommessa.setIcon(ConfigGUI.getErrorIcon());
-								lblIcoScadenzaCommessa
-										.setToolTipText("La data di scadenza deve essere selezionata!");
-								dateScadenzaCommessa.setBorder(new LineBorder(
-										ConfigGUI.getColoreBordoErrore()));
-							} else {
-								lblIcoScadenzaCommessa.setIcon(ConfigGUI.getOkIcon());
-								lblIcoScadenzaCommessa.setToolTipText(null);
-							}
-							controlloErrori();
-						}
-
-						@Override
-						public void focusGained(FocusEvent e) {
-							if (dateScadenzaCommessa.getDate() == null) {
-								lblIcoScadenzaCommessa.setIcon(ConfigGUI.getErrorIcon());
-								lblIcoScadenzaCommessa
-										.setToolTipText("La data di scadenza deve essere selezionata!");
-								dateScadenzaCommessa.setBorder(new LineBorder(
-										ConfigGUI.getColoreBordoErrore()));
-							} else {
-								lblIcoScadenzaCommessa.setIcon(ConfigGUI.getOkIcon());
-								lblIcoScadenzaCommessa.setToolTipText(null);
-							}
-							controlloErrori();
-						}
-					});
-		}
 		this.form.add(dateScadenzaCommessa, "6, 8, fill, fill");
 		this.lblIcoScadenzaCommessa = new JLabel("");
 		this.lblIcoScadenzaCommessa.setVisible(false);
@@ -382,19 +268,19 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 					Pattern r = Pattern.compile(pattern);
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
-						lblIcoRitardo.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoRitardo
-								.setToolTipText("Il campo Ritardo Produzione deve contenere solo numeri!");
-						txtRitardo.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+						setErrore(lblIcoRitardo, false,
+								"Il campo Ritardo Produzione deve contenere solo numeri!");
+						txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
+								.getColoreBordoErrore()));
 					} else if (m.find()) {
-						lblIcoRitardo.setIcon(ConfigGUI.getErrorIcon());
-						lblIcoRitardo
-								.setToolTipText("Il campo Ritardo Produzione deve contenere solo numeri!");
-						txtRitardo.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+						setErrore(lblIcoRitardo, false,
+								"Il campo Ritardo Produzione deve contenere solo numeri!");
+						txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
+								.getColoreBordoErrore()));
 					} else {
-						lblIcoRitardo.setIcon(ConfigGUI.getOkIcon());
-						lblIcoRitardo.setToolTipText("");
-						txtRitardo.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+						setErrore(lblIcoRitardo, true, null);
+						txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
+								.getColoreBordoOk()));
 					}
 					controlloErrori();
 				}
@@ -414,6 +300,104 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 		this.dateEmissioneCommessa.setDate(d);
 		this.validate();
 		this.repaint();
+	}
+
+	/**
+	 * Metodo che aggiunge il controllo delle date per il campo data inizio
+	 */
+	private void checkEmissioneCommessa() {
+		this.dateEmissioneCommessa.getEditor().addPropertyChangeListener(
+				new PropertyChangeListener() {
+
+					@Override
+					public void propertyChange(PropertyChangeEvent evt) {
+						if (evt.getPropertyName().equals("value")) {
+							checkDate();
+						}
+
+					}
+				});
+	}
+
+	/**
+	 * Metodo che aggiunge il controllo delle date per il campo data fine
+	 */
+	private void checkDataFine() {
+		this.dateDataFine.getEditor().addPropertyChangeListener(
+				new PropertyChangeListener() {
+
+					@Override
+					public void propertyChange(PropertyChangeEvent evt) {
+						if (evt.getPropertyName().equals("value")) {
+							checkDate();
+						}
+
+					}
+				});
+
+	}
+
+	/**
+	 * Metodo che aggiunge il controllo del campo data scadenza
+	 */
+	private void checkScadenzaCommessa() {
+		this.dateScadenzaCommessa.getEditor().addPropertyChangeListener(
+				new PropertyChangeListener() {
+
+					@Override
+					public void propertyChange(PropertyChangeEvent evt) {
+						if (evt.getPropertyName().equals("value")) {
+							checkDate();
+						}
+					}
+				});
+	}
+
+	/**
+	 * Metodo che controlla lo stato dei campi data inizio, fine e scadenza
+	 */
+	private void checkDate() {
+		if (dateScadenzaCommessa.isEnabled()
+				&& dateEmissioneCommessa.isEnabled()
+				&& dateDataFine.isEnabled()) {
+			if (dateScadenzaCommessa.getDate() != null
+					&& dateDataFine.getDate() != null
+					&& dateEmissioneCommessa.getDate() != null) {
+				if (dateScadenzaCommessa.getDate().before(
+						dateDataFine.getDate())) {
+					setErrore(lblIcoScadenzaCommessa, false,
+							"La data di scadenza non deve precedere la data fine");
+				} else if (dateScadenzaCommessa.getDate().before(
+						dateEmissioneCommessa.getDate())) {
+					setErrore(lblIcoScadenzaCommessa, false,
+							"La data di scadenza non deve precedere la data inizio");
+				} else {
+					setErrore(lblIcoScadenzaCommessa, true, null);
+				}
+			} else if (dateScadenzaCommessa.getDate() != null
+					&& dateDataFine.getDate() != null
+					&& dateEmissioneCommessa.getDate() == null) {
+				if (dateScadenzaCommessa.getDate().before(
+						dateDataFine.getDate())) {
+					setErrore(lblIcoScadenzaCommessa, false,
+							"La data di scadenza non deve precedere la data fine");
+				} else {
+					setErrore(lblIcoScadenzaCommessa, true, null);
+				}
+			}
+			if (dateEmissioneCommessa.getDate() != null
+					&& dateDataFine.getDate() != null)
+				if (dateDataFine.getDate().before(
+						dateEmissioneCommessa.getDate())) {
+					setErrore(lblIcoEmissioneCommessa, false,
+							"La data di inizio deve precedere la data di fine!");
+					setErrore(lblIcoDataFine, false,
+							"La data di inizio deve precedere la data di fine!");
+				} else {
+					setErrore(lblIcoEmissioneCommessa, true, null);
+					setErrore(lblIcoDataFine, true, null);
+				}
+		}
 	}
 
 }

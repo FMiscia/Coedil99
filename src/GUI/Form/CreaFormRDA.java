@@ -1,15 +1,27 @@
-package GUI.FormRDA;
+package GUI.Form;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+
+import coedil99.controller.GestisciCommessaHandler;
+import coedil99.controller.GestisciFornitoreHandler;
+import coedil99.controller.GestisciRDAHandler;
+import coedil99.model.MCatalogoFornitore;
+import coedil99.model.MProductDescription;
+import coedil99.model.MRDA;
+import coedil99.model.MRigaRDA;
+import coedil99.persistentmodel.CatalogoFornitore;
+import coedil99.persistentmodel.ProductDescription;
+import coedil99.persistentmodel.RDA;
+import coedil99.persistentmodel.RDAFactory;
+import coedil99.persistentmodel.RigaRDA;
+import coedil99.persistentmodel.RigaRDAFactory;
 
 import GUI.RDACenter;
 import GUI.Abstract.AFormRDA;
@@ -19,11 +31,8 @@ import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Plichi.PlicoRDA;
-import coedil99.controller.GestisciFornitoreHandler;
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.MProductDescription;
-import coedil99.model.MRDA;
-import coedil99.model.MRigaRDA;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 /**
  * 
@@ -81,13 +90,8 @@ public class CreaFormRDA extends AFormRDA {
 		this.resetGeometria();
 		this.disableSpinner();
 		this.JBAddRiga.setEnabled(false);
-		this.loadEssenze(GestisciFornitoreHandler
-				.getInstance().getEssenze(
-						GestisciFornitoreHandler.getInstance()
-								.getFornitoreByName(
-										cbFornitore
-												.getSelectedItem()
-												.toString())));
+		this.loadEssenze(GestisciFornitoreHandler.getInstance()
+				.getEssenze(GestisciFornitoreHandler.getInstance().getFornitoreByName(fornitore)));
 		this.validate();
 		this.repaint();
 	}
@@ -121,6 +125,9 @@ public class CreaFormRDA extends AFormRDA {
 							&& indiceCbEssenza != -1 && indiceCbGeometria != -1) {
 						fornitore = CreaFormRDA.this.getCbFornitore()
 								.getSelectedItem().toString();
+						@SuppressWarnings("unused")
+						MCatalogoFornitore cf = GestisciFornitoreHandler
+								.getInstance().getFornitoreByName(fornitore);
 						essenza = CreaFormRDA.this.getCbEssenza()
 								.getSelectedItem().toString();
 						geometria = CreaFormRDA.this.getCbGeometria()
@@ -128,7 +135,7 @@ public class CreaFormRDA extends AFormRDA {
 						MProductDescription pd = GestisciFornitoreHandler
 								.getInstance().getMProductDescription(essenza,
 										geometria, fornitore);
-						MRigaRDA rrda = GestisciRDAHandler.getInstance().makeMRigaRDA();
+						MRigaRDA rrda = new MRigaRDA();
 						RDACenter rdac = RDACenter.getInstance();
 						rrda.getPersistentModel().setRDA(
 								rdac.getRDASelezionata().getPersistentModel());
@@ -166,7 +173,7 @@ public class CreaFormRDA extends AFormRDA {
 			RDACenter rdac = RDACenter.getInstance();
 			CardRDA rdaCard = (CardRDA) CardRDAFactory.getInstance().makeCard(
 					rdac.getLista());
-			MRDA rda = GestisciRDAHandler.getInstance().makeMRDA();
+			MRDA rda = new MRDA();
 			rda.getPersistentModel().setDate(new Date());
 			rdaCard.load(rda);
 

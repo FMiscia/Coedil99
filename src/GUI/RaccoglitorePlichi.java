@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.Abstract.APlico;
 import GUI.Plichi.PlicoCommessa;
 import coedil99.model.MCommessa;
@@ -58,7 +58,7 @@ public class RaccoglitorePlichi extends JScrollPane {
 	 * @param p: Il plico da mostrare
 	 */
 	public void changePlico(APlico p) {
-		ProgrammaLavori pl = ProgrammaLavori.getInstance();
+		ProgrammaLavoriCenter pl = ProgrammaLavoriCenter.getInstance();
 		p.load(pl.getCommessaSelezionata().getPersistentModel().getID());
 		this.getPlico_container().removeAll();
 		this.getPlico_container().add(p,BorderLayout.CENTER);
@@ -101,6 +101,13 @@ public class RaccoglitorePlichi extends JScrollPane {
 	 */
 	public JScrollPane getScrollPaneWrapper() {
 		return scrollPaneWrapper;
+	}
+
+	public void reset() {
+		this.getPlico_container().removeAll();
+		this.validate();
+		this.repaint();
+		
 	}
 
 }

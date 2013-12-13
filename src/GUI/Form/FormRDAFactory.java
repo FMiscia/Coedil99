@@ -1,4 +1,4 @@
-package GUI.FormRDA;
+package GUI.Form;
 
 import GUI.Abstract.AFormRDA;
 

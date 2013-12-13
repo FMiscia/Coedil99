@@ -4,11 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
-import com.alee.laf.WebLookAndFeel;
-import com.alee.laf.scroll.WebScrollBarUI;
 
 public class Main {
 
@@ -45,7 +40,7 @@ public class Main {
 		//UIManager.put("ScrollBarUI", WebScrollBarUI.class.getName());
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1000, 500);
-		frame.getContentPane().add(ProgrammaLavori.getInstance(),
+		frame.getContentPane().add(ProgrammaLavoriCenter.getInstance(),
 				BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import GUI.CommercialeCenter;
 import GUI.ConfigGUI;
 import GUI.RDACenter;
 import GUI.Abstract.ALista;
@@ -35,7 +34,7 @@ public class ListaRigheRDA extends ALista {
 	 */
 	public ListaRigheRDA() {
 		super();
-		this.setPreferredSize(new Dimension(300, 0));
+		this.setPreferredSize(new Dimension(330, 0));
 		this.validate();
 		this.repaint();
 	}
@@ -72,13 +71,12 @@ public class ListaRigheRDA extends ALista {
 	 * @param t
 	 */
 	public void loadComm(ArrayList<Object> t) {
-		
+		this.updatePanelComm();
 		int row = t.size();
 		CardRigaRDA cardRigaRDA = null;
 		for (int k = 0; k < row; k++) {
 			cardRigaRDA = (CardRigaRDA) CardRigaRDAFactory.getInstance()
 					.makeCard(this);
-
 			cardRigaRDA.load( t.get(k) );
 			cardRigaRDA.setCardWithNoOptions();
 			this.panel.add(cardRigaRDA);
@@ -86,7 +84,10 @@ public class ListaRigheRDA extends ALista {
 			this.panel.repaint();
 			
 		}
-		
+		if (cardRigaRDA != null)
+			this.panel.setPreferredSize(new Dimension(this.panel.getWidth(),
+					this.riepilogoRDA.getHeight() + row
+							* (this.panel.getComponent(1).getHeight() + 10)));
 		this.validate();
 		this.repaint();
 	}
@@ -112,7 +113,7 @@ public class ListaRigheRDA extends ALista {
 	 */
 	public void deselectAll() {
 		for (Component c : this.panel.getComponents()) {
-			c.setBackground(ConfigGUI.getColoreDeselezionato());
+			c.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
 			c.validate();
 			c.repaint();
 		}
@@ -140,12 +141,10 @@ public class ListaRigheRDA extends ALista {
 	 */
 	public void updatePanelComm() {
 		this.panel.removeAll();
-		String stato = CommercialeCenter.getInstance().getRDASelezionata()
-				.getPersistentModel().getState();
-		this.riepilogoRDA = RiepilogoRDAFactory.getInstance().makeRiepilogo(
-				(stato!=null)?stato:GestisciRDAHandler.ATTESA_CONFERMA);
+		this.riepilogoRDA = (ARiepilogoRDA) RiepilogoRDAFactory.getInstance().makeRiepilogo();
 		if (this.riepilogoRDA != null) {
 			this.riepilogoRDA.refresh();
+			this.panel.add(this.riepilogoRDA, 0);
 			this.validate();
 			this.repaint();
 		}

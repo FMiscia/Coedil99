@@ -194,7 +194,7 @@ public class GestisciCommessaHandler {
 		tosave.save();
 	}
 	
-	public void OttimizzaDistinta(AOttimizzatoreStrategy s, MDistinta d){
+	public void OttimizzaDistinta(String s, MDistinta d){
 		d.creaDDO(s);
 	}
 	

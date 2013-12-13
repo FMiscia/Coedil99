@@ -3,12 +3,14 @@ package GUI.Plichi;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import GUI.CommercialeCenter;
 import GUI.RDACenter;
 import GUI.Abstract.APlico;
 import GUI.Liste.ListaRigheRDA;
-import GUI.Panels.PanelRDAComm;
-import GUI.Panels.PanelRDACommFactory;
+import GUI.Panels.NotaRDA;
+import GUI.Panels.NotaRDAFactory;
 
 public class PlicoCommerciale extends APlico {
 
@@ -18,16 +20,15 @@ public class PlicoCommerciale extends APlico {
 	private static final long serialVersionUID = 1L;
 	private static PlicoCommerciale instance = null;
 	private ListaRigheRDA listaRigheRDA;
-	private PanelRDAComm panelrdacomm = null;
+	private NotaRDA notaRDA = null;
 
-	
 	/**
 	 * Costruttore
 	 */
 	private PlicoCommerciale() {
 		setLayout(new BorderLayout());
 		addListaRigheRDA();
-		addPanelRDAComm();
+		addNotaRDA();
 	}
 
 	/**
@@ -43,9 +44,10 @@ public class PlicoCommerciale extends APlico {
 	/**
 	 * Aggiunge il pannello per la descrizione dell'RDA
 	 */
-	private void addPanelRDAComm(){
-		this.panelrdacomm = PanelRDACommFactory.getInstance().makePanelRDAComm();
-		this.add(panelrdacomm, BorderLayout.CENTER);
+	private void addNotaRDA(){
+		this.notaRDA = NotaRDAFactory.getInstance().makeNotaRDA();
+		this.notaRDA.setEnable(true);
+		this.add(notaRDA, BorderLayout.CENTER);
 	}
 
 	/**
@@ -90,7 +92,6 @@ public class PlicoCommerciale extends APlico {
 	@SuppressWarnings("unchecked")
 	public void refresh(){
 		this.listaRigheRDA.svuota();
-		
 		this.listaRigheRDA.loadNOUPDATE(new ArrayList<Object>(RDACenter.getInstance().getRDASelezionata().getPersistentModel().righeRDA.getCollection()) );
 		this.validate();
 		this.repaint();
@@ -110,20 +111,32 @@ public class PlicoCommerciale extends APlico {
 		return false;
 	}
 
-	public void refreshFormRDA() {
-		if(CommercialeCenter.getInstance().getLista().panelHasRDA()){
-			//this.remove(panelrdacomm);
-			this.panelrdacomm = null;
+	/**
+	 * Metodo che aggiorna lo stato della nota RDA
+	 */
+	public void refreshNotaRDA() {
+		if(CommercialeCenter.getInstance().getLista().panelHasRDA() == false){
+			this.remove(this.notaRDA);
+			this.notaRDA = null;
 			this.validate();
 			this.repaint();
 			return;
 		}
-		if(this.panelrdacomm != null)
-			this.remove(this.panelrdacomm);
-		this.panelrdacomm = PanelRDACommFactory.getInstance().makePanelRDAComm();
-		this.add(panelrdacomm, BorderLayout.CENTER);
+		if(this.notaRDA != null)
+			this.remove(this.notaRDA);
+		this.notaRDA = NotaRDAFactory.getInstance().makeNotaRDA();
+		this.notaRDA.setEnable(true);
+		this.add(notaRDA, BorderLayout.CENTER);
 		this.validate();
 		this.repaint();	
+	}
+	
+	public NotaRDA getNotaRDA() {
+		return notaRDA;
+	}
+
+	public void setNotaRDA(NotaRDA notaRDA) {
+		this.notaRDA = notaRDA;
 	}
 
 

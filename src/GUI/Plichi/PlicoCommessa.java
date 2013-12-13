@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import GUI.CoedilFrame;
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
 import GUI.Riquadri.RiquadroDatiAziendali;
@@ -24,12 +24,8 @@ import GUI.Riquadri.RiquadroDatiProduzioneConsegna;
 import GUI.Riquadri.RiquadroDatiProduzioneConsegnaFactory;
 import GUI.Riquadri.RiquadroDatiSviluppoConsegna;
 import GUI.Riquadri.RiquadroDatiSviluppoConsegnaFactory;
-import coedil99.controller.GestisciClienteHandler;
 import coedil99.controller.GestisciCommessaHandler;
-import coedil99.controller.GestisciOrdineHandler;
-import coedil99.model.MCliente;
 import coedil99.model.MCommessa;
-import coedil99.model.MOrdine;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -88,11 +84,11 @@ public class PlicoCommessa extends APlico {
 		elimina.setBounds(bounds + (rda.getWidth() / 2)
 				- (elimina.getWidth() / 2), 20, elimina.getWidth(),
 				elimina.getHeight());
-		rda.setBounds(bounds, elimina.getY() + elimina.getHeight() + 20,
-				rda.getWidth(), rda.getHeight());
-		rdcc.setBounds(bounds, rda.getY() + rda.getHeight() + 20,
+		rdcc.setBounds(bounds, elimina.getY() + elimina.getHeight() + 20,
 				rdcc.getWidth(), rdcc.getHeight());
-		rdc.setBounds(bounds, rdcc.getY() + rdcc.getHeight() + 20,
+		rda.setBounds(bounds, rdcc.getY() + rdcc.getHeight() + 20,
+				rda.getWidth(), rda.getHeight());
+		rdc.setBounds(bounds, rda.getY() + rda.getHeight() + 20,
 				rdc.getWidth(), rdc.getHeight());
 		rdpc.setBounds(bounds, rdc.getY() + rdc.getHeight() + 20,
 				rdpc.getWidth(), rdpc.getHeight());
@@ -130,16 +126,16 @@ public class PlicoCommessa extends APlico {
 					GestisciCommessaHandler
 							.getInstance()
 							.getCommesse()
-							.remove(ProgrammaLavori.getInstance()
+							.remove(ProgrammaLavoriCenter.getInstance()
 									.getCommessaSelezionata());
-					ProgrammaLavori pl = ProgrammaLavori.getInstance();
+					ProgrammaLavoriCenter pl = ProgrammaLavoriCenter.getInstance();
 					pl.getCommessaSelezionata().delete();
 					JOptionPane.showMessageDialog(null,
 							"Commessa eliminata con successo",
 							"Operazione eseguita", JOptionPane.PLAIN_MESSAGE);
 					pl.ListaCommesse().updatePanel();
 					if (pl.ListaCommesse().getPrimaCommessa() != 0) {
-						pl.setCommessaSelezionata(new MCommessa(ProgrammaLavori
+						pl.setCommessaSelezionata(new MCommessa(ProgrammaLavoriCenter
 								.getInstance().ListaCommesse()
 								.getPrimaCommessa()));
 						pl.ListaCommesse().selectCommessaSelezionata(
@@ -171,8 +167,8 @@ public class PlicoCommessa extends APlico {
 				.getInstance().makeRiquadro();
 		rsc = (RiquadroDatiSviluppoConsegna) RiquadroDatiSviluppoConsegnaFactory
 				.getInstance().makeRiquadro();
-		setPreferredSize(new Dimension(745, 1150));
-		setSize(745, 950);
+		setPreferredSize(new Dimension(745, 1250));
+		setSize(745, 1250);
 		posizionaRiquadri();
 		add(elimina);
 		add(rda);

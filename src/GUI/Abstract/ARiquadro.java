@@ -49,11 +49,13 @@ public abstract class ARiquadro extends JPanel {
 		for (JTextField i : this.Container) {
 			if (!editable) {
 				i.setBackground(Color.getColor("textInactiveText"));
-				i.setBorder(new LineBorder(Color.gray));
-				ARiquadro.this.modifica.setText("modifica");
+				i.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoStandard()));
+				//ARiquadro.this.modifica.setText("modifica");
+				modifica.setIcon(ConfigGUI.getInstance().getEditIcon());
 				aperto = true;
 			} else {
-				ARiquadro.this.modifica.setText("salva");
+				//ARiquadro.this.modifica.setText("salva");
+				modifica.setIcon(ConfigGUI.getInstance().getSaveIcon());
 				controlloErrori();
 				aperto = false;
 
@@ -92,12 +94,14 @@ public abstract class ARiquadro extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if (aperto) {
-						ARiquadro.this.modifica.setText("salva");
+						//ARiquadro.this.modifica.setText("salva");
+						modifica.setIcon(ConfigGUI.getInstance().getSaveIcon());
 						aperto = false;
 						ARiquadro.this.makeEditable(true);
 					} else {
 						ARiquadro.this.salva(true);
-						ARiquadro.this.modifica.setText("modifica");
+						//ARiquadro.this.modifica.setText("modifica");
+						modifica.setIcon(ConfigGUI.getInstance().getEditIcon());
 						aperto = true;
 						ARiquadro.this.makeEditable(false);
 					}
@@ -140,7 +144,7 @@ public abstract class ARiquadro extends JPanel {
 		boolean test = true;
 		for (JLabel j : this.Label) {
 			if (j.getIcon() != null
-					&& j.getIcon().equals(ConfigGUI.getErrorIcon()))
+					&& j.getIcon().equals(ConfigGUI.getInstance().getErrorIcon()))
 				test = false;
 		}
 		if (test) {
@@ -155,7 +159,7 @@ public abstract class ARiquadro extends JPanel {
 	 * Cambia il colore del testo nei campi non abilitati mettendolo più scuro
 	 */
 	public void changeUnableColor(JTextField x) {
-		x.setDisabledTextColor(Color.BLACK);
+		x.setDisabledTextColor(ConfigGUI.getInstance().getColoreBordoCard());
 		x.validate();
 		x.repaint();
 	}
@@ -174,29 +178,36 @@ public abstract class ARiquadro extends JPanel {
 		setPreferredSize(new Dimension(600, 280));
 		JSeparator separator = new JSeparator();
 		separator.setPreferredSize(new Dimension(0, 3));
-		separator.setBackground(new Color(0, 0, 0));
-		separator.setForeground(ConfigGUI.getColoreBordoCard());
-		separator.setBounds(0, 20, 600, 2);
+		separator.setForeground(ConfigGUI.getInstance().getColoreBordoCard());
+		separator.setBounds(0, 31, 600, 2);
 		add(separator);
 
 		lblTitolo = new JLabel(title);
-		lblTitolo.setPreferredSize(new Dimension(60, 20));
+		lblTitolo.setPreferredSize(new Dimension(60, 32));
 		lblTitolo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitolo.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
-		lblTitolo.setBounds(0, 1, 143, 21);
+		lblTitolo.setBounds(0, 1, 143, 31);
 		add(lblTitolo);
 
-		this.modifica = new JButton("modifica");
+		this.modifica = new JButton();
+		modifica.setOpaque(false);
+		modifica.setFocusPainted(false);
+		modifica.setBorderPainted(false);
+		this.modifica.setContentAreaFilled(false);
+		modifica.setPreferredSize(new Dimension(32, 32));
+		modifica.setIcon(ConfigGUI.getInstance().getEditIcon());
 		this.modifica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (aperto) {
-					ARiquadro.this.modifica.setText("salva");
+					//ARiquadro.this.modifica.setText("salva");
+					modifica.setIcon(ConfigGUI.getInstance().getSaveIcon());
 					aperto = false;
 					ARiquadro.this.makeEditable(true);
 				} else {
 					ARiquadro.this.salva(true);
-					ARiquadro.this.modifica.setText("modifica");
+					//ARiquadro.this.modifica.setText("modifica");
+					modifica.setIcon(ConfigGUI.getInstance().getEditIcon());
 					aperto = true;
 					ARiquadro.this.makeEditable(false);
 				}
@@ -204,8 +215,8 @@ public abstract class ARiquadro extends JPanel {
 				repaint();
 			}
 		});
-		this.modifica.setSize(131, 20);
-		this.modifica.setLocation(469, 0);
+		this.modifica.setSize(32, 32);
+		this.modifica.setLocation(500, 0);
 		add(this.modifica);
 	}
 
@@ -217,8 +228,7 @@ public abstract class ARiquadro extends JPanel {
 	public boolean checkEmpty() {
 		boolean test = true;
 		for (JTextField temp : this.Container) {
-			if (!temp.isEnabled())
-				break;
+			if (!temp.isEnabled());
 			else if (temp.getText().length() <= 0) {
 				test = false;
 			}
@@ -258,5 +268,27 @@ public abstract class ARiquadro extends JPanel {
 		this.validate();
 		this.repaint();
 	}
+	
+	/**
+	 * Metodo che setta l'icona e il tooltiptext relativi alla label passata
+	 * come parametro
+	 * 
+	 * @param lbl
+	 *            JLabel
+	 * @param test
+	 *            boolean
+	 * @param errore
+	 *            String
+	 */
+	protected void setErrore(JLabel lbl, boolean test, String errore) {
+		if (test) {
+			lbl.setIcon(ConfigGUI.getInstance().getOkIcon());
+			lbl.setToolTipText(null);
+		} else {
+			lbl.setIcon(ConfigGUI.getInstance().getErrorIcon());
+			lbl.setToolTipText(errore);
+		}
+	}
+
 
 }

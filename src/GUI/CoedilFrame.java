@@ -1,12 +1,14 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -29,31 +31,13 @@ public class CoedilFrame extends JFrame {
 	 */
 	public static void main(String[] args) {
 
-		Properties props = new Properties();
-		props.put("buttonBackgroundColor", "171 171 171");
-		props.put("buttonColorLight", "171 171 171");
-		props.put("buttonColorDark", "171 171 171");
-		props.put("selectionBackgroundColor", "171 171 171");
-		props.put("focusColor", "171 171 171");
-		props.put("focusCellColor", "171 171 171");
-		props.put("rolloverColor", "171 171 171");
-		props.put("rolloverColorLight", "171 171 171");
-		props.put("rolloverColorDark", "171 171 171");
-
-		MintLookAndFeel.setCurrentTheme(props);
-
-		try {
-			UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
-			UIManager.put("ScrollBarUI", WebScrollBarUI.class.getName());
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (InstantiationException e1) {
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			e1.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e1) {
-			e1.printStackTrace();
-		}
+		ConfigGUI cg = ConfigGUI.getInstance();
+		if (!cg.isParsed())
+			JOptionPane
+					.showMessageDialog(
+							null,
+							"C'è stato un errore nella lettura del file di configurazione. \nPer garantire un corretto funzionamento verranno utilizzate la configurazione di default! \nSe il problema persiste contattare il servizio clienti al numero hot: 899-166166!",
+							"Attenzione", JOptionPane.WARNING_MESSAGE);
 
 		try {
 			int delay = 500;

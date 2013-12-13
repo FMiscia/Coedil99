@@ -1,12 +1,9 @@
 package GUI.Abstract;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
 
 import GUI.ConfigGUI;
 
@@ -50,8 +47,8 @@ public abstract class ACard extends JPanel {
 	public JSeparator createSeparator(int orientation, Dimension preferredSize) {
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(orientation);
-		separator.setForeground(ConfigGUI.getColoreBordoCard());
-		separator.setBackground(ConfigGUI.getColoreBordoCard());
+		separator.setForeground(ConfigGUI.getInstance().getColoreBordoCard());
+		separator.setBackground(ConfigGUI.getInstance().getColoreBordoCard());
 		separator.setPreferredSize(preferredSize);
 		return separator;
 	}
@@ -60,7 +57,7 @@ public abstract class ACard extends JPanel {
 	 * Cambia il colore di sfondo della card settandolo come selezionato
 	 */
 	public void selectCard(){
-		this.setBackground(ConfigGUI.getColoreSelezionato());
+		this.setBackground(ConfigGUI.getInstance().getColoreSelezionato());
 	}
 
 }

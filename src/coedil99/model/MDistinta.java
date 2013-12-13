@@ -10,25 +10,25 @@ import coedil99.persistentmodel.DistintaFactory;
 import coedil99.persistentmodel.IPersistentModel;
 import coedil99.persistentmodel.RigaLavoro;
 
-public class MDistinta implements IModel{
+public class MDistinta implements IModel {
 
 	private Distinta distinta;
-
 
 	/**
 	 * Costruttore
 	 */
 	public MDistinta() {
 		this.distinta = DistintaFactory.createDistinta();
-		//MRigaLavoro riga = new MRigaLavoro();
-		//this.distinta.lavori.add(riga.getPersistentModel());
+		// MRigaLavoro riga = new MRigaLavoro();
+		// this.distinta.lavori.add(riga.getPersistentModel());
 	}
-	
+
 	/**
 	 * Costruttore
+	 * 
 	 * @param ID
 	 */
-	public MDistinta(int ID){
+	public MDistinta(int ID) {
 		try {
 			this.distinta = DistintaFactory.loadDistintaByORMID(ID);
 		} catch (PersistentException e) {
@@ -39,7 +39,7 @@ public class MDistinta implements IModel{
 	/**
 	 * 
 	 * @param rg
-	 * @return 
+	 * @return
 	 */
 	public void addRigaLavoro(RigaLavoro rg) {
 		this.distinta.lavori.add(rg);
@@ -48,11 +48,13 @@ public class MDistinta implements IModel{
 	/**
 	 * 
 	 * @param rg
-	 * @return 
+	 * @return
 	 */
 	public void modificaRigaLavoro(RigaLavoro rg) {
 		@SuppressWarnings("unchecked")
-		ListIterator<RigaLavoro> righeIterator = (ListIterator<RigaLavoro>) this.distinta.lavori.getIterator();;
+		ListIterator<RigaLavoro> righeIterator = (ListIterator<RigaLavoro>) this.distinta.lavori
+				.getIterator();
+		;
 		while (righeIterator.hasNext()) {
 			if (righeIterator.next().getID() == rg.getID()) {
 				this.distinta.lavori.set(righeIterator.previousIndex(), rg);
@@ -63,16 +65,15 @@ public class MDistinta implements IModel{
 	/**
 	 * 
 	 * @param rg
-	 * @return 
+	 * @return
 	 */
 	public void eliminaRigaLavoro(RigaLavoro rg) {
 		this.distinta.lavori.remove(rg);
 		MRigaLavoro origalavoro = new MRigaLavoro(rg.getID());
-		if(origalavoro.isSaved()){
+		if (origalavoro.isSaved()) {
 			try {
 				rg.delete();
 			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -83,28 +84,30 @@ public class MDistinta implements IModel{
 	 * @param s: strategia
 	 * @return 
 	 */
-	public void creaDDO(AOttimizzatoreStrategy s) {
-			OttimizzatoreHandler ott = new OttimizzatoreHandler(s, this);
-			this.distinta.setDdo(ott.Ottimizza().getPersistentModel());
-			this.save();
+
+	public void creaDDO(String Ottimizzatore) {
+		OttimizzatoreHandler ott = new OttimizzatoreHandler(
+				OttimizzatoreHandler.ottimizzatori.get(Ottimizzatore), this);
+		this.distinta.setDdo(ott.Ottimizza().getPersistentModel());
+		this.save();
 	}
 
 	/**
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public boolean hasDdo() {
 		return (this.distinta.getDdo() != null);
 	}
-	
-	public Distinta getPersistentModel(){
+
+	public Distinta getPersistentModel() {
 		return this.distinta;
 	}
 
 	@Override
 	public void setPersistentModel(IPersistentModel m) {
-		this.distinta = (Distinta)m;
-		
+		this.distinta = (Distinta) m;
+
 	}
 
 	@Override
@@ -112,10 +115,9 @@ public class MDistinta implements IModel{
 		try {
 			this.distinta.save();
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
@@ -126,8 +128,7 @@ public class MDistinta implements IModel{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	}
 
+	}
 
 }

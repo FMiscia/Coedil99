@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import GUI.ConfigGUI;
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.RaccoglitorePlichi;
 import GUI.Abstract.ACard;
 import GUI.Liste.ListaCommesse;
@@ -75,7 +75,7 @@ public class CardCodiceInterno extends ACard {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ProgrammaLavori contenitore = ProgrammaLavori.getInstance();
+				ProgrammaLavoriCenter contenitore = ProgrammaLavoriCenter.getInstance();
 				if (!contenitore.getClipPanel().clickDuringModify()) {
 					return;
 				}
@@ -89,7 +89,8 @@ public class CardCodiceInterno extends ACard {
 				contenitore.getRaccoglitorePlichi().repaint();
 				
 				contenitore.getClipPanel().resetInitialState();
-				CardCodiceInterno.this.setBackground(ConfigGUI.getColoreSelezionato());
+				contenitore.checkDDO();
+				CardCodiceInterno.this.setBackground(ConfigGUI.getInstance().getColoreSelezionato());
 				CardCodiceInterno.this.validate();
 				CardCodiceInterno.this.repaint();
 				RaccoglitorePlichi.getInstance().getScrollPaneWrapper()
@@ -109,8 +110,8 @@ public class CardCodiceInterno extends ACard {
 	private void initialize() {
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(200, 59));
-		this.setBackground(ConfigGUI.getColoreDeselezionato());
-		this.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		this.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
+		this.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard(), 2));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(null);
 
@@ -118,12 +119,12 @@ public class CardCodiceInterno extends ACard {
 		scadenza.setHorizontalAlignment(SwingConstants.CENTER);
 		scadenza.setHorizontalTextPosition(SwingConstants.LEADING);
 		scadenza.setBounds(100, 30, 100, 30);
-		scadenza.setBorder(new MatteBorder(1, 0, 1, 1, (Color) new Color(0, 0, 0)));
+		scadenza.setBorder(new MatteBorder(1, 0, 1, 1, ConfigGUI.getInstance().getColoreBordoCard()));
 
 		codiceInterno = new JLabel();
 		codiceInterno.setHorizontalAlignment(SwingConstants.CENTER);
 		codiceInterno.setBounds(0, 30, 100, 30);
-		codiceInterno.setBorder(new LineBorder(new Color(0, 0, 0)));
+		codiceInterno.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard()));
 
 		cliente = new JLabel();
 		cliente.setHorizontalAlignment(SwingConstants.CENTER);

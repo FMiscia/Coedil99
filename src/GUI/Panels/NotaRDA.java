@@ -1,43 +1,28 @@
 package GUI.Panels;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
 
-import javax.swing.JButton;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 
-import org.orm.PersistentException;
-
-import GUI.CommercialeCenter;
 import GUI.ConfigGUI;
 import GUI.RDACenter;
-import GUI.Abstract.AClipPanel;
-import GUI.Card.CardRDA;
-import GUI.Liste.ListaRigheRDA;
-import GUI.Plichi.PlicoCommerciale;
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.MRDA;
 
-public class NotaRDA extends JPanel{
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
+import java.awt.Insets;
+import javax.swing.JScrollPane;
+
+public class NotaRDA extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JButton btElimina;
-	private JButton btSposta;
-	JTextPane area;
+	private JTextArea area;
 	String newline = "\n";
 
 	/**
@@ -47,109 +32,60 @@ public class NotaRDA extends JPanel{
 		super();
 		this.initialize();
 	}
-	
-	
 
-	
 	/**
 	 * Imposta la grafica e i bottoni (e relativi listeners)
 	 */
-	private void initialize(){
-		GridBagLayout ml = new GridBagLayout();
-		GridBagConstraints mlc = new GridBagConstraints();
-		setLayout(ml);
-		mlc.fill = GridBagConstraints.BOTH;
-		
-		mlc.gridwidth = 4;
-		mlc.gridy = 1;
-		mlc.gridx = 0;
-		mlc.insets = new Insets(10, 10, 10, 10);
-		
+	private void initialize() {
+		setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("60px:grow"),
+				ColumnSpec.decode("350px:grow"),
+				ColumnSpec.decode("60px:grow"),},
+			new RowSpec[] {
+				RowSpec.decode("100px"),
+				RowSpec.decode("190px"),}));
+
 		JLabel label = new JLabel("Nota relativa alla RDA selezionata",
 				JLabel.CENTER);
 		label.setFont(new Font("Serif", Font.BOLD, 16));
-		ml.setConstraints(label, mlc);
-		add(label);
-		
-		
-		mlc.gridwidth = 4;
-		mlc.gridy = 2;
-		mlc.gridx = 0;
-		mlc.insets = new Insets(10, 10, 10, 10);
-		
-		area = new JTextPane();
-		area.setPreferredSize(new Dimension(100,100));
-		this.setNotaTxt();
-		area.setEnabled(false);
-		area.setBackground(ConfigGUI.getColoreTextArea());
-		JScrollPane jsp = new JScrollPane(area);
-		ml.setConstraints(jsp, mlc);
-		add(jsp);
-		
-		mlc.gridwidth = 1;
-		mlc.gridy = 3;
-		mlc.gridx = 0;
-		
-		btElimina = new JButton("Elimina RDA");
-		btElimina.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				MRDA temp = RDACenter.getInstance().getRDASelezionata();
-				GestisciRDAHandler.getInstance().deleteAndRemoveMRDA(temp);
-				JOptionPane.showMessageDialog(null,
-							"RDA eliminata con successo!\n",
-							"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
-					RDACenter.getInstance().getClipPanel().getButtons().get(AClipPanel.RDAButtonState.get(GestisciRDAHandler.RIFIUTATA))
-							.doClick();
+		add(label, "2, 1, center, center");
 
-				
-			}
-		});
-		ml.setConstraints(btElimina, mlc);
-		add(btElimina);
-		mlc.gridwidth = 1;
-		mlc.gridy = 4;
-		mlc.gridx = 0;
-	
-		btSposta = new JButton("Sposta RDA");
-		btSposta.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				MRDA temp = RDACenter.getInstance().getRDASelezionata();
-				temp.getPersistentModel().setState(
-						GestisciRDAHandler.CONGELATA);
-				temp.getPersistentModel().setDate(new Date());
-				((CardRDA) RDACenter.getInstance().getLista()
-						.getPrimaCard()).setSaved(true);
-				GestisciRDAHandler.getInstance().saveAndAddRDA(temp);
-				JOptionPane.showMessageDialog(null,
-						"RDA spostata in RDA congelate!\n",
-						"Conferma operazione", JOptionPane.PLAIN_MESSAGE);
-				RDACenter.getInstance().getClipPanel().getButtons().get(AClipPanel.RDAButtonState.get(GestisciRDAHandler.CONGELATA))
-						.doClick();
-			}
-		});
-		ml.setConstraints(btSposta, mlc);
-		add(btSposta);
-				
+		area = new JTextArea();
+		area.setMargin(new Insets(5, 5, 5, 5));
+		area.setWrapStyleWord(true);
+		area.setLineWrap(true);
+		this.setEnable(false);
+		
+		JScrollPane scrollPane = new JScrollPane(area);
+		add(scrollPane, "2, 2, fill, fill");
+		//add(area, "2, 2, fill, fill");
+
 	}
-
-
-
 
 	public void setNotaTxt() {
-		String desc = RDACenter.getInstance().getRDASelezionata().getDescrizione();
+		String desc = RDACenter.getInstance().getRDASelezionata()
+				.getDescrizione();
 		area.setText(desc);
 	}
-	
-	public void removeButtons(){
-		remove(this.btElimina);
-		remove(this.btSposta);
-		this.validate();
-		this.repaint();
+
+	/**
+	 * Metodo che abilita/disabilita la text area
+	 * 
+	 * @param enable
+	 */
+	public void setEnable(boolean enable) {
+		area.setEnabled(enable);
+		if (enable)
+			area.setBackground(ConfigGUI.getInstance().getColoreTextAreaEnable());
+		else
+			area.setBackground(ConfigGUI.getInstance().getColoreTextAreaDisable());
 	}
 	
+	
+	public String getNotaTxt(){
+		if(area.getText().length() > 250)
+			area.setText(area.getText().substring(0,200));
+		return area.getText();
+	}
 
 }

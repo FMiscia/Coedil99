@@ -12,11 +12,12 @@ import GUI.Liste.ListaCommesse;
 import GUI.Liste.ListaCommesseFactory;
 import coedil99.controller.GestisciCommessaHandler;
 import coedil99.model.MCommessa;
+import coedil99.model.MDistinta;
 
-public class ProgrammaLavori extends JPanel {
+public class ProgrammaLavoriCenter extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private static ProgrammaLavori instance = null;
+	private static ProgrammaLavoriCenter instance = null;
 	private ListaCommesse lista;
 	private RaccoglitorePlichi raccoglitoreplichi;
 	private ClipPanelProgrammaLavori clip;
@@ -26,7 +27,7 @@ public class ProgrammaLavori extends JPanel {
 	/**
 	 * Costruttore del pannello Programma Lavori
 	 */
-	private ProgrammaLavori() {
+	private ProgrammaLavoriCenter() {
 		this.initialize();
 	}
 	
@@ -39,6 +40,7 @@ public class ProgrammaLavori extends JPanel {
 		this.addPanelLavori();
 		this.addMenuBar();
 		this.checkCommesse();
+		this.checkDDO();
 	}
 
 	/**
@@ -52,15 +54,7 @@ public class ProgrammaLavori extends JPanel {
 				.makeLista();
 		proglavoripanel.add(lista, BorderLayout.WEST);
 		proglavoripanel.add(this.raccoglitoreplichi, BorderLayout.CENTER);
-		if (this.getCommessaSelezionata() == null && this.lista.getPrimaCommessa() != 0){
-			this.commessaSelezionata = GestisciCommessaHandler.getInstance()
-					.getCommessaById(
-							this.lista.getPrimaCommessa());
-		} else if(this.getCommessaSelezionata() != null && ((ListaCommesse) this.lista).getPrimaCommessa() != 0) {
-			((ListaCommesse) this.lista).selectCommessaSelezionata(this.getCommessaSelezionata());
-		} else {
-			return;
-		}
+		this.setPrimaCommessa();
 		this.raccoglitoreplichi.caricaPrimaCommessa(this.commessaSelezionata);
 	}
 
@@ -81,10 +75,10 @@ public class ProgrammaLavori extends JPanel {
 	 * 
 	 * @return ProgrammaLavori
 	 */
-	public static ProgrammaLavori getInstance() {
-		if (ProgrammaLavori.instance == null)
-			ProgrammaLavori.instance = new ProgrammaLavori();
-		return ProgrammaLavori.instance;
+	public static ProgrammaLavoriCenter getInstance() {
+		if (ProgrammaLavoriCenter.instance == null)
+			ProgrammaLavoriCenter.instance = new ProgrammaLavoriCenter();
+		return ProgrammaLavoriCenter.instance;
 	}
 
 	/**
@@ -149,7 +143,34 @@ public class ProgrammaLavori extends JPanel {
 	 * Metodo che abilita i bottoni del clip panel solo se ci sono delle commesse
 	 */
 	public void checkCommesse(){
-		this.clip.enableButtons(this.lista.getPrimaCard() != null);
+		this.clip.enableButtons(this.getCommessaSelezionata() != null);
+	}
+	
+	/**
+	 * Metodo che abilita/disabilita il pulsante DDO se la distinta è già ottimizzata
+	 * @param odistinta
+	 */
+	public void checkDDO(){
+		MDistinta odistinta = new MDistinta(this.commessaSelezionata.getPersistentModel().getDistinta().getID());
+		if(odistinta.hasDdo())
+			this.clip.getButtons().get(this.clip.PLButtonState.get("DDO")).setEnabled(true);
+		else
+			this.clip.getButtons().get(this.clip.PLButtonState.get("DDO")).setEnabled(false);
+	}
+	
+	/**
+	 * Metodo che seleziona la prima commessa dell'elenco
+	 */
+	public void setPrimaCommessa(){
+		if (this.getCommessaSelezionata() == null && this.lista.getPrimaCommessa() != 0){
+			this.commessaSelezionata = GestisciCommessaHandler.getInstance()
+					.getCommessaById(
+							this.lista.getPrimaCommessa());
+		} else if(this.getCommessaSelezionata() != null && ((ListaCommesse) this.lista).getPrimaCommessa() != 0) {
+			((ListaCommesse) this.lista).selectCommessaSelezionata(this.getCommessaSelezionata());
+		} else {
+			return;
+		}
 	}
 
 }

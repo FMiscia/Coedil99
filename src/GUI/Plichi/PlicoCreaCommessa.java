@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import GUI.CoedilFrame;
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.Abstract.AClipPanel;
 import GUI.Abstract.APlico;
 import GUI.Abstract.ARiquadro;
@@ -96,11 +96,11 @@ public class PlicoCreaCommessa extends APlico {
 		cbordini.setBounds(bounds + ordini_label.getWidth(), error_mex.getY()
 				+ error_mex.getHeight() + 20, cbordini.getWidth(),
 				cbordini.getHeight());
-		rda.setBounds(bounds, cbordini.getY() + cbordini.getHeight() + 20,
-				rda.getWidth(), rda.getHeight());
-		rdcc.setBounds(bounds, rda.getY() + rda.getHeight() + 20,
+		rdcc.setBounds(bounds, cbordini.getY() + cbordini.getHeight() + 20,
 				rdcc.getWidth(), rdcc.getHeight());
-		rdc.setBounds(bounds, rdcc.getY() + rdcc.getHeight() + 20,
+		rda.setBounds(bounds, rdcc.getY() + rdcc.getHeight() + 20,
+				rda.getWidth(), rda.getHeight());
+		rdc.setBounds(bounds, rda.getY() + rda.getHeight() + 20,
 				rdc.getWidth(), rdc.getHeight());
 		rdpc.setBounds(bounds, rdc.getY() + rdc.getHeight() + 20,
 				rdpc.getWidth(), rdpc.getHeight());
@@ -208,8 +208,8 @@ public class PlicoCreaCommessa extends APlico {
 		rsc = (RiquadroDatiSviluppoConsegna) RiquadroDatiSviluppoConsegnaFactory
 				.getInstance().makeRiquadro();
 		PlicoCreaCommessa.this.rsc.setDataEmissioneCommmessa(new java.util.Date());
-		setPreferredSize(new Dimension(745, 1250));
-		setSize(745, 950);
+		setPreferredSize(new Dimension(745, 1350));
+		setSize(745, 1350);
 		posizionaRiquadri();
 		add(this.error_mex);
 		add(this.salva);
@@ -270,9 +270,10 @@ public class PlicoCreaCommessa extends APlico {
 							"Commessa salvata con successo",
 							"Operazione eseguita", JOptionPane.PLAIN_MESSAGE);
 					PlicoCreaCommessa.this.container=null;
-					ProgrammaLavori.getInstance().ListaCommesse().updatePanel();
-					ProgrammaLavori.getInstance().setCommessaSelezionata(commessa);
-					ProgrammaLavori.getInstance().getClipPanel().getButtons()
+					ProgrammaLavoriCenter.getInstance().ListaCommesse().updatePanel();
+					ProgrammaLavoriCenter.getInstance().setCommessaSelezionata(commessa);
+					ProgrammaLavoriCenter.getInstance().getClipPanel().resetInitialState();
+					ProgrammaLavoriCenter.getInstance().getClipPanel().getButtons()
 							.get(AClipPanel.PLButtonState.get("COMMESSA"))
 							.doClick();
 				} else {

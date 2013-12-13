@@ -1,21 +1,18 @@
-package GUI.FormRDA;
+package GUI.Form;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import org.orm.PersistentException;
-
-import GUI.ProgrammaLavori;
+import GUI.ProgrammaLavoriCenter;
 import GUI.Abstract.AFormRDA;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciFornitoreHandler;
 import coedil99.model.MGeometria;
 import coedil99.model.MProductDescription;
 import coedil99.model.MRigaRDA;
-import coedil99.persistentmodel.ProductDescription;
-import coedil99.persistentmodel.RigaRDA;
 
 
 /**
@@ -106,7 +103,7 @@ public class ModificaFormRDA extends AFormRDA {
 			public void mouseClicked(MouseEvent e) {
 				Object[] options = { "Si", "No" };
 				int n = JOptionPane.showOptionDialog(
-						ProgrammaLavori.getInstance(),
+						ProgrammaLavoriCenter.getInstance(),
 						"Sicuro di voler salvare le modifiche della RDA?\n",
 						"Conferma operazione",
 						JOptionPane.YES_NO_CANCEL_OPTION,

@@ -35,6 +35,10 @@ public class ClipPanelFornitori extends AClipPanel {
 		this.addButton("Menu", "Torna al menu principale",
 				new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						if (!ClipPanelFornitori.this.clickFromNuovoCatalogo()) {
+							return;
+						}
+						PlicoFornitore.getInstance().abortImporting();
 						CoedilFrame cf = CoedilFrame.getInstance();
 						PanelStart pl = PanelStart.getInstance();
 						pl.resetInitialState();
@@ -58,7 +62,7 @@ public class ClipPanelFornitori extends AClipPanel {
 			}
 		});
 		
-		this.addButton("Nuovo Catalogo Fornitore", "Crea un nuovo Catalogo Fornitore", new ActionListener() {
+		this.addButton("Nuovo Catalogo", "Crea un nuovo Catalogo Fornitore", new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!ClipPanelFornitori.this.clickFromNuovoCatalogo() ) {
 					return;

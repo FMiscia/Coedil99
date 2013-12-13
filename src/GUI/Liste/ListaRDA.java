@@ -107,7 +107,7 @@ public class ListaRDA extends ALista {
 	 */
 	public int getPrimaRDA() {
 		if (this.getPrimaCard() != null) {
-			this.getPrimaCard().setBackground(ConfigGUI.getColoreSelezionato());
+			this.getPrimaCard().setBackground(ConfigGUI.getInstance().getColoreSelezionato());
 			return this.getPrimaCard().getRDAId();
 		}
 		return 0;
@@ -172,7 +172,6 @@ public class ListaRDA extends ALista {
 	 */
 	private void initialize() {
 		this.setPreferredSize(new Dimension(300, 0));
-		// this.getViewport().setPreferredSize(new Dimension(300,0));
 		this.deselectAll();
 	}
 

@@ -168,12 +168,14 @@ public class GestisciFornitoreHandler {
 	 * 
 	 * @param filePath
 	 */
-	public void ConstructCatalogo(String filePath) {
+	public boolean ConstructCatalogo(String filePath) {
 		this.builder.createNewCatalogo();
 		try {
 			this.builder.Parse(filePath);
+			return true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Errore nella lettura del catalogo fornitore! \nSe il problema persiste contatta il servizio clienti Coedil \nal numero 899-166892");
+			return false;
 		}
 	}
 
@@ -209,14 +211,6 @@ public class GestisciFornitoreHandler {
 	public MCatalogoFornitore creaCatalogoFornitore() {
 		this.builder.createNewCatalogo();
 		return this.builder.getCatalogo();
-	}
-
-	public void aggiungiProductDescription(String pathFile) {
-		try {
-			this.builder.Parse(pathFile);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public TreeSet<String> getEssenze(MCatalogoFornitore fornitore){
