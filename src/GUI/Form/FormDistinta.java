@@ -1,10 +1,8 @@
 package GUI.Form;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JOptionPane;
-import javax.swing.border.LineBorder;
 
 import GUI.ProgrammaLavoriCenter;
 import GUI.Abstract.AFormDistinta;

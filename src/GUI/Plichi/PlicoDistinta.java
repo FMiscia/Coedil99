@@ -124,6 +124,7 @@ public class PlicoDistinta extends APlico {
 		this.riquadroRigaLavoro = new FormDistinta();
 		this.riquadroRigaLavoro.load(r);
 		this.add(this.riquadroRigaLavoro,BorderLayout.EAST);
+		System.out.print(this.getSize());
 		this.validate();
 		this.repaint();
 	}
