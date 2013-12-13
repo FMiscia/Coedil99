@@ -1,6 +1,8 @@
 package GUI.Plichi;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -124,7 +126,11 @@ public class PlicoDistinta extends APlico {
 		this.riquadroRigaLavoro = new FormDistinta();
 		this.riquadroRigaLavoro.load(r);
 		this.add(this.riquadroRigaLavoro,BorderLayout.EAST);
-		System.out.print(this.getSize());
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double width = screenSize.getWidth();
+		double height = screenSize.getHeight();
+
+		System.out.print(width);
 		this.validate();
 		this.repaint();
 	}
