@@ -2,12 +2,20 @@
 <configuration>
 	<LookAndFeel>"com.jtattoo.plaf.mint.MintLookAndFeel"</LookAndFeel>
 	<icon>
-		<ImportIcon>"/GUI/image/upload.png"</ImportIcon>
-		<EditIcon>"/GUI/image/edit.png"</EditIcon>
-		<SaveIcon>"/GUI/image/save.png"</SaveIcon>
-		<AbortIcon>"/GUI/image/canc.png"</AbortIcon>
-		<ErrorIcon>"/GUI/image/cancel.png"</ErrorIcon>
-		<OkIcon>"/GUI/image/ok.png"</OkIcon>
+		<CoedilIcon>/GUI/image/coedil.png</CoedilIcon>
+		<ImportIcon>/GUI/image/upload.png</ImportIcon>
+		<EditIcon>/GUI/image/edit.png</EditIcon>
+		<SaveIcon>/GUI/image/save.png</SaveIcon>
+		<AbortIcon>/GUI/image/canc.png</AbortIcon>
+		<ErrorIcon>/GUI/image/cancel.png</ErrorIcon>
+		<OkIcon>/GUI/image/ok.png</OkIcon>
+		<RDACongelata>/GUI/image/congelata.png</RDACongelata>
+		<RDARifiutata>/GUI/image/rifiutata.png</RDARifiutata>
+		<RDAAttesa>/GUI/image/attesaconferma.png</RDAAttesa>
+		<RDAConfermata>/GUI/image/confermata.png</RDAConfermata>
+		<UCProgrammaLavori>/GUI/image/proglavori.png</UCProgrammaLavori>
+		<UCRDA>/GUI/image/rda.png</UCRDA>
+		<UCFornitori>/GUI/image/fornitori.png</UCFornitori>
 	</icon>
 	<colore>
 		<Selezionato>

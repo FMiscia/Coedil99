@@ -48,6 +48,7 @@ public class ProgrammaLavoriCenter extends JPanel {
 	 * plichi relativo alla commessa selezionata
 	 */
 	private void addPanelLavori() {
+		proglavoripanel.removeAll();
 		add(proglavoripanel, BorderLayout.CENTER);
 		proglavoripanel.setLayout(new BorderLayout(0, 0));
 		this.lista = (ListaCommesse) ListaCommesseFactory.getInstance()
@@ -171,6 +172,17 @@ public class ProgrammaLavoriCenter extends JPanel {
 		} else {
 			return;
 		}
+	}
+	
+	/**
+	 * Metodo che aggiorna i plichi
+	 */
+	public void refresh(){
+		this.raccoglitoreplichi = RaccoglitorePlichi.getInstance();
+		this.addPanelLavori();
+		this.addMenuBar();
+		this.checkCommesse();
+		this.checkDDO();
 	}
 
 }

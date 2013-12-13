@@ -54,12 +54,17 @@ public class ClipPanelProgrammaLavori extends AClipPanel {
 					public void actionPerformed(ActionEvent e) {
 						if (!ClipPanelProgrammaLavori.this.clickDuringModify()) {
 							return;
-						}
+						} else if (!ClipPanelProgrammaLavori.this
+								.clickDuringNewCommessa()) {
+							return;
+						}	
+						ProgrammaLavoriCenter pl = ProgrammaLavoriCenter.getInstance();
+						pl.getRaccoglitorePlichi().reset();
 						CoedilFrame cf = CoedilFrame.getInstance();
-						PanelStart pl = PanelStart.getInstance();
-						pl.resetInitialState();
-						pl.setBounds(0, 0, cf.getWidth(), cf.getHeight());
-						CoedilFrame.getInstance().montaPanel(pl);
+						PanelStart ps = PanelStart.getInstance();
+						ps.resetInitialState();
+						ps.setBounds(0, 0, cf.getWidth(), cf.getHeight());
+						CoedilFrame.getInstance().montaPanel(ps);
 					}
 				});
 		this.addButton("Commessa", "Vai alla Commessa", new ActionListener() {

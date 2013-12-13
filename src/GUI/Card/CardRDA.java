@@ -53,19 +53,17 @@ public class CardRDA extends ACard {
 
 		CardRDA.state_map = new HashMap<String, ImageIcon>();
 
-		CardRDA.state_map.put(GestisciRDAHandler.CONGELATA, new ImageIcon(
-				CardRDA.class.getResource("/GUI/image/congelata.png")));
+		CardRDA.state_map.put(GestisciRDAHandler.CONGELATA, ConfigGUI
+				.getInstance().getRDACongelata());
 
-		CardRDA.state_map.put(GestisciRDAHandler.RIFIUTATA, new ImageIcon(
-				CardRDA.class.getResource("/GUI/image/rifiutata.png")));
+		CardRDA.state_map.put(GestisciRDAHandler.RIFIUTATA, ConfigGUI
+				.getInstance().getRDARifiutata());
 
-		CardRDA.state_map.put(
-				GestisciRDAHandler.ATTESA_CONFERMA,
-				new ImageIcon(CardRDA.class
-						.getResource("/GUI/image/attesaconferma.png")));
+		CardRDA.state_map.put(GestisciRDAHandler.ATTESA_CONFERMA, ConfigGUI
+				.getInstance().getRDAAttesa());
 
-		CardRDA.state_map.put(GestisciRDAHandler.CONFERMATA, new ImageIcon(
-				CardRDA.class.getResource("/GUI/image/confermata.png")));
+		CardRDA.state_map.put(GestisciRDAHandler.CONFERMATA, ConfigGUI
+				.getInstance().getRDAConfermata());
 	}
 
 	/**
@@ -98,7 +96,9 @@ public class CardRDA extends ACard {
 		} else {
 			this.id.setText("da settare");
 		}
-		if(rda.getPersistentModel().getState().equals("ATTESA_CONFERMA"))
+		if (rda.getPersistentModel().getState() != null
+				&& rda.getPersistentModel().getState()
+						.equals("ATTESA_CONFERMA"))
 			this.stato.setText("ATTESA CONFERMA");
 		else
 			this.stato.setText(rda.getPersistentModel().getState());
@@ -133,7 +133,8 @@ public class CardRDA extends ACard {
 				lista_righe_rda.getPanel().removeAll();
 				lista_righe_rda.load(new ArrayList<Object>(rda
 						.getPersistentModel().righeRDA.getCollection()));
-				CardRDA.this.setBackground(ConfigGUI.getInstance().getColoreSelezionato());
+				CardRDA.this.setBackground(ConfigGUI.getInstance()
+						.getColoreSelezionato());
 				CardRDA.this.validate();
 				CardRDA.this.repaint();
 				lista_righe_rda.validate();
@@ -186,7 +187,8 @@ public class CardRDA extends ACard {
 				plico_com.refreshNotaRDA();
 				lista_righe_rda.getPanel().removeAll();
 				contenitore.loadListaRigheRDA();
-				CardRDA.this.setBackground(ConfigGUI.getInstance().getColoreSelezionato());
+				CardRDA.this.setBackground(ConfigGUI.getInstance()
+						.getColoreSelezionato());
 				CardRDA.this.validate();
 				CardRDA.this.repaint();
 				lista_righe_rda.validate();
@@ -219,7 +221,8 @@ public class CardRDA extends ACard {
 		// setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(260, 60));
 		this.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
-		this.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard(),2));
+		this.setBorder(new LineBorder(ConfigGUI.getInstance()
+				.getColoreBordoCard(), 2));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		this.setLayout(null);
 
@@ -227,23 +230,27 @@ public class CardRDA extends ACard {
 		this.icona.setHorizontalAlignment(SwingConstants.CENTER);
 		this.icona.setHorizontalTextPosition(SwingConstants.LEADING);
 		this.icona.setBounds(200, 0, 60, 60);
-		this.icona.setBorder(new MatteBorder(0, 1, 0, 0, ConfigGUI.getInstance().getColoreBordoCard()));
+		this.icona.setBorder(new MatteBorder(0, 1, 0, 0, ConfigGUI
+				.getInstance().getColoreBordoCard()));
 
 		this.stato = new JLabel();
 		this.stato.setHorizontalAlignment(SwingConstants.CENTER);
 		this.stato.setBounds(100, 30, 100, 30);
-		this.stato.setBorder(new MatteBorder(1, 0, 0, 0, ConfigGUI.getInstance().getColoreBordoCard()));
+		this.stato.setBorder(new MatteBorder(1, 0, 0, 0, ConfigGUI
+				.getInstance().getColoreBordoCard()));
 
 		this.id = new JLabel();
 		this.id.setHorizontalAlignment(SwingConstants.CENTER);
 		this.id.setHorizontalTextPosition(SwingConstants.CENTER);
-		this.id.setBorder(new MatteBorder(0, 0, 0, 0, ConfigGUI.getInstance().getColoreBordoCard()));
+		this.id.setBorder(new MatteBorder(0, 0, 0, 0, ConfigGUI.getInstance()
+				.getColoreBordoCard()));
 		this.id.setBounds(0, 0, 200, 30);
 
 		this.data = new JLabel();
 		this.data.setHorizontalAlignment(SwingConstants.CENTER);
 		this.data.setHorizontalTextPosition(SwingConstants.CENTER);
-		this.data.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard()));
+		this.data.setBorder(new LineBorder(ConfigGUI.getInstance()
+				.getColoreBordoCard()));
 		this.data.setBounds(0, 30, 100, 30);
 
 		this.add(id);

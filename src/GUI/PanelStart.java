@@ -90,12 +90,7 @@ public class PanelStart extends JPanel {
 		fornitoriButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		fornitoriButton.setPreferredSize(new Dimension(300, 380));
 		fornitoriButton.setSize(300,380);
-		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"/GUI/image/fornitori.png"));
-			fornitoriButton.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		fornitoriButton.setIcon(ConfigGUI.getInstance().getUCFornitori());
 		fornitoriButton.setFocusable(false);
 		pannelloUseCases.add(fornitoriButton);
 		fornitoriButton.addMouseListener(new MouseAdapter() {
@@ -128,12 +123,7 @@ public class PanelStart extends JPanel {
 		RDAButton.setToolTipText("Gestisci RDA");
 		RDAButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		RDAButton.setSize(400, 400);
-		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"/GUI/image/rda.png"));
-			RDAButton.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		RDAButton.setIcon(ConfigGUI.getInstance().getUCRDA());
 		RDAButton.setFocusable(false);
 		pannelloUseCases.add(RDAButton);
 
@@ -168,12 +158,7 @@ public class PanelStart extends JPanel {
 		plButton.setToolTipText("Programma Lavori");
 		plButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		plButton.setPreferredSize(new Dimension(400, 400));
-		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"/GUI/image/proglavori.png"));
-			plButton.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		plButton.setIcon(ConfigGUI.getInstance().getUCProgrammaLavori());
 		plButton.setFocusable(false);
 		this.pannelloUseCases.add(plButton);
 
@@ -181,8 +166,7 @@ public class PanelStart extends JPanel {
 			public void mouseClicked(MouseEvent arg0) {
 				ProgrammaLavoriCenter p = ProgrammaLavoriCenter.getInstance();
 				p.getClipPanel().resetInitialState();
-				p.checkCommesse();
-				p.checkDDO();
+				p.refresh();
 				CoedilFrame.getInstance().montaPanel(p);
 				p.getClipPanel().getButtons().get(1).doClick();
 			}

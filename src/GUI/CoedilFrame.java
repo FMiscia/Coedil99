@@ -1,20 +1,14 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.util.Properties;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
-import com.alee.laf.scroll.WebScrollBarUI;
-import com.jtattoo.plaf.mint.MintLookAndFeel;
 import com.thehowtotutorial.splashscreen.JSplash;
 
 public class CoedilFrame extends JFrame {
@@ -41,11 +35,10 @@ public class CoedilFrame extends JFrame {
 
 		try {
 			int delay = 500;
-			boolean developmentMode = true;
+			boolean developmentMode = false;
 			if (developmentMode)
 				delay = 1;
-			final JSplash splash = new JSplash(
-					CoedilFrame.class.getResource("image/coedil.png"), true,
+			final JSplash splash = new JSplash(ConfigGUI.getInstance().getCoedilIcon(), true,
 					true, false, "V0.1");
 			splash.splashOn();
 			splash.setProgress(20, "Coedil99: Loading ...");

@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
@@ -32,6 +33,7 @@ import com.jtattoo.plaf.mint.MintLookAndFeel;
 public class ConfigGUI {
 
 	private static String LookAndFeel = "com.jtattoo.plaf.mint.MintLookAndFeel";
+	private static URL CoedilIcon = ConfigGUI.class.getResource("/GUI/image/coedil.png");
 	private static ImageIcon ImportIcon = new ImageIcon(
 			ConfigGUI.class.getResource("/GUI/image/upload.png"));
 	private static ImageIcon EditIcon = new ImageIcon(
@@ -44,6 +46,21 @@ public class ConfigGUI {
 			ConfigGUI.class.getResource("/GUI/image/cancel.png"));
 	private static ImageIcon OkIcon = new ImageIcon(
 			ConfigGUI.class.getResource("/GUI/image/ok.png"));
+	
+	private static ImageIcon RDACongelata = new ImageIcon(
+			ConfigGUI.class.getResource("/GUI/image/congelata.png"));
+	private static ImageIcon RDARifiutata = new ImageIcon(
+			ConfigGUI.class.getResource("/GUI/image/rifiutata.png"));
+	private static ImageIcon RDAAttesa = new ImageIcon(ConfigGUI.class
+			.getResource("/GUI/image/attesaconferma.png"));
+	private static ImageIcon RDAConfermata = new ImageIcon(
+			ConfigGUI.class.getResource("/GUI/image/confermata.png"));
+	private static ImageIcon UCProgrammaLavori = new ImageIcon(
+			ConfigGUI.class.getResource("/GUI/image/proglavori.png"));
+	private static ImageIcon UCRDA = new ImageIcon(
+			ConfigGUI.class.getResource("/GUI/image/rda.png"));
+	private static ImageIcon UCFornitori = new ImageIcon(
+			ConfigGUI.class.getResource("/GUI/image/fornitori.png"));
 
 	private static Color coloreSelezionato = new Color(171, 171, 171);
 	private static Color coloreDeselezionato = new Color(248, 248, 255);
@@ -125,6 +142,17 @@ public class ConfigGUI {
 		LookAndFeel = lookAndFeel;
 	}
 
+	public URL getCoedilIcon() {
+		if(parsed)
+			return getURL("icon/CoedilIcon");
+		else
+			return CoedilIcon;
+	}
+
+	public static void setCoedilIcon(URL coedilIcon) {
+		CoedilIcon = coedilIcon;
+	}
+	
 	public ImageIcon getImportIcon() {
 		if (parsed)
 			return getIcon("ImportIcon");
@@ -311,6 +339,83 @@ public class ConfigGUI {
 		ConfigGUI.numBottoniClipPanel = numBottoniClipPanel;
 	}
 
+	public ImageIcon getRDACongelata() {
+		if(parsed)
+			return getIcon("RDACongelata");
+		else
+			return RDACongelata;
+	}
+
+	public static void setRDACongelata(ImageIcon rDACongelata) {
+		RDACongelata = rDACongelata;
+	}
+
+	public ImageIcon getRDARifiutata() {
+		if(parsed)
+			return getIcon("RDARifiutata");
+		else
+			return RDARifiutata;
+	}
+
+	public static void setRDARifiutata(ImageIcon rDARifiutata) {
+		RDARifiutata = rDARifiutata;
+	}
+
+	public ImageIcon getRDAAttesa() {
+		if(parsed)
+			return getIcon("RDAAttesa");
+		else
+			return RDAAttesa;
+	}
+
+	public static void setRDAAttesa(ImageIcon rDAAttesa) {
+		RDAAttesa = rDAAttesa;
+	}
+
+	public ImageIcon getRDAConfermata() {
+		if(parsed)
+			return getIcon("RDAConfermata");
+		else
+			return RDAConfermata;
+	}
+
+	public static void setRDAConfermata(ImageIcon rDAConfermata) {
+		RDAConfermata = rDAConfermata;
+	}
+
+	public ImageIcon getUCProgrammaLavori() {
+		if(parsed)
+			return getIcon("UCProgrammaLavori");
+		else
+			return UCProgrammaLavori;
+	}
+
+	public static void setUCProgrammaLavori(ImageIcon uCProgrammaLavori) {
+		UCProgrammaLavori = uCProgrammaLavori;
+	}
+
+	public ImageIcon getUCRDA() {
+		if(parsed)
+			return getIcon("UCRDA");
+		else
+			return UCRDA;
+	}
+
+	public static void setUCRDA(ImageIcon uCRDA) {
+		UCRDA = uCRDA;
+	}
+
+	public ImageIcon getUCFornitori() {
+		if(parsed)
+			return getIcon("UCFornitori");
+		else
+			return UCFornitori;
+	}
+
+	public static void setUCFornitori(ImageIcon uCFornitori) {
+		UCFornitori = uCFornitori;
+	}
+
 	/**
 	 * Metodo che parsa il file di configurazione presente nella cartella
 	 * GUI/Configuration
@@ -406,7 +511,32 @@ public class ConfigGUI {
 			NodeList nico = (NodeList) ico
 					.evaluate(doc, XPathConstants.NODESET);
 			if (nico.getLength() > 0)
-				return new ImageIcon(nico.item(0).getNodeValue());
+				return new ImageIcon(ConfigGUI.class.getResource(nico.item(0).getNodeValue()));
+			else
+				return null;
+		} catch (XPathExpressionException e) {
+			JOptionPane.showMessageDialog(
+					null,
+					"Errore nella lettura del catalogo XML. \n"
+							+ e.getMessage());
+			return null;
+		}
+	}
+	
+	/**
+	 * Metodo che ritorna l'icona associata all'emenento ricercato
+	 * 
+	 * @param elemento
+	 * @return ImageIcon
+	 */
+	public URL getURL(String elemento) {
+		XPathExpression ico;
+		try {
+			ico = xpath.compile("/configuration/" + elemento + "/text()");
+			NodeList nico = (NodeList) ico
+					.evaluate(doc, XPathConstants.NODESET);
+			if (nico.getLength() > 0)
+				return ConfigGUI.class.getResource(nico.item(0).getNodeValue());
 			else
 				return null;
 		} catch (XPathExpressionException e) {
