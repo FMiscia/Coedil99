@@ -236,5 +236,9 @@ public class GestisciFornitoreHandler {
 		
 		return pd;
 	}
+	
+	public void saveCatalogoFornitore(MCatalogoFornitore mcf){
+		mcf.save();
+	}
 
 }

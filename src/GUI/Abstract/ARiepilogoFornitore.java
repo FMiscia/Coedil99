@@ -222,7 +222,7 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 			mcf = FornitoriCenter.getInstance().getFornitoreSelezionato();
 		}
 		mcf.getPersistentModel().setName(this.lblNome.getText());
-		mcf.save();
+		GestisciFornitoreHandler.getInstance().saveCatalogoFornitore(mcf);
 		JOptionPane.showMessageDialog(null,
 				"Catalogo Fornitore salvato correttamente");
 		this.setImporting(false);
