@@ -186,7 +186,7 @@ public abstract class AFormDistinta extends JPanel {
 		boolean test = true;
 		for (JLabel j : this.Label) {
 			if (j.getIcon() != null
-					&& j.getIcon().equals(ConfigGUI.getErrorIcon()))
+					&& j.getIcon().equals(ConfigGUI.getInstance().getErrorIcon()))
 				test = false;
 		}
 		setEditing(test);
@@ -477,19 +477,19 @@ public abstract class AFormDistinta extends JPanel {
 		Pattern r = Pattern.compile(pattern);
 		Matcher m = r.matcher(line);
 		if (line.equals("")) {
-			lblIcoBase.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoBase.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoBase
 					.setToolTipText("Il campo Base deve essere un numero reale!");
-			tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+			tfbase.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 		} else if (!m.matches()) {
-			lblIcoBase.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoBase.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoBase
 					.setToolTipText("Il campo Base deve essere un numero reale!");
-			tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+			tfbase.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 		} else {
-			lblIcoBase.setIcon(ConfigGUI.getOkIcon());
+			lblIcoBase.setIcon(ConfigGUI.getInstance().getOkIcon());
 			lblIcoBase.setToolTipText(null);
-			tfbase.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+			tfbase.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
 		}
 		lblIcoBase.setVisible(true);
 		if (!checkEmpty())
@@ -509,21 +509,21 @@ public abstract class AFormDistinta extends JPanel {
 		Pattern r = Pattern.compile(pattern);
 		Matcher m = r.matcher(line);
 		if (line.equals("")) {
-			lblIcoAltezza.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoAltezza.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoAltezza
 					.setToolTipText("Il campo Altezza deve essere un numero reale!");
 			tfaltezza
-					.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+					.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 		} else if (!m.matches()) {
-			lblIcoAltezza.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoAltezza.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoAltezza
 					.setToolTipText("Il campo Altezza deve essere un numero reale!");
 			tfaltezza
-					.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+					.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 		} else {
-			lblIcoAltezza.setIcon(ConfigGUI.getOkIcon());
+			lblIcoAltezza.setIcon(ConfigGUI.getInstance().getOkIcon());
 			lblIcoAltezza.setToolTipText(null);
-			tfaltezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+			tfaltezza.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
 		}
 		lblIcoAltezza.setVisible(true);
 		if (!checkEmpty())
@@ -543,21 +543,21 @@ public abstract class AFormDistinta extends JPanel {
 		Pattern r = Pattern.compile(pattern);
 		Matcher m = r.matcher(line);
 		if (line.equals("")) {
-			lblIcoLunghezza.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoLunghezza.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoLunghezza
 					.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
-			tflunghezza.setBorder(new LineBorder(ConfigGUI
+			tflunghezza.setBorder(new LineBorder(ConfigGUI.getInstance()
 					.getColoreBordoErrore()));
 		} else if (!m.matches()) {
-			lblIcoLunghezza.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoLunghezza.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoLunghezza
 					.setToolTipText("Il campo Lunghezza deve essere un numero reale!");
-			tflunghezza.setBorder(new LineBorder(ConfigGUI
+			tflunghezza.setBorder(new LineBorder(ConfigGUI.getInstance()
 					.getColoreBordoErrore()));
 		} else {
-			lblIcoLunghezza.setIcon(ConfigGUI.getOkIcon());
+			lblIcoLunghezza.setIcon(ConfigGUI.getInstance().getOkIcon());
 			lblIcoLunghezza.setToolTipText(null);
-			tflunghezza.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+			tflunghezza.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
 		}
 		lblIcoLunghezza.setVisible(true);
 		if (!checkEmpty())
@@ -577,19 +577,19 @@ public abstract class AFormDistinta extends JPanel {
 		Pattern r = Pattern.compile(pattern);
 		Matcher m = r.matcher(line);
 		if (line.equals("") || line.equals("0")) {
-			lblIcoNumero.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoNumero.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoNumero
 					.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
-			tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+			tfnumero.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 		} else if (m.find()) {
-			lblIcoNumero.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoNumero.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoNumero
 					.setToolTipText("Il campo numero deve essere un numero intero maggiore di 0!");
-			tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+			tfnumero.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 		} else {
-			lblIcoNumero.setIcon(ConfigGUI.getOkIcon());
+			lblIcoNumero.setIcon(ConfigGUI.getInstance().getOkIcon());
 			lblIcoNumero.setToolTipText(null);
-			tfnumero.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+			tfnumero.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
 		}
 		lblIcoNumero.setVisible(true);
 		if (!checkEmpty())
@@ -611,21 +611,21 @@ public abstract class AFormDistinta extends JPanel {
 		Pattern r = Pattern.compile(pattern);
 		Matcher m = r.matcher(line);
 		if (line.equals("")) {
-			lblIcoTipoCapitello.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoTipoCapitello.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoTipoCapitello
 					.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
-			tftipocapitello.setBorder(new LineBorder(ConfigGUI
+			tftipocapitello.setBorder(new LineBorder(ConfigGUI.getInstance()
 					.getColoreBordoErrore()));
 		} else if (m.find()) {
-			lblIcoTipoCapitello.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoTipoCapitello.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoTipoCapitello
 					.setToolTipText("Il campo Tipo Capitello deve contenere solo lettere e/o numeri!");
-			tftipocapitello.setBorder(new LineBorder(ConfigGUI
+			tftipocapitello.setBorder(new LineBorder(ConfigGUI.getInstance()
 					.getColoreBordoErrore()));
 		} else {
-			lblIcoTipoCapitello.setIcon(ConfigGUI.getOkIcon());
+			lblIcoTipoCapitello.setIcon(ConfigGUI.getInstance().getOkIcon());
 			lblIcoTipoCapitello.setToolTipText(null);
-			tftipocapitello.setBorder(new LineBorder(ConfigGUI
+			tftipocapitello.setBorder(new LineBorder(ConfigGUI.getInstance()
 					.getColoreBordoOk()));
 		}
 		lblIcoTipoCapitello.setVisible(true);
@@ -646,19 +646,19 @@ public abstract class AFormDistinta extends JPanel {
 		Pattern r = Pattern.compile(pattern);
 		Matcher m = r.matcher(line);
 		if (line.equals("")) {
-			lblIcoNote.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoNote.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoNote
 					.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
-			tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+			tfnote.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 		} else if (m.find()) {
-			lblIcoNote.setIcon(ConfigGUI.getErrorIcon());
+			lblIcoNote.setIcon(ConfigGUI.getInstance().getErrorIcon());
 			lblIcoNote
 					.setToolTipText("Il campo Note deve contenere solo lettere e/o numeri!");
-			tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+			tfnote.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 		} else {
-			lblIcoNote.setIcon(ConfigGUI.getOkIcon());
+			lblIcoNote.setIcon(ConfigGUI.getInstance().getOkIcon());
 			lblIcoNote.setToolTipText(null);
-			tfnote.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+			tfnote.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
 		}
 		lblIcoNote.setVisible(true);
 		if (!checkEmpty())

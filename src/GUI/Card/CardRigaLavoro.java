@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,7 +23,6 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-import java.awt.Insets;
 
 /**
  * 
@@ -67,8 +65,8 @@ public class CardRigaLavoro extends ACard {
 		this.listaRigheLavoro = lrLavoro;
 		this.setPreferredSize(new Dimension(270, 220));
 		this.setSize(270, 220);
-		this.setBackground(ConfigGUI.getColoreRigaRDA());
-		this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
+		this.setBackground(ConfigGUI.getInstance().getColoreRigaRDA());
+		this.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard()));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -101,7 +99,7 @@ public class CardRigaLavoro extends ACard {
 		btnModifica = new JButton("Modifica");
 		btnModifica.setPreferredSize(new Dimension(110, 40));
 		btnModifica.setIconTextGap(10);
-		btnModifica.setIcon(ConfigGUI.getEditIcon());
+		btnModifica.setIcon(ConfigGUI.getInstance().getEditIcon());
 		add(btnModifica, "6, 2");
 
 		lblBase = new JLabel("Base: ");
@@ -149,7 +147,7 @@ public class CardRigaLavoro extends ACard {
 		btnElimina = new JButton("Elimina");
 		btnElimina.setPreferredSize(new Dimension(110, 40));
 		btnElimina.setIconTextGap(10);
-		this.btnElimina.setIcon(ConfigGUI.getAbortIcon());
+		this.btnElimina.setIcon(ConfigGUI.getInstance().getAbortIcon());
 		add(btnElimina, "2, 2");
 
 		this.addMouseListener(new MouseAdapter() {
@@ -199,11 +197,11 @@ public class CardRigaLavoro extends ACard {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					CardRigaLavoro.this.listaRigheLavoro.deselectAll();
-					CardRigaLavoro.this.setBackground(ConfigGUI.getColoreRigaRDA());
+					CardRigaLavoro.this.setBackground(ConfigGUI.getInstance().getColoreRigaRDA());
 					PlicoDistinta.getInstance().addRiquadroRigaLavoro(riga);
 				}
 			});
-		this.btnElimina.setIcon(ConfigGUI.getAbortIcon());
+		this.btnElimina.setIcon(ConfigGUI.getInstance().getAbortIcon());
 		if(this.btnElimina.getMouseListeners().length <=1 )
 			this.btnElimina.addMouseListener(new MouseAdapter() {
 	

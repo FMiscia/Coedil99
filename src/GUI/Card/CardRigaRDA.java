@@ -65,8 +65,8 @@ public class CardRigaRDA extends ACard {
 		super(lrRDA);
 		this.listaRigheRDA = lrRDA;
 		this.setPreferredSize(new Dimension(270, 220));
-		this.setBackground(ConfigGUI.getColoreRigaRDA());
-		this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
+		this.setBackground(ConfigGUI.getInstance().getColoreRigaRDA());
+		this.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard()));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -139,13 +139,13 @@ public class CardRigaRDA extends ACard {
 		btnModifica = new JButton("Modifica");
 		btnModifica.setPreferredSize(new Dimension(110, 40));
 		btnModifica.setIconTextGap(10);
-		btnModifica.setIcon(ConfigGUI.getEditIcon());
+		btnModifica.setIcon(ConfigGUI.getInstance().getEditIcon());
 		add(btnModifica, "6, 2");
 		
 		btnElimina = new JButton("Elimina");
 		btnElimina.setPreferredSize(new Dimension(110, 40));
 		btnElimina.setIconTextGap(10);
-		this.btnElimina.setIcon(ConfigGUI.getAbortIcon());
+		this.btnElimina.setIcon(ConfigGUI.getInstance().getAbortIcon());
 		add(btnElimina, "2, 2");
 
 		this.addMouseListener(new MouseAdapter() {
@@ -233,7 +233,7 @@ public class CardRigaRDA extends ACard {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				CardRigaRDA.this.listaRigheRDA.deselectAll();
-				CardRigaRDA.this.setBackground(ConfigGUI.getColoreRigaRDA());
+				CardRigaRDA.this.setBackground(ConfigGUI.getInstance().getColoreRigaRDA());
 				ModificaFormRDA form = (ModificaFormRDA) ModificaFormRDAFactory
 						.getInstance().makeFormRDA();
 				form.modificaRDA(riga);

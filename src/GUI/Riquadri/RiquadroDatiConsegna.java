@@ -178,14 +178,14 @@ public class RiquadroDatiConsegna extends ARiquadro {
 					Matcher m = r.matcher(line);
 					if (line.equals("")) {
 						setErrore(lblIcoRirardoConsegna,false,"Il campo Ritardo deve contenere solo numeri!");
-						txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+						txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 					} else if (m.find()) {
 						setErrore(lblIcoRirardoConsegna,false,"Il campo Ritardo deve contenere solo numeri!");
-						txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getColoreBordoErrore()));
+						txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
 					} else {
 						setErrore(lblIcoRirardoConsegna,true,null);
 						txtRirardoConsegna
-								.setBorder(new LineBorder(ConfigGUI.getColoreBordoOk()));
+								.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
 					}
 					controlloErrori();
 				}

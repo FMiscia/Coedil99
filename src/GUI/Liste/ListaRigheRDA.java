@@ -4,10 +4,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import GUI.CommercialeCenter;
 import GUI.ConfigGUI;
 import GUI.RDACenter;
 import GUI.Abstract.ALista;
@@ -115,7 +113,7 @@ public class ListaRigheRDA extends ALista {
 	 */
 	public void deselectAll() {
 		for (Component c : this.panel.getComponents()) {
-			c.setBackground(ConfigGUI.getColoreDeselezionato());
+			c.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
 			c.validate();
 			c.repaint();
 		}

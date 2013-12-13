@@ -107,7 +107,7 @@ public class ListaRDA extends ALista {
 	 */
 	public int getPrimaRDA() {
 		if (this.getPrimaCard() != null) {
-			this.getPrimaCard().setBackground(ConfigGUI.getColoreSelezionato());
+			this.getPrimaCard().setBackground(ConfigGUI.getInstance().getColoreSelezionato());
 			return this.getPrimaCard().getRDAId();
 		}
 		return 0;

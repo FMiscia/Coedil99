@@ -175,16 +175,16 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 					if (line.equals("")) {
 						setErrore(lblIcoResponsabile, false,
 								"Il campo Responsabile deve contenere solo lettere!");
-						txtResponsabile.setBorder(new LineBorder(ConfigGUI
+						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
 								.getColoreBordoErrore()));
 					} else if (m.find()) {
 						setErrore(lblIcoResponsabile, false,
 								"Il campo Responsabile deve contenere solo lettere!");
-						txtResponsabile.setBorder(new LineBorder(ConfigGUI
+						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
 								.getColoreBordoErrore()));
 					} else {
 						setErrore(lblIcoResponsabile, true, null);
-						txtResponsabile.setBorder(new LineBorder(ConfigGUI
+						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
 								.getColoreBordoOk()));
 					}
 					controlloErrori();
@@ -270,16 +270,16 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 					if (line.equals("")) {
 						setErrore(lblIcoRitardo, false,
 								"Il campo Ritardo Produzione deve contenere solo numeri!");
-						txtRitardo.setBorder(new LineBorder(ConfigGUI
+						txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
 								.getColoreBordoErrore()));
 					} else if (m.find()) {
 						setErrore(lblIcoRitardo, false,
 								"Il campo Ritardo Produzione deve contenere solo numeri!");
-						txtRitardo.setBorder(new LineBorder(ConfigGUI
+						txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
 								.getColoreBordoErrore()));
 					} else {
 						setErrore(lblIcoRitardo, true, null);
-						txtRitardo.setBorder(new LineBorder(ConfigGUI
+						txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
 								.getColoreBordoOk()));
 					}
 					controlloErrori();

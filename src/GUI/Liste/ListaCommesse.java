@@ -42,7 +42,7 @@ public class ListaCommesse extends ALista {
 	public void deselectAll() {
 		if(this.getPrimaCommessa() != 0){
 			for (Component c : panel.getComponents()) {
-				c.setBackground(ConfigGUI.getColoreDeselezionato());
+				c.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
 				c.validate();
 				c.repaint();
 			}
@@ -59,7 +59,7 @@ public class ListaCommesse extends ALista {
 				&& !panel.getComponent(0).getClass().getName()
 						.equals("GUI.Avvisi.AvvisoCommessa")) {
 			((CardCodiceInterno) this.panel.getComponent(0))
-					.setBackground(ConfigGUI.getColoreSelezionato());
+					.setBackground(ConfigGUI.getInstance().getColoreSelezionato());
 			return ((CardCodiceInterno) this.panel.getComponent(0))
 					.getCommessaId();
 		}
@@ -149,7 +149,7 @@ public class ListaCommesse extends ALista {
 	 */
 	public void setPrimaCommessa(){
 		if(this.getPrimaCard() != null)
-			this.getPrimaCard().setBackground(ConfigGUI.getColoreSelezionato());
+			this.getPrimaCard().setBackground(ConfigGUI.getInstance().getColoreSelezionato());
 	}
 	
 	/**

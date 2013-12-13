@@ -151,9 +151,9 @@ public abstract class AClipPanel extends JPanel {
 	 * 
 	 */
 	public void fill() {
-		for (int n = ConfigGUI.getNumBottoniClipPanel()
+		for (int n = ConfigGUI.getInstance().getNumBottoniClipPanel()
 				- this.getComponentCount(); n > 0; n--) {
-			if (n <= ConfigGUI.getNumBottoniClipPanel() && n != 2 && n != 1)
+			if (n <= ConfigGUI.getInstance().getNumBottoniClipPanel() && n != 2 && n != 1)
 				this.addLabel();
 			if (n == 3)
 				this.addButton("Help", "Help", null);

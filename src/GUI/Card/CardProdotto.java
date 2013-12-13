@@ -4,17 +4,17 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 import GUI.ConfigGUI;
 import GUI.Abstract.ACard;
 import GUI.Abstract.ALista;
 import coedil99.model.MProductDescription;
-import javax.swing.border.MatteBorder;
-import java.awt.Font;
 
 public class CardProdotto extends ACard {
 
@@ -56,43 +56,43 @@ public class CardProdotto extends ACard {
 	 */
 	public void initialize(){
 		this.setPreferredSize(new Dimension(560, 30));
-		this.setBackground(ConfigGUI.getColoreProdottoPari());
-		this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard(),2));
+		this.setBackground(ConfigGUI.getInstance().getColoreProdottoPari());
+		this.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard(),2));
 		this.setForeground(Color.WHITE);
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		
 		this.lblEssenza = new JLabel();
 		this.lblEssenza.setHorizontalAlignment(SwingConstants.CENTER);
-		this.lblEssenza.setBorder(new MatteBorder(0, 0, 0, 1, ConfigGUI.getColoreBordoCard()));
+		this.lblEssenza.setBorder(new MatteBorder(0, 0, 0, 1, ConfigGUI.getInstance().getColoreBordoCard()));
 		this.lblEssenza.setToolTipText("Essenza");
 		this.lblEssenza.setPreferredSize(new Dimension(155, 30));
 		this.add(lblEssenza);
 		
 		this.lblBase = new JLabel();
 		this.lblBase.setHorizontalAlignment(SwingConstants.CENTER);
-		this.lblBase.setBorder(new MatteBorder(0, 0, 0, 1, ConfigGUI.getColoreBordoCard()));
+		this.lblBase.setBorder(new MatteBorder(0, 0, 0, 1, ConfigGUI.getInstance().getColoreBordoCard()));
 		this.lblBase.setToolTipText("Base");
 		this.lblBase.setPreferredSize(new Dimension(80, 30));
 		this.add(lblBase);
 		
 		this.lblAltezza = new JLabel();
 		this.lblAltezza.setHorizontalAlignment(SwingConstants.CENTER);
-		this.lblAltezza.setBorder(new MatteBorder(0, 0, 0, 1, ConfigGUI.getColoreBordoCard()));
+		this.lblAltezza.setBorder(new MatteBorder(0, 0, 0, 1, ConfigGUI.getInstance().getColoreBordoCard()));
 		this.lblAltezza.setToolTipText("Altezza");
 		this.lblAltezza.setPreferredSize(new Dimension(80, 30));
 		this.add(lblAltezza);
 		
 		this.lblLunghezza = new JLabel();
 		this.lblLunghezza.setHorizontalAlignment(SwingConstants.CENTER);
-		this.lblLunghezza.setBorder(new MatteBorder(0, 0, 0, 1, ConfigGUI.getColoreBordoCard()));
+		this.lblLunghezza.setBorder(new MatteBorder(0, 0, 0, 1, ConfigGUI.getInstance().getColoreBordoCard()));
 		this.lblLunghezza.setToolTipText("Lunghezza");
 		this.lblLunghezza.setPreferredSize(new Dimension(80, 30));
 		this.add(lblLunghezza);
 		
 		this.lblPezzi = new JLabel();
 		this.lblPezzi.setHorizontalAlignment(SwingConstants.CENTER);
-		this.lblPezzi.setBorder(new MatteBorder(0, 0, 0, 1, ConfigGUI.getColoreBordoCard()));
+		this.lblPezzi.setBorder(new MatteBorder(0, 0, 0, 1, ConfigGUI.getInstance().getColoreBordoCard()));
 		this.lblPezzi.setToolTipText("Pezzi per pacco");
 		this.lblPezzi.setPreferredSize(new Dimension(80, 30));
 		this.add(lblPezzi);
@@ -107,15 +107,12 @@ public class CardProdotto extends ACard {
 	
 	public void setSfondoCard(int riga){
 		if((riga%2) != 0)
-			this.setBackground(ConfigGUI.getColoreProdottoDispari());
+			this.setBackground(ConfigGUI.getInstance().getColoreProdottoDispari());
 	}
 	
 	private void makeIntestazione(){
 		this.setPreferredSize(new Dimension(560, 30));
-		//this.setBackground(ConfigGUI.getColoreProdottoPari());
-		//this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard(),2));
 		this.setForeground(Color.BLACK);
-		//this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		
 		this.lblEssenza = new JLabel();

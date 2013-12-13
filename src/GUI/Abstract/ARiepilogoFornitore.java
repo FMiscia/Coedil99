@@ -132,7 +132,7 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		this.btnSalva.setOpaque(false);
 		this.btnSalva.setContentAreaFilled(false);
 		this.btnSalva.setBorderPainted(false);
-		this.btnSalva.setIcon(ConfigGUI.getSaveIcon());
+		this.btnSalva.setIcon(ConfigGUI.getInstance().getSaveIcon());
 		this.btnSalva.setEnabled(false);
 		this.btnSalva.addMouseListener(new MouseAdapter() {
 			@Override
@@ -164,7 +164,7 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		this.btnElimina.setOpaque(false);
 		this.btnElimina.setContentAreaFilled(false);
 		this.btnElimina.setBorderPainted(false);
-		this.btnElimina.setIcon(ConfigGUI.getAbortIcon());
+		this.btnElimina.setIcon(ConfigGUI.getInstance().getAbortIcon());
 		this.btnElimina
 				.setToolTipText("Annulla l'inserimento del nuovo catalogo");
 		this.btnElimina.addMouseListener(new MouseAdapter() {
@@ -198,7 +198,7 @@ public abstract class ARiepilogoFornitore extends ARiepilogo {
 		btnCaricaCatalogo.setText("Importa Prodotti");
 		btnCaricaCatalogo.setCursor(Cursor
 				.getPredefinedCursor(Cursor.HAND_CURSOR));
-		this.btnCaricaCatalogo.setIcon(ConfigGUI.getImportIcon());
+		this.btnCaricaCatalogo.setIcon(ConfigGUI.getInstance().getImportIcon());
 		this.btnCaricaCatalogo.setToolTipText("Importa Prodotti");
 		this.btnCaricaCatalogo.addMouseListener(new MouseAdapter() {
 			@Override

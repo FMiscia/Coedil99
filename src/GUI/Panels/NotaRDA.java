@@ -76,9 +76,9 @@ public class NotaRDA extends JPanel {
 	public void setEnable(boolean enable) {
 		area.setEnabled(enable);
 		if (enable)
-			area.setBackground(ConfigGUI.getColoreTextAreaEnable());
+			area.setBackground(ConfigGUI.getInstance().getColoreTextAreaEnable());
 		else
-			area.setBackground(ConfigGUI.getColoreTextAreaDisable());
+			area.setBackground(ConfigGUI.getInstance().getColoreTextAreaDisable());
 	}
 	
 	

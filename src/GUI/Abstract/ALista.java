@@ -35,7 +35,7 @@ public abstract class ALista extends JScrollPane {
 	 */
 	public void deselectAll() {
 		for (Component c : panel.getComponents()) {
-			c.setBackground(ConfigGUI.getColoreDeselezionato());
+			c.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
 			c.validate();
 			c.repaint();
 		}

@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 import GUI.CommercialeCenter;
 import GUI.ConfigGUI;
@@ -24,8 +25,6 @@ import GUI.Plichi.PlicoCommerciale;
 import GUI.Plichi.PlicoRDA;
 import coedil99.controller.GestisciRDAHandler;
 import coedil99.model.MRDA;
-import javax.swing.border.MatteBorder;
-import java.awt.Color;
 
 /**
  * 
@@ -112,7 +111,7 @@ public class CardRDA extends ACard {
 				.setText(dateFormat
 						.format((rda.getPersistentModel().getDate() == null) ? new java.util.Date()
 								: rda.getPersistentModel().getDate()));
-		this.setBackground(ConfigGUI.getColoreDeselezionato());
+		this.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
 		this.validate();
 		this.repaint();
 
@@ -134,7 +133,7 @@ public class CardRDA extends ACard {
 				lista_righe_rda.getPanel().removeAll();
 				lista_righe_rda.load(new ArrayList<Object>(rda
 						.getPersistentModel().righeRDA.getCollection()));
-				CardRDA.this.setBackground(ConfigGUI.getColoreSelezionato());
+				CardRDA.this.setBackground(ConfigGUI.getInstance().getColoreSelezionato());
 				CardRDA.this.validate();
 				CardRDA.this.repaint();
 				lista_righe_rda.validate();
@@ -169,7 +168,7 @@ public class CardRDA extends ACard {
 				.setText(dateFormat
 						.format((rda.getPersistentModel().getDate() == null) ? new java.util.Date()
 								: rda.getPersistentModel().getDate()));
-		this.setBackground(ConfigGUI.getColoreDeselezionato());
+		this.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
 		this.validate();
 		this.repaint();
 
@@ -187,7 +186,7 @@ public class CardRDA extends ACard {
 				plico_com.refreshNotaRDA();
 				lista_righe_rda.getPanel().removeAll();
 				contenitore.loadListaRigheRDA();
-				CardRDA.this.setBackground(ConfigGUI.getColoreSelezionato());
+				CardRDA.this.setBackground(ConfigGUI.getInstance().getColoreSelezionato());
 				CardRDA.this.validate();
 				CardRDA.this.repaint();
 				lista_righe_rda.validate();
@@ -219,8 +218,8 @@ public class CardRDA extends ACard {
 	private void initialize() {
 		// setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(260, 60));
-		this.setBackground(ConfigGUI.getColoreDeselezionato());
-		this.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard(),2));
+		this.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
+		this.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard(),2));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		this.setLayout(null);
 
@@ -228,23 +227,23 @@ public class CardRDA extends ACard {
 		this.icona.setHorizontalAlignment(SwingConstants.CENTER);
 		this.icona.setHorizontalTextPosition(SwingConstants.LEADING);
 		this.icona.setBounds(200, 0, 60, 60);
-		this.icona.setBorder(new MatteBorder(0, 1, 0, 0, ConfigGUI.getColoreBordoCard()));
+		this.icona.setBorder(new MatteBorder(0, 1, 0, 0, ConfigGUI.getInstance().getColoreBordoCard()));
 
 		this.stato = new JLabel();
 		this.stato.setHorizontalAlignment(SwingConstants.CENTER);
 		this.stato.setBounds(100, 30, 100, 30);
-		this.stato.setBorder(new MatteBorder(1, 0, 0, 0, ConfigGUI.getColoreBordoCard()));
+		this.stato.setBorder(new MatteBorder(1, 0, 0, 0, ConfigGUI.getInstance().getColoreBordoCard()));
 
 		this.id = new JLabel();
 		this.id.setHorizontalAlignment(SwingConstants.CENTER);
 		this.id.setHorizontalTextPosition(SwingConstants.CENTER);
-		this.id.setBorder(new MatteBorder(0, 0, 0, 0, ConfigGUI.getColoreBordoCard()));
+		this.id.setBorder(new MatteBorder(0, 0, 0, 0, ConfigGUI.getInstance().getColoreBordoCard()));
 		this.id.setBounds(0, 0, 200, 30);
 
 		this.data = new JLabel();
 		this.data.setHorizontalAlignment(SwingConstants.CENTER);
 		this.data.setHorizontalTextPosition(SwingConstants.CENTER);
-		this.data.setBorder(new LineBorder(ConfigGUI.getColoreBordoCard()));
+		this.data.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoCard()));
 		this.data.setBounds(0, 30, 100, 30);
 
 		this.add(id);

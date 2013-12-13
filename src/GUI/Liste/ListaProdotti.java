@@ -82,7 +82,7 @@ public class ListaProdotti extends ALista {
 	 */
 	public void deselectAll() {
 		for (Component c : this.panel.getComponents()) {
-			c.setBackground(ConfigGUI.getColoreDeselezionato());
+			c.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
 			c.validate();
 			c.repaint();
 		}

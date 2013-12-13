@@ -90,7 +90,7 @@ public class CardCodiceInterno extends ACard {
 				
 				contenitore.getClipPanel().resetInitialState();
 				contenitore.checkDDO();
-				CardCodiceInterno.this.setBackground(ConfigGUI.getColoreSelezionato());
+				CardCodiceInterno.this.setBackground(ConfigGUI.getInstance().getColoreSelezionato());
 				CardCodiceInterno.this.validate();
 				CardCodiceInterno.this.repaint();
 				RaccoglitorePlichi.getInstance().getScrollPaneWrapper()
@@ -110,7 +110,7 @@ public class CardCodiceInterno extends ACard {
 	private void initialize() {
 		setBounds(new Rectangle(0, 0, 0, 0));
 		this.setPreferredSize(new Dimension(200, 59));
-		this.setBackground(ConfigGUI.getColoreDeselezionato());
+		this.setBackground(ConfigGUI.getInstance().getColoreDeselezionato());
 		this.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setLayout(null);
@@ -119,7 +119,7 @@ public class CardCodiceInterno extends ACard {
 		scadenza.setHorizontalAlignment(SwingConstants.CENTER);
 		scadenza.setHorizontalTextPosition(SwingConstants.LEADING);
 		scadenza.setBounds(100, 30, 100, 30);
-		scadenza.setBorder(new MatteBorder(1, 0, 1, 1, ConfigGUI.getColoreBordoCard()));
+		scadenza.setBorder(new MatteBorder(1, 0, 1, 1, ConfigGUI.getInstance().getColoreBordoCard()));
 
 		codiceInterno = new JLabel();
 		codiceInterno.setHorizontalAlignment(SwingConstants.CENTER);

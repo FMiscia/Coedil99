@@ -71,7 +71,7 @@ public class ListaFornitori extends ALista {
 	 */
 	public int getPrimoCatalogo() {
 		if(this.getPrimaCard() != null)
-			this.getPrimaCard().setBackground(ConfigGUI.getColoreSelezionato());
+			this.getPrimaCard().setBackground(ConfigGUI.getInstance().getColoreSelezionato());
 		return this.getPrimaCard().getCatalogoFornitoreId();
 
 	}
@@ -81,7 +81,7 @@ public class ListaFornitori extends ALista {
 	 */
 	public void setPrimoCatalogo(){
 		if(this.getPrimaCard() != null)
-			this.getPrimaCard().setBackground(ConfigGUI.getColoreSelezionato());
+			this.getPrimaCard().setBackground(ConfigGUI.getInstance().getColoreSelezionato());
 	}
 
 	/**
