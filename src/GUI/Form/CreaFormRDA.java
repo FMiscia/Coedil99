@@ -3,25 +3,13 @@ package GUI.Form;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
-import coedil99.controller.GestisciCommessaHandler;
-import coedil99.controller.GestisciFornitoreHandler;
-import coedil99.controller.GestisciRDAHandler;
-import coedil99.model.MCatalogoFornitore;
-import coedil99.model.MProductDescription;
-import coedil99.model.MRDA;
-import coedil99.model.MRigaRDA;
-import coedil99.persistentmodel.CatalogoFornitore;
-import coedil99.persistentmodel.ProductDescription;
-import coedil99.persistentmodel.RDA;
-import coedil99.persistentmodel.RDAFactory;
-import coedil99.persistentmodel.RigaRDA;
-import coedil99.persistentmodel.RigaRDAFactory;
 
 import GUI.RDACenter;
 import GUI.Abstract.AFormRDA;
@@ -31,8 +19,12 @@ import GUI.Card.CardRigaRDA;
 import GUI.Card.CardRigaRDAFactory;
 import GUI.Liste.ListaRDA;
 import GUI.Plichi.PlicoRDA;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
+import coedil99.controller.GestisciFornitoreHandler;
+import coedil99.controller.GestisciRDAHandler;
+import coedil99.model.MCatalogoFornitore;
+import coedil99.model.MProductDescription;
+import coedil99.model.MRDA;
+import coedil99.model.MRigaRDA;
 
 /**
  * 
@@ -50,17 +42,6 @@ public class CreaFormRDA extends AFormRDA {
 	 */
 	public CreaFormRDA() {
 		super();
-		/**
-		 * Imposta lo spinner per la selezione della quantità
-		 */
-		this.JBAddRiga.setEnabled(false);
-		this.getSpinner().addPropertyChangeListener(
-				new PropertyChangeListener() {
-					public void propertyChange(PropertyChangeEvent evt) {
-						if (evt.getPropertyName().equals("enabled"))
-							CreaFormRDA.this.JBAddRiga.setEnabled(true);
-					}
-				});
 		this.initialize();
 	}
 
@@ -100,6 +81,19 @@ public class CreaFormRDA extends AFormRDA {
 	 * Imposta la grafica e i bottoni con relativi listener
 	 */
 	private void initialize() {
+		lblTitolo.setText("Aggiungi una nuova Riga RDA");
+		/**
+		 * Imposta lo spinner per la selezione della quantità
+		 */
+		this.JBAddRiga.setEnabled(false);
+		this.getSpinner().addPropertyChangeListener(
+				new PropertyChangeListener() {
+					public void propertyChange(PropertyChangeEvent evt) {
+						if (evt.getPropertyName().equals("enabled"))
+							CreaFormRDA.this.JBAddRiga.setEnabled(true);
+					}
+				});
+		
 		MouseListener[] arrML = this.JBAddRiga.getMouseListeners();
 		if (arrML.length == 1) {
 			this.JBAddRiga.addActionListener(new ActionListener() {
@@ -192,7 +186,7 @@ public class CreaFormRDA extends AFormRDA {
 					.getDescription().getCatalogoFornitore().getName());
 			this.cbFornitore.setEnabled(false);
 		}
-		this.add(JBAddRiga, "2, 22, 3, 1");
+		this.add(JBAddRiga, "2, 24, 3, 1");
 	}
 
 }

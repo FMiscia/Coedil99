@@ -96,6 +96,7 @@ public class ModificaFormRDA extends AFormRDA {
 	 * Imposta la grafica e i bottoni (e relativi listeners)
 	 */
 	private void initialize(){
+		lblTitolo.setText("Modifica Riga RDA");
 		btSalvaModifica = new JButton("Salva Modifica");
 		btSalvaModifica.addMouseListener(new MouseAdapter() {
 							
@@ -123,7 +124,7 @@ public class ModificaFormRDA extends AFormRDA {
 				
 			}
 		});
-		add(btSalvaModifica, "2, 22, 3, 1");
+		add(btSalvaModifica, "2, 24, 3, 1");
 	}
 
 
