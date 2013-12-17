@@ -1,12 +1,10 @@
 package GUI.ClipPanels;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JToggleButton;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
@@ -108,6 +106,7 @@ public class ClipPanelRDA extends AClipPanel {
 						if (!ClipPanelRDA.this.clickFromNuovaRDA()) {
 							return;
 						}
+						ClipPanelRDA.this.focusOut();
 						CoedilFrame cf = CoedilFrame.getInstance();
 						PanelStart pl = PanelStart.getInstance();
 						pl.resetInitialState();
