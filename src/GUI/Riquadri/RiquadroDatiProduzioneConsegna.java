@@ -6,11 +6,9 @@ import java.beans.PropertyChangeListener;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.border.LineBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
 
-import GUI.ConfigGUI;
 import GUI.Abstract.ARiquadro;
 import coedil99.model.MCommessa;
 
@@ -105,8 +103,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 		this.resetRiquadro();
 		MCommessa c = (MCommessa) o;
 		if (c.getPersistentModel().getInizioProduzione() != null)
-			this.dateDataInizio.setDate(c.getPersistentModel().getOrdine()
-					.getDataInizio());
+			this.dateDataInizio.setDate(c.getPersistentModel().getInizioProduzione());
 		else
 			this.dateDataInizio.setDate(null);
 
@@ -138,6 +135,7 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 			c.getPersistentModel().setScadenzaProduzione(
 					this.dateScadenza.getDate());
 			c.save();
+			this.oggetto = c;
 			if (showmex)
 				JOptionPane
 						.showMessageDialog(null,
@@ -279,7 +277,37 @@ public class RiquadroDatiProduzioneConsegna extends ARiquadro {
 					setErrore(lblIcoDataInizio, true, null);
 					setErrore(lblIcoDataFine, true, null);
 				}
-		} 
+		}
 	}
-	
+
+	@Override
+	public void checkErrori() {
+		checkEmpty();
+		checkDate();
+	}
+
+	@Override
+	public boolean controlloErrori() {
+		return super.controlloErrori() && this.checkEmpty();
+	}
+
+	@Override
+	public boolean checkEmpty() {
+		if (dateScadenza.getDate() == null) 
+			setErrore(lblIcoScadenza, false,
+					"La data di scadenza deve essere selezionata!");
+		if (dateDataFine.getDate() == null)
+					setErrore(lblIcoDataFine, false,
+							"La data di fine deve essere selezionata!");
+				
+		if (dateDataInizio.getDate() == null)
+						setErrore(lblIcoDataInizio, false,
+								"La data di inizio deve essere selezionata!");
+
+		return dateScadenza.getDate() != null 
+				&& dateDataFine.getDate() != null 
+				&& dateDataInizio.getDate() != null ;
+
+	}
+
 }

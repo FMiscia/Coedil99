@@ -1,13 +1,10 @@
 package GUI.Riquadri;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import GUI.Abstract.ARiquadro;
-import coedil99.model.MDistinta;
 import coedil99.model.MItem;
-import coedil99.persistentmodel.Distinta;
 import coedil99.persistentmodel.Item;
 
 import com.jgoodies.forms.factories.FormFactory;
@@ -176,6 +173,12 @@ public class RiquadroOttimizzazione extends ARiquadro {
 		form.add(txtQual, "6, 2, fill, default");
 		this.Container.add(txtQual);
 
+	}
+
+	@Override
+	public void checkErrori() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

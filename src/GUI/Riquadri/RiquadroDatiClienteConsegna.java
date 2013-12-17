@@ -194,4 +194,9 @@ public class RiquadroDatiClienteConsegna extends ARiquadro {
 		this.modifica.setVisible(false);
 	}
 
+	@Override
+	public void checkErrori() {
+		
+	}
+
 }

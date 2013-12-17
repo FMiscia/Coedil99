@@ -83,26 +83,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 			this.txtOrario.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					String line = txtOrario.getText();
-					String pattern = "[^a-zA-Z0-9\'\\s]";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoOrario.setIcon(ConfigGUI.getInstance().getErrorIcon());
-						lblIcoOrario
-								.setToolTipText("Il campo Orario deve contenere solo lettere e/o numeri!");
-						txtOrario.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
-					} else if (m.find()) {
-						lblIcoOrario.setIcon(ConfigGUI.getInstance().getErrorIcon());
-						lblIcoOrario
-								.setToolTipText("Il campo Orario deve contenere solo lettere e/o numeri!");
-						txtOrario.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
-					} else {
-						lblIcoOrario.setIcon(ConfigGUI.getInstance().getOkIcon());
-						lblIcoOrario.setToolTipText("");
-						txtOrario.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
-					}
-					controlloErrori();
+					checkOrario();
 				}
 			});
 		this.Container.add(this.txtOrario);
@@ -168,7 +149,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.lblIcoDataFine = new JLabel("");
 		this.lblIcoDataFine.setVisible(false);
 		this.form.add(lblIcoDataFine, "8, 14, center, top");
-		this.Label.add(lblIcoDataFine);
+		//this.Label.add(lblIcoDataFine);
 	}
 
 	/**
@@ -229,7 +210,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.lblIcoDataInizio = new JLabel("");
 		this.lblIcoDataInizio.setVisible(false);
 		this.form.add(lblIcoDataInizio, "8, 12, center, top");
-		this.Label.add(lblIcoDataInizio);
+		//this.Label.add(lblIcoDataInizio);
 	}
 
 	/**
@@ -245,7 +226,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.lblIcoOrdineGestionale = new JLabel("");
 		this.lblIcoOrdineGestionale.setVisible(false);
 		this.form.add(lblIcoOrdineGestionale, "8, 10, center, top");
-		this.Label.add(lblIcoOrdineGestionale);
+		//this.Label.add(lblIcoOrdineGestionale);
 	}
 
 	/**
@@ -261,7 +242,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.lblIcoCommessaCoedil = new JLabel("");
 		this.lblIcoCommessaCoedil.setVisible(false);
 		this.form.add(lblIcoCommessaCoedil, "8, 8, center, top");
-		this.Label.add(lblIcoCommessaCoedil);
+		//this.Label.add(lblIcoCommessaCoedil);
 	}
 
 	/**
@@ -279,7 +260,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.lblIcoOrdineContratto = new JLabel("");
 		this.lblIcoOrdineContratto.setVisible(false);
 		this.form.add(lblIcoOrdineContratto, "8, 6, center, top");
-		this.Label.add(lblIcoOrdineContratto);
+		//this.Label.add(lblIcoOrdineContratto);
 	}
 
 	/**
@@ -296,7 +277,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.lblIcoAnno = new JLabel("");
 		this.lblIcoAnno.setVisible(false);
 		this.form.add(lblIcoAnno, "8, 4, center, top");
-		this.Label.add(lblIcoAnno);
+		//this.Label.add(lblIcoAnno);
 	}
 
 	/**
@@ -310,24 +291,7 @@ public class RiquadroDatiAziendali extends ARiquadro {
 			this.txtOC.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					String line = txtOC.getText();
-					String pattern = "\\W+";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						lblIcoOC.setIcon(ConfigGUI.getInstance().getErrorIcon());
-						lblIcoOC.setToolTipText("Il campo O/C deve contenere solo lettere e/o numeri!");
-						txtOC.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
-					} else if (m.find()) {
-						lblIcoOC.setIcon(ConfigGUI.getInstance().getErrorIcon());
-						lblIcoOC.setToolTipText("Il campo O/C deve contenere solo lettere e/o numeri!");
-						txtOC.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
-					} else {
-						lblIcoOC.setIcon(ConfigGUI.getInstance().getOkIcon());
-						lblIcoOC.setToolTipText(null);
-						txtOC.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
-					}
-					controlloErrori();
+					checkOC();
 				}
 			});
 		this.txtOC.setHorizontalAlignment(SwingConstants.CENTER);
@@ -507,6 +471,57 @@ public class RiquadroDatiAziendali extends ARiquadro {
 		this.validate();
 		this.repaint();
 	}
+	
+	/**
+	 * Metodo che effettua il controllo sul campo Orario
+	 */
+	private void checkOrario(){
+		String line = txtOrario.getText();
+		String pattern = "[^a-zA-Z0-9\'\\s]";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(line);
+		if (line.equals("")) {
+			lblIcoOrario.setIcon(ConfigGUI.getInstance().getErrorIcon());
+			lblIcoOrario
+					.setToolTipText("Il campo Orario deve contenere solo lettere e/o numeri!");
+			txtOrario.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
+		} else if (m.find()) {
+			lblIcoOrario.setIcon(ConfigGUI.getInstance().getErrorIcon());
+			lblIcoOrario
+					.setToolTipText("Il campo Orario deve contenere solo lettere e/o numeri!");
+			txtOrario.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
+		} else {
+			lblIcoOrario.setIcon(ConfigGUI.getInstance().getOkIcon());
+			lblIcoOrario.setToolTipText("");
+			txtOrario.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
+		}
+		controlloErrori();
+	}
+	
+	/**
+	 * Metodo che controlla lo stato del campo O/C
+	 */
+	private void checkOC(){
+		String line = txtOC.getText();
+		String pattern = "\\W+";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(line);
+		if (line.equals("")) {
+			lblIcoOC.setIcon(ConfigGUI.getInstance().getErrorIcon());
+			lblIcoOC.setToolTipText("Il campo O/C deve contenere solo lettere e/o numeri!");
+			txtOC.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
+		} else if (m.find()) {
+			lblIcoOC.setIcon(ConfigGUI.getInstance().getErrorIcon());
+			lblIcoOC.setToolTipText("Il campo O/C deve contenere solo lettere e/o numeri!");
+			txtOC.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
+		} else {
+			lblIcoOC.setIcon(ConfigGUI.getInstance().getOkIcon());
+			lblIcoOC.setToolTipText(null);
+			txtOC.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
+		}
+		controlloErrori();
+	}
+		
 
 	@Override
 	/**
@@ -516,6 +531,17 @@ public class RiquadroDatiAziendali extends ARiquadro {
 
 		super.makeEditable(editable);
 
+	}
+	
+	@Override
+	public boolean controlloErrori(){
+		boolean test = super.controlloErrori() && super.checkEmpty();
+		return test;
+	}
+	
+	public void checkErrori(){
+		checkOrario();
+		checkOC();
 	}
 
 }

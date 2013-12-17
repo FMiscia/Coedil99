@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -154,6 +155,8 @@ public abstract class ARiquadro extends JPanel {
 		}
 		return test;
 	}
+	
+	public abstract void checkErrori();
 
 	/**
 	 * Cambia il colore del testo nei campi non abilitati mettendolo più scuro

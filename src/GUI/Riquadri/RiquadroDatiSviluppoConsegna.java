@@ -168,26 +168,7 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 			this.txtResponsabile.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					String line = txtResponsabile.getText();
-					String pattern = "[^a-zA-Z\'\\è\\é\\ò\\à\\ù\\s]";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						setErrore(lblIcoResponsabile, false,
-								"Il campo Responsabile deve contenere solo lettere!");
-						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
-								.getColoreBordoErrore()));
-					} else if (m.find()) {
-						setErrore(lblIcoResponsabile, false,
-								"Il campo Responsabile deve contenere solo lettere!");
-						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
-								.getColoreBordoErrore()));
-					} else {
-						setErrore(lblIcoResponsabile, true, null);
-						txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
-								.getColoreBordoOk()));
-					}
-					controlloErrori();
+					checkResponsabile();
 				}
 			});
 		this.Container.add(this.txtResponsabile);
@@ -263,26 +244,7 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 			this.txtRitardo.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					String line = txtRitardo.getText();
-					String pattern = "[\\D]";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						setErrore(lblIcoRitardo, false,
-								"Il campo Ritardo Produzione deve contenere solo numeri!");
-						txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
-								.getColoreBordoErrore()));
-					} else if (m.find()) {
-						setErrore(lblIcoRitardo, false,
-								"Il campo Ritardo Produzione deve contenere solo numeri!");
-						txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
-								.getColoreBordoErrore()));
-					} else {
-						setErrore(lblIcoRitardo, true, null);
-						txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
-								.getColoreBordoOk()));
-					}
-					controlloErrori();
+					checkRitardo();
 				}
 			});
 		this.Container.add(this.txtRitardo);
@@ -398,6 +360,85 @@ public class RiquadroDatiSviluppoConsegna extends ARiquadro {
 					setErrore(lblIcoDataFine, true, null);
 				}
 		}
+	}
+
+	private void checkResponsabile() {
+		String line = txtResponsabile.getText();
+		String pattern = "[^a-zA-Z\'\\è\\é\\ò\\à\\ù\\s]";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(line);
+		if (line.equals("")) {
+			setErrore(lblIcoResponsabile, false,
+					"Il campo Responsabile deve contenere solo lettere!");
+			txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
+					.getColoreBordoErrore()));
+		} else if (m.find()) {
+			setErrore(lblIcoResponsabile, false,
+					"Il campo Responsabile deve contenere solo lettere!");
+			txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
+					.getColoreBordoErrore()));
+		} else {
+			setErrore(lblIcoResponsabile, true, null);
+			txtResponsabile.setBorder(new LineBorder(ConfigGUI.getInstance()
+					.getColoreBordoOk()));
+		}
+		//controlloErrori();
+	}
+
+	private void checkRitardo() {
+		String line = txtRitardo.getText();
+		String pattern = "[\\D]";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(line);
+		if (line.equals("")) {
+			setErrore(lblIcoRitardo, false,
+					"Il campo Ritardo Produzione deve contenere solo numeri!");
+			txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
+					.getColoreBordoErrore()));
+		} else if (m.find()) {
+			setErrore(lblIcoRitardo, false,
+					"Il campo Ritardo Produzione deve contenere solo numeri!");
+			txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
+					.getColoreBordoErrore()));
+		} else {
+			setErrore(lblIcoRitardo, true, null);
+			txtRitardo.setBorder(new LineBorder(ConfigGUI.getInstance()
+					.getColoreBordoOk()));
+		}
+		//controlloErrori();
+	}
+
+	@Override
+	public void checkErrori() {
+		checkDate();
+		checkResponsabile();
+		checkRitardo();
+	}
+
+	@Override
+	public boolean controlloErrori() {
+		return super.controlloErrori() && checkEmpty();
+	}
+
+	@Override
+	public boolean checkEmpty() {
+		return super.checkEmpty() && dateEmissioneCommessa.getDate() != null
+				&& dateDataFine.getDate() != null
+				&& dateScadenzaCommessa.getDate() != null;
+
+	}
+	
+	public void checkDateEmpty(){
+		if (dateEmissioneCommessa.getDate() == null)
+		setErrore(lblIcoEmissioneCommessa, false,
+				"La data di scadenza deve essere selezionata!");
+		if (dateDataFine.getDate() == null)
+			setErrore(lblIcoDataFine, false,
+					"La data di fine deve essere selezionata!");
+		if (dateScadenzaCommessa.getDate() == null)
+			setErrore(lblIcoScadenzaCommessa, false,
+					"La data di inizio deve essere selezionata!");
+	
 	}
 
 }

@@ -7,6 +7,8 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -230,17 +232,14 @@ public class PlicoCreaCommessa extends APlico {
 		this.deleteAllButtons();
 		this.makeAllEditable();
 
-		this.salva.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (PlicoCreaCommessa.this.rda.controlloErrori() && PlicoCreaCommessa.this.rdc.controlloErrori()
-						&& PlicoCreaCommessa.this.rdcc.controlloErrori()
+		this.salva.addMouseListener(new MouseAdapter() {
+		
+			public void mouseClicked(MouseEvent arg0) {
+				//PlicoCreaCommessa.this.rdpc.controlloErrori();
+				if (PlicoCreaCommessa.this.rda.controlloErrori() 
+						&& PlicoCreaCommessa.this.rdc.controlloErrori()
 						&& PlicoCreaCommessa.this.rdpc.controlloErrori()
 						&& PlicoCreaCommessa.this.rsc.controlloErrori()
-						&& PlicoCreaCommessa.this.rdc.checkEmpty()
-						&& PlicoCreaCommessa.this.rdpc.checkEmpty()
-						&& PlicoCreaCommessa.this.rsc.checkEmpty()
 						&& PlicoCreaCommessa.this.selected_ordine > 0) {
 					PlicoCreaCommessa.this.error_mex.setText("");
 					MCommessa commessa = new MCommessa();
@@ -277,6 +276,11 @@ public class PlicoCreaCommessa extends APlico {
 							.get(AClipPanel.PLButtonState.get("COMMESSA"))
 							.doClick();
 				} else {
+					PlicoCreaCommessa.this.rda.checkErrori();
+					PlicoCreaCommessa.this.rdc.checkErrori();
+					PlicoCreaCommessa.this.rdpc.checkErrori();
+					PlicoCreaCommessa.this.rsc.checkErrori();
+					PlicoCreaCommessa.this.rsc.checkDateEmpty();
 					PlicoCreaCommessa.this.error_mex.setIcon(new ImageIcon(
 							PlicoCreaCommessa.class
 									.getResource("/GUI/image/cancel.png")));
