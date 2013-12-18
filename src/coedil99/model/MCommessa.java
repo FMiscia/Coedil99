@@ -77,14 +77,12 @@ public class MCommessa implements IModel {
 	}
 
 	public void setCodiceInterno() {
-		this.commessa.setCodiceInterno(this.commessa.getOrdine().getAnno()
-				.toString()
+		this.commessa.setCodiceInterno(this.commessa.getOrdine().getAnno().toString()
 				+ "-"
 				+ this.commessa.getOrdine().getNumeroOrdine()
 				+ "-"
 				+ this.commessa.getOrdine().getCliente()
 						.getNumeroCommessaCliente());
-
 	}
 
 }

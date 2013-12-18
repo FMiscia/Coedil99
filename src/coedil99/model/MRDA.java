@@ -106,5 +106,23 @@ public class MRDA extends coedil99.model.Subject implements IModel{
 		return this.rda.getDescrizione();
 	}
 
+	public float getPrezzoTotale() {
+		float prezzo_totale = 0;
+		for (int i = 0; i < this.getPersistentModel().righeRDA.size(); ++i) {
+			prezzo_totale += (this.getPersistentModel().righeRDA.get(i).getQuantity() 
+					* this.getPersistentModel().righeRDA
+					.get(i).getDescription().getPrezzo());
+		}
+		return prezzo_totale;
+	}
+
+	public int getQuantitaTotale() {
+		int quantita_totale = 0;
+		for (int i = 0; i < this.getPersistentModel().righeRDA.size(); ++i) {
+			quantita_totale += this.getPersistentModel().righeRDA.get(i).getQuantity();
+		}
+		return quantita_totale;
+	}
+
 
 }
