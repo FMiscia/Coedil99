@@ -24,7 +24,6 @@ public class CoedilFrame extends JFrame {
 	 * Lancia l'applicazione
 	 */
 	public static void main(String[] args) {
-
 		ConfigGUI cg = ConfigGUI.getInstance();
 		if (!cg.isParsed())
 			JOptionPane
@@ -85,10 +84,6 @@ public class CoedilFrame extends JFrame {
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(new BorderLayout());
-
-		// PanelStart pl = PanelStart.getInstance();
-		// pl.setBounds(0, 0, this.getWidth(), this.getHeight());
-		// this.getContentPane().add(pl, BorderLayout.CENTER);
 
 		LoginPanel lp = LoginPanel.getInstance();
 		lp.setBounds(0, 0, this.getWidth(), this.getHeight());

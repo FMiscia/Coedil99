@@ -48,6 +48,7 @@ public abstract class AFormRDA extends JPanel {
 	protected JTextField tfSpesa;
 	protected JHorizontalSpinner spinner;
 	private JLabel lblValuta;
+	protected JLabel lblTitolo;
 
 	/**
 	 * Costruttore dello scheletro di una FormRDA
@@ -271,58 +272,66 @@ public abstract class AFormRDA extends JPanel {
 	 * Imposta la grafica
 	 */
 	private void initialize() {
-		this.setPreferredSize(new Dimension(317, 240));
-		setLayout(new FormLayout(
-				new ColumnSpec[] { FormFactory.RELATED_GAP_COLSPEC,
-						ColumnSpec.decode("54px"), ColumnSpec.decode("19px"),
-						ColumnSpec.decode("center:220px"), }, new RowSpec[] {
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.RELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC, }));
+		this.setPreferredSize(new Dimension(317, 300));
+		setLayout(new FormLayout(new ColumnSpec[] {
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("54px"),
+				ColumnSpec.decode("19px"),
+				ColumnSpec.decode("center:220px"),},
+			new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("max(20dlu;default)"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,}));
+		
+		lblTitolo = new JLabel();
+		lblTitolo.setFont(new Font("Tahoma", Font.BOLD, 14));
+		add(lblTitolo, "2, 2, 3, 1, center, default");
 
 		cbFornitore = new JComboBox<Object>();
-		add(cbFornitore, "2, 4, 3, 1");
+		add(cbFornitore, "2, 6, 3, 1");
 
 		lblFornitore = new JLabel("Seleziona il catalogo del Fornitore");
-		add(lblFornitore, "2, 2, 3, 1");
+		add(lblFornitore, "2, 4, 3, 1");
 
 		cbEssenza = new JComboBox<Object>();
 		cbEssenza.setEnabled(false);
-		add(cbEssenza, "2, 8, 3, 1");
+		add(cbEssenza, "2, 10, 3, 1");
 
 		lblEssenza = new JLabel("Seleziona l'essenza");
-		add(lblEssenza, "2, 6, 3, 1");
+		add(lblEssenza, "2, 8, 3, 1");
 
 		cbGeometria = new JComboBox<Object>();
 		cbGeometria.setEnabled(false);
-		add(cbGeometria, "2, 12, 3, 1");
+		add(cbGeometria, "2, 14, 3, 1");
 
 		lblGeometria = new JLabel("Seleziona la geometria");
-		add(lblGeometria, "2, 10, 3, 1");
+		add(lblGeometria, "2, 12, 3, 1");
 
 		lblQuantita = new JLabel("Seleziona il numero di pacchi");
-		add(lblQuantita, "2, 14, 3, 1");
+		add(lblQuantita, "2, 16, 3, 1");
 
 		spinner = new JHorizontalSpinner();
 		spinner.setPreferredSize(new Dimension(75, 20));
@@ -366,23 +375,23 @@ public abstract class AFormRDA extends JPanel {
 				}
 			});
 
-		add(spinner, "2, 16, 2, 1, left, center");
+		add(spinner, "2, 18, 2, 1, left, center");
 
 		lblPrezzo = new JLabel("Riepilogo spesa");
-		add(lblPrezzo, "2, 18, 3, 1");
+		add(lblPrezzo, "2, 20, 3, 1");
 
 		tfSpesa = new JTextField();
 		tfSpesa.setHorizontalAlignment(SwingConstants.TRAILING);
 		tfSpesa.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		tfSpesa.setBorder(null);
 		tfSpesa.setEditable(false);
-		add(tfSpesa, "2, 20, left, default");
+		add(tfSpesa, "2, 22, left, default");
 		tfSpesa.setColumns(10);
 
 		lblValuta = new JLabel("\u20AC");
 		lblValuta.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		lblValuta.setHorizontalAlignment(SwingConstants.RIGHT);
-		add(lblValuta, "3, 20, right, default");
+		add(lblValuta, "3, 22, right, default");
 
 	}
 

@@ -141,12 +141,12 @@ public class RiquadroDatiConsegna extends ARiquadro {
 
 						@Override
 						public void focusLost(FocusEvent e) {
-							chechDate();
+							checkDate();
 						}
 
 						@Override
 						public void focusGained(FocusEvent e) {
-							chechDate();
+							checkDate();
 						}
 					});
 		}
@@ -172,22 +172,7 @@ public class RiquadroDatiConsegna extends ARiquadro {
 			this.txtRirardoConsegna.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					String line = txtRirardoConsegna.getText();
-					String pattern = "[\\D]";
-					Pattern r = Pattern.compile(pattern);
-					Matcher m = r.matcher(line);
-					if (line.equals("")) {
-						setErrore(lblIcoRirardoConsegna,false,"Il campo Ritardo deve contenere solo numeri!");
-						txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
-					} else if (m.find()) {
-						setErrore(lblIcoRirardoConsegna,false,"Il campo Ritardo deve contenere solo numeri!");
-						txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
-					} else {
-						setErrore(lblIcoRirardoConsegna,true,null);
-						txtRirardoConsegna
-								.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
-					}
-					controlloErrori();
+					checkRitardo();
 				}
 			});
 		this.Container.add(this.txtRirardoConsegna);
@@ -201,13 +186,46 @@ public class RiquadroDatiConsegna extends ARiquadro {
 	/**
 	 * Metodo che controlla lo stato del campo data prima consegna
 	 */
-	public void chechDate(){
+	private void checkDate(){
 		if (dateDataPrimaConsegna.getDate() == null) {
 			setErrore(lblIcoDataPrimaConsegna,false,"La data di scadenza deve essere selezionata!");
 		} else {
 			setErrore(lblIcoDataPrimaConsegna,true,null);
 		}
 		controlloErrori();
+	}
+	
+	/**
+	 * Metodo che controlla lo stato del campo ritardo
+	 */
+	private void checkRitardo(){
+		String line = txtRirardoConsegna.getText();
+		String pattern = "[\\D]";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(line);
+		if (line.equals("")) {
+			setErrore(lblIcoRirardoConsegna,false,"Il campo Ritardo deve contenere solo numeri!");
+			txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
+		} else if (m.find()) {
+			setErrore(lblIcoRirardoConsegna,false,"Il campo Ritardo deve contenere solo numeri!");
+			txtRirardoConsegna.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoErrore()));
+		} else {
+			setErrore(lblIcoRirardoConsegna,true,null);
+			txtRirardoConsegna
+					.setBorder(new LineBorder(ConfigGUI.getInstance().getColoreBordoOk()));
+		}
+		controlloErrori();
+	}
+	
+	@Override
+	public boolean controlloErrori(){
+		boolean test = super.controlloErrori() && super.checkEmpty();
+		return test;
+	}
+	
+	public void checkErrori(){
+		checkRitardo();
+		checkDate();
 	}
 
 }
